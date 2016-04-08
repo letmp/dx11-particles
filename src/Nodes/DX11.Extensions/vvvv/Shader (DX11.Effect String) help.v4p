@@ -1,0 +1,457 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
+   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\Shader (DX11.Effect String) help.v4p" scrollx="0" scrolly="-360">
+   <BOUNDS type="Window" left="5640" top="2610" width="20640" height="13560">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Shader (DX11.Effect String)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="1050" top="4440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <PIN pinname="Thread X" slicecount="1" visible="1" values="5">
+   </PIN>
+   <BOUNDS type="Box" left="1050" top="4440">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Renderer (DX11 Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 Buffer)" componentmode="Hidden" id="6">
+   <BOUNDS type="Node" left="1425" top="8865" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Element Count" visible="1">
+   </PIN>
+   <PIN pinname="Stride" slicecount="1" visible="1" values="4">
+   </PIN>
+   <PIN pinname="Buffers" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1425" top="8865">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="240" top="3690" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="240" top="3690" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="4" dstpinname="Thread X" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="300" y="4170">
+   </LINKPOINT>
+   <LINKPOINT x="1035" y="4170">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="285" y="6173">
+   </LINKPOINT>
+   <LINKPOINT x="1920" y="6623">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="8" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2085" top="8355" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2085" top="8355" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Y Output Value" dstnodeid="6" dstpinname="Stride">
+   </LINK>
+   <NODE systemname="ReadBack (DX11.Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="ReadBack (DX11.Buffer)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="1425" top="9285" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layout" slicecount="1" values="uint">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1425" top="9285">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Buffers" dstnodeid="9" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1425" top="9780" width="795" height="960">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1425" top="9780" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="4" values="0,,,">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|0, 0, 0, 1|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output 1" dstnodeid="10" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="1980" top="6570" width="435" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1980" top="6570" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="1740" top="7725" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Layer Out" dstnodeid="6" dstpinname="Layer">
+   </LINK>
+   <NODE systemname="RenderSemantic (DX11.Layer Int)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Int)" componentmode="Hidden" id="19">
+   <BOUNDS type="Node" left="1995" top="7110" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Semantic" slicecount="1" visible="1" values="MULTIPLICATOR">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="19" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output" dstnodeid="21" dstpinname="Custom Semantics">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="22" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2400" top="4440" width="1350" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2400" top="4440" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\fxh\">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE systemname="Select (String)" nodename="Select (String)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="2235" top="1935" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Select" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="26" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2700" top="1305" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2700" top="1305" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="24" dstpinname="Select">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="27" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5985" top="4440" width="6360" height="6300">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5985" top="4440" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Input String" slicecount="2" visible="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;|,|RWStructuredBuffer&lt;uint&gt; fBufCounter : BACKBUFFER;&cr;&lf;&cr;&lf;cbuffer multiplicatorbuffer{&cr;&lf;    int multiplicator : MULTIPLICATOR;&cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS(csin input)&cr;&lf;{&cr;&lf;&tab;#if defined(XTHREADS)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = input.DTID.x * multiplicator;&cr;&lf;&tab;#else&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = 0;&cr;&lf;&tab;#endif&cr;&lf;}&cr;&lf;&cr;&lf;technique11 csmain { pass P0{SetComputeShader( CompileShader( cs_5_0, CS() ) );} }|">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cons (String)" nodename="Cons (String)" componentmode="Hidden" id="25" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll">
+   <BOUNDS type="Node" left="2235" top="3075" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;|">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="|RWStructuredBuffer&lt;uint&gt; fBufCounter : BACKBUFFER;&cr;&lf;&cr;&lf;cbuffer multiplicatorbuffer{&cr;&lf;    int multiplicator : MULTIPLICATOR;&cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS(csin input)&cr;&lf;{&cr;&lf;&tab;#if defined(XTHREADS)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = input.DTID.x * multiplicator;&cr;&lf;&tab;#else&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = 0;&cr;&lf;&tab;#endif&cr;&lf;}&cr;&lf;&cr;&lf;technique11 csmain { pass P0{SetComputeShader( CompileShader( cs_5_0, CS() ) );} }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2235" top="3075">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="2250" top="3585" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Output" dstnodeid="28" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="28" srcpinname="Output" dstnodeid="27" dstpinname="Input String" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2560" y="4133">
+   </LINKPOINT>
+   <LINKPOINT x="5735" y="4133">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5985" top="1560" width="6270" height="1140">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5985" top="1560" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|RWStructuredBuffer&lt;uint&gt; fBufCounter : BACKBUFFER;&cr;&lf;&cr;&lf;cbuffer multiplicatorbuffer{&cr;&lf;    int multiplicator : MULTIPLICATOR;&cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS(csin input)&cr;&lf;{&cr;&lf;&tab;#if defined(XTHREADS)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = input.DTID.x * multiplicator;&cr;&lf;&tab;#else&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = 0;&cr;&lf;&tab;#endif&cr;&lf;&cr;&lf;&tab;#if defined(ADD)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] += ADD;&cr;&lf;&tab;#endif&cr;&lf;}&cr;&lf;&cr;&lf;technique11 csmain { pass P0{SetComputeShader( CompileShader( cs_5_0, CS() ) );} }|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="29" srcpinname="Output String" dstnodeid="25" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5825" y="2880">
+   </LINKPOINT>
+   <LINKPOINT x="2680" y="2880">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="30" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2235" top="2445" width="1800" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2235" top="2445" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="30" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="30" srcpinname="Output String" dstnodeid="25" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="31" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="5985" top="3960" width="1755" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5985" top="3960" width="1905" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|this is the shader code:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="32" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="3855" top="4395" width="3360" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3855" top="4395" width="1110" height="960">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; set path from which includes are resolved|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="33" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="3855" top="6585" width="2400" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3855" top="6585" width="1530" height="540">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; custom semantics also work|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="34" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2910" top="5655" width="630" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2910" top="5655" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="ADD=3">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="35" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="3855" top="5655" width="1200" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3855" top="5655" width="1635" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; additional defines|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="36" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2550" top="6570" width="1230" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2550" top="6570" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="MULTIPLICATOR">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="19" dstpinname="Semantic">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="37" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="3330" top="1395" width="2055" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3330" top="1395" width="2055" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; include/exclude fxh file|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Cons (DX11.RenderSemantic)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Cons (DX11.RenderSemantic)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="14790" top="4905" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="RenderSemantic (DX11.Layer Int)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Int)" componentmode="Hidden" id="40">
+   <BOUNDS type="Node" left="14235" top="3300" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Semantic" slicecount="1" visible="1" values="MULTIPLICATOR">
+   </PIN>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="40" srcpinname="Output" dstnodeid="39" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="40" srcpinname="Output" dstnodeid="39" dstpinname="Input 2">
+   </LINK>
+   <NODE nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="0" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll">
+   <BOUNDS type="Node" left="1755" top="6045" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1755" top="6045" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;|">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Technique" visible="1" slicecount="1" values="csmain">
+   </PIN>
+   <PIN pinname="Technique Valid" visible="1">
+   </PIN>
+   <PIN pinname="Layout Message" visible="1">
+   </PIN>
+   <PIN pinname="Layout Valid" visible="1">
+   </PIN>
+   <PIN pinname="Compiled" visible="1">
+   </PIN>
+   <PIN pinname="IncludePath" slicecount="1" visible="1" values="..\..\..\fxh\Defines.fxh">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Geometry Out" dstnodeid="0" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="1110" y="5188">
+   </LINKPOINT>
+   <LINKPOINT x="2085" y="5538">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Layer" dstnodeid="21" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="22" srcpinname="Output String" dstnodeid="0" dstpinname="IncludePath" linkstyle="VHV">
+   <LINKPOINT x="3175" y="5335">
+   </LINKPOINT>
+   <LINKPOINT x="1700" y="5630">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="28" srcpinname="Output" dstnodeid="0" dstpinname="ShaderCode">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="0" dstpinname="Defines">
+   </LINK>
+   </PATCH>

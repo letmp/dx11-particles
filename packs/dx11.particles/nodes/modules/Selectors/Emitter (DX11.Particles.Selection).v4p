@@ -1,0 +1,147 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
+   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\modules\Selectors\Emitter (DX11.Particles.Selection).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p">
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="4170" top="690" width="5865" height="705">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4170" top="690" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|bool SetBufferRegion(uint slotIndex) {&cr;&lf;&tab;return (asint(slotIndex) &gt;= fRegion[0] &amp;&amp; asint(slotIndex) &lt; fRegion[1]);&cr;&lf;}|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="5955" top="2955" width="1785" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5955" top="2955" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|float2 fRegion : REGION;|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="RenderSemantic (DX11.Layer 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer 2d)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="7785" top="3285" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="InputXY" visible="1" slicecount="2" values="0,0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Semantic" slicecount="1" visible="1" values="REGION">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2370" top="390" width="1980" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2370" top="390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="SetBufferRegion(slotIndex)">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <BOUNDS type="Window" left="12795" top="9885" width="11235" height="5880">
+   </BOUNDS>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="6" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="570" top="4320" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="570" top="4320" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="7" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="7785" top="1950" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7785" top="1950" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="8" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="9525" top="1950" width="975" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9525" top="1950" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Emitter2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Name|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="9" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8325" top="2955" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8325" top="2955" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="REGION">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="SEMANTIC">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="3" dstpinname="Semantic">
+   </LINK>
+   <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="570" top="3870" width="7260" height="270">
+   </BOUNDS>
+   <PIN pinname="Variable List" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="SetRegion(slotIndex)">
+   </PIN>
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float2 fRegion : REGION;|">
+   </PIN>
+   <BOUNDS type="Box" left="570" top="3870">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="GetEmitterOffset (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="GetEmitterOffset (DX11.Particles.Core)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="7770" top="2460" width="1815" height="270">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
+   </PIN>
+   <PIN pinname="Emitter Name" slicecount="1" visible="1" values="Emitter1">
+   </PIN>
+   <PIN pinname="Region" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Region" dstnodeid="3" dstpinname="InputXY">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output Enum" dstnodeid="4" dstpinname="ParticleSystem">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output Enum" dstnodeid="4" dstpinname="Emitter Name">
+   </LINK>
+   </PATCH>
