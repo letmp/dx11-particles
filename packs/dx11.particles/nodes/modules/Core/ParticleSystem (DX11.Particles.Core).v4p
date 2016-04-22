@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" systemname="ParticleSystem (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\ParticleSystem (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="135">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" systemname="ParticleSystem (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\ParticleSystem (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="0">
    <NODE id="0" systemname="RenderSemantic (DX11.Layer 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer 2d)" componentmode="Hidden">
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -151,7 +151,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="13620" top="6285" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="8" visible="1" values="Default,Default,Default,Counter,Counter,Default,Counter,Default">
+   <PIN pinname="Input Enum" slicecount="8" visible="1" values="Default,Default,Default,Counter,Counter,Default,Counter,Counter">
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
@@ -234,7 +234,7 @@
    </LINK>
    <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Semantic">
    </LINK>
-   <BOUNDS type="Window" left="10185" top="7245" width="23595" height="11580">
+   <BOUNDS type="Window" left="3585" top="3120" width="23595" height="11580">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -413,7 +413,7 @@
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="53">
    <BOUNDS type="Node" left="3690" top="3750" width="1050" height="270">
    </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="6">
+   <PIN pinname="Input Count" slicecount="1" values="7">
    </PIN>
    <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
@@ -429,27 +429,11 @@
    </PIN>
    <PIN pinname="Layer 6" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Layer 7" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="55" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5385" top="780" width="615" height="570">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5385" top="780" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,0,0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Vector Size" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="GravityXYZ">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="59" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="480" top="2460" width="795" height="240">
    </BOUNDS>
@@ -523,7 +507,7 @@
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
+   <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Velocity Dampening|">
    </PIN>
@@ -531,12 +515,6 @@
    <LINK srcnodeid="53" srcpinname="Layer Out" dstnodeid="3" dstpinname="Layer In">
    </LINK>
    <LINK srcnodeid="19" srcpinname="Output Node" dstnodeid="53" dstpinname="Layer 4">
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Output Node" dstnodeid="53" dstpinname="Layer 1" linkstyle="Bezier">
-   <LINKPOINT x="640" y="3210">
-   </LINKPOINT>
-   <LINKPOINT x="3755" y="3210">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="String2Enum (Enumerations)" nodename="String2Enum (Enumerations)" componentmode="Hidden" id="68">
    <BOUNDS type="Node" left="7815" top="1770" width="100" height="100">
@@ -699,11 +677,13 @@
    <NODE systemname="UpdateFlagBuffer (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\UpdateFlagBuffer (DX11.Particles.Core).v4p" nodename="UpdateFlagBuffer (DX11.Particles.Core)" componentmode="Hidden" id="69">
    <BOUNDS type="Node" left="1425" top="2460" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Window" left="-15645" top="8655" width="5595" height="4320">
+   <BOUNDS type="Window" left="7560" top="7785" width="5595" height="4320">
    </BOUNDS>
    <BOUNDS type="Box" left="1425" top="2460">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="HasSelection" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="69" srcpinname="Layer" dstnodeid="53" dstpinname="Layer 2" linkstyle="Bezier">
@@ -712,94 +692,24 @@
    <LINKPOINT x="3980" y="3225">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="ResetForce (DX11.Particles.Modifier)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Modifiers\ResetForce (DX11.Particles.Modifier).v4p" nodename="ResetForce (DX11.Particles.Modifier)" componentmode="Hidden" id="56">
-   <BOUNDS type="Node" left="3000" top="2460" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Window" left="8610" top="6615" width="13860" height="8130">
-   </BOUNDS>
-   <BOUNDS type="Box" left="3000" top="2460">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Variables" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="PS DEFINES" visible="1" slicecount="1" values="MAXPARTICLECOUNT=14">
-   </PIN>
-   <PIN pinname="Input 3" visible="1">
-   </PIN>
-   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|ParticleSystem 01|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="56" srcpinname="Layer" dstnodeid="53" dstpinname="Layer 3" linkstyle="Bezier">
-   <LINKPOINT x="3060" y="3225">
-   </LINKPOINT>
-   <LINKPOINT x="4170" y="3225">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="68" srcpinname="Enum" dstnodeid="56" dstpinname="ParticleSystem" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="7815" y="2235">
-   </LINKPOINT>
-   <LINKPOINT x="4095" y="2235">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Iterator (DX11.Particles.Modifier)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Modifiers\Iterator (DX11.Particles.Modifier).v4p" nodename="Iterator (DX11.Particles.Modifier)" componentmode="Hidden" id="54">
-   <BOUNDS type="Node" left="5205" top="2460" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="GravityXYZ" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="8235" top="7620" width="11865" height="8265">
-   </BOUNDS>
-   <PIN pinname="Velocity Dampening" visible="1" slicecount="1" values="0.990000009536743">
-   </PIN>
-   <PIN pinname="ParticleSystem" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="5205" top="2460">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="54" dstpinname="GravityXYZ">
-   </LINK>
-   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Velocity Dampening" linkstyle="Bezier">
-   <LINKPOINT x="6315" y="1733">
-   </LINKPOINT>
-   <LINKPOINT x="5610" y="1733">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="53" dstpinname="Layer 5" linkstyle="Bezier">
-   <LINKPOINT x="5205" y="3240">
-   </LINKPOINT>
-   <LINKPOINT x="4560" y="3240">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="68" srcpinname="Enum" dstnodeid="54" dstpinname="ParticleSystem" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="7815" y="2235">
-   </LINKPOINT>
-   <LINKPOINT x="6000" y="2235">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="UpdateAliveBuffer (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\UpdateAliveBuffer (DX11.Particles.Core).v4p" nodename="UpdateAliveBuffer (DX11.Particles.Core)" componentmode="Hidden" id="80">
    <BOUNDS type="Node" left="6375" top="2460" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="6375" top="2460" width="4440" height="3805">
    </BOUNDS>
-   <BOUNDS type="Window" left="-14760" top="8040" width="10470" height="9480">
+   <BOUNDS type="Window" left="3765" top="915" width="13845" height="11130">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
-   <PIN pinname="Layer Out" visible="1">
+   <PIN pinname="Layer Out" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Rebuild" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="68" srcpinname="Enum" dstnodeid="80" dstpinname="ParticleSystem" linkstyle="VHV" hiddenwhenlocked="1">
    <LINKPOINT x="7815" y="2235">
    </LINKPOINT>
    <LINKPOINT x="6435" y="2235">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="80" srcpinname="Layer Out" dstnodeid="53" dstpinname="Layer 6" linkstyle="Bezier">
-   <LINKPOINT x="6375" y="3225">
-   </LINKPOINT>
-   <LINKPOINT x="4725" y="3225">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Register (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="13">
@@ -842,6 +752,90 @@
    <LINKPOINT x="11730" y="6120">
    </LINKPOINT>
    <LINKPOINT x="15735" y="6120">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Iterator (DX11.Particles.Modifier)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Modifiers\Iterator (DX11.Particles.Modifier).v4p" nodename="Iterator (DX11.Particles.Modifier)" componentmode="Hidden" id="86">
+   <BOUNDS type="Node" left="5205" top="2460" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="8235" top="7620" width="13965" height="8265">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5205" top="2460">
+   </BOUNDS>
+   <PIN pinname="GravityXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="86" dstpinname="Velocity Dampening" linkstyle="Bezier">
+   <LINKPOINT x="6315" y="1733">
+   </LINKPOINT>
+   <LINKPOINT x="5610" y="1733">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Enum" dstnodeid="86" dstpinname="ParticleSystem" linkstyle="VHV" hiddenwhenlocked="1">
+   <LINKPOINT x="7815" y="2235">
+   </LINKPOINT>
+   <LINKPOINT x="6000" y="2235">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="87">
+   <BOUNDS type="Node" left="3015" top="2070" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="86" srcpinname="Layer" dstnodeid="53" dstpinname="Layer 5" linkstyle="Bezier">
+   <LINKPOINT x="5205" y="3240">
+   </LINKPOINT>
+   <LINKPOINT x="4560" y="3240">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="Layer Out" dstnodeid="53" dstpinname="Layer 6" linkstyle="Bezier">
+   <LINKPOINT x="6375" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="4725" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Output Node" dstnodeid="53" dstpinname="Layer 1" linkstyle="Bezier">
+   <LINKPOINT x="640" y="3210">
+   </LINKPOINT>
+   <LINKPOINT x="3755" y="3210">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="SetAcceleration (DX11.Particles.Modifier)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\SetAcceleration (DX11.Particles.Modifier).v4p" nodename="SetAcceleration (DX11.Particles.Modifier)" componentmode="Hidden" id="56">
+   <BOUNDS type="Node" left="3000" top="2460" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="14100" top="4425" width="13860" height="8130">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3000" top="2460">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Variables" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="PS DEFINES" visible="1" slicecount="1" values="MAXPARTICLECOUNT=14">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|ParticleSystem 01|">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" values="Set">
+   </PIN>
+   <PIN pinname="Acceleration Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="Enum" dstnodeid="56" dstpinname="ParticleSystem" linkstyle="VHV" hiddenwhenlocked="1">
+   <LINKPOINT x="7815" y="2235">
+   </LINKPOINT>
+   <LINKPOINT x="4095" y="2235">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Buffer" dstnodeid="56" dstpinname="Acceleration Buffer">
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Layer" dstnodeid="53" dstpinname="Layer 3" linkstyle="Bezier">
+   <LINKPOINT x="3060" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="4155" y="3225">
    </LINKPOINT>
    </LINK>
    </PATCH>

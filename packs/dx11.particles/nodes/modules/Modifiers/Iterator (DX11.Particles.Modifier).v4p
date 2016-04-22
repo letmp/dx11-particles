@@ -1,13 +1,13 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\modules\Modifiers\Iterator (DX11.Particles.Modifier).v4p" systemname="Iterator (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Iterator (DX11.Mcps.Modifiers).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="8235" top="7620" width="11865" height="8265">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Iterator (DX11.Particles.Modifier).v4p" systemname="Iterator (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Iterator (DX11.Mcps.Modifiers).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="8235" top="7620" width="13965" height="8265">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="20">
-   <BOUNDS type="Node" left="3405" top="2850" width="100" height="100">
+   <BOUNDS type="Node" left="3540" top="2850" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3405" top="2850" width="375" height="240">
+   <BOUNDS type="Box" left="3540" top="2850" width="375" height="240">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -21,7 +21,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetThreadSize (Value)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="1920" top="3405" width="1545" height="270">
+   <BOUNDS type="Node" left="2055" top="3405" width="1545" height="270">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1" slicecount="1" values="20000">
    </PIN>
@@ -33,13 +33,13 @@
    </PIN>
    <PIN pinname="ThreadZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1920" top="3405">
+   <BOUNDS type="Box" left="2055" top="3405">
    </BOUNDS>
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="1935" top="3930" width="1050" height="270">
+   <BOUNDS type="Node" left="2070" top="3930" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -49,7 +49,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1935" top="3930">
+   <BOUNDS type="Box" left="2070" top="3930">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="15" srcpinname="ThreadY" dstnodeid="14" dstpinname="Thread Y">
@@ -99,7 +99,7 @@
    </PIN>
    <PIN pinname="Shader Path" visible="1" pintype="Output">
    </PIN>
-   <PIN pinname="GravityXYZ" visible="1">
+   <PIN pinname="GravityXYZ" visible="1" slicecount="3" values="0,-9.80000019073486,0">
    </PIN>
    <PIN pinname="VelDampen" visible="1" slicecount="1" values="1">
    </PIN>
@@ -137,9 +137,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Group Size" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="3350" y="3558">
+   <LINKPOINT x="3485" y="3558">
    </LINKPOINT>
-   <LINKPOINT x="3505" y="3058">
+   <LINKPOINT x="3640" y="3058">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="15" srcpinname="ThreadX" dstnodeid="14" dstpinname="Thread X">
@@ -165,13 +165,13 @@
    <LINK srcnodeid="24" srcpinname="Output" dstnodeid="1" dstpinname="Defines">
    </LINK>
    <LINK srcnodeid="15" srcpinname="String" dstnodeid="24" dstpinname="Input 1" linkstyle="VHV">
-   <LINKPOINT x="3565" y="3788">
+   <LINKPOINT x="3655" y="3788">
    </LINKPOINT>
-   <LINKPOINT x="5585" y="3788">
+   <LINKPOINT x="5630" y="3788">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="28" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7245" top="4425" width="3990" height="2655">
+   <BOUNDS type="Box" left="7245" top="4425" width="5295" height="2625">
    </BOUNDS>
    <BOUNDS type="Node" left="7245" top="4425" width="0" height="0">
    </BOUNDS>
@@ -273,9 +273,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="38" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1905" top="2700" width="795" height="240">
+   <BOUNDS type="Box" left="2040" top="2700" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1905" top="2700" width="0" height="0">
+   <BOUNDS type="Node" left="2040" top="2700" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -289,30 +289,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="38" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Element Count">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="39" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2235" top="570" width="795" height="720">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2235" top="570" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,-9.80000019073486,0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Vector Size" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="GravityXYZ">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="1" dstpinname="GravityXYZ" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2265" y="2858">
-   </LINKPOINT>
-   <LINKPOINT x="3015" y="2858">
-   </LINKPOINT>
    </LINK>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -363,9 +339,9 @@
    <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="30" dstpinname="Structure">
    </LINK>
    <LINK srcnodeid="30" srcpinname="Element Count" dstnodeid="38" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="6620" y="2310">
+   <LINKPOINT x="6665" y="2310">
    </LINKPOINT>
-   <LINKPOINT x="2065" y="2310">
+   <LINKPOINT x="2155" y="2310">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="30" srcpinname="Defines" dstnodeid="24" dstpinname="Input 2">

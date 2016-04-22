@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\modules\Modifiers\SetColor (DX11.Particles.Modifier).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="-25965" top="7620" width="14940" height="9300">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\SetColor (DX11.Particles.Modifier).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <BOUNDS type="Window" left="7125" top="5325" width="14940" height="9300">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
    <BOUNDS type="Box" left="10125" top="5025" width="3870" height="2820">
@@ -201,6 +201,8 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Bang">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="54" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="5565" top="705" width="795" height="240">
@@ -226,28 +228,6 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <NODE id="56" systemname="Modifier_SetColor (DX11.Effect)" filename="..\..\dx11\Modifier_SetColor.fx" nodename="Modifier_SetColor (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="1365" top="5025" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1365" top="5025">
-   </BOUNDS>
-   <PIN pinname="Apply" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Technique Valid" visible="1">
-   </PIN>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="56" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="56" dstpinname="Color Buffer">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="64" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="1365" top="6435" width="795" height="240">
    </BOUNDS>
@@ -280,16 +260,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="56" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12420" y="2970">
-   </LINKPOINT>
-   <LINKPOINT x="7710" y="2970">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="56" srcpinname="Layer" dstnodeid="64" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="56" dstpinname="Geometry">
-   </LINK>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="46">
    <BOUNDS type="Node" left="9090" top="2595" width="100" height="100">
    </BOUNDS>
@@ -343,6 +313,40 @@
    <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="43" dstpinname="BufferName">
    </LINK>
    <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Extract">
+   </LINK>
+   <NODE id="56" systemname="Modifier_SetColor (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_SetColor.fx" nodename="Modifier_SetColor (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="1365" top="5025" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1365" top="5025">
+   </BOUNDS>
+   <PIN pinname="Apply" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Technique Valid" visible="1">
+   </PIN>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="SetColor">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="56" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="56" dstpinname="Color Buffer">
+   </LINK>
+   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="56" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12420" y="2970">
+   </LINKPOINT>
+   <LINKPOINT x="7710" y="2970">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Layer" dstnodeid="64" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="56" dstpinname="Geometry">
    </LINK>
    <LINK srcnodeid="56" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
    </LINK>

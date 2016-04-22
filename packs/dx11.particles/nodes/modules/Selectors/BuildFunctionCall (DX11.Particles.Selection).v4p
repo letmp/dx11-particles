@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Selectors\BuildFunctionCall (DX11.Mcps.Selectors).v4p" systemname="BuildFunctionCall (DX11.Mcps.Selectors)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Selectors\BuildFunctionCall (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\BuildFunctionCall (DX11.Particles.Selection).v4p" systemname="BuildFunctionCall (DX11.Mcps.Selectors)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Selectors\BuildFunctionCall (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
    <BOUNDS type="Box" left="7065" top="3135" width="795" height="240">
    </BOUNDS>
@@ -65,23 +65,25 @@
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
-   <PIN pinname="Input Count" slicecount="1" values="5">
+   <PIN pinname="Input Count" slicecount="1" values="6">
    </PIN>
    <PIN pinname="Input 2" slicecount="1" values="(">
    </PIN>
-   <PIN pinname="Input 3" visible="1" slicecount="1" values="|slotIndex,|">
+   <PIN pinname="Input 3" visible="1" slicecount="1" values="slotIndex">
    </PIN>
-   <PIN pinname="Input 4" slicecount="1" values=")" visible="1">
+   <PIN pinname="Input 4" slicecount="1" visible="1" values="|,|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input 5" slicecount="1" values=")">
+   <PIN pinname="Input 5" slicecount="1" values=")" visible="1">
+   </PIN>
+   <PIN pinname="Input 6" slicecount="1" values=")">
    </PIN>
    </NODE>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="7">
    <BOUNDS type="Node" left="3945" top="2775" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 1" slicecount="1" values="tFilter" visible="1">
+   <PIN pinname="Input 1" slicecount="1" visible="1" values="tFilter">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -123,7 +125,7 @@
    <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="1650" top="3945" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Intersperse String" slicecount="1" values="| |||| |" visible="1">
+   <PIN pinname="Intersperse String" slicecount="1" visible="1" values="| |||| |">
    </PIN>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -165,7 +167,7 @@
    <NODE id="13" systemname="IOBox (String)" componentmode="InABox" nodename="IOBox (String)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|ConstantBuffer Entry|">
    </PIN>
-   <BOUNDS type="Box" left="3795" top="4800" width="750" height="240">
+   <BOUNDS type="Box" left="3795" top="4800" width="2520" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="3795" top="4800" width="750" height="240">
    </BOUNDS>
@@ -196,16 +198,10 @@
    </LINK>
    <LINK srcnodeid="2" srcpinname="Output" dstnodeid="4" dstpinname="Input">
    </LINK>
-   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
+   <BOUNDS type="Window" left="7890" top="5025" width="11970" height="7725">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
-   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="6" dstpinname="Input 4" linkstyle="VHV">
-   <LINKPOINT x="3960" y="3465">
-   </LINKPOINT>
-   <LINKPOINT x="2205" y="3465">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3810" top="495" width="795" height="240">
    </BOUNDS>
@@ -340,6 +336,28 @@
    <LINKPOINT x="2250" y="2618">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="6" dstpinname="Input 3">
+   <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="25">
+   <BOUNDS type="Node" left="1965" top="2115" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Intersperse" slicecount="1" values="Comma">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Intersperse String" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="25" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="6" dstpinname="Input 5" linkstyle="VHV">
+   <LINKPOINT x="3960" y="3465">
+   </LINKPOINT>
+   <LINKPOINT x="2355" y="3465">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="25" srcpinname="Output" dstnodeid="6" dstpinname="Input 3">
    </LINK>
    </PATCH>

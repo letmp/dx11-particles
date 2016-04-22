@@ -1,4 +1,5 @@
 #include "../fxh/Defines.fxh"
+#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -29,23 +30,36 @@ struct csin
 };
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSMain(csin input)
+void CSSet(csin input)
 {
-	uint slotIndex = 0;
-	
-	if (FlagBuffer[0] == true){ // Apply to selected particles only
-		if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= SelectionCounterBuffer[0]) return;
-		slotIndex = SelectionIndexBuffer[input.DTID.x];
-	}
-	else { // apply to all (alive) particles
-		if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
-		slotIndex = AliveIndexBuffer[input.DTID.x];
-	}
+	uint slotIndex = getSlotIndex(	input.DTID.x,
+									FlagBuffer,
+									SelectionIndexBuffer,
+									SelectionCounterBuffer,
+									AliveIndexBuffer,
+									AliveCounterBuffer);
+	if (slotIndex == -1 ) return;
 	
 	uint size, stride;
 	ColorBuffer.GetDimensions(size,stride);
 	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
-	
 }
 
-technique11 csmain { pass P0{SetComputeShader( CompileShader( cs_5_0, CSMain() ) );} }
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CSAdd(csin input)
+{
+	uint slotIndex = getSlotIndex(	input.DTID.x,
+									FlagBuffer,
+									SelectionIndexBuffer,
+									SelectionCounterBuffer,
+									AliveIndexBuffer,
+									AliveCounterBuffer);
+	if (slotIndex == -1 ) return;
+	
+	uint size, stride;
+	ColorBuffer.GetDimensions(size,stride);
+	ParticleBuffer[slotIndex].color +=  ColorBuffer[input.DTID.x % size];
+}
+
+technique11 SetColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+technique11 AddColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }

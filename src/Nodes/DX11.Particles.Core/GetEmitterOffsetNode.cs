@@ -17,7 +17,7 @@ namespace DX11.Particles.Core
         [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 1, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
         public IDiffSpread<EnumEntry> FParticleSystemName;
 
-        [Input("Emitter Name", EnumName = ParticleSystemRegistry.EMITTER_ENUM, Order = 2, IsSingle = true)]
+        [Input("Emitter Name", EnumName = ParticleSystemRegistry.EMITTER_ENUM, Order = 2)]
         public IDiffSpread<EnumEntry> FEmitterName;
 
         [Output("Region")]
@@ -61,13 +61,18 @@ namespace DX11.Particles.Core
             var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
             if (particleSystemData != null)
             {
-                string shaderRegisterNodeId = particleSystemData.GetShaderRegisterNodeId(FEmitterName[0]);
-                if (shaderRegisterNodeId != null)
+                foreach (string en in FEmitterName)
                 {
-                    List<int> fromTo = particleSystemData.GetEmitterRegion(shaderRegisterNodeId);
-                    FEmitterRegion.Add(fromTo[0]);
-                    FEmitterRegion.Add(fromTo[1]);
+                    string shaderRegisterNodeId = particleSystemData.GetShaderRegisterNodeId(en);
+                    if (shaderRegisterNodeId != null)
+                    {
+                        List<int> fromTo = particleSystemData.GetEmitterRegion(shaderRegisterNodeId);
+                        FEmitterRegion.Add(fromTo[0]);
+                        FEmitterRegion.Add(fromTo[1]);
+                    }
                 }
+
+                
            }
         }
 

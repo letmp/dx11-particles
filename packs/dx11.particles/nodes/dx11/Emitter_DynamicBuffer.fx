@@ -6,7 +6,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 force;
+		float3 acceleration;
 		float lifespan;
 		float age;
 	#endif
@@ -21,7 +21,7 @@ RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
-StructuredBuffer<float3> ForceBuffer <string uiname="Force Buffer";>;
+StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 cbuffer cbuf
@@ -52,7 +52,7 @@ void CS_Main(csin input)
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if (emitterCounter >= EmitCount )return;
 		
-		uint aliveIndex = AliveCounterBuffer.IncrementCounter();
+		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
 		
 		uint size, stride;
 		Particle p = (Particle) 0;
@@ -63,8 +63,8 @@ void CS_Main(csin input)
 		VelocityBuffer.GetDimensions(size,stride);
 		p.velocity = VelocityBuffer[emitterCounter % size];
 		
-		ForceBuffer.GetDimensions(size,stride);
-		p.force = ForceBuffer[emitterCounter % size];
+		AccelerationBuffer.GetDimensions(size,stride);
+		p.acceleration = AccelerationBuffer[emitterCounter % size];
 
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
@@ -79,9 +79,12 @@ void CS_SetCounter(csin input)
 {
 	uint emitterCounter = EmitterCounterBuffer.IncrementCounter();
 	EmitterCounterBuffer[0] = emitterCounter;
+	if (emitterCounter > 0){
+		uint aliveCounter = AliveCounterBuffer.IncrementCounter();
+		AliveCounterBuffer[0] = AliveCounterBuffer[0] + aliveCounter;
+	}
 	
-	uint aliveCounter = AliveCounterBuffer.IncrementCounter();
-	AliveCounterBuffer[0] = aliveCounter;
+	
 }
 
 technique11 EmitParticles { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Main() ) );} }

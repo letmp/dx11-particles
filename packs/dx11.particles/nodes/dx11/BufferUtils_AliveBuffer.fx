@@ -14,14 +14,25 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveSwapBuffer : ALIVESWAPBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
-bool HasSelection = false;
-
 struct csin
 {
 	uint3 DTID : SV_DispatchThreadID;
 	uint3 GTID : SV_GroupThreadID;
 	uint3 GID : SV_GroupID;
 };
+
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CS_Rebuild(csin input)
+{
+	if(input.DTID.x >= MAXPARTICLECOUNT) return;
+	
+	uint slotIndex = input.DTID.x;
+
+	if(ParticleBuffer[slotIndex].lifespan >= 0){
+		uint particleCounter = AliveCounterBuffer.IncrementCounter();
+		AliveSwapBuffer[particleCounter] = slotIndex;
+	}	
+}
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_CopyToSwap(csin input)
@@ -51,6 +62,7 @@ void CS_SetCounter(csin input)
 	AliveCounterBuffer[0] = particleCounter;
 }
 
+technique11 Rebuild { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Rebuild() ) );} }
 technique11 CopyToSwap { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_CopyToSwap() ) );} }
 technique11 CopyFromSwap { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_CopyFromSwap() ) );} }
 technique11 SetCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetCounter() ) );} }

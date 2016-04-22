@@ -5,11 +5,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float3 position;
-		float3 velocity;
-		float3 acceleration;
-		float lifespan;
-		float age;
+		float mass;
 	#endif
 };
 
@@ -23,11 +19,7 @@ RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
-cbuffer cbuf
-{
-	float VelDampen = 1.0;
-    bool AddForce = true;
-};
+StructuredBuffer<float> MassBuffer <string uiname="Mass Buffer";>;
 
 struct csin
 {
@@ -37,30 +29,19 @@ struct csin
 };
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CS_Iterate(csin input)
+void CSSet(csin input)
 {
-	/*uint slotIndex = getSlotIndex(	input.DTID.x,
+	uint slotIndex = getSlotIndex(	input.DTID.x,
 									FlagBuffer,
 									SelectionIndexBuffer,
 									SelectionCounterBuffer,
 									AliveIndexBuffer,
 									AliveCounterBuffer);
-	if (slotIndex < 0 ) return;*/
+	if (slotIndex == -1 ) return;
 	
-	if(input.DTID.x >= MAXPARTICLECOUNT) return;
-	uint slotIndex = input.DTID.x;
-
-	ParticleBuffer[slotIndex].age += mcpsTime.y;
-	//ParticleBuffer[slotIndex].age += 1;
-	ParticleBuffer[slotIndex].lifespan -= mcpsTime.y;
-
-	if(AddForce)
-	{
-		ParticleBuffer[slotIndex].velocity *= VelDampen;
-		ParticleBuffer[slotIndex].velocity += ParticleBuffer[slotIndex].acceleration * mcpsTime.y;
-	}
-	
-	ParticleBuffer[slotIndex].position += ParticleBuffer[slotIndex].velocity * mcpsTime.y;
+	uint size, stride;
+	MassBuffer.GetDimensions(size,stride);
+	ParticleBuffer[slotIndex].mass = MassBuffer[input.DTID.x % size];
 }
 
-technique11 Iterate { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Iterate() ) );} }
+technique11 SetMass { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
