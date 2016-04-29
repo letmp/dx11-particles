@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Overview.v4p" systemname="mcps" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\girlpower\mcps.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="1215" top="555" width="17355" height="14970">
+   <BOUNDS type="Window" left="1215" top="555" width="17700" height="15555">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -35,9 +35,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="96">
-   <BOUNDS type="Node" left="3150" top="13725" width="100" height="100">
+   <BOUNDS type="Node" left="3150" top="14175" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3150" top="13725" width="6000" height="4500">
+   <BOUNDS type="Box" left="3150" top="14175" width="6000" height="4500">
    </BOUNDS>
    <BOUNDS type="Window" left="18675" top="570" width="9705" height="7920">
    </BOUNDS>
@@ -495,11 +495,11 @@
    </BOUNDS>
    </NODE>
    <NODE systemname="Camera (Transform Softimage)" filename="%VVVV%\lib\nodes\modules\Transform\Camera (Transform Softimage).v4p" nodename="Camera (Transform Softimage)" componentmode="Hidden" id="99">
-   <BOUNDS type="Node" left="4395" top="13245" width="100" height="100">
+   <BOUNDS type="Node" left="4395" top="13695" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View Projection" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="4395" top="13245">
+   <BOUNDS type="Box" left="4395" top="13695">
    </BOUNDS>
    <PIN pinname="Initial Distance" slicecount="1" values="3.4">
    </PIN>
@@ -694,6 +694,8 @@
    <PIN pinname="All Buffers" visible="1">
    </PIN>
    <PIN pinname="ParticleBuffer" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="86" srcpinname="Layer Out" dstnodeid="272" dstpinname="Layer In">
@@ -995,6 +997,8 @@
    </PIN>
    <PIN pinname="Radius" slicecount="1" values="10">
    </PIN>
+   <BOUNDS type="Box" left="3660" top="11910">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="359" srcpinname="Texture Out" dstnodeid="500" dstpinname="Texture">
    </LINK>
@@ -1079,7 +1083,7 @@
    </PIN>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Window" left="1080" top="4590" width="14940" height="9300">
+   <BOUNDS type="Window" left="615" top="5640" width="14940" height="9300">
    </BOUNDS>
    <PIN pinname="Selection In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -1344,6 +1348,42 @@
    <LINKPOINT x="14625" y="7500">
    </LINKPOINT>
    <LINKPOINT x="9945" y="7500">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="567">
+   <BOUNDS type="Node" left="16365" top="5685" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="BlinkStyle" slicecount="1" values="OkeyDokey">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Period" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="567" srcpinname="Output" dstnodeid="563" dstpinname="Enabled">
+   </LINK>
+   <NODE systemname="Hittest (DX11.Particles.Analysis Transform)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Hittest (DX11.Particles.Analysis Transform).v4p" nodename="Hittest (DX11.Particles.Analysis Transform)" componentmode="Hidden" id="569">
+   <BOUNDS type="Node" left="7275" top="11910" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="11790" top="5010" width="14025" height="10770">
+   </BOUNDS>
+   <PIN pinname="Help Layer" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="7275" top="11910">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="569" srcpinname="Help Layer" dstnodeid="98" dstpinname="Layer 5" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7275" y="12698">
+   </LINKPOINT>
+   <LINKPOINT x="4200" y="12698">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="272" srcpinname="ParticleSystemBuffers" dstnodeid="569" dstpinname="ParticleSystemBuffers" linkstyle="Bezier">
+   <LINKPOINT x="4410" y="10988">
+   </LINKPOINT>
+   <LINKPOINT x="7275" y="10988">
    </LINKPOINT>
    </LINK>
    </PATCH>

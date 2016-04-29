@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\Register (DX11.Particles.Core ParticleSystem) help.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\Register (DX11.Particles.Core ParticleSystem) help.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="8865" top="5640" width="15555" height="11340">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3" systemname="IOBox (String)">
@@ -143,9 +143,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="74" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="8070" top="8970" width="3420" height="1275">
+   <BOUNDS type="Box" left="8070" top="9270" width="3420" height="1275">
    </BOUNDS>
-   <BOUNDS type="Node" left="8070" top="8970" width="0" height="0">
+   <BOUNDS type="Node" left="8070" top="9270" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -317,9 +317,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="82" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4665" top="8625" width="795" height="240">
+   <BOUNDS type="Box" left="4995" top="8625" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4665" top="8625" width="0" height="0">
+   <BOUNDS type="Node" left="4995" top="8625" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -329,9 +329,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="83" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="9060" top="8640" width="795" height="240">
+   <BOUNDS type="Box" left="9405" top="8640" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9060" top="8640" width="0" height="0">
+   <BOUNDS type="Node" left="9405" top="8640" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -411,6 +411,8 @@
    </BOUNDS>
    <PIN pinname="Element Count" visible="1">
    </PIN>
+   <PIN pinname="BufferSemantics" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="53" srcpinname="StructureDefinition" dstnodeid="55" dstpinname="Input String">
    </LINK>
@@ -432,6 +434,8 @@
    <BOUNDS type="Box" left="525" top="8235">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1">
+   </PIN>
+   <PIN pinname="BufferSemantics" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="71" srcpinname="StructureDefinition" dstnodeid="70" dstpinname="Input String">
@@ -507,6 +511,8 @@
    </PIN>
    <PIN pinname="EmitterName" slicecount="1" visible="1" values="MYEMITTER1">
    </PIN>
+   <PIN pinname="BufferSemantics" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="76" srcpinname="Output String" dstnodeid="77" dstpinname="Structure">
    </LINK>
@@ -538,6 +544,8 @@
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="EmitterName" slicecount="1" visible="1" values="MYEMITTER2">
+   </PIN>
+   <PIN pinname="BufferSemantics" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="72" srcpinname="Output String" dstnodeid="73" dstpinname="Structure">
@@ -657,5 +665,35 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="94" srcpinname="Output String" dstnodeid="73" dstpinname="EmitterName">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="96" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="1140" top="7830" width="1335" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1140" top="7830" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="BUFFERSEMANTIC1">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="96" srcpinname="Output String" dstnodeid="71" dstpinname="BufferSemantics">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="98" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8730" top="8940" width="1395" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8730" top="8940" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="73" srcpinname="BufferSemantics" dstnodeid="98" dstpinname="Input String">
    </LINK>
    </PATCH>

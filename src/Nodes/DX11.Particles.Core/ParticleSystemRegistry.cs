@@ -24,15 +24,15 @@ namespace DX11.Particles.Core
 
         public ParticleSystemRegistry() : base()
         {
-            Add( DEFAULT_ENUM, new ParticleSystemData("DefaultId"));
+            Add(DEFAULT_ENUM, new ParticleSystemData("DefaultId", null));
             UpdateEnums();
         }
 
-        public void Add(string particleSystemName, string particleSystemRegisterNodeId)
+        public void Add(string particleSystemName, string particleSystemRegisterNodeId, IEnumerable<string> bufferSemantics)
         {
 
             if (!Instance.ContainsKey(particleSystemName)){
-                Instance[particleSystemName] = new ParticleSystemData(particleSystemRegisterNodeId);
+                Instance[particleSystemName] = new ParticleSystemData(particleSystemRegisterNodeId, bufferSemantics);
             }
             else
             {
@@ -52,6 +52,15 @@ namespace DX11.Particles.Core
             UpdateEnums();
 
             if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false));
+        }
+
+        public void UpdateBufferSemantics(string particleSystemName, IEnumerable<string> bufferSemantics)
+        {
+            if (Instance.ContainsKey(particleSystemName))
+            {
+                Instance[particleSystemName].SetBufferSemantics(bufferSemantics);
+                if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false));
+            }
         }
 
         public void SetShaderVariables (string particleSystemName, string shaderRegisterNodeId, IEnumerable<string> variables)
@@ -193,14 +202,16 @@ namespace DX11.Particles.Core
         public Dictionary<string, List<string>> Defines = new Dictionary<string, List<string>>();
         public Dictionary<string, int> EmitterSizes = new Dictionary<string, int>();
         public Dictionary<string, string> EmitterNames = new Dictionary<string, string>();
-        
+
+        public List<string> BufferSemantics = new List<string>();
         public string StructureDefinition { get; protected set; }
         public int Stride { get; protected set; }
         public int ElementCount { get; protected set; }
 
-        public ParticleSystemData(string particleSystemRegisterNodeId)
+        public ParticleSystemData(string particleSystemRegisterNodeId, IEnumerable<string> bufferSemantics)
         {
             this.ParticleSystemRegisterNodeIds.Add(particleSystemRegisterNodeId);
+            if (bufferSemantics != null) this.BufferSemantics = bufferSemantics.ToList();
             this.StructureDefinition = "";
             this.Stride = 0;
             this.ElementCount = 0;
@@ -287,6 +298,11 @@ namespace DX11.Particles.Core
             {
                 this.EmitterNames.Remove(shaderRegisterNodeId);
             }
+        }
+
+        public void SetBufferSemantics(IEnumerable<string> bufferSemantics)
+        {
+            this.BufferSemantics = bufferSemantics.ToList();
         }
 
         public string GetShaderRegisterNodeId(string emitterName)

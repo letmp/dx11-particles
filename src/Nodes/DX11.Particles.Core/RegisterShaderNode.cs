@@ -32,6 +32,9 @@ namespace DX11.Particles.Core
         [Output("Defines", DefaultString = "", AutoFlush = false, AllowFeedback = true)]
         public ISpread<string> FOutDefines;
 
+        [Output("BufferSemantics", DefaultString = "", AutoFlush = false, AllowFeedback = true)]
+        public ISpread<string> FOutBufferSemantics;
+
         [Output("Element Count", DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
         public ISpread<int> FElementCount;
 
@@ -204,6 +207,10 @@ namespace DX11.Particles.Core
                 }
 
                 FOutDefines.Flush();
+
+                FOutBufferSemantics.SliceCount = 0;
+                FOutBufferSemantics.AssignFrom(particleSystemData.BufferSemantics); 
+                FOutBufferSemantics.Flush();
 
                 FElementCount[0] = particleSystemData.ElementCount;
                 FElementCount.Flush();

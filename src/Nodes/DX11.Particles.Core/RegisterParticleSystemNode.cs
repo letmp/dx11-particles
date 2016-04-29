@@ -20,6 +20,9 @@ namespace DX11.Particles.Core
         [Input("ParticleSystem Name", DefaultString = ParticleSystemRegistry.DEFAULT_ENUM, IsSingle = true)]
         public IDiffSpread<string> FParticleSystemName;
 
+        [Input("BufferSemantics")]
+        public IDiffSpread<string> FBufferSemantics;
+
         [Output("StructureDefinition", DefaultString = "", AutoFlush = false)]
         public ISpread<string> FStructureDefinition;
 
@@ -50,6 +53,10 @@ namespace DX11.Particles.Core
             {
                 AddParticleSystem();
             }
+            if (FBufferSemantics.IsChanged)
+            {
+                UpdateBufferSemantics();
+            }
         }
 
         public void Dispose()
@@ -75,7 +82,7 @@ namespace DX11.Particles.Core
                 if (psd.IsEmpty()) particleSystemRegistry.Remove(psd);
             }
 
-            particleSystemRegistry.Add(particleSystemName, this.ParticleSystemNodeId);
+            particleSystemRegistry.Add(particleSystemName, this.ParticleSystemNodeId, FBufferSemantics);
         }
 
         private void RemoveParticleSystem()
@@ -87,6 +94,13 @@ namespace DX11.Particles.Core
                 psd.RemoveNodeId(this.ParticleSystemNodeId);
                 if (psd.IsEmpty()) particleSystemRegistry.Remove(psd);
             }
+        }
+
+        private void UpdateBufferSemantics()
+        {
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            string particleSystemName = FParticleSystemName[0];
+            particleSystemRegistry.UpdateBufferSemantics(particleSystemName, FBufferSemantics);
         }
 
         private void UpdateOutputPins()
