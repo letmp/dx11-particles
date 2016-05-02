@@ -26,67 +26,73 @@ namespace DX11.Particles.Core
         [Input("BufferSemantic Filter")]
         public IDiffSpread<string> FBufferSemanticFilter;
 
+        [Config("Config", DefaultString = "")]
+        public IDiffSpread<string> FConfig;
+
         public Spread<IIOContainer<ISpread<DX11Resource<IDX11RWStructureBuffer>>>> FOutputs = new Spread<IIOContainer<ISpread<DX11Resource<IDX11RWStructureBuffer>>>>();
 
         [Import]
         public IIOFactory FIOFactory;
 
-        List<int> indices = new List<int>();
-        List<string> semantics = new List<string>();
         #endregion fields & pins
 
         public void OnImportsSatisfied()
         {
-            //FInput.Changed += HandleBufferChange;
-            //FBufferSemantic.Changed += HandleStringChange;
+            FBufferSemantic.Changed += HandleStringChange;
             FBufferSemanticFilter.Changed += HandleStringChange;
+            FConfig.Changed += HandleConfigChange;
         }
 
         public void Evaluate(int SpreadMax)
         {
         }
 
-        private void HandleBufferChange(IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> spread)
-        {
-            Sift();
-            if (indices.Count > 0) SetOutputPins();
-        }
-
         private void HandleStringChange(IDiffSpread<string> spread)
         {
-            
-            Sift();
-            if (indices.Count > 0) SetOutputPins();
-        }
 
-        private void Sift()
-        {
-                indices.Clear();
-                semantics.Clear();
-                for (int i = 0; i < FBufferSemanticFilter.SliceCount; i++)
+            string configString = "";
+            bool first = true;
+            for (int i = 0; i < FBufferSemanticFilter.SliceCount; i++)
+            {
+                string semanticFilter = FBufferSemanticFilter[i];
+                for (int j = 0; j < FBufferSemantic.SliceCount; j++)
                 {
-                    string semanticFilter = FBufferSemanticFilter[i];
-                    for (int j = 0; j < FBufferSemantic.SliceCount; j++)
+                    if (FBufferSemantic[j].Equals(semanticFilter))
                     {
-                        if (FBufferSemantic[j].Equals(semanticFilter))
-                        {
-                            indices.Add(j);
-                            semantics.Add(semanticFilter);
-                            break;
-                        }
+                        if (!first) configString += ",";
+                        configString += j + ":" + semanticFilter;
+                        first = false;
+                        break;
                     }
                 }
+            }
+
+            FConfig[0] = configString;
         }
 
-        private void SetOutputPins()
+        private void HandleConfigChange(IDiffSpread<string> spread)
         {
-            HandlePinCountChanged(indices.Count, FOutputs, (i) => new OutputAttribute(semantics[i - 1]));
-            
-            for (int i = 0; i < indices.Count; i++)
+            string[] entries = FConfig[0].Split(",".ToCharArray());
+            int length = entries.Length;
+
+            if (entries[0] != "")
             {
-                var outputSpread = FOutputs[i].IOObject;
-                outputSpread[0] = FInput[indices[i]];
+                
+                HandlePinCountChanged(length, FOutputs, (i) => new OutputAttribute(entries[i-1].Split(":".ToCharArray())[1]));
+
+                int cnt = 0;
+                foreach (string entry in entries)
+                {
+                    if (entry != "")
+                    {
+                        int slicenumber = Convert.ToInt32(entry.Split(":".ToCharArray())[0]);
+                        var outputSpread = FOutputs[cnt].IOObject;
+                        outputSpread[0] = FInput[slicenumber];
+                        cnt++;
+                    }
+                }
             }
+
         }
 
         private void HandlePinCountChanged<T>(int count, Spread<IIOContainer<T>> pinSpread, Func<int, IOAttribute> ioAttributeFactory) where T : class

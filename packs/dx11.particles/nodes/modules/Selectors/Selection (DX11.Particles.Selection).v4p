@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="2835" scrolly="5700">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="1365" top="6645" width="100" height="100">
    </BOUNDS>
@@ -34,7 +34,7 @@
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="10560" top="1890" width="18900" height="13995">
+   <BOUNDS type="Window" left="5790" top="2340" width="18900" height="13995">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -81,7 +81,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Emit Threads|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Group Size|">
    </PIN>
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
@@ -356,32 +356,6 @@
    <LINKPOINT x="2355" y="11380">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="1365" top="6240" width="5025" height="270">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; CounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; IndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   &cr;&lf;};&cr;&lf;&cr;&lf;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;if(input.DTID.x &gt;= MAXPARTICLECOUNT) return;&cr;&lf;&tab;uint slotIndex = input.DTID.x;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; true;&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;IndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS_SetCounter(csin input)&cr;&lf;{&cr;&lf;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;CounterBuffer[0] = selectionCounter;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
-   </PIN>
-   <PIN pinname="IncludePath" slicecount="1" visible="1" values="..\..\fxh\Defines.fxh">
-   </PIN>
-   <BOUNDS type="Box" left="1365" top="6240">
-   </BOUNDS>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="3" values="|COMPOSITESTRUCT=float3 position; float lifespan; float3 velocity; float age; float3 force; float4 color;|,MAXPARTICLECOUNT=55000,KNOW_COLOR=1">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Layout Message" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="0" dstpinname="IncludePath">
-   </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="0" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Geometry Out" dstnodeid="0" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
-   </LINK>
    <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="20">
    <BOUNDS type="Node" left="8235" top="6285" width="100" height="100">
    </BOUNDS>
@@ -449,7 +423,7 @@
    <NODE systemname="BuildShaderCode (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="BuildShaderCode (DX11.Particles.Selection)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="1125" top="1380" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Shader Blueprint" slicecount="1" visible="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;{structvariables}&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   {cbuffervariables}&cr;&lf;};&cr;&lf;&cr;&lf;{functiondefinitions}&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;if(input.DTID.x &gt;= MAXPARTICLECOUNT |||| input.DTID.x &gt;= AliveCounterBuffer[0]) return;&cr;&lf;&tab;uint slotIndex = AliveIndexBuffer[input.DTID.x];&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; {functioncalls};&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
+   <PIN pinname="Shader Blueprint" slicecount="1" visible="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;#include &quot;Functions.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;{structvariables}&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;StructuredBuffer&lt;int&gt; test;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   {cbuffervariables}&cr;&lf;};&cr;&lf;&cr;&lf;{functiondefinitions}&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = getSlotIndex(&tab;input.DTID.x,&cr;&lf;&tab;&tab;&tab;&tab;FlagBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionCounterBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveCounterBuffer);&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; {functioncalls};&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
    </PIN>
    <PIN pinname="Custom Semantics" visible="1">
    </PIN>
@@ -482,12 +456,6 @@
    <LINKPOINT x="6780" y="1860">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="1" srcpinname="ShaderCode" dstnodeid="0" dstpinname="ShaderCode" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1185" y="3738">
-   </LINKPOINT>
-   <LINKPOINT x="3495" y="4138">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="27" srcpinname="Layer Out" dstnodeid="35" dstpinname="Layer 1">
    </LINK>
    <LINK srcnodeid="30" srcpinname="Layer" dstnodeid="35" dstpinname="Layer 2">
@@ -509,5 +477,25 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="39" srcpinname="Output String" dstnodeid="1" dstpinname="Shader Blueprint">
+   </LINK>
+   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="41">
+   <BOUNDS type="Node" left="1365" top="6240" width="5025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1365" top="6240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="41" dstpinname="IncludePath">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="41" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Geometry Out" dstnodeid="41" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="ShaderCode" dstnodeid="41" dstpinname="ShaderCode" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1185" y="3738">
+   </LINKPOINT>
+   <LINKPOINT x="3495" y="4138">
+   </LINKPOINT>
    </LINK>
    </PATCH>

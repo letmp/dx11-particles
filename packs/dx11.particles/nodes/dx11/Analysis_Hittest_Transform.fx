@@ -13,8 +13,6 @@ StructuredBuffer<Particle> ParticleBuffer;
 StructuredBuffer<uint> AliveIndexBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;
 
-
-
 float4x4 tFilter : WORLD;
 int drawIndex : DRAWINDEX;
 RWStructuredBuffer<uint> HitBuffer : BACKBUFFER;
