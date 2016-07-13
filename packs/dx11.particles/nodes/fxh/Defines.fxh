@@ -30,5 +30,5 @@
 // RENDERSEMANTICS
 cbuffer mcpsUniforms
 {
-    float2 mcpsTime : PS_TIME;
+    float2 psTime : PS_TIME;
 };

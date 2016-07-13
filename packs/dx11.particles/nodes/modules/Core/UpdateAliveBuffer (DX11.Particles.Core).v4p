@@ -1,14 +1,14 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Core\UpdateAliveBuffer (DX11.Particles.Core).v4p" systemname="UpdateAliveBuffer (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\UpdateAliveBuffer (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="0" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="5610" top="4350" width="1215" height="240">
+   <BOUNDS type="Box" left="5655" top="4350" width="1215" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5610" top="4350" width="0" height="0">
+   <BOUNDS type="Node" left="5655" top="4350" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="CopyToSwap">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="3765" top="915" width="13845" height="11130">
+   <BOUNDS type="Window" left="3225" top="4590" width="13845" height="11130">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -136,52 +136,14 @@
    </NODE>
    <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Element Count">
    </LINK>
-   <NODE systemname="BufferUtils_AliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.mcps\nodes\dx11\BufferUtils_AliveBuffer.fx" nodename="BufferUtils_AliveBuffer (DX11.Effect)" componentmode="Hidden" id="10">
-   <BOUNDS type="Node" left="4215" top="4860" width="2190" height="270">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="4215" top="4860">
-   </BOUNDS>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="0" srcpinname="Output Enum" dstnodeid="10" dstpinname="Technique">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="10" dstpinname="Defines" linkstyle="Bezier">
-   <LINKPOINT x="6435" y="4208">
-   </LINKPOINT>
-   <LINKPOINT x="6375" y="4208">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="7" srcpinname="Geometry Out" dstnodeid="10" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="4915" y="4193">
-   </LINKPOINT>
-   <LINKPOINT x="4970" y="4193">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="BufferUtils_AliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.mcps\nodes\dx11\BufferUtils_AliveBuffer.fx" nodename="BufferUtils_AliveBuffer (DX11.Effect)" componentmode="Hidden" id="11">
-   <BOUNDS type="Node" left="7080" top="4860" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="SetCounter">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="7080" top="4860">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="7785" top="3285" width="100" height="100">
+   <BOUNDS type="Node" left="7935" top="3285" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="7785" top="3285">
+   <BOUNDS type="Box" left="7935" top="3285">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="12" srcpinname="Geometry Out" dstnodeid="11" dstpinname="Geometry">
-   </LINK>
    <NODE systemname="ResetCounter (DX11.Layer Advanced)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="ResetCounter (DX11.Layer Advanced)" componentmode="Hidden" id="15">
    <BOUNDS type="Node" left="4215" top="6600" width="100" height="100">
    </BOUNDS>
@@ -245,19 +207,17 @@
    <LINK srcnodeid="13" srcpinname="Output String" dstnodeid="15" dstpinname="RW Buffer Semantic">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="16" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="8475" top="4350" width="1065" height="240">
+   <BOUNDS type="Box" left="8790" top="4350" width="1065" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8475" top="4350" width="0" height="0">
+   <BOUNDS type="Node" left="8790" top="4350" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="SetCounter">
    </PIN>
    </NODE>
-   <LINK srcnodeid="16" srcpinname="Output Enum" dstnodeid="11" dstpinname="Technique">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="18" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="11340" top="4350" width="1380" height="240">
+   <BOUNDS type="Box" left="11355" top="4350" width="1380" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="11340" top="4350" width="0" height="0">
+   <BOUNDS type="Node" left="11355" top="4350" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="CopyFromSwap">
    </PIN>
@@ -292,52 +252,14 @@
    </LINK>
    <LINK srcnodeid="3" srcpinname="Defines" dstnodeid="6" dstpinname="Input 2">
    </LINK>
-   <NODE systemname="BufferUtils_AliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.mcps\nodes\dx11\BufferUtils_AliveBuffer.fx" nodename="BufferUtils_AliveBuffer (DX11.Effect)" componentmode="Hidden" id="20">
-   <BOUNDS type="Node" left="9930" top="4860" width="2190" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="9930" top="4860">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="18" srcpinname="Output Enum" dstnodeid="20" dstpinname="Technique">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="20" dstpinname="Defines" linkstyle="Bezier">
-   <LINKPOINT x="6445" y="4193">
-   </LINKPOINT>
-   <LINKPOINT x="12095" y="4193">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="7" srcpinname="Geometry Out" dstnodeid="20" dstpinname="Geometry" linkstyle="Bezier">
-   <LINKPOINT x="4945" y="4193">
-   </LINKPOINT>
-   <LINKPOINT x="10670" y="4193">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="25" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="2355" top="4350" width="870" height="240">
+   <BOUNDS type="Box" left="2385" top="4350" width="870" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2355" top="4350" width="0" height="0">
+   <BOUNDS type="Node" left="2385" top="4350" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Rebuild">
    </PIN>
    </NODE>
-   <NODE systemname="BufferUtils_AliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.mcps\nodes\dx11\BufferUtils_AliveBuffer.fx" nodename="BufferUtils_AliveBuffer (DX11.Effect)" componentmode="Hidden" id="24">
-   <BOUNDS type="Node" left="960" top="4860" width="2160" height="270">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="960" top="4860">
-   </BOUNDS>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="25" srcpinname="Output Enum" dstnodeid="24" dstpinname="Technique">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="27" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3585" top="840" width="285" height="240">
    </BOUNDS>
@@ -360,26 +282,12 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="7" srcpinname="Geometry Out" dstnodeid="24" dstpinname="Geometry" linkstyle="Bezier">
-   <LINKPOINT x="4885" y="4193">
-   </LINKPOINT>
-   <LINKPOINT x="1760" y="4193">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="24" dstpinname="Defines" linkstyle="Bezier">
-   <LINKPOINT x="6385" y="4193">
-   </LINKPOINT>
-   <LINKPOINT x="3155" y="4193">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="2" srcpinname="Layer Out" dstnodeid="19" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="10" srcpinname="Layer" dstnodeid="15" dstpinname="Layer In">
    </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="29">
    <BOUNDS type="Node" left="960" top="7185" width="2670" height="270">
    </BOUNDS>
-   <PIN pinname="Layer 2" visible="1">
+   <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -392,12 +300,6 @@
    <BOUNDS type="Box" left="960" top="7185">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="11" srcpinname="Layer" dstnodeid="29" dstpinname="Layer 2" linkstyle="Bezier">
-   <LINKPOINT x="7080" y="6143">
-   </LINKPOINT>
-   <LINKPOINT x="2010" y="6143">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="ResetCounter (DX11.Layer Advanced)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="ResetCounter (DX11.Layer Advanced)" componentmode="Hidden" id="32">
    <BOUNDS type="Node" left="975" top="6600" width="100" height="100">
    </BOUNDS>
@@ -460,8 +362,6 @@
    </NODE>
    <LINK srcnodeid="30" srcpinname="Output String" dstnodeid="32" dstpinname="RW Buffer Semantic">
    </LINK>
-   <LINK srcnodeid="20" srcpinname="Layer" dstnodeid="2" dstpinname="Layer 4">
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="33">
    <BOUNDS type="Node" left="4215" top="7185" width="8625" height="270">
    </BOUNDS>
@@ -473,36 +373,18 @@
    </PIN>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
-   <PIN pinname="Layer 3" visible="1">
+   <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
    <BOUNDS type="Box" left="4215" top="7185">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="24" srcpinname="Layer" dstnodeid="32" dstpinname="Layer In">
-   </LINK>
    <LINK srcnodeid="32" srcpinname="Layer Out" dstnodeid="29" dstpinname="Layer 1">
    </LINK>
    <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="29" dstpinname="Enabled" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="15" srcpinname="Layer Out" dstnodeid="33" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="11" srcpinname="Layer" dstnodeid="33" dstpinname="Layer 2">
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Layer" dstnodeid="33" dstpinname="Layer 3">
-   </LINK>
-   <LINK srcnodeid="29" srcpinname="Layer Out" dstnodeid="2" dstpinname="Layer 1" linkstyle="Bezier">
-   <LINKPOINT x="1020" y="8025">
-   </LINKPOINT>
-   <LINKPOINT x="2610" y="8025">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="33" srcpinname="Layer Out" dstnodeid="2" dstpinname="Layer 2" linkstyle="Bezier">
-   <LINKPOINT x="4215" y="8025">
-   </LINKPOINT>
-   <LINKPOINT x="2865" y="8025">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="35" systemname="IOBox (String)">
    <BOUNDS type="Node" left="855" top="7605" width="4935" height="270">
@@ -532,4 +414,122 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="BufferUtils_UpdateAliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\BufferUtils_UpdateAliveBuffer.fx" nodename="BufferUtils_UpdateAliveBuffer (DX11.Effect)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="960" top="4860" width="2160" height="270">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="960" top="4860">
+   </BOUNDS>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Output Enum" dstnodeid="24" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Geometry Out" dstnodeid="24" dstpinname="Geometry" linkstyle="Bezier">
+   <LINKPOINT x="4885" y="4193">
+   </LINKPOINT>
+   <LINKPOINT x="1760" y="4193">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="24" dstpinname="Defines" linkstyle="Bezier">
+   <LINKPOINT x="6385" y="4193">
+   </LINKPOINT>
+   <LINKPOINT x="3155" y="4193">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="24" srcpinname="Layer" dstnodeid="32" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="BufferUtils_UpdateAliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\BufferUtils_UpdateAliveBuffer.fx" nodename="BufferUtils_UpdateAliveBuffer (DX11.Effect)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="4200" top="4860" width="2190" height="270">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4200" top="4860">
+   </BOUNDS>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Output Enum" dstnodeid="10" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="10" dstpinname="Defines" linkstyle="Bezier">
+   <LINKPOINT x="6430" y="4208">
+   </LINKPOINT>
+   <LINKPOINT x="6365" y="4208">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Geometry Out" dstnodeid="10" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="4910" y="4193">
+   </LINKPOINT>
+   <LINKPOINT x="4960" y="4193">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Layer" dstnodeid="15" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="BufferUtils_UpdateAliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\BufferUtils_UpdateAliveBuffer.fx" nodename="BufferUtils_UpdateAliveBuffer (DX11.Effect)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="7080" top="4860" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="SetCounter">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="7080" top="4860">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Geometry Out" dstnodeid="11" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Output Enum" dstnodeid="11" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Layer" dstnodeid="29" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="7080" y="6143">
+   </LINKPOINT>
+   <LINKPOINT x="2325" y="6143">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="11" srcpinname="Layer" dstnodeid="33" dstpinname="Layer 2">
+   </LINK>
+   <NODE systemname="BufferUtils_UpdateAliveBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\BufferUtils_UpdateAliveBuffer.fx" nodename="BufferUtils_UpdateAliveBuffer (DX11.Effect)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="9930" top="4860" width="2190" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9930" top="4860">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Output Enum" dstnodeid="20" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output" dstnodeid="20" dstpinname="Defines" linkstyle="Bezier">
+   <LINKPOINT x="6445" y="4193">
+   </LINKPOINT>
+   <LINKPOINT x="12095" y="4193">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Geometry Out" dstnodeid="20" dstpinname="Geometry" linkstyle="Bezier">
+   <LINKPOINT x="4945" y="4193">
+   </LINKPOINT>
+   <LINKPOINT x="10670" y="4193">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Layer" dstnodeid="33" dstpinname="Layer 3">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
+   <LINK srcnodeid="33" srcpinname="Layer Out" dstnodeid="2" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="4215" y="8025">
+   </LINKPOINT>
+   <LINKPOINT x="2865" y="8025">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="29" srcpinname="Layer Out" dstnodeid="2" dstpinname="Layer 1" linkstyle="Bezier">
+   <LINKPOINT x="1020" y="8025">
+   </LINKPOINT>
+   <LINKPOINT x="2610" y="8025">
+   </LINKPOINT>
+   </LINK>
    </PATCH>

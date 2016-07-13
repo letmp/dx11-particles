@@ -1,5 +1,12 @@
 #include "../fxh/Defines.fxh"
 
+/*
+The flagbuffer holds all flags that are needed for the particle ecosystem.
+Flags currently used:
+0 -> SelectionFlag ( false = modifiers iterate over all particles / true => modifiers iterate over SelectionIndexBuffer)
+
+*/
+
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 bool HasSelection = false;
 

@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -13,10 +12,10 @@ StructuredBuffer<Particle> ParticleBuffer;
 StructuredBuffer<uint> AliveIndexBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;
 
-float4x4 tFilter : WORLD;
-int drawIndex : DRAWINDEX;
 RWStructuredBuffer<uint> HitBuffer : BACKBUFFER;
 
+float4x4 tFilter : WORLD;
+int drawIndex : DRAWINDEX;
 
 struct csin
 {
@@ -34,8 +33,7 @@ void CS_Clear(uint3 i : SV_DispatchThreadID)
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_HitTest(csin input)
 {
-	if (input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
-	
+	if (input.DTID.x > MAXPARTICLECOUNT || input.DTID.x > AliveCounterBuffer[0]) return;
 	uint slotIndex = AliveIndexBuffer[input.DTID.x];
 	
 	float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;

@@ -97,6 +97,7 @@ namespace VVVV.DX11.Nodes
         private DX11ShaderVariableManager varmanager;
         private Dictionary<DX11RenderContext, DX11ShaderData> deviceshaderdata = new Dictionary<DX11RenderContext, DX11ShaderData>();
         private DX11Effect FShader;
+        private bool init = true;
         private bool shaderupdated;
         private int spmax = 0;
         private bool geomconnected;
@@ -228,7 +229,13 @@ namespace VVVV.DX11.Nodes
                 FIncludeHandler.ParentPath = Path.GetDirectoryName(FFileName[0]);
 
                 FShader = DX11Effect.FromString(FShaderCode[0], FIncludeHandler, sms.ToArray());
-                this.SetShader(FShader, true);
+                if (init)
+                {
+                    this.SetShader(FShader, true);
+                    init = false;
+                }
+                else this.SetShader(FShader, false);
+                
             }
             
 

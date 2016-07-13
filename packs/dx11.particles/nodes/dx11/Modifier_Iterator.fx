@@ -50,17 +50,16 @@ void CS_Iterate(csin input)
 	if(input.DTID.x >= MAXPARTICLECOUNT) return;
 	uint slotIndex = input.DTID.x;
 
-	ParticleBuffer[slotIndex].age += mcpsTime.y;
-	//ParticleBuffer[slotIndex].age += 1;
-	ParticleBuffer[slotIndex].lifespan -= mcpsTime.y;
+	ParticleBuffer[slotIndex].age += psTime.y;
+	ParticleBuffer[slotIndex].lifespan -= psTime.y;
 
 	if(AddForce)
 	{
 		ParticleBuffer[slotIndex].velocity *= VelDampen;
-		ParticleBuffer[slotIndex].velocity += ParticleBuffer[slotIndex].acceleration * mcpsTime.y;
+		ParticleBuffer[slotIndex].velocity += ParticleBuffer[slotIndex].acceleration * psTime.y;
 	}
 	
-	ParticleBuffer[slotIndex].position += ParticleBuffer[slotIndex].velocity * mcpsTime.y;
+	ParticleBuffer[slotIndex].position += ParticleBuffer[slotIndex].velocity * psTime.y;
 }
 
 technique11 Iterate { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Iterate() ) );} }

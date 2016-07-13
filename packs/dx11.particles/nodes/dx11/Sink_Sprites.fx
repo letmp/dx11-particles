@@ -16,7 +16,8 @@ struct Particle {
 
 Texture2D texture2d;
 StructuredBuffer<Particle> ParticleBuffer;
-//StructuredBuffer<uint> AliveIndexBuffer;
+StructuredBuffer<uint> AliveIndexBuffer;
+StructuredBuffer<uint> AliveCounterBuffer;
 
 cbuffer cbPerDraw : register( b0 )
 {
@@ -53,30 +54,35 @@ struct VSOut
 {
     float4 pos : SV_POSITION;
 	float2 uv : TEXCOORD0;
-	uint iv : VID;
+	uint slotIndex : VID;
 };
 
 VSOut VS(VSIn In)
 {
     VSOut Out = (VSOut)0;
-	//uint slotIndex = AliveIndexBuffer[In.iv];
-	uint slotIndex = In.iv;
+	uint slotIndex = -1;
+	uint aliveCounter = AliveCounterBuffer[0];
+	if ( In.iv <= aliveCounter ) slotIndex = AliveIndexBuffer[In.iv];
+	//uint slotIndex = In.iv;
+	
 	
 	float3 p = ParticleBuffer[slotIndex].position;
 	float3 vel = ParticleBuffer[slotIndex].velocity;
 
     Out.pos = mul(float4(p, 1), tVP);
 
-	Out.iv=In.iv;
+	Out.slotIndex = slotIndex;
     return Out;
 }
 [maxvertexcount(4)]
 void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
 {
     VSOut o;
-	o.iv=In[0].iv;
-	uint iv=In[0].iv;
-	if((ParticleBuffer[iv].lifespan >= 0.0f) || RenderDead)
+	uint slotIndex = In[0].slotIndex;
+	o.slotIndex = slotIndex;
+	
+	
+	if((slotIndex!=-1) || RenderDead)
 	{
 	    float3 p = In[0].pos.xyz / max(In[0].pos.w, 0.01);
 	    float denom = max(In[0].pos.w, 0.01);
@@ -87,7 +93,7 @@ void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
 	    {
 	    	float size = radius / lerp(1, denom, Perspective);
 	        #if defined(KNOW_SIZE)
-	            size *= McpsBuffer[iv].size;
+	            size *= ParticleBuffer[iv].size;
 	        #endif
 	        float2 cpos = qpos[i].xy * size;
 	    	cpos *= ss;
@@ -113,19 +119,21 @@ float4 PS_Tex(VSOut In): SV_Target
 	#endif
 
     float4 col = c;
-
+	
     #if defined(KNOW_COLOR)
-       col *= ParticleBuffer[In.iv].color;
+       col *= ParticleBuffer[In.slotIndex].color;
     #endif
     #if defined(TEXTURED)
 	   col *= texture2d.Sample( sL, In.uv);
     #endif
 
+	if (col.a == 0) discard; // dont draw invisible pixels
+	
     return col;
 }
 
 
-technique10 tech
+technique10 Sprite
 {
 	pass P0
 	{

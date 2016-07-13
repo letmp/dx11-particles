@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\Emitter (DX11.Particles.Selection).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p" scrollx="15" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasEmitter (DX11.Particles.Selection).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p" scrollx="2190" scrolly="450">
    <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3930" top="4485" width="5865" height="705">
    </BOUNDS>
@@ -31,7 +31,7 @@
    <NODE systemname="RenderSemantic (DX11.Layer 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer 2d)" componentmode="Hidden" id="3">
    <BOUNDS type="Node" left="6990" top="6600" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="InputXY" visible="1" slicecount="2" values="50000,100000">
+   <PIN pinname="InputXY" visible="1" slicecount="2" values="0,617088">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -52,7 +52,7 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="7005" top="2655" width="11250" height="9135">
+   <BOUNDS type="Window" left="720" top="2805" width="11250" height="9135">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -62,6 +62,8 @@
    <BOUNDS type="Node" left="855" top="7620" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
+   </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="7" systemname="IOBox (Enumerations)">
@@ -125,8 +127,6 @@
    <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
    </LINK>
    <NODE systemname="GetEmitterOffset (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="GetEmitterOffset (DX11.Particles.Core)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="7515" top="1365" width="1815" height="270">
@@ -304,6 +304,10 @@
    </LINK>
    <LINK srcnodeid="12" srcpinname="FunctionCall" dstnodeid="5" dstpinname="Input String">
    </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
    <LINK srcnodeid="4" srcpinname="Region" dstnodeid="3" dstpinname="InputXY" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="7530" y="4110">
    </LINKPOINT>
