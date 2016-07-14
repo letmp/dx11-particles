@@ -39,6 +39,7 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string ParticleSystemNodeId = "";
+        private bool firstEval = true;
 
         public void OnImportsSatisfied()
         {
@@ -49,6 +50,13 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
+            if (firstEval)
+            {
+                AddParticleSystem();
+                UpdateBufferSemantics();
+                firstEval = false;
+            }
+
             if (FParticleSystemName.IsChanged)
             {
                 AddParticleSystem();
@@ -120,5 +128,95 @@ namespace DX11.Particles.Core
         }
 
         
+    }
+
+    #region PluginInfo
+    [PluginInfo(Name = "Info", AutoEvaluate = true, Category = "DX11.Particles.Core", Version = "ParticleSystem", Help = "Info about the specified particle system", Author = "tmp", Tags = "")]
+    #endregion PluginInfo
+
+    public class InfoParticleSystemNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
+    {
+        [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 2, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
+        public IDiffSpread<EnumEntry> FParticleSystemName;
+
+        [Output("Defines", DefaultString = "", AutoFlush = false, AllowFeedback = true)]
+        public ISpread<string> FOutDefines;
+
+        [Output("BufferSemantics", DefaultString = "", AutoFlush = false, AllowFeedback = true)]
+        public ISpread<string> FOutBufferSemantics;
+
+        [Output("Element Count", DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
+        public ISpread<int> FElementCount;
+
+        [Output("Stride", AutoFlush = false)]
+        public ISpread<int> FStride;
+
+        [Import()]
+        public ILogger FLogger;
+
+        [Import]
+        protected IPluginHost2 PluginHost;
+        bool firstEval = true;
+
+        public void OnImportsSatisfied()
+        {
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            particleSystemRegistry.Changed += HandleRegistryChange;
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (firstEval)
+            {
+                UpdateOutputPins();
+                firstEval = false;
+            }
+
+            if (FParticleSystemName.IsChanged)
+            {
+                UpdateOutputPins();
+            }
+        }
+
+        public void Dispose()
+        {
+            ParticleSystemRegistry.Instance.Changed -= HandleRegistryChange;
+        }
+
+        private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
+        {
+            UpdateOutputPins();
+        }
+
+        private void UpdateOutputPins()
+        {
+            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+            if (particleSystemData != null)
+            {
+                FOutDefines.SliceCount = 0;
+                FOutDefines.Add("COMPOSITESTRUCT=" + particleSystemData.StructureDefinition);
+                FOutDefines.Add("MAXPARTICLECOUNT=" + particleSystemData.ElementCount);
+
+                foreach (string define in particleSystemData.GetDefines())
+                {
+                    if (define != "") FOutDefines.Add(define);
+                }
+
+                FOutDefines.Flush();
+
+                FOutBufferSemantics.SliceCount = 0;
+                FOutBufferSemantics.AssignFrom(particleSystemData.BufferSemantics);
+                FOutBufferSemantics.Flush();
+                
+                FElementCount[0] = particleSystemData.ElementCount;
+                FElementCount.Flush();
+
+                FStride[0] = particleSystemData.Stride;
+                FStride.Flush();
+            }
+
+        }
+
+
     }
 }

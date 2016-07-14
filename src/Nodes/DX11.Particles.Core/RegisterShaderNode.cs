@@ -46,6 +46,7 @@ namespace DX11.Particles.Core
         
         private string ShaderNodeId = "";
         private bool _ParticleSystemChanged = false;
+        private bool firstEval = true;
 
         public void OnImportsSatisfied()
         {
@@ -71,6 +72,15 @@ namespace DX11.Particles.Core
                 UpdateEmitterSize();
                 UpdateEmitterName();
                 UpdateShaderVariables();
+            }
+
+            if (firstEval)
+            {
+                SetShaderVariables();
+                SetDefines();
+                SetEmitterSize();
+                SetEmitterName();
+                firstEval = false;
             }
 
             if (FVariables.IsChanged)

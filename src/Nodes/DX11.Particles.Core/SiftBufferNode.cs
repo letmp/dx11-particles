@@ -6,7 +6,9 @@ using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V2.NonGeneric;
 
+using SlimDX.Direct3D11;
 using VVVV.DX11;
+using FeralTic.DX11;
 using FeralTic.DX11.Resources;
 
 namespace DX11.Particles.Core
@@ -14,7 +16,7 @@ namespace DX11.Particles.Core
     #region PluginInfo
     [PluginInfo(Name = "Sift", Category = "DX11.Particles.Core", Version="Buffer", Help = "Sifts a spread of buffers by their semantics and splits them.", Author="tmp", AutoEvaluate=true)]
     #endregion PluginInfo
-    public class SiftBufferNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    public class SiftBufferNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDX11ResourceProvider
     {
         #region fields & pins
         [Input("Input", DefaultValue = 1.0)]
@@ -45,6 +47,17 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
+        }
+
+        public void Update(IPluginIO pin, DX11RenderContext context)
+        {
+            Device device = context.Device;
+            DeviceContext ctx = context.CurrentDeviceContext;
+        }
+
+        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        {
+           
         }
 
         private void HandleStringChange(IDiffSpread<string> spread)

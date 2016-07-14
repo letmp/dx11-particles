@@ -16,6 +16,7 @@ RWStructuredBuffer<uint> HitBuffer : BACKBUFFER;
 
 float4x4 tFilter : WORLD;
 int drawIndex : DRAWINDEX;
+bool countmode = false;
 
 struct csin
 {
@@ -41,8 +42,11 @@ void CS_HitTest(csin input)
 		pointCoord.y < -0.5 || pointCoord.y > 0.5 ||
 		pointCoord.z < -0.5 || pointCoord.z > 0.5
 		)){
-			uint oldval;
-			InterlockedAdd(HitBuffer[drawIndex],1,oldval);
+			if(countmode){
+				uint oldval;
+				InterlockedAdd(HitBuffer[drawIndex],1,oldval);
+			}
+			else HitBuffer[drawIndex] = 1;
 		}
 	
 }

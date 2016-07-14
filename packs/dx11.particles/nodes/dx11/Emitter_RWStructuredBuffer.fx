@@ -1,5 +1,5 @@
 #include "../fxh/Defines.fxh"
-
+#include "../fxh/Functions.fxh"
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
@@ -19,14 +19,15 @@ RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
 RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
-StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
-StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
-StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
+RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
+RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+
+RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
+
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 cbuffer cbuf
 {
-    uint EmitCount = 0;
 	uint EmitterSize = 0;
 }
 
@@ -39,8 +40,7 @@ struct csin
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Emit(csin input)
-{
-	
+{	
 	if(input.DTID.x >= EmitterSize) return;
 	
 	uint slotIndex = EMITTEROFFSET + input.DTID.x;
@@ -48,32 +48,34 @@ void CS_Emit(csin input)
 	float currentLifespan = ParticleBuffer[slotIndex].lifespan;
 	if ( currentLifespan <= 0.0f){
 		
-		// this counter is just for checking if we already emitted enough particles
+		// this counter is just for checking if we already copied all particles
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
-		if (emitterCounter >= EmitCount )return;
+		if ( 	(FlagBuffer[0] == true && emitterCounter >= SelectionCounterBuffer[0]) ||
+				(FlagBuffer[0] == false && emitterCounter >= AliveCounterBuffer[0])) return;
 		
 		// update AliveIndexBuffer
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
 		AliveIndexBuffer[aliveIndex] = slotIndex;
 		
-		// create new particle
-		uint size, stride;
+		// copy particle
 		Particle p = (Particle) 0;
-
-		PositionBuffer.GetDimensions(size,stride);
-		p.position = PositionBuffer[emitterCounter % size];
-
-		VelocityBuffer.GetDimensions(size,stride);
-		p.velocity = VelocityBuffer[emitterCounter % size];
 		
-		AccelerationBuffer.GetDimensions(size,stride);
-		p.acceleration = AccelerationBuffer[emitterCounter % size];
-
+		uint slotIndexToCopy = getSlotIndex(emitterCounter,
+									FlagBuffer,
+									SelectionIndexBuffer,
+									SelectionCounterBuffer,
+									AliveIndexBuffer,
+									AliveCounterBuffer);
+		if (slotIndexToCopy == -1 ) return;
+		
+		p = ParticleBuffer[slotIndexToCopy];
+		
+		// update lifespan
+		uint size, stride;
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
-
-		ParticleBuffer[slotIndex] = p;
 		
+		ParticleBuffer[slotIndex] = p;
 	}
 }
 

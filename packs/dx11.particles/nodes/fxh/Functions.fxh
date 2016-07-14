@@ -14,17 +14,4 @@ int getSlotIndex(uint pId, RWStructuredBuffer<bool> FlagBuffer, RWStructuredBuff
 	return slotIndex;
 }
 
-int getSlotIndexReadOnly(uint pId, RWStructuredBuffer<bool> FlagBuffer, RWStructuredBuffer<uint> SelectionIndexBuffer, RWStructuredBuffer<uint> SelectionCounterBuffer, StructuredBuffer<uint> AliveIndexBuffer, StructuredBuffer<uint> AliveCounterBuffer){
-	uint slotIndex = 0;
-	
-	if (FlagBuffer[0] == true){ // Apply to selected particles only
-		if(pId >= MAXPARTICLECOUNT || pId >= SelectionCounterBuffer[0]) return -1;
-		slotIndex = SelectionIndexBuffer[pId];
-	}
-	else { // apply to all (alive) particles
-		if(pId >= MAXPARTICLECOUNT || pId >= AliveCounterBuffer[0]) return -1;
-		slotIndex = AliveIndexBuffer[pId];
-	}
-	return slotIndex;
-}
 
