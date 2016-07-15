@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selection Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="2355" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selection Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="465">
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="7890" top="4830" width="1620" height="270">
    </BOUNDS>
@@ -94,7 +94,7 @@
    <LINKPOINT x="8415" y="2760">
    </LINKPOINT>
    </LINK>
-   <BOUNDS type="Window" left="705" top="1890" width="16395" height="11355">
+   <BOUNDS type="Window" left="6135" top="4020" width="16395" height="11355">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -271,9 +271,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="37" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="6615" top="3540" width="795" height="240">
+   <BOUNDS type="Box" left="6600" top="3540" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6615" top="3540" width="0" height="0">
+   <BOUNDS type="Node" left="6600" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="TFILTER">
    </PIN>
@@ -303,7 +303,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6765" top="870" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -351,7 +351,7 @@
    <LINK srcnodeid="32" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
    </LINK>
    <NODE systemname="BuildFunctionCall (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Selectors\BuildFunctionCall (DX11.Particles.Selection).v4p" nodename="BuildFunctionCall (DX11.Particles.Selection)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="2475" top="4035" width="6255" height="270">
+   <BOUNDS type="Node" left="2475" top="4035" width="7260" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="645" top="1140" width="9040" height="5800">
    </BOUNDS>
@@ -369,8 +369,14 @@
    </PIN>
    <PIN pinname="Semantic Count" visible="1">
    </PIN>
+   <PIN pinname="Id" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="33" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic">
+   <LINK srcnodeid="33" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
+   <LINKPOINT x="9675" y="4553">
+   </LINKPOINT>
+   <LINKPOINT x="8730" y="4553">
+   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="33" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String" linkstyle="Bezier">
    <LINKPOINT x="5610" y="4988">
@@ -511,5 +517,31 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="47" srcpinname="Color Output" dstnodeid="46" dstpinname="Color">
+   </LINK>
+   <NODE systemname="Self (VVVV)" nodename="Self (VVVV)" componentmode="Hidden" id="48">
+   <BOUNDS type="Node" left="8655" top="3540" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ID in ParentPatch" visible="1">
+   </PIN>
+   <PIN pinname="ID" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Inlets" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Is Changed" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Outlets" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Node Count" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Instance index" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Instance Count" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Caption" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Filename" visible="-1" pintype="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="33" dstpinname="Id">
    </LINK>
    </PATCH>

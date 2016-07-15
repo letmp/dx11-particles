@@ -20,7 +20,8 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         [Input("Input", DefaultValue = 1.0)]
-        public IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> FInput;
+        //public IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> FInput;
+        public Pin<DX11Resource<IDX11RWStructureBuffer>> FInput;
 
         [Input("BufferSemantic")]
         public IDiffSpread<string> FBufferSemantic;
@@ -35,6 +36,8 @@ namespace DX11.Particles.Core
 
         [Import]
         public IIOFactory FIOFactory;
+        
+        private bool wasConnected = false;
 
         #endregion fields & pins
 
@@ -47,17 +50,20 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
+            // assign input buffers to output pins when the buffer spread gets (dis)connected
+            if (FInput.IsConnected != wasConnected)
+            {
+                HandleConfigChange(null);
+                wasConnected = FInput.IsConnected;
+            }
         }
 
         public void Update(IPluginIO pin, DX11RenderContext context)
         {
-            Device device = context.Device;
-            DeviceContext ctx = context.CurrentDeviceContext;
         }
 
         public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
         {
-           
         }
 
         private void HandleStringChange(IDiffSpread<string> spread)
@@ -65,22 +71,25 @@ namespace DX11.Particles.Core
 
             string configString = "";
             bool first = true;
+
             for (int i = 0; i < FBufferSemanticFilter.SliceCount; i++)
-            {
-                string semanticFilter = FBufferSemanticFilter[i];
-                for (int j = 0; j < FBufferSemantic.SliceCount; j++)
                 {
-                    if (FBufferSemantic[j].Equals(semanticFilter))
+                    string semanticFilter = FBufferSemanticFilter[i];
+                    for (int j = 0; j < FBufferSemantic.SliceCount; j++)
                     {
-                        if (!first) configString += ",";
-                        configString += j + ":" + semanticFilter;
-                        first = false;
-                        break;
+                        if (FBufferSemantic[j].Equals(semanticFilter))
+                        {
+                            if (!first) configString += ",";
+                            configString += j + ":" + semanticFilter;
+                            first = false;
+                            break;
+                        }
                     }
                 }
+            if (!FConfig[0].Equals(configString) && configString != ""){
+                FConfig[0] = configString;
             }
-
-            FConfig[0] = configString;
+            
         }
 
         private void HandleConfigChange(IDiffSpread<string> spread)

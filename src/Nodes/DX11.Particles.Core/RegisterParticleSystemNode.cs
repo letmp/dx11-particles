@@ -26,6 +26,9 @@ namespace DX11.Particles.Core
         [Output("StructureDefinition", DefaultString = "", AutoFlush = false)]
         public ISpread<string> FStructureDefinition;
 
+        [Output("Groups", DefaultString = "", AutoFlush = false)]
+        public ISpread<string> FGroups;
+
         [Output("Element Count", AutoFlush = false)]
         public ISpread<int> FEleCount;
 
@@ -117,12 +120,20 @@ namespace DX11.Particles.Core
             if (particleSystemData != null)
             {
                 FStructureDefinition[0] = particleSystemData.StructureDefinition;
-                FEleCount[0] = particleSystemData.ElementCount;
-                FStride[0] = particleSystemData.Stride;
-
                 FStructureDefinition.Flush();
+
+                FGroups.SliceCount = 0;
+                FGroups.AssignFrom(particleSystemData.GroupNames.Values.Distinct().ToArray());
+                EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", particleSystemData.GroupNames.Values.Distinct().ToArray());
+                FGroups.Flush();
+
+                FEleCount[0] = particleSystemData.ElementCount;
                 FEleCount.Flush();
+
+                FStride[0] = particleSystemData.Stride;
                 FStride.Flush();
+
+               
             }
             
         }

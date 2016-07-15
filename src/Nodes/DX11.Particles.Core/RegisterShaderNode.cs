@@ -23,6 +23,9 @@ namespace DX11.Particles.Core
         [Input("EmitterName", DefaultString = "", IsSingle=true)]
         public IDiffSpread<string> FEmitterName;
 
+        [Input("GroupName", DefaultString = "", IsSingle = true)]
+        public IDiffSpread<string> FGroupName;
+
         [Input("EmitCount", DefaultValue = 0, IsSingle=true)]
         public IDiffSpread<int> FEmitCount;
 
@@ -101,6 +104,10 @@ namespace DX11.Particles.Core
             {
                 SetEmitterName();
             }
+            if (FGroupName.IsChanged)
+            {
+                SetGroupName();
+            }
 
         }
 
@@ -109,6 +116,7 @@ namespace DX11.Particles.Core
             RemoveDefines();
             RemoveEmitterSize();
             RemoveEmitterName();
+            RemoveGroupName();
             RemoveShaderVariables();
             ParticleSystemRegistry.Instance.Changed -= HandleRegistryChange;
         }
@@ -195,6 +203,27 @@ namespace DX11.Particles.Core
         {
             RemoveEmitterName();
             SetEmitterName();
+        }
+
+        private void SetGroupName()
+        {
+            if (FGroupName[0] != "")
+            {
+                var particleSystemRegistry = ParticleSystemRegistry.Instance;
+                particleSystemRegistry.SetGroupName(FParticleSystemName[0], this.ShaderNodeId, FGroupName[0]);
+            }
+        }
+
+        private void RemoveGroupName()
+        {
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            particleSystemRegistry.RemoveGroupName(this.ShaderNodeId);
+        }
+
+        private void UpdateGroupName()
+        {
+            RemoveGroupName();
+            SetGroupName();
         }
 
         private void UpdateOutputPins()

@@ -50,7 +50,7 @@ namespace DX11.Particles.Core
             ParticleSystemData psd = ParticleSystemRegistry.Instance[FParticleSystemName[0]];
             if (psd != null)
             {
-                EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", psd.EmitterNames.Values.ToArray());
+                EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", psd.EmitterNames.Values.Distinct().ToArray());
             }
         }
 

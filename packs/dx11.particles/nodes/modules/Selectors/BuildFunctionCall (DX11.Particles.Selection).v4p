@@ -17,7 +17,7 @@
    </PIN>
    </NODE>
    <NODE systemname="I (Spreads)" nodename="I (Spreads)" componentmode="Hidden" id="2">
-   <BOUNDS type="Node" left="7245" top="1890" width="100" height="100">
+   <BOUNDS type="Node" left="7245" top="1440" width="100" height="100">
    </BOUNDS>
    <PIN pinname=".. To [" visible="1" slicecount="1" values="2">
    </PIN>
@@ -37,7 +37,7 @@
    <NODE systemname="FormatValue (String)" nodename="FormatValue (String)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="7245" top="2280" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="2" values="0,1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -75,7 +75,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <PIN pinname="Input 5" slicecount="1" values=")" visible="1">
+   <PIN pinname="Input 5" slicecount="1" visible="1" values=")">
    </PIN>
    <PIN pinname="Input 6" slicecount="1" values=")">
    </PIN>
@@ -196,9 +196,7 @@
    </LINK>
    <LINK srcnodeid="4" srcpinname="Output" dstnodeid="3" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="4" dstpinname="Input">
-   </LINK>
-   <BOUNDS type="Window" left="7890" top="5025" width="11970" height="7725">
+   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -254,10 +252,10 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Semantic Count|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="2" dstpinname=".. To [" linkstyle="VHV">
-   <LINKPOINT x="8175" y="1313">
+   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="2" dstpinname=".. To [" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="8160" y="1080">
    </LINKPOINT>
-   <LINKPOINT x="7485" y="1313">
+   <LINKPOINT x="7500" y="1080">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="19" systemname="IOBox (String)">
@@ -297,7 +295,7 @@
    <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="7" dstpinname="Input 1">
    </LINK>
    <NODE systemname="Switch (String Input)" nodename="Switch (String Input)" componentmode="Hidden" id="23">
-   <BOUNDS type="Node" left="9975" top="1050" width="100" height="100">
+   <BOUNDS type="Node" left="10275" top="1050" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Switch" visible="1">
    </PIN>
@@ -309,9 +307,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="24" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="9975" top="495" width="285" height="240">
+   <BOUNDS type="Box" left="10275" top="495" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9975" top="495" width="0" height="0">
+   <BOUNDS type="Node" left="10275" top="495" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -331,9 +329,9 @@
    <LINK srcnodeid="24" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="23" srcpinname="Output" dstnodeid="10" dstpinname="Intersperse String" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9975" y="2618">
+   <LINKPOINT x="10175" y="2618">
    </LINKPOINT>
-   <LINKPOINT x="2250" y="2618">
+   <LINKPOINT x="2350" y="2618">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="25">
@@ -360,4 +358,42 @@
    </LINK>
    <LINK srcnodeid="25" srcpinname="Output" dstnodeid="6" dstpinname="Input 3">
    </LINK>
+   <NODE systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="7245" top="1860" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="33">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="27" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Output" dstnodeid="4" dstpinname="Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="28" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="9525" top="495" width="330" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9525" top="495" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="33">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Id">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="27" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9525" y="1283">
+   </LINKPOINT>
+   <LINKPOINT x="7575" y="1283">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
    </PATCH>
