@@ -15,7 +15,7 @@ namespace DX11.Particles.Core
         public const string DEFAULT_ENUM = "Default System";
 
         public const string EMITTER_ENUM = "DX11.Particles.Core.EmitterNames";
-        public const string GROUP_ENUM = "DX11.Particles.Core.GroupNames";
+        public const string BUFFER_ENUM = "DX11.Particles.Core.BufferNames";
         
         private static ParticleSystemRegistry _instance;
         public event RegistryChangedHandler Changed;
@@ -158,23 +158,23 @@ namespace DX11.Particles.Core
             catch (Exception) { }
         }
 
-        public void SetGroupName(string particleSystemName, string shaderRegisterNodeId, string groupName)
+        public void SetBufferName(string particleSystemName, string shaderRegisterNodeId, string bufferName)
         {
             if (Instance.ContainsKey(particleSystemName))
             {
-                Instance[particleSystemName].SetGroupName(shaderRegisterNodeId, groupName);
+                Instance[particleSystemName].SetBufferName(shaderRegisterNodeId, bufferName);
                 if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true));
             }
         }
 
-        public void RemoveGroupName(string shaderRegisterNodeId)
+        public void RemoveBufferName(string shaderRegisterNodeId)
         {
             try
             {
                 ParticleSystemData psd = Instance.First(kvp => kvp.Value.HasShaderNodeId(shaderRegisterNodeId)).Value;
                 if (psd != null)
                 {
-                    psd.RemoveGroupName(shaderRegisterNodeId);
+                    psd.RemoveBufferName(shaderRegisterNodeId);
                     if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true));
                 }
             }
@@ -228,7 +228,7 @@ namespace DX11.Particles.Core
         public Dictionary<string, List<string>> Defines = new Dictionary<string, List<string>>();
         public Dictionary<string, int> EmitterSizes = new Dictionary<string, int>();
         public Dictionary<string, string> EmitterNames = new Dictionary<string, string>();
-        public Dictionary<string, string> GroupNames = new Dictionary<string, string>();
+        public Dictionary<string, string> BufferNames = new Dictionary<string, string>();
 
         public List<string> BufferSemantics = new List<string>();
         public string StructureDefinition { get; protected set; }
@@ -327,16 +327,16 @@ namespace DX11.Particles.Core
             }
         }
 
-        public void SetGroupName(string shaderRegisterNodeId, string name)
+        public void SetBufferName(string shaderRegisterNodeId, string name)
         {
-            this.GroupNames[shaderRegisterNodeId] = name;
+            this.BufferNames[shaderRegisterNodeId] = name;
         }
 
-        public void RemoveGroupName(string shaderRegisterNodeId)
+        public void RemoveBufferName(string shaderRegisterNodeId)
         {
-            if (this.GroupNames.ContainsKey(shaderRegisterNodeId))
+            if (this.BufferNames.ContainsKey(shaderRegisterNodeId))
             {
-                this.GroupNames.Remove(shaderRegisterNodeId);
+                this.BufferNames.Remove(shaderRegisterNodeId);
             }
         }
 

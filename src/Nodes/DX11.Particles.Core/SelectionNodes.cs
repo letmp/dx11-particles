@@ -6,18 +6,14 @@ using System.ComponentModel.Composition;
 
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
-using VVVV.Utils.VColor;
-using VVVV.Utils.VMath;
 
 using VVVV.DX11;
 using VVVV.DX11.Lib.Rendering;
-
-using VVVV.Core.Logging;
 #endregion usings
 
 namespace DX11.Particles.Core
 {
-    public class SelectionBundle
+    public class SelectionNodes
     {
         public List<string> Variables = new List<string>();
         public List<string> FunctionDefinitions = new List<string>();
@@ -25,7 +21,7 @@ namespace DX11.Particles.Core
         public List<IDX11RenderSemantic> RenderSemantics = new List<IDX11RenderSemantic>();
         public string FunctionCall = "";
 
-        public SelectionBundle() { }
+        public SelectionNodes() { }
 
         public void SetAll( IEnumerable<string> variables,
                                 string functionCall, IEnumerable<string> functionDefinitions,
@@ -70,12 +66,12 @@ namespace DX11.Particles.Core
             }
         }
 
-        public void LogicAndOr(Spread<IIOContainer<ISpread<SelectionBundle>>> FInputs, bool isLogicAnd = false)
+        public void LogicAndOr(Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs, bool isLogicAnd = false)
         {
             List<string> functioncalls = new List<string>();
             for (int i = 0; i < FInputs.Count(); i++)
             {
-                SelectionBundle sbIn = FInputs[i].IOObject[0];
+                SelectionNodes sbIn = FInputs[i].IOObject[0];
                 if (sbIn != null)
                 {
                     this.AddVariables(sbIn.Variables);
@@ -110,17 +106,6 @@ namespace DX11.Particles.Core
             FunctionCall = "!( " + FunctionCall + ")";
         }
 
-        public string BuildShaderCode(string blueprint){
-            blueprint = blueprint.Replace("{structvariables}", string.Join(System.Environment.NewLine, Variables));
-            blueprint = blueprint.Replace("{cbuffervariables}", string.Join(System.Environment.NewLine, ConstantBufferVariables));
-            blueprint = blueprint.Replace("{functiondefinitions}", string.Join(System.Environment.NewLine, FunctionDefinitions));
-            if (FunctionCall!="")
-                blueprint = blueprint.Replace("{functioncalls}", FunctionCall);
-            else
-                blueprint = blueprint.Replace("{functioncalls}", "true");
-            return blueprint;
-        }
-        
     }
 
     #region PluginInfo
@@ -145,7 +130,7 @@ namespace DX11.Particles.Core
         protected Pin<IDX11RenderSemantic> FInSemantics;
 
         [Output("Output")]
-        public ISpread<SelectionBundle> FOutSelectionBundle;
+        public ISpread<SelectionNodes> FOutSelectionBundle;
 
         #endregion fields & pins
 
@@ -154,7 +139,7 @@ namespace DX11.Particles.Core
             if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunctionDefinition.IsChanged || FConstantBufferEntry.IsChanged || FInSemantics.IsChanged)) return;
 
             FOutSelectionBundle.SliceCount = 1;
-            SelectionBundle sb = new SelectionBundle();
+            SelectionNodes sb = new SelectionNodes();
             sb.SetAll(FVariables, FFunctionCall[0], FFunctionDefinition, FConstantBufferEntry, FInSemantics);
             FOutSelectionBundle[0] = sb;
         }
@@ -169,7 +154,7 @@ namespace DX11.Particles.Core
         #region fields & pins
 
         [Input("Input", IsSingle = true)]
-        public IDiffSpread<SelectionBundle> FInSelectionBundle;
+        public IDiffSpread<SelectionNodes> FInSelectionBundle;
 
         [Output("Variable List")]
         public ISpread<string> FVariables;
@@ -192,7 +177,7 @@ namespace DX11.Particles.Core
         {
             if (!FInSelectionBundle.IsChanged) return;
 
-            SelectionBundle sb = FInSelectionBundle[0];
+            SelectionNodes sb = FInSelectionBundle[0];
             FVariables.SliceCount = FFunctionCall.SliceCount = FFunctionDefinition.SliceCount = FConstantBufferEntry.SliceCount = FOutSemantics.SliceCount = 0;
 
             FVariables.AddRange(sb.Variables.ToArray());
@@ -210,10 +195,10 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         // A spread which contains our inputs
-        public Spread<IIOContainer<ISpread<SelectionBundle>>> FInputs = new Spread<IIOContainer<ISpread<SelectionBundle>>>();
+        public Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs = new Spread<IIOContainer<ISpread<SelectionNodes>>>();
 
         [Output("Output")]
-        public ISpread<SelectionBundle> FOutSelectionBundle;
+        public ISpread<SelectionNodes> FOutSelectionBundle;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -250,7 +235,7 @@ namespace DX11.Particles.Core
         {
             if (!FInputs.IsChanged) return;
 
-            SelectionBundle sb = new SelectionBundle();
+            SelectionNodes sb = new SelectionNodes();
             sb.LogicAndOr(FInputs,true);
             FOutSelectionBundle[0] = sb;
         }
@@ -263,10 +248,10 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         // A spread which contains our inputs
-        public Spread<IIOContainer<ISpread<SelectionBundle>>> FInputs = new Spread<IIOContainer<ISpread<SelectionBundle>>>();
+        public Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs = new Spread<IIOContainer<ISpread<SelectionNodes>>>();
 
         [Output("Output")]
-        public ISpread<SelectionBundle> FOutSelectionBundle;
+        public ISpread<SelectionNodes> FOutSelectionBundle;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -302,7 +287,7 @@ namespace DX11.Particles.Core
         public void Evaluate(int SpreadMax)
         {
             if (!FInputs.IsChanged) return;
-            SelectionBundle sb = new SelectionBundle();
+            SelectionNodes sb = new SelectionNodes();
             sb.LogicAndOr(FInputs);
             FOutSelectionBundle[0] = sb;
         }
@@ -315,10 +300,10 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         [Input("Input", IsSingle = true)]
-        public IDiffSpread<SelectionBundle> FInSelectionBundle;
+        public IDiffSpread<SelectionNodes> FInSelectionBundle;
 
         [Output("Output")]
-        public ISpread<SelectionBundle> FOutSelectionBundle;
+        public ISpread<SelectionNodes> FOutSelectionBundle;
 
         #endregion fields & pins
 
@@ -326,8 +311,8 @@ namespace DX11.Particles.Core
         {
             if (!FInSelectionBundle.IsChanged) return;
 
-            SelectionBundle sb = FInSelectionBundle[0];
-            SelectionBundle sbNew = new SelectionBundle();
+            SelectionNodes sb = FInSelectionBundle[0];
+            SelectionNodes sbNew = new SelectionNodes();
             if (sb != null)
             {
                 sbNew.Variables = sb.Variables;
@@ -352,10 +337,10 @@ namespace DX11.Particles.Core
         [Input("Switch", IsSingle = true, DefaultValue=0)]
         public ISpread<int> FSwitch;
 
-        public Spread<IIOContainer<ISpread<SelectionBundle>>> FInputs = new Spread<IIOContainer<ISpread<SelectionBundle>>>();
+        public Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs = new Spread<IIOContainer<ISpread<SelectionNodes>>>();
 
         [Output("Output")]
-        public ISpread<SelectionBundle> FOutSelectionBundle;
+        public ISpread<SelectionNodes> FOutSelectionBundle;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -393,9 +378,9 @@ namespace DX11.Particles.Core
             if (!FInputs.IsChanged) return;
 
             int index = FSwitch[0];
-            SelectionBundle sb = FInputs[index].IOObject[0];
+            SelectionNodes sb = FInputs[index].IOObject[0];
 
-            SelectionBundle sbNew = new SelectionBundle();
+            SelectionNodes sbNew = new SelectionNodes();
             if (sb != null)
             {
                 sbNew.Variables = sb.Variables;
@@ -410,53 +395,4 @@ namespace DX11.Particles.Core
         }
     }
 
-    #region PluginInfo
-    [PluginInfo(Name = "BuildShaderCode", Category = "DX11.Particles.Selection", Help = "Takes a string as input and replaces keywords with data in the selectionbundle", Author = "tmp", Tags = "")]
-    #endregion PluginInfo
-    public class SelectionBuildShaderCode : IPluginEvaluate
-    {
-        #region fields & pins
-
-        [Input("Input", IsSingle = true)]
-        public IDiffSpread<SelectionBundle> FInSelectionBundle;
-        
-        [Input("Shader Blueprint", IsSingle = true)]
-        public IDiffSpread<string> FBlueprint;
-        
-        [Output("ShaderCode")]
-        public ISpread<string> FOutShaderCode;
-
-        [Output("Variable List")]
-        public ISpread<string> FVariables;
-
-        [Output("Custom Semantics")]
-        protected Pin<IDX11RenderSemantic> FOutSemantics;
-
-        #endregion fields & pins
-
-        public void Evaluate(int SpreadMax)
-        {
-            if (!(FInSelectionBundle.IsChanged || FBlueprint.IsChanged)) return;
-
-            FOutShaderCode.SliceCount = FOutSemantics.SliceCount = FVariables.SliceCount = 0;
-
-            SelectionBundle sb = FInSelectionBundle[0];
-            if (sb == null)
-            {
-                sb = new SelectionBundle();
-                sb.Variables.Add("int oneVariableNeeded;");
-            }
-            
-            FOutShaderCode.Add(sb.BuildShaderCode(FBlueprint[0]));
-            FVariables.AddRange(sb.Variables.ToArray());
-
-            // if rendersemantic is null we have to add a fakesemantic. otherwise shaders would fail
-            foreach (var rs in sb.RenderSemantics)
-            {
-                if (rs == null) FOutSemantics.Add(new StructuredBufferRenderSemantic("fakesemantic", false));
-                else FOutSemantics.Add(rs);
-            }
-           
-        }
-    }
 }

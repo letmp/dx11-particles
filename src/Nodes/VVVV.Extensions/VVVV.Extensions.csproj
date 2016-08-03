@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B27C493C-B68F-4496-AFFA-C2AE9E37B109}</ProjectGuid>
+    <ProjectGuid>{CC08B015-3897-4F44-A94E-CB5EED744793}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DX11.Particles.Core</RootNamespace>
-    <AssemblyName>DX11.Particles.Core</AssemblyName>
+    <RootNamespace>VVVV.Extensions</RootNamespace>
+    <AssemblyName>VVVV.Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\AnyCpu\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\VVVV.Extensions\AnyCpu\</OutputPath>
     <DefineConstants>Debug;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,14 +29,14 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\AnyCpu\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\VVVV.Extensions\AnyCpu\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\</OutputPath>
     <DefineConstants>Debug;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -49,7 +49,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <PlatformTarget>x64</PlatformTarget>
@@ -59,7 +59,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x86\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x86\</OutputPath>
     <DefineConstants>Debug;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
@@ -70,7 +70,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x86\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x86\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
@@ -78,100 +78,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <Reference Include="FeralTic">
-      <HintPath>..\..\Dependencies\x64\FeralTic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\Dependencies\x64\SharpDX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\Dependencies\x64\SharpDX.DXGI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Core">
-      <HintPath>..\..\Dependencies\x64\VVVV.DX11.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Lib">
-      <HintPath>..\..\Dependencies\x64\VVVV.DX11.Lib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <Reference Include="FeralTic">
-      <HintPath>..\..\Dependencies\x64\FeralTic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\Dependencies\x64\SharpDX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\Dependencies\x64\SharpDX.DXGI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Core">
-      <HintPath>..\..\Dependencies\x64\VVVV.DX11.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Lib">
-      <HintPath>..\..\Dependencies\x64\VVVV.DX11.Lib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <Reference Include="FeralTic">
-      <HintPath>..\..\Dependencies\x86\FeralTic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\Dependencies\x86\SharpDX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\Dependencies\x86\SharpDX.DXGI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Core">
-      <HintPath>..\..\Dependencies\x86\VVVV.DX11.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Lib">
-      <HintPath>..\..\Dependencies\x86\VVVV.DX11.Lib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <Reference Include="FeralTic">
-      <HintPath>..\..\Dependencies\x86\FeralTic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\Dependencies\x86\SharpDX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\Dependencies\x86\SharpDX.DXGI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Core">
-      <HintPath>..\..\Dependencies\x86\VVVV.DX11.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VVVV.DX11.Lib">
-      <HintPath>..\..\Dependencies\x86\VVVV.DX11.Lib.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
-    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\lib\x64\SlimDX.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition.CodePlex, Version=4.1.2.0, Culture=neutral, PublicKeyToken=13e5ffd4e05db186, processorArchitecture=MSIL">
       <HintPath>..\..\Packages\VVVV.System.ComponentModel.Composition.Codeplex.2.5.0\lib\net40\System.ComponentModel.Composition.CodePlex.dll</HintPath>
@@ -226,16 +133,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SelectionNodes.cs" />
-    <Compile Include="SiftBufferNode.cs" />
-    <Compile Include="StructHelper.cs" />
-    <Compile Include="ParticleSystemRegistry.cs" />
-    <Compile Include="ParticleSystemNodes.cs" />
-    <Compile Include="ParticleSystemShaderNodes.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Compile Include="FileChangeNode.cs" />
+    <Compile Include="SubstituteStringNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -245,13 +147,10 @@
     <Error Condition="!Exists('..\..\Packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets'))" />
     <Error Condition="!Exists('..\..\Packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets'))" />
     <Error Condition="!Exists('..\..\Packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets'))" />
-    <Error Condition="!Exists('..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.props'))" />
-    <Error Condition="!Exists('..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.targets'))" />
   </Target>
   <Import Project="..\..\Packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets" Condition="Exists('..\..\Packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets')" />
   <Import Project="..\..\Packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('..\..\Packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets')" />
   <Import Project="..\..\Packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets" Condition="Exists('..\..\Packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets')" />
-  <Import Project="..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.targets" Condition="Exists('..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.targets')" />
   <Target Name="AfterBuild">
     <ItemGroup>
       <MyFiles Include="vvvv\**\*.*" />

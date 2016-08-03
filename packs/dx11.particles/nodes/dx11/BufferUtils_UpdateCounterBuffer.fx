@@ -2,6 +2,7 @@
 
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
+RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 
 struct csin
 {
@@ -11,7 +12,7 @@ struct csin
 };
 
 [numthreads(1, 1, 1)]
-void CS_SetCounter(csin input)
+void CS_UpdateEmitterAliveBuffer(csin input)
 {
 	uint emitterCounter = EmitterCounterBuffer.IncrementCounter();
 	EmitterCounterBuffer[0] = emitterCounter;
@@ -21,4 +22,12 @@ void CS_SetCounter(csin input)
 	}
 }
 
-technique11 SetCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetCounter() ) );} }
+[numthreads(1, 1, 1)]
+void CS_UpdateSelectionBuffer(csin input)
+{
+	uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
+	SelectionCounterBuffer[0] = selectionCounter;
+}
+
+technique11 EmitterAlive { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateEmitterAliveBuffer() ) );} }
+technique11 Selection { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateSelectionBuffer() ) );} }

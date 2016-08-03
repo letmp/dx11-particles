@@ -279,7 +279,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="100">
-   <BOUNDS type="Node" left="3750" top="5160" width="1050" height="270">
+   <BOUNDS type="Node" left="3750" top="4980" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -289,7 +289,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1" slicecount="1" values="1">
    </PIN>
-   <BOUNDS type="Box" left="3750" top="5160">
+   <BOUNDS type="Box" left="3750" top="4980">
    </BOUNDS>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="101">
@@ -561,9 +561,9 @@
    <LINK srcnodeid="101" srcpinname="Layer Out" dstnodeid="104" dstpinname="Layer In">
    </LINK>
    <NODE id="99" systemname="BufferUtils_UpdateCounterBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\BufferUtils_UpdateCounterBuffer.fx" nodename="BufferUtils_UpdateCounterBuffer (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="2955" top="5595" width="2100" height="270">
+   <BOUNDS type="Node" left="2955" top="5745" width="2100" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="2955" top="5595">
+   <BOUNDS type="Box" left="2955" top="5745">
    </BOUNDS>
    <PIN pinname="Defines" slicecount="1" visible="1" values="||">
    </PIN>
@@ -571,7 +571,7 @@
    </PIN>
    <PIN pinname="ParticleSize" visible="1">
    </PIN>
-   <PIN pinname="Technique" slicecount="1" values="SetCounter">
+   <PIN pinname="Technique" slicecount="1" values="EmitterAlive" visible="1">
    </PIN>
    <PIN pinname="EmitCount" visible="1" slicecount="1" values="0">
    </PIN>
@@ -604,4 +604,14 @@
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="114" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="4545" top="5355" width="1125" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4545" top="5355" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="EmitterAlive">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="114" srcpinname="Output Enum" dstnodeid="99" dstpinname="Technique">
+   </LINK>
    </PATCH>

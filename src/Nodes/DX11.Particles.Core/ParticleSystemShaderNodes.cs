@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using VVVV.PluginInterfaces.V1;
 using VVVV.PluginInterfaces.V2;
 using VVVV.Utils;
@@ -11,7 +12,7 @@ namespace DX11.Particles.Core
     [PluginInfo(Name = "Register", AutoEvaluate = true, Category = "DX11.Particles.Core", Version = "Shader", Help = "Adds mandatory variables of a shader to the particle system registry and outputs all composited variables for the particle system.", Author = "tmp", Tags = "")]
     #endregion PluginInfo
 
-    public class RegisterShaderNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
+    public class ParticleSystemShaderNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
     {
 
         [Input("Structure", DefaultString = "")]
@@ -23,8 +24,8 @@ namespace DX11.Particles.Core
         [Input("EmitterName", DefaultString = "", IsSingle=true)]
         public IDiffSpread<string> FEmitterName;
 
-        [Input("GroupName", DefaultString = "", IsSingle = true)]
-        public IDiffSpread<string> FGroupName;
+        [Input("BufferName", DefaultString = "", IsSingle = true)]
+        public IDiffSpread<string> FBufferName;
 
         [Input("EmitCount", DefaultValue = 0, IsSingle=true)]
         public IDiffSpread<int> FEmitCount;
@@ -104,9 +105,9 @@ namespace DX11.Particles.Core
             {
                 SetEmitterName();
             }
-            if (FGroupName.IsChanged)
+            if (FBufferName.IsChanged)
             {
-                SetGroupName();
+                SetBufferName();
             }
 
         }
@@ -116,7 +117,7 @@ namespace DX11.Particles.Core
             RemoveDefines();
             RemoveEmitterSize();
             RemoveEmitterName();
-            RemoveGroupName();
+            RemoveBufferName();
             RemoveShaderVariables();
             ParticleSystemRegistry.Instance.Changed -= HandleRegistryChange;
         }
@@ -205,25 +206,25 @@ namespace DX11.Particles.Core
             SetEmitterName();
         }
 
-        private void SetGroupName()
+        private void SetBufferName()
         {
-            if (FGroupName[0] != "")
+            if (FBufferName[0] != "")
             {
                 var particleSystemRegistry = ParticleSystemRegistry.Instance;
-                particleSystemRegistry.SetGroupName(FParticleSystemName[0], this.ShaderNodeId, FGroupName[0]);
+                particleSystemRegistry.SetBufferName(FParticleSystemName[0], this.ShaderNodeId, FBufferName[0]);
             }
         }
 
-        private void RemoveGroupName()
+        private void RemoveBufferName()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
-            particleSystemRegistry.RemoveGroupName(this.ShaderNodeId);
+            particleSystemRegistry.RemoveBufferName(this.ShaderNodeId);
         }
 
-        private void UpdateGroupName()
+        private void UpdateBufferName()
         {
-            RemoveGroupName();
-            SetGroupName();
+            RemoveBufferName();
+            SetBufferName();
         }
 
         private void UpdateOutputPins()
@@ -258,6 +259,76 @@ namespace DX11.Particles.Core
                 FStride.Flush();
             }
             
+        }
+
+    }
+
+    #region PluginInfo
+    [PluginInfo(Name = "GetEmitterOffset", AutoEvaluate = true, Category = "DX11.Particles.Core", Version = "", Help = "Returns the region of an emitter in a specified particle system.", Author = "tmp", Tags = "")]
+    #endregion PluginInfo
+
+    public class GetEmitterOffsetNode : IPluginEvaluate, IPartImportsSatisfiedNotification
+    {
+        [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 1, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
+        public IDiffSpread<EnumEntry> FParticleSystemName;
+
+        [Input("Emitter Name", EnumName = ParticleSystemRegistry.EMITTER_ENUM, Order = 2)]
+        public IDiffSpread<EnumEntry> FEmitterName;
+
+        [Output("Region")]
+        public ISpread<int> FEmitterRegion;
+
+        private bool _ParticleSystemChanged = false;
+
+        public void OnImportsSatisfied()
+        {
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            particleSystemRegistry.Changed += HandleRegistryChange;
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (_ParticleSystemChanged || FParticleSystemName.IsChanged || FEmitterName.IsChanged)
+            {
+                UpdateEnums();
+                UpdateOutputPins();
+            }
+        }
+
+        private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
+        {
+            _ParticleSystemChanged = true;
+        }
+
+        private void UpdateEnums()
+        {
+            ParticleSystemData psd = ParticleSystemRegistry.Instance[FParticleSystemName[0]];
+            if (psd != null)
+            {
+                EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", psd.EmitterNames.Values.Distinct().ToArray());
+            }
+        }
+
+        private void UpdateOutputPins()
+        {
+            FEmitterRegion.SliceCount = 0;
+
+            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+            if (particleSystemData != null)
+            {
+                foreach (string en in FEmitterName)
+                {
+                    string shaderRegisterNodeId = particleSystemData.GetShaderRegisterNodeId(en);
+                    if (shaderRegisterNodeId != null)
+                    {
+                        List<int> fromTo = particleSystemData.GetEmitterRegion(shaderRegisterNodeId);
+                        FEmitterRegion.Add(fromTo[0]);
+                        FEmitterRegion.Add(fromTo[1]);
+                    }
+                }
+
+
+            }
         }
 
     }

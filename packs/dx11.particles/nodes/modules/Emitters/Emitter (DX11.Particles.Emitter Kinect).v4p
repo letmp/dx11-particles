@@ -87,7 +87,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="100">
-   <BOUNDS type="Node" left="2415" top="7905" width="1050" height="270">
+   <BOUNDS type="Node" left="2415" top="7560" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -97,7 +97,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1" slicecount="1" values="1">
    </PIN>
-   <BOUNDS type="Box" left="2415" top="7905">
+   <BOUNDS type="Box" left="2415" top="7560">
    </BOUNDS>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="101">
@@ -297,7 +297,7 @@
    </PIN>
    <PIN pinname="ParticleSize" visible="1">
    </PIN>
-   <PIN pinname="Technique" slicecount="1" values="SetCounter">
+   <PIN pinname="Technique" slicecount="1" values="EmitterAlive" visible="1">
    </PIN>
    <PIN pinname="EmitCount" visible="1" slicecount="1" values="0">
    </PIN>
@@ -753,5 +753,15 @@
    </LINKPOINT>
    <LINKPOINT x="5365" y="1270">
    </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="195" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="3210" top="7935" width="1200" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3210" top="7935" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="EmitterAlive">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="195" srcpinname="Output Enum" dstnodeid="99" dstpinname="Technique">
    </LINK>
    </PATCH>

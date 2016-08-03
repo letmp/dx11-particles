@@ -15,7 +15,7 @@ namespace DX11.Particles.Core
     [PluginInfo(Name = "Register", AutoEvaluate = true, Category = "DX11.Particles.Core", Version = "ParticleSystem", Help = "Registers a particle system and outputs the variables of shaders that are registered to this particle system. It also calculates the stride. ", Author = "tmp", Tags = "")]
     #endregion PluginInfo
 
-    public class RegisterParticleSystemNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
+    public class ParticleSystemNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
     {
         [Input("ParticleSystem Name", DefaultString = ParticleSystemRegistry.DEFAULT_ENUM, IsSingle = true)]
         public IDiffSpread<string> FParticleSystemName;
@@ -26,8 +26,8 @@ namespace DX11.Particles.Core
         [Output("StructureDefinition", DefaultString = "", AutoFlush = false)]
         public ISpread<string> FStructureDefinition;
 
-        [Output("Groups", DefaultString = "", AutoFlush = false)]
-        public ISpread<string> FGroups;
+        [Output("Additional Buffers", DefaultString = "", AutoFlush = false)]
+        public ISpread<string> FBuffers;
 
         [Output("Element Count", AutoFlush = false)]
         public ISpread<int> FEleCount;
@@ -122,10 +122,10 @@ namespace DX11.Particles.Core
                 FStructureDefinition[0] = particleSystemData.StructureDefinition;
                 FStructureDefinition.Flush();
 
-                FGroups.SliceCount = 0;
-                FGroups.AssignFrom(particleSystemData.GroupNames.Values.Distinct().ToArray());
-                EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", particleSystemData.GroupNames.Values.Distinct().ToArray());
-                FGroups.Flush();
+                FBuffers.SliceCount = 0;
+                FBuffers.AssignFrom(particleSystemData.BufferNames.Values.Distinct().ToArray());
+                EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", particleSystemData.BufferNames.Values.Distinct().ToArray());
+                FBuffers.Flush();
 
                 FEleCount[0] = particleSystemData.ElementCount;
                 FEleCount.Flush();

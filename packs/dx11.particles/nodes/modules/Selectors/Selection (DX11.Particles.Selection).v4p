@@ -1,7 +1,7 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="2">
-   <BOUNDS type="Node" left="1365" top="6645" width="100" height="100">
+   <BOUNDS type="Node" left="1365" top="7695" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -9,13 +9,13 @@
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1365" top="6645">
+   <BOUNDS type="Box" left="1365" top="7695">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1140" top="795" width="795" height="240">
+   <BOUNDS type="Box" left="900" top="345" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1140" top="795" width="0" height="0">
+   <BOUNDS type="Node" left="900" top="345" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -27,21 +27,21 @@
    <NODE id="4" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layer Out|">
    </PIN>
-   <BOUNDS type="Box" left="1185" top="12345" width="750" height="240">
+   <BOUNDS type="Box" left="1185" top="12645" width="750" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1185" top="12345" width="750" height="240">
+   <BOUNDS type="Node" left="1185" top="12645" width="750" height="240">
    </BOUNDS>
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="8745" top="2835" width="18900" height="13995">
+   <BOUNDS type="Window" left="8700" top="1575" width="12405" height="14100">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4200" top="5610" width="1320" height="240">
+   <BOUNDS type="Box" left="4200" top="6660" width="1320" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4200" top="5610" width="0" height="0">
+   <BOUNDS type="Node" left="4200" top="6660" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\fxh\">
    </PIN>
@@ -57,7 +57,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="6">
-   <BOUNDS type="Node" left="2790" top="3900" width="1080" height="270">
+   <BOUNDS type="Node" left="2805" top="6285" width="1080" height="270">
    </BOUNDS>
    <PIN pinname="Thread X" visible="1" slicecount="1" values="55000">
    </PIN>
@@ -65,15 +65,15 @@
    </PIN>
    <PIN pinname="Thread Y" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2790" top="3900">
+   <BOUNDS type="Box" left="2805" top="6285">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="8">
-   <BOUNDS type="Node" left="4305" top="2925" width="100" height="100">
+   <BOUNDS type="Node" left="4320" top="5310" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="4305" top="2925" width="375" height="240">
+   <BOUNDS type="Box" left="4320" top="5310" width="375" height="240">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -86,26 +86,10 @@
    <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="9" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="10440" top="5550" width="16005" height="14880">
-   </BOUNDS>
-   <BOUNDS type="Node" left="10440" top="5550" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Input String" visible="1" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; CounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; IndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   &cr;&lf;};&cr;&lf;&cr;&lf;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;if(input.DTID.x &gt;= MAXPARTICLECOUNT) return;&cr;&lf;&tab;uint slotIndex = input.DTID.x;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;IndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS_SetCounter(csin input)&cr;&lf;{&cr;&lf;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;CounterBuffer[0] = selectionCounter;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="GetThreadSize (Value)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="11">
-   <BOUNDS type="Node" left="2790" top="3465" width="1560" height="270">
+   <BOUNDS type="Node" left="2805" top="5850" width="1560" height="270">
    </BOUNDS>
-   <PIN pinname="Element Count" visible="1" slicecount="1" values="55000">
+   <PIN pinname="Element Count" visible="1" slicecount="1" values="1100">
    </PIN>
    <PIN pinname="Group Size" visible="1" slicecount="2" values="64,1">
    </PIN>
@@ -115,7 +99,7 @@
    </PIN>
    <PIN pinname="ThreadZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2790" top="3465">
+   <BOUNDS type="Box" left="2805" top="5850">
    </BOUNDS>
    <PIN pinname="String" visible="1">
    </PIN>
@@ -129,7 +113,7 @@
    <LINK srcnodeid="11" srcpinname="ThreadY" dstnodeid="6" dstpinname="Thread Y">
    </LINK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="6330" top="4035" width="495" height="270">
+   <BOUNDS type="Node" left="6330" top="6675" width="495" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="3" values="|COMPOSITESTRUCT=float3 velocity; float lifespan; float3 position; float age; float3 force;|,COMPOSITESTRUCTAVAILABLE,MAXPARTICLECOUNT=14">
    </PIN>
@@ -137,7 +121,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="6330" top="4035">
+   <BOUNDS type="Box" left="6330" top="6675">
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="2">
    </PIN>
@@ -145,55 +129,23 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="11" srcpinname="String" dstnodeid="12" dstpinname="Input 1" linkstyle="VHV">
-   <LINKPOINT x="4345" y="3870">
+   <LINKPOINT x="4355" y="6340">
    </LINKPOINT>
-   <LINKPOINT x="6335" y="3870">
+   <LINKPOINT x="6340" y="6425">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="13" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7455" top="795" width="1590" height="270">
+   <BOUNDS type="Box" left="7590" top="4890" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="7455" top="795" width="0" height="0">
+   <BOUNDS type="Node" left="7590" top="4890" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="21" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="10440" top="1470" width="7530" height="3675">
-   </BOUNDS>
-   <BOUNDS type="Node" left="10440" top="1470" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|RWStructuredBuffer&lt;uint&gt; CounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS_SetCounter(csin input)&cr;&lf;{&cr;&lf;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;CounterBuffer[0] = selectionCounter;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 UpdateCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetCounter() ) );} }|">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="22" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2775" top="3000" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2775" top="3000" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Integer">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Element Count|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="22" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Element Count">
-   </LINK>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="25">
-   <BOUNDS type="Node" left="8580" top="5580" width="1080" height="270">
+   <BOUNDS type="Node" left="2505" top="8220" width="1080" height="270">
    </BOUNDS>
    <PIN pinname="Thread X" visible="1" slicecount="1" values="1">
    </PIN>
@@ -201,15 +153,15 @@
    </PIN>
    <PIN pinname="Thread Y" visible="1" slicecount="1" values="1">
    </PIN>
-   <BOUNDS type="Box" left="8580" top="5580">
+   <BOUNDS type="Box" left="2505" top="8220">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="26" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="3015" top="11025" width="795" height="240">
+   <BOUNDS type="Box" left="3015" top="11625" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3015" top="11025" width="0" height="0">
+   <BOUNDS type="Node" left="3015" top="11625" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -219,9 +171,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="28" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1500" top="7935" width="1935" height="240">
+   <BOUNDS type="Box" left="1500" top="9735" width="1935" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1500" top="7935" width="0" height="0">
+   <BOUNDS type="Node" left="1500" top="9735" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="SELECTIONCOUNTERBUFFER">
    </PIN>
@@ -239,7 +191,7 @@
    </PIN>
    </NODE>
    <NODE systemname="ResetCounter (DX11.Layer Advanced)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="ResetCounter (DX11.Layer Advanced)" componentmode="Hidden" id="27">
-   <BOUNDS type="Node" left="1185" top="8325" width="100" height="100">
+   <BOUNDS type="Node" left="1185" top="10125" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -249,7 +201,7 @@
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1185" top="8325">
+   <BOUNDS type="Box" left="1185" top="10125">
    </BOUNDS>
    <PIN pinname="Counter Value" slicecount="1" values="0">
    </PIN>
@@ -257,9 +209,9 @@
    <LINK srcnodeid="28" srcpinname="Output String" dstnodeid="27" dstpinname="RW Buffer Semantic">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="31" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2085" top="9945" width="285" height="240">
+   <BOUNDS type="Box" left="2085" top="10545" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2085" top="9945" width="0" height="0">
+   <BOUNDS type="Node" left="2085" top="10545" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -275,9 +227,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3945" top="9930" width="285" height="240">
+   <BOUNDS type="Box" left="3945" top="10530" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3945" top="9930" width="0" height="0">
+   <BOUNDS type="Node" left="3945" top="10530" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -293,7 +245,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="34">
-   <BOUNDS type="Node" left="1200" top="7560" width="100" height="100">
+   <BOUNDS type="Node" left="1200" top="9360" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -303,7 +255,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="35">
-   <BOUNDS type="Node" left="1185" top="11865" width="3765" height="270">
+   <BOUNDS type="Node" left="1185" top="12165" width="3765" height="270">
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="4">
    </PIN>
@@ -329,81 +281,39 @@
    <LINK srcnodeid="2" srcpinname="Layer Out" dstnodeid="34" dstpinname="Layer 1">
    </LINK>
    <NODE systemname="UpdateFlagBuffer (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\UpdateFlagBuffer (DX11.Particles.Core).v4p" nodename="UpdateFlagBuffer (DX11.Particles.Core)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="2100" top="10275" width="100" height="100">
+   <BOUNDS type="Node" left="2100" top="10875" width="100" height="100">
    </BOUNDS>
    <PIN pinname="HasSelection" visible="1">
    </PIN>
    <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Box" left="2100" top="10275">
+   <BOUNDS type="Box" left="2100" top="10875">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="30" dstpinname="HasSelection">
    </LINK>
    <NODE systemname="UpdateFlagBuffer (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\UpdateFlagBuffer (DX11.Particles.Core).v4p" nodename="UpdateFlagBuffer (DX11.Particles.Core)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="3960" top="10260" width="100" height="100">
+   <BOUNDS type="Node" left="3960" top="10860" width="100" height="100">
    </BOUNDS>
    <PIN pinname="HasSelection" visible="1">
    </PIN>
    <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Box" left="3960" top="10260">
+   <BOUNDS type="Box" left="3960" top="10860">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="33" dstpinname="HasSelection">
    </LINK>
    <LINK srcnodeid="33" srcpinname="Layer" dstnodeid="35" dstpinname="Layer 4" linkstyle="VHV">
-   <LINKPOINT x="3510" y="10985">
+   <LINKPOINT x="3510" y="11485">
    </LINKPOINT>
-   <LINKPOINT x="2355" y="11380">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="20">
-   <BOUNDS type="Node" left="8235" top="6285" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; CounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; IndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   &cr;&lf;};&cr;&lf;&cr;&lf;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;if(input.DTID.x &gt;= MAXPARTICLECOUNT) return;&cr;&lf;&tab;uint slotIndex = input.DTID.x;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; true;&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;IndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS_SetCounter(csin input)&cr;&lf;{&cr;&lf;&tab;uint selectionCounter = CounterBuffer.IncrementCounter();&cr;&lf;&tab;CounterBuffer[0] = selectionCounter;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
-   </PIN>
-   <PIN pinname="IncludePath" slicecount="1" visible="1" values="..\..\fxh\">
-   </PIN>
-   <BOUNDS type="Box" left="8235" top="6285">
-   </BOUNDS>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="3" values="|COMPOSITESTRUCT=float3 position; float lifespan; float3 velocity; float age; float3 force; float4 color;|,MAXPARTICLECOUNT=55000,KNOW_COLOR=1">
-   </PIN>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Output String" dstnodeid="20" dstpinname="ShaderCode" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10440" y="5700">
-   </LINKPOINT>
-   <LINKPOINT x="8790" y="5700">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="20" dstpinname="IncludePath" linkstyle="VHV">
-   <LINKPOINT x="5135" y="6053">
-   </LINKPOINT>
-   <LINKPOINT x="8005" y="6053">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="25" srcpinname="Geometry Out" dstnodeid="20" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="20" dstpinname="Defines" linkstyle="VHV">
-   <LINKPOINT x="6395" y="5280">
-   </LINKPOINT>
-   <LINKPOINT x="9355" y="5280">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 2" linkstyle="VHV">
-   <LINKPOINT x="8235" y="7043">
-   </LINKPOINT>
-   <LINKPOINT x="1620" y="7043">
+   <LINKPOINT x="2355" y="11780">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="10">
-   <BOUNDS type="Node" left="6780" top="2100" width="100" height="100">
+   <BOUNDS type="Node" left="6765" top="5310" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Structure" visible="1" slicecount="1" values="||">
+   <PIN pinname="Structure" visible="1" slicecount="1" values="|float3 position;|">
    </PIN>
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
@@ -413,61 +323,199 @@
    </PIN>
    <PIN pinname="BufferSemantics" visible="1">
    </PIN>
+   <BOUNDS type="Box" left="6765" top="5310">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="10" srcpinname="Defines" dstnodeid="12" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="13" srcpinname="Output Enum" dstnodeid="10" dstpinname="ParticleSystem">
    </LINK>
-   <LINK srcnodeid="10" srcpinname="Element Count" dstnodeid="22" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="7470" y="2670">
-   </LINKPOINT>
-   <LINKPOINT x="2835" y="2670">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="BuildShaderCode (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="BuildShaderCode (DX11.Particles.Selection)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="1125" top="1380" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Shader Blueprint" slicecount="1" visible="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;#include &quot;Functions.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;{structvariables}&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   {cbuffervariables}&cr;&lf;};&cr;&lf;&cr;&lf;{functiondefinitions}&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = getSlotIndex(&tab;input.DTID.x,&cr;&lf;&tab;&tab;&tab;&tab;FlagBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionCounterBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveCounterBuffer);&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; {functioncalls};&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" visible="1">
-   </PIN>
-   <PIN pinname="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Variable List" visible="1">
-   </PIN>
-   <PIN pinname="ShaderCode" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="1" srcpinname="ShaderCode" dstnodeid="9" dstpinname="Input String" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1025" y="3898">
-   </LINKPOINT>
-   <LINKPOINT x="10600" y="3273">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2325" y="4183">
-   </LINKPOINT>
-   <LINKPOINT x="1650" y="4098">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="VHV">
-   <LINKPOINT x="1770" y="1860">
-   </LINKPOINT>
-   <LINKPOINT x="6780" y="1860">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="27" srcpinname="Layer Out" dstnodeid="35" dstpinname="Layer 1">
    </LINK>
    <LINK srcnodeid="30" srcpinname="Layer" dstnodeid="35" dstpinname="Layer 2">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="39" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2325" top="795" width="2085" height="240">
+   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="48">
+   <BOUNDS type="Node" left="1365" top="7290" width="5025" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="2325" top="795" width="0" height="0">
+   <BOUNDS type="Box" left="1365" top="7290">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;#include &quot;Functions.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;{structvariables}&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   {cbuffervariables}&cr;&lf;};&cr;&lf;&cr;&lf;{functiondefinitions}&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = getSlotIndex(&tab;input.DTID.x,&cr;&lf;&tab;&tab;&tab;&tab;FlagBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionCounterBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveCounterBuffer);&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; {functioncalls};&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
+   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;Defines.fxh&quot;&cr;&lf;#include &quot;Functions.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;  &tab;&tab;float3 position;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   float4x4 tFilter653 : TFILTER653;&cr;&lf;float4x4 tFilter654 : TFILTER654;&cr;&lf;};&cr;&lf;&cr;&lf;bool LocalityInsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return (!(&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };&cr;&lf;bool LocalityOutsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return ((&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = getSlotIndex(&tab;input.DTID.x,&cr;&lf;&tab;&tab;&tab;&tab;FlagBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;SelectionCounterBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveIndexBuffer,&cr;&lf;&tab;&tab;&tab;&tab;AliveCounterBuffer);&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;&cr;&lf;&tab;isSelected = isSelected &amp;&amp; (LocalityInsideTransform(slotIndex,tFilter653) &amp;&amp; LocalityInsideTransform(slotIndex,tFilter654));&cr;&lf;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="48" dstpinname="IncludePath">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="48" dstpinname="Defines" linkstyle="VHV">
+   <LINKPOINT x="6935" y="7103">
+   </LINKPOINT>
+   <LINKPOINT x="5785" y="7103">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Geometry Out" dstnodeid="48" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
+   <NODE systemname="BufferUtils_UpdateCounterBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\BufferUtils_UpdateCounterBuffer.fx" nodename="BufferUtils_UpdateCounterBuffer (DX11.Effect)" componentmode="Hidden" id="49">
+   <BOUNDS type="Node" left="1575" top="8910" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Geometry Out" dstnodeid="49" dstpinname="Geometry">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="51" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="3450" top="8580" width="915" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3450" top="8580" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Selection">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="Output Enum" dstnodeid="49" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 2">
+   </LINK>
+   <NODE systemname="Split (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Split (DX11.Particles.Selection)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="915" top="795" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Variable List" visible="1">
+   </PIN>
+   <PIN pinname="Function Call" visible="1">
+   </PIN>
+   <PIN pinname="Function Definition" visible="1">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="52" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="975" y="3165">
+   </LINKPOINT>
+   <LINKPOINT x="6750" y="3165">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Selection_Skeleton (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Selection_Skeleton.fx" nodename="Selection_Skeleton (DX11.Effect)" componentmode="Hidden" id="53">
+   <BOUNDS type="Node" left="2265" top="1725" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Shader Path" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="Technique Valid" visible="1">
+   </PIN>
+   <PIN pinname="Compiled" visible="1">
+   </PIN>
+   <PIN pinname="Query" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2265" top="1725">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Reader (String)" filename="%VVVV%\lib\nodes\modules\String\Reader (String).v4p" nodename="Reader (String)" componentmode="Hidden" id="61">
+   <BOUNDS type="Node" left="3510" top="2565" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Content" visible="1">
+   </PIN>
+   <PIN pinname="Read" slicecount="1" visible="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Shader Path" dstnodeid="61" dstpinname="Filename">
+   </LINK>
+   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="64">
+   <BOUNDS type="Node" left="4230" top="2145" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Changed" visible="1">
+   </PIN>
+   <PIN pinname="Renamed" visible="1">
+   </PIN>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Shader Path" dstnodeid="64" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Shader Path" dstnodeid="64" dstpinname="Filename" linkstyle="VHV">
+   <LINKPOINT x="3570" y="2055">
+   </LINKPOINT>
+   <LINKPOINT x="4230" y="2055">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Changed" dstnodeid="61" dstpinname="Read">
+   </LINK>
+   <NODE systemname="Substitute (String bin)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Substitute (String bin)" componentmode="Hidden" id="65">
+   <BOUNDS type="Node" left="3495" top="3975" width="3555" height="270">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="From" visible="1">
+   </PIN>
+   <PIN pinname="To" visible="1">
+   </PIN>
+   <PIN pinname="To Bin Size" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="3495" top="3975">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="61" srcpinname="Content" dstnodeid="65" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Zip (String Bin)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (String Bin)" componentmode="Hidden" id="67">
+   <BOUNDS type="Node" left="7140" top="3270" width="1200" height="270">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="|(LocalityInsideTransform(slotIndex,tFilter653) &amp;&amp; LocalityInsideTransform(slotIndex,tFilter654))|">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="|(LocalityInsideTransform(slotIndex,tFilter653) &amp;&amp; LocalityInsideTransform(slotIndex,tFilter654))|">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input 3" visible="1" slicecount="2" values="|float4x4 tFilter653 : TFILTER653;|,|float4x4 tFilter654 : TFILTER654;|">
+   </PIN>
+   <PIN pinname="Input 4" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Output Bin Size" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="7140" top="3270">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="67" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="975" y="2153">
+   </LINKPOINT>
+   <LINKPOINT x="7140" y="2153">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Function Definition" dstnodeid="67" dstpinname="Input 3" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1320" y="2153">
+   </LINKPOINT>
+   <LINKPOINT x="7785" y="2153">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Constant Buffer Entry" dstnodeid="67" dstpinname="Input 4" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1500" y="2153">
+   </LINKPOINT>
+   <LINKPOINT x="8115" y="2153">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="68" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="4665" top="2790" width="2310" height="765">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4665" top="2790" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="4" visible="1" values="/*SKELETON_VARS_STRUCT*/,/*SKELETON_FUNCTION_CALL*/,/*SKELETON_FUNCTION_DEF*/,/*SKELETON_VARS_CBUF*/">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -475,33 +523,83 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
-   <PIN pinname="Output String" visible="1">
+   <PIN pinname="Rows" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
    </NODE>
-   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="48">
-   <BOUNDS type="Node" left="1365" top="6240" width="5025" height="270">
+   <LINK srcnodeid="68" srcpinname="Output String" dstnodeid="65" dstpinname="From" linkstyle="VHV">
+   <LINKPOINT x="4200" y="3860">
+   </LINKPOINT>
+   <LINKPOINT x="5190" y="3865">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Output" dstnodeid="65" dstpinname="To" linkstyle="Bezier">
+   <LINKPOINT x="7140" y="3743">
+   </LINKPOINT>
+   <LINKPOINT x="5880" y="3743">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Output Bin Size" dstnodeid="65" dstpinname="To Bin Size" linkstyle="Bezier">
+   <LINKPOINT x="8280" y="3743">
+   </LINKPOINT>
+   <LINKPOINT x="7050" y="3743">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Add (String)" filename="" nodename="Add (String)" componentmode="Hidden" id="70">
+   <BOUNDS type="Node" left="7455" top="2910" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="1365" top="6240">
-   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" slicecount="1" values="|&amp;&amp; |">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="48" dstpinname="IncludePath">
-   </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="48" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Geometry Out" dstnodeid="48" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="48" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="ShaderCode" dstnodeid="48" dstpinname="ShaderCode" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1185" y="3738">
+   <LINK srcnodeid="52" srcpinname="Function Call" dstnodeid="70" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1140" y="1973">
    </LINKPOINT>
-   <LINKPOINT x="3495" y="4138">
+   <LINKPOINT x="7635" y="1973">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="39" srcpinname="Output String" dstnodeid="1" dstpinname="Shader Blueprint">
+   <LINK srcnodeid="70" srcpinname="Output" dstnodeid="67" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="1" dstpinname="Input">
+   <LINK srcnodeid="65" srcpinname="Output" dstnodeid="48" dstpinname="ShaderCode">
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
-   </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="71" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="4110" top="1725" width="3855" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4110" top="1725" width="3855" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; this is the skeleton with hooks for selection code|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="72" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="7500" top="3975" width="4410" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7500" top="3975" width="4410" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; substitute hooks with code generated by selection nodes|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Element Count" dstnodeid="11" dstpinname="Element Count" linkstyle="VHV">
+   <LINKPOINT x="7925" y="5745">
+   </LINKPOINT>
+   <LINKPOINT x="2260" y="5745">
+   </LINKPOINT>
+   </LINK>
    </PATCH>
