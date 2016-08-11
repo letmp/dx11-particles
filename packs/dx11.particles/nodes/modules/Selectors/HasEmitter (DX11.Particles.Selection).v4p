@@ -52,7 +52,7 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="270" top="4395" width="12000" height="9135">
+   <BOUNDS type="Window" left="720" top="2805" width="15285" height="9135">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -64,26 +64,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
    </PIN>
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="7" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7545" top="855" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7545" top="855" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="8" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="9285" top="855" width="1785" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="9285" top="855" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Emitter_DynBuffer_1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Name|">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="9" systemname="IOBox (String)">
@@ -127,22 +107,6 @@
    <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
-   </LINK>
-   <NODE systemname="GetEmitterOffset (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="GetEmitterOffset (DX11.Particles.Core)" componentmode="Hidden" id="4">
-   <BOUNDS type="Node" left="7545" top="1365" width="1815" height="270">
-   </BOUNDS>
-   <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
-   </PIN>
-   <PIN pinname="Emitter Name" slicecount="1" visible="1" values="Emitter1">
-   </PIN>
-   <PIN pinname="Region" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="7545" top="1365">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="7" srcpinname="Output Enum" dstnodeid="4" dstpinname="ParticleSystem">
-   </LINK>
-   <LINK srcnodeid="8" srcpinname="Output Enum" dstnodeid="4" dstpinname="Emitter Name">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3390" top="2535" width="990" height="240">
@@ -280,8 +244,6 @@
    </NODE>
    <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="12" dstpinname="FunctionName">
    </LINK>
-   <LINK srcnodeid="4" srcpinname="Region" dstnodeid="11" dstpinname="Input">
-   </LINK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="18">
    <BOUNDS type="Node" left="7545" top="2535" width="100" height="100">
    </BOUNDS>
@@ -314,12 +276,6 @@
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
-   <LINK srcnodeid="4" srcpinname="Region" dstnodeid="3" dstpinname="InputXY" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7550" y="4110">
-   </LINKPOINT>
-   <LINKPOINT x="7030" y="4110">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Self (VVVV)" nodename="Self (VVVV)" componentmode="Hidden" id="19">
    <BOUNDS type="Node" left="8580" top="2535" width="100" height="100">
    </BOUNDS>
@@ -345,5 +301,31 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="19" srcpinname="ID in ParentPatch" dstnodeid="12" dstpinname="Id">
+   </LINK>
+   <NODE systemname="Info (DX11.Particles.Core Emitter)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Emitter)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="9285" top="1230" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Emitter Name" visible="1">
+   </PIN>
+   <PIN pinname="Emitter Region" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="21" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="9825" top="810" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9825" top="810" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Emitter_DynBuffer_1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Name|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Output Enum" dstnodeid="20" dstpinname="Emitter Name">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Emitter Region" dstnodeid="3" dstpinname="InputXY" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9285" y="4043">
+   </LINKPOINT>
+   <LINKPOINT x="7020" y="4043">
+   </LINKPOINT>
    </LINK>
    </PATCH>

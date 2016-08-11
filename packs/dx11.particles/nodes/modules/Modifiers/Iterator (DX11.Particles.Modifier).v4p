@@ -215,13 +215,15 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="31" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6720" top="570" width="1590" height="270">
+   <BOUNDS type="Box" left="6105" top="660" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="6720" top="570" width="0" height="0">
+   <BOUNDS type="Node" left="6105" top="660" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="35" systemname="IOBox (String)">
@@ -257,9 +259,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="37" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="6105" top="1065" width="795" height="240">
+   <BOUNDS type="Box" left="4875" top="6570" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6105" top="1065" width="0" height="0">
+   <BOUNDS type="Node" left="4875" top="6570" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -286,6 +288,8 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Element Count|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="38" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Element Count">
@@ -315,7 +319,7 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="6105" top="1680" width="100" height="100">
+   <BOUNDS type="Node" left="4875" top="7185" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
@@ -323,28 +327,20 @@
    </PIN>
    <PIN pinname="StructureDefinition" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="6105" top="1680">
+   <BOUNDS type="Box" left="4875" top="7185">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1">
    </PIN>
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <LINK srcnodeid="31" srcpinname="Output Enum" dstnodeid="30" dstpinname="ParticleSystem" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="6750" y="1385">
+   <LINK srcnodeid="31" srcpinname="Output Enum" dstnodeid="30" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6120" y="4043">
    </LINKPOINT>
-   <LINKPOINT x="6750" y="1135">
+   <LINKPOINT x="5520" y="4043">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="30" dstpinname="Structure">
-   </LINK>
-   <LINK srcnodeid="30" srcpinname="Element Count" dstnodeid="38" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="6665" y="2310">
-   </LINKPOINT>
-   <LINKPOINT x="2155" y="2310">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="30" srcpinname="Defines" dstnodeid="24" dstpinname="Input 2">
    </LINK>
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="26">
    <BOUNDS type="Node" left="4875" top="6060" width="100" height="100">
@@ -368,8 +364,28 @@
    </LINK>
    <LINK srcnodeid="36" srcpinname="Y Output Value" dstnodeid="26" dstpinname="Extract">
    </LINK>
-   <LINK srcnodeid="26" srcpinname="Variables" dstnodeid="37" dstpinname="Input String" hiddenwhenlocked="1">
+   <LINK srcnodeid="26" srcpinname="Variables" dstnodeid="37" dstpinname="Input String" hiddenwhenlocked="0">
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
+   <NODE systemname="Info (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Shader)" componentmode="Hidden" id="41">
+   <BOUNDS type="Node" left="6120" top="1980" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem Defines" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem ElementCount" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output Enum" dstnodeid="41" dstpinname="ParticleSystem">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="ParticleSystem Defines" dstnodeid="24" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="ParticleSystem ElementCount" dstnodeid="38" dstpinname="Y Input Value" linkstyle="VHV">
+   <LINKPOINT x="6315" y="2460">
+   </LINKPOINT>
+   <LINKPOINT x="2100" y="2460">
+   </LINKPOINT>
+   </LINK>
    </PATCH>

@@ -29,13 +29,15 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="4" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7560" top="840" width="1590" height="270">
+   <BOUNDS type="Box" left="6825" top="855" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="7560" top="840" width="0" height="0">
+   <BOUNDS type="Node" left="6825" top="855" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="9">
@@ -232,26 +234,6 @@
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="3">
-   <BOUNDS type="Node" left="6870" top="1365" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ParticleSystem" visible="1">
-   </PIN>
-   <PIN pinname="Element Count" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="3" dstpinname="ParticleSystem">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Element Count" dstnodeid="5" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="7760" y="1883">
-   </LINKPOINT>
-   <LINKPOINT x="4780" y="1883">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Defines" dstnodeid="6" dstpinname="Input 2">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="25" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="2385" top="4350" width="870" height="240">
    </BOUNDS>
@@ -530,6 +512,26 @@
    <LINKPOINT x="1020" y="8025">
    </LINKPOINT>
    <LINKPOINT x="2610" y="8025">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Info (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Shader)" componentmode="Hidden" id="37">
+   <BOUNDS type="Node" left="6840" top="1260" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem Defines" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem ElementCount" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="37" dstpinname="ParticleSystem">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="ParticleSystem Defines" dstnodeid="6" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="ParticleSystem ElementCount" dstnodeid="5" dstpinname="Y Input Value" linkstyle="VHV">
+   <LINKPOINT x="7035" y="1805">
+   </LINKPOINT>
+   <LINKPOINT x="4980" y="1855">
    </LINKPOINT>
    </LINK>
    </PATCH>

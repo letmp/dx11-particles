@@ -135,13 +135,15 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="13" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7590" top="4890" width="1590" height="270">
+   <BOUNDS type="Box" left="7965" top="4740" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="7590" top="4890" width="0" height="0">
+   <BOUNDS type="Node" left="7965" top="4740" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="25">
@@ -310,26 +312,6 @@
    <LINKPOINT x="2355" y="11780">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="10">
-   <BOUNDS type="Node" left="6765" top="5310" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Structure" visible="1" slicecount="1" values="|float3 position;|">
-   </PIN>
-   <PIN pinname="Defines" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
-   </PIN>
-   <PIN pinname="Element Count" visible="1">
-   </PIN>
-   <PIN pinname="BufferSemantics" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="6765" top="5310">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="10" srcpinname="Defines" dstnodeid="12" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="13" srcpinname="Output Enum" dstnodeid="10" dstpinname="ParticleSystem">
-   </LINK>
    <LINK srcnodeid="27" srcpinname="Layer Out" dstnodeid="35" dstpinname="Layer 1">
    </LINK>
    <LINK srcnodeid="30" srcpinname="Layer" dstnodeid="35" dstpinname="Layer 2">
@@ -399,12 +381,6 @@
    <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="52" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="52" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics">
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="975" y="3165">
-   </LINKPOINT>
-   <LINKPOINT x="6750" y="3165">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="Selection_Skeleton (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Selection_Skeleton.fx" nodename="Selection_Skeleton (DX11.Effect)" componentmode="Hidden" id="53">
    <BOUNDS type="Node" left="2265" top="1725" width="100" height="100">
@@ -596,10 +572,54 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <LINK srcnodeid="10" srcpinname="Element Count" dstnodeid="11" dstpinname="Element Count" linkstyle="VHV">
-   <LINKPOINT x="7925" y="5745">
+   <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="7350" top="5310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Structure" visible="1" slicecount="1" values="|float3 position;|">
+   </PIN>
+   <PIN pinname="Defines" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
+   </PIN>
+   <PIN pinname="Element Count" visible="1">
+   </PIN>
+   <PIN pinname="BufferSemantics" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="7350" top="5310">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Output Enum" dstnodeid="10" dstpinname="ParticleSystem">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1170" y="3170">
    </LINKPOINT>
-   <LINKPOINT x="2260" y="5745">
+   <LINKPOINT x="7140" y="3175">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Info (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Shader)" componentmode="Hidden" id="73">
+   <BOUNDS type="Node" left="6780" top="5310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem Defines" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystem ElementCount" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="6780" top="5310">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Output Enum" dstnodeid="73" dstpinname="ParticleSystem" linkstyle="VHV">
+   <LINKPOINT x="7965" y="5138">
+   </LINKPOINT>
+   <LINKPOINT x="6840" y="5138">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="73" srcpinname="ParticleSystem Defines" dstnodeid="12" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="73" srcpinname="ParticleSystem ElementCount" dstnodeid="11" dstpinname="Element Count" linkstyle="VHV">
+   <LINKPOINT x="6975" y="5693">
+   </LINKPOINT>
+   <LINKPOINT x="2865" y="5693">
    </LINKPOINT>
    </LINK>
    </PATCH>

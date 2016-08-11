@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Overview.v4p" systemname="mcps" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\girlpower\mcps.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="1050" top="195" width="25485" height="16740">
+   <BOUNDS type="Window" left="0" top="195" width="25485" height="16740">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -41,7 +41,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3585" top="15675" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="9405" top="6015" width="9705" height="7920">
+   <BOUNDS type="Window" left="-25125" top="2760" width="9705" height="7920">
    </BOUNDS>
    <PIN pinname="View" visible="1" slicecount="1" values="||">
    </PIN>
@@ -532,14 +532,6 @@
    </NODE>
    <LINK srcnodeid="330" srcpinname="Output" dstnodeid="331" dstpinname="Hue">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="406" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="11100" top="1950" width="1140" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="11100" top="1950" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Emitter_DynBuffer_2">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="407" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="12420" top="1950" width="1185" height="240">
    </BOUNDS>
@@ -591,7 +583,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9510" top="3390" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1073,21 +1065,15 @@
    </BOUNDS>
    <BOUNDS type="Box" left="10995" top="2355" width="7705" height="6690">
    </BOUNDS>
-   <BOUNDS type="Window" left="720" top="2805" width="11250" height="9135">
+   <BOUNDS type="Window" left="720" top="2805" width="15285" height="9135">
    </BOUNDS>
    <PIN pinname="Selection Out" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Emitter Name" slicecount="1" visible="1" values="Emitter2">
+   <PIN pinname="Emitter Name" slicecount="1" visible="1" values="Emitter_DynBuffer_2">
    </PIN>
    <PIN pinname="ParticleSystem" slicecount="1" values="|Default System|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="406" srcpinname="Output Enum" dstnodeid="389" dstpinname="Emitter Name" linkstyle="VHV">
-   <LINKPOINT x="11160" y="2258">
-   </LINKPOINT>
-   <LINKPOINT x="11730" y="2258">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="389" srcpinname="Selection Out" dstnodeid="390" dstpinname="Input 2" linkstyle="Bezier">
    <LINKPOINT x="11025" y="3008">
    </LINKPOINT>
@@ -1101,9 +1087,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="380" srcpinname="Layer Out Help" dstnodeid="98" dstpinname="Layer 4" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10600" y="8485">
+   <LINKPOINT x="10650" y="8678">
    </LINKPOINT>
-   <LINKPOINT x="5180" y="8885">
+   <LINKPOINT x="5130" y="8678">
    </LINKPOINT>
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="566">
@@ -1335,7 +1321,7 @@
    </PIN>
    <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
-   <BOUNDS type="Window" left="6675" top="3825" width="17415" height="11835">
+   <BOUNDS type="Window" left="10245" top="3945" width="17415" height="11835">
    </BOUNDS>
    <PIN pinname="Use RayTable" slicecount="1" visible="1" values="0">
    </PIN>
@@ -1383,9 +1369,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="582" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 5" linkstyle="Bezier">
-   <LINKPOINT x="11865" y="7800">
+   <LINKPOINT x="11865" y="7815">
    </LINKPOINT>
-   <LINKPOINT x="11025" y="7800">
+   <LINKPOINT x="11025" y="7815">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="564" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 6" linkstyle="Bezier">
@@ -1499,9 +1485,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="617" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 8" linkstyle="Bezier">
-   <LINKPOINT x="19130" y="7943">
+   <LINKPOINT x="19230" y="7800">
    </LINKPOINT>
-   <LINKPOINT x="14485" y="7943">
+   <LINKPOINT x="14385" y="7800">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="609" srcpinname="Selection Out" dstnodeid="617" dstpinname="Selection">
@@ -1543,9 +1529,9 @@
    <LINK srcnodeid="622" srcpinname="Layer Out" dstnodeid="272" dstpinname="Layer In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="627" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="12075" top="11775" width="795" height="480">
+   <BOUNDS type="Box" left="12225" top="11775" width="795" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="12075" top="11775" width="0" height="0">
+   <BOUNDS type="Node" left="12225" top="11775" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" visible="1" values="-0.89,0.59">
    </PIN>
@@ -1561,7 +1547,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Transform (Transform 3d)" nodename="Transform (Transform 3d)" componentmode="Hidden" id="577">
-   <BOUNDS type="Node" left="11925" top="12435" width="100" height="100">
+   <BOUNDS type="Node" left="12075" top="12435" width="100" height="100">
    </BOUNDS>
    <PIN pinname="TranslateX" slicecount="1" visible="1" values="0.46">
    </PIN>
@@ -1587,7 +1573,7 @@
    </PIN>
    <PIN pinname="RGBDepth" visible="1">
    </PIN>
-   <PIN pinname="Reset" slicecount="1" values="0">
+   <PIN pinname="Reset" slicecount="1" values="0" visible="1">
    </PIN>
    <PIN pinname="Depth FOVXY" visible="1">
    </PIN>
@@ -1825,39 +1811,63 @@
    </BOUNDS>
    <PIN pinname="Selection Out" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Emitter Name" slicecount="1" visible="1" values="Emitter_Selection">
+   <PIN pinname="Emitter Name" slicecount="1" visible="1" values="EmitterBufferCopy1">
    </PIN>
    <PIN pinname="ParticleSystem" slicecount="1" values="|Default System|">
    </PIN>
    </NODE>
    <LINK srcnodeid="647" srcpinname="Selection Out" dstnodeid="643" dstpinname="Selection">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="648" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="22380" top="3690" width="1590" height="270">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="650" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="10995" top="1560" width="1665" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="22380" top="3690" width="0" height="0">
+   <BOUNDS type="Node" left="10995" top="1560" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Emitter_Selection">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Emitter_DynBuffer_1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="648" srcpinname="Output Enum" dstnodeid="647" dstpinname="Emitter Name" linkstyle="VHV">
-   <LINKPOINT x="22440" y="4110">
-   </LINKPOINT>
-   <LINKPOINT x="23355" y="4110">
-   </LINKPOINT>
+   <LINK srcnodeid="650" srcpinname="Output Enum" dstnodeid="389" dstpinname="Emitter Name">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="649" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="19185" top="3690" width="1590" height="270">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="654" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="19215" top="3915" width="1350" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="19185" top="3690" width="0" height="0">
+   <BOUNDS type="Node" left="19215" top="3915" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="EmitterKinect">
    </PIN>
    </NODE>
-   <LINK srcnodeid="649" srcpinname="Output Enum" dstnodeid="609" dstpinname="Emitter Name" linkstyle="VHV">
-   <LINKPOINT x="19245" y="4043">
-   </LINKPOINT>
-   <LINKPOINT x="20220" y="4043">
-   </LINKPOINT>
+   <LINK srcnodeid="654" srcpinname="Output Enum" dstnodeid="609" dstpinname="Emitter Name">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="655" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="22350" top="3915" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="22350" top="3915" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="EmitterBufferCopy1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="655" srcpinname="Output Enum" dstnodeid="647" dstpinname="Emitter Name">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="656" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="17790" top="5025" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="17790" top="5025" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Reset">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="656" srcpinname="Y Output Value" dstnodeid="579" dstpinname="Reset">
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Analysis\Hittest (DX11.Particles.Analysis Transform).v4p" systemname="Hittest (DX11.Particles Transform)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Analysis\Hittest (DX11.Particles Transform).v4p" scrollx="0" scrolly="15">
-   <BOUNDS type="Window" left="13770" top="945" width="13935" height="10050">
+   <BOUNDS type="Window" left="210" top="975" width="13935" height="10050">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -31,7 +31,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="6870" top="1305" width="100" height="100">
+   <BOUNDS type="Node" left="6060" top="6795" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
@@ -45,7 +45,7 @@
    </PIN>
    <PIN pinname="Stride" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="6870" top="1305">
+   <BOUNDS type="Box" left="6060" top="6795">
    </BOUNDS>
    </NODE>
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="2">
@@ -74,7 +74,11 @@
    <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="1" dstpinname="ParticleSystem">
+   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="1" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7590" y="3795">
+   </LINKPOINT>
+   <LINKPOINT x="6705" y="3795">
+   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="0" srcpinname="Shader Path" dstnodeid="2" dstpinname="Filename">
    </LINK>
@@ -110,7 +114,7 @@
    </NODE>
    <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="2" dstpinname="BufferName">
    </LINK>
-   <LINK srcnodeid="2" srcpinname="Variables" dstnodeid="1" dstpinname="Structure" hiddenwhenlocked="1">
+   <LINK srcnodeid="2" srcpinname="Variables" dstnodeid="1" dstpinname="Structure" hiddenwhenlocked="0">
    </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
    <BOUNDS type="Node" left="6315" top="3165" width="100" height="100">
@@ -205,7 +209,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" visible="1">
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Element Count">
@@ -625,13 +629,9 @@
    </PIN>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="BufferSemantic" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="BufferSemantics" dstnodeid="115" dstpinname="BufferSemantic" linkstyle="VHV">
-   <LINKPOINT x="7095" y="2063">
-   </LINKPOINT>
-   <LINKPOINT x="975" y="2063">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="110" srcpinname="Output String" dstnodeid="115" dstpinname="BufferSemantic Filter">
    </LINK>
    <LINK srcnodeid="28" srcpinname="Output Node" dstnodeid="115" dstpinname="Input">
@@ -653,5 +653,21 @@
    </LINKPOINT>
    <LINKPOINT x="5820" y="3900">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="116">
+   <BOUNDS type="Node" left="900" top="2145" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem" visible="1">
+   </PIN>
+   <PIN pinname="Buffer Semantic" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="116" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7575" y="1463">
+   </LINKPOINT>
+   <LINKPOINT x="960" y="1463">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="116" srcpinname="Buffer Semantic" dstnodeid="115" dstpinname="BufferSemantic">
    </LINK>
    </PATCH>
