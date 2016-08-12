@@ -75,30 +75,33 @@ namespace DX11.Particles.Core
 
         private void UpdateOutputPins()
         {
-            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
-            if (particleSystemData != null)
+            if (FParticleSystemName.SliceCount != 0)
             {
-                FBufferSemantic.SliceCount = FElementCountBuf.SliceCount = FStrideBuf.SliceCount = FModeBuf.SliceCount = FResetCounterBuf.SliceCount = 0;
-
-                foreach (ParticleSystemBufferSettings psbs in particleSystemData.GetBufferSettings())
+                var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+                if (particleSystemData != null)
                 {
-                    FBufferSemantic.Add(psbs.bufferSemantic);
-                    FElementCountBuf.Add(psbs.elementCount);
-                    FStrideBuf.Add(psbs.stride);
-                    FModeBuf.Add(psbs.bufferMode);
-                    FResetCounterBuf.Add(psbs.resetCounter);
+                    FBufferSemantic.SliceCount = FElementCountBuf.SliceCount = FStrideBuf.SliceCount = FModeBuf.SliceCount = FResetCounterBuf.SliceCount = 0;
+
+                    foreach (ParticleSystemBufferSettings psbs in particleSystemData.GetBufferSettings())
+                    {
+                        FBufferSemantic.Add(psbs.bufferSemantic);
+                        FElementCountBuf.Add(psbs.elementCount);
+                        FStrideBuf.Add(psbs.stride);
+                        FModeBuf.Add(psbs.bufferMode);
+                        FResetCounterBuf.Add(psbs.resetCounter);
+                    }
+                    FBufferSemantic.Flush();
+                    FElementCountBuf.Flush();
+                    FStrideBuf.Flush();
+                    FModeBuf.Flush();
+                    FResetCounterBuf.Flush();
+
+                    FElementCountPS[0] = particleSystemData.ElementCount;
+                    FElementCountPS.Flush();
+
+                    FStridePS[0] = particleSystemData.Stride;
+                    FStridePS.Flush();
                 }
-                FBufferSemantic.Flush();
-                FElementCountBuf.Flush();
-                FStrideBuf.Flush();
-                FModeBuf.Flush();
-                FResetCounterBuf.Flush();
-
-                FElementCountPS[0] = particleSystemData.ElementCount;
-                FElementCountPS.Flush();
-
-                FStridePS[0] = particleSystemData.Stride;
-                FStridePS.Flush();
             }
 
         }
@@ -166,43 +169,45 @@ namespace DX11.Particles.Core
 
         private void UpdateOutputPins()
         {
-            
 
-            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
-            if (particleSystemData != null)
+            if (FParticleSystemName.SliceCount != 0)
             {
-
-                FOutDefines.SliceCount = 0;
-                FEmitterRegion.SliceCount = 0;
-
-                FOutDefines.Add("COMPOSITESTRUCT=" + particleSystemData.StructureDefinition);
-                FOutDefines.Add("MAXPARTICLECOUNT=" + particleSystemData.ElementCount);
-                foreach (string define in particleSystemData.GetDefines())
+                var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+                if (particleSystemData != null)
                 {
-                    if (define != "") FOutDefines.Add(define);
-                }
 
-                foreach (string en in FEmitterName)
-                {
-                    string shaderRegisterNodeId = particleSystemData.GetShaderRegisterNodeId(en);
-                    if (shaderRegisterNodeId != null)
+                    FOutDefines.SliceCount = 0;
+                    FEmitterRegion.SliceCount = 0;
+
+                    FOutDefines.Add("COMPOSITESTRUCT=" + particleSystemData.StructureDefinition);
+                    FOutDefines.Add("MAXPARTICLECOUNT=" + particleSystemData.ElementCount);
+                    foreach (string define in particleSystemData.GetDefines())
                     {
-                        FOutDefines.Add("EMITTEROFFSET=" + particleSystemData.GetEmitterOffset(shaderRegisterNodeId));
-                        List<int> fromTo = particleSystemData.GetEmitterRegion(shaderRegisterNodeId);
-                        FEmitterRegion.Add(fromTo[0]);
-                        FEmitterRegion.Add(fromTo[1]);
+                        if (define != "") FOutDefines.Add(define);
                     }
-                    
+
+                    foreach (string en in FEmitterName)
+                    {
+                        string shaderRegisterNodeId = particleSystemData.GetShaderRegisterNodeId(en);
+                        if (shaderRegisterNodeId != null)
+                        {
+                            FOutDefines.Add("EMITTEROFFSET=" + particleSystemData.GetEmitterOffset(shaderRegisterNodeId));
+                            List<int> fromTo = particleSystemData.GetEmitterRegion(shaderRegisterNodeId);
+                            FEmitterRegion.Add(fromTo[0]);
+                            FEmitterRegion.Add(fromTo[1]);
+                        }
+
+                    }
+                    FOutDefines.Flush();
+
+                    FElementCount[0] = particleSystemData.ElementCount;
+                    FElementCount.Flush();
+
+                    FStride[0] = particleSystemData.Stride;
+                    FStride.Flush();
                 }
-                FOutDefines.Flush();
-
-                FElementCount[0] = particleSystemData.ElementCount;
-                FElementCount.Flush();
-
-                FStride[0] = particleSystemData.Stride;
-                FStride.Flush();
             }
-
+            
         }
 
     }
@@ -261,25 +266,28 @@ namespace DX11.Particles.Core
 
         private void UpdateOutputPins()
         {
-
-            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
-            if (particleSystemData != null)
+            if (FParticleSystemName.SliceCount != 0)
             {
 
-                FOutDefines.SliceCount = 0;
-                FOutDefines.Add("COMPOSITESTRUCT=" + particleSystemData.StructureDefinition);
-                FOutDefines.Add("MAXPARTICLECOUNT=" + particleSystemData.ElementCount);
-                foreach (string define in particleSystemData.GetDefines())
+                var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+                if (particleSystemData != null)
                 {
-                    if (define != "") FOutDefines.Add(define);
+
+                    FOutDefines.SliceCount = 0;
+                    FOutDefines.Add("COMPOSITESTRUCT=" + particleSystemData.StructureDefinition);
+                    FOutDefines.Add("MAXPARTICLECOUNT=" + particleSystemData.ElementCount);
+                    foreach (string define in particleSystemData.GetDefines())
+                    {
+                        if (define != "") FOutDefines.Add(define);
+                    }
+                    FOutDefines.Flush();
+
+                    FElementCount[0] = particleSystemData.ElementCount;
+                    FElementCount.Flush();
+
+                    FStride[0] = particleSystemData.Stride;
+                    FStride.Flush();
                 }
-                FOutDefines.Flush();
-
-                FElementCount[0] = particleSystemData.ElementCount;
-                FElementCount.Flush();
-
-                FStride[0] = particleSystemData.Stride;
-                FStride.Flush();
             }
 
         }

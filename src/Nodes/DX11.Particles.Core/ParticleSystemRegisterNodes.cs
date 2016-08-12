@@ -22,7 +22,7 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string ParticleSystemRegisterNodeId = "";
-        private bool firstEval = true;
+        //private bool firstEval = true;
 
         public void OnImportsSatisfied()
         {
@@ -32,11 +32,11 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (firstEval)
+            /*if (firstEval)
             {
                 AddParticleSystem();
                 firstEval = false;
-            }
+            }*/
 
             if (FParticleSystemName.IsChanged)
             {
@@ -103,7 +103,7 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
         
         private string ShaderRegisterNodeId = "";
-        private bool firstEval = true;
+        //private bool firstEval = true;
         private bool _ParticleSystemChanged = false;
 
         public void OnImportsSatisfied()
@@ -124,14 +124,14 @@ namespace DX11.Particles.Core
                 _ParticleSystemChanged = false;
             }
 
-            if (firstEval)
+            /*if (firstEval)
             {
                 SetDefines();
                 SetEmitterSize();
                 SetEmitterName();
                 SetShaderVariables();
                 firstEval = false;
-            }
+            }*/
 
             if (FParticleSystemName.IsChanged)
             {
@@ -279,7 +279,7 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string ShaderRegisterNodeId = "";
-        private bool firstEval = true;
+        //private bool firstEval = true;
         private bool _ParticleSystemChanged = false;
 
         public void OnImportsSatisfied()
@@ -298,12 +298,12 @@ namespace DX11.Particles.Core
                 _ParticleSystemChanged = false;
             }
 
-            if (firstEval)
+            /*if (firstEval)
             {
                 SetDefines();
                 SetShaderVariables();
                 firstEval = false;
-            }
+            }*/
 
             if (FParticleSystemName.IsChanged)
             {
@@ -399,7 +399,7 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string BufferNodeId = "";
-        private bool firstEval = true;
+        //private bool firstEval = true;
 
         public void OnImportsSatisfied()
         {
@@ -414,11 +414,11 @@ namespace DX11.Particles.Core
                 UpdateBufferSettings(SpreadMax);
             }
 
-            if (firstEval)
+            /*if (firstEval)
             {
                 SetBufferSettings(SpreadMax);
                 firstEval = false;
-            }
+            }*/
 
         }
 

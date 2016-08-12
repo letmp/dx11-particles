@@ -19,9 +19,9 @@ namespace DX11.Particles.Core
     public class SiftBufferNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDX11ResourceProvider
     {
         #region fields & pins
-        [Input("Input", DefaultValue = 1.0)]
+        [Input("Input", DefaultValue = 1.0, CheckIfChanged = true)]
         //public IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> FInput;
-        public Pin<DX11Resource<IDX11RWStructureBuffer>> FInput;
+        public IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> FInput;
 
         [Input("BufferSemantic")]
         public IDiffSpread<string> FBufferSemantic;
@@ -46,16 +46,17 @@ namespace DX11.Particles.Core
             FBufferSemantic.Changed += HandleStringChange;
             FBufferSemanticFilter.Changed += HandleStringChange;
             FConfig.Changed += HandleConfigChange;
+            FInput.Changed += HandleBufferChange;
         }
 
         public void Evaluate(int SpreadMax)
         {
             // assign input buffers to output pins when the buffer spread gets (dis)connected
-            if (FInput.IsConnected != wasConnected)
+            /*if (FInput.IsConnected != wasConnected)
             {
                 HandleConfigChange(null);
                 wasConnected = FInput.IsConnected;
-            }
+            }*/
         }
 
         public void Update(IPluginIO pin, DX11RenderContext context)
@@ -77,7 +78,7 @@ namespace DX11.Particles.Core
                     string semanticFilter = FBufferSemanticFilter[i];
                     for (int j = 0; j < FBufferSemantic.SliceCount; j++)
                     {
-                        if (FBufferSemantic[j].Equals(semanticFilter))
+                        if (FBufferSemantic[j].Equals(semanticFilter) && FBufferSemantic[j]!="" && semanticFilter!="")
                         {
                             if (!first) configString += ",";
                             configString += j + ":" + semanticFilter;
@@ -86,7 +87,7 @@ namespace DX11.Particles.Core
                         }
                     }
                 }
-            if (!FConfig[0].Equals(configString) && configString != ""){
+            if (!FConfig[0].Equals(configString) /*&& configString != ""*/){
                 FConfig[0] = configString;
             }
             
@@ -99,13 +100,21 @@ namespace DX11.Particles.Core
 
             if (entries[0] != "")
             {
-                
-                HandlePinCountChanged(length, FOutputs, (i) => new OutputAttribute(entries[i-1].Split(":".ToCharArray())[1]));
+                HandlePinCountChanged(length, FOutputs, (i) => new OutputAttribute(entries[i - 1].Split(":".ToCharArray())[1]));
+            }
+        }
 
+        private void HandleBufferChange(IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> spread)
+        {
+            string[] entries = FConfig[0].Split(",".ToCharArray());
+            int length = entries.Length;
+
+            if (entries[0] != "")
+            {
                 int cnt = 0;
                 foreach (string entry in entries)
                 {
-                    if (entry != "")
+                    if (entry != "" && FInput.SliceCount!=0)
                     {
                         int slicenumber = Convert.ToInt32(entry.Split(":".ToCharArray())[0]);
                         var outputSpread = FOutputs[cnt].IOObject;
@@ -114,7 +123,6 @@ namespace DX11.Particles.Core
                     }
                 }
             }
-
         }
 
         private void HandlePinCountChanged<T>(int count, Spread<IIOContainer<T>> pinSpread, Func<int, IOAttribute> ioAttributeFactory) where T : class
@@ -128,5 +136,7 @@ namespace DX11.Particles.Core
                 }
             );
         }
+
+
     }
 }

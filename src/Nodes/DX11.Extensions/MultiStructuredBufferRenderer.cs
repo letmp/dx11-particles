@@ -204,10 +204,14 @@ namespace VVVV.DX11.Nodes
                 {
                     if (reset || !this.FOutBuffers[i].Contains(context))
                     {
-                        var mode = FInMode[i];
-                        DX11RWStructuredBuffer rb = new DX11RWStructuredBuffer(context.Device, this.sizes[i], strides[i], mode);
-                        this.FOutBuffers[i][context] = rb;
-
+                        try
+                        {
+                            var mode = FInMode[i];
+                            DX11RWStructuredBuffer rb = new DX11RWStructuredBuffer(context.Device, this.sizes[i], strides[i], mode);
+                            this.FOutBuffers[i][context] = rb;
+                        }
+                        catch (Exception) { }
+                        
                         RWStructuredBufferRenderSemantic uavbs = new RWStructuredBufferRenderSemantic(FSemantic[i] + FUAVPostfix[i], false);
                         uavbs.Data = this.FOutBuffers[i][context];
                         rsemantics.Add(uavbs);
