@@ -10,10 +10,6 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 velocity;
-		float3 force;
-		float lifespan;
-		float age;
 	#endif
 };
 

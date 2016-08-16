@@ -107,9 +107,9 @@
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Group Size">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="44" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7470" top="6990" width="795" height="240">
+   <BOUNDS type="Box" left="7470" top="7290" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7470" top="6990" width="0" height="0">
+   <BOUNDS type="Node" left="7470" top="7290" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -188,24 +188,6 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8565" top="6150" width="285" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="8565" top="6150" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="54" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="5565" top="705" width="795" height="240">
    </BOUNDS>
@@ -217,9 +199,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="55" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7770" top="7665" width="1665" height="240">
+   <BOUNDS type="Box" left="7770" top="7965" width="1665" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7770" top="7665" width="0" height="0">
+   <BOUNDS type="Node" left="7770" top="7965" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="KNOW_COLOR=1">
    </PIN>
@@ -263,7 +245,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="7455" top="8055" width="100" height="100">
+   <BOUNDS type="Node" left="7455" top="8355" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
@@ -277,9 +259,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="47" srcpinname="Output Enum" dstnodeid="46" dstpinname="ParticleSystem" hiddenwhenlocked="1" linkstyle="Bezier">
-   <LINKPOINT x="9120" y="4493">
+   <LINKPOINT x="9120" y="4593">
    </LINKPOINT>
-   <LINKPOINT x="8100" y="4493">
+   <LINKPOINT x="8100" y="4693">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="44" srcpinname="Output String" dstnodeid="46" dstpinname="Structure">
@@ -287,7 +269,7 @@
    <LINK srcnodeid="55" srcpinname="Output String" dstnodeid="46" dstpinname="Defines">
    </LINK>
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="43">
-   <BOUNDS type="Node" left="7470" top="6510" width="100" height="100">
+   <BOUNDS type="Node" left="7470" top="6810" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filename" visible="1" slicecount="1" values="..\Utils\">
    </PIN>
@@ -310,8 +292,6 @@
    </LINK>
    <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="43" dstpinname="BufferName">
    </LINK>
-   <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="43" dstpinname="Extract">
-   </LINK>
    <NODE id="56" systemname="Modifier_SetColor (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_SetColor.fx" nodename="Modifier_SetColor (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="1365" top="5025" width="7395" height="270">
    </BOUNDS>
@@ -332,6 +312,8 @@
    <PIN pinname="Technique" slicecount="1" values="SetColor">
    </PIN>
    <PIN pinname="Query" visible="1">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="56" dstpinname="Defines">
@@ -371,5 +353,21 @@
    </LINKPOINT>
    <LINKPOINT x="3525" y="2978">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="67">
+   <BOUNDS type="Node" left="8565" top="6375" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Changed" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="56" srcpinname="Shader Path" dstnodeid="67" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="7530" y="5828">
+   </LINKPOINT>
+   <LINKPOINT x="8565" y="5828">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
    </PATCH>

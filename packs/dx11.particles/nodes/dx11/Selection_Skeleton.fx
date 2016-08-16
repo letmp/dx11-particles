@@ -6,7 +6,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		int oneVariableNeeded;
-  		/*SKELETON_VARS_STRUCT*/
+  		/*STUB_VARS_STRUCT*/
 	#endif
 };
 
@@ -21,10 +21,10 @@ RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 cbuffer name : register(b0){
-   /*SKELETON_VARS_CBUF*/
+   /*STUB_VARS_CBUF*/
 };
 
-/*SKELETON_FUNCTION_DEF*/
+/*STUB_FUNCTION_DEF*/
 
 struct csin
 {
@@ -45,7 +45,7 @@ void CS_Select(csin input)
 				AliveCounterBuffer);
 	if (slotIndex == -1 ) return;
 	
-	bool isSelected = true /*SKELETON_FUNCTION_CALL*/;
+	bool isSelected = true /*STUB_FUNCTION_CALL*/;
 	
 		
 	if (isSelected){

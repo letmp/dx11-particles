@@ -38,24 +38,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="96" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="10020" top="6870" width="285" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="10020" top="6870" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="97" systemname="IOBox (String)">
    <BOUNDS type="Box" left="8385" top="6450" width="1515" height="240">
    </BOUNDS>
@@ -71,9 +53,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="98" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="8040" top="7815" width="1215" height="240">
+   <BOUNDS type="Box" left="8040" top="8265" width="1215" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8040" top="7815" width="0" height="0">
+   <BOUNDS type="Node" left="8040" top="8265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -221,7 +203,7 @@
    </PIN>
    </NODE>
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="87">
-   <BOUNDS type="Node" left="8025" top="7305" width="100" height="100">
+   <BOUNDS type="Node" left="8025" top="7755" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
    </PIN>
@@ -237,12 +219,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="90" srcpinname="Output String" dstnodeid="87" dstpinname="BufferName">
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Extract" linkstyle="VHV">
-   <LINKPOINT x="10020" y="7193">
-   </LINKPOINT>
-   <LINKPOINT x="9180" y="7193">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="97" srcpinname="Output String" dstnodeid="87" dstpinname="BufferType">
    </LINK>
@@ -297,9 +273,9 @@
    <LINK srcnodeid="99" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 2">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="115" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="8205" top="8595" width="1800" height="240">
+   <BOUNDS type="Box" left="8205" top="9045" width="1800" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8205" top="8595" width="0" height="0">
+   <BOUNDS type="Node" left="8205" top="9045" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="KNOW_COLOR=1">
    </PIN>
@@ -719,7 +695,7 @@
    <LINK srcnodeid="195" srcpinname="Output Enum" dstnodeid="99" dstpinname="Technique">
    </LINK>
    <NODE systemname="Register (DX11.Particles.Core Emitter)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Emitter)" componentmode="Hidden" id="93">
-   <BOUNDS type="Node" left="8040" top="9135" width="100" height="100">
+   <BOUNDS type="Node" left="8040" top="9585" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
@@ -733,31 +709,31 @@
    </PIN>
    <PIN pinname="EmitterName" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="8040" top="9135">
+   <BOUNDS type="Box" left="8040" top="9585">
    </BOUNDS>
    <PIN pinname="Stride" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="94" srcpinname="Output Enum" dstnodeid="93" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="14250" y="5018">
+   <LINKPOINT x="14250" y="5168">
    </LINKPOINT>
-   <LINKPOINT x="8790" y="5018">
+   <LINKPOINT x="8790" y="5318">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="98" srcpinname="Output String" dstnodeid="93" dstpinname="Structure">
    </LINK>
    <LINK srcnodeid="109" srcpinname="Output String" dstnodeid="93" dstpinname="EmitterName" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12750" y="5003">
+   <LINKPOINT x="12750" y="5153">
    </LINKPOINT>
-   <LINKPOINT x="8430" y="5003">
+   <LINKPOINT x="8430" y="5303">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="115" srcpinname="Output String" dstnodeid="93" dstpinname="Defines">
    </LINK>
    <LINK srcnodeid="127" srcpinname="Output" dstnodeid="93" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5175" y="5468">
+   <LINKPOINT x="5175" y="5618">
    </LINKPOINT>
-   <LINKPOINT x="8580" y="5468">
+   <LINKPOINT x="8580" y="5768">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Info (DX11.Particles.Core Emitter)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Emitter)" componentmode="Hidden" id="198">
@@ -787,5 +763,21 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="198" srcpinname="ParticleSystem Defines" dstnodeid="140" dstpinname="Input 2">
+   </LINK>
+   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="199">
+   <BOUNDS type="Node" left="9120" top="7365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Changed" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="134" srcpinname="Shader Path" dstnodeid="199" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="8100" y="6818">
+   </LINKPOINT>
+   <LINKPOINT x="9120" y="6818">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="199" srcpinname="Changed" dstnodeid="87" dstpinname="Extract">
    </LINK>
    </PATCH>

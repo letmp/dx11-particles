@@ -108,9 +108,8 @@ namespace VVVV.DX11.Nodes
         public event DX11QueryableDelegate BeginQuery;
         public event DX11QueryableDelegate EndQuery;
 
-        //protected IDiffSpread<EnumEntry> FInTechnique;
-        //public IDiffSpread<EnumEntry> FInTechnique;
-
+        protected IDiffSpread<EnumEntry> FInTechnique;
+        
         protected string TechniqueEnumId;
 
         private int techniqueindex;
@@ -156,14 +155,11 @@ namespace VVVV.DX11.Nodes
                     this.FHost.UpdateEnum(this.TechniqueEnumId, "", new string[0]);
                 }
 
-                //Create Technique enum pin
-                /*InputAttribute inAttr = new InputAttribute("Technique");
-                inAttr.EnumName = this.TechniqueEnumId;
-                inAttr.DefaultEnumEntry = defaultenum;
-                inAttr.Order = 1000;
-                this.FInTechnique = this.FFactory.CreateDiffSpread<EnumEntry>(inAttr);
 
-                this.FoutCS.AssignFrom(this.varmanager.GetCustomData());*/
+                this.techniqueindex = Array.IndexOf(shader.TechniqueNames, FInTechnique[0].Name);
+                this.techniquechanged = true;
+
+                //this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
             }
             else
             {
@@ -239,11 +235,11 @@ namespace VVVV.DX11.Nodes
             }
             
 
-            /*if (this.FInTechnique.IsChanged)
+            if (this.FInTechnique.IsChanged)
             {
-                this.techniqueindex = this.FInTechnique[0].Index;
+                this.techniqueindex = Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name);
                 this.techniquechanged = true;
-            }*/
+            }
 
             float* src;
 
@@ -365,9 +361,9 @@ namespace VVVV.DX11.Nodes
                     this.OnBeginQuery(context);
 
                     //Select preferred technique if available
-                    if (settings.PreferredTechniques.Count == 0 && this.techniqueindex != 0)
+                    if (settings.PreferredTechniques.Count == 0 && this.techniqueindex != Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name))
                     {
-                        this.techniqueindex = 0;
+                        this.techniqueindex = Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name);
                         this.techniquechanged = true;
                     }
                     else if (settings.PreferredTechniques.Count > 0)
@@ -571,6 +567,16 @@ namespace VVVV.DX11.Nodes
             this.FGeometry.Disconnected += new PinConnectionEventHandler(FGeometry_Disconnected);
             this.FInState.Connected += new PinConnectionEventHandler(FInState_Connected);
             this.FInState.Disconnected += new PinConnectionEventHandler(FInState_Disconnected);
+
+            //string[] entries = FConfig[0].Split(":".ToCharArray());
+            this.FHost.UpdateEnum(this.TechniqueEnumId, "", new string[0]);
+            //Create Technique enum pin
+            InputAttribute inAttr = new InputAttribute("Technique");
+            inAttr.EnumName = this.TechniqueEnumId;
+            inAttr.DefaultEnumEntry = "";
+            inAttr.Order = 1000;
+            this.FInTechnique = this.FFactory.CreateDiffSpread<EnumEntry>(inAttr);
+
         }
 
         void FInState_Disconnected(object sender, PinConnectionEventArgs args)

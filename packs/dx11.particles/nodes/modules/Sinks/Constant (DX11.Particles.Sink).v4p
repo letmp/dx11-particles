@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="C:\Users\tmp\Desktop\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11-particles\nodes\modules\Sinks\Constant (DX11.Particles.Sink).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="9240" top="6075" width="18210" height="5070">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Sinks\Constant (DX11.Particles.Sink).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="9240" top="6075" width="18210" height="6375">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -165,13 +165,15 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8955" top="3480" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="ParticleBuffer">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="PARTICLEBUFFER">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
    <PIN pinname="File Mask" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="36" systemname="IOBox (Enumerations)">
@@ -216,26 +218,8 @@
    </NODE>
    <LINK srcnodeid="38" srcpinname="Y Output Value" dstnodeid="31" dstpinname="Instance Count">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="39" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="10410" top="2730" width="7140" height="750">
-   </BOUNDS>
-   <BOUNDS type="Node" left="10410" top="2730" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Input String" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="9765" top="1320" width="100" height="100">
+   <BOUNDS type="Node" left="8235" top="4725" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Structure" visible="1" slicecount="5" values="|float3 position;|,|float3 velocity;|,|float3 force;|,|float lifespan;|,|float age;|">
    </PIN>
@@ -248,7 +232,11 @@
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <LINK srcnodeid="36" srcpinname="Output Enum" dstnodeid="33" dstpinname="ParticleSystem">
+   <LINK srcnodeid="36" srcpinname="Output Enum" dstnodeid="33" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10380" y="2895">
+   </LINKPOINT>
+   <LINKPOINT x="8880" y="2895">
+   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="33" srcpinname="Element Count" dstnodeid="38" dstpinname="Y Input Value" linkstyle="VHV">
    <LINKPOINT x="10380" y="1635">
@@ -258,18 +246,12 @@
    </LINK>
    <LINK srcnodeid="33" srcpinname="Defines" dstnodeid="22" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="33" srcpinname="Defines" dstnodeid="39" dstpinname="Input String" linkstyle="VHV">
-   <LINKPOINT x="9825" y="2153">
-   </LINKPOINT>
-   <LINKPOINT x="10410" y="2153">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="35">
-   <BOUNDS type="Node" left="8220" top="3825" width="100" height="100">
+   <BOUNDS type="Node" left="8220" top="4275" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filename" visible="1" slicecount="1" values="..\Utils\">
    </PIN>
-   <PIN pinname="Extract" slicecount="1" values="0">
+   <PIN pinname="Extract" slicecount="1" values="0" visible="1">
    </PIN>
    <PIN pinname="Variables" visible="1">
    </PIN>
@@ -279,11 +261,33 @@
    </PIN>
    <PIN pinname="BufferType" slicecount="1" visible="1" values="StructuredBuffer">
    </PIN>
+   <PIN pinname="BufferName" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="22" srcpinname="Shader Path" dstnodeid="35" dstpinname="Filename">
    </LINK>
    <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="35" dstpinname="BufferType">
    </LINK>
-   <LINK srcnodeid="35" srcpinname="Variables" dstnodeid="33" dstpinname="Structure" hiddenwhenlocked="1">
+   <LINK srcnodeid="35" srcpinname="Variables" dstnodeid="33" dstpinname="Structure" hiddenwhenlocked="0">
    </LINK>
+   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="35" dstpinname="BufferName">
+   </LINK>
+   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="40">
+   <BOUNDS type="Node" left="9330" top="3825" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Changed" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Shader Path" dstnodeid="40" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="8295" y="3420">
+   </LINKPOINT>
+   <LINKPOINT x="9315" y="3420">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="40" srcpinname="Changed" dstnodeid="35" dstpinname="Extract">
+   </LINK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
    </PATCH>
