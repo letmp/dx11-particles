@@ -324,7 +324,22 @@ namespace DX11.Particles.Core
 
         public void SetBufferSettings(string bufferRegisterNodeId, List<ParticleSystemBufferSettings> bufferSettings)
         {
-            this.BufferSettings[bufferRegisterNodeId] = bufferSettings;
+            // check for doubles in existing list
+            List<ParticleSystemBufferSettings> psbslist = this.GetBufferSettings();
+            bool canAdd = true;
+            foreach (ParticleSystemBufferSettings psbs1 in bufferSettings)
+            {
+                foreach (ParticleSystemBufferSettings psbs2 in psbslist)
+                {
+                    if (psbs1.bufferSemantic == psbs2.bufferSemantic)
+                    {
+                        canAdd = false;
+                        break;
+                    }
+                }
+            }
+            // add if there were no doubles
+            if (canAdd) this.BufferSettings[bufferRegisterNodeId] = bufferSettings;
         }
 
         public void RemoveBufferSettings(string bufferRegisterNodeId)

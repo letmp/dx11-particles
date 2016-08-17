@@ -1,5 +1,10 @@
 #define DEFINES_FXH
 
+
+// =====================================================
+//                  COMMON FUNCTIONS
+// =====================================================
+
 int getSlotIndex(uint pId, RWStructuredBuffer<bool> FlagBuffer, RWStructuredBuffer<uint> SelectionIndexBuffer, RWStructuredBuffer<uint> SelectionCounterBuffer, RWStructuredBuffer<uint> AliveIndexBuffer, RWStructuredBuffer<uint> AliveCounterBuffer){
 	uint slotIndex = 0;
 	

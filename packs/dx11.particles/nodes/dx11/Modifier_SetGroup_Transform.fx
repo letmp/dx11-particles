@@ -22,7 +22,7 @@ RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 float4x4 tFilter : WORLD;
 int drawIndex : DRAWINDEX;
 
-RWStructuredBuffer<uint> GroupIndexBuffer : GROUPINDEXBUFFER_/*STUB_GROUPNAME*/;
+RWStructuredBuffer<GroupLink> GroupLinkBuffer : GROUPLINKBUFFER_/*STUB_GROUPNAME*/;
 RWStructuredBuffer<uint> GroupCounterBuffer : GROUPCOUNTERBUFFER_/*STUB_GROUPNAME*/;
 
 struct csin
@@ -35,15 +35,11 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSClearGroup(csin input)
 {
-	uint slotIndex = getSlotIndex(	input.DTID.x,
-									FlagBuffer,
-									SelectionIndexBuffer,
-									SelectionCounterBuffer,
-									AliveIndexBuffer,
-									AliveCounterBuffer);
-	if (slotIndex == -1 ) return;
+	if (input.DTID.x > MAXGROUPELEMENTCOUNT) return;
+	GroupLink link = { -1, -1 };
+	GroupLinkBuffer[input.DTID.x] = link; // resets all links
 	
-	GroupIndexBuffer[slotIndex] = 0;
+	GroupCounterBuffer[input.DTID.x] = 0;
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -59,7 +55,6 @@ void CSSetGroup(csin input)
 	
 	if (input.DTID.x == 0){
 		GroupCounterBuffer.IncrementCounter();
-		GroupCounterBuffer[drawIndex] = 0;
 	}
 
 	float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;
@@ -67,8 +62,12 @@ void CSSetGroup(csin input)
 			pointCoord.y < -0.5 || pointCoord.y > 0.5 ||
 			pointCoord.z < -0.5 || pointCoord.z > 0.5))
 	{
-		uint groupIndex = GroupIndexBuffer.IncrementCounter();
-		GroupIndexBuffer[groupIndex] = slotIndex;
+		GroupLink link;
+		link.groupId = drawIndex;
+		link.particleId = slotIndex;
+		
+		GroupLinkBuffer[slotIndex + (drawIndex * MAXPARTICLECOUNT)] = link;
+		
 		uint oldval;
 		InterlockedAdd(GroupCounterBuffer[drawIndex],1,oldval);
 	}

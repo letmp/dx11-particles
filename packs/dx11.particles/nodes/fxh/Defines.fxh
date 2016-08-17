@@ -24,11 +24,25 @@
 	#define EMITTEROFFSET 0
 #endif
 
-// =====================================================
-//                  DEFAULT DEFINES
-// =====================================================
+#if !defined(MAXGROUPCOUNT)
+	#define MAXGROUPCOUNT 0
+#endif
+
+#if !defined(MAXGROUPELEMENTCOUNT)
+	#define MAXGROUPELEMENTCOUNT 0
+#endif
+
 // RENDERSEMANTICS
-cbuffer mcpsUniforms
+cbuffer dx11ParticlesUniforms
 {
     float2 psTime : PS_TIME;
+};
+
+// =====================================================
+//                  DEFAULT STRUCTS
+// =====================================================
+
+struct GroupLink {
+	uint groupId;
+	uint particleId;
 };
