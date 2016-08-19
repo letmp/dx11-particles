@@ -87,7 +87,7 @@ namespace DX11.Particles.Core
                         }
                     }
                 }
-            if (!FConfig[0].Equals(configString) /*&& configString != ""*/){
+            if (!FConfig[0].Equals(configString) && configString != ""){
                 FConfig[0] = configString;
             }
             

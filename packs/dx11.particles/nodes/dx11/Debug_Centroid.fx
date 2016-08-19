@@ -39,7 +39,7 @@ vs2ps VS(vsInput input)
 	
 	// Position.w is the number of centroid elements
 	// Set output position to 0 if there was no element -> gets discarded in PS
-	//if (Position[ii].w == 0) output.position.w = 0;
+	if (Position[ii].w == 0) output.position.w = 0;
 	
 	return output;
 }
@@ -48,7 +48,7 @@ vs2ps VS(vsInput input)
 
 float4 PS_COLOR(vs2ps input): SV_Target
 {
-	//if (input.position.w == 0) discard;
+	if (input.position.w == 0) discard;
     return (cAmb);
 }
 
