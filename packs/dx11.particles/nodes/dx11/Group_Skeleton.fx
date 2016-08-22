@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -27,6 +26,8 @@ cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
 };
 
+#include "../fxh/Functions.fxh"
+
 /*STUB_FUNCTION_DEF*/
 
 struct csin
@@ -50,12 +51,7 @@ void CS_ClearGroup(csin input)
 void CS_SetGroup(csin input)
 {
 	
-	uint slotIndex = getSlotIndex(	input.DTID.x,
-				FlagBuffer,
-				SelectionIndexBuffer,
-				SelectionCounterBuffer,
-				AliveIndexBuffer,
-				AliveCounterBuffer);
+	uint slotIndex = getSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	uint groupIndex = 0;

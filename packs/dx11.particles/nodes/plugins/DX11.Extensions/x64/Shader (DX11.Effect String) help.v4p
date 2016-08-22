@@ -233,7 +233,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5985" top="795" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|RWStructuredBuffer&lt;uint&gt; fBufCounter : BACKBUFFER;&cr;&lf;&cr;&lf;cbuffer multiplicatorbuffer{&cr;&lf;    int multiplicator : MULTIPLICATOR;&cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS(csin input)&cr;&lf;{&cr;&lf;&tab;#if defined(MULT)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = input.DTID.x * multiplicator;&cr;&lf;&tab;#else&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = 0;&cr;&lf;&tab;#endif&cr;&lf;&cr;&lf;&tab;#if defined(ADD)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] += ADD;&cr;&lf;&tab;#endif&cr;&lf;}&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS2(csin input)&cr;&lf;{&cr;&lf;&tab;fBufCounter[input.DTID.x] = 50;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 csmain { pass P0{SetComputeShader( CompileShader( cs_5_0, CS() ) );} }&cr;&lf;technique11 csmain2 { pass P0{SetComputeShader( CompileShader( cs_5_0, CS2() ) );} }|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|RWStructuredBuffer&lt;uint&gt; fBufCounter : BACKBUFFER;&cr;&lf;&cr;&lf;cbuffer multiplicatorbuffer{&cr;&lf;    int multiplicator : MULTIPLICATOR;&cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(1, 1, 1)]&cr;&lf;void CS(csin input)&cr;&lf;{&cr;&lf;&tab;#if defined(MULT)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = input.DTID.x * multiplicator;&cr;&lf;&tab;#else&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] = 0;&cr;&lf;&tab;#endif&cr;&lf;&cr;&lf;&tab;#if defined(ADD)&cr;&lf;&tab;&tab;fBufCounter[input.DTID.x] += ADD;&cr;&lf;&tab;#endif&cr;&lf;}&cr;&lf;&cr;&lf;technique11 csmain { pass P0{SetComputeShader( CompileShader( cs_5_0, CS() ) );} }|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -243,9 +243,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="29" srcpinname="Output String" dstnodeid="25" dstpinname="Input 2" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="5835" y="3940">
+   <LINKPOINT x="5985" y="7073">
    </LINKPOINT>
-   <LINKPOINT x="2685" y="5510">
+   <LINKPOINT x="2730" y="7073">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="30" systemname="IOBox (String)">
@@ -449,19 +449,5 @@
    </PIN>
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="43" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6540" top="9570" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6540" top="9570" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="csmain2">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="43" srcpinname="Output Enum" dstnodeid="0" dstpinname="Technique">
-   </LINK>
-   <NODE systemname="Renderer (DX11 Buffer Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 Buffer Advanced)" componentmode="Hidden" id="44">
-   <BOUNDS type="Node" left="8445" top="13710" width="100" height="100">
-   </BOUNDS>
    </NODE>
    </PATCH>

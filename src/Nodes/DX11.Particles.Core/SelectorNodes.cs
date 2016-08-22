@@ -13,7 +13,7 @@ using VVVV.DX11.Lib.Rendering;
 
 namespace DX11.Particles.Core
 {
-    public class SelectionNodes
+    public class Selection
     {
         public List<string> Variables = new List<string>();
         public List<string> FunctionDefinitions = new List<string>();
@@ -21,7 +21,7 @@ namespace DX11.Particles.Core
         public List<IDX11RenderSemantic> RenderSemantics = new List<IDX11RenderSemantic>();
         public string FunctionCall = "";
 
-        public SelectionNodes() { }
+        public Selection() { }
 
         public void SetAll( IEnumerable<string> variables,
                                 string functionCall, IEnumerable<string> functionDefinitions,
@@ -66,12 +66,12 @@ namespace DX11.Particles.Core
             }
         }
 
-        public void LogicAndOr(Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs, bool isLogicAnd = false)
+        public void LogicAndOr(Spread<IIOContainer<ISpread<Selection>>> FInputs, bool isLogicAnd = false)
         {
             List<string> functioncalls = new List<string>();
             for (int i = 0; i < FInputs.Count(); i++)
             {
-                SelectionNodes sbIn = FInputs[i].IOObject[0];
+                Selection sbIn = FInputs[i].IOObject[0];
                 if (sbIn != null)
                 {
                     this.AddVariables(sbIn.Variables);
@@ -109,7 +109,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Join",Category = "DX11.Particles.Selection", Help = "Joins all data needed for the selection shader", Author="tmp", Tags = "")]
+    [PluginInfo(Name = "Join",Category = "DX11.Particles.Selectors", Help = "Joins all data needed for the selection shader", Author="tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionJoin : IPluginEvaluate
     {
@@ -130,7 +130,7 @@ namespace DX11.Particles.Core
         protected Pin<IDX11RenderSemantic> FInSemantics;
 
         [Output("Output")]
-        public ISpread<SelectionNodes> FOutSelectionBundle;
+        public ISpread<Selection> FOutSelectionBundle;
 
         #endregion fields & pins
 
@@ -139,7 +139,7 @@ namespace DX11.Particles.Core
             if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunctionDefinition.IsChanged || FConstantBufferEntry.IsChanged || FInSemantics.IsChanged)) return;
 
             FOutSelectionBundle.SliceCount = 1;
-            SelectionNodes sb = new SelectionNodes();
+            Selection sb = new Selection();
             sb.SetAll(FVariables, FFunctionCall[0], FFunctionDefinition, FConstantBufferEntry, FInSemantics);
             FOutSelectionBundle[0] = sb;
         }
@@ -147,14 +147,14 @@ namespace DX11.Particles.Core
 
    
     #region PluginInfo
-    [PluginInfo(Name = "Split", Category = "DX11.Particles.Selection", Help = "Splits all data needed for the selection shader", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "Split", Category = "DX11.Particles.Selectors", Help = "Splits all data needed for the selection shader", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionSplit : IPluginEvaluate
     {
         #region fields & pins
 
         [Input("Input", IsSingle = true)]
-        public IDiffSpread<SelectionNodes> FInSelectionBundle;
+        public IDiffSpread<Selection> FInSelection;
 
         [Output("Variable List")]
         public ISpread<string> FVariables;
@@ -175,9 +175,9 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (!FInSelectionBundle.IsChanged) return;
+            if (!FInSelection.IsChanged) return;
 
-            SelectionNodes sb = FInSelectionBundle[0];
+            Selection sb = FInSelection[0];
             FVariables.SliceCount = FFunctionCall.SliceCount = FFunctionDefinition.SliceCount = FConstantBufferEntry.SliceCount = FOutSemantics.SliceCount = 0;
 
             FVariables.AddRange(sb.Variables.ToArray());
@@ -189,16 +189,16 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "AND", Category = "DX11.Particles.Selection", Help = "Logical connection of Selection Bundles", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "AND", Category = "DX11.Particles.Selectors", Help = "Logical connection of Selection Bundles", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionLogicAND : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         #region fields & pins
         // A spread which contains our inputs
-        public Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs = new Spread<IIOContainer<ISpread<SelectionNodes>>>();
+        public Spread<IIOContainer<ISpread<Selection>>> FInputs = new Spread<IIOContainer<ISpread<Selection>>>();
 
         [Output("Output")]
-        public ISpread<SelectionNodes> FOutSelectionBundle;
+        public ISpread<Selection> FOutSelection;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -235,23 +235,23 @@ namespace DX11.Particles.Core
         {
             if (!FInputs.IsChanged) return;
 
-            SelectionNodes sb = new SelectionNodes();
+            Selection sb = new Selection();
             sb.LogicAndOr(FInputs,true);
-            FOutSelectionBundle[0] = sb;
+            FOutSelection[0] = sb;
         }
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "OR", Category = "DX11.Particles.Selection", Help = "Logical connection of Selection Bundles", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "OR", Category = "DX11.Particles.Selectors", Help = "Logical connection of Selection Bundles", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionLogicOR : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
         #region fields & pins
         // A spread which contains our inputs
-        public Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs = new Spread<IIOContainer<ISpread<SelectionNodes>>>();
+        public Spread<IIOContainer<ISpread<Selection>>> FInputs = new Spread<IIOContainer<ISpread<Selection>>>();
 
         [Output("Output")]
-        public ISpread<SelectionNodes> FOutSelectionBundle;
+        public ISpread<Selection> FOutSelection;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -287,32 +287,32 @@ namespace DX11.Particles.Core
         public void Evaluate(int SpreadMax)
         {
             if (!FInputs.IsChanged) return;
-            SelectionNodes sb = new SelectionNodes();
+            Selection sb = new Selection();
             sb.LogicAndOr(FInputs);
-            FOutSelectionBundle[0] = sb;
+            FOutSelection[0] = sb;
         }
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "NOT", Category = "DX11.Particles.Selection", Help = "Logical negation of Selection Bundle", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "NOT", Category = "DX11.Particles.Selectors", Help = "Logical negation of Selection Bundle", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionLogicNOT : IPluginEvaluate
     {
         #region fields & pins
         [Input("Input", IsSingle = true)]
-        public IDiffSpread<SelectionNodes> FInSelectionBundle;
+        public IDiffSpread<Selection> FInSelection;
 
         [Output("Output")]
-        public ISpread<SelectionNodes> FOutSelectionBundle;
+        public ISpread<Selection> FOutSelection;
 
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
-            if (!FInSelectionBundle.IsChanged) return;
+            if (!FInSelection.IsChanged) return;
 
-            SelectionNodes sb = FInSelectionBundle[0];
-            SelectionNodes sbNew = new SelectionNodes();
+            Selection sb = FInSelection[0];
+            Selection sbNew = new Selection();
             if (sb != null)
             {
                 sbNew.Variables = sb.Variables;
@@ -323,12 +323,12 @@ namespace DX11.Particles.Core
                 sbNew.SetFunctionCallNot();
             }
             
-            FOutSelectionBundle[0] = sbNew;
+            FOutSelection[0] = sbNew;
         }
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Switch", Category = "DX11.Particles.Selection", Help = "Switches between multiple SelectionBundle inputs", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "Switch", Category = "DX11.Particles.Selectors", Help = "Switches between multiple SelectionBundle inputs", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionSwitch : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
@@ -337,10 +337,10 @@ namespace DX11.Particles.Core
         [Input("Switch", IsSingle = true, DefaultValue=0)]
         public ISpread<int> FSwitch;
 
-        public Spread<IIOContainer<ISpread<SelectionNodes>>> FInputs = new Spread<IIOContainer<ISpread<SelectionNodes>>>();
+        public Spread<IIOContainer<ISpread<Selection>>> FInputs = new Spread<IIOContainer<ISpread<Selection>>>();
 
         [Output("Output")]
-        public ISpread<SelectionNodes> FOutSelectionBundle;
+        public ISpread<Selection> FOutSelection;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -378,9 +378,9 @@ namespace DX11.Particles.Core
             if (!FInputs.IsChanged) return;
 
             int index = FSwitch[0];
-            SelectionNodes sb = FInputs[index].IOObject[0];
+            Selection sb = FInputs[index].IOObject[0];
 
-            SelectionNodes sbNew = new SelectionNodes();
+            Selection sbNew = new Selection();
             if (sb != null)
             {
                 sbNew.Variables = sb.Variables;
@@ -390,7 +390,7 @@ namespace DX11.Particles.Core
                 sbNew.RenderSemantics = sb.RenderSemantics;
             }
 
-            FOutSelectionBundle[0] = sbNew;
+            FOutSelection[0] = sbNew;
 
         }
     }

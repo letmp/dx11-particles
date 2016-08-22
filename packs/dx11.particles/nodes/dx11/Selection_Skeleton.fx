@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -24,6 +23,8 @@ cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
 };
 
+#include "../fxh/Functions.fxh"
+
 /*STUB_FUNCTION_DEF*/
 
 struct csin
@@ -37,12 +38,7 @@ struct csin
 void CS_Select(csin input)
 {
 	
-	uint slotIndex = getSlotIndex(	input.DTID.x,
-				FlagBuffer,
-				SelectionIndexBuffer,
-				SelectionCounterBuffer,
-				AliveIndexBuffer,
-				AliveCounterBuffer);
+	uint slotIndex = getSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	bool isSelected = true /*STUB_FUNCTION_CALL*/;

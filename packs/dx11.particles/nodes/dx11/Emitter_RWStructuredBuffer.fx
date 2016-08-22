@@ -1,5 +1,5 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
+
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT

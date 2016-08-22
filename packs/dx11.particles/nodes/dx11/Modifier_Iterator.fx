@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -39,13 +38,6 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Iterate(csin input)
 {
-	/*uint slotIndex = getSlotIndex(	input.DTID.x,
-									FlagBuffer,
-									SelectionIndexBuffer,
-									SelectionCounterBuffer,
-									AliveIndexBuffer,
-									AliveCounterBuffer);
-	if (slotIndex < 0 ) return;*/
 	
 	if(input.DTID.x >= MAXPARTICLECOUNT) return;
 	uint slotIndex = input.DTID.x;

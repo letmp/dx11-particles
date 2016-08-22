@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -23,6 +22,8 @@ StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer"
 
 int UpdateMode;
 
+#include "../fxh/Functions.fxh"
+
 struct csin
 {
 	uint3 DTID : SV_DispatchThreadID;
@@ -33,12 +34,7 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSUpdate(csin input)
 {
-	uint slotIndex = getSlotIndex(	input.DTID.x,
-									FlagBuffer,
-									SelectionIndexBuffer,
-									SelectionCounterBuffer,
-									AliveIndexBuffer,
-									AliveCounterBuffer);
+	uint slotIndex = getSlotIndex( input.DTID.x );
 	if (slotIndex < 0 ) return;
 	
 	uint size, stride;

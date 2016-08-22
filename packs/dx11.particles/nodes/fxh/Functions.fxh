@@ -5,7 +5,7 @@
 //                  COMMON FUNCTIONS
 // =====================================================
 
-int getSlotIndex(uint pId, RWStructuredBuffer<bool> FlagBuffer, RWStructuredBuffer<uint> SelectionIndexBuffer, RWStructuredBuffer<uint> SelectionCounterBuffer, RWStructuredBuffer<uint> AliveIndexBuffer, RWStructuredBuffer<uint> AliveCounterBuffer){
+int getSlotIndex(uint pId){
 	uint slotIndex = 0;
 	
 	if (FlagBuffer[0] == true){ // Apply to selected particles only

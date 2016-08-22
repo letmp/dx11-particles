@@ -36,7 +36,7 @@
    <PIN pinname="Buffer ElementCount" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="7365" top="675" width="13155" height="15555">
+   <BOUNDS type="Window" left="9660" top="705" width="13350" height="15555">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
@@ -688,28 +688,6 @@
    <LINKPOINT x="3195" y="6870">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Analysis_Centroid_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Analysis_Centroid_PS.fx" nodename="Analysis_Centroid_PS (DX11.Effect)" componentmode="Hidden" id="79">
-   <BOUNDS type="Node" left="1575" top="6345" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" values="Process">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupLinkBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupCounterBuffer" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="7" values="XTHREADS=64,YTHREADS=1,ZTHREADS=1,|COMPOSITESTRUCT=float4 color; float3 position; float lifespan; float3 velocity; float age; float3 acceleration;|,MAXPARTICLECOUNT=10,KNOW_COLOR=1,MAXGROUPCOUNT=2">
-   </PIN>
-   </NODE>
    <NODE systemname="Blend (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState)" componentmode="Hidden" id="83">
    <BOUNDS type="Node" left="1035" top="5775" width="100" height="100">
    </BOUNDS>
@@ -721,19 +699,19 @@
    </BOUNDS>
    </NODE>
    <NODE systemname="NullIndirect (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="NullIndirect (DX11.Drawer)" componentmode="Hidden" id="82">
-   <BOUNDS type="Node" left="1890" top="5775" width="100" height="100">
+   <BOUNDS type="Node" left="1950" top="5775" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <PIN pinname="Default Vertex Count" slicecount="1" visible="1" values="20">
+   <PIN pinname="Default Vertex Count" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Default Instance Count" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Vertex Arg Buffer" visible="1" pintype="Input" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Box" left="1890" top="5775">
+   <BOUNDS type="Box" left="1950" top="5775">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="81" systemname="IOBox (Enumerations)">
@@ -746,12 +724,6 @@
    <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="79" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="2120" y="6188">
-   </LINKPOINT>
-   <LINKPOINT x="1720" y="6188">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="InAWindow" id="86">
    <BOUNDS type="Node" left="1410" top="7680" width="100" height="100">
    </BOUNDS>
@@ -800,8 +772,6 @@
    </NODE>
    <LINK srcnodeid="85" srcpinname="XY" dstnodeid="86" dstpinname="Texture SizeXY">
    </LINK>
-   <LINK srcnodeid="79" srcpinname="Layer" dstnodeid="86" dstpinname="Layer">
-   </LINK>
    <LINK srcnodeid="81" srcpinname="Output Enum" dstnodeid="86" dstpinname="Target Format">
    </LINK>
    <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="91">
@@ -838,18 +808,6 @@
    <LINKPOINT x="7155" y="2528">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="83" srcpinname="Render State" dstnodeid="79" dstpinname="Render State" linkstyle="VHV">
-   <LINKPOINT x="1095" y="6180">
-   </LINKPOINT>
-   <LINKPOINT x="1740" y="6180">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="43" srcpinname="Output Node" dstnodeid="79" dstpinname="GroupCounterBuffer" linkstyle="Bezier">
-   <LINKPOINT x="3900" y="5505">
-   </LINKPOINT>
-   <LINKPOINT x="2880" y="5505">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="76" srcpinname="Output" dstnodeid="85" dstpinname="X" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5835" y="6598">
    </LINKPOINT>
@@ -857,14 +815,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="86" srcpinname="Buffers" dstnodeid="36" dstpinname="tex">
-   </LINK>
-   <LINK srcnodeid="41" srcpinname="Output Node" dstnodeid="79" dstpinname="ParticleBuffer" linkstyle="Bezier">
-   <LINKPOINT x="945" y="5498">
-   </LINKPOINT>
-   <LINKPOINT x="2520" y="5498">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="42" srcpinname="Output Node" dstnodeid="79" dstpinname="GroupLinkBuffer">
    </LINK>
    <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="94">
    <BOUNDS type="Node" left="6420" top="11340" width="100" height="100">
@@ -998,18 +948,6 @@
    <BOUNDS type="Box" left="7170" top="11940">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="90" srcpinname="Y Output Value" dstnodeid="82" dstpinname="Default Vertex Count" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7140" y="5555">
-   </LINKPOINT>
-   <LINKPOINT x="1950" y="4855">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="79" dstpinname="Defines" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7875" y="3758">
-   </LINKPOINT>
-   <LINKPOINT x="3375" y="3758">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="72" srcpinname="Y Output Value" dstnodeid="62" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="11730" y="6038">
    </LINKPOINT>
@@ -1054,16 +992,6 @@
    </NODE>
    <LINK srcnodeid="65" srcpinname="Layer" dstnodeid="102" dstpinname="Input Node">
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="108" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5160" top="13080" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5160" top="13080" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Query">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="62" srcpinname="Query" dstnodeid="108" dstpinname="Input Node">
-   </LINK>
    <LINK srcnodeid="100" srcpinname="Output 2" dstnodeid="97" dstpinname="Y Input Value" linkstyle="VHV">
    <LINKPOINT x="1995" y="13598">
    </LINKPOINT>
@@ -1084,6 +1012,56 @@
    <LINKPOINT x="6480" y="11760">
    </LINKPOINT>
    <LINKPOINT x="7350" y="11760">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Analysis_Centroid_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Analysis_Centroid_PS.fx" nodename="Analysis_Centroid_PS (DX11.Effect)" componentmode="Hidden" id="114">
+   <BOUNDS type="Node" left="1575" top="6345" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="114" srcpinname="Layer" dstnodeid="86" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="83" srcpinname="Render State" dstnodeid="114" dstpinname="Render State" linkstyle="VHV">
+   <LINKPOINT x="1095" y="6180">
+   </LINKPOINT>
+   <LINKPOINT x="1740" y="6180">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Output Node" dstnodeid="114" dstpinname="GroupCounterBuffer" linkstyle="Bezier">
+   <LINKPOINT x="3885" y="5498">
+   </LINKPOINT>
+   <LINKPOINT x="2760" y="5498">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Output Node" dstnodeid="114" dstpinname="ParticleBuffer" linkstyle="Bezier">
+   <LINKPOINT x="945" y="5498">
+   </LINKPOINT>
+   <LINKPOINT x="2325" y="5498">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Output Node" dstnodeid="114" dstpinname="GroupLinkBuffer" linkstyle="Bezier">
+   <LINKPOINT x="2685" y="5505">
+   </LINKPOINT>
+   <LINKPOINT x="2550" y="5505">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="114" dstpinname="Defines" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7875" y="3758">
+   </LINKPOINT>
+   <LINKPOINT x="3375" y="3758">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="IndexIndirect (DX11.Drawer Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="IndexIndirect (DX11.Drawer Buffer)" componentmode="Hidden" id="121">
+   <BOUNDS type="Node" left="3645" top="6090" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="114" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Output Node" dstnodeid="82" dstpinname="Vertex Arg Buffer" linkstyle="Bezier">
+   <LINKPOINT x="2685" y="5220">
+   </LINKPOINT>
+   <LINKPOINT x="2505" y="5220">
    </LINKPOINT>
    </LINK>
    </PATCH>

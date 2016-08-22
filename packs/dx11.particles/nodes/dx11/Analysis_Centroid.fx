@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 Texture2D tex;
 SamplerState sPoint : IMMUTABLE
@@ -23,7 +22,7 @@ void CSCentroid(csin input)
 {
 	if (input.DTID.x >= MAXGROUPCOUNT) return;
 	
-	float pixPos = (1.0f / MAXGROUPCOUNT) * input.DTID.x;
+	float pixPos = ((1.0f / MAXGROUPCOUNT) * input.DTID.x) ;
 	
 	float4 accum = tex.SampleLevel(sPoint, float2(pixPos,0),0);
 	if (accum.w > 0.0f){

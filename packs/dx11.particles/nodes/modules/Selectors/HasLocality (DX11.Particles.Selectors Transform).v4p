@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selection Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selectors Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="-360">
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="7890" top="4830" width="1620" height="270">
    </BOUNDS>
@@ -316,94 +316,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Intersect / Union|">
    </PIN>
    </NODE>
-   <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="675" top="9210" width="7275" height="270">
-   </BOUNDS>
-   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
-   </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="|(LocalityInsideTransform(slotIndex,tFilter0) |||| LocalityInsideTransform(slotIndex,tFilter1))|">
-   </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
-   </PIN>
-   <BOUNDS type="Box" left="675" top="9210">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics" linkstyle="VHV">
-   <LINKPOINT x="7465" y="6923">
-   </LINKPOINT>
-   <LINKPOINT x="5720" y="7388">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
-   </LINK>
-   <LINK srcnodeid="32" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
-   </LINK>
-   <NODE systemname="BuildFunctionCall (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Selectors\BuildFunctionCall (DX11.Particles.Selection).v4p" nodename="BuildFunctionCall (DX11.Particles.Selection)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="2475" top="4035" width="7260" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="645" top="1140" width="9040" height="5800">
-   </BOUNDS>
-   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
-   </BOUNDS>
-   <PIN pinname="FunctionArguments" visible="1">
-   </PIN>
-   <PIN pinname="Conjunct And/Or" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Variable Type" visible="1">
-   </PIN>
-   <PIN pinname="Variable Name" visible="1">
-   </PIN>
-   <PIN pinname="Semantic" visible="1">
-   </PIN>
-   <PIN pinname="Semantic Count" visible="1">
-   </PIN>
-   <PIN pinname="Id" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="33" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
-   <LINKPOINT x="9675" y="4553">
-   </LINKPOINT>
-   <LINKPOINT x="8730" y="4553">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="33" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String" linkstyle="VHV">
-   <LINKPOINT x="5600" y="4988">
-   </LINKPOINT>
-   <LINKPOINT x="6100" y="4988">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="33" dstpinname="FunctionName">
-   </LINK>
-   <LINK srcnodeid="33" srcpinname="FunctionCall" dstnodeid="32" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="33" dstpinname="FunctionArguments">
-   </LINK>
-   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="33" dstpinname="Variable Type">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="33" dstpinname="Variable Name">
-   </LINK>
-   <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="33" dstpinname="Semantic">
-   </LINK>
-   <LINK srcnodeid="38" srcpinname="Count" dstnodeid="33" dstpinname="Semantic Count">
-   </LINK>
-   <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Conjunct And/Or" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6825" y="2573">
-   </LINKPOINT>
-   <LINKPOINT x="8670" y="2573">
-   </LINKPOINT>
-   </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
    <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="46">
@@ -542,6 +454,94 @@
    <PIN pinname="Filename" visible="-1" pintype="Output">
    </PIN>
    </NODE>
+   <NODE systemname="BuildFunctionCall (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\BuildFunctionCall (DX11.Particles.Selectors).v4p" nodename="BuildFunctionCall (DX11.Particles.Selectors)" componentmode="Hidden" id="33">
+   <BOUNDS type="Node" left="2475" top="4035" width="7260" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="645" top="1140" width="9040" height="5800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
+   </BOUNDS>
+   <PIN pinname="FunctionArguments" visible="1">
+   </PIN>
+   <PIN pinname="Conjunct And/Or" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Variable Type" visible="1">
+   </PIN>
+   <PIN pinname="Variable Name" visible="1">
+   </PIN>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   <PIN pinname="Semantic Count" visible="1">
+   </PIN>
+   <PIN pinname="Id" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
+   <LINKPOINT x="9675" y="4553">
+   </LINKPOINT>
+   <LINKPOINT x="8730" y="4553">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String" linkstyle="VHV">
+   <LINKPOINT x="5600" y="4988">
+   </LINKPOINT>
+   <LINKPOINT x="6100" y="4988">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="33" dstpinname="FunctionName">
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="FunctionCall" dstnodeid="32" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="33" dstpinname="FunctionArguments">
+   </LINK>
+   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="33" dstpinname="Variable Type">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="33" dstpinname="Variable Name">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="33" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="38" srcpinname="Count" dstnodeid="33" dstpinname="Semantic Count">
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Conjunct And/Or" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6825" y="2573">
+   </LINKPOINT>
+   <LINKPOINT x="8670" y="2573">
+   </LINKPOINT>
+   </LINK>
    <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="33" dstpinname="Id">
+   </LINK>
+   <NODE systemname="Join (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selectors)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="675" top="9210" width="7275" height="270">
+   </BOUNDS>
+   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
+   </PIN>
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="|(LocalityInsideTransform(slotIndex,tFilter0) |||| LocalityInsideTransform(slotIndex,tFilter1))|">
+   </PIN>
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
+   </PIN>
+   <BOUNDS type="Box" left="675" top="9210">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics" linkstyle="VHV">
+   <LINKPOINT x="7465" y="6923">
+   </LINKPOINT>
+   <LINKPOINT x="5720" y="7388">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
    </LINK>
    </PATCH>

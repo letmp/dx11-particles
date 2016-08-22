@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Grouping\HasLocality (DX11.Particles.Grouping Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Groups\HasLocality (DX11.Particles.Groups Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="-360">
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="7875" top="4830" width="1620" height="270">
    </BOUNDS>
@@ -189,7 +189,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="10860" top="870" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Outside">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Inside">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Mode">
    </PIN>
@@ -468,41 +468,7 @@
    <PIN pinname="Filename" visible="-1" pintype="Output">
    </PIN>
    </NODE>
-   <NODE systemname="Join (DX11.Particles.Grouping)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Grouping)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="675" top="12210" width="7275" height="270">
-   </BOUNDS>
-   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
-   </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="|(LocalityInsideTransform(slotIndex,tFilter0) |||| LocalityInsideTransform(slotIndex,tFilter1))|">
-   </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
-   </PIN>
-   <BOUNDS type="Box" left="675" top="12210">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics" linkstyle="VHV">
-   <LINKPOINT x="7455" y="7923">
-   </LINKPOINT>
-   <LINKPOINT x="5715" y="9388">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
-   </LINK>
-   <LINK srcnodeid="32" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
-   </LINK>
-   <NODE systemname="BuildFunctionCall (DX11.Particles.Grouping)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Grouping\BuildFunctionCall (DX11.Particles.Grouping).v4p" nodename="BuildFunctionCall (DX11.Particles.Grouping)" componentmode="Hidden" id="33">
+   <NODE systemname="BuildFunctionCall (DX11.Particles.Groups)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Groups\BuildFunctionCall (DX11.Particles.Groups).v4p" nodename="BuildFunctionCall (DX11.Particles.Groups)" componentmode="Hidden" id="33">
    <BOUNDS type="Node" left="2475" top="4035" width="6240" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="645" top="1140" width="9040" height="5800">
@@ -550,12 +516,40 @@
    </LINK>
    <LINK srcnodeid="38" srcpinname="Count" dstnodeid="33" dstpinname="Semantic Count">
    </LINK>
-   <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Conjunct And/Or" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6825" y="2573">
+   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="33" dstpinname="Id">
+   </LINK>
+   <NODE systemname="Join (DX11.Particles.Groups)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Groups)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="675" top="12210" width="7275" height="270">
+   </BOUNDS>
+   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
+   </PIN>
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="|(LocalityInsideTransform(slotIndex,tFilter0) |||| LocalityInsideTransform(slotIndex,tFilter1))|">
+   </PIN>
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
+   </PIN>
+   <BOUNDS type="Box" left="675" top="12210">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics" linkstyle="VHV">
+   <LINKPOINT x="7455" y="7923">
    </LINKPOINT>
-   <LINKPOINT x="8670" y="2573">
+   <LINKPOINT x="5715" y="9388">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="33" dstpinname="Id">
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
    </LINK>
    </PATCH>

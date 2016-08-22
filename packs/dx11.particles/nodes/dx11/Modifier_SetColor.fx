@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -21,6 +20,7 @@ RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
 
+#include "../fxh/Functions.fxh"
 
 struct csin
 {
@@ -32,12 +32,7 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSet(csin input)
 {
-	uint slotIndex = getSlotIndex(	input.DTID.x,
-									FlagBuffer,
-									SelectionIndexBuffer,
-									SelectionCounterBuffer,
-									AliveIndexBuffer,
-									AliveCounterBuffer);
+	uint slotIndex = getSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	uint size, stride;
@@ -48,12 +43,7 @@ void CSSet(csin input)
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSAdd(csin input)
 {
-	uint slotIndex = getSlotIndex(	input.DTID.x,
-									FlagBuffer,
-									SelectionIndexBuffer,
-									SelectionCounterBuffer,
-									AliveIndexBuffer,
-									AliveCounterBuffer);
+	uint slotIndex = getSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	uint size, stride;

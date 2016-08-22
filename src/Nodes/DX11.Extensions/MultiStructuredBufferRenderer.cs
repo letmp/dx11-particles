@@ -100,7 +100,6 @@ namespace VVVV.DX11.Nodes
             {
                 if (this.FOutBuffers[i] == null)
                 {
-                    this.FOutBuffers[i] = new DX11Resource<IDX11RWStructureBuffer>();
                     reset = true;
                 }
             }
@@ -108,8 +107,12 @@ namespace VVVV.DX11.Nodes
 
             for (int i = 0; i < FOutBuffers.SliceCount; i++)
             {
-                DX11Resource<IDX11RWStructureBuffer> res = this.FOutBuffers[i];
-                this.FOutBuffers[i] = res;
+                if (reset) this.FOutBuffers[i] = new DX11Resource<IDX11RWStructureBuffer>();
+                else
+                {
+                    DX11Resource<IDX11RWStructureBuffer> res = this.FOutBuffers[i];
+                    this.FOutBuffers[i] = res;
+                }
             }
 
             if (reset)

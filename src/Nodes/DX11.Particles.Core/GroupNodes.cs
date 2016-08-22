@@ -13,7 +13,7 @@ using VVVV.DX11.Lib.Rendering;
 
 namespace DX11.Particles.Core
 {
-    public class GroupNodes
+    public class Group
     {
         public List<string> Variables = new List<string>();
         public List<string> FunctionCalls = new List<string>();
@@ -21,7 +21,7 @@ namespace DX11.Particles.Core
         public List<string> ConstantBufferVariables = new List<string>();
         public List<IDX11RenderSemantic> RenderSemantics = new List<IDX11RenderSemantic>();
         
-        public GroupNodes() { }
+        public Group() { }
 
         public void SetAll( IEnumerable<string> variables,
                                 IEnumerable<string> functionCalls, IEnumerable<string> functionDefinitions,
@@ -79,7 +79,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Join",Category = "DX11.Particles.Grouping", Help = "Joins all data needed for the grouping shader", Author="tmp", Tags = "")]
+    [PluginInfo(Name = "Join",Category = "DX11.Particles.Groups", Help = "Joins all data needed for the grouping shader", Author="tmp", Tags = "")]
     #endregion PluginInfo
     public class GroupJoin : IPluginEvaluate
     {
@@ -100,7 +100,7 @@ namespace DX11.Particles.Core
         protected Pin<IDX11RenderSemantic> FInSemantics;
 
         [Output("Output")]
-        public ISpread<GroupNodes> FOutGroupNodes;
+        public ISpread<Group> FOutGroup;
 
         #endregion fields & pins
 
@@ -108,23 +108,23 @@ namespace DX11.Particles.Core
         {
             if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunctionDefinition.IsChanged || FConstantBufferEntry.IsChanged || FInSemantics.IsChanged)) return;
 
-            FOutGroupNodes.SliceCount = 1;
-            GroupNodes gn = new GroupNodes();
+            FOutGroup.SliceCount = 1;
+            Group gn = new Group();
             gn.SetAll(FVariables, FFunctionCall, FFunctionDefinition, FConstantBufferEntry, FInSemantics);
-            FOutGroupNodes[0] = gn;
+            FOutGroup[0] = gn;
         }
     }
 
    
     #region PluginInfo
-    [PluginInfo(Name = "Split", Category = "DX11.Particles.Grouping", Help = "Splits all data needed for the grouping shader", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "Split", Category = "DX11.Particles.Groups", Help = "Splits all data needed for the grouping shader", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class GroupSplit : IPluginEvaluate
     {
         #region fields & pins
 
         [Input("Input", IsSingle = true)]
-        public IDiffSpread<GroupNodes> FInGroupNodes;
+        public IDiffSpread<Group> FInGroup;
 
         [Output("Variable List")]
         public ISpread<string> FVariables;
@@ -145,9 +145,9 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (!FInGroupNodes.IsChanged) return;
+            if (!FInGroup.IsChanged) return;
 
-            GroupNodes gn = FInGroupNodes[0];
+            Group gn = FInGroup[0];
             FVariables.SliceCount = FFunctionCalls.SliceCount = FFunctionDefinition.SliceCount = FConstantBufferEntry.SliceCount = FOutSemantics.SliceCount = 0;
 
             FVariables.AddRange(gn.Variables.ToArray());
@@ -165,10 +165,10 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         // A spread which contains our inputs
-        public Spread<IIOContainer<ISpread<GroupNodes>>> FInputs = new Spread<IIOContainer<ISpread<GroupNodes>>>();
+        public Spread<IIOContainer<ISpread<Group>>> FInputs = new Spread<IIOContainer<ISpread<Group>>>();
 
         [Output("Output")]
-        public ISpread<GroupNodes> FOutGroupNodes;
+        public ISpread<Group> FOutGroup;
 
         [Config("Input Count", DefaultValue = 2, MinValue = 2)]
         public IDiffSpread<int> FInputCountIn;
@@ -205,11 +205,11 @@ namespace DX11.Particles.Core
         {
             if (!FInputs.IsChanged) return;
 
-            GroupNodes gn = new GroupNodes();
+            Group gn = new Group();
             
             for (int i = 0; i < FInputs.Count(); i++)
             {
-                GroupNodes gnIn = FInputs[i].IOObject[0];
+                Group gnIn = FInputs[i].IOObject[0];
                 if (gnIn != null)
                 {
                     gn.AddConstantBufferEntries(gnIn.ConstantBufferVariables);
@@ -220,7 +220,7 @@ namespace DX11.Particles.Core
                 }
             }
 
-            FOutGroupNodes[0] = gn;
+            FOutGroup[0] = gn;
         }
     }
 

@@ -1,5 +1,4 @@
 #include "../fxh/Defines.fxh"
-#include "../fxh/Functions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -13,8 +12,7 @@ StructuredBuffer<Particle> ParticleBuffer;
 StructuredBuffer<GroupLink> GroupLinkBuffer;
 StructuredBuffer<uint> GroupCounterBuffer;
 
-float pixPos;
-int groupId;
+float2 R:TARGETSIZE;
 
 struct vsInput
 {
@@ -35,15 +33,15 @@ vs2ps VS(vsInput input)
     
 	uint slotIndex = GroupLinkBuffer[input.ii].particleId;
 	uint groupId = GroupLinkBuffer[input.ii].groupId;
+		
+	float halfPixel = (1.0f / R.x) * 0.5f;
 	
-	uint cnt,stride;
-	GroupCounterBuffer.GetDimensions(cnt,stride);
-	
-	float pixPos = (1.0f / cnt) * groupId;
+	float pixPos = (groupId * (1.0f / R.x)) * 2 - 1.0f;
+	pixPos += halfPixel;
 	
 	output.pos  = float4(pixPos , 0.0 ,0.0 ,1.0);
 	output.col = float4(ParticleBuffer[slotIndex].position, 1.0f );
-	if (groupId < 0 ) output.col = float4(0,0,0,0);
+	if (groupId == -1 ) output.col = float4(0,0,0,0);
 	
 	return output;
 }
