@@ -9,13 +9,10 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-
 RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
@@ -32,7 +29,7 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSet(csin input)
 {
-	uint slotIndex = getSlotIndex( input.DTID.x );
+	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	uint size, stride;
@@ -43,7 +40,7 @@ void CSSet(csin input)
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSAdd(csin input)
 {
-	uint slotIndex = getSlotIndex( input.DTID.x );
+	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	uint size, stride;

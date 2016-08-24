@@ -13,17 +13,12 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
-
 RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
-
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 cbuffer cbuf
@@ -60,7 +55,7 @@ void CS_Emit(csin input)
 		// copy particle
 		Particle p = (Particle) 0;
 		
-		uint slotIndexToCopy = getSlotIndex(emitterCounter,
+		uint slotIndexToCopy = GetSlotIndex(emitterCounter,
 									FlagBuffer,
 									SelectionIndexBuffer,
 									SelectionCounterBuffer,

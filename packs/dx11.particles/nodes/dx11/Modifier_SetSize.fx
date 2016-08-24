@@ -4,8 +4,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		int oneVariableNeeded;
-  		/*STUB_VARS_STRUCT*/
+		float3 size;
 	#endif
 };
 
@@ -16,13 +15,9 @@ RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
-cbuffer name : register(b0){
-   /*STUB_VARS_CBUF*/
-};
+StructuredBuffer<float3> SizeBuffer <string uiname="Size Buffer";>;
 
 #include "../fxh/Functions.fxh"
-
-/*STUB_FUNCTION_DEF*/
 
 struct csin
 {
@@ -32,20 +27,14 @@ struct csin
 };
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CS_Select(csin input)
+void CSSet(csin input)
 {
-	
 	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
-	bool isSelected = true;
-	/*STUB_FUNCTION_CALL*/
-	
-		
-	if (isSelected){
-		uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
-		SelectionIndexBuffer[selectionCounter] = slotIndex;
-	}
+	uint size, stride;
+	SizeBuffer.GetDimensions(size,stride);
+	ParticleBuffer[slotIndex].size = SizeBuffer[input.DTID.x % size];
 }
 
-technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }
+technique11 SetSize { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Groups\Group (DX11.Particles.Groups).v4p" systemname="Group (DX11.Particles)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Groups\Group (DX11.Particles).v4p" scrollx="15" scrolly="0">
-   <BOUNDS type="Window" left="3600" top="930" width="19875" height="14955">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Groups\Group (DX11.Particles.Groups).v4p" systemname="Group (DX11.Particles)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Groups\Group (DX11.Particles).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="7935" top="1065" width="19230" height="14955">
    </BOUNDS>
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="34">
    <BOUNDS type="Node" left="6915" top="12765" width="100" height="100">
@@ -109,7 +109,7 @@
    </PIN>
    <BOUNDS type="Box" left="11880" top="11040">
    </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="2">
+   <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
    <PIN pinname="Input 3" visible="1" slicecount="1" values="||">
    </PIN>
@@ -121,9 +121,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="26" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="16770" top="585" width="1590" height="270">
+   <BOUNDS type="Box" left="16020" top="585" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="16770" top="585" width="0" height="0">
+   <BOUNDS type="Node" left="16020" top="585" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
@@ -132,30 +132,6 @@
    <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="6915" top="11580" width="5025" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="6915" top="11580">
-   </BOUNDS>
-   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;../fxh/Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;  &tab;&tab;float3 position;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;GroupLink&gt; GroupLinkBuffer : GROUPLINKBUFFER_group1;&cr;&lf;RWStructuredBuffer&lt;uint&gt; GroupCounterBuffer : GROUPCOUNTERBUFFER_group1;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   float4x4 tFilter681 : TFILTER681;&cr;&lf;float4x4 tFilter682 : TFILTER682;&cr;&lf;float4x4 tFilter683 : TFILTER683;&cr;&lf;float4x4 tFilter684 : TFILTER684;&cr;&lf;float4x4 tFilter685 : TFILTER685;&cr;&lf;float4x4 tFilter686 : TFILTER686;&cr;&lf;float4x4 tFilter687 : TFILTER687;&cr;&lf;float4x4 tFilter688 : TFILTER688;&cr;&lf;float4x4 tFilter689 : TFILTER689;&cr;&lf;float4x4 tFilter690 : TFILTER690;&cr;&lf;float4x4 tFilter691 : TFILTER691;&cr;&lf;float4x4 tFilter692 : TFILTER692;&cr;&lf;float4x4 tFilter693 : TFILTER693;&cr;&lf;float4x4 tFilter694 : TFILTER694;&cr;&lf;float4x4 tFilter695 : TFILTER695;&cr;&lf;float4x4 tFilter696 : TFILTER696;&cr;&lf;float4x4 tFilter697 : TFILTER697;&cr;&lf;float4x4 tFilter698 : TFILTER698;&cr;&lf;float4x4 tFilter699 : TFILTER699;&cr;&lf;float4x4 tFilter700 : TFILTER700;&cr;&lf;float4x4 tFilter701 : TFILTER701;&cr;&lf;float4x4 tFilter702 : TFILTER702;&cr;&lf;float4x4 tFilter703 : TFILTER703;&cr;&lf;float4x4 tFilter704 : TFILTER704;&cr;&lf;float4x4 tFilter705 : TFILTER705;&cr;&lf;float4x4 tFilter706 : TFILTER706;&cr;&lf;float4x4 tFilter707 : TFILTER707;&cr;&lf;float4x4 tFilter708 : TFILTER708;&cr;&lf;float4x4 tFilter709 : TFILTER709;&cr;&lf;float4x4 tFilter710 : TFILTER710;&cr;&lf;float4x4 tFilter711 : TFILTER711;&cr;&lf;float4x4 tFilter712 : TFILTER712;&cr;&lf;float4x4 tFilter713 : TFILTER713;&cr;&lf;float4x4 tFilter714 : TFILTER714;&cr;&lf;float4x4 tFilter715 : TFILTER715;&cr;&lf;float4x4 tFilter716 : TFILTER716;&cr;&lf;float4x4 tFilter717 : TFILTER717;&cr;&lf;float4x4 tFilter718 : TFILTER718;&cr;&lf;float4x4 tFilter719 : TFILTER719;&cr;&lf;float4x4 tFilter720 : TFILTER720;&cr;&lf;float4x4 tFilter721 : TFILTER721;&cr;&lf;float4x4 tFilter722 : TFILTER722;&cr;&lf;float4x4 tFilter723 : TFILTER723;&cr;&lf;float4x4 tFilter724 : TFILTER724;&cr;&lf;float4x4 tFilter725 : TFILTER725;&cr;&lf;float4x4 tFilter726 : TFILTER726;&cr;&lf;float4x4 tFilter727 : TFILTER727;&cr;&lf;float4x4 tFilter728 : TFILTER728;&cr;&lf;float4x4 tFilter729 : TFILTER729;&cr;&lf;float4x4 tFilter730 : TFILTER730;&cr;&lf;};&cr;&lf;&cr;&lf;#include &quot;../fxh/Functions.fxh&quot;&cr;&lf;&cr;&lf;void LocalityInsideTransform( uint slotIndex,uint groupIndex, float4x4 tFilter)&cr;&lf;{&cr;&lf;&tab;float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;if( !(&tab;pointCoord.x &lt; -0.5 |||| pointCoord.x &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.y &lt; -0.5 |||| pointCoord.y &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.z &lt; -0.5 |||| pointCoord.z &gt; 0.5))&cr;&lf;&tab;{&cr;&lf;&tab;&tab;uint groupLinkIndex = GroupLinkBuffer.IncrementCounter();&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLink link;&cr;&lf;&tab;&tab;link.groupId = groupIndex;&cr;&lf;&tab;&tab;link.particleId = slotIndex;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLinkBuffer[groupLinkIndex] = link;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;uint oldval;&cr;&lf;&tab;&tab;InterlockedAdd(GroupCounterBuffer[groupIndex],1,oldval);&cr;&lf;&tab;}&cr;&lf;&cr;&lf;}&cr;&lf;void LocalityOutsideTransform( uint slotIndex, uint groupIndex, float4x4 tFilter)&cr;&lf;{&cr;&lf;&tab;float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;if( (&tab;pointCoord.x &lt; -0.5 |||| pointCoord.x &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.y &lt; -0.5 |||| pointCoord.y &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.z &lt; -0.5 |||| pointCoord.z &gt; 0.5))&cr;&lf;&tab;{&cr;&lf;&tab;&tab;uint groupLinkIndex = GroupLinkBuffer.IncrementCounter();&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLink link;&cr;&lf;&tab;&tab;link.groupId = groupIndex;&cr;&lf;&tab;&tab;link.particleId = slotIndex;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLinkBuffer[groupLinkIndex] = link;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;uint oldval;&cr;&lf;&tab;&tab;InterlockedAdd(GroupCounterBuffer[groupIndex],1,oldval);&cr;&lf;&tab;}&cr;&lf;&cr;&lf;}&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_ClearGroup(csin input)&cr;&lf;{&cr;&lf;&tab;if (input.DTID.x &gt; MAXGROUPELEMENTCOUNT) return;&cr;&lf;&tab;GroupLink link = { -1, -1 };&cr;&lf;&tab;GroupLinkBuffer[input.DTID.x] = link; // resets all links&cr;&lf;&tab;&cr;&lf;&tab;GroupCounterBuffer[input.DTID.x] = 0;&cr;&lf;}&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_SetGroup(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = getSlotIndex( input.DTID.x );&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;uint groupIndex = 0;&cr;&lf;&tab;&cr;&lf;&tab;groupIndex= 0 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter681);&cr;&lf;groupIndex= 1 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter682);&cr;&lf;groupIndex= 2 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter683);&cr;&lf;groupIndex= 3 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter684);&cr;&lf;groupIndex= 4 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter685);&cr;&lf;groupIndex= 5 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter686);&cr;&lf;groupIndex= 6 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter687);&cr;&lf;groupIndex= 7 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter688);&cr;&lf;groupIndex= 8 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter689);&cr;&lf;groupIndex= 9 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter690);&cr;&lf;groupIndex= 10 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter691);&cr;&lf;groupIndex= 11 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter692);&cr;&lf;groupIndex= 12 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter693);&cr;&lf;groupIndex= 13 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter694);&cr;&lf;groupIndex= 14 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter695);&cr;&lf;groupIndex= 15 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter696);&cr;&lf;groupIndex= 16 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter697);&cr;&lf;groupIndex= 17 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter698);&cr;&lf;groupIndex= 18 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter699);&cr;&lf;groupIndex= 19 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter700);&cr;&lf;groupIndex= 20 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter701);&cr;&lf;groupIndex= 21 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter702);&cr;&lf;groupIndex= 22 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter703);&cr;&lf;groupIndex= 23 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter704);&cr;&lf;groupIndex= 24 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter705);&cr;&lf;groupIndex= 25 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter706);&cr;&lf;groupIndex= 26 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter707);&cr;&lf;groupIndex= 27 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter708);&cr;&lf;groupIndex= 28 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter709);&cr;&lf;groupIndex= 29 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter710);&cr;&lf;groupIndex= 30 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter711);&cr;&lf;groupIndex= 31 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter712);&cr;&lf;groupIndex= 32 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter713);&cr;&lf;groupIndex= 33 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter714);&cr;&lf;groupIndex= 34 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter715);&cr;&lf;groupIndex= 35 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter716);&cr;&lf;groupIndex= 36 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter717);&cr;&lf;groupIndex= 37 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter718);&cr;&lf;groupIndex= 38 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter719);&cr;&lf;groupIndex= 39 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter720);&cr;&lf;groupIndex= 40 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter721);&cr;&lf;groupIndex= 41 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter722);&cr;&lf;groupIndex= 42 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter723);&cr;&lf;groupIndex= 43 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter724);&cr;&lf;groupIndex= 44 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter725);&cr;&lf;groupIndex= 45 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter726);&cr;&lf;groupIndex= 46 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter727);&cr;&lf;groupIndex= 47 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter728);&cr;&lf;groupIndex= 48 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter729);&cr;&lf;groupIndex= 49 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter730);&cr;&lf;&tab;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 ClearGroup { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_ClearGroup() ) );} }&cr;&lf;technique11 SetGroup { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetGroup() ) );} }|">
-   </PIN>
-   <PIN pinname="Technique" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="31" srcpinname="Output String" dstnodeid="15" dstpinname="IncludePath">
-   </LINK>
-   <LINK srcnodeid="27" srcpinname="Output" dstnodeid="15" dstpinname="Defines" linkstyle="VHV">
-   <LINKPOINT x="12485" y="11413">
-   </LINKPOINT>
-   <LINKPOINT x="11335" y="11403">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="30" srcpinname="Geometry Out" dstnodeid="15" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Layer" dstnodeid="34" dstpinname="Layer In">
-   </LINK>
    <NODE systemname="Reader (String)" filename="%VVVV%\lib\nodes\modules\String\Reader (String).v4p" nodename="Reader (String)" componentmode="Hidden" id="10">
    <BOUNDS type="Node" left="5820" top="6375" width="100" height="100">
    </BOUNDS>
@@ -251,7 +227,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="2">
-   <BOUNDS type="Node" left="10155" top="1725" width="100" height="100">
+   <BOUNDS type="Node" left="9105" top="1725" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Structure" visible="1" slicecount="1" values="||">
    </PIN>
@@ -263,17 +239,17 @@
    </PIN>
    <PIN pinname="BufferSemantics" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="10155" top="1725">
+   <BOUNDS type="Box" left="9105" top="1725">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="26" srcpinname="Output Enum" dstnodeid="2" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="16770" y="1275">
+   <LINKPOINT x="16020" y="1275">
    </LINKPOINT>
-   <LINKPOINT x="10830" y="1275">
+   <LINKPOINT x="9780" y="1275">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Info (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Shader)" componentmode="Hidden" id="1">
-   <BOUNDS type="Node" left="11340" top="1725" width="100" height="100">
+   <BOUNDS type="Node" left="10290" top="1725" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
@@ -281,25 +257,25 @@
    </PIN>
    <PIN pinname="ParticleSystem ElementCount" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="11340" top="1725">
+   <BOUNDS type="Box" left="10290" top="1725">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="26" srcpinname="Output Enum" dstnodeid="1" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="16770" y="1275">
+   <LINKPOINT x="16020" y="1275">
    </LINKPOINT>
-   <LINKPOINT x="11400" y="1275">
+   <LINKPOINT x="10350" y="1275">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="1" srcpinname="ParticleSystem Defines" dstnodeid="27" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11370" y="6768">
+   <LINKPOINT x="10670" y="6768">
    </LINKPOINT>
-   <LINKPOINT x="12330" y="6268">
+   <LINKPOINT x="11980" y="6268">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="1" srcpinname="ParticleSystem ElementCount" dstnodeid="28" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11535" y="6250">
+   <LINKPOINT x="10835" y="6250">
    </LINKPOINT>
-   <LINKPOINT x="8205" y="5750">
+   <LINKPOINT x="7855" y="5750">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="0" systemname="IOBox (Enumerations)">
@@ -310,8 +286,6 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="SetGroup">
    </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="Output Enum" dstnodeid="15" dstpinname="Technique">
-   </LINK>
    <NODE systemname="Group_Skeleton (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Group_Skeleton.fx" nodename="Group_Skeleton (DX11.Effect)" componentmode="Hidden" id="11">
    <BOUNDS type="Node" left="4725" top="5535" width="100" height="100">
    </BOUNDS>
@@ -341,11 +315,11 @@
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="Register (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Buffer)" componentmode="Hidden" id="36">
-   <BOUNDS type="Node" left="13275" top="5415" width="3555" height="270">
+   <BOUNDS type="Node" left="12525" top="6615" width="3555" height="270">
    </BOUNDS>
    <PIN pinname="BufferSemantic" visible="1" slicecount="2" values="GROUPINDEXBUFFER_Group1,GROUPCOUNTERBUFFER_Group1">
    </PIN>
-   <PIN pinname="Element Count" visible="1" slicecount="1" values="0">
+   <PIN pinname="Element Count" visible="1" slicecount="2" values="2500,5">
    </PIN>
    <PIN pinname="Stride" visible="1" slicecount="1" values="0">
    </PIN>
@@ -353,15 +327,15 @@
    </PIN>
    <PIN pinname="Reset Counter" visible="1" slicecount="1" values="0">
    </PIN>
-   <BOUNDS type="Box" left="13275" top="5415">
+   <BOUNDS type="Box" left="12525" top="6615">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="38" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="13290" top="3420" width="1860" height="420">
+   <BOUNDS type="Box" left="12540" top="4170" width="1860" height="420">
    </BOUNDS>
-   <BOUNDS type="Node" left="13290" top="3420" width="0" height="0">
+   <BOUNDS type="Node" left="12540" top="4170" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="2" visible="1" values="GROUPLINKBUFFER,GROUPCOUNTERBUFFER">
    </PIN>
@@ -381,7 +355,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="37">
-   <BOUNDS type="Node" left="13290" top="4395" width="450" height="270">
+   <BOUNDS type="Node" left="12540" top="5145" width="450" height="270">
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="2">
    </PIN>
@@ -399,15 +373,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="38" srcpinname="Output String" dstnodeid="37" dstpinname="Input 1" linkstyle="VHV">
-   <LINKPOINT x="12855" y="4035">
+   <LINKPOINT x="12105" y="4785">
    </LINKPOINT>
-   <LINKPOINT x="13785" y="4170">
+   <LINKPOINT x="13035" y="4920">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="39" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="13485" top="585" width="795" height="240">
+   <BOUNDS type="Box" left="12735" top="585" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="13485" top="585" width="0" height="0">
+   <BOUNDS type="Node" left="12735" top="585" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="group1">
    </PIN>
@@ -451,15 +425,15 @@
    <LINK srcnodeid="41" srcpinname="Output" dstnodeid="8" dstpinname="To">
    </LINK>
    <LINK srcnodeid="39" srcpinname="Output String" dstnodeid="41" dstpinname="Input 3" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="13485" y="4028">
+   <LINKPOINT x="12985" y="4028">
    </LINKPOINT>
-   <LINKPOINT x="10575" y="4028">
+   <LINKPOINT x="10325" y="4028">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="13995" top="4515" width="465" height="495">
+   <BOUNDS type="Box" left="13245" top="5265" width="465" height="495">
    </BOUNDS>
-   <BOUNDS type="Node" left="13995" top="4515" width="0" height="0">
+   <BOUNDS type="Node" left="13245" top="5265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" visible="1" values="8,2">
    </PIN>
@@ -479,13 +453,13 @@
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Element Count">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="51" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="14655" top="4515" width="285" height="495">
+   <BOUNDS type="Box" left="13905" top="5265" width="285" height="495">
    </BOUNDS>
-   <BOUNDS type="Node" left="14655" top="4515" width="0" height="0">
+   <BOUNDS type="Node" left="13905" top="5265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" visible="1" values="8,4">
    </PIN>
@@ -509,9 +483,9 @@
    <LINK srcnodeid="51" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Stride">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="52" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="15360" top="4515" width="285" height="495">
+   <BOUNDS type="Box" left="14610" top="5265" width="285" height="495">
    </BOUNDS>
-   <BOUNDS type="Node" left="15360" top="4515" width="0" height="0">
+   <BOUNDS type="Node" left="14610" top="5265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" visible="1" values="2,2">
    </PIN>
@@ -535,9 +509,9 @@
    <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Buffer Mode">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="53" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="16050" top="4515" width="480" height="480">
+   <BOUNDS type="Box" left="15300" top="5265" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="16050" top="4515" width="0" height="0">
+   <BOUNDS type="Node" left="15300" top="5265" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -554,16 +528,16 @@
    </NODE>
    <LINK srcnodeid="53" srcpinname="Y Output Value" dstnodeid="36" dstpinname="Reset Counter">
    </LINK>
-   <LINK srcnodeid="26" srcpinname="Output Enum" dstnodeid="36" dstpinname="ParticleSystem" linkstyle="VHV">
-   <LINKPOINT x="16250" y="3135">
+   <LINK srcnodeid="26" srcpinname="Output Enum" dstnodeid="36" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="16050" y="3735">
    </LINKPOINT>
-   <LINKPOINT x="17350" y="3135">
+   <LINKPOINT x="16050" y="3735">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="57" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="4980" top="2985" width="525" height="240">
+   <BOUNDS type="Box" left="4920" top="3855" width="735" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4980" top="2985" width="0" height="0">
+   <BOUNDS type="Node" left="4920" top="3855" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -575,11 +549,11 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" visible="1">
+   <PIN pinname="Y Input Value" visible="1" slicecount="1" values="20000">
    </PIN>
    </NODE>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="56">
-   <BOUNDS type="Node" left="6270" top="10140" width="100" height="100">
+   <BOUNDS type="Node" left="12315" top="10545" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -593,7 +567,7 @@
    </PIN>
    </NODE>
    <NODE systemname="FormatValue (String)" nodename="FormatValue (String)" componentmode="Hidden" id="55">
-   <BOUNDS type="Node" left="6450" top="9750" width="100" height="100">
+   <BOUNDS type="Node" left="12495" top="10155" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="2">
    </PIN>
@@ -603,7 +577,7 @@
    <LINK srcnodeid="55" srcpinname="Output" dstnodeid="56" dstpinname="Input 2">
    </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="54">
-   <BOUNDS type="Node" left="6435" top="9360" width="100" height="100">
+   <BOUNDS type="Node" left="12480" top="9765" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
@@ -612,30 +586,12 @@
    </NODE>
    <LINK srcnodeid="54" srcpinname="Output" dstnodeid="55" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5010" y="6543">
-   </LINKPOINT>
-   <LINKPOINT x="6450" y="6043">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="58">
-   <BOUNDS type="Node" left="4980" top="2610" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Input 2" visible="1" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="57" dstpinname="Y Input Value">
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="60">
    <BOUNDS type="Node" left="6570" top="13185" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Layer 1" visible="1">
+   <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
@@ -716,24 +672,6 @@
    </LINK>
    <LINK srcnodeid="63" srcpinname="ThreadY" dstnodeid="65" dstpinname="Thread Y">
    </LINK>
-   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="62">
-   <BOUNDS type="Node" left="885" top="11580" width="5025" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="885" top="11580">
-   </BOUNDS>
-   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;../fxh/Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;  &tab;&tab;float3 position;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;GroupLink&gt; GroupLinkBuffer : GROUPLINKBUFFER_group1;&cr;&lf;RWStructuredBuffer&lt;uint&gt; GroupCounterBuffer : GROUPCOUNTERBUFFER_group1;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   float4x4 tFilter681 : TFILTER681;&cr;&lf;float4x4 tFilter682 : TFILTER682;&cr;&lf;float4x4 tFilter683 : TFILTER683;&cr;&lf;float4x4 tFilter684 : TFILTER684;&cr;&lf;float4x4 tFilter685 : TFILTER685;&cr;&lf;float4x4 tFilter686 : TFILTER686;&cr;&lf;float4x4 tFilter687 : TFILTER687;&cr;&lf;float4x4 tFilter688 : TFILTER688;&cr;&lf;float4x4 tFilter689 : TFILTER689;&cr;&lf;float4x4 tFilter690 : TFILTER690;&cr;&lf;float4x4 tFilter691 : TFILTER691;&cr;&lf;float4x4 tFilter692 : TFILTER692;&cr;&lf;float4x4 tFilter693 : TFILTER693;&cr;&lf;float4x4 tFilter694 : TFILTER694;&cr;&lf;float4x4 tFilter695 : TFILTER695;&cr;&lf;float4x4 tFilter696 : TFILTER696;&cr;&lf;float4x4 tFilter697 : TFILTER697;&cr;&lf;float4x4 tFilter698 : TFILTER698;&cr;&lf;float4x4 tFilter699 : TFILTER699;&cr;&lf;float4x4 tFilter700 : TFILTER700;&cr;&lf;float4x4 tFilter701 : TFILTER701;&cr;&lf;float4x4 tFilter702 : TFILTER702;&cr;&lf;float4x4 tFilter703 : TFILTER703;&cr;&lf;float4x4 tFilter704 : TFILTER704;&cr;&lf;float4x4 tFilter705 : TFILTER705;&cr;&lf;float4x4 tFilter706 : TFILTER706;&cr;&lf;float4x4 tFilter707 : TFILTER707;&cr;&lf;float4x4 tFilter708 : TFILTER708;&cr;&lf;float4x4 tFilter709 : TFILTER709;&cr;&lf;float4x4 tFilter710 : TFILTER710;&cr;&lf;float4x4 tFilter711 : TFILTER711;&cr;&lf;float4x4 tFilter712 : TFILTER712;&cr;&lf;float4x4 tFilter713 : TFILTER713;&cr;&lf;float4x4 tFilter714 : TFILTER714;&cr;&lf;float4x4 tFilter715 : TFILTER715;&cr;&lf;float4x4 tFilter716 : TFILTER716;&cr;&lf;float4x4 tFilter717 : TFILTER717;&cr;&lf;float4x4 tFilter718 : TFILTER718;&cr;&lf;float4x4 tFilter719 : TFILTER719;&cr;&lf;float4x4 tFilter720 : TFILTER720;&cr;&lf;float4x4 tFilter721 : TFILTER721;&cr;&lf;float4x4 tFilter722 : TFILTER722;&cr;&lf;float4x4 tFilter723 : TFILTER723;&cr;&lf;float4x4 tFilter724 : TFILTER724;&cr;&lf;float4x4 tFilter725 : TFILTER725;&cr;&lf;float4x4 tFilter726 : TFILTER726;&cr;&lf;float4x4 tFilter727 : TFILTER727;&cr;&lf;float4x4 tFilter728 : TFILTER728;&cr;&lf;float4x4 tFilter729 : TFILTER729;&cr;&lf;float4x4 tFilter730 : TFILTER730;&cr;&lf;};&cr;&lf;&cr;&lf;#include &quot;../fxh/Functions.fxh&quot;&cr;&lf;&cr;&lf;void LocalityInsideTransform( uint slotIndex,uint groupIndex, float4x4 tFilter)&cr;&lf;{&cr;&lf;&tab;float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;if( !(&tab;pointCoord.x &lt; -0.5 |||| pointCoord.x &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.y &lt; -0.5 |||| pointCoord.y &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.z &lt; -0.5 |||| pointCoord.z &gt; 0.5))&cr;&lf;&tab;{&cr;&lf;&tab;&tab;uint groupLinkIndex = GroupLinkBuffer.IncrementCounter();&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLink link;&cr;&lf;&tab;&tab;link.groupId = groupIndex;&cr;&lf;&tab;&tab;link.particleId = slotIndex;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLinkBuffer[groupLinkIndex] = link;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;uint oldval;&cr;&lf;&tab;&tab;InterlockedAdd(GroupCounterBuffer[groupIndex],1,oldval);&cr;&lf;&tab;}&cr;&lf;&cr;&lf;}&cr;&lf;void LocalityOutsideTransform( uint slotIndex, uint groupIndex, float4x4 tFilter)&cr;&lf;{&cr;&lf;&tab;float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;if( (&tab;pointCoord.x &lt; -0.5 |||| pointCoord.x &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.y &lt; -0.5 |||| pointCoord.y &gt; 0.5 ||||&cr;&lf;&tab;&tab;pointCoord.z &lt; -0.5 |||| pointCoord.z &gt; 0.5))&cr;&lf;&tab;{&cr;&lf;&tab;&tab;uint groupLinkIndex = GroupLinkBuffer.IncrementCounter();&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLink link;&cr;&lf;&tab;&tab;link.groupId = groupIndex;&cr;&lf;&tab;&tab;link.particleId = slotIndex;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;GroupLinkBuffer[groupLinkIndex] = link;&cr;&lf;&tab;&tab;&cr;&lf;&tab;&tab;uint oldval;&cr;&lf;&tab;&tab;InterlockedAdd(GroupCounterBuffer[groupIndex],1,oldval);&cr;&lf;&tab;}&cr;&lf;&cr;&lf;}&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_ClearGroup(csin input)&cr;&lf;{&cr;&lf;&tab;if (input.DTID.x &gt; MAXGROUPELEMENTCOUNT) return;&cr;&lf;&tab;GroupLink link = { -1, -1 };&cr;&lf;&tab;GroupLinkBuffer[input.DTID.x] = link; // resets all links&cr;&lf;&tab;&cr;&lf;&tab;GroupCounterBuffer[input.DTID.x] = 0;&cr;&lf;}&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_SetGroup(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = getSlotIndex( input.DTID.x );&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;uint groupIndex = 0;&cr;&lf;&tab;&cr;&lf;&tab;groupIndex= 0 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter681);&cr;&lf;groupIndex= 1 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter682);&cr;&lf;groupIndex= 2 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter683);&cr;&lf;groupIndex= 3 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter684);&cr;&lf;groupIndex= 4 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter685);&cr;&lf;groupIndex= 5 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter686);&cr;&lf;groupIndex= 6 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter687);&cr;&lf;groupIndex= 7 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter688);&cr;&lf;groupIndex= 8 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter689);&cr;&lf;groupIndex= 9 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter690);&cr;&lf;groupIndex= 10 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter691);&cr;&lf;groupIndex= 11 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter692);&cr;&lf;groupIndex= 12 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter693);&cr;&lf;groupIndex= 13 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter694);&cr;&lf;groupIndex= 14 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter695);&cr;&lf;groupIndex= 15 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter696);&cr;&lf;groupIndex= 16 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter697);&cr;&lf;groupIndex= 17 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter698);&cr;&lf;groupIndex= 18 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter699);&cr;&lf;groupIndex= 19 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter700);&cr;&lf;groupIndex= 20 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter701);&cr;&lf;groupIndex= 21 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter702);&cr;&lf;groupIndex= 22 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter703);&cr;&lf;groupIndex= 23 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter704);&cr;&lf;groupIndex= 24 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter705);&cr;&lf;groupIndex= 25 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter706);&cr;&lf;groupIndex= 26 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter707);&cr;&lf;groupIndex= 27 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter708);&cr;&lf;groupIndex= 28 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter709);&cr;&lf;groupIndex= 29 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter710);&cr;&lf;groupIndex= 30 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter711);&cr;&lf;groupIndex= 31 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter712);&cr;&lf;groupIndex= 32 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter713);&cr;&lf;groupIndex= 33 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter714);&cr;&lf;groupIndex= 34 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter715);&cr;&lf;groupIndex= 35 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter716);&cr;&lf;groupIndex= 36 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter717);&cr;&lf;groupIndex= 37 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter718);&cr;&lf;groupIndex= 38 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter719);&cr;&lf;groupIndex= 39 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter720);&cr;&lf;groupIndex= 40 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter721);&cr;&lf;groupIndex= 41 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter722);&cr;&lf;groupIndex= 42 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter723);&cr;&lf;groupIndex= 43 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter724);&cr;&lf;groupIndex= 44 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter725);&cr;&lf;groupIndex= 45 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter726);&cr;&lf;groupIndex= 46 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter727);&cr;&lf;groupIndex= 47 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter728);&cr;&lf;groupIndex= 48 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter729);&cr;&lf;groupIndex= 49 ;&cr;&lf;LocalityInsideTransform(slotIndex,groupIndex,tFilter730);&cr;&lf;&tab;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 ClearGroup { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_ClearGroup() ) );} }&cr;&lf;technique11 SetGroup { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetGroup() ) );} }|">
-   </PIN>
-   <PIN pinname="Technique" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="66" srcpinname="Output String" dstnodeid="62" dstpinname="IncludePath">
-   </LINK>
-   <LINK srcnodeid="65" srcpinname="Geometry Out" dstnodeid="62" dstpinname="Geometry">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="61" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="4590" top="11040" width="1140" height="240">
    </BOUNDS>
@@ -742,12 +680,10 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="ClearGroup">
    </PIN>
    </NODE>
-   <LINK srcnodeid="61" srcpinname="Output Enum" dstnodeid="62" dstpinname="Technique">
-   </LINK>
    <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4980" y="6865">
+   <LINKPOINT x="4940" y="7195">
    </LINKPOINT>
-   <LINKPOINT x="2175" y="6365">
+   <LINKPOINT x="2155" y="6905">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="67">
@@ -773,19 +709,15 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="1" srcpinname="ParticleSystem Defines" dstnodeid="67" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11340" y="6768">
+   <LINKPOINT x="10640" y="6768">
    </LINKPOINT>
-   <LINKPOINT x="6090" y="6268">
+   <LINKPOINT x="5740" y="6268">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="67" dstpinname="Input 3">
-   </LINK>
-   <LINK srcnodeid="67" srcpinname="Output" dstnodeid="62" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Layer" dstnodeid="60" dstpinname="Layer 1" linkstyle="VHV">
-   <LINKPOINT x="945" y="12503">
+   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="67" dstpinname="Input 3" linkstyle="VHV">
+   <LINKPOINT x="12320" y="10913">
    </LINKPOINT>
-   <LINKPOINT x="6750" y="12503">
+   <LINKPOINT x="6325" y="10913">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="34" srcpinname="Layer Out" dstnodeid="60" dstpinname="Layer 2">
@@ -793,9 +725,9 @@
    <LINK srcnodeid="60" srcpinname="Layer Out" dstnodeid="32" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="78" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1845" top="585" width="795" height="240">
+   <BOUNDS type="Box" left="1995" top="585" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1845" top="585" width="0" height="0">
+   <BOUNDS type="Node" left="1995" top="585" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -803,13 +735,15 @@
    </PIN>
    </NODE>
    <NODE systemname="Zip (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (String)" componentmode="Hidden" id="80">
-   <BOUNDS type="Node" left="1710" top="4080" width="100" height="100">
+   <BOUNDS type="Node" left="870" top="4350" width="1035" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="2" values="|LocalityOutsideTransform(slotIndex,groupIndex,tFilter681);|,|LocalityOutsideTransform(slotIndex,groupIndex,tFilter682);|">
    </PIN>
-   <PIN pinname="Input 2" visible="1" slicecount="1" values="||">
+   <PIN pinname="Input 2" visible="1" slicecount="2" values="|LocalityInsideTransform(slotIndex,tFilter681);|,|LocalityInsideTransform(slotIndex,tFilter682);|">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="2">
    </PIN>
    </NODE>
    <NODE systemname="Count (String)" nodename="Count (String)" componentmode="Hidden" id="81">
@@ -831,21 +765,15 @@
    <LINK srcnodeid="81" srcpinname="Count" dstnodeid="82" dstpinname=".. To [">
    </LINK>
    <NODE systemname="FormatValue (String)" nodename="FormatValue (String)" componentmode="Hidden" id="83">
-   <BOUNDS type="Node" left="1875" top="3060" width="100" height="100">
+   <BOUNDS type="Node" left="1050" top="3510" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="2" values="0,1">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Output" dstnodeid="83" dstpinname="Input" linkstyle="VHV">
-   <LINKPOINT x="855" y="2910">
-   </LINKPOINT>
-   <LINKPOINT x="1875" y="2910">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="84">
-   <BOUNDS type="Node" left="1710" top="3645" width="100" height="100">
+   <BOUNDS type="Node" left="885" top="3930" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
@@ -865,13 +793,13 @@
    <LINK srcnodeid="84" srcpinname="Output" dstnodeid="80" dstpinname="Input 1">
    </LINK>
    <LINK srcnodeid="80" srcpinname="Output" dstnodeid="41" dstpinname="Input 5" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1770" y="5783">
+   <LINKPOINT x="930" y="5918">
    </LINKPOINT>
-   <LINKPOINT x="11415" y="5783">
+   <LINKPOINT x="11415" y="5918">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Zip (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (Value)" componentmode="Hidden" id="85">
-   <BOUNDS type="Node" left="14010" top="4065" width="100" height="100">
+   <BOUNDS type="Node" left="13260" top="4815" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -881,35 +809,23 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5040" y="3630">
+   <LINKPOINT x="4980" y="4515">
    </LINKPOINT>
-   <LINKPOINT x="14010" y="3630">
+   <LINKPOINT x="13260" y="4365">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="81" srcpinname="Count" dstnodeid="85" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1035" y="3015">
+   <LINKPOINT x="1035" y="3465">
    </LINKPOINT>
-   <LINKPOINT x="14295" y="3015">
+   <LINKPOINT x="13545" y="3315">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="85" srcpinname="Output" dstnodeid="50" dstpinname="Y Input Value">
    </LINK>
-   <LINK srcnodeid="1" srcpinname="ParticleSystem ElementCount" dstnodeid="58" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11535" y="2288">
-   </LINKPOINT>
-   <LINKPOINT x="5310" y="2288">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="81" srcpinname="Count" dstnodeid="58" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1035" y="2288">
-   </LINKPOINT>
-   <LINKPOINT x="4980" y="2288">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="86" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="16890" top="5415" width="2565" height="270">
+   <BOUNDS type="Node" left="16140" top="6615" width="2565" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="16890" top="5415" width="2565" height="270">
+   <BOUNDS type="Box" left="16140" top="6615" width="2565" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; register buffer for this groups|">
    </PIN>
@@ -921,11 +837,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="87" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="6645" top="2985" width="3240" height="270">
+   <BOUNDS type="Node" left="6330" top="2595" width="3240" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="6645" top="2985" width="3240" height="270">
+   <BOUNDS type="Box" left="6330" top="2595" width="3510" height="450">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; number of particles * number of groups|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; maximum particle-&gt;group links count =  number of particles * number of groups |">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -934,8 +850,300 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="Split (DX11.Particles.Groups)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Split (DX11.Particles.Groups)" componentmode="Hidden" id="77">
-   <BOUNDS type="Node" left="1830" top="1140" width="100" height="100">
+   <LINK srcnodeid="10" srcpinname="Content" dstnodeid="8" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="89">
+   <BOUNDS type="Node" left="1035" top="3120" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="90" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="13710" top="585" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="13710" top="585" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Set SubGroups|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="90" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Switch" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13710" y="1958">
+   </LINKPOINT>
+   <LINKPOINT x="1095" y="1958">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Output" dstnodeid="83" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Output" dstnodeid="89" dstpinname="Input 2" linkstyle="VHV">
+   <LINKPOINT x="580" y="2940">
+   </LINKPOINT>
+   <LINKPOINT x="1805" y="2940">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden" id="94">
+   <BOUNDS type="Node" left="6915" top="11580" width="5025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6915" top="11580">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="31" srcpinname="Output String" dstnodeid="94" dstpinname="IncludePath">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Output" dstnodeid="94" dstpinname="Defines" linkstyle="VHV">
+   <LINKPOINT x="12485" y="11413">
+   </LINKPOINT>
+   <LINKPOINT x="11335" y="11403">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="30" srcpinname="Geometry Out" dstnodeid="94" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Layer" dstnodeid="34" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output Enum" dstnodeid="94" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="94" dstpinname="ShaderCode" linkstyle="Bezier">
+   <LINKPOINT x="5865" y="9810">
+   </LINKPOINT>
+   <LINKPOINT x="8775" y="9810">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="95">
+   <BOUNDS type="Node" left="1830" top="3930" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="Input 1" slicecount="1" values="|if (|">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input 3" slicecount="1" visible="1" values="|) { SetGroupParticleLink( slotIndex, groupIndex);|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input 4" slicecount="1" visible="1" values="}">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="95" srcpinname="Output" dstnodeid="80" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Output" dstnodeid="27" dstpinname="Input 3">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4995" y="7060">
+   </LINKPOINT>
+   <LINKPOINT x="12450" y="6770">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="107">
+   <BOUNDS type="Node" left="5190" top="2985" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="ParticleSystem ElementCount" dstnodeid="107" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10580" y="2625">
+   </LINKPOINT>
+   <LINKPOINT x="5410" y="2325">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="90" srcpinname="Y Output Value" dstnodeid="107" dstpinname="Switch" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13710" y="1890">
+   </LINKPOINT>
+   <LINKPOINT x="5250" y="1890">
+   </LINKPOINT>
+   </LINK>
+   <NODE id="58" systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden">
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Node" left="5685" top="2595" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="107" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="81" srcpinname="Count" dstnodeid="58" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1270" y="2283">
+   </LINKPOINT>
+   <LINKPOINT x="5450" y="2278">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="ParticleSystem ElementCount" dstnodeid="58" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10720" y="2283">
+   </LINKPOINT>
+   <LINKPOINT x="5780" y="2278">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Switch (String Input)" nodename="Switch (String Input)" componentmode="Hidden" id="108">
+   <BOUNDS type="Node" left="2355" top="3510" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="}">
+   </PIN>
+   <PIN pinname="Input 1" slicecount="1" values="|return; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="90" srcpinname="Y Output Value" dstnodeid="108" dstpinname="Switch" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13710" y="2153">
+   </LINKPOINT>
+   <LINKPOINT x="2415" y="2153">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="108" srcpinname="Output" dstnodeid="95" dstpinname="Input 4">
+   </LINK>
+   <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="109">
+   <BOUNDS type="Node" left="14865" top="585" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="14865" top="585" width="420" height="240">
+   </BOUNDS>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Max BufferSize|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="111">
+   <BOUNDS type="Node" left="4920" top="3510" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="107" srcpinname="Output" dstnodeid="111" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="109" srcpinname="Y Output Value" dstnodeid="111" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="14865" y="2153">
+   </LINKPOINT>
+   <LINKPOINT x="5475" y="2153">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="113">
+   <BOUNDS type="Node" left="4530" top="2985" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Inverse Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="109" srcpinname="Y Output Value" dstnodeid="113" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="14865" y="1890">
+   </LINKPOINT>
+   <LINKPOINT x="4590" y="1890">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="113" srcpinname="Inverse Output" dstnodeid="111" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="111" srcpinname="Output" dstnodeid="57" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="EQ (Value)" nodename="EQ (Value)" componentmode="Hidden" id="114">
+   <BOUNDS type="Node" left="13245" top="5850" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="2" values="2500,5">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="115">
+   <BOUNDS type="Node" left="13245" top="6240" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1" slicecount="2" values="2500,5">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="114" srcpinname="Output" dstnodeid="115" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="115" srcpinname="Output" dstnodeid="36" dstpinname="Element Count">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="114" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="115" dstpinname="Input 1" linkstyle="Bezier">
+   <LINKPOINT x="13290" y="5985">
+   </LINKPOINT>
+   <LINKPOINT x="13515" y="5985">
+   </LINKPOINT>
+   </LINK>
+   <NODE id="93" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden">
+   <BOUNDS type="Node" left="885" top="11580" width="5025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="885" top="11580">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="93" dstpinname="ShaderCode" linkstyle="Bezier">
+   <LINKPOINT x="5790" y="9810">
+   </LINKPOINT>
+   <LINKPOINT x="2805" y="9810">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="93" srcpinname="Layer" dstnodeid="60" dstpinname="Layer 1" linkstyle="VHV">
+   <LINKPOINT x="945" y="12503">
+   </LINKPOINT>
+   <LINKPOINT x="6750" y="12503">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Output" dstnodeid="93" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="61" srcpinname="Output Enum" dstnodeid="93" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="65" srcpinname="Geometry Out" dstnodeid="93" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Output String" dstnodeid="93" dstpinname="IncludePath">
+   </LINK>
+   <NODE systemname="Split (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Split (DX11.Particles.Selectors)" componentmode="Hidden" id="77">
+   <BOUNDS type="Node" left="1980" top="1140" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -949,59 +1157,47 @@
    </PIN>
    <PIN pinname="Function Call" visible="1">
    </PIN>
+   <PIN pinname="Prevent from doubles" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="77" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="77" srcpinname="Variable List" dstnodeid="2" dstpinname="Structure" linkstyle="Bezier">
-   <LINKPOINT x="1890" y="1553">
+   <LINK srcnodeid="77" srcpinname="Variable List" dstnodeid="2" dstpinname="Structure" linkstyle="VHV">
+   <LINKPOINT x="1640" y="1553">
    </LINKPOINT>
-   <LINKPOINT x="10155" y="1553">
+   <LINKPOINT x="9505" y="1553">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="77" srcpinname="Variable List" dstnodeid="41" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1890" y="4305">
+   <LINKPOINT x="1990" y="4305">
    </LINKPOINT>
-   <LINKPOINT x="9675" y="4305">
+   <LINKPOINT x="9725" y="4305">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="77" srcpinname="Constant Buffer Entry" dstnodeid="41" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2415" y="4313">
+   <LINKPOINT x="2515" y="4313">
    </LINKPOINT>
-   <LINKPOINT x="10110" y="4313">
+   <LINKPOINT x="10160" y="4313">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="77" srcpinname="Function Definition" dstnodeid="41" dstpinname="Input 4" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2235" y="4305">
+   <LINKPOINT x="2335" y="4305">
    </LINKPOINT>
-   <LINKPOINT x="10965" y="4305">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="77" srcpinname="Function Call" dstnodeid="81" dstpinname="Input" linkstyle="Bezier">
-   <LINKPOINT x="1995" y="1553">
-   </LINKPOINT>
-   <LINKPOINT x="1035" y="1553">
+   <LINKPOINT x="11015" y="4305">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="77" srcpinname="Function Call" dstnodeid="80" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="10" srcpinname="Content" dstnodeid="8" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="62" dstpinname="ShaderCode" linkstyle="Bezier">
-   <LINKPOINT x="5790" y="9810">
+   <LINK srcnodeid="77" srcpinname="Function Call" dstnodeid="81" dstpinname="Input" linkstyle="VHV">
+   <LINKPOINT x="2095" y="1553">
    </LINKPOINT>
-   <LINKPOINT x="2805" y="9810">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="15" dstpinname="ShaderCode" linkstyle="Bezier">
-   <LINKPOINT x="5865" y="9810">
-   </LINKPOINT>
-   <LINKPOINT x="8775" y="9810">
+   <LINKPOINT x="1085" y="1553">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="77" srcpinname="Custom Semantics" dstnodeid="34" dstpinname="Custom Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2565" y="7088">
+   <LINKPOINT x="2665" y="7088">
    </LINKPOINT>
-   <LINKPOINT x="7185" y="7088">
+   <LINKPOINT x="7235" y="7088">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="Function Call" dstnodeid="95" dstpinname="Input 2">
    </LINK>
    </PATCH>

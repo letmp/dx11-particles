@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selectors Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selectors Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="360">
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="7890" top="4830" width="1620" height="270">
    </BOUNDS>
@@ -7,7 +7,7 @@
    </PIN>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Semantic" slicecount="2" visible="1" values="TFILTER0,TFILTER1">
+   <PIN pinname="Semantic" slicecount="2" visible="1" values="TFILTER653,TFILTER654">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
@@ -15,7 +15,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4290" top="7125" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|bool LocalityInsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return (!(&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };&cr;&lf;bool LocalityOutsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return ((&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|">
+   <PIN pinname="Input String" slicecount="2" visible="1" values="|bool LocalityInsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return (!(&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|,|bool LocalityOutsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return ((&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -23,13 +23,17 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="6075" top="5685" width="2190" height="1095">
+   <BOUNDS type="Box" left="6075" top="5685" width="3120" height="1065">
    </BOUNDS>
    <BOUNDS type="Node" left="6075" top="5685" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="2" visible="1" values="|float4x4 tFilter0 : TFILTER0;|,|float4x4 tFilter1 : TFILTER1;|">
+   <PIN pinname="Input String" slicecount="2" visible="1" values="|float4x4 tFilter653 : TFILTER653;|,|float4x4 tFilter654 : TFILTER654;|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -45,9 +49,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="4" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2460" top="3120" width="2760" height="240">
+   <BOUNDS type="Box" left="660" top="3120" width="1890" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2460" top="3120" width="0" height="0">
+   <BOUNDS type="Node" left="660" top="3120" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="LocalityInsideTransform(slotIndex)">
    </PIN>
@@ -109,9 +113,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="15" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="690" top="4785" width="1155" height="240">
+   <BOUNDS type="Box" left="2490" top="8355" width="1155" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="690" top="4785" width="0" height="0">
+   <BOUNDS type="Node" left="2490" top="8355" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="|float3 position;|">
    </PIN>
@@ -153,7 +157,7 @@
    <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="17" dstpinname="Strings">
    </LINK>
    <NODE systemname="Switch (String Input)" nodename="Switch (String Input)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="2460" top="2760" width="100" height="100">
+   <BOUNDS type="Node" left="660" top="2760" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Switch" visible="1">
    </PIN>
@@ -177,7 +181,7 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="19" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="10860" top="870" width="750" height="240">
+   <BOUNDS type="Box" left="10860" top="870" width="855" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="10860" top="870" width="0" height="0">
    </BOUNDS>
@@ -205,33 +209,17 @@
    <LINK srcnodeid="19" srcpinname="Output Enum" dstnodeid="18" dstpinname="Enum">
    </LINK>
    <LINK srcnodeid="18" srcpinname="Ord Value" dstnodeid="21" dstpinname="Switch" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10860" y="2243">
+   <LINKPOINT x="10260" y="2243">
    </LINKPOINT>
-   <LINKPOINT x="2520" y="2243">
+   <LINKPOINT x="1320" y="2243">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="21" srcpinname="Output" dstnodeid="4" dstpinname="Input String">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="32" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2490" top="5685" width="3495" height="1095">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2490" top="5685" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   <PIN pinname="Input String" slicecount="1" values="|(LocalityInsideTransform(slotIndex,tFilter0) |||| LocalityInsideTransform(slotIndex,tFilter1))|">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="34" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="3495" top="3540" width="990" height="240">
+   <BOUNDS type="Box" left="2475" top="3540" width="990" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3495" top="3540" width="0" height="0">
+   <BOUNDS type="Node" left="2475" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="slotIndex">
    </PIN>
@@ -241,11 +229,13 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="35" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4545" top="3540" width="795" height="240">
+   <BOUNDS type="Box" left="4260" top="3540" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4545" top="3540" width="0" height="0">
+   <BOUNDS type="Node" left="4260" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="|float4x4 |">
    </PIN>
@@ -255,11 +245,13 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="36" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5580" top="3540" width="795" height="240">
+   <BOUNDS type="Box" left="6045" top="3540" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5580" top="3540" width="0" height="0">
+   <BOUNDS type="Node" left="6045" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="tFilter">
    </PIN>
@@ -269,11 +261,13 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="37" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="6600" top="3540" width="795" height="240">
+   <BOUNDS type="Box" left="7845" top="3540" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6600" top="3540" width="0" height="0">
+   <BOUNDS type="Node" left="7845" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="TFILTER">
    </PIN>
@@ -283,9 +277,11 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="Count (Node)" nodename="Count (Node)" componentmode="Hidden" id="38">
-   <BOUNDS type="Node" left="7620" top="3540" width="100" height="100">
+   <BOUNDS type="Node" left="9645" top="3540" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -293,29 +289,11 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="38" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5700" y="2310">
+   <LINKPOINT x="6375" y="2310">
    </LINKPOINT>
-   <LINKPOINT x="7620" y="2310">
+   <LINKPOINT x="8970" y="2310">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="39" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6765" top="870" width="285" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6765" top="870" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Intersect / Union|">
-   </PIN>
-   </NODE>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
    <NODE systemname="Constant (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Constant.fx" nodename="Constant (DX11.Effect)" componentmode="Hidden" id="46">
@@ -431,7 +409,7 @@
    <LINK srcnodeid="47" srcpinname="Color Output" dstnodeid="46" dstpinname="Color">
    </LINK>
    <NODE systemname="Self (VVVV)" nodename="Self (VVVV)" componentmode="Hidden" id="48">
-   <BOUNDS type="Node" left="8655" top="3540" width="100" height="100">
+   <BOUNDS type="Node" left="11430" top="3540" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ID in ParentPatch" visible="1">
    </PIN>
@@ -454,68 +432,12 @@
    <PIN pinname="Filename" visible="-1" pintype="Output">
    </PIN>
    </NODE>
-   <NODE systemname="BuildFunctionCall (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\BuildFunctionCall (DX11.Particles.Selectors).v4p" nodename="BuildFunctionCall (DX11.Particles.Selectors)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="2475" top="4035" width="7260" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="645" top="1140" width="9040" height="5800">
-   </BOUNDS>
-   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
-   </BOUNDS>
-   <PIN pinname="FunctionArguments" visible="1">
-   </PIN>
-   <PIN pinname="Conjunct And/Or" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Variable Type" visible="1">
-   </PIN>
-   <PIN pinname="Variable Name" visible="1">
-   </PIN>
-   <PIN pinname="Semantic" visible="1">
-   </PIN>
-   <PIN pinname="Semantic Count" visible="1">
-   </PIN>
-   <PIN pinname="Id" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="33" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
-   <LINKPOINT x="9675" y="4553">
-   </LINKPOINT>
-   <LINKPOINT x="8730" y="4553">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="33" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String" linkstyle="VHV">
-   <LINKPOINT x="5600" y="4988">
-   </LINKPOINT>
-   <LINKPOINT x="6100" y="4988">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="33" dstpinname="FunctionName">
-   </LINK>
-   <LINK srcnodeid="33" srcpinname="FunctionCall" dstnodeid="32" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="33" dstpinname="FunctionArguments">
-   </LINK>
-   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="33" dstpinname="Variable Type">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="33" dstpinname="Variable Name">
-   </LINK>
-   <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="33" dstpinname="Semantic">
-   </LINK>
-   <LINK srcnodeid="38" srcpinname="Count" dstnodeid="33" dstpinname="Semantic Count">
-   </LINK>
-   <LINK srcnodeid="39" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Conjunct And/Or" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6825" y="2573">
-   </LINKPOINT>
-   <LINKPOINT x="8670" y="2573">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="33" dstpinname="Id">
-   </LINK>
    <NODE systemname="Join (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selectors)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="675" top="9210" width="7275" height="270">
    </BOUNDS>
    <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
    </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="|(LocalityInsideTransform(slotIndex,tFilter0) |||| LocalityInsideTransform(slotIndex,tFilter1))|">
+   <PIN pinname="Function Call" slicecount="2" visible="1" values="|LocalityInsideTransform(slotIndex,tFilter653)|,|LocalityInsideTransform(slotIndex,tFilter654)|">
    </PIN>
    <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
    </PIN>
@@ -542,6 +464,66 @@
    </LINK>
    <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
    </LINK>
-   <LINK srcnodeid="32" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
+   <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="49">
+   <BOUNDS type="Node" left="675" top="4110" width="10830" height="270">
+   </BOUNDS>
+   <PIN pinname="FunctionName" visible="1">
+   </PIN>
+   <PIN pinname="FunctionArguments" visible="1">
+   </PIN>
+   <PIN pinname="Variable Type" visible="1">
+   </PIN>
+   <PIN pinname="Variable Name" visible="1">
+   </PIN>
+   <PIN pinname="Semantic" visible="1">
+   </PIN>
+   <PIN pinname="Semantic Count" visible="1">
+   </PIN>
+   <PIN pinname="Id" visible="1">
+   </PIN>
+   <PIN pinname="FunctionCall" visible="1">
+   </PIN>
+   <PIN pinname="ConstantBuffer Entry" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="49" dstpinname="FunctionName">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="49" dstpinname="FunctionArguments">
+   </LINK>
+   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="49" dstpinname="Variable Type">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="49" dstpinname="Variable Name">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="49" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="38" srcpinname="Count" dstnodeid="49" dstpinname="Semantic Count">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="49" dstpinname="Id">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
+   <LINKPOINT x="11445" y="4590">
+   </LINKPOINT>
+   <LINKPOINT x="8730" y="4590">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="50" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="690" top="4800" width="4110" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="690" top="4800" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="49" srcpinname="FunctionCall" dstnodeid="50" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
    </LINK>
    </PATCH>

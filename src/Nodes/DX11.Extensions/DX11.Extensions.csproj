@@ -249,6 +249,7 @@
     <Error Condition="!Exists('..\..\Packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.Hosting.34.2.0\build\net40\VVVV.Hosting.targets'))" />
     <Error Condition="!Exists('..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.props'))" />
     <Error Condition="!Exists('..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\Packages\VVVV.SlimDX.1.0.2\build\net40\VVVV.SlimDX.targets'))" />
+    <Error Condition="!Exists('..\..\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets'))" />
   </Target>
   <Import Project="..\..\Packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets" Condition="Exists('..\..\Packages\VVVV.PluginInterfaces.34.2.0\build\net40\VVVV.PluginInterfaces.targets')" />
   <Import Project="..\..\Packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets" Condition="Exists('..\..\Packages\VVVV.Utils3rdParty.34.2.0\build\net40\VVVV.Utils3rdParty.targets')" />
@@ -260,4 +261,5 @@
     </ItemGroup>
     <Microsoft.Build.Tasks.Copy SourceFiles="@(MyFiles)" DestinationFiles="@(MyFiles->'..\..\..\packs\dx11.particles\nodes\plugins\$(AssemblyName)\$(Platform)\%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
+  <Import Project="..\..\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets" Condition="Exists('..\..\packages\VVVV.Nodes.Generic.34.2.0\build\net40\VVVV.Nodes.Generic.targets')" />
 </Project>

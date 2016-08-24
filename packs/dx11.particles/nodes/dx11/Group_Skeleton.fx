@@ -10,15 +10,11 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-
 RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
-
 RWStructuredBuffer<GroupLink> GroupLinkBuffer : GROUPLINKBUFFER_/*STUB_GROUPNAME*/;
 RWStructuredBuffer<uint> GroupCounterBuffer : GROUPCOUNTERBUFFER_/*STUB_GROUPNAME*/;
 
@@ -27,6 +23,21 @@ cbuffer name : register(b0){
 };
 
 #include "../fxh/Functions.fxh"
+
+void SetGroupParticleLink (uint slotIndex, uint groupIndex){
+	uint groupLinkIndex = GroupLinkBuffer.IncrementCounter();
+	
+	if (groupLinkIndex >= MAXGROUPELEMENTCOUNT) return;
+	
+	GroupLink link;
+	link.groupId = groupIndex;
+	link.particleId = slotIndex;
+	
+	GroupLinkBuffer[groupLinkIndex] = link;
+	
+	uint oldval;
+	InterlockedAdd(GroupCounterBuffer[groupIndex],1,oldval);
+}
 
 /*STUB_FUNCTION_DEF*/
 
@@ -51,7 +62,7 @@ void CS_ClearGroup(csin input)
 void CS_SetGroup(csin input)
 {
 	
-	uint slotIndex = getSlotIndex( input.DTID.x );
+	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
 	uint groupIndex = 0;

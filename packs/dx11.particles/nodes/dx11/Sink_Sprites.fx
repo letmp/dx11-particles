@@ -93,7 +93,7 @@ void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
 	    {
 	    	float size = radius / lerp(1, denom, Perspective);
 	        #if defined(KNOW_SIZE)
-	            size *= ParticleBuffer[iv].size;
+	            size *= ParticleBuffer[slotIndex].size.x;
 	        #endif
 	        float2 cpos = qpos[i].xy * size;
 	    	cpos *= ss;

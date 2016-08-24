@@ -5,7 +5,7 @@
 //                  COMMON FUNCTIONS
 // =====================================================
 
-int getSlotIndex(uint pId){
+int GetSlotIndex(uint pId){
 	uint slotIndex = 0;
 	
 	if (FlagBuffer[0] == true){ // Apply to selected particles only
@@ -18,5 +18,3 @@ int getSlotIndex(uint pId){
 	}
 	return slotIndex;
 }
-
-

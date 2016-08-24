@@ -11,20 +11,17 @@ struct Particle {
 	#endif
 };
 
-// ParticleSystem Buffers
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
 RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
-// Inputs
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 Texture2D texRGB <string uiname="RGB";>;
 Texture2D texDepth <string uiname="Depth";>;
 Texture2D texRayTable <string uiname="RayTable";>;
 Texture2D texRGBDepth <string uiname="RGBDepth";>;
 
-// CBuffer
 cbuffer cbuf
 {
 	uint EmitCount = 0;

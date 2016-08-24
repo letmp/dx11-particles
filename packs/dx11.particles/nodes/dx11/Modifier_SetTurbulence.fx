@@ -4,6 +4,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
+		float3 position;
 		float3 acceleration;
 	#endif
 };
@@ -17,9 +18,16 @@ RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
 
-int UpdateMode;
-
 #include "../fxh/Functions.fxh"
+#include "../fxh/NoiseFunction.fxh"
+
+//NOISE FORCE:
+float3 noiseAmount = float3(0.0f,0.0f,0.0f);
+float noiseTime;
+int noiseOct;
+float noiseFreq = 1;
+float noiseLacun = 1.666;
+float noisePers = 0.666;
 
 struct csin
 {
@@ -34,17 +42,18 @@ void CSUpdate(csin input)
 	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex < 0 ) return;
 	
-	uint size, stride;
-	AccelerationBuffer.GetDimensions(size,stride);
+	float3 position = ParticleBuffer[slotIndex].position;
 	
-	float3 acceleration = AccelerationBuffer[slotIndex % size];
-	if (UpdateMode == 0)
-			ParticleBuffer[slotIndex].acceleration = acceleration;
-	else if (UpdateMode == 1)
-			ParticleBuffer[slotIndex].acceleration += acceleration;
-
+	// Noise Force
+	float3 noiseForce = float3(
+	fBm(float4( position + float3(51,2.36,-5),noiseTime),noiseOct,noiseFreq,noiseLacun,noisePers),
+	fBm(float4( position + float3(98.2,-9,-36),noiseTime),noiseOct,noiseFreq,noiseLacun,noisePers),
+	fBm(float4( position + float3(0,10.69,6),noiseTime),noiseOct,noiseFreq,noiseLacun,noisePers)
+	);
+	noiseForce *= noiseAmount;
 	
+	ParticleBuffer[slotIndex].acceleration += noiseForce;
 	
 }
 
-technique11 Acceleration { pass P0{SetComputeShader( CompileShader( cs_5_0, CSUpdate() ) );} }
+technique11 Turbulence { pass P0{SetComputeShader( CompileShader( cs_5_0, CSUpdate() ) );} }
