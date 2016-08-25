@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\SetTurbulence (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Turbulence (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="-360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="3330" top="1275" width="13860" height="8805">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
@@ -294,54 +294,6 @@
    </NODE>
    <LINK srcnodeid="62" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
-   <NODE id="63" systemname="Modifier_SetTurbulence (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_SetTurbulence.fx" nodename="Modifier_SetTurbulence (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="405" top="4755" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="405" top="4755">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" values="Turbulence">
-   </PIN>
-   <PIN pinname="permTexture" visible="1">
-   </PIN>
-   <PIN pinname="permTexture2d" visible="1">
-   </PIN>
-   <PIN pinname="permGradTexture" visible="1">
-   </PIN>
-   <PIN pinname="gradTexture4d" visible="1">
-   </PIN>
-   <PIN pinname="noiseAmountXYZ" visible="1">
-   </PIN>
-   <PIN pinname="noiseTime" visible="1" slicecount="1" values="295.735867722917">
-   </PIN>
-   <PIN pinname="noiseOct" visible="1">
-   </PIN>
-   <PIN pinname="noiseFreq" visible="1">
-   </PIN>
-   <PIN pinname="noiseLacun" visible="1">
-   </PIN>
-   <PIN pinname="noisePers" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="63" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="63" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="63" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="63" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10890" y="3120">
-   </LINKPOINT>
-   <LINKPOINT x="7365" y="3120">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="63" srcpinname="Shader Path" dstnodeid="62" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="6570" y="5543">
-   </LINKPOINT>
-   <LINKPOINT x="7605" y="5543">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="FileTexture (DX11 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="FileTexture (DX11 2d)" componentmode="Hidden" id="74">
    <BOUNDS type="Node" left="5145" top="2775" width="100" height="100">
    </BOUNDS>
@@ -492,6 +444,62 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="75" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3060" top="1035" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3060" top="1035" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Time">
+   </PIN>
+   </NODE>
+   <NODE id="63" systemname="Modifier_Turbulence (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Turbulence.fx" nodename="Modifier_Turbulence (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="405" top="4755" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="405" top="4755">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" values="Turbulence">
+   </PIN>
+   <PIN pinname="permTexture" visible="1">
+   </PIN>
+   <PIN pinname="permTexture2d" visible="1">
+   </PIN>
+   <PIN pinname="permGradTexture" visible="1">
+   </PIN>
+   <PIN pinname="gradTexture4d" visible="1">
+   </PIN>
+   <PIN pinname="noiseAmountXYZ" visible="1">
+   </PIN>
+   <PIN pinname="noiseTime" visible="1" slicecount="1" values="295.735867722917">
+   </PIN>
+   <PIN pinname="noiseOct" visible="1">
+   </PIN>
+   <PIN pinname="noiseFreq" visible="1">
+   </PIN>
+   <PIN pinname="noiseLacun" visible="1">
+   </PIN>
+   <PIN pinname="noisePers" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="63" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="63" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10890" y="3120">
+   </LINKPOINT>
+   <LINKPOINT x="7365" y="3120">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Shader Path" dstnodeid="62" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="6570" y="5543">
+   </LINKPOINT>
+   <LINKPOINT x="7605" y="5543">
+   </LINKPOINT>
+   </LINK>
    <LINK srcnodeid="74" srcpinname="Texture Out" dstnodeid="63" dstpinname="permTexture">
    </LINK>
    <LINK srcnodeid="73" srcpinname="Texture Out" dstnodeid="63" dstpinname="permTexture2d">
@@ -530,14 +538,6 @@
    <LINKPOINT x="4335" y="3015">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="75" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3060" top="1035" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="3060" top="1035" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Time">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="75" srcpinname="Y Output Value" dstnodeid="63" dstpinname="noiseTime" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="3075" y="3000">
    </LINKPOINT>
