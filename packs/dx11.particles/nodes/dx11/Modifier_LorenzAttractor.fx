@@ -4,7 +4,9 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float4 color;
+		float3 position;
+		float3 acceleration;
+		float3 velocity;
 	#endif
 };
 
@@ -15,10 +17,13 @@ RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
-StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
-
 #include "../fxh/Functions.fxh"
 
+//NOISE FORCE:
+float S = 10;
+float B = 2.666;
+float R = 28;
+float Speed = 0.1;
 struct csin
 {
 	uint3 DTID : SV_DispatchThreadID;
@@ -27,26 +32,20 @@ struct csin
 };
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSSet(csin input)
+void CSUpdate(csin input)
 {
 	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	if (slotIndex < 0 ) return;
 	
-	uint size, stride;
-	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
+	float3 position = ParticleBuffer[slotIndex].position;
+	
+	position.x = position.x + S * (position.y - position.x) * psTime.y * Speed;
+	position.y = position.y + ( (R * position.x) - position.y - (position.x * position.z) ) * psTime.y * Speed;
+    position.z = position.z + ( (position.x * position.y) - (B * position.z) ) * psTime.y * Speed;
+	
+	
+	ParticleBuffer[slotIndex].position = position;
+	
 }
 
-[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSAdd(csin input)
-{
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
-	
-	uint size, stride;
-	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
-}
-
-technique11 SetColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
-technique11 AddColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }
+technique11 LorenzAttractor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSUpdate() ) );} }

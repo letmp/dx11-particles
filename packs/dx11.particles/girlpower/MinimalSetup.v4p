@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\MinimalSetup.v4p" systemname="mcps" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\girlpower\mcps.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="2640" top="1485" width="18075" height="13590">
+   <BOUNDS type="Window" left="2640" top="1485" width="16095" height="13590">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -169,7 +169,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="885" top="435" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="100000">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="99995">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -187,7 +187,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1680" top="3525" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="60">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -239,7 +239,7 @@
    </BOUNDS>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Mode" slicecount="1" values="Add">
+   <PIN pinname="Mode" slicecount="1" values="TextDefault">
    </PIN>
    <BOUNDS type="Box" left="4110" top="9465">
    </BOUNDS>
@@ -323,7 +323,7 @@
    </PIN>
    <PIN pinname="Initial Pitch" slicecount="1" values="0.12">
    </PIN>
-   <PIN pinname="Initial Distance" slicecount="1" values="5">
+   <PIN pinname="Initial Distance" slicecount="1" values="10">
    </PIN>
    <PIN pinname="View" visible="1">
    </PIN>
@@ -341,13 +341,13 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="651">
-   <BOUNDS type="Node" left="5175" top="4215" width="100" height="100">
+   <BOUNDS type="Node" left="4950" top="3345" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
-   <PIN pinname="Data" slicecount="1" values="|0.40361,0.91827,0.59670,1.00000|">
+   <PIN pinname="Data" slicecount="1" visible="1" values="|0.00000,1.00000,0.14136,1.00000|">
    </PIN>
-   <BOUNDS type="Box" left="5175" top="4215">
+   <BOUNDS type="Box" left="4950" top="3345">
    </BOUNDS>
    </NODE>
    <NODE systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden" id="272">
@@ -473,7 +473,7 @@
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="Radius" slicecount="1" values="20">
+   <PIN pinname="Radius" slicecount="1" values="100">
    </PIN>
    <PIN pinname="Texture" visible="1" slicecount="1" values="||">
    </PIN>
@@ -559,7 +559,7 @@
    </PIN>
    <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Group" slicecount="1" values="group1">
+   <PIN pinname="Group" slicecount="1" values="(nil)">
    </PIN>
    <PIN pinname="Query" visible="1">
    </PIN>
@@ -584,28 +584,6 @@
    </LINK>
    <LINK srcnodeid="323" srcpinname="Output" dstnodeid="210" dstpinname="DataXYZ">
    </LINK>
-   <NODE systemname="Group (DX11.Particles.Groups)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Groups\Group (DX11.Particles.Groups).v4p" nodename="Group (DX11.Particles.Groups)" componentmode="Hidden" id="678">
-   <BOUNDS type="Node" left="6240" top="5115" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer Out" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="7935" top="1065" width="19230" height="14955">
-   </BOUNDS>
-   <PIN pinname="Help Layer" visible="1">
-   </PIN>
-   <PIN pinname="Grouping" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupName" slicecount="1" values="group1">
-   </PIN>
-   <BOUNDS type="Box" left="6240" top="5115">
-   </BOUNDS>
-   <PIN pinname="Set SubGroups" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Max BufferSize" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="360" srcpinname="Render State" dstnodeid="658" dstpinname="Render State" linkstyle="VHV">
    <LINKPOINT x="4170" y="9855">
    </LINKPOINT>
@@ -616,14 +594,66 @@
    </LINK>
    <LINK srcnodeid="665" srcpinname="Texture Out" dstnodeid="658" dstpinname="Texture">
    </LINK>
-   <NODE systemname="Color (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" nodename="Color (DX11.Particles.Modifiers)" componentmode="Hidden" id="650">
-   <BOUNDS type="Node" left="5160" top="4740" width="100" height="100">
+   <NODE systemname="HSL (Color Join)" nodename="HSL (Color Join)" componentmode="Hidden" id="791">
+   <BOUNDS type="Node" left="4950" top="2295" width="100" height="100">
    </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Hue" visible="1" slicecount="3" values="-0.333333333333333,0,0.333333333333333">
+   </PIN>
+   <PIN pinname="Lightness" slicecount="1" values="0.5">
+   </PIN>
+   </NODE>
+   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="798">
+   <BOUNDS type="Node" left="4950" top="1905" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Period" slicecount="1" values="20">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="798" srcpinname="Output" dstnodeid="791" dstpinname="Hue">
+   </LINK>
+   <NODE nodename="IOBox (Color)" componentmode="InABox" id="800" systemname="IOBox (Color)">
+   <BOUNDS type="Box" left="4950" top="2895" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4950" top="2895" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Color Output" visible="1">
+   </PIN>
+   <PIN pinname="Color Input" visible="1" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="800" srcpinname="Color Output" dstnodeid="651" dstpinname="Data">
+   </LINK>
+   <NODE systemname="LorenzAttractor (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\LorenzAttractor (DX11.Particles.Modifiers).v4p" nodename="LorenzAttractor (DX11.Particles.Modifiers)" componentmode="Hidden" id="801">
+   <BOUNDS type="Node" left="6135" top="4965" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="2100" top="1005" width="13380" height="8865">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="B" slicecount="1" visible="1" values="2.66666666666667">
+   </PIN>
+   <PIN pinname="S" slicecount="1" values="10">
+   </PIN>
+   <PIN pinname="R" slicecount="1" values="28">
+   </PIN>
+   <PIN pinname="Speed" slicecount="1" values="0.100000001490116">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
+   <BOUNDS type="Box" left="6135" top="4965">
+   </BOUNDS>
+   </NODE>
+   <NODE id="650" systemname="Color (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" nodename="Color (DX11.Particles.Modifiers)" componentmode="Hidden">
    <PIN pinname="Modifier Out" visible="1">
    </PIN>
+   <BOUNDS type="Node" left="4950" top="3885" width="100" height="100">
+   </BOUNDS>
    <PIN pinname="Color Buffer" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="5160" top="4740">
+   <BOUNDS type="Box" left="4950" top="3885">
    </BOUNDS>
    <BOUNDS type="Window" left="6855" top="5415" width="12045" height="8970">
    </BOUNDS>
@@ -632,108 +662,38 @@
    </NODE>
    <LINK srcnodeid="651" srcpinname="Buffer" dstnodeid="650" dstpinname="Color Buffer">
    </LINK>
-   <NODE systemname="HasLocality (DX11.Particles.Selectors Transform)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selectors Transform).v4p" nodename="HasLocality (DX11.Particles.Selectors Transform)" componentmode="Hidden" id="733">
-   <BOUNDS type="Node" left="6210" top="4545" width="100" height="100">
+   <LINK srcnodeid="791" srcpinname="Output" dstnodeid="800" dstpinname="Color Input">
+   </LINK>
+   <NODE systemname="Selection (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\Selection (DX11.Particles.Selectors).v4p" nodename="Selection (DX11.Particles.Selectors)" componentmode="Hidden" id="809">
+   <BOUNDS type="Node" left="4530" top="4965" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Modifier In" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Selection" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4530" top="4965">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="650" srcpinname="Modifier Out" dstnodeid="809" dstpinname="Modifier In">
+   </LINK>
+   <LINK srcnodeid="809" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="4590" y="5715">
+   </LINKPOINT>
+   <LINKPOINT x="5745" y="5715">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="HasAge (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\HasAge (DX11.Particles.Selectors).v4p" nodename="HasAge (DX11.Particles.Selectors)" componentmode="Hidden" id="810">
+   <BOUNDS type="Node" left="4530" top="4515" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Selection Out" visible="1">
    </PIN>
-   </NODE>
-   <LINK srcnodeid="733" srcpinname="Selection Out" dstnodeid="678" dstpinname="Grouping">
-   </LINK>
-   <LINK srcnodeid="650" srcpinname="Modifier Out" dstnodeid="86" dstpinname="Layer 3">
-   </LINK>
-   <LINK srcnodeid="678" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 5">
-   </LINK>
-   <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="750">
-   <BOUNDS type="Node" left="3090" top="3315" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="DataXYZ" visible="1" slicecount="3" values="0,1,0">
-   </PIN>
-   <PIN pinname="Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Apply" visible="1" slicecount="1" values="1">
-   </PIN>
-   <BOUNDS type="Box" left="3090" top="3315">
-   </BOUNDS>
-   </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="751" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3480" top="1980" width="795" height="720">
-   </BOUNDS>
-   <BOUNDS type="Node" left="3480" top="1980" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,1,0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Vector Size" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   <PIN pinname="Time" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="323" srcpinname="Output" dstnodeid="750" dstpinname="DataXYZ">
+   <LINK srcnodeid="810" srcpinname="Selection Out" dstnodeid="809" dstpinname="Selection">
    </LINK>
-   <NODE systemname="VectorField (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\VectorField (DX11.Particles.Modifiers).v4p" nodename="VectorField (DX11.Particles.Modifiers)" componentmode="Hidden" id="778">
-   <BOUNDS type="Node" left="10980" top="5430" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Window" left="1170" top="3375" width="13860" height="8820">
-   </BOUNDS>
-   <PIN pinname="VolumeTexture3D" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Transform In" visible="1">
-   </PIN>
-   <PIN pinname="Multiplier" slicecount="3" values="10,10,10">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="778" srcpinname="Layer" dstnodeid="86" dstpinname="Layer 7">
-   </LINK>
-   <NODE systemname="UniformScale (Transform)" nodename="UniformScale (Transform)" componentmode="Hidden" id="783">
-   <BOUNDS type="Node" left="11040" top="4560" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Transform Out" visible="1">
-   </PIN>
-   <PIN pinname="XYZ" slicecount="1" values="8">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="783" srcpinname="Transform Out" dstnodeid="778" dstpinname="Transform In">
-   </LINK>
-   <NODE systemname="VectorFieldReader (DX11.Particles.Modifiers)" filename="..\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p" nodename="..\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p" componentmode="Hidden" id="784">
-   <BOUNDS type="Node" left="11321" top="5002" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Box" left="8301" top="825" width="6040" height="9745">
-   </BOUNDS>
-   <BOUNDS type="Window" left="11940" top="4365" width="10875" height="9735">
-   </BOUNDS>
-   <PIN pinname="Read" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Filename" slicecount="1" values="..\nodes\assets\VectorFields\VF_Turbulence.fga">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="784" srcpinname="VolumeTexture" dstnodeid="778" dstpinname="VolumeTexture3D">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="786" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="13005" top="4290" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="13005" top="4290" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Bang">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="786" srcpinname="Y Output Value" dstnodeid="784" dstpinname="Read">
+   <LINK srcnodeid="801" srcpinname="Layer" dstnodeid="86" dstpinname="Layer 4">
    </LINK>
    </PATCH>

@@ -22,7 +22,7 @@ StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer"
 #include "../fxh/NoiseFunction.fxh"
 
 //NOISE FORCE:
-float3 noiseAmount = float3(0.0f,0.0f,0.0f);
+float3 noiseAmount = float3(1.0f,1.0f,1.0f);
 float noiseTime;
 int noiseOct;
 float noiseFreq = 1;

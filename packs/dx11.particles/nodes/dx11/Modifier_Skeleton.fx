@@ -4,7 +4,8 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float4 color;
+		int oneVariableNeeded;
+  		/*STUB_VARS_STRUCT*/
 	#endif
 };
 
@@ -15,9 +16,13 @@ RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
-StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
+cbuffer name : register(b0){
+   /*STUB_VARS_CBUF*/
+};
 
 #include "../fxh/Functions.fxh"
+
+/*STUB_FUNCTION_DEF*/
 
 struct csin
 {
@@ -27,26 +32,14 @@ struct csin
 };
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSSet(csin input)
+void CS_Set(csin input)
 {
+	
 	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
-	uint size, stride;
-	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
-}
-
-[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSAdd(csin input)
-{
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	/*STUB_FUNCTION_CALL*/
 	
-	uint size, stride;
-	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
 }
 
-technique11 SetColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
-technique11 AddColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }
+technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Set() ) );} }
