@@ -16,7 +16,7 @@ float2 R:TARGETSIZE;
 
 struct vsInput
 {
-	uint ii :  SV_VertexID;
+	uint vi :  SV_VertexID;
 };
 
 struct vs2ps
@@ -31,8 +31,8 @@ vs2ps VS(vsInput input)
 {
     vs2ps output = (vs2ps)0;
     
-	uint slotIndex = GroupLinkBuffer[input.ii].particleId;
-	uint groupId = GroupLinkBuffer[input.ii].groupId;
+	uint slotIndex = GroupLinkBuffer[input.vi].particleId;
+	uint groupId = GroupLinkBuffer[input.vi].groupId;
 		
 	float halfPixel = (1.0f / R.x) * 0.5f;
 	

@@ -18,8 +18,8 @@ RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
 
-#include "../fxh/Functions.fxh"
-#include "../fxh/NoiseFunction.fxh"
+#include "../fxh/IndexFunctions.fxh"
+#include "../fxh/NoiseFunctions.fxh"
 
 //NOISE FORCE:
 float3 noiseAmount = float3(1.0f,1.0f,1.0f);

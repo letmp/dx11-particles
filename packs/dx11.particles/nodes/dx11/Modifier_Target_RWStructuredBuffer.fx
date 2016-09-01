@@ -25,7 +25,7 @@ float MaxSpeed = 10;
 float MaxForce = 1;
 float LandingRadius = 0.1;
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 float3 Limit(in float3 v, float3 Maximum)
 {

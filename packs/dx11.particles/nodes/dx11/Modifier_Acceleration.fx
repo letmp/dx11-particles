@@ -19,7 +19,7 @@ StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer"
 
 int UpdateMode;
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct csin
 {

@@ -17,7 +17,7 @@ RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> SizeBuffer <string uiname="Size Buffer";>;
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct csin
 {

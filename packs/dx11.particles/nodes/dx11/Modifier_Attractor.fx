@@ -21,7 +21,7 @@ StructuredBuffer<float> AttrStrength <string uiname="Strength Buffer";>;
 StructuredBuffer<float> AttrPower <string uiname="Power Buffer";>;
 StructuredBuffer<float> AttrRadius <string uiname="Radius Buffer";>;
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct csin
 {

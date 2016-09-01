@@ -61,7 +61,21 @@ void CS_SetCounter(csin input)
 	AliveCounterBuffer[0] = particleCounter;
 }
 
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CS_UpdateCounter(csin input)
+{
+	if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
+	
+	uint slotIndex = AliveIndexBuffer[input.DTID.x];
+
+	if(ParticleBuffer[slotIndex].lifespan >= 0){
+		AliveCounterBuffer.IncrementCounter();
+	}
+	
+}
+
 technique11 Rebuild { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Rebuild() ) );} }
 technique11 CopyToSwap { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_CopyToSwap() ) );} }
 technique11 CopyFromSwap { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_CopyFromSwap() ) );} }
 technique11 SetCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetCounter() ) );} }
+technique11 UpdateCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateCounter() ) );} }

@@ -18,7 +18,7 @@ RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
 int UpdateMode;
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct csin
 {

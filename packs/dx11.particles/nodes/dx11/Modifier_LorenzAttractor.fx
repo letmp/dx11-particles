@@ -5,8 +5,6 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 acceleration;
-		float3 velocity;
 	#endif
 };
 
@@ -17,7 +15,7 @@ RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 //NOISE FORCE:
 float S = 10;
@@ -43,9 +41,7 @@ void CSUpdate(csin input)
 	position.y = position.y + ( (R * position.x) - position.y - (position.x * position.z) ) * psTime.y * Speed;
     position.z = position.z + ( (position.x * position.y) - (B * position.z) ) * psTime.y * Speed;
 	
-	
 	ParticleBuffer[slotIndex].position = position;
-	
 }
 
 technique11 LorenzAttractor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSUpdate() ) );} }

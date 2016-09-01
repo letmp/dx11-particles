@@ -28,7 +28,7 @@ SamplerState volumeSampler
 	AddressW = Border;
 };
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct csin
 {

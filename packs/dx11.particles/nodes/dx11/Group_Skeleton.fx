@@ -22,7 +22,7 @@ cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
 };
 
-#include "../fxh/Functions.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 void SetGroupParticleLink (uint slotIndex, uint groupIndex){
 	uint groupLinkIndex = GroupLinkBuffer.IncrementCounter();

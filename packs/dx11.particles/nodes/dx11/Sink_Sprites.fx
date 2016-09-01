@@ -31,7 +31,6 @@ cbuffer cbPerObj : register( b1 )
     float radius = 5;
     float innerradius = 0;
     float Perspective = 1;
-	bool RenderDead = false;
 };
 
 float3 qpos[4]:IMMUTABLE ={float3( -1, 1, 0 ),float3( 1, 1, 0 ),float3( -1, -1, 0 ),float3( 1, -1, 0 ),};
@@ -60,10 +59,8 @@ struct VSOut
 VSOut VS(VSIn In)
 {
     VSOut Out = (VSOut)0;
-	uint slotIndex = -1;
-	uint aliveCounter = AliveCounterBuffer[0];
-	if ( In.iv <= aliveCounter ) slotIndex = AliveIndexBuffer[In.iv];
-	//uint slotIndex = In.iv;
+	
+	uint slotIndex = AliveIndexBuffer[In.iv];
 	
 	
 	float3 p = ParticleBuffer[slotIndex].position;
@@ -81,34 +78,31 @@ void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
 	uint slotIndex = In[0].slotIndex;
 	o.slotIndex = slotIndex;
 	
-	
-	if((slotIndex!=-1) || RenderDead)
-	{
-	    float3 p = In[0].pos.xyz / max(In[0].pos.w, 0.01);
-	    float denom = max(In[0].pos.w, 0.01);
-	
-	    float2 ss = 1/res;
-	
-	    for(uint i=0; i<4; i++)
-	    {
-	    	float size = radius / lerp(1, denom, Perspective);
-	        #if defined(KNOW_SIZE)
-	            size *= ParticleBuffer[slotIndex].size.x;
-	        #endif
-	        float2 cpos = qpos[i].xy * size;
-	    	cpos *= ss;
-	        cpos += p.xy;
-	        o.pos = float4(cpos, p.z, 1);
-	        o.uv = quv[i];
-	    	if((p.z < 1) && (p.z > 0))
-	    	{
-	    		if(size > 0.2)
-	        		GSOut.Append(o);
-	    	}
-	    }
-	
-		GSOut.RestartStrip();
-	}
+    float3 p = In[0].pos.xyz / max(In[0].pos.w, 0.01);
+    float denom = max(In[0].pos.w, 0.01);
+
+    float2 ss = 1/res;
+
+    for(uint i=0; i<4; i++)
+    {
+    	float size = radius / lerp(1, denom, Perspective);
+        #if defined(KNOW_SIZE)
+            size *= ParticleBuffer[slotIndex].size.x;
+        #endif
+        float2 cpos = qpos[i].xy * size;
+    	cpos *= ss;
+        cpos += p.xy;
+        o.pos = float4(cpos, p.z, 1);
+        o.uv = quv[i];
+    	if((p.z < 1) && (p.z > 0))
+    	{
+    		if(size > 0.2)
+        		GSOut.Append(o);
+    	}
+    }
+
+	GSOut.RestartStrip();
+
 }
 
 float4 PS_Tex(VSOut In): SV_Target
