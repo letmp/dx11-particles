@@ -213,7 +213,7 @@ namespace DX11.Particles.Core
 
         private void SetEmitterSize()
         {
-            if (FEmitCount[0] > 0)
+            if (FEmitCount.SliceCount > 0)
             {
                 var particleSystemRegistry = ParticleSystemRegistry.Instance;
                 particleSystemRegistry.SetEmitterSize(FParticleSystemName[0], this.ShaderRegisterNodeId, FEmitCount[0]);
@@ -234,7 +234,7 @@ namespace DX11.Particles.Core
 
         private void SetEmitterName()
         {
-            if (FEmitCount[0] > 0 && FEmitterName[0]!="")
+            if (FEmitCount.SliceCount > 0 && FEmitterName[0]!="")
             {
                 var particleSystemRegistry = ParticleSystemRegistry.Instance;
                 particleSystemRegistry.SetEmitterName(FParticleSystemName[0], this.ShaderRegisterNodeId, FEmitterName[0]);

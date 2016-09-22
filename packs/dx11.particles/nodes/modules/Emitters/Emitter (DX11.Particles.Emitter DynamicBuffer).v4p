@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="-360">
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
    <BOUNDS type="Node" left="5625" top="2850" width="100" height="100">
    </BOUNDS>
@@ -19,7 +19,7 @@
    <NODE systemname="GetThreadSize (Value)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="15">
    <BOUNDS type="Node" left="4110" top="3435" width="1575" height="270">
    </BOUNDS>
-   <PIN pinname="Element Count" visible="1" slicecount="1" values="10">
+   <PIN pinname="Element Count" visible="1">
    </PIN>
    <PIN pinname="Group Size" visible="1" slicecount="2" values="64,1">
    </PIN>
@@ -34,7 +34,7 @@
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="1140" top="2040" width="18450" height="10485">
+   <BOUNDS type="Window" left="570" top="1515" width="18750" height="10395">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -198,12 +198,6 @@
    <LINKPOINT x="10935" y="4380">
    </LINKPOINT>
    <LINKPOINT x="12750" y="4380">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4140" y="2288">
-   </LINKPOINT>
-   <LINKPOINT x="4140" y="2288">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="90" systemname="IOBox (String)">
@@ -429,6 +423,10 @@
    </PIN>
    <PIN pinname="Shader Path" visible="1">
    </PIN>
+   <PIN pinname="EmitterSize" visible="1">
+   </PIN>
+   <PIN pinname="EmitCount" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="112" dstpinname="Geometry">
    </LINK>
@@ -439,18 +437,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="78" srcpinname="Output" dstnodeid="112" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="112" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5265" y="2790">
-   </LINKPOINT>
-   <LINKPOINT x="5475" y="2790">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="112" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4125" y="2798">
-   </LINKPOINT>
-   <LINKPOINT x="6180" y="2798">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="83" srcpinname="Output Node" dstnodeid="112" dstpinname="Position Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="6390" y="2798">
@@ -586,32 +572,6 @@
    </LINK>
    <LINK srcnodeid="115" srcpinname="ParticleSystem Defines" dstnodeid="78" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="118" srcpinname="Enum" dstnodeid="115" dstpinname="Emitter Name">
-   </LINK>
-   <NODE systemname="Register (DX11.Particles.Core Emitter)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Emitter)" componentmode="Hidden" id="121">
-   <BOUNDS type="Node" left="9540" top="7335" width="100" height="100">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="94" srcpinname="Output Enum" dstnodeid="121" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="13845" y="4203">
-   </LINKPOINT>
-   <LINKPOINT x="10275" y="4303">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="121" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4170" y="4180">
-   </LINKPOINT>
-   <LINKPOINT x="10050" y="4280">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="98" srcpinname="Output String" dstnodeid="121" dstpinname="Structure">
-   </LINK>
-   <LINK srcnodeid="109" srcpinname="Output String" dstnodeid="121" dstpinname="EmitterName" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11655" y="4188">
-   </LINKPOINT>
-   <LINKPOINT x="9915" y="4288">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="122">
    <BOUNDS type="Node" left="10620" top="5760" width="100" height="100">
    </BOUNDS>
@@ -627,5 +587,75 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="122" srcpinname="Changed" dstnodeid="87" dstpinname="Extract">
+   </LINK>
+   <NODE systemname="Register (DX11.Particles.Core Emitter)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Emitter)" componentmode="Hidden" id="123">
+   <BOUNDS type="Node" left="9540" top="7335" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="EmitCount" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Output Enum" dstnodeid="123" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13845" y="4203">
+   </LINKPOINT>
+   <LINKPOINT x="10275" y="4303">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="98" srcpinname="Output String" dstnodeid="123" dstpinname="Structure">
+   </LINK>
+   <LINK srcnodeid="109" srcpinname="Output String" dstnodeid="123" dstpinname="EmitterName" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11655" y="4188">
+   </LINKPOINT>
+   <LINKPOINT x="9915" y="4288">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="118" srcpinname="Enum" dstnodeid="115" dstpinname="Emitter Name">
+   </LINK>
+   <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="124">
+   <BOUNDS type="Node" left="4110" top="1380" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4110" top="1380">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="124" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Output" dstnodeid="15" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4140" y="2543">
+   </LINKPOINT>
+   <LINKPOINT x="4140" y="2543">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Output" dstnodeid="112" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4170" y="3053">
+   </LINKPOINT>
+   <LINKPOINT x="6135" y="3053">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Output" dstnodeid="123" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4170" y="4478">
+   </LINKPOINT>
+   <LINKPOINT x="10050" y="4478">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="125">
+   <BOUNDS type="Node" left="5235" top="1380" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="5235" top="1380">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="125" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="125" srcpinname="Output" dstnodeid="112" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5265" y="3053">
+   </LINKPOINT>
+   <LINKPOINT x="5475" y="3053">
+   </LINKPOINT>
    </LINK>
    </PATCH>
