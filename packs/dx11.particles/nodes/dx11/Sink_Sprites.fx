@@ -9,8 +9,6 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 velocity;
-		float lifespan;
 	#endif
 };
 
@@ -61,14 +59,11 @@ VSOut VS(VSIn In)
     VSOut Out = (VSOut)0;
 	
 	uint slotIndex = AliveIndexBuffer[In.iv];
-	
+	Out.slotIndex = slotIndex;
 	
 	float3 p = ParticleBuffer[slotIndex].position;
-	float3 vel = ParticleBuffer[slotIndex].velocity;
-
     Out.pos = mul(float4(p, 1), tVP);
 
-	Out.slotIndex = slotIndex;
     return Out;
 }
 [maxvertexcount(4)]

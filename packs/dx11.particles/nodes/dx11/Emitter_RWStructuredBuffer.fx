@@ -21,6 +21,8 @@ RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
+#include "../fxh/IndexFunctions.fxh"
+
 cbuffer cbuf
 {
 	uint EmitterSize = 0;
@@ -55,12 +57,7 @@ void CS_Emit(csin input)
 		// copy particle
 		Particle p = (Particle) 0;
 		
-		uint slotIndexToCopy = GetSlotIndex(emitterCounter,
-									FlagBuffer,
-									SelectionIndexBuffer,
-									SelectionCounterBuffer,
-									AliveIndexBuffer,
-									AliveCounterBuffer);
+		uint slotIndexToCopy = GetSlotIndex( input.DTID.x );
 		if (slotIndexToCopy == -1 ) return;
 		
 		p = ParticleBuffer[slotIndexToCopy];
