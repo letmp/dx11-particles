@@ -111,7 +111,7 @@ void CS_Emit(csin input)
 		
 		uint size, stride;
 		LifespanBuffer.GetDimensions(size,stride);
-		p.lifespan = 0.5 / psTime.x; // ensure that each particle lives only 1 frame
+		p.lifespan = psTime.y; // ensure that each particle lives only 1 frame
 		
 		// ADD PARTICLE TO PARTICLEBUFFER
 		ParticleBuffer[slotIndex] = p;
