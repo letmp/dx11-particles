@@ -16,7 +16,6 @@ RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
 RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
-StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 Texture2D texRGB <string uiname="RGB";>;
 Texture2D texDepth <string uiname="Depth";>;
 Texture2D texRayTable <string uiname="RayTable";>;
@@ -57,16 +56,19 @@ void CS_Emit(csin input)
 	uint2 texId = int2(input.DTID.x % Resolution.x ,input.DTID.x / Resolution.x);
 	
 	// safeguard -> skip all pixels that are outside the texture
-	if (texId.x >= (uint) Resolution.x || texId.y >= (uint) Resolution.y) { return; }
+	//if (texId.x > (uint) Resolution.x || texId.y > (uint) Resolution.y) { return; }
 	
 	uint w,h, dummy;
 	texDepth.GetDimensions(0,w,h,dummy);
 	
 	// calculate sampling coordinates
-	float2 texUvDepth = texId * float2(w / Resolution.x, h / Resolution.y) / float2(w,h);
+	float2 texUvDepth = texId * float2(w / Resolution.x , h / Resolution.y) / float2(w,h);
+	float halfPixel = (1.0f / Resolution.x) * 0.5f;
+	texUvDepth += halfPixel;
 	
 	// get depth of that pixel
 	float depth =  texDepth.SampleLevel(sPoint, texUvDepth,0 ).r * 65.535 ;
+	
 	// get texture coordinate for sampling the rgb texture
 	float2 texUvColor = texRGBDepth.SampleLevel(sPoint,texUvDepth,0).rg;
 	if(useRawData){
@@ -75,7 +77,7 @@ void CS_Emit(csin input)
 	}
 	
 	// set particle if depth-value and texUvColor coords are valid
-	if (depth > 0 && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
+	//if (depth != 0.0f && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
 
 		// INCREMENT EmitterCounter
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
@@ -109,8 +111,6 @@ void CS_Emit(csin input)
 		// SET COLOR
 		p.color = texRGB.SampleLevel(sPoint,texUvColor,0);
 		
-		uint size, stride;
-		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = psTime.y; // ensure that each particle lives only 1 frame
 		
 		// ADD PARTICLE TO PARTICLEBUFFER
@@ -118,12 +118,9 @@ void CS_Emit(csin input)
 		
 		// UPDATE ALIVEINDEXBUFFER
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
-		AliveIndexBuffer[aliveIndex] = slotIndex;	
-	}
+		AliveIndexBuffer[aliveIndex] = slotIndex;
+	//}
 	
-	
-		
-
 }
 
 technique11 EmitParticles
