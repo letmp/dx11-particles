@@ -1,4 +1,4 @@
-#include "../fxh/Defines.fxh"
+//#include "../fxh/Defines.fxh"
 #include "../fxh/PhongPoint.fxh"
 
 struct Particle {

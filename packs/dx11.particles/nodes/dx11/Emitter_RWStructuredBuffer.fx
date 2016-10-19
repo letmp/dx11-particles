@@ -57,7 +57,7 @@ void CS_Emit(csin input)
 		// copy particle
 		Particle p = (Particle) 0;
 		
-		uint slotIndexToCopy = GetSlotIndex( input.DTID.x );
+		uint slotIndexToCopy = GetSlotIndex( emitterCounter );
 		if (slotIndexToCopy == -1 ) return;
 		
 		p = ParticleBuffer[slotIndexToCopy];

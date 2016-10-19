@@ -77,7 +77,7 @@ void CS_Emit(csin input)
 	}
 	
 	// set particle if depth-value and texUvColor coords are valid
-	//if (depth != 0.0f && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
+	if (depth != 0.0f && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
 
 		// INCREMENT EmitterCounter
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
@@ -111,7 +111,7 @@ void CS_Emit(csin input)
 		// SET COLOR
 		p.color = texRGB.SampleLevel(sPoint,texUvColor,0);
 		
-		p.lifespan = psTime.y; // ensure that each particle lives only 1 frame
+		p.lifespan = psTime.y / 2; // ensure that each particle lives only 1 frame
 		
 		// ADD PARTICLE TO PARTICLEBUFFER
 		ParticleBuffer[slotIndex] = p;
@@ -119,7 +119,7 @@ void CS_Emit(csin input)
 		// UPDATE ALIVEINDEXBUFFER
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
 		AliveIndexBuffer[aliveIndex] = slotIndex;
-	//}
+	}
 	
 }
 

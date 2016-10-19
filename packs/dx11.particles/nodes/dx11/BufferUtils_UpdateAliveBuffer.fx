@@ -51,7 +51,13 @@ void CS_CopyToSwap(csin input)
 void CS_CopyFromSwap(csin input)
 {
 	if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
-	AliveIndexBuffer[input.DTID.x] = AliveSwapBuffer[input.DTID.x];
+	
+	uint slotIndex = AliveSwapBuffer[input.DTID.x];
+	if(ParticleBuffer[slotIndex].lifespan >= 0){
+		uint particleCounter = AliveCounterBuffer.IncrementCounter();
+		AliveIndexBuffer[particleCounter] = slotIndex;
+	}
+	
 }
 
 [numthreads(1, 1, 1)]
