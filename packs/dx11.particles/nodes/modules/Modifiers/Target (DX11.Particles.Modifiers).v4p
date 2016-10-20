@@ -113,7 +113,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9465" top="720" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="ParticleSystemRobert">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
    </PIN>
@@ -269,7 +269,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5580" top="1380" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.100000001490116">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -282,24 +282,12 @@
    <PIN pinname="X Input Value" slicecount="1" values="0.100000001490116">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="63" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="6435" top="720" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6435" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Target Buffer|">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="76" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3885" top="1380" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="3885" top="1380" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -315,7 +303,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4755" top="1380" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.2">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -331,6 +319,8 @@
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
    </BOUNDS>
+   <PIN pinname="Position Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="79" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
@@ -354,10 +344,20 @@
    </LINK>
    <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="79" dstpinname="LandingRadius">
    </LINK>
-   <LINK srcnodeid="63" srcpinname="Output Node" dstnodeid="79" dstpinname="Target Buffer">
-   </LINK>
    <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="79" dstpinname="MaxSpeed">
    </LINK>
    <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="79" dstpinname="MaxForce">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="80" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="6450" top="1875" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6450" top="1875" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Position Buffer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="80" srcpinname="Output Node" dstnodeid="79" dstpinname="Position Buffer">
    </LINK>
    </PATCH>

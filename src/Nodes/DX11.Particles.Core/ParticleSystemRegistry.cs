@@ -310,7 +310,7 @@ namespace DX11.Particles.Core
         public void SetEmitterName(string shaderRegisterNodeId, string name)
         {
             this.EmitterNames[shaderRegisterNodeId] = name;
-            UpdateEmitterEnum();
+            //UpdateEmitterEnum();
         }
 
         public void RemoveEmitterName(string shaderRegisterNodeId)
@@ -318,7 +318,7 @@ namespace DX11.Particles.Core
             if (this.EmitterNames.ContainsKey(shaderRegisterNodeId))
             {
                 this.EmitterNames.Remove(shaderRegisterNodeId);
-                UpdateEmitterEnum();
+                //UpdateEmitterEnum();
             }
         }
 
@@ -444,10 +444,10 @@ namespace DX11.Particles.Core
             this.ElementCount = count;
         }
 
-        private void UpdateEmitterEnum()
+        /*private void UpdateEmitterEnum()
         {
             EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", this.EmitterNames.Values.Distinct().ToArray());
-        }
+        }*/
                 
     }
 

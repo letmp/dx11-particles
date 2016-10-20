@@ -108,7 +108,7 @@
    </LINK>
    <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Semantic">
    </LINK>
-   <BOUNDS type="Window" left="3390" top="1230" width="21120" height="15675">
+   <BOUNDS type="Window" left="2580" top="330" width="20190" height="16575">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -947,6 +947,8 @@
    </BOUNDS>
    <PIN pinname="Buffers" visible="1">
    </PIN>
+   <PIN pinname="Element Count" visible="1" slicecount="8" values="8664,8664,8664,1,1,8664,1,1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="187" dstpinname="Enabled" hiddenwhenlocked="0">
    </LINK>
@@ -961,8 +963,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="110" srcpinname="Output Enum" dstnodeid="187" dstpinname="Buffer Mode">
-   </LINK>
-   <LINK srcnodeid="164" srcpinname="Y Output Value" dstnodeid="187" dstpinname="Element Count">
    </LINK>
    <LINK srcnodeid="165" srcpinname="Y Output Value" dstnodeid="187" dstpinname="Stride">
    </LINK>
@@ -1153,5 +1153,49 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="195" srcpinname="Output String" dstnodeid="13" dstpinname="ParticleSystem Name">
+   </LINK>
+   <NODE systemname="Switch (Value Input)" nodename="Switch (Value Input)" componentmode="Hidden" id="196">
+   <BOUNDS type="Node" left="6240" top="11775" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="164" srcpinname="Y Output Value" dstnodeid="196" dstpinname="Input 1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="197" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="11220" top="510" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11220" top="510" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Reset">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="197" srcpinname="Y Output Value" dstnodeid="196" dstpinname="Switch" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11220" y="6375">
+   </LINKPOINT>
+   <LINKPOINT x="6270" y="6375">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="196" srcpinname="Output" dstnodeid="187" dstpinname="Element Count" linkstyle="VHV">
+   <LINKPOINT x="6300" y="12105">
+   </LINKPOINT>
+   <LINKPOINT x="6480" y="12105">
+   </LINKPOINT>
    </LINK>
    </PATCH>

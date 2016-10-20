@@ -17,7 +17,7 @@ RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
-StructuredBuffer<float3> TargetBuffer <string uiname="Target Buffer";>;
+StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
 float MaxSpeed = 10;
 float MaxForce = 1;
 float LandingRadius = 0.1;
@@ -51,14 +51,15 @@ void CSSet(csin input)
 	float3 a = ParticleBuffer[slotIndex].acceleration;
 	
 	uint cnt,stride;
-	TargetBuffer.GetDimensions(cnt,stride);	
-	float3 target = TargetBuffer[slotIndex % cnt];
+	PositionBuffer.GetDimensions(cnt,stride);	
+	float3 target = PositionBuffer[slotIndex % cnt];
 	float3 desired = target - p;
 	
 	float d = length(desired);
-	desired = normalize(desired);
+	if (d != 0) desired = normalize(desired);
 	
-	if (d < LandingRadius)
+	
+	if (d < LandingRadius && d >= 0.0)
 	{
 		float map = saturate(d);
 		desired *= map;
