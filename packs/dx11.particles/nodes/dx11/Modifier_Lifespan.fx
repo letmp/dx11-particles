@@ -34,7 +34,7 @@ void CSSet(csin input)
 	
 	uint size, stride;
 	LifespanBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].lifespan = LifespanBuffer[input.DTID.x % size];
+	ParticleBuffer[slotIndex].lifespan = LifespanBuffer[slotIndex % size];
 }
 
 technique11 SetMass { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

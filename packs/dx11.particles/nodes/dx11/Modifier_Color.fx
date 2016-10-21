@@ -34,7 +34,7 @@ void CSSet(csin input)
 	
 	uint size, stride;
 	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
+	ParticleBuffer[slotIndex].color = ColorBuffer[slotIndex % size];
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -45,7 +45,7 @@ void CSAdd(csin input)
 	
 	uint size, stride;
 	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color =  ColorBuffer[input.DTID.x % size];
+	ParticleBuffer[slotIndex].color += ColorBuffer[slotIndex % size];
 }
 
 technique11 SetColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

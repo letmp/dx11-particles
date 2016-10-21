@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Size (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Scale (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="14100" top="4425" width="13860" height="8820">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
@@ -143,7 +143,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8280" top="720" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="ParticleSystemRobert">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
    </PIN>
@@ -310,17 +310,7 @@
    </NODE>
    <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="59" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="4710" top="705" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="4710" top="705" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Size Buffer|">
-   </PIN>
-   </NODE>
-   <NODE id="54" systemname="Modifier_Size (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Size.fx" nodename="Modifier_Size (DX11.Effect)" componentmode="Hidden">
+   <NODE id="54" systemname="Modifier_Scale (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Scale.fx" nodename="Modifier_Scale (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
@@ -331,7 +321,9 @@
    </PIN>
    <PIN pinname="Size Buffer" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Technique" slicecount="1" values="SetSize">
+   <PIN pinname="Technique" slicecount="1" values="SetScale">
+   </PIN>
+   <PIN pinname="Scale Buffer" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
@@ -354,6 +346,16 @@
    <LINKPOINT x="7710" y="5250">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="59" srcpinname="Output Node" dstnodeid="54" dstpinname="Size Buffer">
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="60" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="4665" top="720" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4665" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Scale Buffer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="60" srcpinname="Output Node" dstnodeid="54" dstpinname="Scale Buffer">
    </LINK>
    </PATCH>

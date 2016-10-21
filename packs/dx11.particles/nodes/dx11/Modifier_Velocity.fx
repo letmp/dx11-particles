@@ -36,7 +36,7 @@ void CSSet(csin input)
 	uint size, stride;
 	VelocityBuffer.GetDimensions(size,stride);
 	
-	float3 velocity = VelocityBuffer[input.DTID.x % size];
+	float3 velocity = VelocityBuffer[slotIndex % size];
 	if (UpdateMode == 0)
 		ParticleBuffer[slotIndex].velocity = velocity;
 	else if (UpdateMode == 1)

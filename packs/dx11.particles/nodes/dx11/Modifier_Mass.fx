@@ -34,7 +34,7 @@ void CSSet(csin input)
 	
 	uint size, stride;
 	MassBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].mass = MassBuffer[input.DTID.x % size];
+	ParticleBuffer[slotIndex].mass = MassBuffer[slotIndex % size];
 }
 
 technique11 SetMass { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
