@@ -131,6 +131,8 @@ namespace DX11.Particles.Core
             {
                 Instance[particleSystemName].SetEmitterName(shaderRegisterNodeId, emitterName);
                 if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+
+                UpdateEmitterEnum(particleSystemName, Instance[particleSystemName].EmitterNames.Values);
             }
         }
 
@@ -138,11 +140,17 @@ namespace DX11.Particles.Core
         {
             try
             {
-                ParticleSystemData psd = Instance.First(kvp => kvp.Value.HasShaderNodeId(shaderRegisterNodeId)).Value;
+                var keyValue = Instance.First(kvp => kvp.Value.HasShaderNodeId(shaderRegisterNodeId));
+                ParticleSystemData psd = keyValue.Value;
+                string particleSystemName = keyValue.Key;
+
                 if (psd != null)
                 {
                     psd.RemoveEmitterName(shaderRegisterNodeId);
                     if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+
+                    
+                    UpdateEmitterEnum(particleSystemName, Instance[particleSystemName].EmitterNames.Values);
                 }
             }
             catch (Exception) { }
@@ -443,12 +451,7 @@ namespace DX11.Particles.Core
             }
             this.ElementCount = count;
         }
-
-        /*private void UpdateEmitterEnum()
-        {
-            EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", this.EmitterNames.Values.Distinct().ToArray());
-        }*/
-                
+                        
     }
 
     public class ParticleSystemRegistryEventArgs : EventArgs

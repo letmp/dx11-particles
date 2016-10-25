@@ -239,7 +239,7 @@ namespace DX11.Particles.Core
                 var particleSystemRegistry = ParticleSystemRegistry.Instance;
                 particleSystemRegistry.SetEmitterName(FParticleSystemName[0], this.ShaderRegisterNodeId, FEmitterName[0]);
 
-                UpdateEmitterEnum();
+                //UpdateEmitterEnum();
             }
             
         }
@@ -249,10 +249,10 @@ namespace DX11.Particles.Core
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
             particleSystemRegistry.RemoveEmitterName(this.ShaderRegisterNodeId);
 
-            UpdateEmitterEnum();
+            //UpdateEmitterEnum();
         }
 
-        private void UpdateEmitterEnum()
+       /* private void UpdateEmitterEnum()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
             var particleSystemData = particleSystemRegistry.GetByParticleSystemName(FParticleSystemName[0]);
@@ -263,7 +263,7 @@ namespace DX11.Particles.Core
                             ).Distinct().ToArray();
 
             EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", allNames);
-        }
+        }*/
 
         private void UpdateEmitterName()
         {

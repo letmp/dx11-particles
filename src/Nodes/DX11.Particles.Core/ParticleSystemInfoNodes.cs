@@ -118,11 +118,11 @@ namespace DX11.Particles.Core
         [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 2, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
         public IDiffSpread<EnumEntry> FParticleSystemName;
 
-        [Input("Emitter Name", EnumName = ParticleSystemRegistry.EMITTER_ENUM, Order = 2)]
+        //[Input("Emitter Name", EnumName = ParticleSystemRegistry.EMITTER_ENUM, Order = 2)]
         public IDiffSpread<EnumEntry> FEmitterName;
 
         [Output("Emitter Region")]
-        public ISpread<int> FEmitterRegion;
+        public ISpread<int> FEmitterRegion = null;
 
         [Output("ParticleSystem Defines", DefaultString = "", AutoFlush = false, AllowFeedback = true)]
         public ISpread<string> FOutDefines;
@@ -135,22 +135,48 @@ namespace DX11.Particles.Core
 
         [Import]
         protected IPluginHost2 PluginHost;
-        bool firstEval = true;
+
+        [Import]
+        protected IIOFactory FIOFactory;
+
+        private string EnumName;
 
         public void OnImportsSatisfied()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
             particleSystemRegistry.Changed += HandleRegistryChange;
+
+            FParticleSystemName.Changed += (spread) => FillEnum();
+
+            CreateEnumPin();
+        }
+
+        private void FillEnum()
+        {
+            if (FParticleSystemName == null || FParticleSystemName.SliceCount < 1 || FParticleSystemName[0] == null) return;
+
+            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+            var enums = particleSystemData.EmitterNames.Values.ToArray();
+            EnumManager.UpdateEnum(EnumName, enums.FirstOrDefault(), enums);
+        }
+
+        public void CreateEnumPin()
+        {
+            EnumName = ParticleSystemRegistry.EMITTER_ENUM + "_" + this.GetHashCode();
+
+            var attr = new InputAttribute("Emitter Name");
+            attr.Order = 2;
+            attr.AutoValidate = true;
+            attr.EnumName = EnumName;
+
+            Type pinType = typeof(IDiffSpread<EnumEntry>);
+
+            var pin = FIOFactory.CreateIOContainer(pinType, attr);
+            FEmitterName = (IDiffSpread<EnumEntry>)(pin.RawIOObject);
         }
 
         public void Evaluate(int SpreadMax)
         {
-            if (firstEval)
-            {
-                UpdateOutputPins();
-                firstEval = false;
-            }
-
             if (FParticleSystemName.IsChanged || FEmitterName.IsChanged)
             {
                 UpdateOutputPins();
@@ -164,6 +190,7 @@ namespace DX11.Particles.Core
 
         private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
         {
+            FillEnum();
             UpdateOutputPins();
         }
 
