@@ -131,8 +131,6 @@ namespace DX11.Particles.Core
             {
                 Instance[particleSystemName].SetEmitterName(shaderRegisterNodeId, emitterName);
                 if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
-
-                UpdateEmitterEnum(particleSystemName, Instance[particleSystemName].EmitterNames.Values);
             }
         }
 
@@ -148,9 +146,6 @@ namespace DX11.Particles.Core
                 {
                     psd.RemoveEmitterName(shaderRegisterNodeId);
                     if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
-
-                    
-                    UpdateEmitterEnum(particleSystemName, Instance[particleSystemName].EmitterNames.Values);
                 }
             }
             catch (Exception) { }
