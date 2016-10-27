@@ -13,11 +13,11 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
-
-int UpdateMode;
+bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
 
 #include "../fxh/IndexFunctions.fxh"
 
@@ -29,7 +29,7 @@ struct csin
 };
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSUpdate(csin input)
+void CSSet(csin input)
 {
 	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex < 0 ) return;
@@ -37,14 +37,30 @@ void CSUpdate(csin input)
 	uint size, stride;
 	AccelerationBuffer.GetDimensions(size,stride);
 	
-	float3 acceleration = AccelerationBuffer[slotIndex % size];
-	if (UpdateMode == 0)
-			ParticleBuffer[slotIndex].acceleration = acceleration;
-	else if (UpdateMode == 1)
-			ParticleBuffer[slotIndex].acceleration += acceleration;
-
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
 	
-	
+	ParticleBuffer[slotIndex].acceleration = AccelerationBuffer[bufferIndex];	
 }
 
-technique11 Acceleration { pass P0{SetComputeShader( CompileShader( cs_5_0, CSUpdate() ) );} }
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CSAdd(csin input)
+{
+	uint slotIndex = GetSlotIndex( input.DTID.x );
+	if (slotIndex < 0 ) return;
+	
+	uint size, stride;
+	AccelerationBuffer.GetDimensions(size,stride);
+	
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
+	
+	ParticleBuffer[slotIndex].acceleration += AccelerationBuffer[bufferIndex];	
+}
+
+technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+technique11 Add { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }

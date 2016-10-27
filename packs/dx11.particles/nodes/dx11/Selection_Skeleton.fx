@@ -14,6 +14,7 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 cbuffer name : register(b0){
@@ -23,6 +24,12 @@ cbuffer name : register(b0){
 #include "../fxh/IndexFunctions.fxh"
 
 /*STUB_FUNCTION_DEF*/
+
+void SetSelection(uint slotIndex, uint selectionGroupIndex){
+	uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
+	SelectionIndexBuffer[selectionCounter] = slotIndex;
+	SelectionGroupBuffer[selectionCounter] = selectionGroupIndex;
+}
 
 struct csin
 {
@@ -38,14 +45,9 @@ void CS_Select(csin input)
 	uint slotIndex = GetSlotIndex( input.DTID.x );
 	if (slotIndex == -1 ) return;
 	
-	bool isSelected = true;
+	uint selectionGroupIndex = 0;
 	/*STUB_FUNCTION_CALL*/
 	
-		
-	if (isSelected){
-		uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
-		SelectionIndexBuffer[selectionCounter] = slotIndex;
-	}
 }
 
 technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }

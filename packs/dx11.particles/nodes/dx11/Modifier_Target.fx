@@ -15,9 +15,12 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
+bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
+
 float MaxSpeed = 10;
 float MaxForce = 1;
 float LandingRadius = 0.1;
@@ -52,12 +55,17 @@ void CSSet(csin input)
 	
 	uint cnt,stride;
 	PositionBuffer.GetDimensions(cnt,stride);	
-	float3 target = PositionBuffer[slotIndex % cnt];
-	float3 desired = target - p;
 	
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % cnt;
+	
+	float3 target = PositionBuffer[bufferIndex];
+	
+	float3 desired = target - p;
 	float d = length(desired);
 	if (d != 0) desired = normalize(desired);
-	
 	
 	if (d < LandingRadius && d >= 0.0)
 	{

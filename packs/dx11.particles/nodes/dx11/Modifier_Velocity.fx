@@ -13,10 +13,11 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
-int UpdateMode;
+bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
 
 #include "../fxh/IndexFunctions.fxh"
 
@@ -36,11 +37,30 @@ void CSSet(csin input)
 	uint size, stride;
 	VelocityBuffer.GetDimensions(size,stride);
 	
-	float3 velocity = VelocityBuffer[slotIndex % size];
-	if (UpdateMode == 0)
-		ParticleBuffer[slotIndex].velocity = velocity;
-	else if (UpdateMode == 1)
-		ParticleBuffer[slotIndex].velocity += velocity;
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
+	
+	ParticleBuffer[slotIndex].velocity = VelocityBuffer[bufferIndex];
 }
 
-technique11 SetMass { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CSAdd(csin input)
+{
+	uint slotIndex = GetSlotIndex( input.DTID.x );
+	if (slotIndex == -1 ) return;
+	
+	uint size, stride;
+	VelocityBuffer.GetDimensions(size,stride);
+	
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
+	
+	ParticleBuffer[slotIndex].velocity += VelocityBuffer[bufferIndex];
+}
+
+technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+technique11 Add { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }

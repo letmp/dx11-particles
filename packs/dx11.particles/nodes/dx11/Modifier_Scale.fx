@@ -13,9 +13,11 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> ScaleBuffer <string uiname="Scale Buffer";>;
+bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
 
 #include "../fxh/IndexFunctions.fxh"
 
@@ -34,7 +36,13 @@ void CSSet(csin input)
 	
 	uint size, stride;
 	ScaleBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].size = ScaleBuffer[slotIndex % size];
+	
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
+	
+	ParticleBuffer[slotIndex].size = ScaleBuffer[bufferIndex];
 }
 
-technique11 SetScale { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

@@ -13,9 +13,11 @@ RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
+RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
+bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
 
 #include "../fxh/IndexFunctions.fxh"
 
@@ -34,7 +36,13 @@ void CSSet(csin input)
 	
 	uint size, stride;
 	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color = ColorBuffer[slotIndex % size];
+
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
+	
+	ParticleBuffer[slotIndex].color = ColorBuffer[bufferIndex];
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -45,8 +53,14 @@ void CSAdd(csin input)
 	
 	uint size, stride;
 	ColorBuffer.GetDimensions(size,stride);
-	ParticleBuffer[slotIndex].color += ColorBuffer[slotIndex % size];
+	
+	uint bufferIndex = 0;
+	if(UseSelectionGroupId)
+		bufferIndex = SelectionGroupBuffer[input.DTID.x];
+	else bufferIndex = slotIndex % size;
+	
+	ParticleBuffer[slotIndex].color += ColorBuffer[bufferIndex];
 }
 
-technique11 SetColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
-technique11 AddColor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }
+technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+technique11 Add { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }

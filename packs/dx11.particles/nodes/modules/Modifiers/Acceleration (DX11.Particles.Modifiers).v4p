@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Acceleration (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="14100" top="4425" width="13860" height="8130">
+   <BOUNDS type="Window" left="14100" top="4425" width="13815" height="8535">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
    <BOUNDS type="Box" left="9270" top="4440" width="3840" height="2730">
@@ -243,85 +243,15 @@
    <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="43" dstpinname="BufferName">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="51" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5100" top="720" width="795" height="240">
+   <BOUNDS type="Box" left="3525" top="720" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5100" top="720" width="0" height="0">
+   <BOUNDS type="Node" left="3525" top="720" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Acceleration Buffer|">
    </PIN>
    </NODE>
-   <NODE systemname="CreateEnum (Enumerations)" nodename="CreateEnum (Enumerations)" componentmode="Hidden" id="57">
-   <BOUNDS type="Node" left="2205" top="1665" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Strings" slicecount="1" visible="1" values="|=&cr;&lf;&lt;&cr;&lf;&gt;|">
-   </PIN>
-   <PIN pinname="Enum Name" slicecount="1" values="AccelerationUpdate">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="56" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2205" top="720" width="900" height="450">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2205" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="2" visible="1" values="Set,Add">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="56" srcpinname="Output String" dstnodeid="57" dstpinname="Strings">
-   </LINK>
-   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="55">
-   <BOUNDS type="Node" left="6420" top="1665" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enum" slicecount="1" values="AccelerationUpdate">
-   </PIN>
-   <PIN pinname="Receive" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="54" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6855" top="720" width="750" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6855" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Mode">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="54" srcpinname="Output Enum" dstnodeid="55" dstpinname="Receive" linkstyle="VHV">
-   <LINKPOINT x="6960" y="1198">
-   </LINKPOINT>
-   <LINKPOINT x="6795" y="1233">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Enum2Ord (Enumerations)" nodename="Enum2Ord (Enumerations)" componentmode="Hidden" id="53">
-   <BOUNDS type="Node" left="4155" top="1665" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enum" visible="1">
-   </PIN>
-   <PIN pinname="Ord Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="54" srcpinname="Output Enum" dstnodeid="53" dstpinname="Enum" linkstyle="VHV">
-   <LINKPOINT x="6855" y="1298">
-   </LINKPOINT>
-   <LINKPOINT x="4215" y="1298">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="60" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="10980" top="720" width="480" height="480">
    </BOUNDS>
@@ -385,7 +315,9 @@
    </PIN>
    <PIN pinname="Shader Path" visible="1">
    </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Acceleration">
+   <PIN pinname="Technique" slicecount="1" values="Acceleration" visible="1">
+   </PIN>
+   <PIN pinname="Use SelectionGroupId" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="59" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
@@ -396,9 +328,11 @@
    </LINK>
    <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="51" srcpinname="Output Node" dstnodeid="59" dstpinname="Acceleration Buffer">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Ord Value" dstnodeid="59" dstpinname="UpdateMode">
+   <LINK srcnodeid="51" srcpinname="Output Node" dstnodeid="59" dstpinname="Acceleration Buffer" linkstyle="Bezier">
+   <LINKPOINT x="3570" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="5100" y="2700">
+   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="10980" y="2805">
@@ -410,6 +344,46 @@
    <LINKPOINT x="6660" y="5228">
    </LINKPOINT>
    <LINKPOINT x="7695" y="5228">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="7125" top="720" width="450" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7125" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="59" dstpinname="Technique" linkstyle="Bezier">
+   <LINKPOINT x="7140" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="2700">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5295" top="720" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5295" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionGroupId|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionGroupId" linkstyle="Bezier">
+   <LINKPOINT x="5310" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="4200" y="2693">
    </LINKPOINT>
    </LINK>
    </PATCH>

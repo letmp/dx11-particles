@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Velocity (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="-360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="14100" top="4425" width="13860" height="8820">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Velocity (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="720" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <BOUNDS type="Window" left="6540" top="2115" width="13860" height="8820">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
    <BOUNDS type="Box" left="9270" top="4440" width="3840" height="2730">
@@ -295,115 +295,87 @@
    <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="59" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5100" top="720" width="795" height="240">
+   <BOUNDS type="Box" left="3600" top="720" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5100" top="720" width="0" height="0">
+   <BOUNDS type="Node" left="3600" top="720" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Velocity Buffer|">
    </PIN>
    </NODE>
-   <NODE systemname="CreateEnum (Enumerations)" nodename="CreateEnum (Enumerations)" componentmode="Hidden" id="61">
-   <BOUNDS type="Node" left="1080" top="1470" width="100" height="100">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="69" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="6630" top="720" width="825" height="240">
    </BOUNDS>
-   <PIN pinname="Strings" slicecount="1" visible="1" values="|=&cr;&lf;&lt;&cr;&lf;&gt;|">
-   </PIN>
-   <PIN pinname="Enum Name" slicecount="1" values="|Velocity&cr;&lf;Update|">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="60" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1080" top="525" width="900" height="450">
-   </BOUNDS>
-   <BOUNDS type="Node" left="1080" top="525" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="2" visible="1" values="Set,Add">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="60" srcpinname="Output String" dstnodeid="61" dstpinname="Strings">
-   </LINK>
-   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="6165" top="1620" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enum" slicecount="1" values="AccelerationUpdate">
-   </PIN>
-   <PIN pinname="Receive" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6600" top="675" width="750" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6600" top="675" width="0" height="0">
+   <BOUNDS type="Node" left="6630" top="720" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Mode">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="64" dstpinname="Receive" linkstyle="VHV">
-   <LINKPOINT x="6705" y="1153">
-   </LINKPOINT>
-   <LINKPOINT x="6540" y="1188">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Enum2Ord (Enumerations)" nodename="Enum2Ord (Enumerations)" componentmode="Hidden" id="62">
-   <BOUNDS type="Node" left="4185" top="1620" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Enum" visible="1">
-   </PIN>
-   <PIN pinname="Ord Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="62" dstpinname="Enum" linkstyle="VHV">
-   <LINKPOINT x="6695" y="1253">
-   </LINKPOINT>
-   <LINKPOINT x="4150" y="1253">
-   </LINKPOINT>
-   </LINK>
-   <NODE id="65" systemname="Modifier_Velocity (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Velocity.fx" nodename="Modifier_Velocity (DX11.Effect)" componentmode="Hidden">
+   <NODE id="70" systemname="Modifier_Velocity (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Velocity.fx" nodename="Modifier_Velocity (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
    </BOUNDS>
-   <PIN pinname="UpdateMode" visible="1">
+   <PIN pinname="Use SelectionGroupId" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="65" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   <LINK srcnodeid="70" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="65" dstpinname="Geometry">
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="70" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="65" dstpinname="Defines">
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="70" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="65" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   <LINK srcnodeid="70" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="70" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="11190" y="2805">
    </LINKPOINT>
    <LINKPOINT x="6840" y="2805">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="65" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINK srcnodeid="70" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
    <LINKPOINT x="6660" y="5250">
    </LINKPOINT>
    <LINKPOINT x="7710" y="5250">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="59" srcpinname="Output Node" dstnodeid="65" dstpinname="Velocity Buffer">
+   <LINK srcnodeid="59" srcpinname="Output Node" dstnodeid="70" dstpinname="Velocity Buffer" linkstyle="Bezier">
+   <LINKPOINT x="3645" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="5100" y="2700">
+   </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="62" srcpinname="Ord Value" dstnodeid="65" dstpinname="UpdateMode">
+   <LINK srcnodeid="69" srcpinname="Output Enum" dstnodeid="70" dstpinname="Technique" linkstyle="Bezier">
+   <LINKPOINT x="6645" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="2693">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="71" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4905" top="720" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4905" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionGroupId|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="71" srcpinname="Y Output Value" dstnodeid="70" dstpinname="Use SelectionGroupId" linkstyle="Bezier">
+   <LINKPOINT x="4920" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="4200" y="2693">
+   </LINKPOINT>
    </LINK>
    </PATCH>
