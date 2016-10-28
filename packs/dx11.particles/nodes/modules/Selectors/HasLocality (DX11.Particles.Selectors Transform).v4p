@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selectors Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasLocality (DX11.Particles.Selectors Transform).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="0">
    <NODE systemname="RenderSemantic (DX11.Layer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Transform)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="7890" top="4830" width="1620" height="270">
    </BOUNDS>
@@ -7,7 +7,7 @@
    </PIN>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Semantic" slicecount="2" visible="1" values="TFILTER653,TFILTER654">
+   <PIN pinname="Semantic" slicecount="5" visible="1" values="TFILTER838,TFILTER839,TFILTER840,TFILTER841,TFILTER842">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
@@ -33,7 +33,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6075" top="5685" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="2" visible="1" values="|float4x4 tFilter653 : TFILTER653;|,|float4x4 tFilter654 : TFILTER654;|">
+   <PIN pinname="Input String" slicecount="5" visible="1" values="|float4x4 tFilter838 : TFILTER838;|,|float4x4 tFilter839 : TFILTER839;|,|float4x4 tFilter840 : TFILTER840;|,|float4x4 tFilter841 : TFILTER841;|,|float4x4 tFilter842 : TFILTER842;|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -98,7 +98,7 @@
    <LINKPOINT x="8415" y="2760">
    </LINKPOINT>
    </LINK>
-   <BOUNDS type="Window" left="6135" top="4020" width="17925" height="11220">
+   <BOUNDS type="Window" left="6135" top="4020" width="17925" height="11400">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -354,8 +354,6 @@
    <PIN pinname="ClampBodyXY" slicecount="2" values="0.98,0.98">
    </PIN>
    </NODE>
-   <LINK srcnodeid="43" srcpinname="Texture Out" dstnodeid="46" dstpinname="Texture">
-   </LINK>
    <NODE systemname="SetAlpha (Color)" nodename="SetAlpha (Color)" componentmode="Hidden" id="42">
    <BOUNDS type="Node" left="16365" top="8130" width="100" height="100">
    </BOUNDS>
@@ -464,50 +462,6 @@
    </LINK>
    <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
    </LINK>
-   <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="675" top="4110" width="10830" height="270">
-   </BOUNDS>
-   <PIN pinname="FunctionName" visible="1">
-   </PIN>
-   <PIN pinname="FunctionArguments" visible="1">
-   </PIN>
-   <PIN pinname="Variable Type" visible="1">
-   </PIN>
-   <PIN pinname="Variable Name" visible="1">
-   </PIN>
-   <PIN pinname="Semantic" visible="1">
-   </PIN>
-   <PIN pinname="Semantic Count" visible="1">
-   </PIN>
-   <PIN pinname="Id" visible="1">
-   </PIN>
-   <PIN pinname="FunctionCall" visible="1">
-   </PIN>
-   <PIN pinname="ConstantBuffer Entry" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="49" dstpinname="FunctionName">
-   </LINK>
-   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="49" dstpinname="FunctionArguments">
-   </LINK>
-   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="49" dstpinname="Variable Type">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="49" dstpinname="Variable Name">
-   </LINK>
-   <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="49" dstpinname="Semantic">
-   </LINK>
-   <LINK srcnodeid="38" srcpinname="Count" dstnodeid="49" dstpinname="Semantic Count">
-   </LINK>
-   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="49" dstpinname="Id">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
-   <LINKPOINT x="11445" y="4590">
-   </LINKPOINT>
-   <LINKPOINT x="8730" y="4590">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="50" systemname="IOBox (String)">
    <BOUNDS type="Box" left="690" top="4800" width="4110" height="240">
    </BOUNDS>
@@ -521,9 +475,41 @@
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
+   <PIN pinname="Input String" slicecount="1" values="||">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="49" srcpinname="FunctionCall" dstnodeid="50" dstpinname="Input String">
-   </LINK>
    <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
+   </LINK>
+   <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="51">
+   <BOUNDS type="Node" left="675" top="4110" width="10830" height="270">
+   </BOUNDS>
+   <BOUNDS type="Window" left="7485" top="8625" width="14955" height="6900">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output String" dstnodeid="51" dstpinname="FunctionName">
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Output String" dstnodeid="51" dstpinname="FunctionArguments">
+   </LINK>
+   <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="51" dstpinname="Variable Type">
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="51" dstpinname="Variable Name">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="51" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="38" srcpinname="Count" dstnodeid="51" dstpinname="Semantic Count">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="ID in ParentPatch" dstnodeid="51" dstpinname="Id">
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="ConstantBuffer Entry" dstnodeid="3" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="Semantic" dstnodeid="1" dstpinname="Semantic" linkstyle="VHV">
+   <LINKPOINT x="11445" y="4590">
+   </LINKPOINT>
+   <LINKPOINT x="8730" y="4590">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="FunctionCall" dstnodeid="50" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Texture Out" dstnodeid="46" dstpinname="Texture">
    </LINK>
    </PATCH>

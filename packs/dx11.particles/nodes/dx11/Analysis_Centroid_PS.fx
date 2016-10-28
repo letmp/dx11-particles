@@ -9,8 +9,9 @@ struct Particle {
 };
 
 StructuredBuffer<Particle> ParticleBuffer;
-StructuredBuffer<GroupLink> GroupLinkBuffer;
-StructuredBuffer<uint> GroupCounterBuffer;
+StructuredBuffer<uint> AlivePointerBuffer;
+StructuredBuffer<uint> AliveCounterBuffer;
+StructuredBuffer<uint> GroupIndexBuffer;
 
 float2 R:TARGETSIZE;
 
@@ -31,9 +32,9 @@ vs2ps VS(vsInput input)
 {
     vs2ps output = (vs2ps)0;
     
-	uint particleIndex = GroupLinkBuffer[input.vi].particleId;
-	uint groupId = GroupLinkBuffer[input.vi].groupId;
-		
+	uint particleIndex = AlivePointerBuffer[input.vi];
+	uint groupId = GroupIndexBuffer[particleIndex];
+	
 	float halfPixel = (1.0f / R.x) * 0.5f;
 	
 	float pixPos = (groupId * (1.0f / R.x)) * 2 - 1.0f;

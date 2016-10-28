@@ -23,6 +23,8 @@ void CSCentroid(csin input)
 	if (input.DTID.x >= MAXGROUPCOUNT) return;
 	
 	float pixPos = ((1.0f / MAXGROUPCOUNT) * input.DTID.x) ;
+	float halfPixel = (1.0f / MAXGROUPCOUNT) * 0.5f;
+	pixPos += halfPixel;
 	
 	float4 accum = tex.SampleLevel(sPoint, float2(pixPos,0),0);
 	if (accum.w > 0.0f){

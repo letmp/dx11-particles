@@ -11,12 +11,17 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
+RWStructuredBuffer<uint> GroupIndexBuffer : GROUPINDEXBUFFER_/*STUB_GROUPNAME*/;
 
 cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
 };
 
 /*STUB_FUNCTION_DEF*/
+
+void SetGroupId(uint particleIndex, uint selectionIndex){
+	GroupIndexBuffer[particleIndex] = selectionIndex;
+}
 
 void SetSelection(uint particleIndex, uint selectionIndex){
 	uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
@@ -38,7 +43,10 @@ void CS_Select(csin input)
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
 	
+	SetGroupId(particleIndex, -1); // resets groupId
+	
 	uint selectionIndex = 0;
+	
 	/*STUB_FUNCTION_CALL*/
 	
 }
