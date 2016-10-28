@@ -10,11 +10,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 #include "../fxh/IndexFunctions.fxh"
 
@@ -32,36 +27,36 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Inside(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
-	float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tW).xyz;
+	float3 pointCoord = mul(float4(ParticleBuffer[particleIndex].position,1), tW).xyz;
 	if(	(pointCoord.x < -0.5 || pointCoord.x > 0.5 ||
 		pointCoord.y < -0.5 || pointCoord.y > 0.5 ||
 		pointCoord.z < -0.5 || pointCoord.z > 0.5
 	)){
-		if( (pointCoord.x < -0.5 || pointCoord.x > 0.5)) ParticleBuffer[slotIndex].velocity *= float3(-BounceMultiplicator,BounceMultiplicator,BounceMultiplicator);
-		if( (pointCoord.y < -0.5 || pointCoord.y > 0.5)) ParticleBuffer[slotIndex].velocity *= float3(BounceMultiplicator,-BounceMultiplicator,BounceMultiplicator);
-		if( (pointCoord.z < -0.5 || pointCoord.z > 0.5)) ParticleBuffer[slotIndex].velocity *= float3(BounceMultiplicator,BounceMultiplicator,-BounceMultiplicator);
-		ParticleBuffer[slotIndex].velocity = mul(float4(ParticleBuffer[slotIndex].velocity,1), Rotation).xyz;
+		if( (pointCoord.x < -0.5 || pointCoord.x > 0.5)) ParticleBuffer[particleIndex].velocity *= float3(-BounceMultiplicator,BounceMultiplicator,BounceMultiplicator);
+		if( (pointCoord.y < -0.5 || pointCoord.y > 0.5)) ParticleBuffer[particleIndex].velocity *= float3(BounceMultiplicator,-BounceMultiplicator,BounceMultiplicator);
+		if( (pointCoord.z < -0.5 || pointCoord.z > 0.5)) ParticleBuffer[particleIndex].velocity *= float3(BounceMultiplicator,BounceMultiplicator,-BounceMultiplicator);
+		ParticleBuffer[particleIndex].velocity = mul(float4(ParticleBuffer[particleIndex].velocity,1), Rotation).xyz;
 	}	
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Outside(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
-	float3 pointCoord = mul(float4(ParticleBuffer[slotIndex].position,1), tW).xyz;
+	float3 pointCoord = mul(float4(ParticleBuffer[particleIndex].position,1), tW).xyz;
 	if(	!(pointCoord.x < -0.5 || pointCoord.x > 0.5 ||
 		pointCoord.y < -0.5 || pointCoord.y > 0.5 ||
 		pointCoord.z < -0.5 || pointCoord.z > 0.5
 	)){
-		if( !(pointCoord.x < -0.5 || pointCoord.x > 0.5)) ParticleBuffer[slotIndex].velocity *= float3(-BounceMultiplicator,BounceMultiplicator,BounceMultiplicator);
-		if( !(pointCoord.y < -0.5 || pointCoord.y > 0.5)) ParticleBuffer[slotIndex].velocity *= float3(BounceMultiplicator,-BounceMultiplicator,BounceMultiplicator);
-		if( !(pointCoord.z < -0.5 || pointCoord.z > 0.5)) ParticleBuffer[slotIndex].velocity *= float3(BounceMultiplicator,BounceMultiplicator,-BounceMultiplicator);
-		ParticleBuffer[slotIndex].velocity = mul(float4(ParticleBuffer[slotIndex].velocity,1), Rotation).xyz;
+		if( !(pointCoord.x < -0.5 || pointCoord.x > 0.5)) ParticleBuffer[particleIndex].velocity *= float3(-BounceMultiplicator,BounceMultiplicator,BounceMultiplicator);
+		if( !(pointCoord.y < -0.5 || pointCoord.y > 0.5)) ParticleBuffer[particleIndex].velocity *= float3(BounceMultiplicator,-BounceMultiplicator,BounceMultiplicator);
+		if( !(pointCoord.z < -0.5 || pointCoord.z > 0.5)) ParticleBuffer[particleIndex].velocity *= float3(BounceMultiplicator,BounceMultiplicator,-BounceMultiplicator);
+		ParticleBuffer[particleIndex].velocity = mul(float4(ParticleBuffer[particleIndex].velocity,1), Rotation).xyz;
 	}	
 }
 

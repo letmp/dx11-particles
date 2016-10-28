@@ -5,7 +5,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3930" top="4485" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|bool SetBufferRegion(uint slotIndex, float2 fRegion) {&cr;&lf;&tab;return (asint(slotIndex) &gt;= fRegion[0] &amp;&amp; asint(slotIndex) &lt; fRegion[1]);&cr;&lf;}|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|bool SetBufferRegion(uint particleIndex, float2 fRegion) {&cr;&lf;&tab;return (asint(particleIndex) &gt;= fRegion[0] &amp;&amp; asint(particleIndex) &lt; fRegion[1]);&cr;&lf;}|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -43,7 +43,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="855" top="3540" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="SetBufferRegion(slotIndex)">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="SetBufferRegion(particleIndex)">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -87,7 +87,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2280" top="2535" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="slotIndex">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="particleIndex">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -231,9 +231,9 @@
    </BOUNDS>
    <PIN pinname="Variable List" slicecount="1" visible="1" values="||">
    </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="SetRegion(slotIndex)">
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="SetRegion(particleIndex)">
    </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>

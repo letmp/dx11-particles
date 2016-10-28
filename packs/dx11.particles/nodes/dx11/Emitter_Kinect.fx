@@ -13,7 +13,7 @@ struct Particle {
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
+RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
 Texture2D texRGB <string uiname="RGB";>;
@@ -83,9 +83,9 @@ void CS_Emit(csin input)
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if (emitterCounter >= EmitCount )return; // safeguard 
 		
-		// SET slotIndex
-		//uint slotIndex = EMITTEROFFSET + (input.DTID.x + input.DTID.x * input.DTID.y); // for 4,4,1 threads
-		uint slotIndex = EMITTEROFFSET + input.DTID.x;
+		// SET particleIndex
+		//uint particleIndex = EMITTEROFFSET + (input.DTID.x + input.DTID.x * input.DTID.y); // for 4,4,1 threads
+		uint particleIndex = EMITTEROFFSET + input.DTID.x;
 		
 		// INIT NEW PARTICLE
 		Particle p = (Particle) 0;
@@ -114,11 +114,11 @@ void CS_Emit(csin input)
 		p.lifespan = psTime.y / 2; // ensure that each particle lives only 1 frame
 		
 		// ADD PARTICLE TO PARTICLEBUFFER
-		ParticleBuffer[slotIndex] = p;
+		ParticleBuffer[particleIndex] = p;
 		
-		// UPDATE ALIVEINDEXBUFFER
+		// UPDATE ALIVEPOINTERBUFFER
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
-		AliveIndexBuffer[aliveIndex] = slotIndex;
+		AlivePointerBuffer[aliveIndex] = particleIndex;
 	}
 	
 }

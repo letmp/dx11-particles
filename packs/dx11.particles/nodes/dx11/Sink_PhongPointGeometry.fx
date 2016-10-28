@@ -10,7 +10,7 @@ struct Particle {
 };
 
 StructuredBuffer<Particle> ParticleBuffer;
-StructuredBuffer<uint> AliveIndexBuffer;
+StructuredBuffer<uint> AlivePointerBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;
 
 cbuffer cbPerDraw : register( b0 )
@@ -39,7 +39,7 @@ struct VSIn
 struct VSOut
 {
     float4 pos: SV_POSITION;
-	uint slotIndex : VID;
+	uint particleIndex : VID;
 	
 	float3 LightDirV: TEXCOORD4;
     float3 NormV: TEXCOORD5;
@@ -53,11 +53,11 @@ VSOut VS(VSIn In)
 {
     VSOut Out = (VSOut)0;
     
-	uint slotIndex = AliveIndexBuffer[In.ii];
-	Out.slotIndex = slotIndex;
+	uint particleIndex = AlivePointerBuffer[In.ii];
+	Out.particleIndex = particleIndex;
 	
 	float4 p = In.pos;
-	p.xyz += ParticleBuffer[slotIndex].position;
+	p.xyz += ParticleBuffer[particleIndex].position;
 	
 	Out.pos = mul(p,mul(tW,tVP));
 	
@@ -81,7 +81,7 @@ float4 PS(VSOut In): SV_Target
 
 	float4 col = float4(1,1,1,1);
 	 #if defined(KNOW_COLOR)
-       col *= ParticleBuffer[In.slotIndex].color;
+       col *= ParticleBuffer[In.particleIndex].color;
     #endif
 
     return col * PhongPoint(In.PosW, In.NormV, In.ViewDirV, In.LightDirV);

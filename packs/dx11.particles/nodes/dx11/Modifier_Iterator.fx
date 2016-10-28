@@ -13,11 +13,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 cbuffer cbuf
 {
@@ -37,18 +32,18 @@ void CS_Iterate(csin input)
 {
 	
 	if(input.DTID.x >= MAXPARTICLECOUNT) return;
-	uint slotIndex = input.DTID.x;
+	uint particleIndex = input.DTID.x;
 
-	ParticleBuffer[slotIndex].age += psTime.y;
-	ParticleBuffer[slotIndex].lifespan -= psTime.y;
+	ParticleBuffer[particleIndex].age += psTime.y;
+	ParticleBuffer[particleIndex].lifespan -= psTime.y;
 
 	if(AddForce)
 	{
-		ParticleBuffer[slotIndex].velocity *= VelDampen;
-		ParticleBuffer[slotIndex].velocity += ParticleBuffer[slotIndex].acceleration * psTime.y;
+		ParticleBuffer[particleIndex].velocity *= VelDampen;
+		ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * psTime.y;
 	}
 	
-	ParticleBuffer[slotIndex].position += ParticleBuffer[slotIndex].velocity * psTime.y;
+	ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * psTime.y;
 }
 
 technique11 Iterate { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Iterate() ) );} }

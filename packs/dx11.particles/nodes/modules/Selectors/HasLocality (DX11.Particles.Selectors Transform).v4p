@@ -15,7 +15,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4290" top="7125" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="2" visible="1" values="|bool LocalityInsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return (!(&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|,|bool LocalityOutsideTransform(uint slotIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[slotIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return ((&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|">
+   <PIN pinname="Input String" slicecount="2" visible="1" values="|bool LocalityInsideTransform(uint particleIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[particleIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return (!(&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|,|bool LocalityOutsideTransform(uint particleIndex, float4x4 tFilter) {&cr;&lf;&tab;float3 coord = mul(float4(ParticleBuffer[particleIndex].position,1), tFilter).xyz;&cr;&lf;&tab;return ((&tab;coord.x &lt; -0.5 |||| coord.x &gt; 0.5 |||| coord.y &lt; -0.5 |||| coord.y &gt; 0.5 |||| coord.z &lt; -0.5 |||| coord.z &gt; 0.5));&cr;&lf; };|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -53,7 +53,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="660" top="3120" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="LocalityInsideTransform(slotIndex)">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="LocalityInsideTransform(particleIndex)">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -217,11 +217,11 @@
    <LINK srcnodeid="21" srcpinname="Output" dstnodeid="4" dstpinname="Input String">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="34" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2475" top="3540" width="990" height="240">
+   <BOUNDS type="Box" left="2475" top="3540" width="1230" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="2475" top="3540" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="slotIndex">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="particleIndex">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -437,9 +437,9 @@
    </BOUNDS>
    <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
    </PIN>
-   <PIN pinname="Function Call" slicecount="2" visible="1" values="|LocalityInsideTransform(slotIndex,tFilter653)|,|LocalityInsideTransform(slotIndex,tFilter654)|">
+   <PIN pinname="Function Call" slicecount="2" visible="1" values="|LocalityInsideTransform(particleIndex,tFilter653)|,|LocalityInsideTransform(particleIndex,tFilter654)|">
    </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>

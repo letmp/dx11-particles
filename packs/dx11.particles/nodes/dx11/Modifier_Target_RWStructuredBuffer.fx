@@ -11,11 +11,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 cbuffer name : register(b0){
    float2 fRegion : FREGION;
@@ -46,16 +41,16 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSet(csin input)
 {
-	float slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	float particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
-	if(! (slotIndex > fRegion[0]) && slotIndex < fRegion[1]){
-		float3 p = ParticleBuffer[slotIndex].position;
-		float3 v = ParticleBuffer[slotIndex].velocity;
-		float3 a = ParticleBuffer[slotIndex].acceleration;
+	if(! (particleIndex > fRegion[0]) && particleIndex < fRegion[1]){
+		float3 p = ParticleBuffer[particleIndex].position;
+		float3 v = ParticleBuffer[particleIndex].velocity;
+		float3 a = ParticleBuffer[particleIndex].acceleration;
 		
-		uint targetSlotIndex = (slotIndex % (fRegion[0] - fRegion[1])) + fRegion[0];
-		float3 target = ParticleBuffer[targetSlotIndex].position;
+		uint targetparticleIndex = (particleIndex % (fRegion[0] - fRegion[1])) + fRegion[0];
+		float3 target = ParticleBuffer[targetparticleIndex].position;
 	
 		float3 desired = target - p;
 		
@@ -72,7 +67,7 @@ void CSSet(csin input)
 		
 		float3 steer = desired - v;
 		steer = Limit(steer,MaxForce);
-		ParticleBuffer[slotIndex].velocity += steer;
+		ParticleBuffer[particleIndex].velocity += steer;
 	}
 }
 

@@ -31,7 +31,7 @@ vs2ps VS(vsInput input)
 {
     vs2ps output = (vs2ps)0;
     
-	uint slotIndex = GroupLinkBuffer[input.vi].particleId;
+	uint particleIndex = GroupLinkBuffer[input.vi].particleId;
 	uint groupId = GroupLinkBuffer[input.vi].groupId;
 		
 	float halfPixel = (1.0f / R.x) * 0.5f;
@@ -40,7 +40,7 @@ vs2ps VS(vsInput input)
 	pixPos += halfPixel;
 	
 	output.pos  = float4(pixPos , 0.0 ,0.0 ,1.0);
-	output.col = float4(ParticleBuffer[slotIndex].position, 1.0f );
+	output.col = float4(ParticleBuffer[particleIndex].position, 1.0f );
 	if (groupId == -1 ) output.col = float4(0,0,0,0);
 	
 	return output;

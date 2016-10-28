@@ -1,4 +1,5 @@
 #include "../fxh/Defines.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -10,25 +11,17 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
 };
 
-#include "../fxh/IndexFunctions.fxh"
-
 /*STUB_FUNCTION_DEF*/
 
-void SetSelection(uint slotIndex, uint selectionGroupIndex){
+void SetSelection(uint particleIndex, uint selectionIndex){
 	uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
-	SelectionIndexBuffer[selectionCounter] = slotIndex;
-	SelectionGroupBuffer[selectionCounter] = selectionGroupIndex;
+	SelectionPointerBuffer[selectionCounter] = particleIndex;
+	SelectionIndexBuffer[selectionCounter] = selectionIndex;
 }
 
 struct csin
@@ -42,10 +35,10 @@ struct csin
 void CS_Select(csin input)
 {
 	
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
-	uint selectionGroupIndex = 0;
+	uint selectionIndex = 0;
 	/*STUB_FUNCTION_CALL*/
 	
 }

@@ -9,11 +9,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 #include "../fxh/IndexFunctions.fxh"
 
@@ -32,16 +27,16 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSUpdate(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex < 0 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex < 0 ) return;
 	
-	float3 position = ParticleBuffer[slotIndex].position;
+	float3 position = ParticleBuffer[particleIndex].position;
 	
 	position.x = position.x + S * (position.y - position.x) * psTime.y * Speed;
 	position.y = position.y + ( (R * position.x) - position.y - (position.x * position.z) ) * psTime.y * Speed;
     position.z = position.z + ( (position.x * position.y) - (B * position.z) ) * psTime.y * Speed;
 	
-	ParticleBuffer[slotIndex].position = position;
+	ParticleBuffer[particleIndex].position = position;
 }
 
 technique11 LorenzAttractor { pass P0{SetComputeShader( CompileShader( cs_5_0, CSUpdate() ) );} }

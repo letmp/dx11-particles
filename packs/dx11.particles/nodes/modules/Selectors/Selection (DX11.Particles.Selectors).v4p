@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\Selection (DX11.Particles.Selectors).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\Selection (DX11.Particles.Selectors).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="1665" top="9465" width="100" height="100">
    </BOUNDS>
@@ -591,7 +591,7 @@
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;../fxh/Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;  &tab;&tab;float age;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveIndexBuffer : ALIVEINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   float fTime810 : FTIME810;&cr;&lf;};&cr;&lf;&cr;&lf;#include &quot;../fxh/IndexFunctions.fxh&quot;&cr;&lf;&cr;&lf;bool AgeEqual(uint slotIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[slotIndex].age == fTime; &cr;&lf;};&cr;&lf;bool AgeGT(uint slotIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[slotIndex].age &gt;= fTime; &cr;&lf;};&cr;&lf;bool AgeLT(uint slotIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[slotIndex].age &lt;= fTime; &cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint slotIndex = GetSlotIndex( input.DTID.x );&cr;&lf;&tab;if (slotIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;isSelected = isSelected &amp;&amp;( AgeEqual(slotIndex,fTime810) );&cr;&lf;&tab;&cr;&lf;&tab;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = slotIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
+   <PIN pinname="ShaderCode" visible="1" slicecount="1" values="|#include &quot;../fxh/Defines.fxh&quot;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;  &tab;&tab;float age;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;Particle&gt; ParticleBuffer : PARTICLEBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AlivePointerBuffer : AlivePointerBuffer;&cr;&lf;RWStructuredBuffer&lt;uint&gt; AliveCounterBuffer : ALIVECOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; SelectionIndexBuffer : SELECTIONINDEXBUFFER;&cr;&lf;RWStructuredBuffer&lt;bool&gt; FlagBuffer : FLAGBUFFER;&cr;&lf;&cr;&lf;cbuffer name : register(b0){&cr;&lf;   float fTime810 : FTIME810;&cr;&lf;};&cr;&lf;&cr;&lf;#include &quot;../fxh/IndexFunctions.fxh&quot;&cr;&lf;&cr;&lf;bool AgeEqual(uint particleIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].age == fTime; &cr;&lf;};&cr;&lf;bool AgeGT(uint particleIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].age &gt;= fTime; &cr;&lf;};&cr;&lf;bool AgeLT(uint particleIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].age &lt;= fTime; &cr;&lf;};&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_Select(csin input)&cr;&lf;{&cr;&lf;&tab;&cr;&lf;&tab;uint particleIndex = GetparticleIndex( input.DTID.x );&cr;&lf;&tab;if (particleIndex == -1 ) return;&cr;&lf;&tab;&cr;&lf;&tab;bool isSelected = true;&cr;&lf;&tab;isSelected = isSelected &amp;&amp;( AgeEqual(particleIndex,fTime810) );&cr;&lf;&tab;&cr;&lf;&tab;&tab;&cr;&lf;&tab;if (isSelected){&cr;&lf;&tab;&tab;uint selectionCounter = SelectionCounterBuffer.IncrementCounter();&cr;&lf;&tab;&tab;SelectionIndexBuffer[selectionCounter] = particleIndex;&cr;&lf;&tab;}&cr;&lf;}&cr;&lf;&cr;&lf;technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }|">
    </PIN>
    </NODE>
    <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="75" dstpinname="IncludePath">
@@ -613,9 +613,9 @@
    <NODE systemname="Zip (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (String)" componentmode="Hidden" id="90">
    <BOUNDS type="Node" left="8535" top="4185" width="1035" height="270">
    </BOUNDS>
-   <PIN pinname="Input 1" visible="1" slicecount="2" values="|LocalityOutsideTransform(slotIndex,groupIndex,tFilter681);|,|LocalityOutsideTransform(slotIndex,groupIndex,tFilter682);|">
+   <PIN pinname="Input 1" visible="1" slicecount="2" values="|LocalityOutsideTransform(particleIndex,groupIndex,tFilter681);|,|LocalityOutsideTransform(particleIndex,groupIndex,tFilter682);|">
    </PIN>
-   <PIN pinname="Input 2" visible="1" slicecount="2" values="|LocalityInsideTransform(slotIndex,tFilter681);|,|LocalityInsideTransform(slotIndex,tFilter682);|">
+   <PIN pinname="Input 2" visible="1" slicecount="2" values="|LocalityInsideTransform(particleIndex,tFilter681);|,|LocalityInsideTransform(particleIndex,tFilter682);|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -653,7 +653,7 @@
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Input 1" slicecount="1" values="selectionGroupIndex=">
+   <PIN pinname="Input 1" slicecount="1" values="selectionIndex=">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -677,7 +677,7 @@
    </PIN>
    <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Input 3" slicecount="1" visible="1" values="|) { SetSelection(slotIndex, selectionGroupIndex); return; }|">
+   <PIN pinname="Input 3" slicecount="1" visible="1" values="|) { SetSelection(particleIndex, selectionIndex); return; }|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -727,7 +727,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="SelectionGroups">
+   <PIN pinname="Descriptive Name" slicecount="1" values="SelectionCount">
    </PIN>
    </NODE>
    <LINK srcnodeid="89" srcpinname="Count" dstnodeid="91" dstpinname="Y Input Value" linkstyle="Bezier" hiddenwhenlocked="1">

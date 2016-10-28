@@ -37,12 +37,3 @@ cbuffer dx11ParticlesUniforms
 {
     float2 psTime : PS_TIME;
 };
-
-// =====================================================
-//                  DEFAULT STRUCTS
-// =====================================================
-
-struct GroupLink {
-	uint groupId;
-	uint particleId;
-};

@@ -10,11 +10,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
 
@@ -39,10 +34,10 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSUpdate(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex < 0 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex < 0 ) return;
 	
-	float3 position = ParticleBuffer[slotIndex].position;
+	float3 position = ParticleBuffer[particleIndex].position;
 	
 	// Noise Force
 	float3 noiseForce = float3(
@@ -52,7 +47,7 @@ void CSUpdate(csin input)
 	);
 	noiseForce *= noiseAmount;
 	
-	ParticleBuffer[slotIndex].acceleration += noiseForce;
+	ParticleBuffer[particleIndex].acceleration += noiseForce;
 	
 }
 

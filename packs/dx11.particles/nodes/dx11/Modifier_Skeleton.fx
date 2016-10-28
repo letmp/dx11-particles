@@ -1,4 +1,5 @@
 #include "../fxh/Defines.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -10,17 +11,10 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
 };
-
-#include "../fxh/IndexFunctions.fxh"
 
 /*STUB_FUNCTION_DEF*/
 
@@ -35,8 +29,8 @@ struct csin
 void CS_Set(csin input)
 {
 	
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
 	/*STUB_FUNCTION_CALL*/
 	

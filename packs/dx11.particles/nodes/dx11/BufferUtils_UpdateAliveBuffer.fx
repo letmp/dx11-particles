@@ -9,7 +9,7 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
+RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
 RWStructuredBuffer<uint> AliveSwapBuffer : ALIVESWAPBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
@@ -25,11 +25,11 @@ void CS_Rebuild(csin input)
 {
 	if(input.DTID.x >= MAXPARTICLECOUNT) return;
 	
-	uint slotIndex = input.DTID.x;
+	uint particleIndex = input.DTID.x;
 
-	if(ParticleBuffer[slotIndex].lifespan >= 0){
+	if(ParticleBuffer[particleIndex].lifespan >= 0){
 		uint particleCounter = AliveCounterBuffer.IncrementCounter();
-		AliveSwapBuffer[particleCounter] = slotIndex;
+		AliveSwapBuffer[particleCounter] = particleIndex;
 	}	
 }
 
@@ -38,11 +38,11 @@ void CS_CopyToSwap(csin input)
 {
 	if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
 	
-	uint slotIndex = AliveIndexBuffer[input.DTID.x];
+	uint particleIndex = AlivePointerBuffer[input.DTID.x];
 
-	if(ParticleBuffer[slotIndex].lifespan >= 0){
+	if(ParticleBuffer[particleIndex].lifespan >= 0){
 		uint particleCounter = AliveCounterBuffer.IncrementCounter();
-		AliveSwapBuffer[particleCounter] = slotIndex;
+		AliveSwapBuffer[particleCounter] = particleIndex;
 	}
 	
 }
@@ -52,10 +52,10 @@ void CS_CopyFromSwap(csin input)
 {
 	if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
 	
-	uint slotIndex = AliveSwapBuffer[input.DTID.x];
-	if(ParticleBuffer[slotIndex].lifespan >= 0){
+	uint particleIndex = AliveSwapBuffer[input.DTID.x];
+	if(ParticleBuffer[particleIndex].lifespan >= 0){
 		uint particleCounter = AliveCounterBuffer.IncrementCounter();
-		AliveIndexBuffer[particleCounter] = slotIndex;
+		AlivePointerBuffer[particleCounter] = particleIndex;
 	}
 	
 }
@@ -72,9 +72,9 @@ void CS_UpdateCounter(csin input)
 {
 	if(input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
 	
-	uint slotIndex = AliveIndexBuffer[input.DTID.x];
+	uint particleIndex = AlivePointerBuffer[input.DTID.x];
 
-	if(ParticleBuffer[slotIndex].lifespan >= 0){
+	if(ParticleBuffer[particleIndex].lifespan >= 0){
 		AliveCounterBuffer.IncrementCounter();
 	}
 	

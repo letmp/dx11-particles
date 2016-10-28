@@ -149,7 +149,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2055" top="3375" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="slotIndex">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="particleIndex">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -227,7 +227,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4200" top="5055" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="3" visible="1" values="|bool AgeEqual(uint slotIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[slotIndex].age == fTime; &cr;&lf;};|,|bool AgeGT(uint slotIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[slotIndex].age &gt;= fTime; &cr;&lf;};|,|bool AgeLT(uint slotIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[slotIndex].age &lt;= fTime; &cr;&lf;};|">
+   <PIN pinname="Input String" slicecount="3" visible="1" values="|bool AgeEqual(uint particleIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].age == fTime; &cr;&lf;};|,|bool AgeGT(uint particleIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].age &gt;= fTime; &cr;&lf;};|,|bool AgeLT(uint particleIndex, float fTime) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].age &lt;= fTime; &cr;&lf;};|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -303,9 +303,9 @@
    </BOUNDS>
    <PIN pinname="Variable List" slicecount="1" visible="1" values="|float age;|">
    </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="|AgeGT(slotIndex, 0)|">
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="|AgeGT(particleIndex, 0)|">
    </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint slotIndex) { return ParticleBuffer[slotIndex].age == 0; }|">
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>

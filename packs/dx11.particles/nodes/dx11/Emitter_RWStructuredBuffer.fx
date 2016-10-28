@@ -1,4 +1,5 @@
 #include "../fxh/Defines.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -14,14 +15,8 @@ struct Particle {
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
-StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
-#include "../fxh/IndexFunctions.fxh"
+StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 cbuffer cbuf
 {
@@ -40,9 +35,9 @@ void CS_Emit(csin input)
 {	
 	if(input.DTID.x >= EmitterSize) return;
 	
-	uint slotIndex = EMITTEROFFSET + input.DTID.x;
+	uint particleIndex = EMITTEROFFSET + input.DTID.x;
 
-	float currentLifespan = ParticleBuffer[slotIndex].lifespan;
+	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
 	if ( currentLifespan <= 0.0f){
 		
 		// this counter is just for checking if we already copied all particles
@@ -50,24 +45,24 @@ void CS_Emit(csin input)
 		if ( 	(FlagBuffer[0] == true && emitterCounter >= SelectionCounterBuffer[0]) ||
 				(FlagBuffer[0] == false && emitterCounter >= AliveCounterBuffer[0])) return;
 		
-		// update AliveIndexBuffer
+		// update AlivePointerBuffer
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
-		AliveIndexBuffer[aliveIndex] = slotIndex;
+		AlivePointerBuffer[aliveIndex] = particleIndex;
 		
 		// copy particle
 		Particle p = (Particle) 0;
 		
-		uint slotIndexToCopy = GetSlotIndex( emitterCounter );
-		if (slotIndexToCopy == -1 ) return;
+		uint particleIndexToCopy = GetParticleIndex( emitterCounter );
+		if (particleIndexToCopy == -1 ) return;
 		
-		p = ParticleBuffer[slotIndexToCopy];
+		p = ParticleBuffer[particleIndexToCopy];
 		
 		// update lifespan
 		uint size, stride;
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
 		
-		ParticleBuffer[slotIndex] = p;
+		ParticleBuffer[particleIndex] = p;
 	}
 }
 

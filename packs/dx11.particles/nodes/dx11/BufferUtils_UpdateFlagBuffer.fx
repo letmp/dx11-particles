@@ -3,7 +3,7 @@
 /*
 The flagbuffer holds all flags that are needed for the particle ecosystem.
 Flags currently used:
-0 -> SelectionFlag ( false = modifiers iterate over all particles / true => modifiers iterate over SelectionIndexBuffer)
+0 -> SelectionFlag ( false = modifiers iterate over all particles / true => modifiers iterate over SelectionPointerBuffer)
 
 */
 

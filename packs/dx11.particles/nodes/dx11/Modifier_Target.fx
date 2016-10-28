@@ -1,4 +1,5 @@
 #include "../fxh/Defines.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -11,21 +12,13 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
-bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
+bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
 
 float MaxSpeed = 10;
 float MaxForce = 1;
 float LandingRadius = 0.1;
-
-#include "../fxh/IndexFunctions.fxh"
 
 float3 Limit(in float3 v, float3 Maximum)
 {
@@ -46,20 +39,16 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSet(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
-	float3 p = ParticleBuffer[slotIndex].position;
-	float3 v = ParticleBuffer[slotIndex].velocity;
-	float3 a = ParticleBuffer[slotIndex].acceleration;
+	float3 p = ParticleBuffer[particleIndex].position;
+	float3 v = ParticleBuffer[particleIndex].velocity;
+	float3 a = ParticleBuffer[particleIndex].acceleration;
 	
-	uint cnt,stride;
-	PositionBuffer.GetDimensions(cnt,stride);	
-	
-	uint bufferIndex = 0;
-	if(UseSelectionGroupId)
-		bufferIndex = SelectionGroupBuffer[input.DTID.x];
-	else bufferIndex = slotIndex % cnt;
+	uint size,stride;
+	PositionBuffer.GetDimensions(size,stride);	
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
 	
 	float3 target = PositionBuffer[bufferIndex];
 	
@@ -77,7 +66,7 @@ void CSSet(csin input)
 	
 	float3 steer = desired - v;
 	steer = Limit(steer,MaxForce);
-	ParticleBuffer[slotIndex].velocity += steer;
+	ParticleBuffer[particleIndex].velocity += steer;
 }
 
 technique11 SetTarget { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

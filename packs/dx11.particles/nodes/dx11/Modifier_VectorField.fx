@@ -11,11 +11,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 float4x4 tW : WORLD;
 float3 fieldPower = 1;
@@ -40,41 +35,41 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSetVelocity(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;	
-	float4 p = mul(float4(ParticleBuffer[slotIndex].position,1), tW);
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;	
+	float4 p = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
 	float4 force =  VolumeTexture3D.SampleLevel(volumeSampler,((p.xyz) + 0.5 ),0) * float4(fieldPower,1);
-	ParticleBuffer[slotIndex].velocity = force.xyz;
+	ParticleBuffer[particleIndex].velocity = force.xyz;
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSAddVelocity(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;	
-	float4 p = mul(float4(ParticleBuffer[slotIndex].position,1), tW);
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;	
+	float4 p = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
 	float4 force =  VolumeTexture3D.SampleLevel(volumeSampler,((p.xyz) + 0.5 ),0) * float4(fieldPower,1);
-	ParticleBuffer[slotIndex].velocity += force.xyz;
+	ParticleBuffer[particleIndex].velocity += force.xyz;
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSetAcceleration(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;	
-	float4 p = mul(float4(ParticleBuffer[slotIndex].position,1), tW);
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;	
+	float4 p = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
 	float4 force =  VolumeTexture3D.SampleLevel(volumeSampler,((p.xyz) + 0.5 ),0) * float4(fieldPower,1);
-	ParticleBuffer[slotIndex].acceleration = force.xyz;
+	ParticleBuffer[particleIndex].acceleration = force.xyz;
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSAddAcceleration(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;	
-	float4 p = mul(float4(ParticleBuffer[slotIndex].position,1), tW);
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;	
+	float4 p = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
 	float4 force =  VolumeTexture3D.SampleLevel(volumeSampler,((p.xyz) + 0.5 ),0) * float4(fieldPower,1);
-	ParticleBuffer[slotIndex].acceleration += force.xyz;
+	ParticleBuffer[particleIndex].acceleration += force.xyz;
 }
 
 technique11 SetVelocity { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSetVelocity() ) );} }

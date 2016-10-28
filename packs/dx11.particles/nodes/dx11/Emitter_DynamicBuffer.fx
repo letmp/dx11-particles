@@ -14,7 +14,7 @@ struct Particle {
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
+RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
@@ -41,18 +41,18 @@ void CS_Emit(csin input)
 	
 	if(input.DTID.x >= EmitterSize) return;
 	
-	uint slotIndex = EMITTEROFFSET + input.DTID.x;
+	uint particleIndex = EMITTEROFFSET + input.DTID.x;
 
-	float currentLifespan = ParticleBuffer[slotIndex].lifespan;
+	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
 	if ( currentLifespan <= 0.0f){
 		
 		// this counter is just for checking if we already emitted enough particles
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if (emitterCounter >= EmitCount )return;
 		
-		// update AliveIndexBuffer
+		// update AlivePointerBuffer
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
-		AliveIndexBuffer[aliveIndex] = slotIndex;
+		AlivePointerBuffer[aliveIndex] = particleIndex;
 		
 		// create new particle
 		uint size, stride;
@@ -70,7 +70,7 @@ void CS_Emit(csin input)
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
 
-		ParticleBuffer[slotIndex] = p;
+		ParticleBuffer[particleIndex] = p;
 		
 	}
 }

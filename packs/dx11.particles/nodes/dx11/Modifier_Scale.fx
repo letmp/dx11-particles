@@ -1,4 +1,5 @@
 #include "../fxh/Defines.fxh"
+#include "../fxh/IndexFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -9,17 +10,9 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<uint> SelectionGroupBuffer : SELECTIONGROUPBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> ScaleBuffer <string uiname="Scale Buffer";>;
-bool UseSelectionGroupId <String uiname="Use SelectionGroupId";> = 0;
-
-#include "../fxh/IndexFunctions.fxh"
+bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
 
 struct csin
 {
@@ -31,18 +24,14 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSet(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
 	uint size, stride;
 	ScaleBuffer.GetDimensions(size,stride);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
 	
-	uint bufferIndex = 0;
-	if(UseSelectionGroupId)
-		bufferIndex = SelectionGroupBuffer[input.DTID.x];
-	else bufferIndex = slotIndex % size;
-	
-	ParticleBuffer[slotIndex].size = ScaleBuffer[bufferIndex];
+	ParticleBuffer[particleIndex].size = ScaleBuffer[bufferIndex];
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

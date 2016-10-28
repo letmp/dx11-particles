@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Sinks\Sprites (DX11.Particles.Sink).v4p" systemname="Sprites (DX11.Mcps.Sink)" filename="F:\vvvv\libs\mcps-preprod\mcps-proto\packs\dx11.mcps\nodes\modules\Sinks\Sprites (DX11.Mcps.Sink).v4p" scrollx="0" scrolly="765">
-   <BOUNDS type="Window" left="30690" top="2700" width="17040" height="9660">
+   <BOUNDS type="Window" left="8760" top="3510" width="17040" height="9660">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -349,7 +349,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="10395" top="4545" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="3" visible="1" values="PARTICLEBUFFER,ALIVEINDEXBUFFER,ALIVECOUNTERBUFFER">
+   <PIN pinname="Input String" slicecount="3" visible="1" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVECOUNTERBUFFER">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -405,13 +405,15 @@
    </BOUNDS>
    <BOUNDS type="Box" left="8775" top="5310">
    </BOUNDS>
-   <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEINDEXBUFFER,3:ALIVECOUNTERBUFFER|">
+   <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEPOINTERBUFFER,3:ALIVECOUNTERBUFFER|">
    </PIN>
    <PIN pinname="PARTICLEBUFFER" visible="1">
    </PIN>
-   <PIN pinname="ALIVEINDEXBUFFER" visible="1">
+   <PIN pinname="AlivePointerBuffer" visible="1">
    </PIN>
    <PIN pinname="ALIVECOUNTERBUFFER" visible="1">
+   </PIN>
+   <PIN pinname="ALIVEPOINTERBUFFER" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="77" dstpinname="BufferSemantic Filter">
@@ -458,6 +460,8 @@
    <BOUNDS type="Node" left="1440" top="6465" width="12270" height="270">
    </BOUNDS>
    <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="AlivePointerBuffer" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="85" dstpinname="Render State" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -534,8 +538,6 @@
    </LINK>
    <LINK srcnodeid="77" srcpinname="PARTICLEBUFFER" dstnodeid="85" dstpinname="ParticleBuffer">
    </LINK>
-   <LINK srcnodeid="77" srcpinname="ALIVEINDEXBUFFER" dstnodeid="85" dstpinname="AliveIndexBuffer">
-   </LINK>
    <LINK srcnodeid="77" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="85" dstpinname="AliveCounterBuffer">
    </LINK>
    <LINK srcnodeid="85" srcpinname="Shader Path" dstnodeid="78" dstpinname="Filename" linkstyle="Bezier">
@@ -551,5 +553,7 @@
    </LINKPOINT>
    <LINKPOINT x="3660" y="5685">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="77" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="85" dstpinname="AlivePointerBuffer">
    </LINK>
    </PATCH>

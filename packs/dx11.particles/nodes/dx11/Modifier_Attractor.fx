@@ -10,11 +10,6 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveIndexBuffer : ALIVEINDEXBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 StructuredBuffer<float3> AttrPosition <string uiname="Position Buffer";>;
 StructuredBuffer<float> AttrStrength <string uiname="Strength Buffer";>;
@@ -33,10 +28,10 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CSSet(csin input)
 {
-	uint slotIndex = GetSlotIndex( input.DTID.x );
-	if (slotIndex == -1 ) return;
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
 	
-	float3 position = ParticleBuffer[slotIndex].position;
+	float3 position = ParticleBuffer[particleIndex].position;
 	
 	uint cnt, stride;
 	AttrPosition.GetDimensions(cnt,stride);
@@ -58,7 +53,7 @@ void CSSet(csin input)
 		float force = length(dist) / radius;
 		force = pow(saturate(1 - force), power);
 		
-		ParticleBuffer[slotIndex].acceleration += dist * force * strength;
+		ParticleBuffer[particleIndex].acceleration += dist * force * strength;
 	}
 }
 

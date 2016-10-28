@@ -14,7 +14,7 @@ struct Particle {
 
 Texture2D texture2d;
 StructuredBuffer<Particle> ParticleBuffer;
-StructuredBuffer<uint> AliveIndexBuffer;
+StructuredBuffer<uint> AlivePointerBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;
 
 cbuffer cbPerDraw : register( b0 )
@@ -51,17 +51,17 @@ struct VSOut
 {
     float4 pos : SV_POSITION;
 	float2 uv : TEXCOORD0;
-	uint slotIndex : VID;
+	uint particleIndex : VID;
 };
 
 VSOut VS(VSIn In)
 {
     VSOut Out = (VSOut)0;
 	
-	uint slotIndex = AliveIndexBuffer[In.iv];
-	Out.slotIndex = slotIndex;
+	uint particleIndex = AlivePointerBuffer[In.iv];
+	Out.particleIndex = particleIndex;
 	
-	float3 p = ParticleBuffer[slotIndex].position;
+	float3 p = ParticleBuffer[particleIndex].position;
     Out.pos = mul(float4(p, 1), tVP);
 
     return Out;
@@ -70,8 +70,8 @@ VSOut VS(VSIn In)
 void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
 {
     VSOut o;
-	uint slotIndex = In[0].slotIndex;
-	o.slotIndex = slotIndex;
+	uint particleIndex = In[0].particleIndex;
+	o.particleIndex = particleIndex;
 	
     float3 p = In[0].pos.xyz / max(In[0].pos.w, 0.01);
     float denom = max(In[0].pos.w, 0.01);
@@ -82,7 +82,7 @@ void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
     {
     	float size = radius / lerp(1, denom, Perspective);
         #if defined(KNOW_SIZE)
-            size *= ParticleBuffer[slotIndex].size.x;
+            size *= ParticleBuffer[particleIndex].size.x;
         #endif
         float2 cpos = qpos[i].xy * size;
     	cpos *= ss;
@@ -110,7 +110,7 @@ float4 PS_Tex(VSOut In): SV_Target
     float4 col = c;
 	
     #if defined(KNOW_COLOR)
-       col *= ParticleBuffer[In.slotIndex].color;
+       col *= ParticleBuffer[In.particleIndex].color;
     #endif
     #if defined(TEXTURED)
 	   col *= texture2d.Sample( sL, In.uv);

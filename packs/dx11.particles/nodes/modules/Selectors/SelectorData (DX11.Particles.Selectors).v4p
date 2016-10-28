@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Groups\BuildFunctionCall (DX11.Particles.Groups).v4p" systemname="BuildFunctionCall (DX11.Mcps.Selectors)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Selectors\BuildFunctionCall (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" systemname="BuildFunctionCall (DX11.Mcps.Selectors)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Selectors\BuildFunctionCall (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
    <BOUNDS type="Box" left="7065" top="3135" width="795" height="240">
    </BOUNDS>
@@ -69,7 +69,7 @@
    </PIN>
    <PIN pinname="Input 2" slicecount="1" values="(">
    </PIN>
-   <PIN pinname="Input 3" visible="1" slicecount="1" values="slotIndex">
+   <PIN pinname="Input 3" visible="1" slicecount="1" values="particleIndex">
    </PIN>
    <PIN pinname="Input 4" slicecount="1" visible="1" values="|,|">
    </PIN>
@@ -113,7 +113,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1650" top="4800" width="750" height="240">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|(LocalityOutsideTransform(slotIndex,tFilter681) |||| LocalityOutsideTransform(slotIndex,tFilter682))|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|(LocalityOutsideTransform(particleIndex,tFilter681) |||| LocalityOutsideTransform(particleIndex,tFilter682))|">
    </PIN>
    </NODE>
    <NODE id="12" systemname="IOBox (String)" componentmode="InABox" nodename="IOBox (String)">
@@ -166,7 +166,7 @@
    </LINK>
    <LINK srcnodeid="4" srcpinname="Output" dstnodeid="3" dstpinname="Input 2">
    </LINK>
-   <BOUNDS type="Window" left="15585" top="7875" width="11970" height="7725">
+   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -189,11 +189,11 @@
    <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="5" dstpinname="Input 1">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="17" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="1980" top="1125" width="795" height="240">
+   <BOUNDS type="Box" left="1980" top="1125" width="1185" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="1980" top="1125" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|slotIndex,|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|particleIndex,|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
