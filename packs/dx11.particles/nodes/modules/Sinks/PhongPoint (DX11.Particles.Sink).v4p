@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Sinks\PhongPoint (DX11.Particles.Sink).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="4770" top="4995" width="21900" height="10230">
+   <BOUNDS type="Window" left="8760" top="3510" width="17040" height="9660">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -433,6 +433,8 @@
    </PIN>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="ALIVEPOINTERBUFFER" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="51" srcpinname="Output String" dstnodeid="48" dstpinname="BufferSemantic Filter">
    </LINK>
@@ -558,8 +560,6 @@
    <LINKPOINT x="12375" y="3158">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="48" srcpinname="AlivePointerBuffer" dstnodeid="45" dstpinname="AlivePointerBuffer">
-   </LINK>
    <LINK srcnodeid="48" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="45" dstpinname="AliveCounterBuffer">
    </LINK>
    <LINK srcnodeid="48" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="21" dstpinname="Instance Arg Buffer" linkstyle="VHV">
@@ -569,5 +569,7 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="45" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="48" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="45" dstpinname="AlivePointerBuffer">
    </LINK>
    </PATCH>

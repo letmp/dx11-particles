@@ -83,7 +83,7 @@ float4 PS(VSOut In): SV_Target
 	 #if defined(KNOW_COLOR)
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
-
+	if (col.a == 0.0f) discard;
     return col * PhongPoint(In.PosW, In.NormV, In.ViewDirV, In.LightDirV);
 }
 
