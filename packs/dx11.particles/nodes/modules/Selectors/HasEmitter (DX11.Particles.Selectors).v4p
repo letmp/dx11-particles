@@ -19,7 +19,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5445" top="5460" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|float2 fRegion : REGION;|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -43,7 +43,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="855" top="3540" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="SetBufferRegion(particleIndex)">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -71,7 +71,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7530" top="6270" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="REGION">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="SEMANTIC">
    </PIN>
@@ -95,6 +95,8 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="15" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3705" top="2535" width="795" height="240">
@@ -109,6 +111,8 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="14" systemname="IOBox (String)">
    <BOUNDS type="Box" left="5145" top="2535" width="795" height="240">
@@ -122,6 +126,8 @@
    <PIN pinname="File Mask" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="13" systemname="IOBox (String)">
@@ -174,30 +180,6 @@
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
-   <NODE systemname="Self (VVVV)" nodename="Self (VVVV)" componentmode="Hidden" id="19">
-   <BOUNDS type="Node" left="9435" top="2535" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ID in ParentPatch" visible="1">
-   </PIN>
-   <PIN pinname="ID" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Inlets" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Is Changed" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Outlets" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Node Count" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Instance index" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Instance Count" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Caption" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Filename" visible="-1" pintype="Output">
-   </PIN>
-   </NODE>
    <NODE systemname="Info (DX11.Particles.Core Emitter)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Emitter)" componentmode="Hidden" id="20">
    <BOUNDS type="Node" left="9285" top="1230" width="100" height="100">
    </BOUNDS>
@@ -254,8 +236,26 @@
    </LINK>
    <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
    </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="22" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="8010" top="810" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8010" top="810" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output Enum" dstnodeid="20" dstpinname="ParticleSystem" linkstyle="VHV">
+   <LINKPOINT x="8070" y="1140">
+   </LINKPOINT>
+   <LINKPOINT x="9285" y="1140">
+   </LINKPOINT>
+   </LINK>
    <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="840" top="3030" width="8670" height="270">
+   <BOUNDS type="Node" left="840" top="3030" width="7245" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="105" top="1290" width="9040" height="5800">
    </BOUNDS>
@@ -281,13 +281,13 @@
    </PIN>
    <PIN pinname="Id" visible="1">
    </PIN>
+   <PIN pinname="FunctionArgument" visible="1">
+   </PIN>
+   <PIN pinname="VariableType" visible="1">
+   </PIN>
+   <PIN pinname="VariableName" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="12" dstpinname="FunctionArguments">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="12" dstpinname="Variable Type">
-   </LINK>
-   <LINK srcnodeid="14" srcpinname="Output String" dstnodeid="12" dstpinname="Variable Name">
-   </LINK>
    <LINK srcnodeid="13" srcpinname="Output String" dstnodeid="12" dstpinname="Semantic">
    </LINK>
    <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="12" dstpinname="FunctionName">
@@ -295,37 +295,29 @@
    <LINK srcnodeid="18" srcpinname="Output" dstnodeid="12" dstpinname="Semantic Count">
    </LINK>
    <LINK srcnodeid="12" srcpinname="Semantic" dstnodeid="9" dstpinname="Input String" linkstyle="Bezier">
-   <LINKPOINT x="9450" y="4778">
+   <LINKPOINT x="8040" y="4778">
    </LINKPOINT>
-   <LINKPOINT x="7575" y="4778">
+   <LINKPOINT x="7560" y="4778">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="12" srcpinname="ConstantBuffer Entry" dstnodeid="2" dstpinname="Input String" linkstyle="Bezier">
-   <LINKPOINT x="5175" y="4380">
+   <LINKPOINT x="4470" y="4380">
    </LINKPOINT>
    <LINKPOINT x="5460" y="4380">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="12" srcpinname="FunctionCall" dstnodeid="5" dstpinname="Input String">
    </LINK>
-   <LINK srcnodeid="19" srcpinname="ID in ParentPatch" dstnodeid="12" dstpinname="Id">
+   <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="12" dstpinname="FunctionArgument">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="22" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="8010" top="810" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Node" left="8010" top="810" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="22" srcpinname="Output Enum" dstnodeid="20" dstpinname="ParticleSystem" linkstyle="VHV">
-   <LINKPOINT x="8070" y="1140">
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="12" dstpinname="VariableType">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Output String" dstnodeid="12" dstpinname="VariableName">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Emitter Region" dstnodeid="11" dstpinname="Input" linkstyle="Bezier">
+   <LINKPOINT x="9285" y="1680">
    </LINKPOINT>
-   <LINKPOINT x="9285" y="1140">
+   <LINKPOINT x="8070" y="1680">
    </LINKPOINT>
    </LINK>
    </PATCH>

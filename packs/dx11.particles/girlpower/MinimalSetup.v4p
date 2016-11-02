@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\MinimalSetup.v4p" systemname="mcps" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\girlpower\mcps.v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="5430" top="1845" width="11805" height="13590">
+   <BOUNDS type="Window" left="2490" top="2460" width="13365" height="13590">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -41,7 +41,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3675" top="12270" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="16995" top="1905" width="9705" height="7695">
+   <BOUNDS type="Window" left="15915" top="2490" width="9705" height="7695">
    </BOUNDS>
    <PIN pinname="View" visible="1" slicecount="1" values="||">
    </PIN>
@@ -463,7 +463,7 @@
    </PIN>
    <BOUNDS type="Box" left="7950" top="4365">
    </BOUNDS>
-   <BOUNDS type="Window" left="6135" top="4020" width="17925" height="11400">
+   <BOUNDS type="Window" left="6135" top="4020" width="20550" height="11400">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="838" srcpinname="Layer Out Help" dstnodeid="98" dstpinname="Layer 4" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -583,7 +583,7 @@
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Selection Name" slicecount="1" visible="1" values="myselection">
+   <PIN pinname="Selection Name" slicecount="1" visible="1" values="mySelection">
    </PIN>
    </NODE>
    <LINK srcnodeid="842" srcpinname="Output" dstnodeid="861" dstpinname="Hue" linkstyle="VHV">
@@ -681,18 +681,12 @@
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" values="asd">
    </PIN>
-   <PIN pinname="Name" slicecount="1" values="myselection">
+   <PIN pinname="Name" slicecount="1" values="mySelection">
    </PIN>
    </NODE>
    <LINK srcnodeid="650" srcpinname="Modifier Out" dstnodeid="893" dstpinname="Modifier In">
    </LINK>
    <LINK srcnodeid="893" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 3">
-   </LINK>
-   <LINK srcnodeid="838" srcpinname="Selection Out" dstnodeid="893" dstpinname="Selection" linkstyle="VHV">
-   <LINKPOINT x="7950" y="4785">
-   </LINKPOINT>
-   <LINKPOINT x="6030" y="4785">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="Turbulence (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Turbulence (DX11.Particles.Modifiers).v4p" nodename="Turbulence (DX11.Particles.Modifiers)" componentmode="Hidden" id="934">
    <BOUNDS type="Node" left="4410" top="4965" width="100" height="100">
@@ -708,6 +702,42 @@
    <LINKPOINT x="4470" y="5700">
    </LINKPOINT>
    <LINKPOINT x="5745" y="5700">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="HasAge (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\HasAge (DX11.Particles.Selectors).v4p" nodename="HasAge (DX11.Particles.Selectors)" componentmode="Hidden" id="935">
+   <BOUNDS type="Node" left="10035" top="4365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Selection Out" visible="1">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" values="|Greater Than|">
+   </PIN>
+   <BOUNDS type="Box" left="10035" top="4365">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="HasEmitter (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\HasEmitter (DX11.Particles.Selectors).v4p" nodename="HasEmitter (DX11.Particles.Selectors)" componentmode="Hidden" id="936">
+   <BOUNDS type="Node" left="11070" top="4365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Selection Out" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="11070" top="4365">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Mod (DX11.Particles.Selectors)" filename="..\nodes\modules\Selectors\Mod (DX11.Particles.Selectors).v4p" nodename="Mod (DX11.Particles.Selectors)" componentmode="Hidden" id="937">
+   <BOUNDS type="Node" left="9225" top="4365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Selection Out" visible="1">
+   </PIN>
+   <PIN pinname="Input" slicecount="1" values="0" visible="1">
+   </PIN>
+   <PIN pinname="Offset" visible="1" slicecount="1" values="0">
+   </PIN>
+   <BOUNDS type="Box" left="9225" top="4365">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="838" srcpinname="Selection Out" dstnodeid="893" dstpinname="Selection" linkstyle="VHV">
+   <LINKPOINT x="7950" y="4785">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="4785">
    </LINKPOINT>
    </LINK>
    </PATCH>

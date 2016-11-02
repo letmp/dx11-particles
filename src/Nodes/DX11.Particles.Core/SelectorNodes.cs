@@ -82,11 +82,74 @@ namespace DX11.Particles.Core
             rsList.AddRange(RenderSemantics.Values);
             return rsList;
         }
-
-       
-
+        
     }
-    
+
+    #region PluginInfo
+    [PluginInfo(Name = "SelectorData", Category = "DX11.Particles.Selectors", Help = "Creates unique functioncalls, constantbuffer entries and semantics.", Author = "tmp")]
+    #endregion PluginInfo
+    public class StringSelectorDataNode : IPluginEvaluate
+    {
+        #region fields & pins
+
+        [Input("FunctionName")]
+        public IDiffSpread<string> FInFunctionName;
+
+        [Input("FunctionArgument")]
+        public IDiffSpread<string> FInFunctionArgument;
+
+        [Input("VariableType")]
+        public IDiffSpread<string> FInVariableType;
+
+        [Input("VariableName")]
+        public IDiffSpread<string> FInVariableName;
+
+        [Input("Semantic")]
+        public IDiffSpread<string> FInSemantic;
+
+        [Input("Semantic Count", IsSingle = true)]
+        public IDiffSpread<int> FInSemanticCount;
+
+        [Output("FunctionCall")]
+        public ISpread<string> FOutFunctionCall;
+
+        [Output("ConstantBuffer Entry")]
+        public ISpread<string> FOutBufferEntry;
+
+        [Output("Semantic")]
+        public ISpread<string> FOutSemantic;
+        
+
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            
+            if (!(FInFunctionName.IsChanged || FInFunctionArgument.IsChanged || FInVariableType.IsChanged || FInVariableName.IsChanged || FInSemantic.IsChanged || FInSemanticCount.IsChanged)) return;
+
+            FOutFunctionCall.SliceCount = FOutBufferEntry.SliceCount = FOutSemantic.SliceCount = 0;
+            
+            for (int i = 0; i < FInSemanticCount[0]; i++)
+            {
+
+                string uniqueSuffix = "_" + this.GetHashCode() + "_" + i;
+                
+                var uniqueVariableNames = FInVariableName
+                            .Select(x => x + uniqueSuffix)
+                            .ToList();
+                
+                FOutFunctionCall.Add (FInFunctionName[i] + "(" + String.Join(", ", FInFunctionArgument) + "," + String.Join(", ", uniqueVariableNames) + ")");
+
+                for ( int j = 0; j < FInVariableName.SliceCount; j++)
+                {
+                    FOutBufferEntry.Add( FInVariableType[j] + " " + FInVariableName[j] + uniqueSuffix + " : " + FInSemantic[j] + uniqueSuffix + ";");
+                    FOutSemantic.Add(FInSemantic[j] + uniqueSuffix);
+                }
+                
+            }
+        }
+    }
+
     #region PluginInfo
     [PluginInfo(Name = "Join",Category = "DX11.Particles.Selectors", Help = "Joins data for a selector", Author="tmp", Tags = "")]
     #endregion PluginInfo

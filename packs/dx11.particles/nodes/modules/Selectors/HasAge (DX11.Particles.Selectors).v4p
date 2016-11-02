@@ -157,6 +157,8 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="20" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3105" top="3375" width="795" height="240">
@@ -170,6 +172,8 @@
    <PIN pinname="File Mask" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="19" systemname="IOBox (String)">
@@ -185,11 +189,13 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="18" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5175" top="3375" width="795" height="240">
+   <BOUNDS type="Box" left="5160" top="3375" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5175" top="3375" width="0" height="0">
+   <BOUNDS type="Node" left="5160" top="3375" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="FTIME">
    </PIN>
@@ -257,6 +263,8 @@
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
+   <PIN pinname="Input String" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="27" systemname="IOBox (String)">
    <BOUNDS type="Box" left="2610" top="7530" width="795" height="240">
@@ -270,30 +278,6 @@
    <PIN pinname="File Mask" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
-   <NODE systemname="Self (VVVV)" nodename="Self (VVVV)" componentmode="Hidden" id="32">
-   <BOUNDS type="Node" left="7200" top="3375" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ID in ParentPatch" visible="1">
-   </PIN>
-   <PIN pinname="ID" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Inlets" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Is Changed" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Outlets" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Node Count" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Instance index" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Instance Count" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Caption" visible="-1" pintype="Output">
-   </PIN>
-   <PIN pinname="Filename" visible="-1" pintype="Output">
    </PIN>
    </NODE>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
@@ -325,7 +309,7 @@
    <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="24" dstpinname="Variable List">
    </LINK>
    <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="1035" top="3870" width="6240" height="270">
+   <BOUNDS type="Node" left="1035" top="3870" width="5205" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="345" top="975" width="9040" height="5800">
    </BOUNDS>
@@ -349,33 +333,37 @@
    </PIN>
    <PIN pinname="Id" visible="1">
    </PIN>
+   <PIN pinname="FunctionArgument" visible="1">
+   </PIN>
+   <PIN pinname="VariableType" visible="1">
+   </PIN>
+   <PIN pinname="VariableName" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="23" srcpinname="Output String" dstnodeid="16" dstpinname="FunctionName">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Output String" dstnodeid="16" dstpinname="FunctionArguments">
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="Variable Type">
-   </LINK>
-   <LINK srcnodeid="19" srcpinname="Output String" dstnodeid="16" dstpinname="Variable Name">
    </LINK>
    <LINK srcnodeid="18" srcpinname="Output String" dstnodeid="16" dstpinname="Semantic">
    </LINK>
    <LINK srcnodeid="17" srcpinname="Count" dstnodeid="16" dstpinname="Semantic Count">
    </LINK>
    <LINK srcnodeid="16" srcpinname="Semantic" dstnodeid="15" dstpinname="Semantic" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8785" y="5820">
+   <LINKPOINT x="6225" y="5820">
    </LINKPOINT>
-   <LINKPOINT x="7415" y="5820">
+   <LINKPOINT x="7905" y="5820">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="16" srcpinname="FunctionCall" dstnodeid="26" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="32" srcpinname="ID in ParentPatch" dstnodeid="16" dstpinname="Id">
    </LINK>
    <LINK srcnodeid="16" srcpinname="ConstantBuffer Entry" dstnodeid="24" dstpinname="Constant Buffer Entry" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="4170" y="6105">
    </LINKPOINT>
    <LINKPOINT x="5775" y="6105">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Output String" dstnodeid="16" dstpinname="FunctionArgument">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="VariableType">
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Output String" dstnodeid="16" dstpinname="VariableName">
    </LINK>
    </PATCH>
