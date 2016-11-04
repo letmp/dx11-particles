@@ -1,4 +1,13 @@
-StructuredBuffer<float4> Position;
+StructuredBuffer<float3> Bounds;
+
+Texture2D inputTexture <string uiname="Texture";>;
+
+SamplerState linearSampler <string uiname="Sampler State";>
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
 
 cbuffer cbPerDraw: register( b0 )
 {
@@ -11,15 +20,22 @@ cbuffer cbPerObj : register( b1 )
 	float4x4 tW : WORLD;
 };
 
+cbuffer cbTextureData : register(b2)
+{
+	float4x4 tTex <string uiname="Texture Transform"; bool uvspace=true; >;
+};
+
 struct vsInput
 {
 	float4 pos : POSITION;
+	float4 uv: TEXCOORD0;
 	uint ii : SV_InstanceID;
 };
 
 struct vs2ps
 {
     float4 position: SV_POSITION;
+	float4 uv: TEXCOORD0;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -30,13 +46,16 @@ vs2ps VS(vsInput input)
     
 	uint ii = input.ii;
 	
-	float4 p = input.pos;
-	p.xyz += Position[ii].xyz;
-	output.position = mul(p,mul(tW,tVP));
+	float3 center = Bounds[ii * 4 + 0].xyz;
+	float3 width = Bounds[ii * 4 + 1].xyz;
 	
-	// Position.w is the number of centroid elements
-	// Set output position to 0 if there was no element -> gets discarded in PS
-	if (Position[ii].w == 0) output.position.w = 0;
+	float3 pos = (input.pos.xyz * width ) + center;
+	output.position = mul(float4(pos,1),mul(tW,tVP));
+	
+	// Set output position to 0 if size was 0 -> gets discarded in PS
+	if (width.x == 0 && width.y == 0 && width.z == 0) output.position.w = 0;
+	
+	output.uv = mul(input.uv, tTex);
 	
 	return output;
 }
@@ -46,7 +65,8 @@ vs2ps VS(vsInput input)
 float4 PS_COLOR(vs2ps input): SV_Target
 {
 	if (input.position.w == 0) discard;
-    return (cAmb);
+	float4 col = inputTexture.Sample(linearSampler,input.uv.xy) * cAmb;
+    return col;
 }
 
 

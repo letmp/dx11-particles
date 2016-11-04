@@ -1,0 +1,297 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\CreateGroupEnum (DX11.Particles.Selection).v4p" systemname="CreateBufferEnum (DX11.Particles.Selection)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\CreateBufferEnum (DX11.Particles.Selection).v4p" scrollx="0" scrolly="0">
+   <NODE systemname="Sift (String)" nodename="Sift (String)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2970" top="4905" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="11" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVESWAPBUFFER,ALIVECOUNTERBUFFER,EMITTERCOUNTERBUFFER,SELECTIONPOINTERBUFFER,SELECTIONCOUNTERBUFFER,SELECTIONINDEXBUFFER,FLAGBUFFER,GROUPINDEXBUFFER_mySelection,GROUPCOUNTERBUFFER_mySelection">
+   </PIN>
+   <PIN pinname="Filter" visible="1" slicecount="1" values="GROUPLINKBUFFER">
+   </PIN>
+   <PIN pinname="Comparison" slicecount="1" values="ContainsAny">
+   </PIN>
+   <PIN pinname="Input Index" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSlice (String)" nodename="GetSlice (String)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="5610" top="5430" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="11" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVESWAPBUFFER,ALIVECOUNTERBUFFER,EMITTERCOUNTERBUFFER,SELECTIONPOINTERBUFFER,SELECTIONCOUNTERBUFFER,SELECTIONINDEXBUFFER,FLAGBUFFER,GROUPINDEXBUFFER_mySelection,GROUPCOUNTERBUFFER_mySelection">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Separate (String)" nodename="Separate (String)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="5610" top="5955" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Intersperse" slicecount="1" values="UnderScore">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Unzip (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (String)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="5610" top="6465" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output 2" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="5610" top="6465">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="NULL (Enumerations)" nodename="NULL (Enumerations)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="6285" top="1890" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enum" slicecount="1" values="|GroupSelector&cr;&lf;|">
+   </PIN>
+   <PIN pinname="Receive" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="6" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="5280" top="450" width="1335" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5280" top="450" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="mySelection">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Buffer Enum|">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Enum2Ord (Enumerations)" nodename="Enum2Ord (Enumerations)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="5280" top="1890" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Enum" visible="1">
+   </PIN>
+   <PIN pinname="Ord Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="3135" top="4485" width="1845" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3135" top="4485" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="GROUPINDEXBUFFER">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Semantic Filter|">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="3165" top="5430" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="10">
+   <BOUNDS type="Node" left="1050" top="6465" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Index" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="11" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1065" top="6855" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1065" top="6855" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="GroupIndexBuffer">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="15" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystemBuffers">
+   </PIN>
+   <BOUNDS type="Box" left="1050" top="500" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1050" top="500" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output Node" dstnodeid="10" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="10" dstpinname="Index" linkstyle="VHV">
+   <LINKPOINT x="3015" y="6068">
+   </LINKPOINT>
+   <LINKPOINT x="1875" y="6068">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Output Node" dstnodeid="11" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="0" dstpinname="Filter">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output Enum" dstnodeid="5" dstpinname="Receive" linkstyle="VHV">
+   <LINKPOINT x="5880" y="1115">
+   </LINKPOINT>
+   <LINKPOINT x="6180" y="1465">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Input Index" dstnodeid="9" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Ord Value" dstnodeid="9" dstpinname="Index" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="5280" y="3788">
+   </LINKPOINT>
+   <LINKPOINT x="3810" y="3788">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output Enum" dstnodeid="7" dstpinname="Enum">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Input Index" dstnodeid="1" dstpinname="Index" linkstyle="VHV">
+   <LINKPOINT x="1960" y="5288">
+   </LINKPOINT>
+   <LINKPOINT x="7295" y="5288">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="2" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="3" dstpinname="Input">
+   </LINK>
+   <BOUNDS type="Window" left="16575" top="5025" width="7605" height="8445">
+   </BOUNDS>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="18" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3180" top="6855" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3180" top="6855" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Index">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output" dstnodeid="18" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="2955" top="855" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="Buffer Semantic" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2955" top="855">
+   </BOUNDS>
+   <PIN pinname="ParticleSystem ElementCount" visible="1">
+   </PIN>
+   <PIN pinname="Buffer ElementCount" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="19" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="2955" top="465" width="1320" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2955" top="465" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Output Enum" dstnodeid="20" dstpinname="ParticleSystem">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Buffer Semantic" dstnodeid="0" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Buffer Semantic" dstnodeid="1" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3015" y="3270">
+   </LINKPOINT>
+   <LINKPOINT x="5610" y="3270">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="CreateEnum (Enumerations)" nodename="CreateEnum (Enumerations)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="6015" top="6855" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Strings" visible="1" slicecount="1" values="GROUPINDEXBUFFER_mySelection">
+   </PIN>
+   <PIN pinname="Enum Name" slicecount="1" values="|GroupSelector&cr;&lf;|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output 2" dstnodeid="21" dstpinname="Strings">
+   </LINK>
+   <NODE id="24" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4140" top="6330" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4140" top="6330" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="GroupCount">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="23" systemname="Add (Value)" nodename="Add (Value)" componentmode="Hidden">
+   <BOUNDS type="Node" left="4755" top="5430" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="22" systemname="GetSlice (Spreads)" nodename="GetSlice (Spreads)" componentmode="Hidden">
+   <BOUNDS type="Node" left="4140" top="5940" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Index" visible="1" slicecount="1" values="9">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="24" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Output" dstnodeid="22" dstpinname="Index" linkstyle="VHV">
+   <LINKPOINT x="4405" y="5893">
+   </LINKPOINT>
+   <LINKPOINT x="5165" y="5793">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Input Index" dstnodeid="23" dstpinname="Input 1" linkstyle="VHV">
+   <LINKPOINT x="3210" y="5288">
+   </LINKPOINT>
+   <LINKPOINT x="4755" y="5288">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Buffer ElementCount" dstnodeid="22" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3150" y="3533">
+   </LINKPOINT>
+   <LINKPOINT x="4155" y="3533">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>
