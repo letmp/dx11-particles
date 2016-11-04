@@ -1,5 +1,3 @@
-//#include "../fxh/Defines.fxh"
-
 #if !defined(PI)
 #define PI 3.1415926535897932
 #endif
@@ -15,7 +13,6 @@ struct Particle {
 Texture2D texture2d;
 StructuredBuffer<Particle> ParticleBuffer;
 StructuredBuffer<uint> AlivePointerBuffer;
-StructuredBuffer<uint> AliveCounterBuffer;
 
 cbuffer cbPerDraw : register( b0 )
 {

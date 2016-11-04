@@ -23,11 +23,19 @@ void CS_UpdateEmitterAliveBuffer(csin input)
 }
 
 [numthreads(1, 1, 1)]
+void CS_UpdateAliveBuffer(csin input)
+{
+	uint aliveCounter = AliveCounterBuffer.IncrementCounter();
+	AliveCounterBuffer[0] = AliveCounterBuffer[0] + aliveCounter;	
+}
+
+[numthreads(1, 1, 1)]
 void CS_UpdateSelectionBuffer(csin input)
 {
 	uint selectionCounter = SelectionCounterBuffer.IncrementCounter();
 	SelectionCounterBuffer[0] = selectionCounter;
 }
 
+technique11 Alive { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateAliveBuffer() ) );} }
 technique11 EmitterAlive { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateEmitterAliveBuffer() ) );} }
 technique11 Selection { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateSelectionBuffer() ) );} }

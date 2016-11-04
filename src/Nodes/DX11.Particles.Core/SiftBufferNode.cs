@@ -20,7 +20,6 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         [Input("Input", DefaultValue = 1.0, CheckIfChanged = true)]
-        //public IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> FInput;
         public IDiffSpread<DX11Resource<IDX11RWStructureBuffer>> FInput;
 
         [Input("BufferSemantic")]

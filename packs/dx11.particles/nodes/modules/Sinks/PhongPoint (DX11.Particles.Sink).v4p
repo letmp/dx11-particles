@@ -1,13 +1,13 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Sinks\PhongPoint (DX11.Particles.Sink).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="8760" top="3510" width="17040" height="9660">
+   <BOUNDS type="Window" left="1530" top="2790" width="20685" height="9915">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="3540" top="4530" width="795" height="240">
+   <BOUNDS type="Box" left="3540" top="4230" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3540" top="4530" width="0" height="0">
+   <BOUNDS type="Node" left="3540" top="4230" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -243,9 +243,9 @@
    </PIN>
    <PIN pinname="Query" visible="1">
    </PIN>
-   <PIN pinname="ParticleBuffer" visible="1">
+   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="AlivePointerBuffer" visible="1">
+   <PIN pinname="AlivePointerBuffer" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="AliveCounterBuffer" visible="1" slicecount="1" values="||">
    </PIN>
@@ -365,9 +365,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="51" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="13995" top="4200" width="1725" height="585">
+   <BOUNDS type="Box" left="13995" top="3300" width="1725" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="13995" top="4200" width="0" height="0">
+   <BOUNDS type="Node" left="13995" top="3300" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="3" visible="1" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVECOUNTERBUFFER">
    </PIN>
@@ -401,47 +401,21 @@
    <LINK srcnodeid="59" srcpinname="Output Enum" dstnodeid="50" dstpinname="ParticleSystem">
    </LINK>
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="13980" top="2745" width="100" height="100">
+   <BOUNDS type="Node" left="13185" top="2745" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
    <PIN pinname="Buffer Semantic" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="13980" top="2745">
+   <BOUNDS type="Box" left="13185" top="2745">
    </BOUNDS>
    <PIN pinname="ParticleSystem ElementCount" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="59" srcpinname="Output Enum" dstnodeid="49" dstpinname="ParticleSystem" linkstyle="VHV">
-   <LINKPOINT x="16890" y="1793">
+   <LINKPOINT x="16625" y="1793">
    </LINKPOINT>
-   <LINKPOINT x="13590" y="1793">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="48">
-   <BOUNDS type="Node" left="12375" top="4965" width="1680" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="12375" top="4965">
-   </BOUNDS>
-   <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEPOINTERBUFFER,3:ALIVECOUNTERBUFFER|">
-   </PIN>
-   <PIN pinname="PARTICLEBUFFER" visible="1">
-   </PIN>
-   <PIN pinname="AlivePointerBuffer" visible="1">
-   </PIN>
-   <PIN pinname="ALIVECOUNTERBUFFER" visible="1">
-   </PIN>
-   <PIN pinname="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="ALIVEPOINTERBUFFER" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="51" srcpinname="Output String" dstnodeid="48" dstpinname="BufferSemantic Filter">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Buffer Semantic" dstnodeid="48" dstpinname="BufferSemantic" linkstyle="VHV">
-   <LINKPOINT x="15230" y="3830">
-   </LINKPOINT>
-   <LINKPOINT x="11950" y="4240">
+   <LINKPOINT x="13060" y="1793">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="45" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -552,24 +526,86 @@
    <LINKPOINT x="15120" y="6938">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="48" srcpinname="PARTICLEBUFFER" dstnodeid="45" dstpinname="ParticleBuffer">
-   </LINK>
-   <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="48" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3525" y="3158">
-   </LINKPOINT>
-   <LINKPOINT x="12375" y="3158">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="48" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="45" dstpinname="AliveCounterBuffer">
-   </LINK>
-   <LINK srcnodeid="48" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="21" dstpinname="Instance Arg Buffer" linkstyle="VHV">
-   <LINKPOINT x="13995" y="5295">
-   </LINKPOINT>
-   <LINKPOINT x="4440" y="5295">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="45" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="48" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="45" dstpinname="AlivePointerBuffer">
+   <NODE systemname="Count (Node)" nodename="Count (Node)" componentmode="Hidden" id="68">
+   <BOUNDS type="Node" left="4545" top="4170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="High" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="GT (Value)" nodename="GT (Value)" componentmode="Hidden" id="67">
+   <BOUNDS type="Node" left="5040" top="4545" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="68" srcpinname="High" dstnodeid="67" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="66">
+   <BOUNDS type="Node" left="5055" top="4905" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Switch" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="67" srcpinname="Output" dstnodeid="66" dstpinname="Switch">
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="68" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3510" y="2768">
+   </LINKPOINT>
+   <LINKPOINT x="4560" y="2768">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="12375" top="4065" width="1680" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12375" top="4065">
+   </BOUNDS>
+   <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEPOINTERBUFFER,3:ALIVECOUNTERBUFFER|">
+   </PIN>
+   <PIN pinname="PARTICLEBUFFER" visible="1">
+   </PIN>
+   <PIN pinname="ALIVEPOINTERBUFFER" visible="1">
+   </PIN>
+   <PIN pinname="ALIVECOUNTERBUFFER" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="Output String" dstnodeid="69" dstpinname="BufferSemantic Filter">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Buffer Semantic" dstnodeid="69" dstpinname="BufferSemantic" linkstyle="VHV">
+   <LINKPOINT x="14700" y="3530">
+   </LINKPOINT>
+   <LINKPOINT x="11685" y="3640">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="69" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3525" y="2858">
+   </LINKPOINT>
+   <LINKPOINT x="12375" y="2558">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="PARTICLEBUFFER" dstnodeid="45" dstpinname="ParticleBuffer">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="66" dstpinname="Input 2" linkstyle="VHV">
+   <LINKPOINT x="13995" y="4605">
+   </LINKPOINT>
+   <LINKPOINT x="5610" y="4605">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="45" dstpinname="AlivePointerBuffer">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Output" dstnodeid="21" dstpinname="Instance Arg Buffer" linkstyle="VHV">
+   <LINKPOINT x="5055" y="5265">
+   </LINKPOINT>
+   <LINKPOINT x="4440" y="5265">
+   </LINKPOINT>
    </LINK>
    </PATCH>

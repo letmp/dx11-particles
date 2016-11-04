@@ -131,7 +131,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9165" top="495" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="(nil)">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="mySelection">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Name|">
    </PIN>
@@ -773,6 +773,8 @@
    </PIN>
    <PIN pinname="AliveCounterBuffer" visible="1">
    </PIN>
+   <PIN pinname="Shader Path" visible="1" pintype="Output">
+   </PIN>
    </NODE>
    <LINK srcnodeid="114" srcpinname="Layer" dstnodeid="86" dstpinname="Layer">
    </LINK>
@@ -920,6 +922,94 @@
    <LINKPOINT x="6135" y="12780">
    </LINKPOINT>
    <LINKPOINT x="7005" y="12780">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="127" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8310" top="8340" width="1515" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8310" top="8340" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="StructuredBuffer">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="126" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="8715" top="8700" width="1215" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8715" top="8700" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="PARTICLEBUFFER">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="text">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="125">
+   <BOUNDS type="Node" left="7950" top="10215" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Structure" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="Defines" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Element Count" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="7950" top="10215">
+   </BOUNDS>
+   <PIN pinname="BufferSemantics" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="124">
+   <BOUNDS type="Node" left="7965" top="9780" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
+   </PIN>
+   <PIN pinname="BufferType" visible="1">
+   </PIN>
+   <PIN pinname="BufferName" visible="1">
+   </PIN>
+   <PIN pinname="Extract" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Variables" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="127" srcpinname="Output String" dstnodeid="124" dstpinname="BufferType">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Output String" dstnodeid="124" dstpinname="BufferName">
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Variables" dstnodeid="125" dstpinname="Structure" hiddenwhenlocked="0">
+   </LINK>
+   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="123">
+   <BOUNDS type="Node" left="9075" top="9180" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Sink_Sprites.fx">
+   </PIN>
+   <PIN pinname="Changed" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="123" srcpinname="Changed" dstnodeid="124" dstpinname="Extract">
+   </LINK>
+   <LINK srcnodeid="114" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="8040" y="8625">
+   </LINKPOINT>
+   <LINKPOINT x="9075" y="8625">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="114" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="125" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5310" y="5485">
+   </LINKPOINT>
+   <LINKPOINT x="8580" y="5435">
    </LINKPOINT>
    </LINK>
    </PATCH>

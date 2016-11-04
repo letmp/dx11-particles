@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
 
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V1;
@@ -13,15 +11,11 @@ using SlimDX.Direct3D11;
 using FeralTic.DX11.Queries;
 using FeralTic.DX11.Resources;
 using FeralTic.DX11;
-using VVVV.DX11;
 using VVVV.DX11.Lib.Rendering;
-
-using VVVV.Utils.Streams;
-using VVVV.Nodes.Generic;
 
 namespace VVVV.DX11.Nodes
 {
-    [PluginInfo(Name = "Renderer", Category = "DX11", Version = "MultiStructuredBuffer", Author = "microdee", AutoEvaluate = false)]
+    [PluginInfo(Name = "Renderer", Category = "DX11", Version = "MultiStructuredBuffer", Author = "microdee, tmp", AutoEvaluate = false)]
     public class DX11MultiStructuredBufferRendererNode : IPluginEvaluate, IDX11RendererProvider, IDisposable, IDX11Queryable
     {
         protected IPluginHost FHost;
@@ -171,6 +165,9 @@ namespace VVVV.DX11.Nodes
 
                 for (int i = 0; i < FSemantic.SliceCount; i++)
                 {
+
+                    if (FOutBuffers[i][context] == null) reset = true;
+
                     settings.RenderWidth = sizes[i];
                     settings.RenderHeight = sizes[i];
                     settings.RenderDepth = sizes[i];
@@ -179,7 +176,6 @@ namespace VVVV.DX11.Nodes
                     {
                         settings.ResetCounter = true;
                         int[] resetval = { FInResetCounterValue[i] };
-                        if (FOutBuffers[i][context] == null) reset = true;
                         var uavarray = new UnorderedAccessView[1] { FOutBuffers[i][context].UAV };
                         context.CurrentDeviceContext.ComputeShader.SetUnorderedAccessViews(uavarray, 0, 1, resetval);
                         
@@ -230,6 +226,7 @@ namespace VVVV.DX11.Nodes
 
                     }
                 }
+                reset = false;
             }
 
             this.updateddevices.Add(context);
@@ -258,14 +255,5 @@ namespace VVVV.DX11.Nodes
             }
         }
     }
-
-    #region PluginInfo
-    [PluginInfo(Name = "DeleteSlice", Category = "IDX11RWStructureBuffer", Help = "Deletes a slice from a Spread at the given index.", Tags = "", Author = "tmp")]
-    #endregion PluginInfo
-    public class IDX11RWStructureBufferDeleteSlice : DeleteSlice<IInStream<DX11Resource<IDX11RWStructureBuffer>>> { }
-
-    #region PluginInfo
-    [PluginInfo(Name = "SetSlice", Category = "IDX11RWStructureBuffer", Help = "Replace individual slices of the spread with the given input", Tags = "", Author = "tmp")]
-    #endregion PluginInfo
-    public class IDX11RWStructureBufferSetSlice : SetSlice<IInStream<DX11Resource<IDX11RWStructureBuffer>>> { }
+    
 }
