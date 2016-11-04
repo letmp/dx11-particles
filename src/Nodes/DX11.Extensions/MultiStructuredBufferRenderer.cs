@@ -16,6 +16,9 @@ using FeralTic.DX11;
 using VVVV.DX11;
 using VVVV.DX11.Lib.Rendering;
 
+using VVVV.Utils.Streams;
+using VVVV.Nodes.Generic;
+
 namespace VVVV.DX11.Nodes
 {
     [PluginInfo(Name = "Renderer", Category = "DX11", Version = "MultiStructuredBuffer", Author = "microdee", AutoEvaluate = false)]
@@ -94,7 +97,7 @@ namespace VVVV.DX11.Nodes
 
             FOutBuffers.SliceCount = FSemantic.SliceCount;
 
-            reset = this.FInSize.IsChanged || FInMode.IsChanged || FInStride.IsChanged || this.FSemantic.IsChanged;
+            reset = reset || this.FInSize.IsChanged || FInMode.IsChanged || FInStride.IsChanged || this.FSemantic.IsChanged;
 
             for (int i = 0; i < FOutBuffers.SliceCount; i++)
             {
@@ -176,8 +179,10 @@ namespace VVVV.DX11.Nodes
                     {
                         settings.ResetCounter = true;
                         int[] resetval = { FInResetCounterValue[i] };
-                        var uavarray = new UnorderedAccessView[1] {FOutBuffers[i][context].UAV};
+                        if (FOutBuffers[i][context] == null) reset = true;
+                        var uavarray = new UnorderedAccessView[1] { FOutBuffers[i][context].UAV };
                         context.CurrentDeviceContext.ComputeShader.SetUnorderedAccessViews(uavarray, 0, 1, resetval);
+                        
                     }
                     else
                     {
@@ -253,4 +258,14 @@ namespace VVVV.DX11.Nodes
             }
         }
     }
+
+    #region PluginInfo
+    [PluginInfo(Name = "DeleteSlice", Category = "IDX11RWStructureBuffer", Help = "Deletes a slice from a Spread at the given index.", Tags = "", Author = "tmp")]
+    #endregion PluginInfo
+    public class IDX11RWStructureBufferDeleteSlice : DeleteSlice<IInStream<DX11Resource<IDX11RWStructureBuffer>>> { }
+
+    #region PluginInfo
+    [PluginInfo(Name = "SetSlice", Category = "IDX11RWStructureBuffer", Help = "Replace individual slices of the spread with the given input", Tags = "", Author = "tmp")]
+    #endregion PluginInfo
+    public class IDX11RWStructureBufferSetSlice : SetSlice<IInStream<DX11Resource<IDX11RWStructureBuffer>>> { }
 }
