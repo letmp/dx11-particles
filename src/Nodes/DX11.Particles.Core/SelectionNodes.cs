@@ -86,7 +86,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "SelectorData", Category = "DX11.Particles.Selectors", Help = "Creates unique functioncalls, constantbuffer entries and semantics.", Author = "tmp")]
+    [PluginInfo(Name = "SelectorData", Category = "DX11.Particles.Selection", Help = "Creates unique functioncalls, constantbuffer entries and semantics.", Author = "tmp")]
     #endregion PluginInfo
     public class StringSelectorDataNode : IPluginEvaluate
     {
@@ -151,7 +151,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Join",Category = "DX11.Particles.Selectors", Help = "Joins data for a selector", Author="tmp", Tags = "")]
+    [PluginInfo(Name = "Join",Category = "DX11.Particles.Selection", Help = "Joins data for a selector", Author="tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorJoin : IPluginEvaluate
     {
@@ -192,7 +192,7 @@ namespace DX11.Particles.Core
 
    
     #region PluginInfo
-    [PluginInfo(Name = "Split", Category = "DX11.Particles.Selectors", Help = "Outputs the data of selectors", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "Split", Category = "DX11.Particles.Selection", Help = "Outputs the data of selectors", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorSplit : IPluginEvaluate
     {
@@ -283,7 +283,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Cons", Category = "DX11.Particles.Selectors", Help = "Concatenates all input spreads to one output spread", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "Cons", Category = "DX11.Particles.Selection", Help = "Concatenates all input spreads to one output spread", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorCons : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
@@ -345,7 +345,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "AND", Category = "DX11.Particles.Selectors", Help = "Joins data of several selectors and generates a new AND-connected function call.", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "AND", Category = "DX11.Particles.Selection", Help = "Joins data of several selectors and generates a new AND-connected function call.", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorAND : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
@@ -395,34 +395,28 @@ namespace DX11.Particles.Core
             for (int i = 0; i < SpreadMax; i++)
             {
                 Selector selector = new Selector();
-                string functionCall = "";
+                string functionCall = "(";
                 for (int j = 0; j < FInputs.Count(); j++)
                 {
-
                     Selector selectorIn = FInputs[j].IOObject[i];
-
-                    if (j == 0) functionCall += "( ";
-                    if (j != 0) functionCall += " && ";
-                    
                     if (selectorIn != null)
                     {
+                        if (j != 0) functionCall += " && ";
                         functionCall += selectorIn.FunctionCall;
                         selector.AddVariables(selectorIn.Variables);
                         selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
                         selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
                         selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
-
-                        if (j == FInputs.Count() - 1)
-                        {
-                            functionCall += " )";
-                            List<string> functionCalls = new List<string>();
-                            functionCalls.Add(functionCall);
-                            selector.SetFunctionCall(functionCall);
-                        }
-
                     }
-                    
                 }
+
+                functionCall += " )";
+
+                List<string> functionCalls = new List<string>();
+                functionCalls.Add(functionCall);
+
+                selector.SetFunctionCall(functionCall);
+
                 FOutSelector[i] = selector;
             }
             
@@ -430,7 +424,7 @@ namespace DX11.Particles.Core
     }
     
     #region PluginInfo
-    [PluginInfo(Name = "AND", Category = "DX11.Particles.Selectors", Version="Spectral", Help = "Joins data of a selector spread and generates a new AND-connected function call.", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "AND", Category = "DX11.Particles.Selection", Version="Spectral", Help = "Joins data of a selector spread and generates a new AND-connected function call.", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorSpectralAND : IPluginEvaluate
     {
@@ -452,7 +446,7 @@ namespace DX11.Particles.Core
             for (int i = 0; i < FInSelector.SliceCount; i++)
             {
                 Selector selector = new Selector();
-                string functionCall = "";
+                string functionCall = "(";
 
                 for (int j = 0; j < FInSelector[i].SliceCount; j++)
                 {
@@ -460,7 +454,6 @@ namespace DX11.Particles.Core
                     Selector selectorIn = FInSelector[i][j];
                     if (selectorIn != null)
                     {
-                        if (j == 0) functionCall += "( ";
                         if (j != 0) functionCall += " && ";
 
                         functionCall += selectorIn.FunctionCall;
@@ -468,17 +461,14 @@ namespace DX11.Particles.Core
                         selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
                         selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
                         selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
-
-                        if (j == FInSelector[i].SliceCount - 1)
-                        {
-                            functionCall += " )";
-                            List<string> functionCalls = new List<string>();
-                            functionCalls.Add(functionCall);
-                            selector.SetFunctionCall(functionCall);
-                        }
                     }
                     
                 }
+
+                functionCall += " )";
+                List<string> functionCalls = new List<string>();
+                functionCalls.Add(functionCall);
+                selector.SetFunctionCall(functionCall);
 
                 FOutSelector[i] = selector;
             }
@@ -486,7 +476,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "OR", Category = "DX11.Particles.Selectors", Help = "Joins data of several selectors and generates a new OR-connected function call.", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "OR", Category = "DX11.Particles.Selection", Help = "Joins data of several selectors and generates a new OR-connected function call.", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorOR : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
@@ -536,34 +526,31 @@ namespace DX11.Particles.Core
             for (int i = 0; i < SpreadMax; i++)
             {
                 Selector selector = new Selector();
-                string functionCall = "";
+                string functionCall = "(";
                 for (int j = 0; j < FInputs.Count(); j++)
                 {
 
                     Selector selectorIn = FInputs[j].IOObject[i];
-
-                    if (j == 0) functionCall += "( ";
-                    if (j != 0) functionCall += " || ";
+                    
+                    
 
                     if (selectorIn != null)
                     {
+                        if (j != 0) functionCall += " || ";
                         functionCall += selectorIn.FunctionCall;
                         selector.AddVariables(selectorIn.Variables);
                         selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
                         selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
                         selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
-
-                        if (j == FInputs.Count() - 1)
-                        {
-                            functionCall += " )";
-                            List<string> functionCalls = new List<string>();
-                            functionCalls.Add(functionCall);
-                            selector.SetFunctionCall(functionCall);
-                        }
-
                     }
 
                 }
+
+                functionCall += " )";
+                List<string> functionCalls = new List<string>();
+                functionCalls.Add(functionCall);
+                selector.SetFunctionCall(functionCall);
+
                 FOutSelector[i] = selector;
             }
 
@@ -571,7 +558,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "OR", Category = "DX11.Particles.Selectors", Version = "Spectral", Help = "Joins data of a selector spread and generates a new OR-connected function call.", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "OR", Category = "DX11.Particles.Selection", Version = "Spectral", Help = "Joins data of a selector spread and generates a new OR-connected function call.", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectorSpectralOR : IPluginEvaluate
     {
@@ -593,7 +580,7 @@ namespace DX11.Particles.Core
             for (int i = 0; i < FInSelector.SliceCount; i++)
             {
                 Selector selector = new Selector();
-                string functionCall = "";
+                string functionCall = "(";
 
                 for (int j = 0; j < FInSelector[i].SliceCount; j++)
                 {
@@ -601,7 +588,6 @@ namespace DX11.Particles.Core
                     Selector selectorIn = FInSelector[i][j];
                     if (selectorIn != null)
                     {
-                        if (j == 0) functionCall += "( ";
                         if (j != 0) functionCall += " || ";
 
                         functionCall += selectorIn.FunctionCall;
@@ -609,17 +595,14 @@ namespace DX11.Particles.Core
                         selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
                         selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
                         selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
-
-                        if (j == FInSelector[i].SliceCount - 1)
-                        {
-                            functionCall += " )";
-                            List<string> functionCalls = new List<string>();
-                            functionCalls.Add(functionCall);
-                            selector.SetFunctionCall(functionCall);
-                        }
                     }
 
                 }
+
+                functionCall += " )";
+                List<string> functionCalls = new List<string>();
+                functionCalls.Add(functionCall);
+                selector.SetFunctionCall(functionCall);
 
                 FOutSelector[i] = selector;
             }
@@ -627,7 +610,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "NOT", Category = "DX11.Particles.Selectors", Help = "Outputs the selectors with negated functioncalls.", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "NOT", Category = "DX11.Particles.Selection", Help = "Outputs the selectors with negated functioncalls.", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionLogicNOT : IPluginEvaluate
     {
@@ -664,7 +647,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Switch", Category = "DX11.Particles.Selectors", Help = "Switches between multiple Selector inputs", Author = "tmp", Tags = "")]
+    [PluginInfo(Name = "Switch", Category = "DX11.Particles.Selection", Help = "Switches between multiple Selector inputs", Author = "tmp", Tags = "")]
     #endregion PluginInfo
     public class SelectionSwitch : IPluginEvaluate, IPartImportsSatisfiedNotification
     {
@@ -729,21 +712,21 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Zip", Category = "DX11.Particles.Selectors", Help = "Zip Selectors", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "Zip", Category = "DX11.Particles.Selection", Help = "Zip Selectors", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorZip : Zip<IInStream<Selector>>
     {
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Unzip", Category = "DX11.Particles.Selectors", Help = "Unzip Selectors", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "Unzip", Category = "DX11.Particles.Selection", Help = "Unzip Selectors", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorUnzip : Unzip<IInStream<Selector>>
     {
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Select", Category = "DX11.Particles.Selectors", Help = "select the slices which form the new spread.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "Select", Category = "DX11.Particles.Selection", Help = "select the slices which form the new spread.", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorSelect : IPluginEvaluate
     {
@@ -785,7 +768,7 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "Select", Category = "DX11.Particles.Selectors", Version = "Bin", Help = "Select the slices which form the new spread.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "Select", Category = "DX11.Particles.Selection", Version = "Bin", Help = "Select the slices which form the new spread.", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorSelectBin : IPluginEvaluate
     {
@@ -826,7 +809,7 @@ namespace DX11.Particles.Core
 
 
     #region PluginInfo
-    [PluginInfo(Name = "GetSlice", Category = "DX11.Particles.Selectors", Help = "gets all slices specified in the index input from the input spread", Author = "tmp")]
+    [PluginInfo(Name = "GetSlice", Category = "DX11.Particles.Selection", Help = "gets all slices specified in the index input from the input spread", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorGetSlice : IPluginEvaluate
     {
@@ -855,12 +838,12 @@ namespace DX11.Particles.Core
     }
 
     #region PluginInfo
-    [PluginInfo(Name = "DeleteSlice", Category = "DX11.Particles.Selectors", Help = "Deletes a slice from a Spread at the given index.", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "DeleteSlice", Category = "DX11.Particles.Selection", Help = "Deletes a slice from a Spread at the given index.", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorDeleteSlice : DeleteSlice<IInStream<Selector>> { }
 
     #region PluginInfo
-    [PluginInfo(Name = "SetSlice", Category = "DX11.Particles.Selectors", Help = "Replace individual slices of the spread with the given input", Tags = "", Author = "tmp")]
+    [PluginInfo(Name = "SetSlice", Category = "DX11.Particles.Selection", Help = "Replace individual slices of the spread with the given input", Tags = "", Author = "tmp")]
     #endregion PluginInfo
     public class SelectorSetSlice : SetSlice<IInStream<Selector>> { }
 

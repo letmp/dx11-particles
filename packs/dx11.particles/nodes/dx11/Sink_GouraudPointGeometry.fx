@@ -1,4 +1,3 @@
-#include "../fxh/PhongPoint.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -14,16 +13,31 @@ StructuredBuffer<uint> AlivePointerBuffer;
 cbuffer cbPerDraw : register( b0 )
 {
 	float4x4 tV: VIEW;
-	float4x4 tWV: WORLDVIEW;
 	float4x4 tWVP: WORLDVIEWPROJECTION;
 	float4x4 tVP : VIEWPROJECTION;	
 	float4x4 tP: PROJECTION;
-	float4x4 tWIT: WORLDINVERSETRANSPOSE;
 };
 
 cbuffer cbPerObj : register( b1 )
 {
 	float4x4 tW : WORLD;
+	float4x4 tWV: WORLDVIEW;
+	float4x4 tWIT: WORLDINVERSETRANSPOSE;
+	
+	float4 cAmb <bool color=true;String uiname="Color";> = { 1.0f,1.0f,1.0f,1.0f };
+};
+
+cbuffer cbLightData : register(b3)
+{
+	float3 lPos <string uiname="Light Position";> = {0, 5, -2};       //light position in world space
+	float lAtt0 <String uiname="Light Attenuation 0"; float uimin=0.0;> = 0;
+	float lAtt1 <String uiname="Light Attenuation 1"; float uimin=0.0;> = 0.3;
+	float lAtt2 <String uiname="Light Attenuation 2"; float uimin=0.0;> = 0;
+	float4 lAmb <bool color=true; String uiname="Ambient Color";>  = {0.15, 0.15, 0.15, 1};
+	float4 lDiff <bool color=true; String uiname="Diffuse Color";>  = {0.85, 0.85, 0.85, 1};
+	float4 lSpec <bool color=true; String uiname="Specular Color";> = {0.35, 0.35, 0.35, 1};
+	float lPower <String uiname="Power"; float uimin=0.0;> = 25.0;     //shininess of specular highlight
+	float lRange <String uiname="Light Range"; float uimin=0.0;> = 10.0;    	
 };
 
 /* ===================== HELPER FUNCTIONS ===================== */
@@ -66,10 +80,8 @@ struct VSOut
     float4 pos: SV_POSITION;
 	uint particleIndex : VID;
 	
-	float3 LightDirV: TEXCOORD4;
-    float3 NormV: TEXCOORD5;
-    float3 ViewDirV: TEXCOORD6;
-	float3 PosW: TEXCOORD7;
+	float4 Diffuse: COLOR0;
+    float4 Specular: COLOR1;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -81,30 +93,44 @@ VSOut VS(VSIn In)
 	uint particleIndex = AlivePointerBuffer[In.ii];
 	Out.particleIndex = particleIndex;
 	
-	float4 p = In.pos;
-	
+	float4 p = In.pos;	
 	#if defined(KNOW_ROTATION)
 		p = mul(p,VRotate(ParticleBuffer[particleIndex].rotation));
- 	#endif
-	
+ 	#endif	
 	p.xyz += ParticleBuffer[particleIndex].position;
-
 	Out.pos = mul(p,mul(tW,tVP));
 	
-	 //inverse light direction in view space
-	Out.PosW = mul(p, tW).xyz;
-	float3 LightDirW = normalize(lPos - Out.PosW);
-    Out.LightDirV = mul(float4(LightDirW,0.0f), tV).xyz;
+	float d = distance(p.xyz, lPos);
+
+    float atten = 0;
+    if (d<lRange)
+    {
+       atten = 1/(saturate(lAtt0) + saturate(lAtt1) * d + saturate(lAtt2) * pow(d, 2));
+    }
+    float4 amb = atten * lAmb;
+    amb.a = 1;
+    
+    //inverse light direction in view space
+    float3 LightDirW = normalize(lPos - mul(p,tW).xyz);
+    float3 LightDirV = mul(float4(LightDirW,0.0f), tV).xyz;
+    
+    //normal in view space
+    float3 NormV = normalize(mul(mul(In.NormO.xyz, (float3x3)tWIT),(float3x3)tV).xyz);
+
+    //view direction = inverse vertexposition in viewspace
+    float4 PosV = mul(p, tWV);
+    float3 ViewDirV = normalize(-PosV.xyz);
+    //halfvector
+    float3 H = normalize(ViewDirV + LightDirV);
+
+    //compute blinn lighting
+    float4 shades = lit(dot(NormV, LightDirV), dot(NormV, H), lPower);
+
+    float4 diff = lDiff * shades.y * atten;
+    float4 spec = lSpec * shades.z * atten;
 	
-	//normal in view space
-	float3 norm = In.NormO;
-	#if defined(KNOW_ROTATION)
-		norm = mul(float4(norm,1),VRotate(ParticleBuffer[particleIndex].rotation)).xyz;
- 	#endif
-    Out.NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
-	
-	//position (projected)
-	Out.ViewDirV = -normalize(mul(p, tWV).xyz);
+	Out.Diffuse = diff + lAmb;
+    Out.Specular = spec;
 	
 	return Out;
 }
@@ -119,12 +145,15 @@ float4 PS(VSOut In): SV_Target
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
-    return col * PhongPoint(In.PosW, In.NormV, In.ViewDirV, In.LightDirV);
+	
+	col.xyz *= In.Diffuse.xyz + In.Specular.xyz;
+	
+    return col;
 }
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TPhongPoint
+technique10 TGouraudDirectional
 {
 	pass P0
 	{

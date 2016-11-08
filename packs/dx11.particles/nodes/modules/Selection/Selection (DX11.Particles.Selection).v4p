@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="1665" top="9915" width="100" height="100">
    </BOUNDS>
@@ -554,44 +554,6 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Select">
    </PIN>
    </NODE>
-   <NODE systemname="Split (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Split (DX11.Particles.Selectors)" componentmode="Hidden" id="52">
-   <BOUNDS type="Node" left="645" top="765" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1">
-   </PIN>
-   <PIN pinname="Variable List" visible="1">
-   </PIN>
-   <PIN pinname="Function Call" visible="1">
-   </PIN>
-   <PIN pinname="Function Definition" visible="1">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" visible="1">
-   </PIN>
-   <PIN pinname="Prevent from doubles" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="52" srcpinname="Function Definition" dstnodeid="67" dstpinname="Input 3" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1350" y="3073">
-   </LINKPOINT>
-   <LINKPOINT x="8850" y="3273">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Constant Buffer Entry" dstnodeid="67" dstpinname="Input 4" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1665" y="3073">
-   </LINKPOINT>
-   <LINKPOINT x="9180" y="3273">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1020" y="4093">
-   </LINKPOINT>
-   <LINKPOINT x="7635" y="4293">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics">
-   </LINK>
    <NODE systemname="Zip (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Zip (String)" componentmode="Hidden" id="90">
    <BOUNDS type="Node" left="9105" top="4185" width="1035" height="270">
    </BOUNDS>
@@ -672,25 +634,7 @@
    </NODE>
    <LINK srcnodeid="84" srcpinname="Output" dstnodeid="90" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="52" srcpinname="Function Call" dstnodeid="89" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="595" y="1718">
-   </LINKPOINT>
-   <LINKPOINT x="8660" y="1718">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Function Call" dstnodeid="84" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="895" y="2360">
-   </LINKPOINT>
-   <LINKPOINT x="10040" y="2410">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="88" srcpinname="Output" dstnodeid="87" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="67" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1020" y="3073">
-   </LINKPOINT>
-   <LINKPOINT x="8205" y="3273">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="91" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="3210" top="15165" width="795" height="240">
@@ -1000,8 +944,6 @@
    </LINK>
    <LINK srcnodeid="106" srcpinname="Output" dstnodeid="67" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="52" dstpinname="Input">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="111" systemname="IOBox (String)">
    <BOUNDS type="Box" left="10395" top="3375" width="1725" height="240">
    </BOUNDS>
@@ -1097,5 +1039,63 @@
    </LINKPOINT>
    <LINKPOINT x="9525" y="2948">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Split (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Split (DX11.Particles.Selection)" componentmode="Hidden" id="52">
+   <BOUNDS type="Node" left="645" top="765" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Variable List" visible="1">
+   </PIN>
+   <PIN pinname="Function Call" visible="1">
+   </PIN>
+   <PIN pinname="Function Definition" visible="1">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" visible="1">
+   </PIN>
+   <PIN pinname="Prevent from doubles" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Function Definition" dstnodeid="67" dstpinname="Input 3" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1350" y="3073">
+   </LINKPOINT>
+   <LINKPOINT x="8850" y="3273">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Constant Buffer Entry" dstnodeid="67" dstpinname="Input 4" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1665" y="3073">
+   </LINKPOINT>
+   <LINKPOINT x="9180" y="3273">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1020" y="4093">
+   </LINKPOINT>
+   <LINKPOINT x="7635" y="4293">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Function Call" dstnodeid="89" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="595" y="1718">
+   </LINKPOINT>
+   <LINKPOINT x="8660" y="1718">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Function Call" dstnodeid="84" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="895" y="2360">
+   </LINKPOINT>
+   <LINKPOINT x="10040" y="2410">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="67" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1020" y="3073">
+   </LINKPOINT>
+   <LINKPOINT x="8205" y="3273">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="52" dstpinname="Input">
    </LINK>
    </PATCH>

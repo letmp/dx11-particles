@@ -406,38 +406,6 @@
    </NODE>
    <LINK srcnodeid="47" srcpinname="Color Output" dstnodeid="46" dstpinname="Color">
    </LINK>
-   <NODE systemname="Join (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selectors)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="675" top="9210" width="7275" height="270">
-   </BOUNDS>
-   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
-   </PIN>
-   <PIN pinname="Function Call" slicecount="2" visible="1" values="|LocalityInsideTransform(particleIndex,tFilter653)|,|LocalityInsideTransform(particleIndex,tFilter654)|">
-   </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
-   </PIN>
-   <BOUNDS type="Box" left="675" top="9210">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics" linkstyle="VHV">
-   <LINKPOINT x="7465" y="6923">
-   </LINKPOINT>
-   <LINKPOINT x="5720" y="7388">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="50" systemname="IOBox (String)">
    <BOUNDS type="Box" left="690" top="4800" width="4110" height="240">
    </BOUNDS>
@@ -454,11 +422,9 @@
    <PIN pinname="Input String" slicecount="5" values="|LocalityInsideTransform(particleIndex,tFilter838)|,|LocalityInsideTransform(particleIndex,tFilter839)|,|LocalityInsideTransform(particleIndex,tFilter840)|,|LocalityInsideTransform(particleIndex,tFilter841)|,|LocalityInsideTransform(particleIndex,tFilter842)|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
-   </LINK>
    <LINK srcnodeid="43" srcpinname="Texture Out" dstnodeid="46" dstpinname="Texture">
    </LINK>
-   <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="InAWindow" id="51">
+   <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="InAWindow" id="51">
    <BOUNDS type="Node" left="675" top="4110" width="9045" height="270">
    </BOUNDS>
    <BOUNDS type="Window" left="10245" top="9285" width="14955" height="6900">
@@ -497,5 +463,39 @@
    <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="51" dstpinname="VariableType">
    </LINK>
    <LINK srcnodeid="36" srcpinname="Output String" dstnodeid="51" dstpinname="VariableName">
+   </LINK>
+   <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="675" top="9210" width="7275" height="270">
+   </BOUNDS>
+   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
+   </PIN>
+   <PIN pinname="Function Call" slicecount="2" visible="1" values="|LocalityInsideTransform(particleIndex,tFilter653)|,|LocalityInsideTransform(particleIndex,tFilter654)|">
+   </PIN>
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
+   </PIN>
+   <BOUNDS type="Box" left="675" top="9210">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics" linkstyle="VHV">
+   <LINKPOINT x="7465" y="6923">
+   </LINKPOINT>
+   <LINKPOINT x="5720" y="7388">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="0" dstpinname="Variable List">
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
    </LINK>
    </PATCH>

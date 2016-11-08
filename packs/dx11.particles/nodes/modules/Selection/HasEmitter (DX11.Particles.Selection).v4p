@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasEmitter (DX11.Particles.Selectors).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\HasEmitter (DX11.Particles.Selection).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
    <BOUNDS type="Box" left="3930" top="4485" width="5865" height="705">
    </BOUNDS>
@@ -208,34 +208,6 @@
    <LINKPOINT x="7020" y="4043">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Join (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selectors)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="855" top="7170" width="6195" height="270">
-   </BOUNDS>
-   <PIN pinname="Variable List" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="SetRegion(particleIndex)">
-   </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float2 fRegion : REGION;|">
-   </PIN>
-   <BOUNDS type="Box" left="855" top="7170">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
-   </LINK>
-   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
-   </LINK>
-   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
-   </LINK>
-   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="22" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="8010" top="810" width="1590" height="270">
    </BOUNDS>
@@ -254,7 +226,13 @@
    <LINKPOINT x="9285" y="1140">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="12">
+   <LINK srcnodeid="20" srcpinname="Emitter Region" dstnodeid="11" dstpinname="Input" linkstyle="Bezier">
+   <LINKPOINT x="9285" y="1680">
+   </LINKPOINT>
+   <LINKPOINT x="8070" y="1680">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="Hidden" id="12">
    <BOUNDS type="Node" left="840" top="3030" width="7245" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="105" top="1290" width="9040" height="5800">
@@ -314,10 +292,32 @@
    </LINK>
    <LINK srcnodeid="14" srcpinname="Output String" dstnodeid="12" dstpinname="VariableName">
    </LINK>
-   <LINK srcnodeid="20" srcpinname="Emitter Region" dstnodeid="11" dstpinname="Input" linkstyle="Bezier">
-   <LINKPOINT x="9285" y="1680">
-   </LINKPOINT>
-   <LINKPOINT x="8070" y="1680">
-   </LINKPOINT>
+   <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="855" top="7170" width="6195" height="270">
+   </BOUNDS>
+   <PIN pinname="Variable List" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="SetRegion(particleIndex)">
+   </PIN>
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float2 fRegion : REGION;|">
+   </PIN>
+   <BOUNDS type="Box" left="855" top="7170">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="0" dstpinname="Function Call">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Constant Buffer Entry">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="0" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
    </LINK>
    </PATCH>

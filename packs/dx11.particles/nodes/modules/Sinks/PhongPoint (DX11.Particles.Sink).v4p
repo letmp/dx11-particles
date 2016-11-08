@@ -205,7 +205,7 @@
    <NODE systemname="Sink_PhongPointGeometry (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Sink_PhongPointGeometry.fx" nodename="Sink_PhongPointGeometry (DX11.Effect)" componentmode="Hidden" id="45">
    <BOUNDS type="Node" left="1890" top="6045" width="14595" height="270">
    </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" values="PhongDirectional">
+   <PIN pinname="Technique" slicecount="1" values="TPhongPoint">
    </PIN>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -365,9 +365,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="51" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="13995" top="3300" width="1725" height="585">
+   <BOUNDS type="Box" left="14670" top="3300" width="1725" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="13995" top="3300" width="0" height="0">
+   <BOUNDS type="Node" left="14670" top="3300" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="3" visible="1" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVECOUNTERBUFFER">
    </PIN>
@@ -401,21 +401,21 @@
    <LINK srcnodeid="59" srcpinname="Output Enum" dstnodeid="50" dstpinname="ParticleSystem">
    </LINK>
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="13185" top="2745" width="100" height="100">
+   <BOUNDS type="Node" left="13845" top="2745" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
    <PIN pinname="Buffer Semantic" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="13185" top="2745">
+   <BOUNDS type="Box" left="13845" top="2745">
    </BOUNDS>
    <PIN pinname="ParticleSystem ElementCount" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="59" srcpinname="Output Enum" dstnodeid="49" dstpinname="ParticleSystem" linkstyle="VHV">
-   <LINKPOINT x="16625" y="1793">
+   <LINKPOINT x="16845" y="1793">
    </LINKPOINT>
-   <LINKPOINT x="13060" y="1793">
+   <LINKPOINT x="13500" y="1793">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="45" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -565,9 +565,9 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="12375" top="4065" width="1680" height="270">
+   <BOUNDS type="Node" left="12990" top="4065" width="1755" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="12375" top="4065">
+   <BOUNDS type="Box" left="12990" top="4065">
    </BOUNDS>
    <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEPOINTERBUFFER,3:ALIVECOUNTERBUFFER|">
    </PIN>
@@ -581,23 +581,23 @@
    <LINK srcnodeid="51" srcpinname="Output String" dstnodeid="69" dstpinname="BufferSemantic Filter">
    </LINK>
    <LINK srcnodeid="49" srcpinname="Buffer Semantic" dstnodeid="69" dstpinname="BufferSemantic" linkstyle="VHV">
-   <LINKPOINT x="14700" y="3530">
+   <LINKPOINT x="15345" y="3530">
    </LINKPOINT>
-   <LINKPOINT x="11685" y="3640">
+   <LINKPOINT x="12315" y="3640">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="69" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3525" y="2858">
+   <LINKPOINT x="3730" y="2858">
    </LINKPOINT>
-   <LINKPOINT x="12375" y="2558">
+   <LINKPOINT x="12785" y="2558">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="69" srcpinname="PARTICLEBUFFER" dstnodeid="45" dstpinname="ParticleBuffer">
    </LINK>
    <LINK srcnodeid="69" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="66" dstpinname="Input 2" linkstyle="VHV">
-   <LINKPOINT x="13995" y="4605">
+   <LINKPOINT x="14405" y="4605">
    </LINKPOINT>
-   <LINKPOINT x="5610" y="4605">
+   <LINKPOINT x="5815" y="4605">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="69" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="45" dstpinname="AlivePointerBuffer">

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selectors\HasAge (DX11.Particles.Selectors).v4p" systemname="Age (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\Age (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\HasAge (DX11.Particles.Selection).v4p" systemname="Age (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\Age (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE id="2" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
    </PIN>
@@ -282,33 +282,7 @@
    </NODE>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
-   <NODE systemname="Join (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selectors)" componentmode="Hidden" id="24">
-   <BOUNDS type="Node" left="1035" top="8085" width="6360" height="270">
-   </BOUNDS>
-   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float age;|">
-   </PIN>
-   <PIN pinname="Function Call" slicecount="1" visible="1" values="|AgeGT(particleIndex, 0)|">
-   </PIN>
-   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Constant Buffer Entry" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="24" dstpinname="Custom Semantics">
-   </LINK>
-   <LINK srcnodeid="25" srcpinname="Output String" dstnodeid="24" dstpinname="Function Definition">
-   </LINK>
-   <LINK srcnodeid="26" srcpinname="Output String" dstnodeid="24" dstpinname="Function Call">
-   </LINK>
-   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="2" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="24" dstpinname="Variable List">
-   </LINK>
-   <NODE systemname="SelectorData (DX11.Particles.Selectors)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selectors\SelectorData (DX11.Particles.Selectors).v4p" nodename="SelectorData (DX11.Particles.Selectors)" componentmode="Hidden" id="16">
+   <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="Hidden" id="16">
    <BOUNDS type="Node" left="1035" top="3870" width="5205" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="345" top="975" width="9040" height="5800">
@@ -354,16 +328,42 @@
    </LINK>
    <LINK srcnodeid="16" srcpinname="FunctionCall" dstnodeid="26" dstpinname="Input String">
    </LINK>
-   <LINK srcnodeid="16" srcpinname="ConstantBuffer Entry" dstnodeid="24" dstpinname="Constant Buffer Entry" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4170" y="6105">
-   </LINKPOINT>
-   <LINKPOINT x="5775" y="6105">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="21" srcpinname="Output String" dstnodeid="16" dstpinname="FunctionArgument">
    </LINK>
    <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="VariableType">
    </LINK>
    <LINK srcnodeid="19" srcpinname="Output String" dstnodeid="16" dstpinname="VariableName">
+   </LINK>
+   <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="24">
+   <BOUNDS type="Node" left="1035" top="8085" width="6360" height="270">
+   </BOUNDS>
+   <PIN pinname="Variable List" slicecount="1" visible="1" values="|float age;|">
+   </PIN>
+   <PIN pinname="Function Call" slicecount="1" visible="1" values="|AgeGT(particleIndex, 0)|">
+   </PIN>
+   <PIN pinname="Function Definition" slicecount="1" visible="1" values="|bool CheckAgeNull(uint particleIndex) { return ParticleBuffer[particleIndex].age == 0; }|">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Constant Buffer Entry" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="24" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="25" srcpinname="Output String" dstnodeid="24" dstpinname="Function Definition">
+   </LINK>
+   <LINK srcnodeid="26" srcpinname="Output String" dstnodeid="24" dstpinname="Function Call">
+   </LINK>
+   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="2" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="24" dstpinname="Variable List">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="ConstantBuffer Entry" dstnodeid="24" dstpinname="Constant Buffer Entry" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4170" y="6105">
+   </LINKPOINT>
+   <LINKPOINT x="5775" y="6105">
+   </LINKPOINT>
    </LINK>
    </PATCH>

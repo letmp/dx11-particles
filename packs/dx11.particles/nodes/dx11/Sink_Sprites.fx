@@ -1,6 +1,4 @@
-#if !defined(PI)
-#define PI 3.1415926535897932
-#endif
+
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -10,27 +8,10 @@ struct Particle {
 	#endif
 };
 
-Texture2D texture2d;
 StructuredBuffer<Particle> ParticleBuffer;
 StructuredBuffer<uint> AlivePointerBuffer;
 
-cbuffer cbPerDraw : register( b0 )
-{
-    float4x4 tVP : VIEWPROJECTION;
-};
-
-cbuffer cbPerObj : register( b1 )
-{
-    float4 c <bool color=true;> = 1;
-	float2 res : TARGETSIZE;
-    float radius = 5;
-    float innerradius = 0;
-    float Perspective = 1;
-};
-
-float3 qpos[4]:IMMUTABLE ={float3( -1, 1, 0 ),float3( 1, 1, 0 ),float3( -1, -1, 0 ),float3( 1, -1, 0 ),};
-float2 quv[4]:IMMUTABLE ={float2(0,1), float2(1,1),float2(0,0),float2(1,0),};
-
+Texture2D texture2d;
 SamplerState sL
 {
     Filter = MIN_MAG_MIP_LINEAR;
@@ -38,18 +19,63 @@ SamplerState sL
     AddressV = Clamp;
 };
 
+cbuffer cbPerDraw : register( b0 )
+{
+    float4x4 tVP : VIEWPROJECTION;
+	float4x4 tVI:VIEWINVERSE;
+	float4x4 tW:WORLD;
+	float4 Color <bool color=true;> = {1.0,1.0,1.0,1.0};
+	float4x4 tTex <string uiname="Texture Transform";>;
+	float3 Size <float uimin=0.0;> = 0.01;
+	float3 UpVector={0,1,0};
+};
+
+/* ===================== HELPER FUNCTIONS ===================== */
+
+#if !defined(PI)
+	#define PI 3.1415926535897932
+	#define TWOPI 6.283185307179586;
+#endif
+
+	float4x4 VRotate(float3 rot)
+  {
+   rot.x *= TWOPI;
+   rot.y *= TWOPI;
+   rot.z *= TWOPI;
+   float sx = sin(rot.x);
+   float cx = cos(rot.x);
+   float sy = sin(rot.y);
+   float cy = cos(rot.y);
+   float sz = sin(rot.z);
+   float cz = cos(rot.z);
+ 
+   return float4x4( cz*cy+sz*sx*sy, sz*cx, cz*-sy+sz*sx*cy, 0,
+                   -sz*cy+cz*sx*sy, cz*cx, sz*sy+cz*sx*cy , 0,
+                    cx * sy       ,-sx   , cx * cy        , 0,
+                    0             , 0    , 0              , 1);
+  }
+
+float3 g_positions[4]:IMMUTABLE ={{-1,1,0},{1,1,0},{-1,-1,0},{1,-1,0}};
+float2 g_texcoords[4]:IMMUTABLE ={{0,0},{1,0},{0,1},{1,1}};
+
+
+/* ===================== STRUCTURES ===================== */
+
 struct VSIn
 {
 	uint iv : SV_VertexID;
-	uint ii : SV_InstanceID;
 };
 
 struct VSOut
 {
-    float4 pos : SV_POSITION;
-	float2 uv : TEXCOORD0;
+    float4 PosWVP : SV_POSITION;
+	float2 TexCd : TEXCOORD0;
+	float4 PosW:TEXCOORD1;
+	float3 Size:TEXCOORD2;
 	uint particleIndex : VID;
 };
+
+/* ===================== VERTEX SHADER ===================== */
 
 VSOut VS(VSIn In)
 {
@@ -58,74 +84,117 @@ VSOut VS(VSIn In)
 	uint particleIndex = AlivePointerBuffer[In.iv];
 	Out.particleIndex = particleIndex;
 	
-	float3 p = ParticleBuffer[particleIndex].position;
-    Out.pos = mul(float4(p, 1), tVP);
+	float4 p = float4(0,0,0,1);
+	p.xyz = ParticleBuffer[particleIndex].position;
 
+	Out.PosW = mul(p, tW);
+    Out.PosWVP = mul(Out.PosW, tVP);
+
+	float3 size = Size;
+	#if defined(KNOW_SIZE)
+            size *= ParticleBuffer[particleIndex].size;
+    #endif
+	Out.Size = size;
+	
     return Out;
 }
+
+/* ===================== GEOMETRY SHADER ===================== */
+
 [maxvertexcount(4)]
-void GS(point VSOut In[1], inout TriangleStream<VSOut> GSOut)
+void gsSPRITE(point VSOut In[1], inout TriangleStream<VSOut> SpriteStream)
 {
-    VSOut o;
-	uint particleIndex = In[0].particleIndex;
-	o.particleIndex = particleIndex;
+    VSOut Out = In[0];
 	
-    float3 p = In[0].pos.xyz / max(In[0].pos.w, 0.01);
-    float denom = max(In[0].pos.w, 0.01);
+	for(int i=0;i<4;i++){
 
-    float2 ss = 1/res;
-
-    for(uint i=0; i<4; i++)
-    {
-    	float size = radius / lerp(1, denom, Perspective);
-        #if defined(KNOW_SIZE)
-            size *= ParticleBuffer[particleIndex].size.x;
-        #endif
-        float2 cpos = qpos[i].xy * size;
-    	cpos *= ss;
-        cpos += p.xy;
-        o.pos = float4(cpos, p.z, 1);
-        o.uv = quv[i];
-    	if((p.z < 1) && (p.z > 0))
-    	{
-    		if(size > 0.2)
-        		GSOut.Append(o);
-    	}
-    }
-
-	GSOut.RestartStrip();
+		Out.TexCd=mul(float4((g_texcoords[i].xy*2-1)*float2(1,-1),0,1),tTex).xy*float2(1,-1)*.5+.5;
+		Out.PosWVP=mul( float4( In[0].PosW.xyz + In[0].Size * mul(g_positions[i].xyz,(float3x3)tVI),1),tVP);
+		SpriteStream.Append(Out);
+	}
 
 }
 
-float4 PS_Tex(VSOut In): SV_Target
+float3x3 lookat(float3 dir,float3 up=float3(0,1,0)){float3 z=normalize(dir);float3 x=normalize(cross(up,z));float3 y=normalize(cross(z,x));return float3x3(x,y,z);} 
+[maxvertexcount(4)]
+void gsBILLBOARD(point VSOut In[1], inout TriangleStream<VSOut> SpriteStream,uniform bool axis=0)
 {
-    #if !defined(TEXTURED)
-	    clip(0.5 - length(In.uv.xy-.5));
-	    clip(length(In.uv.xy-.5) - innerradius);
-	#endif
+    VSOut Out=In[0];
+	float3 vUp=normalize(float3(1,0,1));
+	vUp=UpVector;
 
-    float4 col = c;
+	float3 View=normalize((In[0].PosW.xyz-tVI[3].xyz));
+	
+	if(axis){
+		float3x3 lktup=lookat(vUp+.000001);
+		View=mul(View,transpose(lktup));
+		View.z=0;
+		View=mul(View,(lktup));
+	}
+	
+	float3x3 lkt=lookat(View,vUp);
+	
+	for(int i=0;i<4;i++){
+		Out.TexCd=mul(float4((g_texcoords[i].xy*2-1)*float2(1,-1),0,1),tTex).xy*float2(1,-1)*.5+.5;
+		Out.PosWVP=mul(float4(In[0].PosW.xyz + In[0].Size * mul(g_positions[i].xyz, lkt),1),tVP);
+		SpriteStream.Append(Out);
+	}
+
+}
+
+[maxvertexcount(1)]
+void gsPOINT(point VSOut In[1], inout PointStream<VSOut>GSOut)
+{
+	VSOut Out;	
+	Out=In[0];
+	Out.TexCd=mul(float4(0.5,0.5,0,1),tTex).xy*float2(1,-1)*.5+.5;
+	GSOut.Append(Out);
+}
+
+/* ===================== PIXEL SHADER ===================== */
+
+float4 PS(VSOut In): SV_Target
+{
+    float4 col = Color;
 	
     #if defined(KNOW_COLOR)
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
-    #if defined(TEXTURED)
-	   col *= texture2d.Sample( sL, In.uv);
-    #endif
 
-	if (col.a == 0) discard; // dont draw invisible pixels
+	col *= texture2d.Sample( sL, In.TexCd.xy);
+    
+	if (col.a == 0) discard; // dont draw invisible pixels*/
 	
     return col;
 }
 
+/* ===================== TECHNIQUE ===================== */
 
-technique10 Sprite
-{
-	pass P0
-	{
-
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetGeometryShader( CompileShader( gs_4_0, GS() ) );
-		SetPixelShader( CompileShader( ps_4_0, PS_Tex() ) );
+technique10 Sprite{
+	pass P0{
+		SetVertexShader(CompileShader(vs_4_0,VS()));
+		SetGeometryShader(CompileShader(gs_4_0,gsSPRITE()));
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+technique10 Billboard{
+	pass P0{
+		SetVertexShader(CompileShader(vs_4_0,VS()));
+		SetGeometryShader(CompileShader(gs_4_0,gsBILLBOARD()));
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+technique10 BillboardAxis{
+	pass P0{
+		SetVertexShader(CompileShader(vs_4_0,VS()));
+		SetGeometryShader(CompileShader(gs_4_0,gsBILLBOARD(1)));
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+technique10 Point{
+	pass P0{
+		SetVertexShader(CompileShader(vs_4_0,VS()));
+		SetGeometryShader(CompileShader(gs_4_0,gsPOINT()));
+		SetPixelShader(CompileShader(ps_4_0,PS()));
 	}
 }

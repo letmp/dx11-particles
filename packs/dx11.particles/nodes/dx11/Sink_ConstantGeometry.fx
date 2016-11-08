@@ -1,5 +1,3 @@
-#include "../fxh/PhongPoint.fxh"
-
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
@@ -56,7 +54,6 @@ cbuffer cbPerObj : register( b1 )
 struct VSIn
 {
 	float4 pos : POSITION;
-	float3 NormO: NORMAL;
 	uint iv : SV_VertexID;
 	uint ii : SV_InstanceID;
 };
@@ -65,11 +62,6 @@ struct VSOut
 {
     float4 pos: SV_POSITION;
 	uint particleIndex : VID;
-	
-	float3 LightDirV: TEXCOORD4;
-    float3 NormV: TEXCOORD5;
-    float3 ViewDirV: TEXCOORD6;
-	float3 PosW: TEXCOORD7;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -88,23 +80,7 @@ VSOut VS(VSIn In)
  	#endif
 	
 	p.xyz += ParticleBuffer[particleIndex].position;
-
 	Out.pos = mul(p,mul(tW,tVP));
-	
-	 //inverse light direction in view space
-	Out.PosW = mul(p, tW).xyz;
-	float3 LightDirW = normalize(lPos - Out.PosW);
-    Out.LightDirV = mul(float4(LightDirW,0.0f), tV).xyz;
-	
-	//normal in view space
-	float3 norm = In.NormO;
-	#if defined(KNOW_ROTATION)
-		norm = mul(float4(norm,1),VRotate(ParticleBuffer[particleIndex].rotation)).xyz;
- 	#endif
-    Out.NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
-	
-	//position (projected)
-	Out.ViewDirV = -normalize(mul(p, tWV).xyz);
 	
 	return Out;
 }
@@ -119,12 +95,12 @@ float4 PS(VSOut In): SV_Target
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
-    return col * PhongPoint(In.PosW, In.NormV, In.ViewDirV, In.LightDirV);
+    return col;
 }
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TPhongPoint
+technique10 TPhongDirectional
 {
 	pass P0
 	{

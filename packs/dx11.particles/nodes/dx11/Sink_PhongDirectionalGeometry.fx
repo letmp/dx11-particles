@@ -1,4 +1,4 @@
-#include "../fxh/PhongPoint.fxh"
+#include "../fxh/PhongDirectional.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -88,22 +88,24 @@ VSOut VS(VSIn In)
  	#endif
 	
 	p.xyz += ParticleBuffer[particleIndex].position;
+	
+	
 
 	Out.pos = mul(p,mul(tW,tVP));
 	
+	
 	 //inverse light direction in view space
 	Out.PosW = mul(p, tW).xyz;
-	float3 LightDirW = normalize(lPos - Out.PosW);
-    Out.LightDirV = mul(float4(LightDirW,0.0f), tV).xyz;
 	
-	//normal in view space
+	Out.LightDirV = normalize(-mul(float4(lDir,0.0f), mul(tW,tV)).xyz);
+	
 	float3 norm = In.NormO;
 	#if defined(KNOW_ROTATION)
 		norm = mul(float4(norm,1),VRotate(ParticleBuffer[particleIndex].rotation)).xyz;
  	#endif
+
+    //normal in view space
     Out.NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
-	
-	//position (projected)
 	Out.ViewDirV = -normalize(mul(p, tWV).xyz);
 	
 	return Out;
@@ -119,12 +121,12 @@ float4 PS(VSOut In): SV_Target
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
-    return col * PhongPoint(In.PosW, In.NormV, In.ViewDirV, In.LightDirV);
+    return col * PhongDirectional(In.NormV, In.ViewDirV, In.LightDirV);
 }
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TPhongPoint
+technique10 TPhongDirectional
 {
 	pass P0
 	{
