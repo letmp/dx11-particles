@@ -197,7 +197,7 @@ namespace VVVV.DX11.Nodes
 
             foreach (IDX11RenderSemantic semres in rsemantics)
             {
-                semres.Dispose();
+                if (semres != null) semres.Dispose();
             }
             if (reset)
             {

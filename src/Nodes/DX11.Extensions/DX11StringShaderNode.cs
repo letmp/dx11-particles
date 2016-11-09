@@ -155,10 +155,12 @@ namespace VVVV.DX11.Nodes
                     this.FHost.UpdateEnum(this.TechniqueEnumId, "", new string[0]);
                 }
 
-
-                this.techniqueindex = Array.IndexOf(shader.TechniqueNames, FInTechnique[0].Name);
-                this.techniquechanged = true;
-
+                if (shader.TechniqueNames != null)
+                {
+                    this.techniqueindex = Array.IndexOf(shader.TechniqueNames, FInTechnique[0].Name);
+                    this.techniquechanged = true;
+                }
+                
                 //this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
             }
             else
@@ -235,7 +237,7 @@ namespace VVVV.DX11.Nodes
             }
             
 
-            if (this.FInTechnique.IsChanged)
+            if (FShader.TechniqueNames != null && this.FInTechnique.IsChanged)
             {
                 this.techniqueindex = Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name);
                 this.techniquechanged = true;

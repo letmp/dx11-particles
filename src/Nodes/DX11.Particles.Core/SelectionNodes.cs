@@ -18,24 +18,54 @@ namespace DX11.Particles.Core
     {
         public string FunctionCall = "";
         public List<string> Variables = new List<string>();
-        public List<string> FunctionDefinitions = new List<string>();
-        public List<string> ConstantBufferVariables = new List<string>();
-        public Dictionary<string, IDX11RenderSemantic> RenderSemantics = new Dictionary<string, IDX11RenderSemantic>();
+        public List<string> Functions = new List<string>();
+        
+        public List<string> CustomSemanticEntries = new List<string>();
+        public List<IDX11RenderSemantic> CustomSemantics = new List<IDX11RenderSemantic>();
 
+        public List<string> ResourceSemanticEntries = new List<string>();
+        public List<DX11Resource<IDX11RenderSemantic>> ResourceSemantics = new List<DX11Resource<IDX11RenderSemantic>>();
+        
         public Selector() { }
 
-        public void SetAll(string functionCall, IEnumerable<string> variables,
-                                 IEnumerable<string> functionDefinitions,
-                                IEnumerable<string> constantBufferVariables, IEnumerable<IDX11RenderSemantic> renderSemantics)
+        public void SetAll( string functionCall, IEnumerable<string> variables,
+                            IEnumerable<string> functionDefinitions,
+                            IEnumerable<string> customSemanticEntries, IEnumerable<IDX11RenderSemantic> customSemantics,
+                            IEnumerable<string> resourceSemanticEntries, IEnumerable<DX11Resource<IDX11RenderSemantic>> resourceSemantics
+                    )
         {
             FunctionCall = functionCall;
             Variables = variables.ToList();
-            FunctionDefinitions = functionDefinitions.ToList();
-            ConstantBufferVariables = constantBufferVariables.ToList();
-            
-            foreach (IDX11RenderSemantic rs in renderSemantics.ToList())
+            Functions = functionDefinitions.ToList();
+
+            //CustomSemanticEntries = customSemanticEntries.Where(x => x != "").ToList();
+            //CustomSemantics.AddRange(customSemantics);
+            var cseList = customSemanticEntries.ToList();
+            var csList = customSemantics.ToList();
+            for (int i = 0; i < cseList.Count(); i++)
             {
-                if (rs != null) RenderSemantics[rs.Semantic] = rs;
+                string cse = cseList[i];
+                if (cse != "")
+                {
+                    CustomSemanticEntries.Add(cse);
+                    CustomSemantics.Add(csList[i]);
+                }
+
+            }
+
+            //ResourceSemanticEntries = resourceSemanticEntries.Where(x => x != " ").ToList();
+            //ResourceSemantics.AddRange(resourceSemantics);
+            var rseList = resourceSemanticEntries.ToList();
+            var rsList = resourceSemantics.ToList();
+            for (int i = 0; i < rseList.Count(); i++)
+            {
+                string rse = rseList[i];
+                if (rse != "")
+                {
+                    ResourceSemanticEntries.Add(rse);
+                    ResourceSemantics.Add(rsList[i]);
+                }
+
             }
         }
 
@@ -52,37 +82,56 @@ namespace DX11.Particles.Core
             }
         }
         
-        public void AddFunctionDefinitions(List<string> functionDefinitions)
+        public void AddFunction(List<string> function)
         {
-            foreach (string fd in functionDefinitions)
+            foreach (string f in function)
             {
-                if (!FunctionDefinitions.Contains(fd)) FunctionDefinitions.Add(fd);
+                if (!Functions.Contains(f)) Functions.Add(f);
             }
-        }
-
-        public void AddConstantBufferEntries(List<string> constantBufferEntries)
-        {
-            foreach (string cbe in constantBufferEntries)
-            {
-                if (!ConstantBufferVariables.Contains(cbe)) ConstantBufferVariables.Add(cbe);
-            }
-        }
-
-        public void AddRenderSemantics(List<IDX11RenderSemantic> renderSemantics)
-        {
-            foreach (IDX11RenderSemantic rs in renderSemantics)
-            {
-                RenderSemantics[rs.Semantic] = rs;
-            }
-        }
-
-        public List<IDX11RenderSemantic> GetRenderSemantics()
-        {
-            List<IDX11RenderSemantic> rsList = new List<IDX11RenderSemantic>();
-            rsList.AddRange(RenderSemantics.Values);
-            return rsList;
         }
         
+        public void AddCustomSemanticEntries(List<string> customSemanticEntries)
+        {
+            foreach (string cse in customSemanticEntries)
+            {
+                if (!CustomSemanticEntries.Contains(cse) && cse != "") CustomSemanticEntries.Add(cse);
+            }
+        }
+
+        public void AddCustomSemantics(List<IDX11RenderSemantic> customSemantics)
+        {
+            foreach (IDX11RenderSemantic cs in customSemantics)
+            {
+                if (!CustomSemantics.Contains(cs)) CustomSemantics.Add(cs);
+            }
+        }
+
+        public List<IDX11RenderSemantic> GetCustomSemantics()
+        {
+            return CustomSemantics;
+        }
+
+        public void AddResourceSemanticEntries(List<string> resourceSemanticEntries)
+        {
+            foreach (string rse in resourceSemanticEntries)
+            {
+                if (!ResourceSemanticEntries.Contains(rse) && rse != "") ResourceSemanticEntries.Add(rse);
+            }
+        }
+
+        public void AddResourceSemantics(List<DX11Resource<IDX11RenderSemantic>> resourceSemantics)
+        {
+            foreach (DX11Resource<IDX11RenderSemantic> rs in resourceSemantics)
+            {
+                if (!ResourceSemantics.Contains(rs)) ResourceSemantics.Add(rs);
+            }
+        }
+
+        public List<DX11Resource<IDX11RenderSemantic>> GetResourceSemantics()
+        {
+            return ResourceSemantics;
+        }
+
     }
 
     #region PluginInfo
@@ -98,55 +147,114 @@ namespace DX11.Particles.Core
         [Input("FunctionArgument")]
         public IDiffSpread<string> FInFunctionArgument;
 
-        [Input("VariableType")]
-        public IDiffSpread<string> FInVariableType;
+        [Input("Custom Semantic VariableDefinition")]
+        public IDiffSpread<string> FInCSVariableDefinition;
+                
+        [Input("Custom Semantic Name")]
+        public IDiffSpread<string> FInCSName;
 
-        [Input("VariableName")]
-        public IDiffSpread<string> FInVariableName;
+        [Input("Custom Semantic Count", IsSingle = true)]
+        public IDiffSpread<int> FInCSCount;
 
-        [Input("Semantic")]
-        public IDiffSpread<string> FInSemantic;
+        [Input("Resource Semantic VariableDefinition")]
+        public IDiffSpread<string> FInRSVariableDefinition;
 
-        [Input("Semantic Count", IsSingle = true)]
-        public IDiffSpread<int> FInSemanticCount;
+        [Input("Resource Semantic Name")]
+        public IDiffSpread<string> FInRSName;
+
+        [Input("Resource Semantic Count", IsSingle = true)]
+        public IDiffSpread<int> FInRSCount;
 
         [Output("FunctionCall")]
         public ISpread<string> FOutFunctionCall;
 
-        [Output("ConstantBuffer Entry")]
-        public ISpread<string> FOutBufferEntry;
+        [Output("Custom Semantic Entry")]
+        public ISpread<ISpread<string>> FOutCustomSemanticEntry;
 
-        [Output("Semantic")]
-        public ISpread<string> FOutSemantic;
-        
+        [Output("Custom Semantic")]
+        public ISpread<ISpread<string>> FOutCustomSemantic;
+
+        [Output("Resource Semantic Entry")]
+        public ISpread<ISpread<string>> FOutResourceSemanticEntry;
+
+        [Output("Resource Semantic")]
+        public ISpread<ISpread<string>> FOutResourceSemantic;
+
 
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
             
-            if (!(FInFunctionName.IsChanged || FInFunctionArgument.IsChanged || FInVariableType.IsChanged || FInVariableName.IsChanged || FInSemantic.IsChanged || FInSemanticCount.IsChanged)) return;
+            if (!(FInFunctionName.IsChanged || FInFunctionArgument.IsChanged ||
+                FInCSVariableDefinition.IsChanged || FInCSName.IsChanged || FInCSCount.IsChanged ||
+                FInRSVariableDefinition.IsChanged || FInRSName.IsChanged || FInRSCount.IsChanged)) return;
 
-            FOutFunctionCall.SliceCount = FOutBufferEntry.SliceCount = FOutSemantic.SliceCount = 0;
+            string uniqueSuffix = "_" + this.GetHashCode();
+
+            FOutCustomSemanticEntry.SliceCount = FOutCustomSemantic.SliceCount = FInCSCount[0];
             
-            for (int i = 0; i < FInSemanticCount[0]; i++)
+            // Set Custom Semantics
+            for (int i = 0; i < FInCSCount[0]; i++)
             {
+                FOutCustomSemanticEntry[i].SliceCount = FOutCustomSemantic[i].SliceCount = 0;
+                var uniqueCSVariableDefinitions = FInCSVariableDefinition
+                           .Select(x => x + uniqueSuffix + "_" + i)
+                           .ToList();
 
-                string uniqueSuffix = "_" + this.GetHashCode() + "_" + i;
-                
-                var uniqueVariableNames = FInVariableName
-                            .Select(x => x + uniqueSuffix)
-                            .ToList();
-                
-                FOutFunctionCall.Add (FInFunctionName[i] + "(" + String.Join(", ", FInFunctionArgument) + "," + String.Join(", ", uniqueVariableNames) + ")");
-
-                for ( int j = 0; j < FInVariableName.SliceCount; j++)
+                for ( int j = 0; j < uniqueCSVariableDefinitions.Count; j++)
                 {
-                    FOutBufferEntry.Add( FInVariableType[j] + " " + FInVariableName[j] + uniqueSuffix + " : " + FInSemantic[j] + uniqueSuffix + ";");
-                    FOutSemantic.Add(FInSemantic[j] + uniqueSuffix);
+
+                    FOutCustomSemanticEntry[i].Add( uniqueCSVariableDefinitions[j] + " : " + FInCSName[j] + uniqueSuffix + "_" + i + ";");
+                    FOutCustomSemantic[i].Add(FInCSName[j] + uniqueSuffix + "_" + i);
                 }
-                
             }
+
+            FOutResourceSemanticEntry.SliceCount = FOutResourceSemantic.SliceCount = FInRSCount[0];
+
+            // Set Resource Semantics
+            for (int i = 0; i < FInRSCount[0]; i++)
+            {
+                FOutResourceSemanticEntry[i].SliceCount = FOutResourceSemantic[i].SliceCount = 0;
+                var uniqueRSVariableDefinitions = FInRSVariableDefinition
+                           .Select(x => x + uniqueSuffix + "_" + i)
+                           .ToList();
+
+                for (int j = 0; j < uniqueRSVariableDefinitions.Count; j++)
+                {
+                    FOutResourceSemanticEntry[i].Add(uniqueRSVariableDefinitions[j] + " : " + FInRSName[j] + uniqueSuffix + "_" + i + ";");
+                    FOutResourceSemantic[i].Add(FInRSName[j] + uniqueSuffix + "_" + i);
+                }
+            }
+
+            // Set Function Calls
+            int functionCallCount = Math.Max(FInCSCount[0], FInRSCount[0]);
+            FOutFunctionCall.SliceCount = 0;
+
+            for (int i = 0; i < functionCallCount; i++)
+            {
+                List<string> uniqueCSVariableNames = new List<string>();
+                List<string> uniqueRSVariableNames = new List<string>();
+
+                if (FOutCustomSemanticEntry.Count() > 0)
+                {
+                    uniqueCSVariableNames = FOutCustomSemanticEntry[i]
+                        .Where(x => x != null && x.Count() > 0 && x != "")
+                        .Select(x => x.Split(' ')[1])
+                        .ToList();
+                }
+
+                if (FOutResourceSemanticEntry.Count() > 0)
+                {
+                    uniqueRSVariableNames = FOutResourceSemanticEntry[i]
+                        .Where(x => x != null && x.Count() > 0 && x != "")
+                        .Select(x => x.Split(' ')[1])
+                        .ToList();
+                }
+
+                FOutFunctionCall.Add(FInFunctionName[i] + "(" + String.Join(", ", FInFunctionArgument) + "," + String.Join(", ", uniqueCSVariableNames.Concat(uniqueRSVariableNames) ) + ")");
+            }
+                
         }
     }
 
@@ -156,20 +264,26 @@ namespace DX11.Particles.Core
     public class SelectorJoin : IPluginEvaluate
     {
         #region fields & pins
-        [Input("Function Call")]
+        [Input("FunctionCall")]
         public IDiffSpread<string> FFunctionCall;
 
-        [Input("Variable List")]
+        [Input("Variables")]
         public IDiffSpread<string> FVariables;
         
-        [Input("Function Definition")]
-        public IDiffSpread<string> FFunctionDefinition;
+        [Input("Function")]
+        public IDiffSpread<string> FFunction;
 
-        [Input("Constant Buffer Entry")]
-        public IDiffSpread<string> FConstantBufferEntry;
+        [Input("Custom Semantic Entry")]
+        public IDiffSpread<string> FCSEntry;
 
-        [Input("Custom Semantics", Order = 5000)]
-        protected Pin<IDX11RenderSemantic> FInSemantics;
+        [Input("Custom Semantic")]
+        protected Pin<IDX11RenderSemantic> FInCustomSemantic;
+
+        [Input("Resource Semantic Entry")]
+        public IDiffSpread<string> FRSEntry;
+
+        [Input("Resource Semantic")]
+        protected Pin<DX11Resource<IDX11RenderSemantic>> FInResourceSemantic;
 
         [Output("Output")]
         public ISpread<Selector> FOutSelector;
@@ -178,13 +292,15 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunctionDefinition.IsChanged || FConstantBufferEntry.IsChanged || FInSemantics.IsChanged)) return;
+            if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunction.IsChanged ||
+                FCSEntry.IsChanged || FInCustomSemantic.IsChanged ||
+                FRSEntry.IsChanged || FInResourceSemantic.IsChanged )) return;
 
             FOutSelector.SliceCount = FFunctionCall.SliceCount;
             for (int i = 0; i < FFunctionCall.SliceCount; i++)
             {
                 Selector selector = new Selector();
-                selector.SetAll(FFunctionCall[i], FVariables, FFunctionDefinition, FConstantBufferEntry, FInSemantics);
+                selector.SetAll(FFunctionCall[i], FVariables, FFunction, FCSEntry, FInCustomSemantic, FRSEntry, FInResourceSemantic);
                 FOutSelector[i] = selector;
             }
         }
@@ -204,20 +320,26 @@ namespace DX11.Particles.Core
         [Input("Prevent from doubles", DefaultBoolean = false, IsSingle = true)]
         public IDiffSpread<bool> FPreventDoubles;
 
-        [Output("Function Call")]
+        [Output("FunctionCall")]
         public ISpread<ISpread<string>> FFunctionCall;
 
-        [Output("Variable List")]
+        [Output("Variables")]
         public ISpread<ISpread<string>> FVariables;
         
-        [Output("Function Definition")]
-        public ISpread<ISpread<string>> FFunctionDefinition;
+        [Output("Functions")]
+        public ISpread<ISpread<string>> FFunctions;
 
-        [Output("Constant Buffer Entry")]
-        public ISpread<ISpread<string>> FConstantBufferEntry;
+        [Output("Custom Semantic Entry")]
+        public ISpread<ISpread<string>> FOutCSEntry;
 
         [Output("Custom Semantics")]
-        public ISpread<ISpread<IDX11RenderSemantic>> FOutSemantics;
+        public ISpread<ISpread<IDX11RenderSemantic>> FOutCustomSemantic;
+
+        [Output("Render Semantic Entry")]
+        public ISpread<ISpread<string>> FOutRSEntry;
+
+        [Output("Render Semantics")]
+        public ISpread<ISpread<DX11Resource<IDX11RenderSemantic>>> FOutResourceSemantic;
 
         #endregion fields & pins
 
@@ -227,53 +349,76 @@ namespace DX11.Particles.Core
 
             if (FPreventDoubles[0]) // output only unique data
             {
-                FVariables.SliceCount = FFunctionCall.SliceCount = FFunctionDefinition.SliceCount = FConstantBufferEntry.SliceCount = FOutSemantics.SliceCount = 1;
-                FFunctionCall[0].SliceCount = FVariables[0].SliceCount  = FFunctionDefinition[0].SliceCount = FConstantBufferEntry[0].SliceCount = FOutSemantics[0].SliceCount = 0;
+                FVariables.SliceCount = FFunctionCall.SliceCount = FFunctions.SliceCount =
+                FOutCSEntry.SliceCount = FOutCustomSemantic.SliceCount =
+                FOutRSEntry.SliceCount = FOutResourceSemantic.SliceCount = 1;
+
+                FFunctionCall[0].SliceCount = FVariables[0].SliceCount  = FFunctions[0].SliceCount =
+                FOutCSEntry[0].SliceCount = FOutCustomSemantic[0].SliceCount =
+                FOutRSEntry[0].SliceCount = FOutResourceSemantic[0].SliceCount = 0;
 
                 for (int i = 0; i < SpreadMax; i++)
                 {
                     Selector selector = FInSelector[i];
                     if (selector != null)
                     {
+                        // functioncalls
                         if (!FFunctionCall[0].Contains(selector.FunctionCall)) FFunctionCall[0].Add(selector.FunctionCall);
+                        // variables
                         foreach (string variable in selector.Variables) if (!FVariables[0].Contains(variable)) FVariables[0].Add(variable);
-
-                        foreach (string funcdef in selector.FunctionDefinitions) if (!FFunctionDefinition[0].Contains(funcdef)) FFunctionDefinition[0].Add(funcdef);
-                        foreach (string cBuffVar in selector.ConstantBufferVariables) if (!FConstantBufferEntry[0].Contains(cBuffVar)) FConstantBufferEntry[0].Add(cBuffVar);
-
-                        foreach (IDX11RenderSemantic rsIn in selector.GetRenderSemantics())
+                        // functions
+                        foreach (string funcdef in selector.Functions) if (!FFunctions[0].Contains(funcdef)) FFunctions[0].Add(funcdef);
+                        // custom semantic entries
+                        foreach (string cs in selector.CustomSemanticEntries) if (!FOutCSEntry[0].Contains(cs)) FOutCSEntry[0].Add(cs);
+                        // custom semantics
+                        foreach (IDX11RenderSemantic csIn in selector.GetCustomSemantics())
                         {
                             bool canAdd = true;
-                            foreach (IDX11RenderSemantic rs in FOutSemantics[0])
+                            foreach (IDX11RenderSemantic cs in FOutCustomSemantic[0])
                             {
-                                if (rs.Semantic == rsIn.Semantic) canAdd = false;
+                                if (cs.Semantic == csIn.Semantic) canAdd = false;
                             }
-                            if (canAdd) FOutSemantics[0].Add(rsIn);
+                            if (canAdd) FOutCustomSemantic[0].Add(csIn);
+                        }
+
+                        // resource semantic entries
+                        foreach (string rs in selector.ResourceSemanticEntries) if (!FOutRSEntry[0].Contains(rs)) FOutRSEntry[0].Add(rs);
+                        // resource semantics
+                        foreach (DX11Resource<IDX11RenderSemantic> rsIn in selector.GetResourceSemantics())
+                        {
+                            bool canAdd = true;
+                            foreach (DX11Resource<IDX11RenderSemantic> rs in FOutResourceSemantic[0])
+                            {
+                                if (rs.Equals(rsIn)) canAdd = false;
+                            }
+                            if (canAdd) FOutResourceSemantic[0].Add(rsIn);
                         }
                     }
                 }
             }
             else // ouput all selector data with correct bin sizes
             {
-                FVariables.SliceCount = FFunctionCall.SliceCount = FFunctionDefinition.SliceCount = FConstantBufferEntry.SliceCount = FOutSemantics.SliceCount = SpreadMax;
+                FVariables.SliceCount = FFunctionCall.SliceCount = FFunctions.SliceCount =
+                FOutCSEntry.SliceCount = FOutCustomSemantic.SliceCount =
+                FOutRSEntry.SliceCount = FOutResourceSemantic.SliceCount = SpreadMax;
 
                 for (int i = 0; i < SpreadMax; i++)
                 {
 
-                    FFunctionCall[i].SliceCount = 0;
-                    FVariables[i].SliceCount = 0;
-                    FFunctionDefinition[i].SliceCount = 0;
-                    FConstantBufferEntry[i].SliceCount = 0;
-                    FOutSemantics[i].SliceCount = 0;
+                    FFunctionCall[i].SliceCount = FVariables[i].SliceCount = FFunctions[i].SliceCount = 
+                    FOutCSEntry[i].SliceCount = FOutCustomSemantic[i].SliceCount =
+                    FOutRSEntry[i].SliceCount = FOutResourceSemantic[i].SliceCount = 0;
 
                     Selector selector = FInSelector[i];
                     if (selector != null)
                     {
                         FFunctionCall[i].Add(selector.FunctionCall);
                         FVariables[i].AssignFrom(selector.Variables);
-                        FFunctionDefinition[i].AssignFrom(selector.FunctionDefinitions);
-                        FConstantBufferEntry[i].AssignFrom(selector.ConstantBufferVariables);
-                        FOutSemantics[i].AssignFrom(selector.GetRenderSemantics());
+                        FFunctions[i].AssignFrom(selector.Functions);
+                        FOutCSEntry[i].AssignFrom(selector.CustomSemanticEntries);
+                        FOutCustomSemantic[i].AssignFrom(selector.GetCustomSemantics());
+                        FOutRSEntry[i].AssignFrom(selector.ResourceSemanticEntries);
+                        FOutResourceSemantic[i].AssignFrom(selector.GetResourceSemantics());
                     }
 
                 }
@@ -404,9 +549,11 @@ namespace DX11.Particles.Core
                         if (j != 0) functionCall += " && ";
                         functionCall += selectorIn.FunctionCall;
                         selector.AddVariables(selectorIn.Variables);
-                        selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
-                        selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
-                        selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
+                        selector.AddFunction(selectorIn.Functions);
+                        selector.AddCustomSemanticEntries(selectorIn.CustomSemanticEntries);
+                        selector.AddCustomSemantics(selectorIn.GetCustomSemantics());
+                        selector.AddResourceSemanticEntries(selectorIn.ResourceSemanticEntries);
+                        selector.AddResourceSemantics(selectorIn.GetResourceSemantics());
                     }
                 }
 
@@ -458,9 +605,11 @@ namespace DX11.Particles.Core
 
                         functionCall += selectorIn.FunctionCall;
                         selector.AddVariables(selectorIn.Variables);
-                        selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
-                        selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
-                        selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
+                        selector.AddFunction(selectorIn.Functions);
+                        selector.AddCustomSemanticEntries(selectorIn.CustomSemanticEntries);
+                        selector.AddCustomSemantics(selectorIn.GetCustomSemantics());
+                        selector.AddResourceSemanticEntries(selectorIn.ResourceSemanticEntries);
+                        selector.AddResourceSemantics(selectorIn.GetResourceSemantics());
                     }
                     
                 }
@@ -539,9 +688,11 @@ namespace DX11.Particles.Core
                         if (j != 0) functionCall += " || ";
                         functionCall += selectorIn.FunctionCall;
                         selector.AddVariables(selectorIn.Variables);
-                        selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
-                        selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
-                        selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
+                        selector.AddFunction(selectorIn.Functions);
+                        selector.AddCustomSemanticEntries(selectorIn.CustomSemanticEntries);
+                        selector.AddCustomSemantics(selectorIn.GetCustomSemantics());
+                        selector.AddResourceSemanticEntries(selectorIn.ResourceSemanticEntries);
+                        selector.AddResourceSemantics(selectorIn.GetResourceSemantics());
                     }
 
                 }
@@ -592,9 +743,11 @@ namespace DX11.Particles.Core
 
                         functionCall += selectorIn.FunctionCall;
                         selector.AddVariables(selectorIn.Variables);
-                        selector.AddFunctionDefinitions(selectorIn.FunctionDefinitions);
-                        selector.AddConstantBufferEntries(selectorIn.ConstantBufferVariables);
-                        selector.AddRenderSemantics(selectorIn.GetRenderSemantics());
+                        selector.AddFunction(selectorIn.Functions);
+                        selector.AddCustomSemanticEntries(selectorIn.CustomSemanticEntries);
+                        selector.AddCustomSemantics(selectorIn.GetCustomSemantics());
+                        selector.AddResourceSemanticEntries(selectorIn.ResourceSemanticEntries);
+                        selector.AddResourceSemantics(selectorIn.GetResourceSemantics());
                     }
 
                 }
@@ -636,9 +789,11 @@ namespace DX11.Particles.Core
 
                 selector.FunctionCall = "!( " + selectorIn.FunctionCall + ")";
                 selector.Variables = selectorIn.Variables;
-                selector.FunctionDefinitions = selectorIn.FunctionDefinitions;
-                selector.ConstantBufferVariables = selectorIn.ConstantBufferVariables;
-                selector.RenderSemantics = selectorIn.RenderSemantics;
+                selector.Functions = selectorIn.Functions;
+                selector.CustomSemanticEntries = selectorIn.CustomSemanticEntries;
+                selector.CustomSemantics = selectorIn.CustomSemantics;
+                selector.ResourceSemanticEntries = selectorIn.ResourceSemanticEntries;
+                selector.ResourceSemantics = selectorIn.ResourceSemantics;
 
                 FOutSelector[i] = selector;
             }
