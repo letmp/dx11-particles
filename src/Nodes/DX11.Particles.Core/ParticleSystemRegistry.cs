@@ -313,7 +313,6 @@ namespace DX11.Particles.Core
         public void SetEmitterName(string shaderRegisterNodeId, string name)
         {
             this.EmitterNames[shaderRegisterNodeId] = name;
-            //UpdateEmitterEnum();
         }
 
         public void RemoveEmitterName(string shaderRegisterNodeId)
@@ -321,7 +320,6 @@ namespace DX11.Particles.Core
             if (this.EmitterNames.ContainsKey(shaderRegisterNodeId))
             {
                 this.EmitterNames.Remove(shaderRegisterNodeId);
-                //UpdateEmitterEnum();
             }
         }
 
@@ -474,18 +472,21 @@ namespace DX11.Particles.Core
     {
         public string bufferSemantic;
         public int elementCount;
+        public int valueRange;
         public int stride;
         public int bufferMode;
         public bool resetCounter;
-
-        public ParticleSystemBufferSettings(string bufferSemantic, int elementCount, int stride, int bufferMode, bool resetCounter){
+        
+        public ParticleSystemBufferSettings(string bufferSemantic, int elementCount, int valueRange, int stride, int bufferMode, bool resetCounter){
             this.bufferSemantic = bufferSemantic;
             this.elementCount = elementCount;
+            this.valueRange = valueRange;
             this.stride = stride;
             this.bufferMode = bufferMode;
             this.resetCounter = resetCounter;
         }
-    }
+        
+}
 
     public class SlotBundle
     {

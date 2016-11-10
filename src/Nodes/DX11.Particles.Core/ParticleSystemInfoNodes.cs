@@ -117,8 +117,7 @@ namespace DX11.Particles.Core
     {
         [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 2, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
         public IDiffSpread<EnumEntry> FParticleSystemName;
-
-        //[Input("Emitter Name", EnumName = ParticleSystemRegistry.EMITTER_ENUM, Order = 2)]
+        
         public IDiffSpread<EnumEntry> FEmitterName;
 
         [Output("Emitter Region")]
@@ -321,6 +320,163 @@ namespace DX11.Particles.Core
 
     }
 
+    #region PluginInfo
+    [PluginInfo(Name = "Info", AutoEvaluate = true, Category = "DX11.Particles.Core", Version = "Buffer", Help = "Info about the specified buffer.", Author = "tmp", Tags = "")]
+    #endregion PluginInfo
+
+    public class InfoBufferNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
+    {
+        [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 2, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
+        public IDiffSpread<EnumEntry> FParticleSystemName;
+
+        [Input("Filter", DefaultString = "", IsSingle = true)]
+        public IDiffSpread<string> FFilter;
+
+        public IDiffSpread<EnumEntry> FBufferName;
+
+        [Output("Order", DefaultString = "", AutoFlush = false)]
+        public ISpread<int> FOrder;
+
+        [Output("Buffer Semantic", DefaultString = "", AutoFlush = false)]
+        public ISpread<string> FBufferSemantic;
+
+        [Output("Buffer ElementCount", DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
+        public ISpread<int> FElementCountBuf;
+
+        [Output("Buffer Value Range", Visibility = PinVisibility.OnlyInspector, DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
+        public ISpread<int> FValueRange;
+
+        [Output("Buffer Stride", DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
+        public ISpread<int> FStrideBuf;
+
+        [Output("Buffer Mode", DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
+        public ISpread<int> FModeBuf;
+
+        [Output("Buffer ResetCounter", DefaultValue = 0, AutoFlush = false, AllowFeedback = true)]
+        public ISpread<bool> FResetCounterBuf;
+
+        [Import]
+        protected IPluginHost2 PluginHost;
+
+        [Import]
+        protected IIOFactory FIOFactory;
+
+        private string EnumName;
+
+        public void OnImportsSatisfied()
+        {
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            particleSystemRegistry.Changed += HandleRegistryChange;
+
+            FParticleSystemName.Changed += (spread) => FillEnum();
+
+            CreateEnumPin();
+        }
+
+        private void FillEnum()
+        {
+            if (FParticleSystemName == null || FParticleSystemName.SliceCount < 1 || FParticleSystemName[0] == null) return;
+
+            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+            
+            var enums = particleSystemData.BufferSettings
+                .SelectMany(kvp => kvp.Value.Select(value => value.bufferSemantic)).ToArray();
+
+            if (FFilter.SliceCount > 0 && FFilter[0] != "")
+            {
+                enums = enums.Where(v => v.Contains(FFilter[0])).ToArray();
+            }
+
+            EnumManager.UpdateEnum(EnumName, enums.FirstOrDefault(), enums);
+        }
+
+        public void CreateEnumPin()
+        {
+            EnumName = ParticleSystemRegistry.BUFFER_ENUM + "_" + this.GetHashCode();
+
+            var attr = new InputAttribute("Buffer Name");
+            attr.Order = 2;
+            attr.AutoValidate = true;
+            attr.EnumName = EnumName;
+
+            Type pinType = typeof(IDiffSpread<EnumEntry>);
+
+            var pin = FIOFactory.CreateIOContainer(pinType, attr);
+            FBufferName = (IDiffSpread<EnumEntry>)(pin.RawIOObject);
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (FFilter.IsChanged)
+            {
+                FillEnum();
+            }
+            if (FParticleSystemName.IsChanged || FBufferName.IsChanged || FFilter.IsChanged)
+            {
+                UpdateOutputPins();
+            }
+        }
+
+        public void Dispose()
+        {
+            ParticleSystemRegistry.Instance.Changed -= HandleRegistryChange;
+        }
+
+        private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
+        {
+            FillEnum();
+            UpdateOutputPins();
+        }
+
+        private void UpdateOutputPins()
+        {
+            FOrder.SliceCount = FBufferSemantic.SliceCount = FElementCountBuf.SliceCount = FValueRange.SliceCount =
+            FStrideBuf.SliceCount = FModeBuf.SliceCount = FResetCounterBuf.SliceCount = 0;
+
+            if (FParticleSystemName.SliceCount != 0)
+            {
+                var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+                if (particleSystemData != null)
+                {
+                    // gett all buffer settings
+                    var pbsl = particleSystemData.BufferSettings
+                        .SelectMany(kvp => kvp.Value).ToArray();
+
+                    // now find the buffer settings specified by enum
+                    for (int i = 0; i < pbsl.Count(); i++)
+                    {
+                        ParticleSystemBufferSettings pbs = pbsl[i];
+                        for (int j = 0; j < FBufferName.SliceCount; j++)
+                        {
+                           if(pbs.bufferSemantic == FBufferName[j])
+                            {
+                                // we found the specified buffer settings
+                                FOrder.Add(i);
+                                FBufferSemantic.Add(pbs.bufferSemantic);
+                                FElementCountBuf.Add(pbs.elementCount);
+                                FValueRange.Add(pbs.valueRange);
+                                FStrideBuf.Add(pbs.stride);
+                                FModeBuf.Add(pbs.bufferMode);
+                                FResetCounterBuf.Add(pbs.resetCounter);
+                                
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                FOrder.Flush();
+                FBufferSemantic.Flush();
+                FElementCountBuf.Flush();
+                FValueRange.Flush();
+                FStrideBuf.Flush();
+                FModeBuf.Flush();
+                FResetCounterBuf.Flush();
+            }
+
+        }
+
+    }
 
 }
 

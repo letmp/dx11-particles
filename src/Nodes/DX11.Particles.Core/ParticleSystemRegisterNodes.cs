@@ -22,7 +22,6 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string ParticleSystemRegisterNodeId = "";
-        //private bool firstEval = true;
 
         public void OnImportsSatisfied()
         {
@@ -32,11 +31,6 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            /*if (firstEval)
-            {
-                AddParticleSystem();
-                firstEval = false;
-            }*/
 
             if (FParticleSystemName.IsChanged)
             {
@@ -103,7 +97,6 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
         
         private string ShaderRegisterNodeId = "";
-        //private bool firstEval = true;
         private bool _ParticleSystemChanged = false;
 
         public void OnImportsSatisfied()
@@ -123,15 +116,6 @@ namespace DX11.Particles.Core
                 UpdateShaderVariables();
                 _ParticleSystemChanged = false;
             }
-
-            /*if (firstEval)
-            {
-                SetDefines();
-                SetEmitterSize();
-                SetEmitterName();
-                SetShaderVariables();
-                firstEval = false;
-            }*/
 
             if (FParticleSystemName.IsChanged)
             {
@@ -238,8 +222,6 @@ namespace DX11.Particles.Core
             {
                 var particleSystemRegistry = ParticleSystemRegistry.Instance;
                 particleSystemRegistry.SetEmitterName(FParticleSystemName[0], this.ShaderRegisterNodeId, FEmitterName[0]);
-
-                //UpdateEmitterEnum();
             }
             
         }
@@ -248,22 +230,7 @@ namespace DX11.Particles.Core
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
             particleSystemRegistry.RemoveEmitterName(this.ShaderRegisterNodeId);
-
-            //UpdateEmitterEnum();
         }
-
-       /* private void UpdateEmitterEnum()
-        {
-            var particleSystemRegistry = ParticleSystemRegistry.Instance;
-            var particleSystemData = particleSystemRegistry.GetByParticleSystemName(FParticleSystemName[0]);
-            var allNames = (
-                           from systemName in particleSystemRegistry.Keys
-                           from emitterName in particleSystemRegistry[systemName].EmitterNames.Values
-                           select emitterName
-                            ).Distinct().ToArray();
-
-            EnumManager.UpdateEnum(ParticleSystemRegistry.EMITTER_ENUM, "", allNames);
-        }*/
 
         private void UpdateEmitterName()
         {
@@ -293,7 +260,6 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string ShaderRegisterNodeId = "";
-        //private bool firstEval = true;
         private bool _ParticleSystemChanged = false;
 
         public void OnImportsSatisfied()
@@ -311,13 +277,6 @@ namespace DX11.Particles.Core
                 UpdateShaderVariables();
                 _ParticleSystemChanged = false;
             }
-
-            /*if (firstEval)
-            {
-                SetDefines();
-                SetShaderVariables();
-                firstEval = false;
-            }*/
 
             if (FParticleSystemName.IsChanged)
             {
@@ -397,6 +356,9 @@ namespace DX11.Particles.Core
         [Input("Element Count")]
         public IDiffSpread<int> FEleCount;
 
+        [Input("Value Range", Visibility = PinVisibility.OnlyInspector, DefaultValue = 0)]
+        public IDiffSpread<int> FValueRange;
+
         [Input("Stride")]
         public IDiffSpread<int> FStride;
 
@@ -413,7 +375,6 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string BufferNodeId = "";
-        //private bool firstEval = true;
 
         public void OnImportsSatisfied()
         {
@@ -423,16 +384,10 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (FBufferSemantic.IsChanged || FEleCount.IsChanged || FStride.IsChanged || FBufMode.IsChanged || FResetCounter.IsChanged || FParticleSystemName.IsChanged)
+            if (FBufferSemantic.IsChanged || FEleCount.IsChanged || FValueRange.IsChanged || FStride.IsChanged || FBufMode.IsChanged || FResetCounter.IsChanged || FParticleSystemName.IsChanged)
             {
                 UpdateBufferSettings(SpreadMax);
             }
-
-            /*if (firstEval)
-            {
-                SetBufferSettings(SpreadMax);
-                firstEval = false;
-            }*/
 
         }
 
@@ -441,14 +396,13 @@ namespace DX11.Particles.Core
             RemoveBufferSettings();
         }
 
-
         private void SetBufferSettings(int SpreadMax)
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
             List<ParticleSystemBufferSettings> psbsl = new List<ParticleSystemBufferSettings>();
             for (int i = 0; i < SpreadMax; i++)
             {
-                ParticleSystemBufferSettings psbs = new ParticleSystemBufferSettings(FBufferSemantic[i], FEleCount[i], FStride[i], FBufMode[i], Convert.ToBoolean(FResetCounter[i]));
+                ParticleSystemBufferSettings psbs = new ParticleSystemBufferSettings(FBufferSemantic[i], FEleCount[i], FValueRange[i], FStride[i], FBufMode[i], Convert.ToBoolean(FResetCounter[i]));
                 psbsl.Add(psbs);
             }
 

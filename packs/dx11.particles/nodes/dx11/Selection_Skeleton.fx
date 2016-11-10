@@ -11,7 +11,7 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> GroupIndexBuffer : GROUPINDEXBUFFER_/*STUB_GROUPNAME*/;
+RWStructuredBuffer<uint> GroupIndexBuffer : GROUP_/*STUB_GROUPNAME*/;
 
 cbuffer name : register(b0){
    /*STUB_VARS_CBUF*/
