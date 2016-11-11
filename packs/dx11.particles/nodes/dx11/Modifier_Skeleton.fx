@@ -14,9 +14,7 @@ RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 /*STUB_RESOURCE_SEMANTICS*/
 
-cbuffer name : register(b0){
-   /*STUB_CUSTOM_SEMANTICS*/
-};
+/*STUB_CUSTOM_SEMANTICS*/
 
 /*STUB_FUNCTIONS*/
 

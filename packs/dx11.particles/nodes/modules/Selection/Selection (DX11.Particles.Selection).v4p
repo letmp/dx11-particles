@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="615" top="8715" width="100" height="100">
    </BOUNDS>
@@ -15,9 +15,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="2730" top="465" width="795" height="240">
+   <BOUNDS type="Box" left="780" top="465" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2730" top="465" width="0" height="0">
+   <BOUNDS type="Node" left="780" top="465" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -709,7 +709,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Split (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Split (DX11.Particles.Selection)" componentmode="Hidden" id="52">
-   <BOUNDS type="Node" left="2745" top="915" width="100" height="100">
+   <BOUNDS type="Node" left="795" top="915" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -745,23 +745,23 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="52" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4005" y="4950">
+   <LINKPOINT x="2705" y="4950">
    </LINKPOINT>
-   <LINKPOINT x="900" y="4950">
+   <LINKPOINT x="250" y="4950">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="52" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="52" srcpinname="FunctionCall" dstnodeid="84" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2805" y="2160">
+   <LINKPOINT x="1505" y="2160">
    </LINKPOINT>
-   <LINKPOINT x="11370" y="2160">
+   <LINKPOINT x="10720" y="2160">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="52" srcpinname="FunctionCall" dstnodeid="89" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2805" y="1493">
+   <LINKPOINT x="1505" y="1493">
    </LINKPOINT>
-   <LINKPOINT x="9690" y="1493">
+   <LINKPOINT x="9040" y="1493">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="52" srcpinname="Render Semantics" dstnodeid="2" dstpinname="Resource Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -771,7 +771,7 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="EQ (String)" nodename="EQ (String)" componentmode="Hidden" id="117">
-   <BOUNDS type="Node" left="9105" top="7560" width="100" height="100">
+   <BOUNDS type="Node" left="9120" top="7560" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
@@ -789,7 +789,7 @@
    <NODE systemname="Switch (String Input)" nodename="Switch (String Input)" componentmode="Hidden" id="118">
    <BOUNDS type="Node" left="9105" top="8025" width="1290" height="270">
    </BOUNDS>
-   <PIN pinname="Switch" visible="1" slicecount="1" values="0">
+   <PIN pinname="Switch" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -800,12 +800,10 @@
    </NODE>
    <LINK srcnodeid="119" srcpinname="Output" dstnodeid="118" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="118" dstpinname="Switch">
-   </LINK>
    <LINK srcnodeid="103" srcpinname="Output String" dstnodeid="117" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10905" y="4350">
+   <LINKPOINT x="10910" y="4335">
    </LINKPOINT>
-   <LINKPOINT x="9135" y="3900">
+   <LINKPOINT x="9145" y="3870">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="120">
@@ -973,9 +971,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="52" srcpinname="Variables" dstnodeid="128" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3120" y="2940">
+   <LINKPOINT x="1820" y="2940">
    </LINKPOINT>
-   <LINKPOINT x="7425" y="2940">
+   <LINKPOINT x="6775" y="2940">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="103" srcpinname="Output String" dstnodeid="128" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -985,15 +983,15 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="52" srcpinname="Resource Semantic Entry" dstnodeid="128" dstpinname="Input 3" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4380" y="2948">
+   <LINKPOINT x="3080" y="2948">
    </LINKPOINT>
-   <LINKPOINT x="8325" y="2948">
+   <LINKPOINT x="7675" y="2948">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="52" srcpinname="Custom Semantic Entry" dstnodeid="128" dstpinname="Input 4" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3750" y="2940">
+   <LINKPOINT x="2450" y="2940">
    </LINKPOINT>
-   <LINKPOINT x="8760" y="2940">
+   <LINKPOINT x="8110" y="2940">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="128" srcpinname="Output Bin Size" dstnodeid="65" dstpinname="To Bin Size">
@@ -1023,11 +1021,13 @@
    <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="129" dstpinname="IncludePath">
    </LINK>
    <LINK srcnodeid="52" srcpinname="Functions" dstnodeid="128" dstpinname="Input 5" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3435" y="2948">
+   <LINKPOINT x="2135" y="2948">
    </LINKPOINT>
-   <LINKPOINT x="9225" y="2948">
+   <LINKPOINT x="8575" y="2948">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="106" srcpinname="Output" dstnodeid="128" dstpinname="Input 6">
+   </LINK>
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="118" dstpinname="Switch">
    </LINK>
    </PATCH>

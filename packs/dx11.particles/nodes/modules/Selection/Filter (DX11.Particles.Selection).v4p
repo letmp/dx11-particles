@@ -7,13 +7,13 @@
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="29">
-   <BOUNDS type="Node" left="4965" top="960" width="100" height="100">
+   <BOUNDS type="Node" left="4965" top="1260" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
    </PIN>
    <PIN pinname="Buffer Semantic" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="4965" top="960">
+   <BOUNDS type="Box" left="4965" top="1260">
    </BOUNDS>
    <PIN pinname="ParticleSystem ElementCount" visible="1">
    </PIN>
@@ -42,18 +42,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|ParticleSystemBuffers In|">
    </PIN>
    <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="20" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7785" top="570" width="1335" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7785" top="570" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="mySelection">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Name|">
-   </PIN>
-   <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="7" systemname="IOBox (String)">
@@ -340,16 +328,16 @@
    <PIN pinname="ALIVECOUNTERBUFFER" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="27" srcpinname="Output Node" dstnodeid="42" dstpinname="Input" linkstyle="Bezier">
+   <LINK srcnodeid="27" srcpinname="Output Node" dstnodeid="42" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="3165" y="2018">
    </LINKPOINT>
    <LINKPOINT x="4530" y="2018">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="29" srcpinname="Buffer Semantic" dstnodeid="42" dstpinname="BufferSemantic" linkstyle="Bezier">
-   <LINKPOINT x="4995" y="2228">
+   <LINKPOINT x="4995" y="2428">
    </LINKPOINT>
-   <LINKPOINT x="4995" y="2228">
+   <LINKPOINT x="4995" y="2328">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="7" srcpinname="Output String" dstnodeid="42" dstpinname="BufferSemantic Filter">
@@ -423,9 +411,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="29" srcpinname="Buffer Semantic" dstnodeid="141" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4965" y="5663">
+   <LINKPOINT x="4965" y="5863">
    </LINKPOINT>
-   <LINKPOINT x="1065" y="5663">
+   <LINKPOINT x="1065" y="5763">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="7" srcpinname="Output String" dstnodeid="141" dstpinname="Filter" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -470,34 +458,58 @@
    </LINK>
    <LINK srcnodeid="139" srcpinname="Buffers" dstnodeid="140" dstpinname="New Buffers">
    </LINK>
-   <NODE systemname="CreateGroupEnum (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\CreateGroupEnum (DX11.Particles.Selection).v4p" nodename="CreateGroupEnum (DX11.Particles.Selection)" componentmode="Hidden" id="154">
-   <BOUNDS type="Node" left="6330" top="3270" width="100" height="100">
+   <NODE systemname="Info (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Buffer)" componentmode="Hidden" id="155">
+   <BOUNDS type="Node" left="6885" top="1260" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers" visible="1">
+   <PIN pinname="Buffer Name" visible="1" slicecount="1" values="PARTICLEBUFFER">
    </PIN>
-   <PIN pinname="GroupIndexBuffer" visible="1">
+   <PIN pinname="Filter" slicecount="1" values="GROUP">
    </PIN>
-   <BOUNDS type="Box" left="6330" top="3270">
+   <PIN pinname="Order" visible="1">
+   </PIN>
+   <PIN pinname="Buffer Value Range" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
+   </PIN>
+   <BOUNDS type="Box" left="6885" top="1260">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="28" srcpinname="Output Enum" dstnodeid="154" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5025" y="2033">
+   <LINK srcnodeid="28" srcpinname="Output Enum" dstnodeid="155" dstpinname="ParticleSystem" linkstyle="VHV">
+   <LINKPOINT x="5025" y="1020">
    </LINKPOINT>
-   <LINKPOINT x="6810" y="2033">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Output Enum" dstnodeid="154" dstpinname="Buffer Enum" linkstyle="Bezier">
-   <LINKPOINT x="7815" y="2040">
-   </LINKPOINT>
-   <LINKPOINT x="7815" y="2040">
+   <LINKPOINT x="7380" y="1020">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="27" srcpinname="Output Node" dstnodeid="154" dstpinname="ParticleSystemBuffers" linkstyle="Bezier">
-   <LINKPOINT x="3165" y="2025">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="156" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="7875" top="570" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7875" top="570" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_mySelection">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Selection">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="156" srcpinname="Output Enum" dstnodeid="155" dstpinname="Buffer Name">
+   </LINK>
+   <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="157">
+   <BOUNDS type="Node" left="6300" top="3270" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Index" visible="1">
+   </PIN>
+   <PIN pinname="Input Node" visible="1">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="155" srcpinname="Order" dstnodeid="157" dstpinname="Index">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Output Node" dstnodeid="157" dstpinname="Input Node" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3170" y="2025">
    </LINKPOINT>
-   <LINKPOINT x="6315" y="2025">
+   <LINKPOINT x="6280" y="2025">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="154" srcpinname="GroupIndexBuffer" dstnodeid="41" dstpinname="GroupIndexBuffer">
+   <LINK srcnodeid="157" srcpinname="Output Node" dstnodeid="41" dstpinname="GroupIndexBuffer">
    </LINK>
    </PATCH>

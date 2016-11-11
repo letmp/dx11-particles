@@ -15,9 +15,7 @@ RWStructuredBuffer<uint> GroupIndexBuffer : GROUP_/*STUB_GROUPNAME*/;
 
 /*STUB_RESOURCE_SEMANTICS*/
 
-cbuffer name : register(b0){
-   /*STUB_CUSTOM_SEMANTICS*/
-};
+/*STUB_CUSTOM_SEMANTICS*/
 
 /*STUB_FUNCTIONS*/
 

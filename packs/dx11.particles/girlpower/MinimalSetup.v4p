@@ -724,18 +724,6 @@
    <BOUNDS type="Box" left="9825" top="8520">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="860" srcpinname="ParticleSystemBuffers" dstnodeid="892" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
-   <LINKPOINT x="5400" y="8115">
-   </LINKPOINT>
-   <LINKPOINT x="9825" y="8115">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="892" srcpinname="Help Layer" dstnodeid="98" dstpinname="Layer 6" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10650" y="10275">
-   </LINKPOINT>
-   <LINKPOINT x="5310" y="10275">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Filter (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Filter (DX11.Particles.Selection).v4p" nodename="Filter (DX11.Particles.Selection)" componentmode="Hidden" id="963">
    <BOUNDS type="Node" left="5595" top="8670" width="100" height="100">
    </BOUNDS>
@@ -755,7 +743,7 @@
    <NODE systemname="Count (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Count (DX11.Particles.Analysis).v4p" nodename="Count (DX11.Particles.Analysis)" componentmode="Hidden" id="964">
    <BOUNDS type="Node" left="11085" top="8520" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers" visible="1">
+   <PIN pinname="ParticleSystemBuffers" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Selection Name" slicecount="1" values="(nil)">
    </PIN>
@@ -768,12 +756,6 @@
    <PIN pinname="Selection" slicecount="1" values="GROUP_mySelection">
    </PIN>
    </NODE>
-   <LINK srcnodeid="860" srcpinname="ParticleSystemBuffers" dstnodeid="964" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
-   <LINKPOINT x="5400" y="8115">
-   </LINKPOINT>
-   <LINKPOINT x="11085" y="8115">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Bounds (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" nodename="Bounds (DX11.Particles.Analysis)" componentmode="Hidden" id="970">
    <BOUNDS type="Node" left="12270" top="8505" width="100" height="100">
    </BOUNDS>
@@ -783,19 +765,9 @@
    </PIN>
    <PIN pinname="Selection" slicecount="1" values="GROUP_mySelection">
    </PIN>
+   <PIN pinname="ParticleSystemBuffers" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="860" srcpinname="ParticleSystemBuffers" dstnodeid="970" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
-   <LINKPOINT x="5400" y="8108">
-   </LINKPOINT>
-   <LINKPOINT x="12270" y="8108">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="970" srcpinname="Help Layer" dstnodeid="98" dstpinname="Layer 5" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="13110" y="10268">
-   </LINKPOINT>
-   <LINKPOINT x="5145" y="10268">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="939" srcpinname="Modifier Out" dstnodeid="86" dstpinname="Layer 3">
    </LINK>
    <NODE systemname="Constant (DX11.Particles.Sink)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Sinks\Constant (DX11.Particles.Sink).v4p" nodename="Constant (DX11.Particles.Sink)" componentmode="Hidden" id="995">
@@ -899,19 +871,23 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Heading (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Heading (DX11.Particles.Modifiers).v4p" nodename="Heading (DX11.Particles.Modifiers)" componentmode="Hidden" id="1008">
-   <BOUNDS type="Node" left="11250" top="5100" width="100" height="100">
+   <BOUNDS type="Node" left="8535" top="4965" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
+   <BOUNDS type="Box" left="8535" top="4965">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="1008" srcpinname="Layer" dstnodeid="86" dstpinname="Layer 5" linkstyle="Bezier">
-   <LINKPOINT x="11250" y="5768">
+   <LINKPOINT x="8535" y="5700">
    </LINKPOINT>
-   <LINKPOINT x="6405" y="5768">
+   <LINKPOINT x="6405" y="5700">
    </LINKPOINT>
    </LINK>
    <NODE systemname="IsMasked (DX11.Particles.Selection Texture2d)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\IsMasked (DX11.Particles.Selection Texture2d).v4p" nodename="IsMasked (DX11.Particles.Selection Texture2d)" componentmode="Hidden" id="1010">
    <BOUNDS type="Node" left="12855" top="3660" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="6660" top="2040" width="12255" height="11400">
    </BOUNDS>
    </NODE>
    <NODE id="893" componentmode="Hidden" systemname="Selection (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" nodename="Selection (DX11.Particles.Selection)">
@@ -934,16 +910,46 @@
    </NODE>
    <LINK srcnodeid="650" srcpinname="Modifier Out" dstnodeid="893" dstpinname="Modifier In">
    </LINK>
+   <LINK srcnodeid="860" srcpinname="ParticleSystemBuffers" dstnodeid="970" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
+   <LINKPOINT x="5400" y="8108">
+   </LINKPOINT>
+   <LINKPOINT x="12270" y="8108">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="860" srcpinname="ParticleSystemBuffers" dstnodeid="964" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
+   <LINKPOINT x="5400" y="8115">
+   </LINKPOINT>
+   <LINKPOINT x="11085" y="8115">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="860" srcpinname="ParticleSystemBuffers" dstnodeid="892" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
+   <LINKPOINT x="5400" y="8115">
+   </LINKPOINT>
+   <LINKPOINT x="9825" y="8115">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="893" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 4" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7170" y="5700">
+   </LINKPOINT>
+   <LINKPOINT x="6210" y="5700">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="892" srcpinname="Help Layer" dstnodeid="98" dstpinname="Layer 5" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10650" y="10275">
+   </LINKPOINT>
+   <LINKPOINT x="5145" y="10275">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="970" srcpinname="Help Layer" dstnodeid="98" dstpinname="Layer 6" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13110" y="10268">
+   </LINKPOINT>
+   <LINKPOINT x="5310" y="10268">
+   </LINKPOINT>
+   </LINK>
    <LINK srcnodeid="838" srcpinname="Selection Out" dstnodeid="893" dstpinname="Selection" linkstyle="VHV">
    <LINKPOINT x="9150" y="4785">
    </LINKPOINT>
    <LINKPOINT x="7230" y="4785">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="893" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 4" linkstyle="Bezier">
-   <LINKPOINT x="7170" y="5700">
-   </LINKPOINT>
-   <LINKPOINT x="6210" y="5700">
    </LINKPOINT>
    </LINK>
    </PATCH>

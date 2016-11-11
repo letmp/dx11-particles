@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\HasEmitter (DX11.Particles.Selection).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\HasEmitter (DX11.Particles.Selection).v4p" systemname="IsEmitter (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsEmitter (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
    <BOUNDS type="Box" left="2895" top="4575" width="5865" height="705">
    </BOUNDS>
@@ -42,7 +42,7 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="720" top="2805" width="12195" height="9135">
+   <BOUNDS type="Window" left="7155" top="3300" width="12300" height="9135">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -73,9 +73,9 @@
    <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="3" dstpinname="Semantic">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2280" top="2535" width="990" height="240">
+   <BOUNDS type="Box" left="2850" top="2055" width="1050" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2280" top="2535" width="0" height="0">
+   <BOUNDS type="Node" left="2850" top="2055" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="particleIndex">
    </PIN>
@@ -89,27 +89,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="15" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="3705" top="2535" width="1185" height="240">
+   <BOUNDS type="Box" left="4815" top="2055" width="1830" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3705" top="2535" width="0" height="0">
+   <BOUNDS type="Node" left="4815" top="2055" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|float2 fRegion|">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="13" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5130" top="2550" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="5130" top="2550" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="FREGION">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|float2 fRegion : FREGION|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -121,7 +105,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden" id="11">
-   <BOUNDS type="Node" left="6570" top="1890" width="100" height="100">
+   <BOUNDS type="Node" left="6855" top="2055" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="0">
    </PIN>
@@ -129,9 +113,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="17" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="855" top="2145" width="1230" height="240">
+   <BOUNDS type="Box" left="855" top="2055" width="1230" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="855" top="2145" width="0" height="0">
+   <BOUNDS type="Node" left="855" top="2055" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="SetBufferRegion">
    </PIN>
@@ -143,7 +127,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="18">
-   <BOUNDS type="Node" left="6570" top="2535" width="100" height="100">
+   <BOUNDS type="Node" left="6855" top="2535" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 2" slicecount="1" values="2">
    </PIN>
@@ -203,9 +187,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="20" srcpinname="Emitter Region" dstnodeid="11" dstpinname="Input" linkstyle="Bezier">
-   <LINKPOINT x="9285" y="1680">
+   <LINKPOINT x="9380" y="1735">
    </LINKPOINT>
-   <LINKPOINT x="6630" y="1680">
+   <LINKPOINT x="6820" y="1790">
    </LINKPOINT>
    </LINK>
    <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="Hidden" id="12">
@@ -251,9 +235,9 @@
    </PIN>
    <PIN pinname="Custom Semantic" visible="1">
    </PIN>
+   <PIN pinname="Custom Semantic Definition" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="13" srcpinname="Output String" dstnodeid="12" dstpinname="Semantic">
-   </LINK>
    <LINK srcnodeid="17" srcpinname="Output String" dstnodeid="12" dstpinname="FunctionName">
    </LINK>
    <LINK srcnodeid="18" srcpinname="Output" dstnodeid="12" dstpinname="Semantic Count">
@@ -300,8 +284,6 @@
    </LINK>
    <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="12" dstpinname="Custom Semantic VariableDefinition">
    </LINK>
-   <LINK srcnodeid="13" srcpinname="Output String" dstnodeid="12" dstpinname="Custom Semantic Name">
-   </LINK>
    <LINK srcnodeid="18" srcpinname="Output" dstnodeid="12" dstpinname="Custom Semantic Count">
    </LINK>
    <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="0" dstpinname="FunctionCall">
@@ -321,5 +303,7 @@
    </LINKPOINT>
    <LINKPOINT x="5505" y="4755">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output String" dstnodeid="12" dstpinname="Custom Semantic Definition">
    </LINK>
    </PATCH>

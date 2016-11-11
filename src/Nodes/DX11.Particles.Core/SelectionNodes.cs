@@ -147,24 +147,18 @@ namespace DX11.Particles.Core
         [Input("FunctionArgument")]
         public IDiffSpread<string> FInFunctionArgument;
 
-        [Input("Custom Semantic VariableDefinition")]
-        public IDiffSpread<string> FInCSVariableDefinition;
-                
-        [Input("Custom Semantic Name")]
-        public IDiffSpread<string> FInCSName;
+        [Input("Custom Semantic Definition")]
+        public IDiffSpread<string> FInCustomSemanticDefinition;
 
-        [Input("Custom Semantic Count", IsSingle = true)]
-        public IDiffSpread<int> FInCSCount;
+        [Input("Custom Semantic Count", MinValue = 0)]
+        public IDiffSpread<int> FInCustomSemanticCount;
 
-        [Input("Resource Semantic VariableDefinition")]
-        public IDiffSpread<string> FInRSVariableDefinition;
+        [Input("Resource Semantic Definition")]
+        public IDiffSpread<string> FInResourceSemanticDefinition;
 
-        [Input("Resource Semantic Name")]
-        public IDiffSpread<string> FInRSName;
-
-        [Input("Resource Semantic Count", IsSingle = true)]
-        public IDiffSpread<int> FInRSCount;
-
+        [Input("Resource Semantic Count", MinValue = 0)]
+        public IDiffSpread<int> FInResourceSemanticCount;
+        
         [Output("FunctionCall")]
         public ISpread<string> FOutFunctionCall;
 
@@ -187,74 +181,69 @@ namespace DX11.Particles.Core
         {
             
             if (!(FInFunctionName.IsChanged || FInFunctionArgument.IsChanged ||
-                FInCSVariableDefinition.IsChanged || FInCSName.IsChanged || FInCSCount.IsChanged ||
-                FInRSVariableDefinition.IsChanged || FInRSName.IsChanged || FInRSCount.IsChanged)) return;
+                FInCustomSemanticDefinition.IsChanged || FInCustomSemanticCount.IsChanged || 
+                FInResourceSemanticDefinition.IsChanged || FInResourceSemanticCount.IsChanged)) return;
 
             string uniqueSuffix = "_" + this.GetHashCode();
+            int functionCallCount = 0;
 
-            FOutCustomSemanticEntry.SliceCount = FOutCustomSemantic.SliceCount = FInCSCount[0];
-            
-            // Set Custom Semantics
-            for (int i = 0; i < FInCSCount[0]; i++)
+            FOutCustomSemanticEntry.SliceCount = FOutCustomSemantic.SliceCount = FInCustomSemanticDefinition.SliceCount;
+            for (int i = 0; i < FInCustomSemanticDefinition.SliceCount; i++)
             {
                 FOutCustomSemanticEntry[i].SliceCount = FOutCustomSemantic[i].SliceCount = 0;
-                var uniqueCSVariableDefinitions = FInCSVariableDefinition
-                           .Select(x => x + uniqueSuffix + "_" + i)
-                           .ToList();
 
-                for ( int j = 0; j < uniqueCSVariableDefinitions.Count; j++)
+                for (int j = 0; j < FInCustomSemanticCount[i]; j++)
                 {
+                    string[] csd = FInCustomSemanticDefinition[i].Replace(";","").Split(':');
+                    string variableType = csd[0].Split(' ')[0].Trim();
+                    string variableName = csd[0].Split(' ')[1].Trim() + uniqueSuffix + "_" + j;
+                    string semanticName = csd[1].Trim() + uniqueSuffix + "_" + j;
 
-                    FOutCustomSemanticEntry[i].Add( uniqueCSVariableDefinitions[j] + " : " + FInCSName[j] + uniqueSuffix + "_" + i + ";");
-                    FOutCustomSemantic[i].Add(FInCSName[j] + uniqueSuffix + "_" + i);
+                    FOutCustomSemanticEntry[i].Add(variableType + " " + variableName + " : " + semanticName + ";");
+                    FOutCustomSemantic[i].Add(semanticName);
+                    if (j > functionCallCount) functionCallCount = j;
                 }
             }
 
-            FOutResourceSemanticEntry.SliceCount = FOutResourceSemantic.SliceCount = FInRSCount[0];
-
-            // Set Resource Semantics
-            for (int i = 0; i < FInRSCount[0]; i++)
+            FOutResourceSemanticEntry.SliceCount = FOutResourceSemantic.SliceCount = FInResourceSemanticDefinition.SliceCount;
+            for (int i = 0; i < FInResourceSemanticDefinition.SliceCount; i++)
             {
                 FOutResourceSemanticEntry[i].SliceCount = FOutResourceSemantic[i].SliceCount = 0;
-                var uniqueRSVariableDefinitions = FInRSVariableDefinition
-                           .Select(x => x + uniqueSuffix + "_" + i)
-                           .ToList();
 
-                for (int j = 0; j < uniqueRSVariableDefinitions.Count; j++)
+                for (int j = 0; j < FInResourceSemanticCount[i]; j++)
                 {
-                    FOutResourceSemanticEntry[i].Add(uniqueRSVariableDefinitions[j] + " : " + FInRSName[j] + uniqueSuffix + "_" + i + ";");
-                    FOutResourceSemantic[i].Add(FInRSName[j] + uniqueSuffix + "_" + i);
+                    string[] csd = FInResourceSemanticDefinition[i].Replace(";", "").Split(':');
+                    string variableType = csd[0].Split(' ')[0].Trim();
+                    string variableName = csd[0].Split(' ')[1].Trim() + uniqueSuffix + "_" + j;
+                    string semanticName = csd[1].Trim() + uniqueSuffix + "_" + j;
+
+                    FOutResourceSemanticEntry[i].Add(variableType + " " + variableName + " : " + semanticName + ";");
+                    FOutResourceSemantic[i].Add(semanticName);
+                    if (j > functionCallCount) functionCallCount = j;
                 }
             }
 
-            // Set Function Calls
-            int functionCallCount = Math.Max(FInCSCount[0], FInRSCount[0]);
-            FOutFunctionCall.SliceCount = 0;
 
-            for (int i = 0; i < functionCallCount; i++)
+            FOutFunctionCall.SliceCount = 0;
+            int variableCount = Math.Max(FInCustomSemanticDefinition.SliceCount, FInResourceSemanticDefinition.SliceCount);
+
+            for (int i = 0; i <= functionCallCount; i++)
             {
+
                 List<string> uniqueCSVariableNames = new List<string>();
                 List<string> uniqueRSVariableNames = new List<string>();
 
-                if (FOutCustomSemanticEntry.Count() > 0)
+                for (int j = 0; j < variableCount; j++)
                 {
-                    uniqueCSVariableNames = FOutCustomSemanticEntry[i]
-                        .Where(x => x != null && x.Count() > 0 && x != "")
-                        .Select(x => x.Split(' ')[1])
-                        .ToList();
+                    if (FOutCustomSemanticEntry.SliceCount > 0 && FOutCustomSemanticEntry[j].SliceCount != 0)
+                        uniqueCSVariableNames.Add(FOutCustomSemanticEntry[j][i % FOutCustomSemanticEntry[j].SliceCount].Split(' ')[1]);
+
+                    if (FOutResourceSemanticEntry.SliceCount > 0 && FOutResourceSemanticEntry[j].SliceCount != 0)
+                        uniqueRSVariableNames.Add(FOutResourceSemanticEntry[j][i % FOutResourceSemanticEntry[j].SliceCount].Split(' ')[1]);                    
                 }
 
-                if (FOutResourceSemanticEntry.Count() > 0)
-                {
-                    uniqueRSVariableNames = FOutResourceSemanticEntry[i]
-                        .Where(x => x != null && x.Count() > 0 && x != "")
-                        .Select(x => x.Split(' ')[1])
-                        .ToList();
-                }
-
-                FOutFunctionCall.Add(FInFunctionName[i] + "(" + String.Join(", ", FInFunctionArgument) + "," + String.Join(", ", uniqueCSVariableNames.Concat(uniqueRSVariableNames) ) + ")");
+                FOutFunctionCall.Add(FInFunctionName[i] + "(" + String.Join(", ", FInFunctionArgument) + "," + String.Join(", ", uniqueCSVariableNames.Concat(uniqueRSVariableNames)) + ")");
             }
-                
         }
     }
 
