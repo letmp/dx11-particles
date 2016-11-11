@@ -6,18 +6,20 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		int oneVariableNeeded;
-  		/*STUB_VARS_STRUCT*/
+  		/*STUB_STRUCT*/
 	#endif
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 RWStructuredBuffer<uint> GroupIndexBuffer : GROUP_/*STUB_GROUPNAME*/;
 
+/*STUB_RESOURCE_SEMANTICS*/
+
 cbuffer name : register(b0){
-   /*STUB_VARS_CBUF*/
+   /*STUB_CUSTOM_SEMANTICS*/
 };
 
-/*STUB_FUNCTION_DEF*/
+/*STUB_FUNCTIONS*/
 
 void SetGroupId(uint particleIndex, uint selectionIndex){
 	GroupIndexBuffer[particleIndex] = selectionIndex;
@@ -47,7 +49,7 @@ void CS_Select(csin input)
 	
 	uint selectionIndex = 0;
 	
-	/*STUB_FUNCTION_CALL*/
+	/*STUB_FUNCTIONCALLS*/
 	
 }
 

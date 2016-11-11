@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\src\Nodes\DX11.Particles.Core\vvvv\AND (DX11.Particles.Selection Spectral) help.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\AND (DX11.Particles.Selection Spectral) help.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="3840" top="1440" width="21390" height="9750">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3" systemname="IOBox (String)">
@@ -527,7 +527,7 @@
    </PIN>
    <PIN pinname="Custom Semantics" visible="1">
    </PIN>
-   <PIN pinname="Prevent from doubles" slicecount="1" values="0" visible="1">
+   <PIN pinname="Prevent from doubles" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="FunctionCall" visible="1">
    </PIN>
@@ -540,6 +540,8 @@
    <PIN pinname="Render Semantic Entry" visible="1">
    </PIN>
    <PIN pinname="Render Semantics" visible="1">
+   </PIN>
+   <PIN pinname="Resource Semantic Entry" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="25" srcpinname="Output String" dstnodeid="19" dstpinname="FunctionCall" linkstyle="Bezier">
@@ -677,13 +679,9 @@
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="6" srcpinname="Render Semantic Entry" dstnodeid="34" dstpinname="Input String" linkstyle="Bezier">
-   <LINKPOINT x="9645" y="6645">
-   </LINKPOINT>
-   <LINKPOINT x="12855" y="6645">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="31" srcpinname="Output String" dstnodeid="18" dstpinname="Resource Semantic Entry" linkstyle="Bezier">
    <LINKPOINT x="18045" y="2580">
    </LINKPOINT>
@@ -708,6 +706,12 @@
    <LINKPOINT x="13635" y="2595">
    </LINKPOINT>
    <LINKPOINT x="14250" y="2595">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Resource Semantic Entry" dstnodeid="34" dstpinname="Input String" linkstyle="Bezier">
+   <LINKPOINT x="9645" y="6645">
+   </LINKPOINT>
+   <LINKPOINT x="12855" y="6645">
    </LINKPOINT>
    </LINK>
    </PATCH>

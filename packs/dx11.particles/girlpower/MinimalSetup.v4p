@@ -572,24 +572,6 @@
    <BOUNDS type="Box" left="4410" top="4965">
    </BOUNDS>
    </NODE>
-   <NODE id="893" componentmode="Hidden" systemname="Selection (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" nodename="Selection (DX11.Particles.Selection)">
-   <PIN pinname="Selection" visible="1" slicecount="1" values="||">
-   </PIN>
-   <BOUNDS type="Node" left="7170" top="4965" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="7170" top="4965">
-   </BOUNDS>
-   <BOUNDS type="Window" left="9525" top="1200" width="17850" height="15675">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" values="asd">
-   </PIN>
-   <PIN pinname="Name" slicecount="1" values="mySelection">
-   </PIN>
-   <PIN pinname="Modifier In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer Out" visible="1">
-   </PIN>
-   </NODE>
    <NODE id="939" systemname="Color (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" nodename="Color (DX11.Particles.Modifiers)" componentmode="Hidden">
    <PIN pinname="Modifier Out" visible="1">
    </PIN>
@@ -675,12 +657,6 @@
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="839" srcpinname="Transform Out" dstnodeid="838" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="893" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 4" linkstyle="Bezier">
-   <LINKPOINT x="7170" y="5700">
-   </LINKPOINT>
-   <LINKPOINT x="6210" y="5700">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="215" srcpinname="Buffer" dstnodeid="170" dstpinname="Lifespan Buffer">
    </LINK>
@@ -820,8 +796,6 @@
    <LINKPOINT x="5145" y="10268">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="650" srcpinname="Modifier Out" dstnodeid="893" dstpinname="Modifier In">
-   </LINK>
    <LINK srcnodeid="939" srcpinname="Modifier Out" dstnodeid="86" dstpinname="Layer 3">
    </LINK>
    <NODE systemname="Constant (DX11.Particles.Sink)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Sinks\Constant (DX11.Particles.Sink).v4p" nodename="Constant (DX11.Particles.Sink)" componentmode="Hidden" id="995">
@@ -936,10 +910,40 @@
    <LINKPOINT x="6405" y="5768">
    </LINKPOINT>
    </LINK>
+   <NODE systemname="IsMasked (DX11.Particles.Selection Texture2d)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\IsMasked (DX11.Particles.Selection Texture2d).v4p" nodename="IsMasked (DX11.Particles.Selection Texture2d)" componentmode="Hidden" id="1010">
+   <BOUNDS type="Node" left="12855" top="3660" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <NODE id="893" componentmode="Hidden" systemname="Selection (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" nodename="Selection (DX11.Particles.Selection)">
+   <PIN pinname="Selection" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Node" left="7170" top="4965" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7170" top="4965">
+   </BOUNDS>
+   <BOUNDS type="Window" left="5565" top="600" width="15285" height="15555">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" values="asd">
+   </PIN>
+   <PIN pinname="Name" slicecount="1" values="mySelection">
+   </PIN>
+   <PIN pinname="Modifier In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="650" srcpinname="Modifier Out" dstnodeid="893" dstpinname="Modifier In">
+   </LINK>
    <LINK srcnodeid="838" srcpinname="Selection Out" dstnodeid="893" dstpinname="Selection" linkstyle="VHV">
    <LINKPOINT x="9150" y="4785">
    </LINKPOINT>
    <LINKPOINT x="7230" y="4785">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="893" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 4" linkstyle="Bezier">
+   <LINKPOINT x="7170" y="5700">
+   </LINKPOINT>
+   <LINKPOINT x="6210" y="5700">
    </LINKPOINT>
    </LINK>
    </PATCH>

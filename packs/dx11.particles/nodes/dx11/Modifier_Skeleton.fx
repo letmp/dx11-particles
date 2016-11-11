@@ -6,17 +6,19 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		int oneVariableNeeded;
-  		/*STUB_VARS_STRUCT*/
+  		/*STUB_STRUCT*/
 	#endif
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
+/*STUB_RESOURCE_SEMANTICS*/
+
 cbuffer name : register(b0){
-   /*STUB_VARS_CBUF*/
+   /*STUB_CUSTOM_SEMANTICS*/
 };
 
-/*STUB_FUNCTION_DEF*/
+/*STUB_FUNCTIONS*/
 
 struct csin
 {
@@ -32,7 +34,7 @@ void CS_Set(csin input)
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
 	
-	/*STUB_FUNCTION_CALL*/
+	/*STUB_FUNCTIONCALLS*/
 	
 }
 

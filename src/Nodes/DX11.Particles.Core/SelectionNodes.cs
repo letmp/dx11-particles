@@ -335,10 +335,10 @@ namespace DX11.Particles.Core
         [Output("Custom Semantics")]
         public ISpread<ISpread<IDX11RenderSemantic>> FOutCustomSemantic;
 
-        [Output("Render Semantic Entry")]
+        [Output("Resource Semantic Entry")]
         public ISpread<ISpread<string>> FOutRSEntry;
 
-        [Output("Render Semantics")]
+        [Output("Resource Semantics")]
         public ISpread<ISpread<DX11Resource<IDX11RenderSemantic>>> FOutResourceSemantic;
 
         #endregion fields & pins
