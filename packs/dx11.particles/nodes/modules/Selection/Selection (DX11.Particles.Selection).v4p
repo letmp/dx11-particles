@@ -282,8 +282,6 @@
    </LINK>
    <LINK srcnodeid="34" srcpinname="Layer Out" dstnodeid="27" dstpinname="Layer In">
    </LINK>
-   <LINK srcnodeid="2" srcpinname="Layer Out" dstnodeid="34" dstpinname="Layer 1">
-   </LINK>
    <NODE systemname="UpdateFlagBuffer (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\UpdateFlagBuffer (DX11.Particles.Core).v4p" nodename="UpdateFlagBuffer (DX11.Particles.Core)" componentmode="Hidden" id="30">
    <BOUNDS type="Node" left="1350" top="11895" width="100" height="100">
    </BOUNDS>
@@ -737,6 +735,8 @@
    </PIN>
    <PIN pinname="Resource Semantic Entry" visible="1">
    </PIN>
+   <PIN pinname="Resource Semantics" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="52" srcpinname="Variable List" dstnodeid="10" dstpinname="Structure" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="1020" y="4093">
@@ -745,9 +745,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="52" srcpinname="Custom Semantics" dstnodeid="2" dstpinname="Custom Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2705" y="4950">
+   <LINKPOINT x="2070" y="4943">
    </LINKPOINT>
-   <LINKPOINT x="250" y="4950">
+   <LINKPOINT x="900" y="4943">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output Node" dstnodeid="52" dstpinname="Input">
@@ -762,12 +762,6 @@
    <LINKPOINT x="1505" y="1493">
    </LINKPOINT>
    <LINKPOINT x="9040" y="1493">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Render Semantics" dstnodeid="2" dstpinname="Resource Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2550" y="5475">
-   </LINKPOINT>
-   <LINKPOINT x="2190" y="5475">
    </LINKPOINT>
    </LINK>
    <NODE systemname="EQ (String)" nodename="EQ (String)" componentmode="Hidden" id="117">
@@ -998,28 +992,6 @@
    </LINK>
    <LINK srcnodeid="128" srcpinname="Output" dstnodeid="65" dstpinname="To">
    </LINK>
-   <NODE id="129" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden">
-   <BOUNDS type="Node" left="615" top="8310" width="5025" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="615" top="8310">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="65" srcpinname="Output" dstnodeid="129" dstpinname="ShaderCode">
-   </LINK>
-   <LINK srcnodeid="74" srcpinname="Output Enum" dstnodeid="129" dstpinname="Technique">
-   </LINK>
-   <LINK srcnodeid="129" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
-   </LINK>
-   <LINK srcnodeid="6" srcpinname="Geometry Out" dstnodeid="129" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="129" dstpinname="Defines" linkstyle="VHV">
-   <LINKPOINT x="6185" y="7823">
-   </LINKPOINT>
-   <LINKPOINT x="5035" y="7973">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="129" dstpinname="IncludePath">
-   </LINK>
    <LINK srcnodeid="52" srcpinname="Functions" dstnodeid="128" dstpinname="Input 5" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="2135" y="2948">
    </LINKPOINT>
@@ -1029,5 +1001,35 @@
    <LINK srcnodeid="106" srcpinname="Output" dstnodeid="128" dstpinname="Input 6">
    </LINK>
    <LINK srcnodeid="117" srcpinname="Output" dstnodeid="118" dstpinname="Switch">
+   </LINK>
+   <NODE id="135" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden">
+   <BOUNDS type="Node" left="615" top="8310" width="5025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="615" top="8310">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Output" dstnodeid="135" dstpinname="ShaderCode">
+   </LINK>
+   <LINK srcnodeid="74" srcpinname="Output Enum" dstnodeid="135" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="135" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Geometry Out" dstnodeid="135" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Output" dstnodeid="135" dstpinname="Defines" linkstyle="VHV">
+   <LINKPOINT x="6185" y="7823">
+   </LINKPOINT>
+   <LINKPOINT x="5035" y="7973">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output String" dstnodeid="135" dstpinname="IncludePath">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Layer Out" dstnodeid="34" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Resource Semantics" dstnodeid="2" dstpinname="Resource Semantics" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2700" y="4943">
+   </LINKPOINT>
+   <LINKPOINT x="1140" y="4943">
+   </LINKPOINT>
    </LINK>
    </PATCH>

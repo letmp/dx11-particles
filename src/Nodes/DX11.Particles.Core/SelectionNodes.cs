@@ -10,6 +10,7 @@ using VVVV.PluginInterfaces.V2;
 using VVVV.DX11;
 using VVVV.Utils.Streams;
 using VVVV.Nodes.Generic;
+using FeralTic.DX11;
 #endregion usings
 
 namespace DX11.Particles.Core
@@ -225,23 +226,25 @@ namespace DX11.Particles.Core
 
 
             FOutFunctionCall.SliceCount = 0;
-            int variableCount = Math.Max(FInCustomSemanticDefinition.SliceCount, FInResourceSemanticDefinition.SliceCount);
-
+            
             for (int i = 0; i <= functionCallCount; i++)
             {
 
                 List<string> uniqueCSVariableNames = new List<string>();
                 List<string> uniqueRSVariableNames = new List<string>();
 
-                for (int j = 0; j < variableCount; j++)
+                for (int j = 0; j < FInCustomSemanticDefinition.SliceCount; j++)
                 {
                     if (FOutCustomSemanticEntry.SliceCount > 0 && FOutCustomSemanticEntry[j].SliceCount != 0)
                         uniqueCSVariableNames.Add(FOutCustomSemanticEntry[j][i % FOutCustomSemanticEntry[j].SliceCount].Split(' ')[1]);
-
-                    if (FOutResourceSemanticEntry.SliceCount > 0 && FOutResourceSemanticEntry[j].SliceCount != 0)
-                        uniqueRSVariableNames.Add(FOutResourceSemanticEntry[j][i % FOutResourceSemanticEntry[j].SliceCount].Split(' ')[1]);                    
                 }
 
+                for (int j = 0; j < FInResourceSemanticDefinition.SliceCount; j++)
+                {
+                    if (FOutResourceSemanticEntry.SliceCount > 0 && FOutResourceSemanticEntry[j].SliceCount != 0)
+                        uniqueRSVariableNames.Add(FOutResourceSemanticEntry[j][i % FOutResourceSemanticEntry[j].SliceCount].Split(' ')[1]);
+                }
+                
                 FOutFunctionCall.Add(FInFunctionName[i] + "(" + String.Join(", ", FInFunctionArgument) + "," + String.Join(", ", uniqueCSVariableNames.Concat(uniqueRSVariableNames)) + ")");
             }
         }
@@ -250,7 +253,7 @@ namespace DX11.Particles.Core
     #region PluginInfo
     [PluginInfo(Name = "Join",Category = "DX11.Particles.Selection", Help = "Joins data for a selector", Author="tmp", Tags = "")]
     #endregion PluginInfo
-    public class SelectorJoin : IPluginEvaluate
+    public class SelectorJoin : IPluginEvaluate, IDX11ResourceDataRetriever
     {
         #region fields & pins
         [Input("FunctionCall")]
@@ -277,10 +280,15 @@ namespace DX11.Particles.Core
         [Output("Output")]
         public ISpread<Selector> FOutSelector;
 
+        [Import()]
+        protected IPluginHost FHost;
+
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
+            if (this.RenderRequest != null) { RenderRequest(this, this.FHost); }
+
             if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunction.IsChanged ||
                 FCSEntry.IsChanged || FInCustomSemantic.IsChanged ||
                 FRSEntry.IsChanged || FInResourceSemantic.IsChanged )) return;
@@ -293,9 +301,24 @@ namespace DX11.Particles.Core
                 FOutSelector[i] = selector;
             }
         }
+
+        #region dx11
+        public DX11RenderContext AssignedContext
+        {
+            get;
+            set;
+        }
+
+        public event DX11RenderRequestDelegate RenderRequest;
+
+        protected void InitDX11Graph()
+        {
+            if (this.RenderRequest != null) { RenderRequest(this, this.FHost); }
+        }
+        #endregion dx11
     }
 
-   
+
     #region PluginInfo
     [PluginInfo(Name = "Split", Category = "DX11.Particles.Selection", Help = "Outputs the data of selectors", Author = "tmp", Tags = "")]
     #endregion PluginInfo
