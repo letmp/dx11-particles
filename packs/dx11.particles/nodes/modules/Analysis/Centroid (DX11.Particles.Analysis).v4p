@@ -44,28 +44,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Analysis_Centroid (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Analysis_Centroid.fx" nodename="Analysis_Centroid (DX11.Effect)" componentmode="Hidden" id="36">
-   <BOUNDS type="Node" left="1530" top="8655" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupLinkBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupOffsetBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Centroid">
-   </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="tex" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="53">
    <BOUNDS type="Node" left="420" top="8175" width="1080" height="270">
    </BOUNDS>
@@ -164,18 +142,6 @@
    <LINKPOINT x="8520" y="6510">
    </LINKPOINT>
    <LINKPOINT x="4050" y="6510">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Geometry Out" dstnodeid="36" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="480" y="8535">
-   </LINKPOINT>
-   <LINKPOINT x="1935" y="8535">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="50" srcpinname="Output" dstnodeid="36" dstpinname="Defines" linkstyle="VHV">
-   <LINKPOINT x="3105" y="8693">
-   </LINKPOINT>
-   <LINKPOINT x="2865" y="8468">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="58">
@@ -336,8 +302,6 @@
    </LINK>
    <LINK srcnodeid="81" srcpinname="Output Enum" dstnodeid="86" dstpinname="Target Format">
    </LINK>
-   <LINK srcnodeid="86" srcpinname="Buffers" dstnodeid="36" dstpinname="tex">
-   </LINK>
    <NODE systemname="DepthStencil (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DepthStencil (DX11.RenderState)" componentmode="Hidden" id="94">
    <BOUNDS type="Node" left="6045" top="9705" width="100" height="100">
    </BOUNDS>
@@ -474,44 +438,6 @@
    </LINK>
    <LINK srcnodeid="100" srcpinname="Output 1" dstnodeid="98" dstpinname="Y Input Value">
    </LINK>
-   <NODE systemname="Analysis_Centroid_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Analysis_Centroid_PS.fx" nodename="Analysis_Centroid_PS (DX11.Effect)" componentmode="Hidden" id="114">
-   <BOUNDS type="Node" left="1200" top="5160" width="7380" height="270">
-   </BOUNDS>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Process">
-   </PIN>
-   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupCounterBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="AlivePointerBuffer" visible="1">
-   </PIN>
-   <PIN pinname="AliveCounterBuffer" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1" pintype="Output">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="114" srcpinname="Layer" dstnodeid="86" dstpinname="Layer">
-   </LINK>
-   <LINK srcnodeid="83" srcpinname="Render State" dstnodeid="114" dstpinname="Render State" linkstyle="VHV">
-   <LINKPOINT x="1620" y="4995">
-   </LINKPOINT>
-   <LINKPOINT x="1815" y="4995">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="114" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="10135" y="4993">
-   </LINKPOINT>
-   <LINKPOINT x="7745" y="5013">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="114" dstpinname="Geometry">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="120" systemname="IOBox (String)">
    <BOUNDS type="Box" left="6030" top="2235" width="1725" height="585">
    </BOUNDS>
@@ -572,48 +498,6 @@
    <LINKPOINT x="5850" y="4118">
    </LINKPOINT>
    <LINKPOINT x="3450" y="4118">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="114" dstpinname="AlivePointerBuffer">
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="114" dstpinname="AliveCounterBuffer">
-   </LINK>
-   <LINK srcnodeid="36" srcpinname="Layer" dstnodeid="62" dstpinname="Layer">
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="114" dstpinname="ParticleBuffer">
-   </LINK>
-   <NODE systemname="Analysis_Centroid_Debug (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Analysis_Centroid_Debug.fx" nodename="Analysis_Centroid_Debug (DX11.Effect)" componentmode="Hidden" id="65">
-   <BOUNDS type="Node" left="6795" top="10305" width="3825" height="270">
-   </BOUNDS>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Color">
-   </PIN>
-   <PIN pinname="Position" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
-   </PIN>
-   <BOUNDS type="Box" left="6795" top="10305">
-   </BOUNDS>
-   <PIN pinname="Color" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="65" srcpinname="Layer" dstnodeid="102" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="68" srcpinname="Geometry Out" dstnodeid="65" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Buffers" dstnodeid="65" dstpinname="Position" linkstyle="VHV">
-   <LINKPOINT x="1275" y="10125">
-   </LINKPOINT>
-   <LINKPOINT x="7725" y="10125">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="94" srcpinname="Render State" dstnodeid="65" dstpinname="Render State" linkstyle="VHV">
-   <LINKPOINT x="6105" y="10125">
-   </LINKPOINT>
-   <LINKPOINT x="6975" y="10125">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="127" systemname="IOBox (String)">
@@ -683,24 +567,12 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="123">
    <BOUNDS type="Node" left="10095" top="6525" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Sink_Sprites.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Analysis_Centroid_PS.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="123" srcpinname="Changed" dstnodeid="124" dstpinname="Extract">
-   </LINK>
-   <LINK srcnodeid="114" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7365" y="5963">
-   </LINKPOINT>
-   <LINKPOINT x="10095" y="5963">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="114" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7365" y="6270">
-   </LINKPOINT>
-   <LINKPOINT x="8985" y="6270">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="125" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5630" y="4238">
@@ -713,13 +585,11 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8955" top="9165" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.89493,0.30379,0.30379,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,0.75664,0.00000,1.00000|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Color Helper|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="133" srcpinname="Color Output" dstnodeid="65" dstpinname="Color">
-   </LINK>
    <NODE systemname="Info (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Buffer)" componentmode="Hidden" id="134">
    <BOUNDS type="Node" left="6720" top="1380" width="100" height="100">
    </BOUNDS>
@@ -765,8 +635,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="134" srcpinname="Order" dstnodeid="136" dstpinname="Index">
-   </LINK>
-   <LINK srcnodeid="136" srcpinname="Output Node" dstnodeid="114" dstpinname="GroupIndexBuffer">
    </LINK>
    <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="134" dstpinname="ParticleSystem" linkstyle="VHV">
    <LINKPOINT x="5290" y="1140">
@@ -837,5 +705,135 @@
    </LINKPOINT>
    <LINKPOINT x="5265" y="4810">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Analysis_Centroid (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Centroid.fx" nodename="Analysis_Centroid (DX11.Effect)" componentmode="Hidden" id="36">
+   <BOUNDS type="Node" left="1530" top="8655" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="GroupLinkBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="GroupOffsetBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="Centroid">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="tex" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Geometry Out" dstnodeid="36" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="480" y="8535">
+   </LINKPOINT>
+   <LINKPOINT x="1935" y="8535">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Output" dstnodeid="36" dstpinname="Defines" linkstyle="VHV">
+   <LINKPOINT x="3105" y="8693">
+   </LINKPOINT>
+   <LINKPOINT x="2865" y="8468">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="36" srcpinname="Layer" dstnodeid="62" dstpinname="Layer">
+   </LINK>
+   <NODE systemname="Analysis_Centroid_Debug (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Centroid_Debug.fx" nodename="Analysis_Centroid_Debug (DX11.Effect)" componentmode="Hidden" id="65">
+   <BOUNDS type="Node" left="6795" top="10305" width="3825" height="270">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="Color">
+   </PIN>
+   <PIN pinname="Position" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="6795" top="10305">
+   </BOUNDS>
+   <PIN pinname="Color" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Layer" dstnodeid="102" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Geometry Out" dstnodeid="65" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Buffers" dstnodeid="65" dstpinname="Position" linkstyle="VHV">
+   <LINKPOINT x="1275" y="10125">
+   </LINKPOINT>
+   <LINKPOINT x="7725" y="10125">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Render State" dstnodeid="65" dstpinname="Render State" linkstyle="VHV">
+   <LINKPOINT x="6105" y="10125">
+   </LINKPOINT>
+   <LINKPOINT x="6975" y="10125">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="133" srcpinname="Color Output" dstnodeid="65" dstpinname="Color">
+   </LINK>
+   <NODE systemname="Analysis_Centroid_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Centroid_PS.fx" nodename="Analysis_Centroid_PS (DX11.Effect)" componentmode="Hidden" id="114">
+   <BOUNDS type="Node" left="1200" top="5160" width="7380" height="270">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="Process">
+   </PIN>
+   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="GroupCounterBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="AlivePointerBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="AliveCounterBuffer" visible="1">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1" pintype="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="114" srcpinname="Layer" dstnodeid="86" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="83" srcpinname="Render State" dstnodeid="114" dstpinname="Render State" linkstyle="VHV">
+   <LINKPOINT x="1620" y="4995">
+   </LINKPOINT>
+   <LINKPOINT x="1815" y="4995">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="114" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="10135" y="4993">
+   </LINKPOINT>
+   <LINKPOINT x="7745" y="5013">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="114" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="114" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7365" y="5963">
+   </LINKPOINT>
+   <LINKPOINT x="10095" y="5963">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="114" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7365" y="6270">
+   </LINKPOINT>
+   <LINKPOINT x="8985" y="6270">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="114" dstpinname="ParticleBuffer">
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="114" dstpinname="AlivePointerBuffer">
+   </LINK>
+   <LINK srcnodeid="136" srcpinname="Output Node" dstnodeid="114" dstpinname="GroupIndexBuffer">
+   </LINK>
+   <LINK srcnodeid="86" srcpinname="Buffers" dstnodeid="36" dstpinname="tex">
    </LINK>
    </PATCH>

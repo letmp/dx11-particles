@@ -281,6 +281,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="S">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="104" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5490" top="990" width="795" height="240">
@@ -294,6 +296,8 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="B">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="105" systemname="IOBox (Value Advanced)">
@@ -309,13 +313,41 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="R">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <NODE id="108" systemname="Modifier_LorenzAttractor (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_LorenzAttractor.fx" nodename="Modifier_LorenzAttractor (DX11.Effect)" componentmode="Hidden">
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="109" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7305" top="990" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7305" top="990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.100000001490116">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Speed">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0.100000001490116">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="108" systemname="Modifier_LorenzAttractor (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_LorenzAttractor.fx" nodename="Modifier_LorenzAttractor (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="900" top="4320" width="9195" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="900" top="4320">
    </BOUNDS>
-   <PIN pinname="Speed" visible="1">
+   <PIN pinname="Speed" visible="1" slicecount="1" values="0.100000001490116">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="LorenzAttractor">
+   </PIN>
+   <PIN pinname="S" visible="1">
+   </PIN>
+   <PIN pinname="B" visible="1">
+   </PIN>
+   <PIN pinname="R" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="108" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
@@ -344,22 +376,6 @@
    </LINK>
    <LINK srcnodeid="105" srcpinname="Y Output Value" dstnodeid="108" dstpinname="R">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="109" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7305" top="990" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7305" top="990" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.100000001490116">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Speed">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="0.100000001490116">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="109" srcpinname="Y Output Value" dstnodeid="108" dstpinname="Speed">
    </LINK>
    </PATCH>

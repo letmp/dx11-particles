@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p" systemname="VectorFieldReader (DX11.Particles.Modifiers)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p" systemname="VectorFieldReader (DX11.Particles.Modifiers)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p">
    <NODE systemname="Renderer (DX11 Volume)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 Volume)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="570" top="7470" width="100" height="100">
    </BOUNDS>
@@ -9,11 +9,13 @@
    </PIN>
    <PIN pinname="Buffers" visible="1">
    </PIN>
+   <PIN pinname="Target Format" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="Reader (String)" filename="%VVVV%\lib\nodes\modules\String\Reader (String).v4p" nodename="Reader (String)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="2505" top="2325" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" slicecount="1" visible="1" values="file.txt">
+   <PIN pinname="Filename" slicecount="1" visible="1" values="assets\VectorFields\VF_Turbulence.fga">
    </PIN>
    <PIN pinname="Read" slicecount="1" visible="1" values="0">
    </PIN>
@@ -208,26 +210,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Cellsize">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="16" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2490" top="825" width="1875" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="2490" top="825" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\assets\VectorFields\VF_Turbulence.fga">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="file.txt">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="|All Text Formats (*.csv, *.dtd, *.html, *.txt, *.xml)||*.csv;*.dtd;*.html;*.htm;*.txt;*.xml||Text (*.txt)||*.txt||XML (*.xml)||*.xml||CSV (*.csv)||*.csv||DTD (*.dtd)||*.dtd||HTML (*.html, *.htm)||*.html;*.htm|">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="Filename">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
-   </PIN>
-   </NODE>
    <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="17">
    <BOUNDS type="Node" left="3510" top="1740" width="100" height="100">
    </BOUNDS>
@@ -302,8 +284,6 @@
    <LINKPOINT x="3130" y="4115">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="1" dstpinname="Filename">
-   </LINK>
    <LINK srcnodeid="17" srcpinname="Bang" dstnodeid="1" dstpinname="Read" linkstyle="VHV">
    <LINKPOINT x="3500" y="2160">
    </LINKPOINT>
@@ -362,4 +342,34 @@
    <PIN pinname="String Type" slicecount="1" values="URL">
    </PIN>
    </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="22" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="2520" top="660" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2520" top="660" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="assets\VectorFields\VF_Turbulence.fga">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="file.txt">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Text Formats (*.csv, *.dtd, *.html, *.txt, *.xml)||*.csv;*.dtd;*.html;*.htm;*.txt;*.xml||Text (*.txt)||*.txt||XML (*.xml)||*.xml||CSV (*.csv)||*.csv||DTD (*.dtd)||*.dtd||HTML (*.html, *.htm)||*.html;*.htm|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="22" srcpinname="Output String" dstnodeid="1" dstpinname="Filename">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="23" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="555" top="3585" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="555" top="3585" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="R8G8B8A8_UNorm">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Output Enum" dstnodeid="0" dstpinname="Target Format">
+   </LINK>
    </PATCH>

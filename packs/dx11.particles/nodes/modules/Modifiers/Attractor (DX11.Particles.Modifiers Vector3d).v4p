@@ -300,48 +300,6 @@
    <BOUNDS type="Box" left="10980" top="7080">
    </BOUNDS>
    </NODE>
-   <NODE id="89" systemname="Modifier_Attractor (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Attractor.fx" nodename="Modifier_Attractor (DX11.Effect)" componentmode="Hidden">
-   <PIN pinname="Position" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Radius" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Power" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Strength" slicecount="1" visible="1" values="||">
-   </PIN>
-   <BOUNDS type="Node" left="495" top="7590" width="9195" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="495" top="7590">
-   </BOUNDS>
-   <PIN pinname="Position Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Strength Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Power Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Radius Buffer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="89" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="8160" y="8400">
-   </LINKPOINT>
-   <LINKPOINT x="9210" y="8400">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11895" y="4283">
-   </LINKPOINT>
-   <LINKPOINT x="8745" y="4283">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="89" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="89" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="89" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="89" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
-   </LINK>
    <NODE id="78" systemname="DynamicBuffer (DX11.Buffer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Value)" componentmode="Hidden">
    <PIN pinname="Apply" slicecount="1" visible="1" values="1">
    </PIN>
@@ -696,14 +654,6 @@
    </LINK>
    <LINK srcnodeid="66" srcpinname="Transform Out" dstnodeid="67" dstpinname="Transform In">
    </LINK>
-   <LINK srcnodeid="80" srcpinname="Buffer" dstnodeid="89" dstpinname="Position Buffer">
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Buffer" dstnodeid="89" dstpinname="Strength Buffer">
-   </LINK>
-   <LINK srcnodeid="86" srcpinname="Buffer" dstnodeid="89" dstpinname="Power Buffer">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Buffer" dstnodeid="89" dstpinname="Radius Buffer">
-   </LINK>
    <LINK srcnodeid="69" srcpinname="Geometry Out" dstnodeid="67" dstpinname="Geometry" linkstyle="VHV">
    <LINKPOINT x="11955" y="7455">
    </LINKPOINT>
@@ -725,5 +675,57 @@
    </LINKPOINT>
    <LINKPOINT x="13185" y="7440">
    </LINKPOINT>
+   </LINK>
+   <NODE id="89" systemname="Modifier_Attractor (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Attractor.fx" nodename="Modifier_Attractor (DX11.Effect)" componentmode="Hidden">
+   <PIN pinname="Position" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Radius" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Power" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Strength" slicecount="1" visible="1" values="||">
+   </PIN>
+   <BOUNDS type="Node" left="495" top="7590" width="9195" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="495" top="7590">
+   </BOUNDS>
+   <PIN pinname="Position Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Strength Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Power Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Radius Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="SetAttractor">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="89" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="8160" y="8400">
+   </LINKPOINT>
+   <LINKPOINT x="9210" y="8400">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11895" y="4283">
+   </LINKPOINT>
+   <LINKPOINT x="8745" y="4283">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="89" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="89" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="Buffer" dstnodeid="89" dstpinname="Position Buffer">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Buffer" dstnodeid="89" dstpinname="Strength Buffer">
+   </LINK>
+   <LINK srcnodeid="86" srcpinname="Buffer" dstnodeid="89" dstpinname="Power Buffer">
+   </LINK>
+   <LINK srcnodeid="79" srcpinname="Buffer" dstnodeid="89" dstpinname="Radius Buffer">
    </LINK>
    </PATCH>

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\Filter (DX11.Particles.Selection).v4p" systemname="Filter (DX11.Particles.Selectors)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selectors\Filter (DX11.Particles.Selectors).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="7080" top="885" width="13575" height="12975">
+   <BOUNDS type="Window" left="12600" top="555" width="13575" height="12975">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
@@ -170,26 +170,6 @@
    <LINKPOINT x="9435" y="2490">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Selection_Filter (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Selection_Filter.fx" nodename="Selection_Filter (DX11.Effect)" componentmode="Hidden" id="41">
-   <BOUNDS type="Node" left="960" top="6075" width="8085" height="270">
-   </BOUNDS>
-   <PIN pinname="AlivePointerBuffer" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="AliveCounterBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="40" srcpinname="Geometry Out" dstnodeid="41" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="37" srcpinname="Output" dstnodeid="41" dstpinname="Defines">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="48" systemname="IOBox (String)">
    <BOUNDS type="Box" left="2010" top="8295" width="2190" height="555">
    </BOUNDS>
@@ -342,14 +322,6 @@
    </LINK>
    <LINK srcnodeid="7" srcpinname="Output String" dstnodeid="42" dstpinname="BufferSemantic Filter">
    </LINK>
-   <LINK srcnodeid="42" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="41" dstpinname="AlivePointerBuffer">
-   </LINK>
-   <LINK srcnodeid="42" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="41" dstpinname="AliveCounterBuffer" linkstyle="VHV">
-   <LINKPOINT x="6135" y="4910">
-   </LINKPOINT>
-   <LINKPOINT x="5445" y="4660">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Renderer (DX11 MultiStructuredBuffer)" filename="..\..\..\..\..\..\..\mcropack\packs\mp.dx\nodes\plugins\DX11Utils\x64\DX11Utils.dll" nodename="Renderer (DX11 MultiStructuredBuffer)" componentmode="Hidden" id="139">
    <BOUNDS type="Node" left="945" top="9150" width="11865" height="270">
    </BOUNDS>
@@ -438,8 +410,6 @@
    </LINK>
    <LINK srcnodeid="140" srcpinname="Output" dstnodeid="142" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="139" dstpinname="Layer">
-   </LINK>
    <LINK srcnodeid="48" srcpinname="Output String" dstnodeid="139" dstpinname="Semantic">
    </LINK>
    <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="139" dstpinname="Element Count">
@@ -509,6 +479,34 @@
    </LINKPOINT>
    <LINKPOINT x="6280" y="2025">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Selection_Filter (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\dx11\Selection_Filter.fx" nodename="Selection_Filter (DX11.Effect)" componentmode="Hidden" id="41">
+   <BOUNDS type="Node" left="960" top="6075" width="8085" height="270">
+   </BOUNDS>
+   <PIN pinname="AlivePointerBuffer" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="AliveCounterBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="Filter">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="40" srcpinname="Geometry Out" dstnodeid="41" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output" dstnodeid="41" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="139" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="41" dstpinname="AlivePointerBuffer">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="41" dstpinname="AliveCounterBuffer">
    </LINK>
    <LINK srcnodeid="157" srcpinname="Output Node" dstnodeid="41" dstpinname="GroupIndexBuffer">
    </LINK>

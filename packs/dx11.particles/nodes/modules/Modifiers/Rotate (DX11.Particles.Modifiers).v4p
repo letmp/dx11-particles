@@ -303,7 +303,7 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="7710" top="5805" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Mass.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Rotate.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
@@ -335,12 +335,24 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7110" top="720" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Add">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <NODE id="59" systemname="Modifier_Rotate (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Rotate.fx" nodename="Modifier_Rotate (DX11.Effect)" componentmode="Hidden">
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="62" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="3885" top="720" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3885" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Rotation Buffer|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="59" systemname="Modifier_Rotate (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Rotate.fx" nodename="Modifier_Rotate (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
@@ -349,7 +361,7 @@
    </PIN>
    <PIN pinname="Use SelectionGroupId" visible="1">
    </PIN>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Rotation Buffer" visible="1" slicecount="1" values="||">
    </PIN>
@@ -380,26 +392,16 @@
    <LINKPOINT x="6030" y="2685">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionId" linkstyle="Bezier">
-   <LINKPOINT x="5295" y="2693">
-   </LINKPOINT>
-   <LINKPOINT x="4200" y="2693">
-   </LINKPOINT>
-   </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="62" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="3885" top="720" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="3885" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Rotation Buffer|">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="62" srcpinname="Output Node" dstnodeid="59" dstpinname="Rotation Buffer" linkstyle="Bezier">
    <LINKPOINT x="3930" y="2693">
    </LINKPOINT>
    <LINKPOINT x="5100" y="2693">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionId" linkstyle="Bezier">
+   <LINKPOINT x="5295" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="4200" y="2693">
    </LINKPOINT>
    </LINK>
    </PATCH>

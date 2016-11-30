@@ -297,6 +297,8 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="10">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="78" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5145" top="720" width="570" height="240">
@@ -313,8 +315,42 @@
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <NODE id="79" systemname="Modifier_Target (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Target.fx" nodename="Modifier_Target (DX11.Effect)" componentmode="Hidden">
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="80" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="6660" top="1425" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6660" top="1425" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Position Buffer|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="7740" top="720" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7740" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionId|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="79" systemname="Modifier_Target (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Target.fx" nodename="Modifier_Target (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="495" top="4440" width="8550" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
@@ -323,7 +359,15 @@
    </PIN>
    <PIN pinname="Use SelectionGroupId" visible="1">
    </PIN>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="SetTarget">
+   </PIN>
+   <PIN pinname="MaxSpeed" visible="1">
+   </PIN>
+   <PIN pinname="MaxForce" visible="1">
+   </PIN>
+   <PIN pinname="LandingRadius" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="79" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
@@ -346,54 +390,18 @@
    <LINKPOINT x="8655" y="5243">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="79" dstpinname="LandingRadius">
-   </LINK>
    <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="79" dstpinname="MaxSpeed">
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="79" dstpinname="MaxForce">
-   </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="80" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="6660" top="1425" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6660" top="1425" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Position Buffer|">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="80" srcpinname="Output Node" dstnodeid="79" dstpinname="Position Buffer">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7740" top="720" width="285" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7740" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionId|">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="79" dstpinname="Use SelectionGroupId" linkstyle="Bezier">
-   <LINKPOINT x="7740" y="2685">
-   </LINKPOINT>
-   <LINKPOINT x="3645" y="2685">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="79" dstpinname="Use SelectionId" linkstyle="Bezier">
    <LINKPOINT x="7740" y="2685">
    </LINKPOINT>
    <LINKPOINT x="3645" y="2685">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="79" dstpinname="MaxForce">
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="79" dstpinname="LandingRadius">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="Output Node" dstnodeid="79" dstpinname="Position Buffer">
    </LINK>
    </PATCH>

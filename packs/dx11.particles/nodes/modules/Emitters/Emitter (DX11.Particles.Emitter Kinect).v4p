@@ -532,7 +532,7 @@
    <LINKPOINT x="2480" y="3068">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="194" dstpinname="Y Input Value" linkstyle="VHV" hiddenwhenlocked="1">
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="194" dstpinname="Y Input Value" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5150" y="3620">
    </LINKPOINT>
    <LINKPOINT x="5575" y="1270">
@@ -668,7 +668,9 @@
    </LINK>
    <LINK srcnodeid="201" srcpinname="Layer Out" dstnodeid="48" dstpinname="Input Node">
    </LINK>
-   <NODE id="134" systemname="Emitter_Kinect (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Emitter_Kinect.fx" nodename="Emitter_Kinect (DX11.Effect)" componentmode="Hidden">
+   <LINK srcnodeid="108" srcpinname="Output String" dstnodeid="201" dstpinname="RW Buffer Semantic">
+   </LINK>
+   <NODE id="134" systemname="Emitter_Kinect (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\dx11\Emitter_Kinect.fx" nodename="Emitter_Kinect (DX11.Effect)" componentmode="Hidden">
    <PIN pinname="ResolutionXY" slicecount="2" visible="1" values="0,0">
    </PIN>
    <PIN pinname="FOVXY" slicecount="2" visible="1" values="0,0">
@@ -685,7 +687,7 @@
    </PIN>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="EmitterSize" visible="1" slicecount="1" values="217088">
+   <PIN pinname="EmitterSize" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="EmitCount" visible="1" slicecount="1" values="217088">
    </PIN>
@@ -720,18 +722,6 @@
    <LINKPOINT x="9120" y="6818">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="134" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5285" y="3915">
-   </LINKPOINT>
-   <LINKPOINT x="3850" y="3915">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="134" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5270" y="3923">
-   </LINKPOINT>
-   <LINKPOINT x="3385" y="3923">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="186" srcpinname="Output Node" dstnodeid="134" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="975" y="3450">
    </LINKPOINT>
@@ -740,58 +730,48 @@
    </LINK>
    <LINK srcnodeid="182" srcpinname="Geometry Out" dstnodeid="134" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="118" srcpinname="Y Output Value" dstnodeid="134" dstpinname="useRawData" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11475" y="3443">
-   </LINKPOINT>
-   <LINKPOINT x="5685" y="3443">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="117" srcpinname="Y Output Value" dstnodeid="134" dstpinname="useRayTable" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10395" y="3443">
-   </LINKPOINT>
-   <LINKPOINT x="5205" y="3443">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="123" srcpinname="Output Node" dstnodeid="134" dstpinname="RGBDepth" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="7700" y="4458">
-   </LINKPOINT>
-   <LINKPOINT x="8170" y="3958">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="Output Node" dstnodeid="134" dstpinname="RayTable" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="7030" y="4068">
-   </LINKPOINT>
-   <LINKPOINT x="7865" y="3763">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="124" srcpinname="Output Node" dstnodeid="134" dstpinname="Depth" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="6450" y="3758">
-   </LINKPOINT>
-   <LINKPOINT x="7485" y="3608">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Output Node" dstnodeid="134" dstpinname="RGB" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="5945" y="3450">
-   </LINKPOINT>
-   <LINKPOINT x="7030" y="3450">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="134" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
    </LINK>
    <LINK srcnodeid="140" srcpinname="Output" dstnodeid="134" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="120" srcpinname="Y Output Value" dstnodeid="134" dstpinname="ResolutionXY" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="4075" y="3570">
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="134" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5340" y="3923">
    </LINKPOINT>
-   <LINKPOINT x="5555" y="3570">
+   <LINKPOINT x="3435" y="3923">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="134" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5340" y="3915">
+   </LINKPOINT>
+   <LINKPOINT x="3930" y="3915">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="122" srcpinname="Radians" dstnodeid="134" dstpinname="FOVXY" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="9045" y="3818">
    </LINKPOINT>
-   <LINKPOINT x="4275" y="3818">
+   <LINKPOINT x="4455" y="3818">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="108" srcpinname="Output String" dstnodeid="201" dstpinname="RW Buffer Semantic">
+   <LINK srcnodeid="120" srcpinname="Y Output Value" dstnodeid="134" dstpinname="ResolutionXY">
+   </LINK>
+   <LINK srcnodeid="117" srcpinname="Y Output Value" dstnodeid="134" dstpinname="useRayTable" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10380" y="3450">
+   </LINKPOINT>
+   <LINKPOINT x="5445" y="3450">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="118" srcpinname="Y Output Value" dstnodeid="134" dstpinname="useRawData" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11475" y="3443">
+   </LINKPOINT>
+   <LINKPOINT x="5940" y="3443">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Output Node" dstnodeid="134" dstpinname="RGB">
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Output Node" dstnodeid="134" dstpinname="Depth">
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="Output Node" dstnodeid="134" dstpinname="RayTable">
+   </LINK>
+   <LINK srcnodeid="123" srcpinname="Output Node" dstnodeid="134" dstpinname="RGBDepth">
    </LINK>
    </PATCH>

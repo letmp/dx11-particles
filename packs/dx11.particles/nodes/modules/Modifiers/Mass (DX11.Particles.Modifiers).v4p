@@ -253,6 +253,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Mass Buffer|">
    </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="55" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="11190" top="720" width="480" height="480">
@@ -320,44 +322,6 @@
    </NODE>
    <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
-   <NODE id="59" systemname="Modifier_Mass (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Mass.fx" nodename="Modifier_Mass (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="495" top="4440">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <PIN pinname="Use SelectionGroupId" visible="1">
-   </PIN>
-   <PIN pinname="Use SelectionId" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="59" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="59" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="59" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Output Node" dstnodeid="59" dstpinname="Mass Buffer" linkstyle="Bezier">
-   <LINKPOINT x="4140" y="2693">
-   </LINKPOINT>
-   <LINKPOINT x="5100" y="2693">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11190" y="2805">
-   </LINKPOINT>
-   <LINKPOINT x="6840" y="2805">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="6660" y="5250">
-   </LINKPOINT>
-   <LINKPOINT x="7710" y="5250">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="60" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5280" top="720" width="285" height="240">
    </BOUNDS>
@@ -378,12 +342,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionGroupId" linkstyle="Bezier">
-   <LINKPOINT x="5295" y="2693">
-   </LINKPOINT>
-   <LINKPOINT x="4200" y="2693">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="61" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="7110" top="720" width="885" height="240">
    </BOUNDS>
@@ -394,6 +352,40 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
+   <NODE id="59" systemname="Modifier_Mass (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Mass.fx" nodename="Modifier_Mass (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="495" top="4440">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
+   </PIN>
+   <PIN pinname="Use SelectionGroupId" visible="1">
+   </PIN>
+   <PIN pinname="Use SelectionId" visible="1">
+   </PIN>
+   <PIN pinname="Mass Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="59" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="59" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="59" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11190" y="2805">
+   </LINKPOINT>
+   <LINKPOINT x="6840" y="2805">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="6660" y="5250">
+   </LINKPOINT>
+   <LINKPOINT x="7710" y="5250">
+   </LINKPOINT>
+   </LINK>
    <LINK srcnodeid="61" srcpinname="Output Enum" dstnodeid="59" dstpinname="Technique" linkstyle="Bezier">
    <LINKPOINT x="7125" y="2685">
    </LINKPOINT>
@@ -404,6 +396,12 @@
    <LINKPOINT x="5295" y="2693">
    </LINKPOINT>
    <LINKPOINT x="4200" y="2693">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="53" srcpinname="Output Node" dstnodeid="59" dstpinname="Mass Buffer" linkstyle="Bezier">
+   <LINKPOINT x="4140" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="5100" y="2693">
    </LINKPOINT>
    </LINK>
    </PATCH>

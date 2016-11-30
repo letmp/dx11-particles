@@ -257,50 +257,12 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="7710" top="5805" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Mass.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Bounce.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
-   </LINK>
-   <NODE id="54" systemname="Modifier_Bounce (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Bounce.fx" nodename="Modifier_Bounce (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="495" top="4440">
-   </BOUNDS>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1">
-   </PIN>
-   <PIN pinname="Mass Buffer" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Inside">
-   </PIN>
-   <PIN pinname="Rotation" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="54" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="54" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11190" y="2705">
-   </LINKPOINT>
-   <LINKPOINT x="6840" y="2755">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="6660" y="5250">
-   </LINKPOINT>
-   <LINKPOINT x="7710" y="5250">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="67" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="10530" top="5085" width="795" height="240">
@@ -472,8 +434,6 @@
    </LINK>
    <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="70" dstpinname="Transform In">
    </LINK>
-   <LINK srcnodeid="71" srcpinname="Transform Out" dstnodeid="54" dstpinname="Transform In">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="72" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="5985" top="570" width="825" height="240">
    </BOUNDS>
@@ -484,8 +444,46 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <LINK srcnodeid="72" srcpinname="Output Enum" dstnodeid="54" dstpinname="Technique">
+   <NODE id="54" systemname="Modifier_Bounce (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Bounce.fx" nodename="Modifier_Bounce (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="495" top="4440">
+   </BOUNDS>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1">
+   </PIN>
+   <PIN pinname="Mass Buffer" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Inside">
+   </PIN>
+   <PIN pinname="Rotation" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="69" srcpinname="Transform Out" dstnodeid="54" dstpinname="Rotation">
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="54" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="54" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11190" y="2705">
+   </LINKPOINT>
+   <LINKPOINT x="6840" y="2755">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="6660" y="5250">
+   </LINKPOINT>
+   <LINKPOINT x="7710" y="5250">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="71" srcpinname="Transform Out" dstnodeid="54" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="72" srcpinname="Output Enum" dstnodeid="54" dstpinname="Technique">
    </LINK>
    </PATCH>

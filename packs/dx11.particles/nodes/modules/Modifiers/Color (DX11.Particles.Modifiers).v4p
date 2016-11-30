@@ -167,6 +167,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Color Buffer|">
    </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="55" systemname="IOBox (String)">
    <BOUNDS type="Box" left="8925" top="7065" width="1665" height="240">
@@ -301,7 +303,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7395" top="855" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -328,21 +330,17 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <NODE id="87" systemname="Modifier_Color (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Color.fx" nodename="Modifier_Color (DX11.Effect)" componentmode="Hidden">
+   <NODE id="87" systemname="Modifier_Color (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Color.fx" nodename="Modifier_Color (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="765" top="4125" width="9480" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="765" top="4125">
    </BOUNDS>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Color Buffer" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="87" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="87" dstpinname="Color Buffer" linkstyle="Bezier">
-   <LINKPOINT x="6165" y="2610">
-   </LINKPOINT>
-   <LINKPOINT x="6675" y="2610">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="12720" y="2588">
@@ -362,16 +360,16 @@
    <LINKPOINT x="9720" y="4935">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Use SelectionGroupId" linkstyle="Bezier">
-   <LINKPOINT x="7395" y="2603">
-   </LINKPOINT>
-   <LINKPOINT x="5520" y="2603">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="85" srcpinname="Output Enum" dstnodeid="87" dstpinname="Technique" linkstyle="Bezier">
    <LINKPOINT x="9480" y="2610">
    </LINKPOINT>
    <LINKPOINT x="7875" y="2610">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="87" dstpinname="Color Buffer" linkstyle="Bezier">
+   <LINKPOINT x="6165" y="2603">
+   </LINKPOINT>
+   <LINKPOINT x="6675" y="2603">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Use SelectionId" linkstyle="Bezier">

@@ -78,36 +78,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE id="1" systemname="Modifier_Iterator (DX11.Effect)" filename="..\..\dx11\Modifier_Iterator.fx" nodename="Modifier_Iterator (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="840" top="4440" width="4905" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="840" top="4440">
-   </BOUNDS>
-   <PIN pinname="Data" visible="1">
-   </PIN>
-   <PIN pinname="Destination" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="XTHREADS=64">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Iterate">
-   </PIN>
-   <PIN pinname="AddForce" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Layout Valid" visible="1">
-   </PIN>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1" pintype="Output">
-   </PIN>
-   <PIN pinname="GravityXYZ" visible="1" slicecount="3" values="0,-9.80000019073486,0">
-   </PIN>
-   <PIN pinname="VelDampen" visible="1" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="1" srcpinname="Layer" dstnodeid="6" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="14" srcpinname="Geometry Out" dstnodeid="1" dstpinname="Geometry">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="23" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5190" top="570" width="480" height="480">
    </BOUNDS>
@@ -130,12 +100,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="1" dstpinname="AddForce" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5205" y="2738">
-   </LINKPOINT>
-   <LINKPOINT x="4095" y="2738">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Group Size" linkstyle="VHV" hiddenwhenlocked="0">
    <LINKPOINT x="3485" y="3558">
    </LINKPOINT>
@@ -143,8 +107,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="15" srcpinname="ThreadX" dstnodeid="14" dstpinname="Thread X">
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="1" dstpinname="Layer In">
    </LINK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="5685" top="3930" width="100" height="100">
@@ -162,8 +124,6 @@
    <PIN pinname="Input 3" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="1" dstpinname="Defines">
-   </LINK>
    <LINK srcnodeid="15" srcpinname="String" dstnodeid="24" dstpinname="Input 1" linkstyle="VHV">
    <LINKPOINT x="3655" y="3788">
    </LINKPOINT>
@@ -294,12 +254,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="40" srcpinname="Y Output Value" dstnodeid="1" dstpinname="VelDampen" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="3365" y="2610">
-   </LINKPOINT>
-   <LINKPOINT x="3460" y="2610">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="30">
    <BOUNDS type="Node" left="4875" top="7485" width="100" height="100">
    </BOUNDS>
@@ -327,7 +281,7 @@
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="26">
    <BOUNDS type="Node" left="4875" top="6360" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Utils\">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -338,8 +292,6 @@
    <PIN pinname="BufferType" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Shader Path" dstnodeid="26" dstpinname="Filename">
-   </LINK>
    <LINK srcnodeid="29" srcpinname="Output String" dstnodeid="26" dstpinname="BufferName">
    </LINK>
    <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="26" dstpinname="BufferType">
@@ -371,17 +323,61 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="42">
    <BOUNDS type="Node" left="5955" top="5730" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Iterator.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
+   <LINK srcnodeid="42" srcpinname="Changed" dstnodeid="26" dstpinname="Extract">
+   </LINK>
+   <NODE id="1" systemname="Modifier_Iterator (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Iterator.fx" nodename="Modifier_Iterator (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="840" top="4440" width="4905" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="4440">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1">
+   </PIN>
+   <PIN pinname="Destination" visible="1">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="XTHREADS=64">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="Iterate">
+   </PIN>
+   <PIN pinname="AddForce" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Layout Valid" visible="1">
+   </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1" pintype="Output">
+   </PIN>
+   <PIN pinname="GravityXYZ" visible="1" slicecount="3" values="0,-9.80000019073486,0">
+   </PIN>
+   <PIN pinname="VelDampen" visible="1" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Layer" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="14" srcpinname="Geometry Out" dstnodeid="1" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="1" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="1" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Shader Path" dstnodeid="26" dstpinname="Filename">
+   </LINK>
    <LINK srcnodeid="1" srcpinname="Shader Path" dstnodeid="42" dstpinname="Filename" linkstyle="Bezier">
    <LINKPOINT x="4935" y="5205">
    </LINKPOINT>
    <LINKPOINT x="5940" y="5205">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="42" srcpinname="Changed" dstnodeid="26" dstpinname="Extract">
+   <LINK srcnodeid="40" srcpinname="Y Output Value" dstnodeid="1" dstpinname="VelDampen">
+   </LINK>
+   <LINK srcnodeid="23" srcpinname="Y Output Value" dstnodeid="1" dstpinname="AddForce" linkstyle="Bezier">
+   <LINKPOINT x="5190" y="2738">
+   </LINKPOINT>
+   <LINKPOINT x="3900" y="2738">
+   </LINKPOINT>
    </LINK>
    </PATCH>

@@ -125,6 +125,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Lifespan Buffer|">
    </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="String" dstnodeid="78" dstpinname="Input 1" linkstyle="VHV">
    <LINKPOINT x="5115" y="3668">
@@ -432,54 +434,6 @@
    </PACK>
    <LINK srcnodeid="104" srcpinname="Layer Out" dstnodeid="48" dstpinname="Input Node">
    </LINK>
-   <NODE id="112" systemname="Emitter_RWStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Emitter_RWStructuredBuffer.fx" nodename="Emitter_RWStructuredBuffer (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="2610" top="4320" width="6585" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="2610" top="4320">
-   </BOUNDS>
-   <PIN pinname="Acceleration Buffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Mass Buffer" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Query" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="EmitParticles">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="112" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Output Node" dstnodeid="112" dstpinname="Layer In" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="765" y="2655">
-   </LINKPOINT>
-   <LINKPOINT x="2610" y="2655">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Output" dstnodeid="112" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="112" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4275" y="2648">
-   </LINKPOINT>
-   <LINKPOINT x="5880" y="2648">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="86" srcpinname="Output Node" dstnodeid="112" dstpinname="Lifespan Buffer" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="6700" y="2648">
-   </LINKPOINT>
-   <LINKPOINT x="6455" y="2648">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="112" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="112" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="13425" y="2640">
-   </LINKPOINT>
-   <LINKPOINT x="8385" y="2640">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="112" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="113" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="4395" top="5070" width="1305" height="240">
    </BOUNDS>
@@ -553,23 +507,71 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="116">
    <BOUNDS type="Node" left="9135" top="5685" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Emitter_RWStructuredBuffer.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="112" srcpinname="Shader Path" dstnodeid="116" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="8115" y="5130">
-   </LINKPOINT>
-   <LINKPOINT x="9135" y="5130">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="116" srcpinname="Changed" dstnodeid="87" dstpinname="Extract">
    </LINK>
    <LINK srcnodeid="94" srcpinname="Output Enum" dstnodeid="115" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="11565" y="1988">
    </LINKPOINT>
    <LINKPOINT x="9450" y="1988">
+   </LINKPOINT>
+   </LINK>
+   <NODE id="112" systemname="Emitter_RWStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\dx11\Emitter_RWStructuredBuffer.fx" nodename="Emitter_RWStructuredBuffer (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="2610" top="4320" width="6585" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2610" top="4320">
+   </BOUNDS>
+   <PIN pinname="Acceleration Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mass Buffer" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Query" visible="1">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="EmitParticles">
+   </PIN>
+   <PIN pinname="Lifespan Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="EmitterSize" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="112" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Output Node" dstnodeid="112" dstpinname="Layer In" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="765" y="2655">
+   </LINKPOINT>
+   <LINKPOINT x="2610" y="2655">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Output" dstnodeid="112" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="112" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="112" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13425" y="2640">
+   </LINKPOINT>
+   <LINKPOINT x="8385" y="2640">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="112" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="112" srcpinname="Shader Path" dstnodeid="116" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="8115" y="5130">
+   </LINKPOINT>
+   <LINKPOINT x="9135" y="5130">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="86" srcpinname="Output Node" dstnodeid="112" dstpinname="Lifespan Buffer">
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="112" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4275" y="2648">
+   </LINKPOINT>
+   <LINKPOINT x="5880" y="2648">
    </LINKPOINT>
    </LINK>
    </PATCH>

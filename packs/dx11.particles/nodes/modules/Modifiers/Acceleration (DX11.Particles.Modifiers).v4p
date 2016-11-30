@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Acceleration (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="14100" top="4425" width="13815" height="8535">
+   <BOUNDS type="Window" left="14100" top="4425" width="13860" height="8130">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
    <BOUNDS type="Box" left="9270" top="4440" width="3840" height="2730">
@@ -251,6 +251,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Acceleration Buffer|">
    </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="60" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="10980" top="720" width="480" height="480">
@@ -297,54 +299,12 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="62">
    <BOUNDS type="Node" left="7695" top="5760" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="||">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Acceleration.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="62" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
-   </LINK>
-   <NODE id="59" systemname="Modifier_Acceleration (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Acceleration.fx" nodename="Modifier_Acceleration (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="495" top="4440">
-   </BOUNDS>
-   <PIN pinname="UpdateMode" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Acceleration" visible="1">
-   </PIN>
-   <PIN pinname="Use SelectionGroupId" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="59" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="59" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="59" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="51" srcpinname="Output Node" dstnodeid="59" dstpinname="Acceleration Buffer" linkstyle="Bezier">
-   <LINKPOINT x="3570" y="2700">
-   </LINKPOINT>
-   <LINKPOINT x="5100" y="2700">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10980" y="2805">
-   </LINKPOINT>
-   <LINKPOINT x="6975" y="2805">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="62" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="6660" y="5228">
-   </LINKPOINT>
-   <LINKPOINT x="7695" y="5228">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="7125" top="720" width="450" height="240">
@@ -356,12 +316,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="59" dstpinname="Technique" linkstyle="Bezier">
-   <LINKPOINT x="7140" y="2700">
-   </LINKPOINT>
-   <LINKPOINT x="6030" y="2700">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5295" top="720" width="285" height="240">
    </BOUNDS>
@@ -379,8 +333,62 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionGroupId|">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionGroupId" linkstyle="Bezier">
+   <NODE id="59" systemname="Modifier_Acceleration (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Acceleration.fx" nodename="Modifier_Acceleration (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="495" top="4440">
+   </BOUNDS>
+   <PIN pinname="UpdateMode" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Acceleration">
+   </PIN>
+   <PIN pinname="Use SelectionGroupId" visible="1">
+   </PIN>
+   <PIN pinname="Acceleration Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Use SelectionId" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="59" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="59" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="59" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10980" y="2805">
+   </LINKPOINT>
+   <LINKPOINT x="6975" y="2805">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="59" srcpinname="Shader Path" dstnodeid="62" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="6660" y="5228">
+   </LINKPOINT>
+   <LINKPOINT x="7695" y="5228">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="59" dstpinname="Technique" linkstyle="Bezier">
+   <LINKPOINT x="7140" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="2700">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="51" srcpinname="Output Node" dstnodeid="59" dstpinname="Acceleration Buffer" linkstyle="Bezier">
+   <LINKPOINT x="3570" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="5100" y="2700">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionId" linkstyle="Bezier">
    <LINKPOINT x="5310" y="2693">
    </LINKPOINT>
    <LINKPOINT x="4200" y="2693">

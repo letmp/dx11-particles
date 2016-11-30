@@ -424,7 +424,17 @@
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE systemname="Sink_Sprites (DX11.Effect)" filename="%VVVV%\packs\dx11.mcps\nodes\dx11\Sink_Sprites.fx" nodename="Sink_Sprites (DX11.Effect)" componentmode="Hidden" id="97">
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="98" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="11040" top="705" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11040" top="705" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Transform|">
+   </PIN>
+   </NODE>
+   <NODE systemname="Sink_Sprites (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Sinks\dx11\Sink_Sprites.fx" nodename="Sink_Sprites (DX11.Effect)" componentmode="Hidden" id="97">
    <BOUNDS type="Node" left="1440" top="5865" width="13890" height="270">
    </BOUNDS>
    <PIN pinname="Texture Transform" visible="1" slicecount="1" values="||">
@@ -510,16 +520,6 @@
    <LINKPOINT x="8370" y="3653">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="98" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="11040" top="705" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="11040" top="705" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Transform|">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="98" srcpinname="Output Node" dstnodeid="97" dstpinname="Texture Transform" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="11025" y="3398">
    </LINKPOINT>
