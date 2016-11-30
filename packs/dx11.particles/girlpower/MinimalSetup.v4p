@@ -571,7 +571,7 @@
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="noiseAmountXYZ" slicecount="3" values="0.1,0.1,0.1">
+   <PIN pinname="noiseAmountXYZ" slicecount="3" values="1,1,1">
    </PIN>
    <BOUNDS type="Box" left="4410" top="4965">
    </BOUNDS>
@@ -722,24 +722,22 @@
    <PIN pinname="ParticleSystemBuffers" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <LINK srcnodeid="939" srcpinname="Modifier Out" dstnodeid="86" dstpinname="Layer 3">
-   </LINK>
    <NODE systemname="Box (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Box (DX11.Geometry)" componentmode="Hidden" id="997">
-   <BOUNDS type="Node" left="9060" top="9915" width="100" height="100">
+   <BOUNDS type="Node" left="8970" top="9915" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
    <PIN pinname="SizeXYZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="9060" top="9915">
+   <BOUNDS type="Box" left="8970" top="9915">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="998" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="9075" top="9075" width="795" height="720">
+   <BOUNDS type="Box" left="8985" top="9075" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="9075" top="9075" width="0" height="0">
+   <BOUNDS type="Node" left="8985" top="9075" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.001,0.001,0.02">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.005,0.005,0.04">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1118,12 +1116,6 @@
    <LINKPOINT x="11085" y="8115">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="838" srcpinname="Selection Out" dstnodeid="893" dstpinname="Selection" linkstyle="VHV">
-   <LINKPOINT x="9150" y="4133">
-   </LINKPOINT>
-   <LINKPOINT x="7230" y="4133">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="PhongPoint (DX11.Particles.Sink)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Sinks\PhongPoint (DX11.Particles.Sink).v4p" nodename="PhongPoint (DX11.Particles.Sink)" componentmode="Hidden" id="995">
    <BOUNDS type="Node" left="8520" top="10455" width="100" height="100">
    </BOUNDS>
@@ -1135,7 +1127,7 @@
    </PIN>
    <BOUNDS type="Box" left="8520" top="10455">
    </BOUNDS>
-   <PIN pinname="Light PositionXYZ" slicecount="3" values="-2.3,-2.3,-2.3">
+   <PIN pinname="Light PositionXYZ" slicecount="3" visible="1" values="0,0,0">
    </PIN>
    </NODE>
    <LINK srcnodeid="997" srcpinname="Geometry Out" dstnodeid="995" dstpinname="Geometry">
@@ -1157,5 +1149,49 @@
    </LINKPOINT>
    <LINKPOINT x="5745" y="5700">
    </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="1041" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="11640" top="9120" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11640" top="9120" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="2,2,-2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1041" srcpinname="Y Output Value" dstnodeid="995" dstpinname="Light PositionXYZ">
+   </LINK>
+   <NODE systemname="Intersect (DX11.Particles.Selection Vector3D)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Intersect (DX11.Particles.Selection Vector3D).v4p" nodename="Intersect (DX11.Particles.Selection Vector3D)" componentmode="InAWindow" id="1042">
+   <BOUNDS type="Node" left="20505" top="3060" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="7110" top="5505" width="13605" height="10965">
+   </BOUNDS>
+   <PIN pinname="Help Layer" visible="1">
+   </PIN>
+   <PIN pinname="PositionXYZ" slicecount="3" visible="1" values="0,0,0">
+   </PIN>
+   <PIN pinname="Radius" slicecount="1" values="0.5">
+   </PIN>
+   <PIN pinname="Selection Out" visible="1">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" values="Inside">
+   </PIN>
+   <BOUNDS type="Box" left="20505" top="3060">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="838" srcpinname="Selection Out" dstnodeid="893" dstpinname="Selection" linkstyle="Bezier">
+   <LINKPOINT x="9150" y="4133">
+   </LINKPOINT>
+   <LINKPOINT x="7230" y="4133">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="939" srcpinname="Modifier Out" dstnodeid="86" dstpinname="Layer 3">
    </LINK>
    </PATCH>
