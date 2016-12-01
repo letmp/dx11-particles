@@ -1,0 +1,80 @@
+//@author: tmp
+//@help: Converts a position texture to a binary texture where pixels are white when their neighbour distances are below a threshold
+//@tags: texture
+//@credits: 
+
+Texture2D texture2d : PREVIOUS;
+float2 R:TARGETSIZE;
+float maxDistanceThreshold = 0.15;
+int neighbourLookupSize = 4;
+int minNeighbourThreshold = 60;
+
+SamplerState linearSampler : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_POINT;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+
+
+float4 PS(psInput input) : SV_Target
+{
+	float2 offset = 1/R;
+	
+	float4 c = float4(0,0,0,0);
+	
+	float3 pos = texture2d.Sample(linearSampler,input.uv).xyz;	
+	if( !(pos.x == 0 && pos.y == 0 && pos.z == 0)){
+		
+		float3 nb00 = texture2d.Sample(linearSampler,input.uv + float2(-offset.x, offset.y)).xyz;
+		float3 nb10 = texture2d.Sample(linearSampler,input.uv + float2(0, offset.y)).xyz;
+		float3 nb20 = texture2d.Sample(linearSampler,input.uv + float2(offset.x, offset.y)).xyz;
+		float3 nb01 = texture2d.Sample(linearSampler,input.uv + float2(-offset.x, 0)).xyz;
+		float3 nb21 = texture2d.Sample(linearSampler,input.uv + float2(offset.x, 0)).xyz;	
+		float3 nb02 = texture2d.Sample(linearSampler,input.uv + float2(-offset.x, -offset.y)).xyz;
+		float3 nb12 = texture2d.Sample(linearSampler,input.uv + float2(0, -offset.y)).xyz;
+		float3 nb22 = texture2d.Sample(linearSampler,input.uv + float2(offset.x, -offset.y)).xyz;
+		
+		// check if neighbourpixels are below a given distance
+		if (
+		distance(pos, nb00) < maxDistanceThreshold &&
+		distance(pos, nb10) < maxDistanceThreshold &&
+		distance(pos, nb20) < maxDistanceThreshold &&
+		distance(pos, nb01) < maxDistanceThreshold &&
+		distance(pos, nb21) < maxDistanceThreshold &&
+		distance(pos, nb02) < maxDistanceThreshold &&
+		distance(pos, nb12) < maxDistanceThreshold &&
+		distance(pos, nb22) < maxDistanceThreshold 
+		) {
+			
+			// now look at neighbourhood and only draw pixel if we have more than a given number of neighbours
+			int count = 0;
+			for (int i = -neighbourLookupSize; i <= neighbourLookupSize; i++){
+				for (int j = -neighbourLookupSize; j <= neighbourLookupSize; j++){
+					if (texture2d.SampleLevel(linearSampler,input.uv + float2(i * offset.x, j * offset.y),0).a > 0.0) count++;
+				}
+			}
+			// now we can set the color
+			if (count > minNeighbourThreshold) c = float4(1,1,1,1);
+		}		
+	}	
+	return c;
+}
+
+
+technique10 Process
+{
+	pass P0 <string format="R8G8B8A8_UNorm";>
+	{
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+
+
+

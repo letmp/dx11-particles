@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Sinks\Point (DX11.Particles.Sink).v4p" systemname="Sprites (DX11.Mcps.Sink)" filename="F:\vvvv\libs\mcps-preprod\mcps-proto\packs\dx11.mcps\nodes\modules\Sinks\Sprites (DX11.Mcps.Sink).v4p" scrollx="0" scrolly="690">
-   <BOUNDS type="Window" left="8760" top="3510" width="17040" height="9660">
+   <BOUNDS type="Window" left="6975" top="4695" width="17040" height="9660">
    </BOUNDS>
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
@@ -54,16 +54,6 @@
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Render State|">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="13" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1260" top="1305" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="1260" top="1305" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
@@ -373,17 +363,15 @@
    <NODE systemname="Sink_ConstantPoint (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Sink_ConstantPoint.fx" nodename="Sink_ConstantPoint (DX11.Effect)" componentmode="Hidden" id="91">
    <BOUNDS type="Node" left="1440" top="6465" width="12270" height="270">
    </BOUNDS>
+   <PIN pinname="Layer In" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Output Node" dstnodeid="91" dstpinname="Render State" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="2220" y="3998">
    </LINKPOINT>
    <LINKPOINT x="2805" y="3998">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="13" srcpinname="Output Node" dstnodeid="91" dstpinname="Layer In" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1290" y="3998">
-   </LINKPOINT>
-   <LINKPOINT x="1455" y="3998">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="14" srcpinname="Output Node" dstnodeid="91" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -427,5 +415,21 @@
    <LINK srcnodeid="77" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="91" dstpinname="AlivePointerBuffer">
    </LINK>
    <LINK srcnodeid="73" srcpinname="ParticleSystem Defines" dstnodeid="91" dstpinname="Defines">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="92" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="11820" top="1305" width="720" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11820" top="1305" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Color">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="92" srcpinname="Output Enum" dstnodeid="91" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="11835" y="3990">
+   </LINKPOINT>
+   <LINKPOINT x="10965" y="3990">
+   </LINKPOINT>
    </LINK>
    </PATCH>

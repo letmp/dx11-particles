@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="45">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="6000" top="930" width="100" height="100">
    </BOUNDS>
@@ -14,7 +14,7 @@
    <PIN pinname="Buffer ElementCount" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="12525" top="750" width="15210" height="15705">
+   <BOUNDS type="Window" left="8715" top="1845" width="18240" height="15705">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
@@ -371,7 +371,7 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="123">
    <BOUNDS type="Node" left="12630" top="5940" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Analysis_Bounds_PS.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Analysis_Bounds_PS.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
@@ -1190,144 +1190,6 @@
    </LINK>
    <LINK srcnodeid="154" srcpinname="Color Output" dstnodeid="164" dstpinname="Color">
    </LINK>
-   <NODE systemname="Analysis_Bounds_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Bounds_PS.fx" nodename="Analysis_Bounds_PS (DX11.Effect)" componentmode="Hidden" id="143">
-   <BOUNDS type="Node" left="7650" top="5055" width="1710" height="270">
-   </BOUNDS>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Process">
-   </PIN>
-   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupCounterBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="AlivePointerBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="AliveCounterBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1" pintype="Output">
-   </PIN>
-   <PIN pinname="Render State" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="7650" top="5055">
-   </BOUNDS>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="143" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="5730" y="4643">
-   </LINKPOINT>
-   <LINKPOINT x="7980" y="4793">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="141" srcpinname="Render State" dstnodeid="143" dstpinname="Render State">
-   </LINK>
-   <LINK srcnodeid="143" srcpinname="Layer" dstnodeid="135" dstpinname="Layer">
-   </LINK>
-   <LINK srcnodeid="143" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9090" y="5843">
-   </LINKPOINT>
-   <LINKPOINT x="11520" y="5843">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="143" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9090" y="5618">
-   </LINKPOINT>
-   <LINKPOINT x="12630" y="5618">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="143" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="9975" y="4643">
-   </LINKPOINT>
-   <LINKPOINT x="9360" y="4793">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Analysis_Bounds_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Bounds_PS.fx" nodename="Analysis_Bounds_PS (DX11.Effect)" componentmode="Hidden" id="114">
-   <BOUNDS type="Node" left="2910" top="5055" width="1710" height="270">
-   </BOUNDS>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Process">
-   </PIN>
-   <PIN pinname="ParticleBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="GroupCounterBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="AlivePointerBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="AliveCounterBuffer" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1" pintype="Output">
-   </PIN>
-   <PIN pinname="Render State" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="2910" top="5055">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="114" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="9975" y="4643">
-   </LINKPOINT>
-   <LINKPOINT x="4620" y="4793">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="114" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="5670" y="4643">
-   </LINKPOINT>
-   <LINKPOINT x="3300" y="4793">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="142" srcpinname="Render State" dstnodeid="114" dstpinname="Render State">
-   </LINK>
-   <LINK srcnodeid="114" srcpinname="Layer" dstnodeid="137" dstpinname="Layer">
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="114" dstpinname="ParticleBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5790" y="3878">
-   </LINKPOINT>
-   <LINKPOINT x="3705" y="3878">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="143" dstpinname="ParticleBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5865" y="3870">
-   </LINKPOINT>
-   <LINKPOINT x="8370" y="3870">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="114" dstpinname="AlivePointerBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5985" y="3870">
-   </LINKPOINT>
-   <LINKPOINT x="3885" y="3870">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="143" dstpinname="AlivePointerBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6060" y="3863">
-   </LINKPOINT>
-   <LINKPOINT x="8550" y="3863">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="168" srcpinname="Output Node" dstnodeid="114" dstpinname="GroupIndexBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6945" y="3870">
-   </LINKPOINT>
-   <LINKPOINT x="4065" y="3870">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="168" srcpinname="Output Node" dstnodeid="143" dstpinname="GroupIndexBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7005" y="3878">
-   </LINKPOINT>
-   <LINKPOINT x="8745" y="3878">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="144" srcpinname="Output Node" dstnodeid="36" dstpinname="texMin" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="4110" y="9000">
    </LINKPOINT>
@@ -1338,6 +1200,110 @@
    <LINKPOINT x="8820" y="8970">
    </LINKPOINT>
    <LINKPOINT x="5595" y="8970">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Analysis_Bounds_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Bounds_PS.fx" nodename="Analysis_Bounds_PS (DX11.Effect)" componentmode="Hidden" id="180">
+   <BOUNDS type="Node" left="2910" top="5055" width="1710" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2910" top="5055">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="180" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="9975" y="4643">
+   </LINKPOINT>
+   <LINKPOINT x="4620" y="4793">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="180" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="5670" y="4643">
+   </LINKPOINT>
+   <LINKPOINT x="3300" y="4793">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="142" srcpinname="Render State" dstnodeid="180" dstpinname="Render State">
+   </LINK>
+   <LINK srcnodeid="180" srcpinname="Layer" dstnodeid="137" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="180" dstpinname="ParticleBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5790" y="3878">
+   </LINKPOINT>
+   <LINKPOINT x="3705" y="3878">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="180" dstpinname="AlivePointerBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5985" y="3870">
+   </LINKPOINT>
+   <LINKPOINT x="3885" y="3870">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="168" srcpinname="Output Node" dstnodeid="180" dstpinname="GroupIndexBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6945" y="3870">
+   </LINKPOINT>
+   <LINKPOINT x="4065" y="3870">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="180" dstpinname="AliveCounterBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6180" y="3878">
+   </LINKPOINT>
+   <LINKPOINT x="4230" y="3878">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Analysis_Bounds_PS (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\dx11\Analysis_Bounds_PS.fx" nodename="Analysis_Bounds_PS (DX11.Effect)" componentmode="Hidden" id="181">
+   <BOUNDS type="Node" left="7650" top="5055" width="1710" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7650" top="5055">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="181" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="5730" y="4643">
+   </LINKPOINT>
+   <LINKPOINT x="7980" y="4793">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="141" srcpinname="Render State" dstnodeid="181" dstpinname="Render State">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="Layer" dstnodeid="135" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9090" y="5843">
+   </LINKPOINT>
+   <LINKPOINT x="11520" y="5843">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9090" y="5618">
+   </LINKPOINT>
+   <LINKPOINT x="12630" y="5618">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="181" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="9975" y="4643">
+   </LINKPOINT>
+   <LINKPOINT x="9360" y="4793">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="181" dstpinname="ParticleBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5865" y="3870">
+   </LINKPOINT>
+   <LINKPOINT x="8370" y="3870">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="181" dstpinname="AlivePointerBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6060" y="3863">
+   </LINKPOINT>
+   <LINKPOINT x="8550" y="3863">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="168" srcpinname="Output Node" dstnodeid="181" dstpinname="GroupIndexBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7005" y="3878">
+   </LINKPOINT>
+   <LINKPOINT x="8745" y="3878">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="181" dstpinname="AliveCounterBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6255" y="3870">
+   </LINKPOINT>
+   <LINKPOINT x="8895" y="3870">
    </LINKPOINT>
    </LINK>
    </PATCH>

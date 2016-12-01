@@ -33,7 +33,7 @@ vs2ps VS(vsInput input)
     
 	uint particleIndex = AlivePointerBuffer[input.vi];
 	uint groupId = GroupIndexBuffer[particleIndex];
-	
+		
 	float halfPixel = (1.0f / R.x) * 0.5f;
 	
 	float pixPos = (groupId * (1.0f / R.x)) * 2 - 1.0f;

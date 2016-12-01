@@ -28,7 +28,6 @@ struct VSIn
 struct VSOut
 {
     float4 pos : SV_POSITION;
-	float2 uv : TEXCOORD0;
 	uint particleIndex : VID;
 };
 
@@ -54,12 +53,27 @@ float4 PS(VSOut In): SV_Target
     return col;
 }
 
-technique10 ConstantPoint
+float4 PS_Position(VSOut In): SV_Target
+{
+	return float4(ParticleBuffer[In.particleIndex].position,1);
+}
+
+technique10 Color
 {
 	pass P0
 	{
 
 		SetVertexShader( CompileShader( vs_4_0, VS() ) );
 		SetPixelShader( CompileShader( ps_4_0, PS() ) );
+	}
+}
+
+technique10 Position
+{
+	pass P0
+	{
+
+		SetVertexShader( CompileShader( vs_4_0, VS() ) );
+		SetPixelShader( CompileShader( ps_4_0, PS_Position() ) );
 	}
 }

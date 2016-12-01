@@ -11,6 +11,9 @@ using VVVV.DX11;
 using VVVV.Utils.Streams;
 using VVVV.Nodes.Generic;
 using FeralTic.DX11;
+using FeralTic.DX11.Resources;
+
+
 #endregion usings
 
 namespace DX11.Particles.Core
@@ -311,10 +314,6 @@ namespace DX11.Particles.Core
 
         public event DX11RenderRequestDelegate RenderRequest;
 
-        protected void InitDX11Graph()
-        {
-            if (this.RenderRequest != null) { RenderRequest(this, this.FHost); }
-        }
         #endregion dx11
     }
 
@@ -352,7 +351,7 @@ namespace DX11.Particles.Core
 
         [Output("Resource Semantics")]
         public ISpread<ISpread<DX11Resource<IDX11RenderSemantic>>> FOutResourceSemantic;
-
+        
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
@@ -437,6 +436,7 @@ namespace DX11.Particles.Core
             }
             
         }
+
     }
 
     #region PluginInfo

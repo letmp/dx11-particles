@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B27C493C-B68F-4496-AFFA-C2AE9E37B109}</ProjectGuid>
+    <ProjectGuid>{19B82E25-EA73-4986-B1D2-137431A11A70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DX11.Particles.Core</RootNamespace>
-    <AssemblyName>DX11.Particles.Core</AssemblyName>
+    <RootNamespace>DX11.Particles.Tools</RootNamespace>
+    <AssemblyName>DX11.Particles.Tools</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\AnyCpu\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\AnyCpu\</OutputPath>
     <DefineConstants>Debug;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -29,14 +29,14 @@
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\AnyCpu\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\AnyCpu\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\</OutputPath>
     <DefineConstants>Debug;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
@@ -49,7 +49,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
     <PlatformTarget>x64</PlatformTarget>
@@ -59,7 +59,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x86\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x86\</OutputPath>
     <DefineConstants>Debug;TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DebugType>full</DebugType>
@@ -70,7 +70,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DebugSymbols>false</DebugSymbols>
     <DebugType>None</DebugType>
-    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x86\</OutputPath>
+    <OutputPath>..\..\..\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x86\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
@@ -227,12 +227,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectedComponentLabelingNode.cs" />
-    <Compile Include="SelectionNodes.cs" />
-    <Compile Include="ParticleSystemInfoNodes.cs" />
-    <Compile Include="SiftBufferNode.cs" />
-    <Compile Include="ParticleSystemRegistry.cs" />
-    <Compile Include="ParticleSystemRegisterNodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrackingNodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

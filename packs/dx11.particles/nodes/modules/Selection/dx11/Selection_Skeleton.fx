@@ -39,16 +39,20 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Select(csin input)
 {
-	
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
-	
-	SetGroupId(particleIndex, -1); // resets groupId
+	//SetGroupId(particleIndex, -1); // resets groupId
 	
 	uint selectionIndex = 0;
 	
 	/*STUB_FUNCTIONCALLS*/
-	
+}
+
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CS_Reset(csin input)
+{
+	SetGroupId(input.DTID.x, -1); // resets groupId
 }
 
 technique11 Select { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Select() ) );} }
+technique11 Reset { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Reset() ) );} }
