@@ -1,0 +1,329 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\DepthSmooth (DX11.Particles.Kinect).v4p" scrollx="0" scrolly="0" systemname="DepthSmooth (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\DepthSmooth (DX11.Particles.Kinect).v4p">
+   <BOUNDS type="Window" left="6690" top="4365" width="8055" height="8160">
+   </BOUNDS>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2055" top="600" width="390" height="465">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2055" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="640,480">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|640,480|">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="2" values="640,480">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="13" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="975" top="600" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="975" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="12" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="975" top="6390" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="975" top="6390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE systemname="Renderer (DX11 Volume)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 Volume)" componentmode="Hidden" id="11">
+   <BOUNDS type="Node" left="1695" top="5310" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture SizeXYZ" visible="1" slicecount="3" values="32,32,8">
+   </PIN>
+   <PIN pinname="Query" visible="1">
+   </PIN>
+   <PIN pinname="Clear" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" values="|0.00000,0.00000,0.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Buffers" visible="1">
+   </PIN>
+   <PIN pinname="Target Format" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="6570" top="600" width="465" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6570" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Enabled">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4650" top="600" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4650" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Frame Count|">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="30">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="3">
+   </PIN>
+   </NODE>
+   <NODE systemname="Mod (Value)" nodename="Mod (Value)" componentmode="Hidden" id="8">
+   <BOUNDS type="Node" left="3360" top="2235" width="1350" height="270">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="FrameCounter (Animation)" nodename="FrameCounter (Animation)" componentmode="Hidden" id="7">
+   <BOUNDS type="Node" left="3360" top="1800" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Frame Count" visible="1">
+   </PIN>
+   <PIN pinname="Enable" visible="1">
+   </PIN>
+   <PIN pinname="Reset" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Frame Count" dstnodeid="8" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="8" dstpinname="Input 2" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="3940" y="1593">
+   </LINKPOINT>
+   <LINKPOINT x="4520" y="1513">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Enable" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="6570" y="1305">
+   </LINKPOINT>
+   <LINKPOINT x="3420" y="1305">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5775" top="600" width="375" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5775" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Reset">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Grid (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Grid (DX11.Geometry)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="2595" top="2205" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <PIN pinname="SizeXY" slicecount="2" values="2,2">
+   </PIN>
+   <BOUNDS type="Box" left="2595" top="2205">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Reset" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="5775" y="1298">
+   </LINKPOINT>
+   <LINKPOINT x="4425" y="1298">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="11" dstpinname="Clear" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="5805" y="5145">
+   </LINKPOINT>
+   <LINKPOINT x="2370" y="5145">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="4" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="1710" top="4680" width="1170" height="270">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1710" top="4680" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="R16_UNorm">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="11" dstpinname="Target Format">
+   </LINK>
+   <NODE systemname="xyZ (3d XY)" nodename="xyZ (3d XY)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2040" top="4170" width="2670" height="270">
+   </BOUNDS>
+   <PIN pinname="XY" visible="1">
+   </PIN>
+   <PIN pinname="Z" visible="1">
+   </PIN>
+   <PIN pinname="XYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Y Output Value" dstnodeid="3" dstpinname="XY">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="3" dstpinname="Z" hiddenwhenlocked="0" linkstyle="VHV">
+   <LINKPOINT x="4650" y="2765">
+   </LINKPOINT>
+   <LINKPOINT x="2370" y="2215">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="XYZ" dstnodeid="11" dstpinname="Texture SizeXYZ">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="2" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3105" top="600" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3105" top="600" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.001">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="distanceThreshold">
+   </PIN>
+   </NODE>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.1.0">
+   </PACK>
+   <NODE systemname="Kinect_DepthBuffer (DX11.Effect)" filename="dx11\Kinect_DepthBuffer.fx" nodename="Kinect_DepthBuffer (DX11.Effect)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1860" top="2670" width="3075" height="270">
+   </BOUNDS>
+   <PIN pinname="Query" visible="1">
+   </PIN>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Enabled" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="6555" y="1795">
+   </LINKPOINT>
+   <LINKPOINT x="4935" y="1685">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="0" dstpinname="Slice Index">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Geometry Out" dstnodeid="0" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Layer" dstnodeid="11" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1035" y="1740">
+   </LINKPOINT>
+   <LINKPOINT x="4125" y="1740">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Kinect_DepthSmooth (DX11.TextureFX)" filename="texture11\Kinect_DepthSmooth.tfx" nodename="Kinect_DepthSmooth (DX11.TextureFX)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="990" top="5880" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture3d In" visible="1">
+   </PIN>
+   <PIN pinname="slice Index" visible="1">
+   </PIN>
+   <PIN pinname="slice Count" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="DepthSmooth">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="distanceThreshold" slicecount="1" visible="1" values="0.00100000004749745">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Buffers" dstnodeid="1" dstpinname="Texture3d In" linkstyle="VHV">
+   <LINKPOINT x="2135" y="5815">
+   </LINKPOINT>
+   <LINKPOINT x="1315" y="5615">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output" dstnodeid="1" dstpinname="slice Index" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3360" y="4193">
+   </LINKPOINT>
+   <LINKPOINT x="1500" y="4193">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="1" dstpinname="slice Count" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="4635" y="3345">
+   </LINKPOINT>
+   <LINKPOINT x="1290" y="3345">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Texture Out" dstnodeid="12" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Output Node" dstnodeid="1" dstpinname="Texture In" hiddenwhenlocked="0">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="1" dstpinname="Enabled" linkstyle="VHV">
+   <LINKPOINT x="6600" y="5715">
+   </LINKPOINT>
+   <LINKPOINT x="2190" y="5715">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Y Output Value" dstnodeid="1" dstpinname="distanceThreshold" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3120" y="3345">
+   </LINKPOINT>
+   <LINKPOINT x="1800" y="3345">
+   </LINKPOINT>
+   </LINK>
+   <INFO author="tmp" description="Reduces jittering in the depth texture by calculating a weighted average of consecutive frames." tags="">
+   </INFO>
+   </PATCH>

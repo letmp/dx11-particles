@@ -321,7 +321,7 @@ namespace DX11.Particles.Core
     #region PluginInfo
     [PluginInfo(Name = "Split", Category = "DX11.Particles.Selection", Help = "Outputs the data of selectors", Author = "tmp", Tags = "")]
     #endregion PluginInfo
-    public class SelectorSplit : IPluginEvaluate
+    public class SelectorSplit : IPluginEvaluate, IDX11ResourceProvider
     {
         #region fields & pins
 
@@ -437,6 +437,18 @@ namespace DX11.Particles.Core
             
         }
 
+        public void Update(IPluginIO pin, DX11RenderContext context)
+        {
+           
+        }
+
+        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        {
+            for (int i = 0; i < this.FOutResourceSemantic.SliceCount; i++)
+            {
+                this.FOutResourceSemantic[0][i].Dispose(context);
+            }
+        }
     }
 
     #region PluginInfo
