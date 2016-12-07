@@ -1,4 +1,5 @@
-#include "../fxh/PhongDirectional.fxh"
+#include "../fxh/PhongPoint.fxh"
+#include "../../Core/fxh/AlgebraFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -25,31 +26,6 @@ cbuffer cbPerObj : register( b1 )
 {
 	float4x4 tW : WORLD;
 };
-
-/* ===================== HELPER FUNCTIONS ===================== */
-
-#if !defined(PI)
-	#define PI 3.1415926535897932
-	#define TWOPI 6.283185307179586;
-#endif
-
-	float4x4 VRotate(float3 rot)
-  {
-   rot.x *= TWOPI;
-   rot.y *= TWOPI;
-   rot.z *= TWOPI;
-   float sx = sin(rot.x);
-   float cx = cos(rot.x);
-   float sy = sin(rot.y);
-   float cy = cos(rot.y);
-   float sz = sin(rot.z);
-   float cz = cos(rot.z);
- 
-   return float4x4( cz*cy+sz*sx*sy, sz*cx, cz*-sy+sz*sx*cy, 0,
-                   -sz*cy+cz*sx*sy, cz*cx, sz*sy+cz*sx*cy , 0,
-                    cx * sy       ,-sx   , cx * cy        , 0,
-                    0             , 0    , 0              , 1);
-  }
 
 /* ===================== STRUCTURES ===================== */
 
@@ -82,30 +58,31 @@ VSOut VS(VSIn In)
 	Out.particleIndex = particleIndex;
 	
 	float4 p = In.pos;
-	
-	#if defined(KNOW_ROTATION)
-		p = mul(p,VRotate(ParticleBuffer[particleIndex].rotation));
+	#if defined(KNOW_SCALE)
+		p = mul(p,MatrixScaling(ParticleBuffer[particleIndex].scale));
  	#endif
-	
+	#if defined(KNOW_ROTATION)
+		p = mul(p,MatrixRotation(ParticleBuffer[particleIndex].rotation));
+ 	#endif
 	p.xyz += ParticleBuffer[particleIndex].position;
-	
-	
-
 	Out.pos = mul(p,mul(tW,tVP));
-	
 	
 	 //inverse light direction in view space
 	Out.PosW = mul(p, tW).xyz;
+	float3 LightDirW = normalize(lPos - Out.PosW);
+    Out.LightDirV = mul(float4(LightDirW,0.0f), tV).xyz;
 	
-	Out.LightDirV = normalize(-mul(float4(lDir,0.0f), mul(tW,tV)).xyz);
-	
+	//normal in view space
 	float3 norm = In.NormO;
-	#if defined(KNOW_ROTATION)
-		norm = mul(float4(norm,1),VRotate(ParticleBuffer[particleIndex].rotation)).xyz;
+	#if defined(KNOW_SCALE)
+		norm = mul(float4(norm,1),MatrixScaling(ParticleBuffer[particleIndex].scale)).xyz;
  	#endif
-
-    //normal in view space
+	#if defined(KNOW_ROTATION)
+		norm = mul(float4(norm,1),MatrixRotation(ParticleBuffer[particleIndex].rotation)).xyz;
+ 	#endif
     Out.NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
+	
+	//position (projected)
 	Out.ViewDirV = -normalize(mul(p, tWV).xyz);
 	
 	return Out;
@@ -121,12 +98,12 @@ float4 PS(VSOut In): SV_Target
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
-    return col * PhongDirectional(In.NormV, In.ViewDirV, In.LightDirV);
+    return col * PhongPoint(In.PosW, In.NormV, In.ViewDirV, In.LightDirV);
 }
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TPhongDirectional
+technique10 TPhongPoint
 {
 	pass P0
 	{

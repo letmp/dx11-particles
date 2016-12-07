@@ -5,7 +5,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float3 size;
+		float3 scale;
 	#endif
 };
 
@@ -31,7 +31,21 @@ void CSSet(csin input)
 	ScaleBuffer.GetDimensions(size,stride);
 	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
 	
-	ParticleBuffer[particleIndex].size = ScaleBuffer[bufferIndex];
+	ParticleBuffer[particleIndex].scale = ScaleBuffer[bufferIndex];
+}
+
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CSAdd(csin input)
+{
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
+	
+	uint size, stride;
+	ScaleBuffer.GetDimensions(size,stride);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	
+	ParticleBuffer[particleIndex].scale += ScaleBuffer[bufferIndex];
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
+technique11 Add { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }

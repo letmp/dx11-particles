@@ -14,12 +14,6 @@ struct Particle {
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
-cbuffer cbuf
-{
-	float VelDampen = 1.0;
-    bool AddForce = true;
-};
-
 struct csin
 {
 	uint3 DTID : SV_DispatchThreadID;
@@ -37,13 +31,16 @@ void CS_Iterate(csin input)
 	ParticleBuffer[particleIndex].age += psTime.y;
 	ParticleBuffer[particleIndex].lifespan -= psTime.y;
 
-	if(AddForce)
-	{
-		ParticleBuffer[particleIndex].velocity *= VelDampen;
-		ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * psTime.y;
-	}
-	
+	/*
+	ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * psTime.y;
 	ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * psTime.y;
+	*/
+	
+	float3 velOld = ParticleBuffer[particleIndex].velocity;
+	ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * psTime.y;	
+	ParticleBuffer[particleIndex].position += ( ParticleBuffer[particleIndex].velocity + velOld ) / 2 * psTime.y;
+	
+	
 }
 
 technique11 Iterate { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Iterate() ) );} }

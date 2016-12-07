@@ -1,3 +1,5 @@
+#include "../../Core/fxh/AlgebraFunctions.fxh"
+
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
@@ -24,31 +26,6 @@ cbuffer cbPerObj : register( b1 )
 	float4x4 tW : WORLD;
 };
 
-/* ===================== HELPER FUNCTIONS ===================== */
-
-#if !defined(PI)
-	#define PI 3.1415926535897932
-	#define TWOPI 6.283185307179586;
-#endif
-
-	float4x4 VRotate(float3 rot)
-  {
-   rot.x *= TWOPI;
-   rot.y *= TWOPI;
-   rot.z *= TWOPI;
-   float sx = sin(rot.x);
-   float cx = cos(rot.x);
-   float sy = sin(rot.y);
-   float cy = cos(rot.y);
-   float sz = sin(rot.z);
-   float cz = cos(rot.z);
- 
-   return float4x4( cz*cy+sz*sx*sy, sz*cx, cz*-sy+sz*sx*cy, 0,
-                   -sz*cy+cz*sx*sy, cz*cx, sz*sy+cz*sx*cy , 0,
-                    cx * sy       ,-sx   , cx * cy        , 0,
-                    0             , 0    , 0              , 1);
-  }
-
 /* ===================== STRUCTURES ===================== */
 
 struct VSIn
@@ -74,9 +51,11 @@ VSOut VS(VSIn In)
 	Out.particleIndex = particleIndex;
 	
 	float4 p = In.pos;
-	
+	#if defined(KNOW_SCALE)
+		p = mul(p,MatrixScaling(ParticleBuffer[particleIndex].scale));
+ 	#endif	
 	#if defined(KNOW_ROTATION)
-		p = mul(p,VRotate(ParticleBuffer[particleIndex].rotation));
+		p = mul(p,MatrixRotation(ParticleBuffer[particleIndex].rotation));
  	#endif
 	
 	p.xyz += ParticleBuffer[particleIndex].position;

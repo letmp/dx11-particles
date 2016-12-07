@@ -306,16 +306,6 @@
    </NODE>
    <LINK srcnodeid="62" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="63" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7125" top="720" width="450" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7125" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="64" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5295" top="720" width="285" height="240">
    </BOUNDS>
@@ -347,13 +337,15 @@
    </PIN>
    <PIN pinname="Shader Path" visible="1">
    </PIN>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Acceleration">
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
    </PIN>
    <PIN pinname="Use SelectionGroupId" visible="1">
    </PIN>
-   <PIN pinname="Acceleration Buffer" visible="1">
+   <PIN pinname="Acceleration Buffer" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="IsLocal" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="59" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
@@ -376,22 +368,32 @@
    <LINKPOINT x="7695" y="5228">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="63" srcpinname="Output Enum" dstnodeid="59" dstpinname="Technique" linkstyle="Bezier">
-   <LINKPOINT x="7140" y="2700">
-   </LINKPOINT>
-   <LINKPOINT x="6030" y="2700">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="51" srcpinname="Output Node" dstnodeid="59" dstpinname="Acceleration Buffer" linkstyle="Bezier">
+   <LINK srcnodeid="51" srcpinname="Output Node" dstnodeid="59" dstpinname="Acceleration Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="3570" y="2700">
    </LINKPOINT>
    <LINKPOINT x="5100" y="2700">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionId" linkstyle="Bezier">
+   <LINK srcnodeid="64" srcpinname="Y Output Value" dstnodeid="59" dstpinname="Use SelectionId" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5310" y="2693">
    </LINKPOINT>
    <LINKPOINT x="4200" y="2693">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="66" systemname="IOBox (Enumerations)">
+   <BOUNDS type="Box" left="6990" top="720" width="1035" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6990" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AddGlobal">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Output Enum" dstnodeid="59" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7005" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="2700">
    </LINKPOINT>
    </LINK>
    </PATCH>

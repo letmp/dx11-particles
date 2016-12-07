@@ -1,11 +1,13 @@
 #include "../../Core/fxh/Defines.fxh"
 #include "../../Core/fxh/IndexFunctions.fxh"
+#include "../../Core/fxh/AlgebraFunctions.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
 		float3 acceleration;
+		float3 velocity;
 	#endif
 };
 
@@ -35,7 +37,19 @@ void CSSet(csin input)
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSAdd(csin input)
+void CSAddGlobal(csin input)
+{
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex < 0 ) return;
+	
+	uint size, stride;
+	AccelerationBuffer.GetDimensions(size,stride);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	ParticleBuffer[particleIndex].acceleration += AccelerationBuffer[bufferIndex] ;	
+}
+
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CSAddLocal(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex < 0 ) return;
@@ -44,8 +58,19 @@ void CSAdd(csin input)
 	AccelerationBuffer.GetDimensions(size,stride);
 	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
 	
-	ParticleBuffer[particleIndex].acceleration += AccelerationBuffer[bufferIndex];	
+	float4x4 rotM = MatrixRotation(RotateByVector(ParticleBuffer[particleIndex].velocity));
+	float4 locA = float4(AccelerationBuffer[bufferIndex]* float3(-1,1,-1) , 1);	
+	float4 direction = mul(locA, rotM);
+
+	ParticleBuffer[particleIndex].acceleration += direction.xyz;
+	/*
+	float l = length(ParticleBuffer[particleIndex].acceleration);
+	float3 a = ParticleBuffer[particleIndex].acceleration + direction.xyz;
+	ParticleBuffer[particleIndex].acceleration = 1 * normalize(a);
+	*/
+	
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
-technique11 Add { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }
+technique11 AddGlobal { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAddGlobal() ) );} }
+technique11 AddLocal { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAddLocal() ) );} }

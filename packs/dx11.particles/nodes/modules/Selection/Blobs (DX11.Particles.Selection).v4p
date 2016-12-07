@@ -1,25 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\Blobs (DX11.Particles.Selection).v4p" systemname="Blobs (DX11.Particles.Selection)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Blobs (DX11.Particles.Selection).v4p" scrollx="0" scrolly="-360">
-   <NODE systemname="Point (DX11.Particles.Sink)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Sinks\Point (DX11.Particles.Sink).v4p" nodename="Point (DX11.Particles.Sink)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="2340" top="2295" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Position">
-   </PIN>
-   <PIN pinname="ParticleSystem" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="2340" top="2295">
-   </BOUNDS>
-   <BOUNDS type="Window" left="6975" top="4695" width="17040" height="9660">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="2175" top="3015" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Layer" visible="1">
+   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="View" visible="1" slicecount="1" values="||">
    </PIN>
@@ -92,8 +76,6 @@
    <LINKPOINT x="2175" y="2775">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Layer" dstnodeid="1" dstpinname="Layer">
-   </LINK>
    <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="1" dstpinname="Texture SizeXY" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="4320" y="2145">
    </LINKPOINT>
@@ -126,14 +108,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="0" dstpinname="ParticleSystemBuffers">
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Output Enum" dstnodeid="0" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="16770" y="1590">
-   </LINKPOINT>
-   <LINKPOINT x="3225" y="1590">
-   </LINKPOINT>
-   </LINK>
    <BOUNDS type="Window" left="975" top="1125" width="19620" height="13815">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
@@ -148,8 +122,6 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Position">
    </PIN>
    </NODE>
-   <LINK srcnodeid="9" srcpinname="Output Enum" dstnodeid="0" dstpinname="Technique">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7095" top="645" width="795" height="240">
    </BOUNDS>
@@ -821,5 +793,33 @@
    </LINKPOINT>
    <LINKPOINT x="3085" y="5988">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="Point (DX11.Particles.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Effect\Point (DX11.Particles.Effect).v4p" nodename="Point (DX11.Particles.Effect)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2340" top="2295" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Position">
+   </PIN>
+   <PIN pinname="ParticleSystem" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2340" top="2295">
+   </BOUNDS>
+   <BOUNDS type="Window" left="6975" top="4695" width="17040" height="9660">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Layer" dstnodeid="1" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="0" dstpinname="ParticleSystemBuffers">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output Enum" dstnodeid="0" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="16770" y="1590">
+   </LINKPOINT>
+   <LINKPOINT x="3225" y="1590">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Output Enum" dstnodeid="0" dstpinname="Technique">
    </LINK>
    </PATCH>

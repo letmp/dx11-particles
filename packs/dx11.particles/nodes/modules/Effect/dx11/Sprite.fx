@@ -30,34 +30,8 @@ cbuffer cbPerDraw : register( b0 )
 	float3 UpVector={0,1,0};
 };
 
-/* ===================== HELPER FUNCTIONS ===================== */
-
-#if !defined(PI)
-	#define PI 3.1415926535897932
-	#define TWOPI 6.283185307179586;
-#endif
-
-	float4x4 VRotate(float3 rot)
-  {
-   rot.x *= TWOPI;
-   rot.y *= TWOPI;
-   rot.z *= TWOPI;
-   float sx = sin(rot.x);
-   float cx = cos(rot.x);
-   float sy = sin(rot.y);
-   float cy = cos(rot.y);
-   float sz = sin(rot.z);
-   float cz = cos(rot.z);
- 
-   return float4x4( cz*cy+sz*sx*sy, sz*cx, cz*-sy+sz*sx*cy, 0,
-                   -sz*cy+cz*sx*sy, cz*cx, sz*sy+cz*sx*cy , 0,
-                    cx * sy       ,-sx   , cx * cy        , 0,
-                    0             , 0    , 0              , 1);
-  }
-
 float3 g_positions[4]:IMMUTABLE ={{-1,1,0},{1,1,0},{-1,-1,0},{1,-1,0}};
 float2 g_texcoords[4]:IMMUTABLE ={{0,0},{1,0},{0,1},{1,1}};
-
 
 /* ===================== STRUCTURES ===================== */
 
@@ -91,8 +65,8 @@ VSOut VS(VSIn In)
     Out.PosWVP = mul(Out.PosW, tVP);
 
 	float3 size = Size;
-	#if defined(KNOW_SIZE)
-            size *= ParticleBuffer[particleIndex].size;
+	#if defined(KNOW_SCALE)
+            size *= ParticleBuffer[particleIndex].scale;
     #endif
 	Out.Size = size;
 	
