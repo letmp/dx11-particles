@@ -1,4 +1,4 @@
-#include "../../Core/fxh/Defines.fxh"
+#include "../../Core/fxh/Core.fxh"
 
 Texture2D tex;
 SamplerState sPoint : IMMUTABLE

@@ -1,4 +1,4 @@
-#include "../../Core/fxh/Defines.fxh"
+#include "../../Core/fxh/Core.fxh"
 #include "../../Core/fxh/IndexFunctions.fxh"
 #include "../../Core/fxh/AlgebraFunctions.fxh"
 

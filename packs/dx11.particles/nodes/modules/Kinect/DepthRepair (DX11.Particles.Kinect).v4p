@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\DepthRepair (DX11.Particles.Kinect).v4p" systemname="DepthRepair (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\DepthRepair (DX11.Particles.Kinect).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.106_x64\packs\dx11.particles\nodes\modules\Kinect\DepthRepair (DX11.Particles.Kinect).v4p" systemname="DepthRepair (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\DepthRepair (DX11.Particles.Kinect).v4p">
    <BOUNDS type="Window" left="6165" top="7620" width="6270" height="4575">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
@@ -142,7 +142,13 @@
    <LINKPOINT x="1485" y="2040">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Filters_DepthRepair (DX11.TextureFX)" filename="%VVVV%\packs\dx11.pointcloud\nodes\texture11\Filters_DepthRepair.tfx" nodename="Filters_DepthRepair (DX11.TextureFX)" componentmode="Hidden" id="0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   </PACK>
+   <PACK Name="addonpack" Version="34.101.0">
+   </PACK>
+   <INFO author="tmp" description="Finds gaps in the depth texture and tries to fill it with a gap closing algorithm and a median filter." tags="">
+   </INFO>
+   <NODE systemname="Kinect_DepthRepair (DX11.TextureFX)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\texture11\Kinect_DepthRepair.tfx" nodename="Kinect_DepthRepair (DX11.TextureFX)" componentmode="Hidden" id="0">
    <BOUNDS type="Node" left="675" top="2070" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
@@ -176,10 +182,4 @@
    <LINKPOINT x="2265" y="1800">
    </LINKPOINT>
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
-   </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
-   </PACK>
-   <INFO author="tmp" description="Finds gaps in the depth texture and tries to fill it with a gap closing algorithm and a median filter." tags="">
-   </INFO>
    </PATCH>

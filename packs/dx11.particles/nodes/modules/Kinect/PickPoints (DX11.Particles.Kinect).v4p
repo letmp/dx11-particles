@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" systemname="PickPoints (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.106.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.106_x64\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" systemname="PickPoints (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" scrollx="0" scrolly="10290">
    <BOUNDS type="Window" left="750" top="3765" width="14220" height="9240">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="103">
    <BOUNDS type="Node" left="4275" top="14745" width="100" height="100">
@@ -524,74 +524,6 @@
    <LINKPOINT x="8430" y="2063">
    </LINKPOINT>
    </LINK>
-   <NODE id="73" systemname="Tools_CS_PickPoints_RGBDepth (DX11.Effect)" filename="dx11\Tools_CS_PickPoints_RGBDepth.fx" nodename="Tools_CS_PickPoints_RGBDepth (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="5115" top="15465" width="2085" height="270">
-   </BOUNDS>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Texture Depth" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Texture RGBDepth" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="FOVXY" visible="1">
-   </PIN>
-   <PIN pinname="count" visible="1">
-   </PIN>
-   <PIN pinname="UV Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="103" srcpinname="Geometry Out" dstnodeid="73" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="4145" y="15225">
-   </LINKPOINT>
-   <LINKPOINT x="5620" y="15225">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="Output Node" dstnodeid="73" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="870" y="8173">
-   </LINKPOINT>
-   <LINKPOINT x="5865" y="8073">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="100" srcpinname="Output Node" dstnodeid="73" dstpinname="Texture Depth" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3930" y="8180">
-   </LINKPOINT>
-   <LINKPOINT x="6615" y="8080">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="99" srcpinname="Output Node" dstnodeid="73" dstpinname="Texture RGBDepth" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5160" y="8180">
-   </LINKPOINT>
-   <LINKPOINT x="6855" y="8080">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="98" srcpinname="Radians" dstnodeid="73" dstpinname="FOVXY" hiddenwhenlocked="1" linkstyle="VHV">
-   <LINKPOINT x="6115" y="14338">
-   </LINKPOINT>
-   <LINKPOINT x="5960" y="14088">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="92" srcpinname="Output" dstnodeid="73" dstpinname="count" linkstyle="VHV">
-   <LINKPOINT x="8570" y="15000">
-   </LINKPOINT>
-   <LINKPOINT x="6295" y="14850">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="Buffer" dstnodeid="73" dstpinname="UV Buffer">
-   </LINK>
-   <LINK srcnodeid="73" srcpinname="Layer" dstnodeid="102" dstpinname="Layer">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="73" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8130" y="14675">
-   </LINKPOINT>
-   <LINKPOINT x="7620" y="14695">
-   </LINKPOINT>
-   </LINK>
    <NODE id="72" componentmode="InAWindow" systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)">
    <BOUNDS type="Node" left="9000" top="5565" width="100" height="100">
    </BOUNDS>
@@ -608,20 +540,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="SetTexturePosition">
    </PIN>
    <PIN pinname="AA Samples per Pixel" slicecount="1" values="4">
-   </PIN>
-   </NODE>
-   <NODE id="71" systemname="MouseStates (Mouse Split)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="MouseStates (Mouse Split)" componentmode="Hidden">
-   <BOUNDS type="Node" left="8985" top="6210" width="1125" height="270">
-   </BOUNDS>
-   <PIN pinname="Mouse" visible="1">
-   </PIN>
-   <PIN pinname="PositionXY" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="8985" top="6210">
-   </BOUNDS>
-   <PIN pinname="Left Button" visible="1">
-   </PIN>
-   <PIN pinname="Right Button" visible="1">
    </PIN>
    </NODE>
    <NODE id="70" systemname="Map (Value)" nodename="Map (Value)" componentmode="Hidden">
@@ -684,8 +602,6 @@
    </LINK>
    <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="70" dstpinname="Source Minimum">
    </LINK>
-   <LINK srcnodeid="72" srcpinname="Mouse State" dstnodeid="71" dstpinname="Mouse">
-   </LINK>
    <NODE systemname="Counter (Animation Legacy)" nodename="Counter (Animation)" componentmode="Hidden" id="67">
    <BOUNDS type="Node" left="9705" top="7860" width="100" height="100">
    </BOUNDS>
@@ -706,8 +622,6 @@
    <PIN pinname="Up Edge" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="71" srcpinname="Right Button" dstnodeid="66" dstpinname="Input">
-   </LINK>
    <LINK srcnodeid="66" srcpinname="Up Edge" dstnodeid="67" dstpinname="Up">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="65" systemname="IOBox (Value Advanced)">
@@ -832,11 +746,7 @@
    <LINKPOINT x="9180" y="9575">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="71" srcpinname="PositionXY" dstnodeid="60" dstpinname="Input 1">
-   </LINK>
    <LINK srcnodeid="62" srcpinname="Output" dstnodeid="70" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="71" srcpinname="Left Button" dstnodeid="62" dstpinname="Set">
    </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="59">
    <BOUNDS type="Node" left="9195" top="5025" width="100" height="100">
@@ -1148,12 +1058,6 @@
    <LINKPOINT x="14205" y="2633">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="71" srcpinname="Left Button" dstnodeid="79" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9360" y="10050">
-   </LINKPOINT>
-   <LINKPOINT x="8445" y="10050">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="LinearSpread (Spreads)" nodename="LinearSpread (Spreads)" componentmode="Hidden" id="42">
    <BOUNDS type="Node" left="11265" top="7860" width="100" height="100">
    </BOUNDS>
@@ -1255,5 +1159,99 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="70" srcpinname="Output" dstnodeid="94" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="MouseStates (Mouse Split)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="MouseStates (Mouse Split)" componentmode="Hidden" id="106">
+   <BOUNDS type="Node" left="8985" top="6090" width="1110" height="270">
+   </BOUNDS>
+   <PIN pinname="Mouse" visible="1">
+   </PIN>
+   <PIN pinname="PositionXY" visible="1">
+   </PIN>
+   <PIN pinname="Left Button" visible="1">
+   </PIN>
+   <PIN pinname="Right Button" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="72" srcpinname="Mouse State" dstnodeid="106" dstpinname="Mouse">
+   </LINK>
+   <LINK srcnodeid="106" srcpinname="PositionXY" dstnodeid="60" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="106" srcpinname="Left Button" dstnodeid="62" dstpinname="Set">
+   </LINK>
+   <LINK srcnodeid="106" srcpinname="Right Button" dstnodeid="66" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="106" srcpinname="Left Button" dstnodeid="79" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9345" y="9998">
+   </LINKPOINT>
+   <LINKPOINT x="8445" y="9998">
+   </LINKPOINT>
+   </LINK>
+   <NODE id="73" systemname="Kinect_PickPoints (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\dx11\Kinect_PickPoints.fx" nodename="Kinect_PickPoints (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="5115" top="15465" width="2505" height="270">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Depth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture RGBDepth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="FOVXY" visible="1">
+   </PIN>
+   <PIN pinname="count" visible="1">
+   </PIN>
+   <PIN pinname="UV Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="103" srcpinname="Geometry Out" dstnodeid="73" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="4145" y="15225">
+   </LINKPOINT>
+   <LINKPOINT x="5620" y="15225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Output Node" dstnodeid="73" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="870" y="8173">
+   </LINKPOINT>
+   <LINKPOINT x="5865" y="8073">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="100" srcpinname="Output Node" dstnodeid="73" dstpinname="Texture Depth" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3930" y="8180">
+   </LINKPOINT>
+   <LINKPOINT x="6615" y="8080">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="99" srcpinname="Output Node" dstnodeid="73" dstpinname="Texture RGBDepth" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5160" y="8180">
+   </LINKPOINT>
+   <LINKPOINT x="6855" y="8080">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="98" srcpinname="Radians" dstnodeid="73" dstpinname="FOVXY" hiddenwhenlocked="1" linkstyle="VHV">
+   <LINKPOINT x="6115" y="14338">
+   </LINKPOINT>
+   <LINKPOINT x="5960" y="14088">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="92" srcpinname="Output" dstnodeid="73" dstpinname="count" linkstyle="VHV">
+   <LINKPOINT x="8570" y="15000">
+   </LINKPOINT>
+   <LINKPOINT x="6295" y="14850">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Buffer" dstnodeid="73" dstpinname="UV Buffer">
+   </LINK>
+   <LINK srcnodeid="73" srcpinname="Layer" dstnodeid="102" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="73" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="8130" y="14675">
+   </LINKPOINT>
+   <LINKPOINT x="7620" y="14695">
+   </LINKPOINT>
    </LINK>
    </PATCH>

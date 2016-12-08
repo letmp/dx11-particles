@@ -1,4 +1,4 @@
-#include "../fxh/Defines.fxh"
+#include "../fxh/Core.fxh"
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)

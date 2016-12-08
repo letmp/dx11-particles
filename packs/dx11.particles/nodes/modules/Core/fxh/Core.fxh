@@ -32,8 +32,22 @@
 	#define MAXGROUPELEMENTCOUNT 0
 #endif
 
+// =====================================================
+//                  SEMANTICS
+// =====================================================
+
 // RENDERSEMANTICS
 cbuffer dx11ParticlesUniforms
 {
     float2 psTime : PS_TIME;
+};
+
+// =====================================================
+//                  STRUCTS
+// =====================================================
+struct LinkedListElement 
+{
+    uint id;
+    uint next;
+    uint particleIndex;
 };

@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Core\UpdateFlagBuffer (DX11.Particles.Core).v4p" systemname="EditFlagBuffer (DX11.Mcps.Utils)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Utils\EditFlagBuffer (DX11.Mcps.Utils).v4p">
-   <BOUNDS type="Window" left="7560" top="7785" width="5595" height="4320">
+   <BOUNDS type="Window" left="7560" top="7785" width="8205" height="4320">
    </BOUNDS>
    <PACK Name="addonpack" Version="34.1.0">
    </PACK>
@@ -13,9 +13,9 @@
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="2" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2325" top="780" width="285" height="240">
+   <BOUNDS type="Box" left="2130" top="780" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2325" top="780" width="0" height="0">
+   <BOUNDS type="Node" left="2130" top="780" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
@@ -33,11 +33,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="3" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="3390" top="780" width="1590" height="270">
+   <BOUNDS type="Box" left="4290" top="780" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="3390" top="780" width="0" height="0">
+   <BOUNDS type="Node" left="4290" top="780" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="SelectionFlag">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AllFlags">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
@@ -67,6 +67,8 @@
    </PIN>
    <BOUNDS type="Box" left="900" top="2145">
    </BOUNDS>
+   <PIN pinname="HasLinkedList" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="1" srcpinname="Geometry Out" dstnodeid="0" dstpinname="Geometry" linkstyle="VHV">
    <LINKPOINT x="960" y="1958">
@@ -75,13 +77,37 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="3" srcpinname="Output Enum" dstnodeid="0" dstpinname="Technique" linkstyle="Bezier">
-   <LINKPOINT x="3390" y="1598">
+   <LINKPOINT x="3990" y="1598">
    </LINKPOINT>
-   <LINKPOINT x="2700" y="1598">
+   <LINKPOINT x="3000" y="1598">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="0" srcpinname="Layer" dstnodeid="4" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="2" srcpinname="Y Output Value" dstnodeid="0" dstpinname="HasSelection">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="5" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3120" top="780" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3120" top="780" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="HasLinkedList">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Y Output Value" dstnodeid="0" dstpinname="HasLinkedList" linkstyle="Bezier">
+   <LINKPOINT x="3120" y="1583">
+   </LINKPOINT>
+   <LINKPOINT x="2460" y="1583">
+   </LINKPOINT>
    </LINK>
    </PATCH>

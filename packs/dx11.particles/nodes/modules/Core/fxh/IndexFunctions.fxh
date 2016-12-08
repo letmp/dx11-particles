@@ -9,7 +9,7 @@ RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
 
 uint GetParticleIndex(uint threadIndex){
-	uint particleIndex = 0;
+	uint particleIndex = -1;
 	
 	if (FlagBuffer[0] == true){ // Apply to selected particles only
 		if(threadIndex >= MAXPARTICLECOUNT || threadIndex >= SelectionCounterBuffer[0]) return -1;

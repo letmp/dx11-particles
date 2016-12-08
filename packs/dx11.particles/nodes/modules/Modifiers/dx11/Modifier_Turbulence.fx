@@ -1,4 +1,4 @@
-#include "../../Core/fxh/Defines.fxh"
+#include "../../Core/fxh/Core.fxh"
 #include "../../Core/fxh/IndexFunctions.fxh"
 #include "../fxh/NoiseFunctions.fxh"
 
@@ -32,7 +32,7 @@ struct csin
 void CSUpdate(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
-	if (particleIndex < 0 ) return;
+	if (particleIndex == -1 ) return;
 	
 	float3 position = ParticleBuffer[particleIndex].position;
 	

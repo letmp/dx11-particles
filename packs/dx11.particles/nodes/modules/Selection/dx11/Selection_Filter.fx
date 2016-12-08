@@ -1,4 +1,4 @@
-#include "../../Core/fxh/Defines.fxh"
+#include "../../Core/fxh/Core.fxh"
 
 StructuredBuffer<uint> AlivePointerBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;

@@ -435,9 +435,9 @@
    <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="70" dstpinname="Transform In">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="72" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="5985" top="570" width="825" height="240">
+   <BOUNDS type="Box" left="6975" top="570" width="825" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5985" top="570" width="0" height="0">
+   <BOUNDS type="Node" left="6975" top="570" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Inside">
    </PIN>
@@ -460,6 +460,8 @@
    <PIN pinname="Technique" slicecount="1" visible="1" values="Inside">
    </PIN>
    <PIN pinname="Rotation" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="BounceMultiplicator" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
@@ -484,6 +486,32 @@
    </LINK>
    <LINK srcnodeid="71" srcpinname="Transform Out" dstnodeid="54" dstpinname="Transform In">
    </LINK>
-   <LINK srcnodeid="72" srcpinname="Output Enum" dstnodeid="54" dstpinname="Technique">
+   <LINK srcnodeid="72" srcpinname="Output Enum" dstnodeid="54" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6990" y="2618">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="2618">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Transform Out" dstnodeid="54" dstpinname="Rotation">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="73" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5355" top="570" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5355" top="570" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="BounceMultiplicator">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="73" srcpinname="Y Output Value" dstnodeid="54" dstpinname="BounceMultiplicator" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5370" y="2618">
+   </LINKPOINT>
+   <LINKPOINT x="5115" y="2618">
+   </LINKPOINT>
    </LINK>
    </PATCH>

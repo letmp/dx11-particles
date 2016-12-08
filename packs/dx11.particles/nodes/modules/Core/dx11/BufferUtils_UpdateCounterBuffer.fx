@@ -1,4 +1,4 @@
-#include "../fxh/Defines.fxh"
+#include "../fxh/Core.fxh"
 
 RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;

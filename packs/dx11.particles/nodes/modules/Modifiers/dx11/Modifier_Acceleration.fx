@@ -1,4 +1,4 @@
-#include "../../Core/fxh/Defines.fxh"
+#include "../../Core/fxh/Core.fxh"
 #include "../../Core/fxh/IndexFunctions.fxh"
 #include "../../Core/fxh/AlgebraFunctions.fxh"
 
@@ -27,7 +27,7 @@ struct csin
 void CSSet(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
-	if (particleIndex < 0 ) return;
+	if (particleIndex == -1 ) return;
 	
 	uint size, stride;
 	AccelerationBuffer.GetDimensions(size,stride);
@@ -40,7 +40,7 @@ void CSSet(csin input)
 void CSAddGlobal(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
-	if (particleIndex < 0 ) return;
+	if (particleIndex == -1 ) return;
 	
 	uint size, stride;
 	AccelerationBuffer.GetDimensions(size,stride);
@@ -52,7 +52,7 @@ void CSAddGlobal(csin input)
 void CSAddLocal(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
-	if (particleIndex < 0 ) return;
+	if (particleIndex == -1 ) return;
 	
 	uint size, stride;
 	AccelerationBuffer.GetDimensions(size,stride);
