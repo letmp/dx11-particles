@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\SelfRepulsion (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="11580" top="1260" width="13860" height="8820">
+   <BOUNDS type="Window" left="13545" top="975" width="13860" height="8820">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
    <BOUNDS type="Node" left="5040" top="2355" width="100" height="100">
@@ -109,7 +109,7 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="47" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="9840" top="570" width="1590" height="270">
+   <BOUNDS type="Box" left="9840" top="570" width="1350" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="9840" top="570" width="0" height="0">
    </BOUNDS>
@@ -259,7 +259,7 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="9270" top="5805" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Modifier_Bounce.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Modifier_SelfRepulsion.fx">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
@@ -276,52 +276,6 @@
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <NODE id="54" systemname="Modifier_SelfRepulsion (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_SelfRepulsion.fx" nodename="Modifier_SelfRepulsion (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="2055" top="4455" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="2055" top="4455">
-   </BOUNDS>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1">
-   </PIN>
-   <PIN pinname="Mass Buffer" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <PIN pinname="Rotation" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="CellCount" visible="1">
-   </PIN>
-   <PIN pinname="Gamma" visible="1">
-   </PIN>
-   <PIN pinname="Radius" visible="1">
-   </PIN>
-   <PIN pinname="RepulseAmount" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="54" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="54" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12750" y="2705">
-   </LINKPOINT>
-   <LINKPOINT x="8400" y="2755">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="8220" y="5250">
-   </LINKPOINT>
-   <LINKPOINT x="9270" y="5250">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="73">
    <BOUNDS type="Node" left="1065" top="5520" width="100" height="100">
    </BOUNDS>
@@ -414,20 +368,12 @@
    <LINKPOINT x="4815" y="2423">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="79" srcpinname="Transform Out" dstnodeid="54" dstpinname="Transform In">
-   </LINK>
-   <LINK srcnodeid="75" srcpinname="Y Output Value" dstnodeid="54" dstpinname="CellCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2940" y="2633">
-   </LINKPOINT>
-   <LINKPOINT x="4995" y="2633">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5745" top="570" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="5745" top="570" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.44">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -436,8 +382,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Gamma">
    </PIN>
    </NODE>
-   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Gamma">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="82" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="6465" top="990" width="795" height="240">
    </BOUNDS>
@@ -451,9 +395,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Radius">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Radius">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="83" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="7170" top="1545" width="795" height="240">
    </BOUNDS>
@@ -467,9 +411,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="RepulseAmount">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="83" srcpinname="Y Output Value" dstnodeid="54" dstpinname="RepulseAmount">
-   </LINK>
    <LINK srcnodeid="74" srcpinname="Help Layer" dstnodeid="67" dstpinname="Input Node" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="1725" y="5400">
    </LINKPOINT>
@@ -492,10 +436,50 @@
    <LINKPOINT x="1440" y="2618">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="73" dstpinname="Layer 2" linkstyle="Bezier">
+   <NODE id="88" systemname="Modifier_SelfRepulsion (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_SelfRepulsion.fx" nodename="Modifier_SelfRepulsion (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="2055" top="4455" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2055" top="4455">
+   </BOUNDS>
+   <PIN pinname="Default Radius" visible="1" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="88" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="88" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="88" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12750" y="2738">
+   </LINKPOINT>
+   <LINKPOINT x="8715" y="2738">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="88" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="8220" y="5250">
+   </LINKPOINT>
+   <LINKPOINT x="9270" y="5250">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="79" srcpinname="Transform Out" dstnodeid="88" dstpinname="Transform In">
+   </LINK>
+   <LINK srcnodeid="75" srcpinname="Y Output Value" dstnodeid="88" dstpinname="CellCount" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2940" y="2633">
+   </LINKPOINT>
+   <LINKPOINT x="4995" y="2633">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Gamma">
+   </LINK>
+   <LINK srcnodeid="83" srcpinname="Y Output Value" dstnodeid="88" dstpinname="RepulseAmount">
+   </LINK>
+   <LINK srcnodeid="88" srcpinname="Layer" dstnodeid="73" dstpinname="Layer 2" linkstyle="Bezier">
    <LINKPOINT x="2040" y="5115">
    </LINKPOINT>
    <LINKPOINT x="1485" y="5115">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="88" dstpinname="Default Radius">
    </LINK>
    </PATCH>

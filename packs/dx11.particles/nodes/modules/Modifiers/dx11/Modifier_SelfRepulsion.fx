@@ -7,6 +7,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 acceleration;
+		float3 velocity;
 	#endif
 };
 
@@ -17,7 +18,7 @@ RWStructuredBuffer<uint> LinkedListOffsetBuffer : LINKEDLISTOFFSETBUFFER;
 int CellCount;
 float4x4 tW: WORLD;
 float Gamma;
-float Radius;
+float Radius <String uiname="Default Radius"; float uimin=0.0;> = 1;
 float RepulseAmount;
 
 struct csin
@@ -50,11 +51,20 @@ void CS_Set(csin input)
 		uint particleIndexOther = LinkedListBuffer[next].particleIndex;
 		
 		if (particleIndexOther != particleIndex){
+			
+			float minDist = Radius;
+			#if defined(KNOW_SCALE)
+				minDist = ( length(ParticleBuffer[particleIndex].scale / 2)+ length(ParticleBuffer[particleIndexOther].scale / 2)) / 2 * Radius;
+			#endif
+			
 			dist = distance(ParticleBuffer[particleIndex].position, ParticleBuffer[particleIndexOther].position);
-			if (dist < Radius){
-				float f = saturate( 1 - dist * 2);
+			
+			if (dist < minDist){
+				float f = saturate(1 - dist * 2);
 			  	f = pow( f, g );
-				ParticleBuffer[particleIndex].acceleration += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * Radius * RepulseAmount;
+				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount;
+				//ParticleBuffer[particleIndex].velocity = normalize(ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * length(ParticleBuffer[particleIndexOther].velocity) * RepulseAmount;
+				
 			}
 		}
 		
