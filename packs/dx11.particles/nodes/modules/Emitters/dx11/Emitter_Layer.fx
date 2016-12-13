@@ -52,6 +52,8 @@ void CS_Emit(csin input)
 {
 	if(input.DTID.x >= EmitterSize) return;
 	
+	uint particleIndex = EMITTEROFFSET + input.DTID.x;
+	
 	// get XY pixel id 
 	uint2 texId = int2(input.DTID.x % Resolution.x ,input.DTID.x / Resolution.x);
 	
@@ -66,16 +68,13 @@ void CS_Emit(csin input)
 	
 	float4 color = texRGB.SampleLevel(sPoint,texUv,0);
 	float4 position = texPositionWorld.SampleLevel(sPoint,texUv,0);
+	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
 	
-	if (position.z > 0 && color.a > 0){
+	if (position.z > 0 && color.a > 0 && currentLifespan <= 0.0f){
 
 		// INCREMENT EmitterCounter
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if (emitterCounter >= EmitCount )return; // safeguard 
-		
-		// SET particleIndex
-		//uint particleIndex = EMITTEROFFSET + (input.DTID.x + input.DTID.x * input.DTID.y); // for 4,4,1 threads
-		uint particleIndex = EMITTEROFFSET + input.DTID.x;
 		
 		// INIT NEW PARTICLE
 		uint size, stride;

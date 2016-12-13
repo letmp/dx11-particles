@@ -26,7 +26,7 @@ cbuffer cbPerDraw : register( b0 )
 	float4x4 tW:WORLD;
 	float4 Color <bool color=true;> = {1.0,1.0,1.0,1.0};
 	float4x4 tTex <string uiname="Texture Transform";>;
-	float3 Size <float uimin=0.0;> = 0.01;
+	float3 Size <float uimin=0.0;> = 1.0;
 	float3 UpVector={0,1,0};
 };
 
