@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="705" top="705" width="18795" height="11955">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="7530" top="1500" width="18795" height="11955">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="48" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="645" top="10650" width="795" height="240">
@@ -85,7 +85,7 @@
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="101">
    <BOUNDS type="Node" left="645" top="8880" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Layer 1" visible="1" slicecount="1" values="||">
+   <PIN pinname="Layer 1" visible="1">
    </PIN>
    <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
@@ -181,7 +181,7 @@
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="87">
    <BOUNDS type="Node" left="7425" top="7755" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
+   <PIN pinname="Filename" visible="1">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -497,7 +497,7 @@
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="199">
    <BOUNDS type="Node" left="8520" top="7365" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Emitter_Layer.fx">
+   <PIN pinname="Filename" visible="1">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
@@ -691,7 +691,7 @@
    </PIN>
    <PIN pinname="Texture Out" visible="1">
    </PIN>
-   <PIN pinname="Target Format" slicecount="1" values="R32G32B32A32_Float" visible="1">
+   <PIN pinname="Target Format" slicecount="1" visible="1" values="R32G32B32A32_Float">
    </PIN>
    </NODE>
    <LINK srcnodeid="205" srcpinname="Depth Buffer" dstnodeid="217" dstpinname="Texture In" linkstyle="VHV">
@@ -732,74 +732,6 @@
    <LINKPOINT x="8775" y="2745">
    </LINKPOINT>
    </LINK>
-   <NODE id="219" systemname="Emitter_Layer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\dx11\Emitter_Layer.fx" nodename="Emitter_Layer (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="810" top="6030" width="8010" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="810" top="6030">
-   </BOUNDS>
-   <PIN pinname="Velocity Buffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="219" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Shader Path" dstnodeid="199" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="7500" y="6818">
-   </LINKPOINT>
-   <LINKPOINT x="8520" y="6818">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="186" srcpinname="Output Node" dstnodeid="219" dstpinname="Transform In" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="1835" y="3450">
-   </LINKPOINT>
-   <LINKPOINT x="2965" y="3450">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="182" srcpinname="Geometry Out" dstnodeid="219" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="219" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="140" srcpinname="Output" dstnodeid="219" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="219" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4755" y="4215">
-   </LINKPOINT>
-   <LINKPOINT x="3675" y="4065">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="120" srcpinname="Y Output Value" dstnodeid="219" dstpinname="ResolutionXY">
-   </LINK>
-   <LINK srcnodeid="205" srcpinname="Buffers" dstnodeid="219" dstpinname="RGB">
-   </LINK>
-   <LINK srcnodeid="211" srcpinname="Output Node" dstnodeid="219" dstpinname="Acceleration Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10905" y="3443">
-   </LINKPOINT>
-   <LINKPOINT x="5415" y="3443">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="212" srcpinname="Output Node" dstnodeid="219" dstpinname="Lifespan Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12540" y="3443">
-   </LINKPOINT>
-   <LINKPOINT x="5985" y="3443">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="217" srcpinname="Texture Out" dstnodeid="219" dstpinname="PositionWorld" linkstyle="Bezier">
-   <LINKPOINT x="7365" y="4583">
-   </LINKPOINT>
-   <LINKPOINT x="7080" y="4583">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="219" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4740" y="4208">
-   </LINKPOINT>
-   <LINKPOINT x="3105" y="4058">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="210" srcpinname="Output Node" dstnodeid="219" dstpinname="Velocity Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9585" y="3450">
-   </LINKPOINT>
-   <LINKPOINT x="4845" y="3450">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="220" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="7620" top="2385" width="1815" height="240">
    </BOUNDS>
@@ -809,5 +741,71 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="220" srcpinname="Output Enum" dstnodeid="217" dstpinname="Target Format">
+   </LINK>
+   <NODE id="221" systemname="Emitter_Layer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\dx11\Emitter_Layer.fx" nodename="Emitter_Layer (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="810" top="6030" width="8010" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="810" top="6030">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="221" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="221" srcpinname="Shader Path" dstnodeid="199" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="7500" y="6818">
+   </LINKPOINT>
+   <LINKPOINT x="8520" y="6818">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="186" srcpinname="Output Node" dstnodeid="221" dstpinname="Transform In" linkstyle="VHV" hiddenwhenlocked="1">
+   <LINKPOINT x="1835" y="3450">
+   </LINKPOINT>
+   <LINKPOINT x="2965" y="3450">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="182" srcpinname="Geometry Out" dstnodeid="221" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="221" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="140" srcpinname="Output" dstnodeid="221" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="221" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4755" y="4215">
+   </LINKPOINT>
+   <LINKPOINT x="3675" y="4065">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="120" srcpinname="Y Output Value" dstnodeid="221" dstpinname="ResolutionXY">
+   </LINK>
+   <LINK srcnodeid="205" srcpinname="Buffers" dstnodeid="221" dstpinname="RGB">
+   </LINK>
+   <LINK srcnodeid="211" srcpinname="Output Node" dstnodeid="221" dstpinname="Acceleration Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10905" y="3443">
+   </LINKPOINT>
+   <LINKPOINT x="5415" y="3443">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="212" srcpinname="Output Node" dstnodeid="221" dstpinname="Lifespan Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12540" y="3443">
+   </LINKPOINT>
+   <LINKPOINT x="5985" y="3443">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="217" srcpinname="Texture Out" dstnodeid="221" dstpinname="PositionWorld" linkstyle="Bezier">
+   <LINKPOINT x="7365" y="4583">
+   </LINKPOINT>
+   <LINKPOINT x="7080" y="4583">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="127" srcpinname="Output" dstnodeid="221" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4740" y="4208">
+   </LINKPOINT>
+   <LINKPOINT x="3105" y="4058">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="210" srcpinname="Output Node" dstnodeid="221" dstpinname="Velocity Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9585" y="3450">
+   </LINKPOINT>
+   <LINKPOINT x="4845" y="3450">
+   </LINKPOINT>
    </LINK>
    </PATCH>

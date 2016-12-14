@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Tools\Kinect2 (DX11.Particles.Tools).v4p" systemname="Kinect2 (DX11.Pointcloud.Setup)" filename="C:\vvvv\vvvv_45beta33.7_x64_dev\packs\dx11-pointcloud\nodes\modules\Setup\Kinect2 (DX11.Pointcloud.Setup).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Kinect\Kinect2 (DX11.Particles.Kinect).v4p" systemname="Kinect2 (DX11.Pointcloud.Setup)" filename="C:\vvvv\vvvv_45beta33.7_x64_dev\packs\dx11-pointcloud\nodes\modules\Setup\Kinect2 (DX11.Pointcloud.Setup).v4p" scrollx="0" scrolly="-360">
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0">
    <BOUNDS type="Box" left="1635" top="1200" width="795" height="480">
    </BOUNDS>
@@ -47,11 +47,13 @@
    <NODE id="7" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Depth FOVXY|">
    </PIN>
-   <BOUNDS type="Box" left="6075" top="3000" width="750" height="240">
+   <BOUNDS type="Box" left="7125" top="3540" width="750" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6075" top="3000" width="750" height="240">
+   <BOUNDS type="Node" left="7125" top="3540" width="750" height="240">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" values="0,0">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE id="8" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
@@ -62,6 +64,8 @@
    <BOUNDS type="Node" left="3345" top="3540" width="750" height="240">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <NODE id="9" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
@@ -74,9 +78,9 @@
    <PIN pinname="Input Node" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="18030" top="7680" width="9150" height="5055">
+   <BOUNDS type="Window" left="9450" top="7680" width="9780" height="5055">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE systemname="Kinect2 (Devices Microsoft)" filename="%VVVV%\packs\dx11\nodes\plugins\kinect2\VVVV.DX11.Nodes.Kinect2.dll" nodename="Kinect2 (Devices Microsoft)" componentmode="Hidden" id="0" hiddenwhenlocked="0">
    <BOUNDS type="Node" left="3360" top="1440" width="2985" height="270">
@@ -115,9 +119,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Depth FOVXY" dstnodeid="7" dstpinname="Y Input Value" linkstyle="Bezier">
-   <LINKPOINT x="5085" y="2348">
+   <LINKPOINT x="5435" y="2498">
    </LINKPOINT>
-   <LINKPOINT x="6075" y="2348">
+   <LINKPOINT x="6775" y="2648">
    </LINKPOINT>
    </LINK>
    <NODE systemname="RGB (Kinect2 Microsoft)" filename="%VVVV%\packs\dx11\nodes\plugins\kinect2\VVVV.DX11.Nodes.Kinect2.dll" nodename="RGB (Kinect2 Microsoft)" componentmode="Hidden" id="3" hiddenwhenlocked="0">
@@ -162,28 +166,28 @@
    </NODE>
    <LINK srcnodeid="2" srcpinname="Texture" dstnodeid="9" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="3" dstpinname="Kinect Runtime" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="3" dstpinname="Kinect Runtime" linkstyle="VHV" hiddenwhenlocked="0">
    <LINKPOINT x="3360" y="2355">
    </LINKPOINT>
    <LINKPOINT x="2640" y="2355">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="1" dstpinname="Kinect Runtime" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="1" dstpinname="Kinect Runtime" linkstyle="VHV" hiddenwhenlocked="0">
    <LINKPOINT x="3390" y="2355">
    </LINKPOINT>
    <LINKPOINT x="3390" y="2355">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="2" dstpinname="Kinect Runtime" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="2" dstpinname="Kinect Runtime" linkstyle="VHV" hiddenwhenlocked="0">
    <LINKPOINT x="3420" y="2340">
    </LINKPOINT>
    <LINKPOINT x="5145" y="2340">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="7200" top="3540" width="480" height="480">
+   <BOUNDS type="Box" left="8250" top="3540" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="7200" top="3540" width="0" height="0">
+   <BOUNDS type="Node" left="8250" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -197,9 +201,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Is Started" dstnodeid="11" dstpinname="Y Input Value" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5505" y="2460">
+   <LINKPOINT x="5855" y="2460">
    </LINKPOINT>
-   <LINKPOINT x="7200" y="2760">
+   <LINKPOINT x="7900" y="2760">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
@@ -261,8 +265,10 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Kinect Runtime|">
    </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="14" dstpinname="Input Node" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="14" dstpinname="Input Node" linkstyle="VHV" hiddenwhenlocked="0">
    <LINKPOINT x="3360" y="2340">
    </LINKPOINT>
    <LINKPOINT x="360" y="2340">
@@ -280,7 +286,7 @@
    <PIN pinname="Update" slicecount="1" visible="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="15" dstpinname="Kinect Runtime" linkstyle="Bezier">
+   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="15" dstpinname="Kinect Runtime" linkstyle="VHV">
    <LINKPOINT x="3420" y="2355">
    </LINKPOINT>
    <LINKPOINT x="4245" y="2355">
@@ -292,6 +298,8 @@
    <BOUNDS type="Node" left="4245" top="3540" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="RayTable">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="Texture" dstnodeid="16" dstpinname="Input Node">
@@ -330,12 +338,38 @@
    </NODE>
    <LINK srcnodeid="0" srcpinname="Is Available" dstnodeid="26" dstpinname="Input">
    </LINK>
-   <LINK srcnodeid="26" srcpinname="Up Edge" dstnodeid="15" dstpinname="Update" linkstyle="Bezier">
-   <LINKPOINT x="4275" y="2573">
+   <LINK srcnodeid="26" srcpinname="Up Edge" dstnodeid="15" dstpinname="Update" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4275" y="2565">
    </LINKPOINT>
-   <LINKPOINT x="4920" y="2573">
+   <LINKPOINT x="4920" y="2565">
    </LINKPOINT>
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
+   <NODE systemname="World (Kinect2 Microsoft)" filename="%VVVV%\packs\dx11\nodes\plugins\kinect2\VVVV.DX11.Nodes.Kinect2.dll" nodename="World (Kinect2 Microsoft)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="6180" top="3000" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Kinect Runtime" visible="1">
+   </PIN>
+   <PIN pinname="Texture" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="6180" top="3000">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Kinect Runtime" dstnodeid="27" dstpinname="Kinect Runtime" linkstyle="VHV">
+   <LINKPOINT x="3420" y="2340">
+   </LINKPOINT>
+   <LINKPOINT x="6180" y="2340">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="28">
+   <BOUNDS type="Box" left="6180" top="3540" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6180" top="3540" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="World">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Texture" dstnodeid="28" dstpinname="Input Node">
+   </LINK>
    </PATCH>

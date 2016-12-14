@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\KinectSetup.v4p" systemname="KinectSetup" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\KinectSetup.v4p" scrollx="15" scrolly="15">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\KinectSetup.v4p" systemname="KinectSetup" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\KinectSetup.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="2415" top="2505" width="11085" height="10485">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="86">
    <BOUNDS type="Node" left="4425" top="4710" width="750" height="270">
@@ -41,7 +41,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2730" top="8595" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="13785" top="2115" width="14565" height="12375">
+   <BOUNDS type="Window" left="14235" top="540" width="14565" height="12375">
    </BOUNDS>
    <PIN pinname="View" visible="1" slicecount="1" values="||">
    </PIN>
@@ -128,7 +128,7 @@
    </LINK>
    <LINK srcnodeid="583" srcpinname="Layer Out" dstnodeid="96" dstpinname="Layers">
    </LINK>
-   <NODE systemname="Camera (Transform Orbit)" filename="%VVVV%\addonpack\lib\nodes\modules\Transform\Camera (Transform Orbit).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="584">
+   <NODE systemname="Camera (Transform Orbit Legacy)" filename="%VVVV%\addonpack\lib\nodes\modules\Transform\Camera (Transform Orbit).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="584">
    <BOUNDS type="Node" left="4035" top="8130" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View Projection" visible="1">
@@ -193,31 +193,35 @@
    <LINK srcnodeid="86" srcpinname="Layer Out" dstnodeid="272" dstpinname="Layer In">
    </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect).v4p" nodename="Emitter (DX11.Particles.Emitter Kinect)" componentmode="Hidden" id="848">
-   <BOUNDS type="Node" left="1275" top="2640" width="100" height="100">
+   <BOUNDS type="Node" left="1215" top="2640" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="Resolution" visible="1" slicecount="2" values="320,240">
+   <PIN pinname="Resolution" visible="1">
    </PIN>
-   <PIN pinname="RGB" visible="1" slicecount="1" values="||">
+   <PIN pinname="RGB" visible="1">
    </PIN>
    <PIN pinname="Depth" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="RGBDepth" visible="1" slicecount="1" values="||">
+   <PIN pinname="RGBDepth" visible="1">
    </PIN>
-   <PIN pinname="Depth FOVXY" visible="1" slicecount="1" values="0">
+   <PIN pinname="Depth FOVXY" visible="1" slicecount="2" values="0.162500003934838,0.12666666549527">
    </PIN>
-   <BOUNDS type="Window" left="39660" top="4020" width="17415" height="11835">
+   <BOUNDS type="Window" left="2925" top="4980" width="14280" height="11835">
    </BOUNDS>
-   <BOUNDS type="Box" left="1275" top="2640">
+   <BOUNDS type="Box" left="1215" top="2640">
    </BOUNDS>
+   <PIN pinname="World" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="272" srcpinname="Layer" dstnodeid="98" dstpinname="Layer 4">
    </LINK>
    <LINK srcnodeid="848" srcpinname="Layer" dstnodeid="86" dstpinname="Layer 1" linkstyle="Bezier">
-   <LINKPOINT x="1355" y="3795">
+   <LINKPOINT x="1315" y="3795">
    </LINKPOINT>
-   <LINKPOINT x="4600" y="3795">
+   <LINKPOINT x="4580" y="3795">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter RWStructuredBuffer)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter RWStructuredBuffer).v4p" nodename="Emitter (DX11.Particles.Emitter RWStructuredBuffer)" componentmode="Hidden" id="866">
@@ -257,7 +261,7 @@
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
-   <PIN pinname="Data" slicecount="1" values="|0.35690,0.44986,0.63303,1.00000|" visible="1">
+   <PIN pinname="Data" slicecount="1" visible="1" values="|0.35690,0.44986,0.63303,1.00000|">
    </PIN>
    <BOUNDS type="Box" left="7740" top="2160">
    </BOUNDS>
@@ -275,46 +279,6 @@
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="873" srcpinname="Buffer" dstnodeid="866" dstpinname="Lifespan Buffer">
-   </LINK>
-   <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="849">
-   <BOUNDS type="Node" left="1275" top="750" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Resolution" visible="1">
-   </PIN>
-   <PIN pinname="RGB" visible="1">
-   </PIN>
-   <PIN pinname="Depth" visible="1">
-   </PIN>
-   <PIN pinname="RGBDepth" visible="1">
-   </PIN>
-   <PIN pinname="Depth FOVXY" visible="1">
-   </PIN>
-   <PIN pinname="Reset" slicecount="1" values="0">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="849" srcpinname="RGB" dstnodeid="848" dstpinname="RGB">
-   </LINK>
-   <LINK srcnodeid="849" srcpinname="Depth" dstnodeid="848" dstpinname="Depth">
-   </LINK>
-   <LINK srcnodeid="849" srcpinname="RGBDepth" dstnodeid="848" dstpinname="RGBDepth" linkstyle="Bezier">
-   <LINKPOINT x="1965" y="1588">
-   </LINKPOINT>
-   <LINKPOINT x="2085" y="1938">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="849" srcpinname="Depth FOVXY" dstnodeid="848" dstpinname="Depth FOVXY" linkstyle="Bezier">
-   <LINKPOINT x="2130" y="1588">
-   </LINKPOINT>
-   <LINKPOINT x="2235" y="1938">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="849" srcpinname="Resolution" dstnodeid="848" dstpinname="Resolution">
-   </LINK>
-   <LINK srcnodeid="849" srcpinname="Resolution" dstnodeid="868" dstpinname="Input" linkstyle="VHV">
-   <LINKPOINT x="1450" y="1170">
-   </LINKPOINT>
-   <LINKPOINT x="5270" y="1170">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="Selection (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" nodename="Selection (DX11.Particles.Selection)" componentmode="Hidden" id="865">
    <BOUNDS type="Node" left="4785" top="3735" width="100" height="100">
@@ -405,7 +369,7 @@
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <PIN pinname="SizeXYZ" slicecount="3" values="0.01,0.01,0.01">
+   <PIN pinname="SizeXYZ" slicecount="3" values="0.003,0.003,0.003">
    </PIN>
    </NODE>
    <LINK srcnodeid="875" srcpinname="Geometry Out" dstnodeid="658" dstpinname="Geometry" linkstyle="VHV">
@@ -563,5 +527,27 @@
    <LINK srcnodeid="884" srcpinname="Output" dstnodeid="885" dstpinname="Hue">
    </LINK>
    <LINK srcnodeid="885" srcpinname="Output" dstnodeid="871" dstpinname="Data">
+   </LINK>
+   <NODE systemname="Kinect2 (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect2 (DX11.Particles.Kinect).v4p" nodename="Kinect2 (DX11.Particles.Kinect)" componentmode="Hidden" id="889">
+   <BOUNDS type="Node" left="1380" top="1455" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="9450" top="7680" width="9780" height="5055">
+   </BOUNDS>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="RGB" visible="1">
+   </PIN>
+   <PIN pinname="RGBDepth" visible="1">
+   </PIN>
+   <PIN pinname="World" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="889" srcpinname="RGB" dstnodeid="848" dstpinname="RGB">
+   </LINK>
+   <LINK srcnodeid="889" srcpinname="RGBDepth" dstnodeid="848" dstpinname="RGBDepth">
+   </LINK>
+   <LINK srcnodeid="889" srcpinname="World" dstnodeid="848" dstpinname="World">
+   </LINK>
+   <LINK srcnodeid="889" srcpinname="Resolution" dstnodeid="848" dstpinname="Resolution">
    </LINK>
    </PATCH>
