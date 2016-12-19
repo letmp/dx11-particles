@@ -4,7 +4,7 @@
 
 #if !defined(PI)
 	#define PI 3.1415926535897932
-	#define TWOPI 6.283185307179586;
+	#define TWOPI 6.283185307179586
 #endif
 
 
@@ -72,20 +72,22 @@ float3 RotateByVector(float3 vec){
     if (lengthPol > 0)
     {
         lengthPol = sqrt(lengthPol);
-        float pitch = asin(nVelY / lengthPol);
-        float yaw = 0.0;
+        
+    	float pitch = asin(nVelY / lengthPol);
+    	
+    	float yaw = 0.0;
         if(nVelZ != 0)
         yaw = atan2(-nVelX, -nVelZ);
         else if (nVelX > 0)
         yaw = -PI / 2;
         else
         yaw = PI / 2;
-        
-        rotation = float3(pitch, yaw, 0) / conv ;
+    	
+    	float roll = lengthPol;
+    	        
+        rotation = float3(pitch, yaw, roll) / conv ;
     }
-    
-    else
-    
+    else    
     {
         rotation = float3(0,0,0);
     }

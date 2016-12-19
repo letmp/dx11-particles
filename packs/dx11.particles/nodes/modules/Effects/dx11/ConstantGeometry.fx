@@ -1,4 +1,4 @@
-#include "../../Core/fxh/AlgebraFunctions.fxh"
+#include <packs\dx11.particles\nodes\modules\Core\fxh\AlgebraFunctions.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -51,12 +51,15 @@ VSOut VS(VSIn In)
 	Out.particleIndex = particleIndex;
 	
 	float4 p = In.pos;
+	
 	#if defined(KNOW_SCALE)
 		p = mul(p,MatrixScaling(ParticleBuffer[particleIndex].scale));
  	#endif	
 	#if defined(KNOW_ROTATION)
 		p = mul(p,MatrixRotation(ParticleBuffer[particleIndex].rotation));
  	#endif
+	
+	
 	
 	p.xyz += ParticleBuffer[particleIndex].position;
 	Out.pos = mul(p,mul(tW,tVP));

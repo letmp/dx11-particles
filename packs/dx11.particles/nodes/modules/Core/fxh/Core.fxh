@@ -39,7 +39,7 @@
 // RENDERSEMANTICS
 cbuffer dx11ParticlesUniforms
 {
-    float2 psTime : PS_TIME;
+    float3 psTime : PS_TIME;
 };
 
 // =====================================================

@@ -1,5 +1,4 @@
 
-
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT

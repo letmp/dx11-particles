@@ -1,5 +1,5 @@
-#include "../fxh/PhongPoint.fxh"
-#include "../../Core/fxh/AlgebraFunctions.fxh"
+#include <packs\dx11.particles\nodes\modules\Effects\fxh\PhongPoint.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\AlgebraFunctions.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)

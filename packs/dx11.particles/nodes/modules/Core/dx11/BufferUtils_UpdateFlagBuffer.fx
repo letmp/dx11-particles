@@ -1,4 +1,4 @@
-#include "../fxh/Core.fxh"
+#include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
 
 /*
 The flagbuffer holds all flags that are needed for the particle ecosystem.

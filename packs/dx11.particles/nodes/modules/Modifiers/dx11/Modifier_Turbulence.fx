@@ -1,6 +1,6 @@
-#include "../../Core/fxh/Core.fxh"
-#include "../../Core/fxh/IndexFunctions.fxh"
-#include "../fxh/NoiseFunctions.fxh"
+#include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Modifiers\fxh\NoiseFunctions.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)

@@ -1,13 +1,13 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Modifiers\Iterator (DX11.Particles.Modifiers).v4p" systemname="Iterator (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Iterator (DX11.Mcps.Modifiers).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="8235" top="7620" width="13275" height="8505">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Modifiers\Iterator (DX11.Particles.Modifiers).v4p" systemname="Iterator (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Iterator (DX11.Mcps.Modifiers).v4p" scrollx="15" scrolly="300">
+   <BOUNDS type="Window" left="10515" top="5835" width="9195" height="8505">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="34.101.0">
    </PACK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="20">
-   <BOUNDS type="Node" left="3945" top="2850" width="100" height="100">
+   <BOUNDS type="Node" left="3840" top="2790" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3945" top="2850" width="375" height="240">
+   <BOUNDS type="Box" left="3840" top="2790" width="375" height="240">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -21,7 +21,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetThreadSize (Value)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="2460" top="3405" width="1545" height="270">
+   <BOUNDS type="Node" left="2355" top="3345" width="1545" height="270">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1" slicecount="1" values="20000">
    </PIN>
@@ -33,13 +33,13 @@
    </PIN>
    <PIN pinname="ThreadZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2460" top="3405">
+   <BOUNDS type="Box" left="2355" top="3345">
    </BOUNDS>
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="14">
-   <BOUNDS type="Node" left="2475" top="3930" width="1050" height="270">
+   <BOUNDS type="Node" left="2370" top="3870" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -49,7 +49,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2475" top="3930">
+   <BOUNDS type="Box" left="2370" top="3870">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="15" srcpinname="ThreadY" dstnodeid="14" dstpinname="Thread Y">
@@ -57,25 +57,25 @@
    <LINK srcnodeid="15" srcpinname="ThreadZ" dstnodeid="14" dstpinname="Thread Z">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="6" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="825" top="5160" width="795" height="240">
+   <BOUNDS type="Box" left="990" top="6765" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="825" top="5160" width="0" height="0">
+   <BOUNDS type="Node" left="990" top="6765" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Layer">
    </PIN>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   <PIN pinname="Input Node" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Group Size" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="3890" y="3558">
+   <LINKPOINT x="3785" y="3498">
    </LINKPOINT>
-   <LINKPOINT x="4045" y="3058">
+   <LINKPOINT x="3940" y="2998">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="15" srcpinname="ThreadX" dstnodeid="14" dstpinname="Thread X">
    </LINK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="24">
-   <BOUNDS type="Node" left="5685" top="3930" width="100" height="100">
+   <BOUNDS type="Node" left="5850" top="3870" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1" slicecount="1" values="XTHREADS=64">
    </PIN>
@@ -83,7 +83,7 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="5685" top="3930">
+   <BOUNDS type="Box" left="5850" top="3870">
    </BOUNDS>
    <PIN pinname="Input Count" slicecount="1" values="2">
    </PIN>
@@ -91,45 +91,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="String" dstnodeid="24" dstpinname="Input 1" linkstyle="VHV">
-   <LINKPOINT x="3925" y="3788">
+   <LINKPOINT x="3910" y="3728">
    </LINKPOINT>
-   <LINKPOINT x="5765" y="3788">
-   </LINKPOINT>
-   </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="28" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7245" top="4425" width="5355" height="2370">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7245" top="4425" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Input String" visible="1" slicecount="12" values="PCOUNT=1000000,PELSIZE=17,BUFSIZE=68000000,OFFS_VELOCITY=3,OFFS_FORCE=7,OFFS_AGE=10,OFFS_COLOR=12,OFFS_SIZE=16,KNOW_COLOR=1,KNOW_SIZE=1,XTHREADS=64,YTHREADS=1">
-   </PIN>
-   <PIN pinname="Columns" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="6">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Defines">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="28" dstpinname="Input String" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="6045" y="4298">
-   </LINKPOINT>
-   <LINKPOINT x="6945" y="4298">
+   <LINKPOINT x="5840" y="3728">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5595" top="5265" width="1275" height="240">
+   <BOUNDS type="Box" left="5760" top="5205" width="1275" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5595" top="5265" width="0" height="0">
+   <BOUNDS type="Node" left="5760" top="5205" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="ParticleBuffer">
    </PIN>
@@ -141,9 +111,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="31" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6105" top="660" width="1590" height="270">
+   <BOUNDS type="Box" left="6270" top="900" width="1590" height="270">
    </BOUNDS>
-   <BOUNDS type="Node" left="6105" top="660" width="0" height="0">
+   <BOUNDS type="Node" left="6270" top="900" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
@@ -153,9 +123,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="35" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="5250" top="4950" width="1590" height="240">
+   <BOUNDS type="Box" left="5415" top="4890" width="1590" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5250" top="4950" width="0" height="0">
+   <BOUNDS type="Node" left="5415" top="4890" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="RWStructuredBuffer">
    </PIN>
@@ -167,9 +137,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="37" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="4875" top="6870" width="795" height="240">
+   <BOUNDS type="Box" left="5040" top="6810" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4875" top="6870" width="0" height="0">
+   <BOUNDS type="Node" left="5040" top="6810" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -183,9 +153,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="38" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2445" top="2700" width="795" height="240">
+   <BOUNDS type="Box" left="2340" top="2640" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2445" top="2700" width="0" height="0">
+   <BOUNDS type="Node" left="2340" top="2640" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -205,7 +175,7 @@
    <PACK Name="VVVV.Packs" Version="0.2.0">
    </PACK>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="4875" top="7485" width="100" height="100">
+   <BOUNDS type="Node" left="5040" top="7425" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
@@ -213,7 +183,7 @@
    </PIN>
    <PIN pinname="StructureDefinition" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="4875" top="7485">
+   <BOUNDS type="Box" left="5040" top="7425">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1">
    </PIN>
@@ -221,17 +191,17 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="31" srcpinname="Output Enum" dstnodeid="30" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6120" y="4143">
+   <LINKPOINT x="6285" y="4283">
    </LINKPOINT>
-   <LINKPOINT x="5520" y="4243">
+   <LINKPOINT x="5685" y="4283">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="37" srcpinname="Output String" dstnodeid="30" dstpinname="Structure">
    </LINK>
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="26">
-   <BOUNDS type="Node" left="4875" top="6360" width="100" height="100">
+   <BOUNDS type="Node" left="5040" top="6300" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
+   <PIN pinname="Filename" visible="1">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -251,7 +221,7 @@
    <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
    </PACK>
    <NODE systemname="Info (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Shader)" componentmode="Hidden" id="41">
-   <BOUNDS type="Node" left="6120" top="1980" width="100" height="100">
+   <BOUNDS type="Node" left="6285" top="1920" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
@@ -265,59 +235,91 @@
    <LINK srcnodeid="41" srcpinname="ParticleSystem Defines" dstnodeid="24" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="41" srcpinname="ParticleSystem ElementCount" dstnodeid="38" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="6450" y="2460">
+   <LINKPOINT x="6525" y="2400">
    </LINKPOINT>
-   <LINKPOINT x="2370" y="2460">
+   <LINKPOINT x="2355" y="2400">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="42">
-   <BOUNDS type="Node" left="5955" top="5730" width="100" height="100">
+   <BOUNDS type="Node" left="6120" top="5670" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\dx11\Modifier_Iterator.fx">
+   <PIN pinname="Filename" visible="1">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="42" srcpinname="Changed" dstnodeid="26" dstpinname="Extract">
    </LINK>
-   <NODE id="1" systemname="Modifier_Iterator (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Iterator.fx" nodename="Modifier_Iterator (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="840" top="4440" width="4905" height="270">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="57">
+   <BOUNDS type="Box" left="4455" top="3960" width="1305" height="240">
    </BOUNDS>
-   <BOUNDS type="Box" left="840" top="4440">
+   <BOUNDS type="Node" left="4455" top="3960" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Data" visible="1">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="FixedTimestep">
    </PIN>
-   <PIN pinname="Destination" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="XTHREADS=64">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="Iterate">
-   </PIN>
-   <PIN pinname="AddForce" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Layout Valid" visible="1">
-   </PIN>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Shader Path" visible="1" pintype="Output">
-   </PIN>
-   <PIN pinname="GravityXYZ" visible="1" slicecount="3" values="0,-9.80000019073486,0">
-   </PIN>
-   <PIN pinname="VelDampen" visible="1" slicecount="1" values="1">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <LINK srcnodeid="1" srcpinname="Layer" dstnodeid="6" dstpinname="Input Node">
+   <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="58">
+   <BOUNDS type="Node" left="4215" top="1365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="59">
+   <BOUNDS type="Box" left="4425" top="900" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4425" top="900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="120">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Fixed Fps|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="120">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="59" srcpinname="Y Output Value" dstnodeid="58" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="14" srcpinname="Geometry Out" dstnodeid="1" dstpinname="Geometry">
+   <NODE id="60" systemname="Modifier_Iterator (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Iterator.fx" nodename="Modifier_Iterator (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="1005" top="4380" width="4905" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1005" top="4380">
+   </BOUNDS>
+   <PIN pinname="fixedTimeStep" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Geometry Out" dstnodeid="60" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="1" dstpinname="Defines">
+   <LINK srcnodeid="24" srcpinname="Output" dstnodeid="60" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="1" srcpinname="Shader Path" dstnodeid="26" dstpinname="Filename">
+   <LINK srcnodeid="60" srcpinname="Shader Path" dstnodeid="26" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="1" srcpinname="Shader Path" dstnodeid="42" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="4935" y="5205">
+   <LINK srcnodeid="60" srcpinname="Shader Path" dstnodeid="42" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="5100" y="5145">
    </LINKPOINT>
-   <LINKPOINT x="5940" y="5205">
+   <LINKPOINT x="6105" y="5145">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="60" srcpinname="Layer" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Output Enum" dstnodeid="60" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Output" dstnodeid="60" dstpinname="fixedTimeStep" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4230" y="3000">
+   </LINKPOINT>
+   <LINKPOINT x="3810" y="3000">
    </LINKPOINT>
    </LINK>
    </PATCH>

@@ -1,5 +1,5 @@
-#include "../fxh/Core.fxh"
-#include "../fxh/IndexFunctions.fxh"
+#include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)

@@ -1,4 +1,4 @@
-#include "../../Core/fxh/Core.fxh"
+#include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
 
 StructuredBuffer<uint> AlivePointerBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;

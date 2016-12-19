@@ -1,4 +1,4 @@
-#include "../fxh/Core.fxh"
+#include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
