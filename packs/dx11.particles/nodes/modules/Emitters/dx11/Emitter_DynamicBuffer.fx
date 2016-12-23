@@ -6,7 +6,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 acceleration;
+		float3 force;
 		float lifespan;
 		float age;
 	#endif
@@ -19,7 +19,7 @@ RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
-StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
+StructuredBuffer<float3> ForceBuffer <string uiname="Force Buffer";>;
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 cbuffer cbuf
@@ -64,8 +64,8 @@ void CS_Emit(csin input)
 		VelocityBuffer.GetDimensions(size,stride);
 		p.velocity = VelocityBuffer[emitterCounter % size];
 		
-		AccelerationBuffer.GetDimensions(size,stride);
-		p.acceleration = AccelerationBuffer[emitterCounter % size];
+		ForceBuffer.GetDimensions(size,stride);
+		p.force = ForceBuffer[emitterCounter % size];
 
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];

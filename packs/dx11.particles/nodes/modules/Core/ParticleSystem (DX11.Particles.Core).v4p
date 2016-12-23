@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" systemname="ParticleSystem (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\ParticleSystem (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" systemname="ParticleSystem (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\ParticleSystem (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="0">
    <NODE id="1" nodename="IOBox (String)" componentmode="InABox" systemname="IOBox (String)">
    <PIN pinname="Output String">
    </PIN>
@@ -88,7 +88,7 @@
    </NODE>
    <BOUNDS type="Window" left="7665" top="270" width="19950" height="16260">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="27" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="12855" top="12210" width="285" height="240">
@@ -247,7 +247,7 @@
    </PIN>
    <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Layer 4" visible="1">
+   <PIN pinname="Layer 4" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
@@ -488,7 +488,7 @@
    </LINK>
    <LINK srcnodeid="74" srcpinname="Output String" dstnodeid="13" dstpinname="BufferSemantics" hiddenwhenlocked="1" linkstyle="PolyLine">
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="106" systemname="IOBox (String)">
    <BOUNDS type="Node" left="1530" top="1440" width="990" height="270">
@@ -523,7 +523,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="3780" top="2925" width="1380" height="285">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|reset acceleration|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|reset force|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -1089,9 +1089,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="198" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="4320" top="3675" width="480" height="240">
+   <BOUNDS type="Box" left="4140" top="3675" width="480" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4320" top="3675" width="0" height="0">
+   <BOUNDS type="Node" left="4140" top="3675" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
    </PIN>
@@ -1258,7 +1258,7 @@
    <LINKPOINT x="1215" y="3735">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Acceleration (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Acceleration (DX11.Particles.Modifiers).v4p" nodename="Acceleration (DX11.Particles.Modifiers)" componentmode="Hidden" id="56">
+   <NODE systemname="Force (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers).v4p" nodename="Force (DX11.Particles.Modifiers)" componentmode="Hidden" id="56">
    <BOUNDS type="Node" left="3795" top="4020" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Window" left="14100" top="4425" width="13860" height="8130">
@@ -1294,4 +1294,6 @@
    </LINK>
    <LINK srcnodeid="198" srcpinname="Output Enum" dstnodeid="56" dstpinname="Technique">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

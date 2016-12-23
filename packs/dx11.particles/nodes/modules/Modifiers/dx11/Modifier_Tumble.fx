@@ -7,7 +7,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 velocity;
-		float3 acceleration;
+		float3 force;
 		float angle;
 	#endif
 };
@@ -41,7 +41,7 @@ void CSAdd(csin input)
 		float newAngle = ParticleBuffer[particleIndex].angle + (speed * psTime.y);
 		float3 circlePoint = RotateVertexPosition( circle.xyz, axis, degrees(newAngle) * TWOPI);
 		
-		ParticleBuffer[particleIndex].acceleration += circlePoint;
+		ParticleBuffer[particleIndex].force += circlePoint;
 		ParticleBuffer[particleIndex].angle = newAngle;	
 	}
 	

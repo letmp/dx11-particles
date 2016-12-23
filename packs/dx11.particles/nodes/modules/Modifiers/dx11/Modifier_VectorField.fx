@@ -6,7 +6,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 acceleration;
+		float3 force;
 		float3 velocity;
 	#endif
 };
@@ -58,7 +58,7 @@ void CSSetAcceleration(csin input)
 	if (particleIndex == -1 ) return;	
 	float4 p = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
 	float4 force =  VolumeTexture3D.SampleLevel(volumeSampler,((p.xyz) + 0.5 ),0) * float4(fieldPower,1);
-	ParticleBuffer[particleIndex].acceleration = force.xyz;
+	ParticleBuffer[particleIndex].force = force.xyz;
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -68,7 +68,7 @@ void CSAddAcceleration(csin input)
 	if (particleIndex == -1 ) return;	
 	float4 p = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
 	float4 force =  VolumeTexture3D.SampleLevel(volumeSampler,((p.xyz) + 0.5 ),0) * float4(fieldPower,1);
-	ParticleBuffer[particleIndex].acceleration += force.xyz;
+	ParticleBuffer[particleIndex].force += force.xyz;
 }
 
 technique11 SetVelocity { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSetVelocity() ) );} }

@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Modifiers\Acceleration (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
    <BOUNDS type="Window" left="12240" top="2430" width="13860" height="8820">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
@@ -109,10 +109,10 @@
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="Layer">
    </PIN>
-   <PIN pinname="Input Node" visible="1">
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Group Size">
    </LINK>
@@ -223,7 +223,7 @@
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="43">
    <BOUNDS type="Node" left="6615" top="6210" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -282,12 +282,12 @@
    <LINKPOINT x="2470" y="2315">
    </LINKPOINT>
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="58">
    <BOUNDS type="Node" left="7710" top="5805" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Changed" visible="1">
    </PIN>
@@ -328,7 +328,7 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE id="77" systemname="Modifier_Acceleration_Texture2D (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Acceleration_Texture2D.fx" nodename="Modifier_Acceleration_Texture2D (DX11.Effect)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <NODE id="77" systemname="Modifier_Force_Texture2D (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Force_Texture2D.fx" nodename="Modifier_Force_Texture2D (DX11.Effect)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
    <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440" width="2400" height="1800">
@@ -374,4 +374,6 @@
    <LINKPOINT x="5100" y="2700">
    </LINKPOINT>
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

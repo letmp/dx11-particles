@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="1965">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="1965">
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="645" top="480" width="795" height="240">
    </BOUNDS>
@@ -22,9 +22,9 @@
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="9270" top="855" width="17640" height="15690">
+   <BOUNDS type="Window" left="6540" top="870" width="17640" height="15690">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="5" systemname="IOBox (String)">
    <BOUNDS type="Box" left="645" top="8745" width="735" height="240">
@@ -310,7 +310,7 @@
    </LINK>
    <LINK srcnodeid="30" srcpinname="Layer" dstnodeid="35" dstpinname="Layer 2">
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="51" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="6585" top="8745" width="915" height="240">
@@ -1043,6 +1043,10 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
+   <PIN pinname="Layout Valid" visible="1">
+   </PIN>
+   <PIN pinname="Technique Valid" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="65" srcpinname="Output" dstnodeid="139" dstpinname="ShaderCode" linkstyle="Bezier">
    <LINKPOINT x="4710" y="7470">
@@ -1144,4 +1148,10 @@
    </NODE>
    <LINK srcnodeid="143" srcpinname="Output Enum" dstnodeid="33" dstpinname="Technique">
    </LINK>
+   <NODE systemname="Template (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Template.fx" nodename="Template (DX11.Effect)" componentmode="Hidden" id="146">
+   <BOUNDS type="Node" left="11850" top="13560" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

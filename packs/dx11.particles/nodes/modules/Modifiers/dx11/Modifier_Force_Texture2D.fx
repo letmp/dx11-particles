@@ -6,7 +6,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float3 acceleration;
+		float3 force;
 		float3 position;
 	#endif
 };
@@ -28,7 +28,7 @@ void CSSet(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
-	ParticleBuffer[particleIndex].acceleration = GetRGB(tex, ParticleBuffer[particleIndex].position, tVP);
+	ParticleBuffer[particleIndex].force = GetRGB(tex, ParticleBuffer[particleIndex].position, tVP);
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -36,7 +36,7 @@ void CSAdd(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
-	ParticleBuffer[particleIndex].acceleration += GetRGB(tex, ParticleBuffer[particleIndex].position, tVP);
+	ParticleBuffer[particleIndex].force += GetRGB(tex, ParticleBuffer[particleIndex].position, tVP);
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

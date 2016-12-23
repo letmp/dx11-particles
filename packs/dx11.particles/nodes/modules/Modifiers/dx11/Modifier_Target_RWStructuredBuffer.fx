@@ -7,7 +7,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 acceleration;
+		float3 force;
 	#endif
 };
 
@@ -46,7 +46,7 @@ void CSSet(csin input)
 	if(! (particleIndex > fRegion[0]) && particleIndex < fRegion[1]){
 		float3 p = ParticleBuffer[particleIndex].position;
 		float3 v = ParticleBuffer[particleIndex].velocity;
-		float3 a = ParticleBuffer[particleIndex].acceleration;
+		float3 a = ParticleBuffer[particleIndex].force;
 		
 		uint targetparticleIndex = (particleIndex % (fRegion[0] - fRegion[1])) + fRegion[0];
 		float3 target = ParticleBuffer[targetparticleIndex].position;

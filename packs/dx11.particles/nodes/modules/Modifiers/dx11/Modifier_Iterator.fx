@@ -6,7 +6,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 acceleration;
+		float3 force;
 		float lifespan;
 		float age;
 	#endif
@@ -32,7 +32,14 @@ void CS_IterateSimple(csin input)
 	ParticleBuffer[particleIndex].age += psTime.y;
 	ParticleBuffer[particleIndex].lifespan -= psTime.y;
 
-	ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * psTime.y;
+	float3 acceleration = ParticleBuffer[particleIndex].force;
+	#if defined(KNOW_MASS)
+		float m = ParticleBuffer[particleIndex].mass;
+		if(m > 0) acceleration /= m;
+ 	#endif
+	ParticleBuffer[particleIndex].velocity += acceleration * psTime.y;
+
+	ParticleBuffer[particleIndex].velocity += acceleration * psTime.y;
 	ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * psTime.y;
 }
 
@@ -47,7 +54,14 @@ void CS_IterateAverageVelocities(csin input)
 	ParticleBuffer[particleIndex].lifespan -= psTime.y;
 
 	float3 velOld = ParticleBuffer[particleIndex].velocity;
-	ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * psTime.y;	
+	
+	float3 acceleration = ParticleBuffer[particleIndex].force;
+	#if defined(KNOW_MASS)
+		float m = ParticleBuffer[particleIndex].mass;
+		if(m > 0) acceleration /= m;
+ 	#endif
+	ParticleBuffer[particleIndex].velocity += acceleration * psTime.y;
+
 	ParticleBuffer[particleIndex].position += ( ParticleBuffer[particleIndex].velocity + velOld ) / 2 * psTime.y;
 		
 }
@@ -63,8 +77,14 @@ void CS_IterateFixedTimestep(csin input)
 	ParticleBuffer[particleIndex].age += psTime.y;
 	ParticleBuffer[particleIndex].lifespan -= psTime.y;
 
+	float3 acceleration = ParticleBuffer[particleIndex].force;
+	#if defined(KNOW_MASS)
+		float m = ParticleBuffer[particleIndex].mass;
+		if(m > 0) acceleration /= m;
+ 	#endif
+
 	for ( float te = psTime.z; te > fixedTimeStep ; te -= fixedTimeStep){
-		ParticleBuffer[particleIndex].velocity += ParticleBuffer[particleIndex].acceleration * fixedTimeStep;
+		ParticleBuffer[particleIndex].velocity += acceleration * fixedTimeStep;
 		ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * fixedTimeStep;
 	}
 }

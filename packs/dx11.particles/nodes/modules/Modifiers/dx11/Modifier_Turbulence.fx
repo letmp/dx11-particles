@@ -7,7 +7,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 acceleration;
+		float3 force;
 	#endif
 };
 
@@ -44,7 +44,7 @@ void CSUpdate(csin input)
 	);
 	noiseForce *= noiseAmount;
 	
-	ParticleBuffer[particleIndex].acceleration += noiseForce;
+	ParticleBuffer[particleIndex].force += noiseForce;
 	
 }
 

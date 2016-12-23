@@ -6,7 +6,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 acceleration;
+		float3 force;
 		float lifespan;
 		float age;
 		float4 color;
@@ -19,7 +19,7 @@ RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
-StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
+StructuredBuffer<float3> ForceBuffer <string uiname="Force Buffer";>;
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 Texture2D texRGB <string uiname="RGB";>;
@@ -90,9 +90,9 @@ void CS_Emit(csin input)
 		VelocityBuffer.GetDimensions(size,stride);
 		p.velocity = VelocityBuffer[emitterCounter % size];
 		
-		// SET ACCELERATION
-		AccelerationBuffer.GetDimensions(size,stride);
-		p.acceleration = AccelerationBuffer[emitterCounter % size];
+		// SET force
+		ForceBuffer.GetDimensions(size,stride);
+		p.force = ForceBuffer[emitterCounter % size];
 
 		// SET LIFESPAN
 		LifespanBuffer.GetDimensions(size,stride);

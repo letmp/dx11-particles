@@ -6,7 +6,6 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 acceleration;
 		float3 velocity;
 	#endif
 };
@@ -62,9 +61,7 @@ void CS_Set(csin input)
 			if (dist < minDist){
 				float f = saturate(1 - dist * 2);
 			  	f = pow( f, g );
-				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount;
-				//ParticleBuffer[particleIndex].velocity = normalize(ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * length(ParticleBuffer[particleIndexOther].velocity) * RepulseAmount;
-				
+				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount;				
 			}
 		}
 		

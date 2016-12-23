@@ -6,7 +6,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float3 position;
-		float3 acceleration;
+		float3 force;
 	#endif
 };
 
@@ -52,7 +52,7 @@ void CSSet(csin input)
 		float force = length(dist) / radius;
 		force = pow(saturate(1 - force), power);
 		
-		ParticleBuffer[particleIndex].acceleration += dist * force * strength;
+		ParticleBuffer[particleIndex].force += dist * force * strength;
 	}
 }
 

@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Selection\HasAcceleration (DX11.Particles.Selection).v4p" systemname="Age (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\Age (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Force (DX11.Particles.Selection).v4p" systemname="Age (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\Age (DX11.Mcps.Selectors).v4p" scrollx="240" scrolly="0">
    <NODE id="2" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
    </PIN>
@@ -10,16 +10,16 @@
    <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="12585" top="2235" width="10500" height="10710">
+   <BOUNDS type="Window" left="10575" top="4650" width="10260" height="10710">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="5700" top="645" width="795" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="5700" top="645" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1.01">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -27,7 +27,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Real">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Acceleration">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Length Force|">
    </PIN>
    <PIN pinname="Minimum" slicecount="1" values="-99999999">
    </PIN>
@@ -43,11 +43,11 @@
    </PIN>
    <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Input 1" slicecount="1" values="AccelerationEqual">
+   <PIN pinname="Input 1" slicecount="1" values="ForceEqual">
    </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="AccelerationLT">
+   <PIN pinname="Input 2" slicecount="1" values="ForceLT">
    </PIN>
-   <PIN pinname="Input 3" slicecount="1" values="AccelerationGT">
+   <PIN pinname="Input 3" slicecount="1" values="ForceGT">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -167,7 +167,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4500" top="2655" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="2" visible="1" values="|float fAcceleration : FACCELERATION|,|float fEpsilon : FEPSILON|">
+   <PIN pinname="Input String" slicecount="2" visible="1" values="|float fLengthForce : FLENGTHFORCE|,|float fEpsilon : FEPSILON|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="text">
    </PIN>
@@ -187,11 +187,11 @@
    <LINK srcnodeid="8" srcpinname="Output" dstnodeid="23" dstpinname="Input String">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="25" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="3135" top="5265" width="6330" height="2595">
+   <BOUNDS type="Box" left="3135" top="5265" width="6015" height="2190">
    </BOUNDS>
    <BOUNDS type="Node" left="3135" top="5265" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="3" visible="1" values="|bool AccelerationEqual(uint particleIndex, float fAcceleration, float fEpsilon) {&cr;&lf;&tab;return ((ParticleBuffer[particleIndex].acceleration &gt;= fAcceleration - fEpsilon) &amp;&amp; (ParticleBuffer[particleIndex].acceleration &lt;= fAcceleration + fEpsilon));&cr;&lf;};|,|bool AccelerationGT(uint particleIndex, float fAcceleration, float fEpsilon) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].acceleration &gt;= fAcceleration;&cr;&lf;};|,|bool AccelerationLT(uint particleIndex, float fAcceleration, float fEpsilon) {&cr;&lf;&tab;return ParticleBuffer[particleIndex].acceleration &lt;= fAcceleration;&cr;&lf;};|">
+   <PIN pinname="Input String" slicecount="3" visible="1" values="|bool ForceEqual(uint particleIndex, float fLengthForce, float fEpsilon) {&cr;&lf;&tab;float l = length( ParticleBuffer[particleIndex].force );&cr;&lf;&tab;return ( l &gt;= fLengthForce - fEpsilon) &amp;&amp; ( l &lt;= fLengthForce + fEpsilon);&cr;&lf;};|,|bool ForceGT(uint particleIndex, float fLengthForce, float fEpsilon) {&cr;&lf;&tab;return length(ParticleBuffer[particleIndex].force) &gt;= fLengthForce;&cr;&lf;};|,|bool ForceLT(uint particleIndex, float fLengthForce, float fEpsilon) {&cr;&lf;&tab;return length(ParticleBuffer[particleIndex].force) &lt;= fLengthForce;&cr;&lf;};|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -231,7 +231,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="2070" top="4845" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|float acceleration;|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|float3 force;|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -242,7 +242,7 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="Hidden" id="16">
    <BOUNDS type="Node" left="1035" top="3570" width="8745" height="270">
@@ -369,7 +369,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.01">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.02">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
@@ -400,4 +400,6 @@
    </LINK>
    <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="Custom Semantic Definition">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

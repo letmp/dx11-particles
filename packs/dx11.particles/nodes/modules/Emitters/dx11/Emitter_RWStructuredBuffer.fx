@@ -5,11 +5,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float3 position;
-		float3 velocity;
-		float3 acceleration;
 		float lifespan;
-		float age;
 	#endif
 };
 

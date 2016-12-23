@@ -6,13 +6,13 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float3 acceleration;
+		float3 force;
 	#endif
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
-StructuredBuffer<float3> AccelerationBuffer <string uiname="Acceleration Buffer";>;
+StructuredBuffer<float3> ForceBuffer <string uiname="Force Buffer";>;
 bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
 
 struct csin
@@ -29,9 +29,9 @@ void CSSet(csin input)
 	if (particleIndex == -1 ) return;
 	
 	uint size, stride;
-	AccelerationBuffer.GetDimensions(size,stride);
+	ForceBuffer.GetDimensions(size,stride);
 	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-	ParticleBuffer[particleIndex].acceleration = AccelerationBuffer[bufferIndex];	
+	ParticleBuffer[particleIndex].force = ForceBuffer[bufferIndex];	
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -41,9 +41,9 @@ void CSAdd(csin input)
 	if (particleIndex == -1 ) return;
 	
 	uint size, stride;
-	AccelerationBuffer.GetDimensions(size,stride);
+	ForceBuffer.GetDimensions(size,stride);
 	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-	ParticleBuffer[particleIndex].acceleration += AccelerationBuffer[bufferIndex] ;	
+	ParticleBuffer[particleIndex].force += ForceBuffer[bufferIndex] ;	
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }

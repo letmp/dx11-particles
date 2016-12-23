@@ -7,7 +7,7 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 acceleration;
+		float3 force;
 	#endif
 };
 
@@ -42,17 +42,17 @@ void CS_Bounce(csin input)
 	if(	condition){
 		if( conditionX){
 			ParticleBuffer[particleIndex].velocity.x *= -BounceMultiplicator;
-			ParticleBuffer[particleIndex].acceleration.x *= 0;
+			ParticleBuffer[particleIndex].force.x *= 0;
 		} 
 		
 		if( conditionY){
 			ParticleBuffer[particleIndex].velocity.y *= -BounceMultiplicator;
-			ParticleBuffer[particleIndex].acceleration.y *= 0;
+			ParticleBuffer[particleIndex].force.y *= 0;
 		} 
 		
 		if( conditionZ){
 			ParticleBuffer[particleIndex].velocity.z *= -BounceMultiplicator;
-			ParticleBuffer[particleIndex].acceleration.z *= 0;
+			ParticleBuffer[particleIndex].force.z *= 0;
 		}		
 		ParticleBuffer[particleIndex].velocity = mul(float4(ParticleBuffer[particleIndex].velocity,1), Rotation).xyz;
 		ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * psTime.y;
