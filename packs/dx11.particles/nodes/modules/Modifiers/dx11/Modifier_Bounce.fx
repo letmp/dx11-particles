@@ -31,8 +31,9 @@ void CS_Bounce(csin input)
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
 	
-	float3 pointCoord = mul(float4(ParticleBuffer[particleIndex].position,1), tW).xyz;
-	
+	float4 pointCoord = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
+ 	pointCoord.xyz /= pointCoord.w;
+ 	pointCoord.xyz = abs (pointCoord.xyz);  
 	bool conditionX = pointCoord.x < -0.5 || pointCoord.x > 0.5;
 	bool conditionY = pointCoord.y < -0.5 || pointCoord.y > 0.5;
 	bool conditionZ = pointCoord.z < -0.5 || pointCoord.z > 0.5;
