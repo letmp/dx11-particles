@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Core\UpdateAliveBuffer (DX11.Particles.Core).v4p" systemname="UpdateAliveBuffer (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\UpdateAliveBuffer (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Core\UpdateAliveBuffer (DX11.Particles.Core).v4p" systemname="UpdateAliveBuffer (DX11.Mcps.Utils)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Utils\UpdateAliveBuffer (DX11.Mcps.Utils).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="0" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="8415" top="4470" width="1215" height="240">
    </BOUNDS>
@@ -10,14 +10,14 @@
    </NODE>
    <BOUNDS type="Window" left="8400" top="1725" width="15315" height="12030">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="4" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="6300" top="900" width="1590" height="270">
    </BOUNDS>
    <BOUNDS type="Node" left="6300" top="900" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|ParticleSystem 01|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
    </PIN>
@@ -292,7 +292,7 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE systemname="Info (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core Shader)" componentmode="Hidden" id="37">
    <BOUNDS type="Node" left="6315" top="1305" width="100" height="100">
@@ -319,7 +319,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="9510" top="5070" width="4410" height="1875">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|note that the internal counter of the alivecounterbuffer does NOT store the number of alive particles during a frame! instead the internal counter is reset in every emitter and then used to count new emitted particles and update alivecounterbuffer[0] (which actually holds the number of alive particles). at the end of a frame the internal counter is then set to the actual number of alive particles so that further shaders can use the counter.|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|note that the internal counter of the alivecounterbuffer does NOT store the number of alive particles during a frame! instead the internal counter is reset in every emitter and then used to count newly emitted particles and update alivecounterbuffer[0] (which actually holds the number of alive particles). at the end of a frame the internal counter is then set to the actual number of alive particles so that further shaders can use the internal counter.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -598,4 +598,8 @@
    </LINK>
    <LINK srcnodeid="24" srcpinname="Layer" dstnodeid="32" dstpinname="Layer In">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <INFO author="tmp" description="Maintains the AliveBuffers of a particlesystem." tags="">
+   </INFO>
    </PATCH>
