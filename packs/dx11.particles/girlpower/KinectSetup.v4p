@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\KinectSetup.v4p" systemname="KinectSetup" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\KinectSetup.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="2415" top="2505" width="11085" height="10485">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="86">
    <BOUNDS type="Node" left="4425" top="4710" width="750" height="270">
@@ -112,7 +112,7 @@
    </NODE>
    <LINK srcnodeid="169" srcpinname="Layer" dstnodeid="98" dstpinname="Layer 3">
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE systemname="AspectRatio (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="AspectRatio (DX11.Layer)" componentmode="Hidden" id="583">
    <BOUNDS type="Node" left="2910" top="8115" width="100" height="100">
@@ -391,7 +391,7 @@
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
-   <PIN pinname="Layer 2" visible="1">
+   <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
@@ -401,18 +401,6 @@
    </LINKPOINT>
    <LINKPOINT x="8775" y="2978">
    </LINKPOINT>
-   </LINK>
-   <NODE systemname="Acceleration (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Acceleration (DX11.Particles.Modifiers).v4p" nodename="Acceleration (DX11.Particles.Modifiers)" componentmode="Hidden" id="877">
-   <BOUNDS type="Node" left="8940" top="2640" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Acceleration Buffer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="8940" top="2640">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="877" srcpinname="Layer" dstnodeid="876" dstpinname="Layer 2">
    </LINK>
    <LINK srcnodeid="876" srcpinname="Layer Out" dstnodeid="870" dstpinname="Modifier In">
    </LINK>
@@ -426,8 +414,6 @@
    <BOUNDS type="Box" left="8940" top="1860">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="878" srcpinname="Buffer" dstnodeid="877" dstpinname="Acceleration Buffer">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="879" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="8940" top="915" width="795" height="720">
    </BOUNDS>
@@ -550,4 +536,20 @@
    </LINK>
    <LINK srcnodeid="889" srcpinname="Resolution" dstnodeid="848" dstpinname="Resolution">
    </LINK>
+   <NODE systemname="Force (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers).v4p" nodename="Force (DX11.Particles.Modifiers)" componentmode="Hidden" id="877">
+   <BOUNDS type="Node" left="8940" top="2640" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Acceleration Buffer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="8940" top="2640">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="877" srcpinname="Layer" dstnodeid="876" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="878" srcpinname="Buffer" dstnodeid="877" dstpinname="Acceleration Buffer">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

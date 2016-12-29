@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Analysis\Count (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="675" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Analysis\Count (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="5325" top="1515" width="100" height="100">
    </BOUNDS>
@@ -14,11 +14,11 @@
    <PIN pinname="Buffer ElementCount" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="13905" top="480" width="12585" height="10890">
+   <BOUNDS type="Window" left="7335" top="960" width="11835" height="11370">
    </BOUNDS>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="4" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="5325" top="855" width="1320" height="240">
@@ -343,7 +343,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9465" top="855" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_mySelection">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_Intersection">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Selection">
    </PIN>
@@ -375,7 +375,7 @@
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="140">
    <BOUNDS type="Node" left="5940" top="6240" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Node" visible="1">
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Index" visible="1">
    </PIN>
@@ -544,4 +544,8 @@
    </LINK>
    <LINK srcnodeid="140" srcpinname="Output Node" dstnodeid="36" dstpinname="GroupIndexBuffer">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <INFO author="tmp" description="Outputs the number of particles per selected (sub)group." tags="HitTest">
+   </INFO>
    </PATCH>

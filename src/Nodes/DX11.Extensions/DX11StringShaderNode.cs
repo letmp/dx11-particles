@@ -2,9 +2,7 @@
 using System.IO;
 using System.ComponentModel.Composition;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 using FeralTic.DX11;
 using FeralTic.DX11.Queries;
@@ -15,7 +13,6 @@ using SlimDX.Direct3D11;
 using SlimDX.D3DCompiler;
 using Device = SlimDX.Direct3D11.Device;
 
-using VVVV.DX11;
 using VVVV.DX11.Lib.Effects;
 using VVVV.DX11.Lib.Rendering;
 

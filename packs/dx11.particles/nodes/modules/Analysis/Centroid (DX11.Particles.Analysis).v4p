@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="-360">
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="5265" top="1380" width="100" height="100">
    </BOUNDS>
@@ -14,11 +14,11 @@
    <PIN pinname="Buffer ElementCount" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="6990" top="735" width="13305" height="14310">
+   <BOUNDS type="Window" left="7335" top="960" width="12285" height="14070">
    </BOUNDS>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="4" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="5265" top="690" width="1320" height="240">
@@ -477,7 +477,7 @@
    </PIN>
    <PIN pinname="BufferSemantic" visible="1">
    </PIN>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="120" srcpinname="Output String" dstnodeid="119" dstpinname="BufferSemantic Filter">
@@ -611,7 +611,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7665" top="690" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_mySelection">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_Intersection">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Selection">
    </PIN>
@@ -621,7 +621,7 @@
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="136">
    <BOUNDS type="Node" left="6060" top="4605" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Node" visible="1">
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Index" visible="1">
    </PIN>
@@ -820,4 +820,8 @@
    </LINK>
    <LINK srcnodeid="119" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="144" dstpinname="AliveCounterBuffer">
    </LINK>
+   <INFO author="tmp" description="Outputs the centroids of the selected groups of particles." tags="">
+   </INFO>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

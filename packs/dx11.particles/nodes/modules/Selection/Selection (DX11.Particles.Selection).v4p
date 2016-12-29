@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="1965">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x86\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="645" top="480" width="795" height="240">
    </BOUNDS>
@@ -935,6 +935,8 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2880" top="9225">
    </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="65" srcpinname="Output" dstnodeid="135" dstpinname="ShaderCode" linkstyle="Bezier">
    <LINKPOINT x="4725" y="7478">
@@ -1072,12 +1074,6 @@
    <LINKPOINT x="2595" y="8393">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="139" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 1" linkstyle="Bezier">
-   <LINKPOINT x="1305" y="10320">
-   </LINKPOINT>
-   <LINKPOINT x="2715" y="10020">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="140" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="2220" top="8160" width="825" height="240">
    </BOUNDS>
@@ -1102,8 +1098,6 @@
    <BOUNDS type="Box" left="2880" top="10080">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="135" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
-   </LINK>
    <LINK srcnodeid="2" srcpinname="Layer Out" dstnodeid="34" dstpinname="Layer 2" linkstyle="Bezier">
    <LINKPOINT x="2910" y="10815">
    </LINKPOINT>
@@ -1148,10 +1142,14 @@
    </NODE>
    <LINK srcnodeid="143" srcpinname="Output Enum" dstnodeid="33" dstpinname="Technique">
    </LINK>
-   <NODE systemname="Template (DX11.Effect)" filename="%VVVV%\packs\dx11\nodes\dx11\Template.fx" nodename="Template (DX11.Effect)" componentmode="Hidden" id="146">
-   <BOUNDS type="Node" left="11850" top="13560" width="100" height="100">
-   </BOUNDS>
-   </NODE>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
+   <LINK srcnodeid="139" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 1" linkstyle="Bezier">
+   <LINKPOINT x="1305" y="10155">
+   </LINKPOINT>
+   <LINKPOINT x="2700" y="10155">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="135" srcpinname="Layer" dstnodeid="2" dstpinname="Layer In">
+   </LINK>
    </PATCH>

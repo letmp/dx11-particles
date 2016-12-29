@@ -301,7 +301,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="4545" top="11445" width="7335" height="4815">
    </BOUNDS>
-   <BOUNDS type="Window" left="32805" top="2940" width="12510" height="10245">
+   <BOUNDS type="Window" left="17985" top="1080" width="10815" height="8295">
    </BOUNDS>
    <PIN pinname="View" visible="1">
    </PIN>
@@ -563,6 +563,8 @@
    </PIN>
    <BOUNDS type="Box" left="7815" top="4920">
    </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" values="Add">
+   </PIN>
    </NODE>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
@@ -573,11 +575,11 @@
    </BOUNDS>
    <PIN pinname="Selection Out" visible="1">
    </PIN>
-   <PIN pinname="Mode" slicecount="1" values="|Greater Than|">
+   <PIN pinname="Mode" slicecount="1" values="|Greater Than|" visible="1">
    </PIN>
    <PIN pinname="Epsilon" slicecount="1" values="0">
    </PIN>
-   <PIN pinname="Length Force" slicecount="1" values="0.3">
+   <PIN pinname="Length Force" slicecount="1" values="0.3" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Selection (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" nodename="Selection (DX11.Particles.Selection)" componentmode="Hidden" id="1571">
@@ -681,5 +683,29 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="1570" srcpinname="Selection Out" dstnodeid="1571" dstpinname="Selection">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="1578">
+   <BOUNDS type="Box" left="9900" top="3015" width="1200" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9900" top="3015" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Greater Than|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1578" srcpinname="Output Enum" dstnodeid="1570" dstpinname="Mode">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="1579">
+   <BOUNDS type="Box" left="10230" top="3300" width="600" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10230" top="3300" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.3">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1579" srcpinname="Y Output Value" dstnodeid="1570" dstpinname="Length Force">
    </LINK>
    </PATCH>
