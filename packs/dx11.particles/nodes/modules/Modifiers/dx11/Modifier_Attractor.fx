@@ -50,7 +50,7 @@ void CSSet(csin input)
 		float power = AttrPower[i % cnt];
 		
 		float force = length(dist) / radius;
-		force = pow(saturate(1 - force), power);
+		force = pow(saturate(1 - force), 1 / power);
 		
 		ParticleBuffer[particleIndex].force += dist * force * strength;
 	}
