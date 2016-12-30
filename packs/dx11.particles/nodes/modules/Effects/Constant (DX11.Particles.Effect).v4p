@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Effects\Constant (DX11.Particles.Effect).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Effects\Constant (DX11.Particles.Effect).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="3765" top="2715" width="18675" height="9870">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="4770" top="3930" width="795" height="240">
@@ -50,12 +50,12 @@
    </NODE>
    <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="21" dstpinname="Geometry In">
    </LINK>
-   <INFO author="tmp" description="Draws an arbitrary geometry at each point of the pointcloud." tags="Visualization">
+   <INFO author="tmp" description="Simple constant shader for the particlesystem. Draws material with solid color." tags="">
    </INFO>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="41" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="2385" top="840" width="795" height="240">
+   <BOUNDS type="Box" left="6390" top="840" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2385" top="840" width="0" height="0">
+   <BOUNDS type="Node" left="6390" top="840" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -64,12 +64,12 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="47" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="5775" top="840" width="795" height="240">
+   <BOUNDS type="Box" left="8370" top="840" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5775" top="840" width="0" height="0">
+   <BOUNDS type="Node" left="8370" top="840" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystemBuffers">
    </PIN>
@@ -285,9 +285,9 @@
    <LINK srcnodeid="67" srcpinname="Output" dstnodeid="66" dstpinname="Switch">
    </LINK>
    <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="68" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5805" y="2475">
+   <LINKPOINT x="8355" y="2468">
    </LINKPOINT>
-   <LINKPOINT x="5805" y="2475">
+   <LINKPOINT x="5835" y="2468">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="69">
@@ -313,9 +313,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="69" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5835" y="2415">
+   <LINKPOINT x="8400" y="2408">
    </LINKPOINT>
-   <LINKPOINT x="8430" y="2415">
+   <LINKPOINT x="8445" y="2408">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="69" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="66" dstpinname="Input 2" linkstyle="VHV">
@@ -385,9 +385,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="41" srcpinname="Output Node" dstnodeid="45" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2445" y="3405">
+   <LINKPOINT x="6420" y="3413">
    </LINKPOINT>
-   <LINKPOINT x="6585" y="3405">
+   <LINKPOINT x="6600" y="3413">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="45" dstpinname="Render State" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -422,4 +422,6 @@
    </LINK>
    <LINK srcnodeid="69" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="45" dstpinname="AlivePointerBuffer">
    </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>

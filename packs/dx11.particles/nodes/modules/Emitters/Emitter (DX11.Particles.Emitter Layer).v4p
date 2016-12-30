@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha34.107.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha34.107_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="7530" top="1500" width="18795" height="11955">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.101.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="48" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="645" top="10650" width="795" height="240">
@@ -304,7 +304,7 @@
    <LINKPOINT x="4740" y="1560">
    </LINKPOINT>
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="140">
    <BOUNDS type="Node" left="8760" top="4830" width="100" height="100">
@@ -633,7 +633,9 @@
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Acceleration Buffer|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Force Buffer|">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="212" systemname="IOBox (Node)">
@@ -747,6 +749,8 @@
    </BOUNDS>
    <BOUNDS type="Box" left="810" top="6030">
    </BOUNDS>
+   <PIN pinname="Force Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="221" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
    </LINK>
@@ -806,6 +810,16 @@
    <LINKPOINT x="9585" y="3450">
    </LINKPOINT>
    <LINKPOINT x="4845" y="3450">
+   </LINKPOINT>
+   </LINK>
+   <INFO author="tmp" description="Emits particles with help of a camera, looking at a scene." tags="">
+   </INFO>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <LINK srcnodeid="211" srcpinname="Output Node" dstnodeid="221" dstpinname="Force Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10905" y="3435">
+   </LINKPOINT>
+   <LINKPOINT x="5415" y="3435">
    </LINKPOINT>
    </LINK>
    </PATCH>

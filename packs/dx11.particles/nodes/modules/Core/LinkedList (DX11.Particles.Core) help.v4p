@@ -183,6 +183,10 @@
    </PIN>
    <BOUNDS type="Box" left="2025" top="5295">
    </BOUNDS>
+   <PIN pinname="Emit Count" visible="1">
+   </PIN>
+   <PIN pinname="Emitter Size" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="16">
    <BOUNDS type="Box" left="645" top="4500" width="465" height="240">
@@ -197,7 +201,9 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="EmitterSize">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Size|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="15" dstpinname="EmitterSize" linkstyle="Bezier">
@@ -219,7 +225,9 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="EmitCount">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emit Count|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="15" dstpinname="EmitCount" linkstyle="Bezier">
@@ -794,4 +802,16 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Emit Count" linkstyle="Bezier">
+   <LINKPOINT x="1695" y="5003">
+   </LINKPOINT>
+   <LINKPOINT x="2325" y="5003">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Emitter Size" linkstyle="Bezier">
+   <LINKPOINT x="705" y="5003">
+   </LINKPOINT>
+   <LINKPOINT x="2190" y="5003">
+   </LINKPOINT>
+   </LINK>
    </PATCH>
