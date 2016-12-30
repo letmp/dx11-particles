@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="30" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="30" scrolly="0">
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
    <BOUNDS type="Node" left="5625" top="2850" width="100" height="100">
    </BOUNDS>
@@ -36,7 +36,7 @@
    </NODE>
    <BOUNDS type="Window" left="2940" top="4350" width="18750" height="10395">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="17">
    <BOUNDS type="Node" left="4125" top="3960" width="1050" height="270">
@@ -111,7 +111,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="EmitCount">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emit Count|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -131,7 +131,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="EmitterSize">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Size|">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -391,7 +391,7 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="EmitterName">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Name|">
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
@@ -418,18 +418,6 @@
    </LINK>
    <LINK srcnodeid="87" srcpinname="Variables" dstnodeid="98" dstpinname="Input String" hiddenwhenlocked="0" linkstyle="PolyLine">
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="113" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="8790" top="900" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="8790" top="900" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Acceleration Buffer|">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="101" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="15705" y="3998">
    </LINKPOINT>
@@ -480,7 +468,7 @@
    </LINK>
    <LINK srcnodeid="99" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 2">
    </LINK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="114" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="4545" top="5355" width="1125" height="240">
@@ -615,6 +603,8 @@
    </PIN>
    <PIN pinname="Lifespan Buffer" visible="1">
    </PIN>
+   <PIN pinname="Force Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="112" dstpinname="Geometry">
    </LINK>
@@ -666,16 +656,30 @@
    <LINKPOINT x="7530" y="2790">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="113" srcpinname="Output Node" dstnodeid="112" dstpinname="Acceleration Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8805" y="2805">
-   </LINKPOINT>
-   <LINKPOINT x="8205" y="2805">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="86" srcpinname="Output Node" dstnodeid="112" dstpinname="Lifespan Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="10260" y="2798">
    </LINKPOINT>
    <LINKPOINT x="8880" y="2798">
    </LINKPOINT>
    </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="126">
+   <BOUNDS type="Box" left="8925" top="900" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8925" top="900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Force Buffer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="126" srcpinname="Output Node" dstnodeid="112" dstpinname="Force Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="8940" y="2790">
+   </LINKPOINT>
+   <LINKPOINT x="8205" y="2790">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <INFO author="tmp" description="Simple Emitter where all mandatory particle-attributes can be set by DynamicBuffers." tags="">
+   </INFO>
    </PATCH>
