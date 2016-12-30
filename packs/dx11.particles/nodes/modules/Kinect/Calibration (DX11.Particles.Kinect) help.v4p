@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.particles\nodes\modules\Kinect\Calibration (DX11.Particles.Kinect) help.v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Calibration (DX11.Particles.Kinect) help.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="1215" top="1380" width="13545" height="13650">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3" systemname="IOBox (String)">
@@ -48,9 +48,9 @@
    <PIN pinname="Transform Out" visible="1">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="1110" top="1695" width="100" height="100">
@@ -206,7 +206,7 @@
    </LINK>
    <LINK srcnodeid="10" srcpinname="Layer Out" dstnodeid="7" dstpinname="Layers">
    </LINK>
-   <NODE systemname="Camera (Transform Softimage)" filename="%VVVV%\lib\nodes\modules\Transform\Camera (Transform Softimage).v4p" nodename="Camera (Transform Softimage)" componentmode="Hidden" id="11">
+   <NODE systemname="Camera (Transform Softimage Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\Camera (Transform Softimage).v4p" nodename="Camera (Transform Softimage)" componentmode="Hidden" id="11">
    <BOUNDS type="Node" left="4335" top="17160" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View Projection" visible="1">
@@ -554,18 +554,6 @@
    </NODE>
    <LINK srcnodeid="29" srcpinname="Layer" dstnodeid="30" dstpinname="Layer In">
    </LINK>
-   <NODE systemname="Constant (DX11.Particles.Sink)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Sinks\Constant (DX11.Particles.Sink).v4p" nodename="Constant (DX11.Particles.Sink)" componentmode="Hidden" id="31">
-   <BOUNDS type="Node" left="4020" top="15000" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers" visible="1">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="30" srcpinname="ParticleSystemBuffers" dstnodeid="31" dstpinname="ParticleSystemBuffers">
-   </LINK>
    <NODE systemname="Box (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Box (DX11.Geometry)" componentmode="Hidden" id="32">
    <BOUNDS type="Node" left="4035" top="14580" width="405" height="270">
    </BOUNDS>
@@ -576,14 +564,6 @@
    <BOUNDS type="Box" left="4035" top="14580">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="32" srcpinname="Geometry Out" dstnodeid="31" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="4095" y="14910">
-   </LINKPOINT>
-   <LINKPOINT x="4365" y="14910">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="31" srcpinname="Layer" dstnodeid="9" dstpinname="Layer 2">
-   </LINK>
    <LINK srcnodeid="0" srcpinname="Help Layer" dstnodeid="9" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="7950" y="13088">
    </LINKPOINT>
@@ -647,7 +627,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="10395" top="210" width="2460" height="945">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2016&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2017&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -656,4 +636,26 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="Constant (DX11.Particles.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Effects\Constant (DX11.Particles.Effect).v4p" nodename="Constant (DX11.Particles.Effect)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="4020" top="15000" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="30" srcpinname="ParticleSystemBuffers" dstnodeid="31" dstpinname="ParticleSystemBuffers">
+   </LINK>
+   <LINK srcnodeid="32" srcpinname="Geometry Out" dstnodeid="31" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="4095" y="14910">
+   </LINKPOINT>
+   <LINKPOINT x="4365" y="14910">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="31" srcpinname="Layer" dstnodeid="9" dstpinname="Layer 2">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
    </PATCH>
