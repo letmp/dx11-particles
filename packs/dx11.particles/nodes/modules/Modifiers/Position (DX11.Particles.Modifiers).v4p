@@ -361,6 +361,8 @@
    </PIN>
    <PIN pinname="Position Buffer" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
@@ -414,4 +416,16 @@
    </PACK>
    <INFO author="tmp" description="Sets a new position or adds values to the existing position of a particle." tags="">
    </INFO>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="64">
+   <BOUNDS type="Box" left="480" top="3690" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="480" top="3690" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="64" srcpinname="Output Node" dstnodeid="54" dstpinname="Layer In">
+   </LINK>
    </PATCH>

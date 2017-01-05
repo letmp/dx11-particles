@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\LorenzAttractor (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\LorenzAttractor (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="2100" top="1005" width="13380" height="8865">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
@@ -349,6 +349,8 @@
    </PIN>
    <PIN pinname="R" visible="1">
    </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="108" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
    <LINKPOINT x="8565" y="5130">
@@ -382,4 +384,16 @@
    </INFO>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="110">
+   <BOUNDS type="Box" left="915" top="3750" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="915" top="3750" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="110" srcpinname="Output Node" dstnodeid="108" dstpinname="Layer In">
+   </LINK>
    </PATCH>

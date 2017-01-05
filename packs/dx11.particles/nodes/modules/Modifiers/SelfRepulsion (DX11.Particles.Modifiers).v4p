@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\SelfRepulsion (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\SelfRepulsion (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="13545" top="975" width="13860" height="8820">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
@@ -313,9 +313,9 @@
    <LINK srcnodeid="73" srcpinname="Layer Out" dstnodeid="1" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="75" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2880" top="570" width="285" height="240">
+   <BOUNDS type="Box" left="3525" top="570" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2880" top="570" width="0" height="0">
+   <BOUNDS type="Node" left="3525" top="570" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="64">
    </PIN>
@@ -335,15 +335,15 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="75" srcpinname="Y Output Value" dstnodeid="74" dstpinname="Cells" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2880" y="2633">
+   <LINKPOINT x="3310" y="2633">
    </LINKPOINT>
-   <LINKPOINT x="1095" y="2633">
+   <LINKPOINT x="1310" y="2633">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="76" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="1980" top="570" width="300" height="240">
+   <BOUNDS type="Box" left="2625" top="570" width="300" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1980" top="570" width="0" height="0">
+   <BOUNDS type="Node" left="2625" top="570" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -353,9 +353,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="76" srcpinname="Output Node" dstnodeid="74" dstpinname="Transform" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1995" y="2625">
+   <LINKPOINT x="2425" y="2625">
    </LINKPOINT>
-   <LINKPOINT x="795" y="2625">
+   <LINKPOINT x="1010" y="2625">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Inverse (Transform)" nodename="Inverse (Transform)" componentmode="Hidden" id="79">
@@ -367,9 +367,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="76" srcpinname="Output Node" dstnodeid="79" dstpinname="Source" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2120" y="2423">
+   <LINKPOINT x="2550" y="2423">
    </LINKPOINT>
-   <LINKPOINT x="4975" y="2423">
+   <LINKPOINT x="5190" y="2423">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="82" systemname="IOBox (Value Advanced)">
@@ -433,6 +433,8 @@
    </BOUNDS>
    <PIN pinname="Default Radius" visible="1" slicecount="1" values="0">
    </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="88" dstpinname="Geometry">
    </LINK>
@@ -455,9 +457,9 @@
    <LINK srcnodeid="79" srcpinname="Transform Out" dstnodeid="88" dstpinname="Transform In">
    </LINK>
    <LINK srcnodeid="75" srcpinname="Y Output Value" dstnodeid="88" dstpinname="CellCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2940" y="2633">
+   <LINKPOINT x="3370" y="2633">
    </LINKPOINT>
-   <LINKPOINT x="4995" y="2633">
+   <LINKPOINT x="5210" y="2633">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="83" srcpinname="Y Output Value" dstnodeid="88" dstpinname="RepulseAmount">
@@ -474,4 +476,16 @@
    </PACK>
    <INFO author="tmp" description="Applies self repulsion between particles." tags="">
    </INFO>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="89">
+   <BOUNDS type="Box" left="2055" top="3615" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2055" top="3615" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="89" srcpinname="Output Node" dstnodeid="88" dstpinname="Layer In">
+   </LINK>
    </PATCH>

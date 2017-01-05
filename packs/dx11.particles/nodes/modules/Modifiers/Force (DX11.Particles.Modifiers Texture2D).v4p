@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
    <BOUNDS type="Window" left="12240" top="2430" width="13860" height="8820">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
@@ -335,6 +335,8 @@
    </BOUNDS>
    <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
    </BOUNDS>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
    </NODE>
    <LINK srcnodeid="69" srcpinname="Output Enum" dstnodeid="77" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="6645" y="2700">
@@ -378,4 +380,16 @@
    </PACK>
    <INFO author="tmp" description="Applies forces to particles by projecting rgb values to the particles from a given View." tags="">
    </INFO>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="78">
+   <BOUNDS type="Box" left="495" top="3795" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="495" top="3795" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="77" dstpinname="Layer In">
+   </LINK>
    </PATCH>
