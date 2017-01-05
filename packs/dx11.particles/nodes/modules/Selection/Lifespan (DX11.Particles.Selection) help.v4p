@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Age (DX11.Particles.Selection) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Lifespan (DX11.Particles.Selection) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2070" top="1905" width="12915" height="12345">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -21,7 +21,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="300" width="9090" height="435">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Age (DX11.Particles.Selection)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Lifespan (DX11.Particles.Selection)|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -33,7 +33,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="675" width="5100" height="600">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Selects particles by age.|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Selects particles by lifespan.|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -500,22 +500,10 @@
    <LINKPOINT x="5130" y="6743">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Age (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Age (DX11.Particles.Selection).v4p" nodename="Age (DX11.Particles.Selection)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="6465" top="4035" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Selection Out" visible="1">
-   </PIN>
-   <PIN pinname="Mode" slicecount="1" visible="1" values="|Lower Than|">
-   </PIN>
-   <PIN pinname="Time" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="69" srcpinname="Selection Out" dstnodeid="56" dstpinname="Selection">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="70">
-   <BOUNDS type="Box" left="6720" top="3150" width="795" height="720">
+   <BOUNDS type="Box" left="6870" top="3075" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="6720" top="3150" width="0" height="0">
+   <BOUNDS type="Node" left="6870" top="3075" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,1,2">
    </PIN>
@@ -531,9 +519,9 @@
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Time">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="71">
    <BOUNDS type="Box" left="6480" top="2610" width="1140" height="240">
    </BOUNDS>
@@ -542,6 +530,24 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Lower Than|">
    </PIN>
    </NODE>
+   <NODE systemname="Lifespan (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Lifespan (DX11.Particles.Selection).v4p" nodename="Lifespan (DX11.Particles.Selection)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="6465" top="4035" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Selection Out" visible="1">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" visible="1" values="|Lower Than|">
+   </PIN>
+   <PIN pinname="Time" visible="1">
+   </PIN>
+   <PIN pinname="Lifespan" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="69" srcpinname="Selection Out" dstnodeid="56" dstpinname="Selection">
+   </LINK>
+   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Time">
+   </LINK>
    <LINK srcnodeid="71" srcpinname="Output Enum" dstnodeid="69" dstpinname="Mode">
+   </LINK>
+   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Lifespan">
    </LINK>
    </PATCH>

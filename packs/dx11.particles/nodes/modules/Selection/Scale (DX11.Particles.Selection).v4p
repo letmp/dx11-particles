@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv45beta34.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Scale (DX11.Particles.Selection).v4p" systemname="Age (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\Age (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Selection\Scale (DX11.Particles.Selection).v4p" systemname="Age (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\Age (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="-360">
    <NODE id="2" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
    </PIN>
@@ -12,7 +12,7 @@
    </NODE>
    <BOUNDS type="Window" left="7905" top="1440" width="13500" height="11700">
    </BOUNDS>
-   <PACK Name="addonpack" Version="34.1.0">
+   <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="Switch (String Input)" nodename="Switch (String Input)" componentmode="Hidden" id="8">
    <BOUNDS type="Node" left="1035" top="2355" width="100" height="100">
@@ -189,7 +189,7 @@
    </PIN>
    <PIN pinname="Output String" visible="1">
    </PIN>
-   <PIN pinname="Input String" slicecount="1" values="||">
+   <PIN pinname="Input String" slicecount="3" values="|ScaleEqual(particleIndex,fScale_31198893_0, fEpsilon_31198893_0)|,|ScaleEqual(particleIndex,fScale_31198893_1, fEpsilon_31198893_0)|,|ScaleEqual(particleIndex,fScale_31198893_2, fEpsilon_31198893_0)|">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
@@ -210,60 +210,8 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.0">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
-   <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="Hidden" id="16">
-   <BOUNDS type="Node" left="1035" top="3870" width="8745" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="345" top="975" width="9040" height="5800">
-   </BOUNDS>
-   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
-   </BOUNDS>
-   <PIN pinname="FunctionArguments" visible="1">
-   </PIN>
-   <PIN pinname="Conjunct And/Or" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Variable Type" visible="1">
-   </PIN>
-   <PIN pinname="Variable Name" visible="1">
-   </PIN>
-   <PIN pinname="Semantic" visible="1">
-   </PIN>
-   <PIN pinname="Semantic Count" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="ConstantBuffer Entry" visible="1">
-   </PIN>
-   <PIN pinname="FunctionCall" visible="1">
-   </PIN>
-   <PIN pinname="Id" visible="1">
-   </PIN>
-   <PIN pinname="FunctionArgument" visible="1">
-   </PIN>
-   <PIN pinname="VariableType" visible="1">
-   </PIN>
-   <PIN pinname="VariableName" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantic VariableDefinition" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantic Name" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantic Count" visible="1" slicecount="2" values="3,1">
-   </PIN>
-   <PIN pinname="Custom Semantic Entry" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantic" visible="1">
-   </PIN>
-   <PIN pinname="Custom Semantic Definition" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="23" srcpinname="Output String" dstnodeid="16" dstpinname="FunctionName">
-   </LINK>
-   <LINK srcnodeid="16" srcpinname="FunctionCall" dstnodeid="26" dstpinname="Input String">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Output String" dstnodeid="16" dstpinname="FunctionArgument">
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="VariableType">
-   </LINK>
    <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="24">
    <BOUNDS type="Node" left="1035" top="9885" width="6360" height="270">
    </BOUNDS>
@@ -285,7 +233,7 @@
    </PIN>
    <PIN pinname="Function" visible="1">
    </PIN>
-   <PIN pinname="Custom Semantic Entry" visible="1">
+   <PIN pinname="Custom Semantic Entry" visible="1" slicecount="4" values="|float3 fScale_31198893_0 : FSCALE_31198893_0;|,|float3 fScale_31198893_1 : FSCALE_31198893_1;|,|float3 fScale_31198893_2 : FSCALE_31198893_2;|,|float fEpsilon_31198893_0 : FEPSILON_31198893_0;|">
    </PIN>
    <PIN pinname="Custom Semantic" visible="1" slicecount="1" values="||">
    </PIN>
@@ -298,25 +246,11 @@
    </LINK>
    <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="24" dstpinname="Variable List">
    </LINK>
-   <LINK srcnodeid="16" srcpinname="ConstantBuffer Entry" dstnodeid="24" dstpinname="Constant Buffer Entry" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4170" y="6105">
-   </LINKPOINT>
-   <LINKPOINT x="5775" y="6105">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="Custom Semantic VariableDefinition">
-   </LINK>
    <LINK srcnodeid="26" srcpinname="Output String" dstnodeid="24" dstpinname="FunctionCall">
    </LINK>
    <LINK srcnodeid="27" srcpinname="Output String" dstnodeid="24" dstpinname="Variables">
    </LINK>
    <LINK srcnodeid="25" srcpinname="Output String" dstnodeid="24" dstpinname="Function">
-   </LINK>
-   <LINK srcnodeid="16" srcpinname="Custom Semantic Entry" dstnodeid="24" dstpinname="Custom Semantic Entry" linkstyle="Bezier">
-   <LINKPOINT x="2175" y="6713">
-   </LINKPOINT>
-   <LINKPOINT x="4185" y="7313">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="29">
    <BOUNDS type="Node" left="6855" top="1455" width="100" height="100">
@@ -327,13 +261,11 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.03">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
    </PIN>
    <PIN pinname="X Input Value" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="16" dstpinname="Custom Semantic Definition">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="31" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="6225" top="375" width="795" height="720">
    </BOUNDS>
@@ -361,7 +293,7 @@
    </BOUNDS>
    <PIN pinname="InputXYZ" visible="1">
    </PIN>
-   <PIN pinname="Semantic" visible="1">
+   <PIN pinname="Semantic" visible="1" slicecount="2" values="FSCALE_7241524_0,FSCALE_7241524_2">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -416,50 +348,24 @@
    </LINK>
    <LINK srcnodeid="36" srcpinname="Count" dstnodeid="33" dstpinname="Input 2">
    </LINK>
-   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="16" dstpinname="Custom Semantic Count">
-   </LINK>
    <LINK srcnodeid="31" srcpinname="Y Output Value" dstnodeid="32" dstpinname="InputXYZ" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="6240" y="5003">
    </LINKPOINT>
    <LINKPOINT x="5235" y="5003">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Unzip (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (String)" componentmode="Hidden" id="37">
-   <BOUNDS type="Node" left="5760" top="8355" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Output 1" visible="1">
-   </PIN>
-   <PIN pinname="Output 2" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="16" srcpinname="Custom Semantic" dstnodeid="37" dstpinname="Input" linkstyle="Bezier">
-   <LINKPOINT x="4335" y="6248">
-   </LINKPOINT>
-   <LINKPOINT x="5775" y="6248">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="37" srcpinname="Output 1" dstnodeid="32" dstpinname="Semantic">
-   </LINK>
    <NODE systemname="RenderSemantic (DX11.Layer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Value)" componentmode="Hidden" id="15">
    <BOUNDS type="Node" left="6630" top="8925" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="4" values="0,0,0,0">
    </PIN>
-   <PIN pinname="Semantic" visible="1" slicecount="2" values="FSCALE_25200320_0,FEPSILON_25200320_0">
+   <PIN pinname="Semantic" visible="1" slicecount="2" values="FSCALE_7241524_1,FEPSILON_7241524_0">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    <BOUNDS type="Box" left="6630" top="8925">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="37" srcpinname="Output 2" dstnodeid="15" dstpinname="Semantic" linkstyle="VHV">
-   <LINKPOINT x="6240" y="8760">
-   </LINKPOINT>
-   <LINKPOINT x="7185" y="8760">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="29" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="6870" y="5310">
    </LINKPOINT>
@@ -486,4 +392,76 @@
    </LINK>
    <LINK srcnodeid="38" srcpinname="Output" dstnodeid="24" dstpinname="Custom Semantic">
    </LINK>
+   <NODE systemname="SelectorData (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="SelectorData (DX11.Particles.Selection)" componentmode="Hidden" id="39">
+   <BOUNDS type="Node" left="1035" top="3870" width="8745" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="345" top="975" width="9040" height="5800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="12300" top="7905" width="11970" height="7725">
+   </BOUNDS>
+   <PIN pinname="Custom Semantic Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Output String" dstnodeid="39" dstpinname="FunctionName">
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="FunctionCall" dstnodeid="26" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Output String" dstnodeid="39" dstpinname="FunctionArgument">
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="39" dstpinname="VariableType">
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="ConstantBuffer Entry" dstnodeid="24" dstpinname="Constant Buffer Entry" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4170" y="6105">
+   </LINKPOINT>
+   <LINKPOINT x="5775" y="6105">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="39" dstpinname="Custom Semantic VariableDefinition">
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="Custom Semantic Entry" dstnodeid="24" dstpinname="Custom Semantic Entry" linkstyle="Bezier">
+   <LINKPOINT x="2175" y="6713">
+   </LINKPOINT>
+   <LINKPOINT x="4185" y="7313">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="39" dstpinname="Custom Semantic Definition">
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="39" dstpinname="Custom Semantic Count">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output 1" dstnodeid="32" dstpinname="Semantic">
+   </LINK>
+   <LINK srcnodeid="37" srcpinname="Output 2" dstnodeid="15" dstpinname="Semantic" linkstyle="VHV">
+   <LINKPOINT x="6240" y="8760">
+   </LINKPOINT>
+   <LINKPOINT x="7185" y="8760">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="39" srcpinname="Custom Semantic" dstnodeid="37" dstpinname="Input" linkstyle="Bezier">
+   <LINKPOINT x="4335" y="6248">
+   </LINKPOINT>
+   <LINKPOINT x="5775" y="6248">
+   </LINKPOINT>
+   </LINK>
+   <NODE id="37" systemname="Unzip (String Bin)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Unzip (String Bin)" componentmode="Hidden">
+   <PIN pinname="Input" slicecount="4" visible="1" values="FSCALE_31198893_0,FSCALE_31198893_1,FSCALE_31198893_2,FEPSILON_31198893_0">
+   </PIN>
+   <BOUNDS type="Node" left="5760" top="8355" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   <PIN pinname="Output 2" visible="1">
+   </PIN>
+   <PIN pinname="Input Bin Size" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="39" srcpinname="Custom Semantic Bin Size" dstnodeid="37" dstpinname="Input Bin Size" linkstyle="Bezier">
+   <LINKPOINT x="5400" y="6248">
+   </LINKPOINT>
+   <LINKPOINT x="6315" y="6248">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <INFO author="tmp" description="Selects particles by scale." tags="">
+   </INFO>
    </PATCH>

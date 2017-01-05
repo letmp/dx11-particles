@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Age (DX11.Particles.Selection) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Mask (DX11.Particles.Selection Texture2D) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2070" top="1905" width="12915" height="12345">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -21,7 +21,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="300" width="9090" height="435">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Age (DX11.Particles.Selection)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Mask (DX11.Particles.Selection Texture2D)|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -33,7 +33,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="675" width="5100" height="600">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Selects particles by age.|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Selects particles by a projected mask texture.|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -89,11 +89,11 @@
    </PIN>
    <BOUNDS type="Box" left="4995" top="10455">
    </BOUNDS>
-   <PIN pinname="Initial Pitch" slicecount="1" values="0">
+   <PIN pinname="Initial Pitch" slicecount="1" values="0.07">
    </PIN>
-   <PIN pinname="Initial Yaw" slicecount="1" values="0">
+   <PIN pinname="Initial Yaw" slicecount="1" values="-0.07">
    </PIN>
-   <PIN pinname="Initial Distance" slicecount="1" values="2">
+   <PIN pinname="Initial Distance" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Target Initial Position" visible="1" slicecount="3" values="0,0,0">
    </PIN>
@@ -500,26 +500,60 @@
    <LINKPOINT x="5130" y="6743">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Age (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Age (DX11.Particles.Selection).v4p" nodename="Age (DX11.Particles.Selection)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="6465" top="4035" width="100" height="100">
+   <NODE systemname="Mask (DX11.Particles.Selection Texture2D)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Mask (DX11.Particles.Selection Texture2D).v4p" nodename="Mask (DX11.Particles.Selection Texture2D)" componentmode="Hidden" id="72">
+   <BOUNDS type="Node" left="6465" top="4695" width="100" height="100">
    </BOUNDS>
+   <PIN pinname="ViewProjection" visible="1">
+   </PIN>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
+   </PIN>
    <PIN pinname="Selection Out" visible="1">
    </PIN>
-   <PIN pinname="Mode" slicecount="1" visible="1" values="|Lower Than|">
-   </PIN>
-   <PIN pinname="Time" visible="1">
+   <PIN pinname="MaskId" slicecount="1" visible="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="69" srcpinname="Selection Out" dstnodeid="56" dstpinname="Selection">
-   </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="70">
-   <BOUNDS type="Box" left="6720" top="3150" width="795" height="720">
+   <NODE systemname="Camera (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\Camera (DX11.Particles.Tools).v4p" nodename="Camera (DX11.Particles.Tools)" componentmode="Hidden" id="73">
+   <BOUNDS type="Node" left="5490" top="3585" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Node" left="6720" top="3150" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,1,2">
+   <PIN pinname="Help Layer" visible="1">
    </PIN>
-   <PIN pinname="Units" slicecount="1" values="s">
+   <PIN pinname="ViewProjection" visible="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="73" srcpinname="Help Layer" dstnodeid="6" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6285" y="6938">
+   </LINKPOINT>
+   <LINKPOINT x="4875" y="6938">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="73" srcpinname="ViewProjection" dstnodeid="72" dstpinname="ViewProjection" linkstyle="Bezier">
+   <LINKPOINT x="5940" y="4268">
+   </LINKPOINT>
+   <LINKPOINT x="6465" y="4268">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Translate (Transform)" nodename="Translate (Transform)" componentmode="Hidden" id="74">
+   <BOUNDS type="Node" left="5475" top="3090" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   <PIN pinname="Z" slicecount="1" values="-1.4">
+   </PIN>
+   <PIN pinname="X" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="74" srcpinname="Transform Out" dstnodeid="73" dstpinname="Transform In">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="78">
+   <BOUNDS type="Box" left="6780" top="1935" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6780" top="1935" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,2,3">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
@@ -529,19 +563,31 @@
    </PIN>
    <PIN pinname="Default" slicecount="1" values="|0, 0, 0|">
    </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
+   <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="70" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Time">
+   <LINK srcnodeid="72" srcpinname="Selection Out" dstnodeid="56" dstpinname="Selection">
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="71">
-   <BOUNDS type="Box" left="6480" top="2610" width="1140" height="240">
+   <NODE systemname="DynamicTexture (DX11.Texture 2d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicTexture (DX11.Texture 2d)" componentmode="Hidden" id="75">
+   <BOUNDS type="Node" left="7095" top="3285" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Node" left="6480" top="2610" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Lower Than|">
+   <PIN pinname="Width" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Channel Count" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Data" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="71" srcpinname="Output Enum" dstnodeid="69" dstpinname="Mode">
+   <LINK srcnodeid="75" srcpinname="Texture Out" dstnodeid="72" dstpinname="Texture">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Data" linkstyle="VHV">
+   <LINKPOINT x="6840" y="2955">
+   </LINKPOINT>
+   <LINKPOINT x="7920" y="2955">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="72" dstpinname="MaskId">
    </LINK>
    </PATCH>
