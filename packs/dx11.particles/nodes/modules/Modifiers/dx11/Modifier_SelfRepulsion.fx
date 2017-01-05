@@ -16,7 +16,7 @@ RWStructuredBuffer<uint> LinkedListOffsetBuffer : LINKEDLISTOFFSETBUFFER;
 
 int CellCount;
 float4x4 tW: WORLD;
-float Gamma;
+//float Gamma;
 float Radius <String uiname="Default Radius"; float uimin=0.0;> = 1;
 float RepulseAmount;
 
@@ -44,7 +44,7 @@ void CS_Set(csin input)
 	uint next = LinkedListOffsetBuffer[cellindex];
 	
 	float dist = 0;
-	float g = Gamma/(1.00001-Gamma);
+	//float g = Gamma/(1.00001-Gamma);
 	while (next != -1){
 		
 		uint particleIndexOther = LinkedListBuffer[next].particleIndex;
@@ -60,7 +60,7 @@ void CS_Set(csin input)
 			
 			if (dist < minDist){
 				float f = saturate(1 - dist * 2);
-			  	f = pow( f, g );
+			  	//f = pow( f, g );
 				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount;				
 			}
 		}

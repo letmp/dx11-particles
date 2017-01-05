@@ -52,7 +52,7 @@ void CSAddVelocity(csin input)
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSSetAcceleration(csin input)
+void CSSetForce(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;	
@@ -62,7 +62,7 @@ void CSSetAcceleration(csin input)
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CSAddAcceleration(csin input)
+void CSAddForce(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;	
@@ -73,5 +73,5 @@ void CSAddAcceleration(csin input)
 
 technique11 SetVelocity { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSetVelocity() ) );} }
 technique11 AddVelocity { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAddVelocity() ) );} }
-technique11 SetAcceleration { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSetAcceleration() ) );} }
-technique11 AddAcceleration { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAddAcceleration() ) );} }
+technique11 SetForce { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSetForce() ) );} }
+technique11 AddForce { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAddForce() ) );} }

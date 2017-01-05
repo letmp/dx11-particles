@@ -7,7 +7,6 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 force;
 	#endif
 };
 
@@ -16,7 +15,7 @@ RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
 bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
 
-float MaxSpeed = 10;
+float Amount = 10;
 float MaxForce = 1;
 float LandingRadius = 0.1;
 
@@ -44,7 +43,6 @@ void CSSet(csin input)
 	
 	float3 p = ParticleBuffer[particleIndex].position;
 	float3 v = ParticleBuffer[particleIndex].velocity;
-	float3 a = ParticleBuffer[particleIndex].force;
 	
 	uint size,stride;
 	PositionBuffer.GetDimensions(size,stride);	
@@ -62,7 +60,7 @@ void CSSet(csin input)
 		desired *= map;
 	}
 	//else
-	desired *= MaxSpeed;
+	desired *= Amount;
 	
 	float3 steer = desired - v;
 	steer = Limit(steer,MaxForce);

@@ -7,7 +7,6 @@ struct Particle {
  	#else
 		float3 position;
 		float3 velocity;
-		float3 force;
 	#endif
 };
 
@@ -17,7 +16,7 @@ cbuffer name : register(b0){
    float2 fRegion : FREGION;
 };
 
-float MaxSpeed = 10;
+float Amount = 1;
 float MaxForce = 1;
 float LandingRadius = 0.1;
 
@@ -46,7 +45,6 @@ void CSSet(csin input)
 	if(! (particleIndex > fRegion[0]) && particleIndex < fRegion[1]){
 		float3 p = ParticleBuffer[particleIndex].position;
 		float3 v = ParticleBuffer[particleIndex].velocity;
-		float3 a = ParticleBuffer[particleIndex].force;
 		
 		uint targetparticleIndex = (particleIndex % (fRegion[0] - fRegion[1])) + fRegion[0];
 		float3 target = ParticleBuffer[targetparticleIndex].position;
@@ -62,7 +60,7 @@ void CSSet(csin input)
 			desired *= map;
 		}
 		//else
-		desired *= MaxSpeed;
+		desired *= Amount;
 		
 		float3 steer = desired - v;
 		steer = Limit(steer,MaxForce);
