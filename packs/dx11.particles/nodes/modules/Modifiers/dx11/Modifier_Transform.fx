@@ -5,7 +5,7 @@ struct Particle {
 	#if defined(COMPOSITESTRUCT)
   		COMPOSITESTRUCT
  	#else
-		float3 rotation;
+		float3 position;
 	#endif
 };
 

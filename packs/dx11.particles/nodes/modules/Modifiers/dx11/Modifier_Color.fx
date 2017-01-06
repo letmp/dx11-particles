@@ -12,7 +12,7 @@ struct Particle {
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
-bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
+bool UseSelectionIndex <String uiname="Use SelectionId";> = 1;
 
 struct csin
 {

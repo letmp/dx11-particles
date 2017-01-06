@@ -460,38 +460,6 @@
    <LINKPOINT x="4665" y="9495">
    </LINKPOINT>
    </LINK>
-   <NODE id="52" systemname="Transform (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Transform (DX11.Particles.Modifiers).v4p" nodename="Transform (DX11.Particles.Modifiers)" componentmode="Hidden">
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Use SelectionId" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Position Buffer" slicecount="1" visible="1" values="||">
-   </PIN>
-   <BOUNDS type="Node" left="4695" top="5790" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Modifier Out" visible="1">
-   </PIN>
-   <PIN pinname="Color Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <BOUNDS type="Box" left="4695" top="5790">
-   </BOUNDS>
-   <PIN pinname="Force Buffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Mass Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Rotation Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Transform Buffer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="52" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier">
-   <LINKPOINT x="4740" y="6758">
-   </LINKPOINT>
-   <LINKPOINT x="5310" y="6758">
-   </LINKPOINT>
-   </LINK>
    <NODE id="53" systemname="DynamicBuffer (DX11.Buffer Transform)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Transform)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
    <BOUNDS type="Node" left="4875" top="4920" width="1080" height="270">
    </BOUNDS>
@@ -520,18 +488,12 @@
    <PIN pinname="ID" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="53" srcpinname="Buffer" dstnodeid="52" dstpinname="Position Buffer">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Buffer" dstnodeid="52" dstpinname="Rotation Buffer">
-   </LINK>
-   <LINK srcnodeid="53" srcpinname="Buffer" dstnodeid="52" dstpinname="Transform Buffer">
-   </LINK>
    <NODE systemname="Transform (Transform 2d)" nodename="Transform (Transform 2d)" componentmode="Hidden" id="94">
    <BOUNDS type="Node" left="4860" top="4500" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
-   <PIN pinname="TranslateY" slicecount="1" values="-0.001" visible="1">
+   <PIN pinname="TranslateY" slicecount="1" visible="1" values="-0.001">
    </PIN>
    </NODE>
    <LINK srcnodeid="94" srcpinname="Transform Out" dstnodeid="53" dstpinname="Data">
@@ -575,7 +537,7 @@
    </PIN>
    <PIN pinname="Rotation Buffer" visible="1">
    </PIN>
-   <PIN pinname="Transform Buffer" visible="1">
+   <PIN pinname="Transform Buffer" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="81" dstpinname="Use SelectionGroupId">
@@ -647,5 +609,41 @@
    <LINK srcnodeid="82" srcpinname="Buffer" dstnodeid="81" dstpinname="Transform Buffer">
    </LINK>
    <LINK srcnodeid="97" srcpinname="Output" dstnodeid="82" dstpinname="Data">
+   </LINK>
+   <NODE systemname="Transform (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Transform (DX11.Particles.Modifiers).v4p" nodename="Transform (DX11.Particles.Modifiers)" componentmode="Hidden" id="99">
+   <BOUNDS type="Node" left="4680" top="5790" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Modifier Out" visible="1">
+   </PIN>
+   <PIN pinname="Color Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
+   </PIN>
+   <BOUNDS type="Box" left="4680" top="5790">
+   </BOUNDS>
+   <PIN pinname="Use SelectionGroupId" visible="1">
+   </PIN>
+   <PIN pinname="Force Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Mass Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Position Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Rotation Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Transform Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="53" srcpinname="Buffer" dstnodeid="99" dstpinname="Transform Buffer">
+   </LINK>
+   <LINK srcnodeid="99" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="4725" y="6750">
+   </LINKPOINT>
+   <LINKPOINT x="5310" y="6750">
+   </LINKPOINT>
    </LINK>
    </PATCH>
