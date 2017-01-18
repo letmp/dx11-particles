@@ -1,4 +1,4 @@
-#include <packs\dx11.particles\nodes\modules\Effects\fxh\PhongDirectional.fxh>
+#include <packs\dx11.particles\nodes\modules\Effects\fxh\MultiPhong.fxh>
 #include <packs\dx11.particles\nodes\modules\Core\fxh\AlgebraFunctions.fxh>
 
 struct Particle {
@@ -42,10 +42,8 @@ struct VSOut
     float4 pos: SV_POSITION;
 	uint particleIndex : VID;
 	
-	float3 LightDirV: TEXCOORD4;
-    float3 NormV: TEXCOORD5;
-    float3 ViewDirV: TEXCOORD6;
-	float3 PosW: TEXCOORD7;
+    float3 NormV: TEXCOORD1;
+    float3 ViewDirV: TEXCOORD2;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -60,19 +58,14 @@ VSOut VS(VSIn In)
 	float4 p = In.pos;
 	#if defined(KNOW_SCALE)
 		p = mul(p,MatrixScaling(ParticleBuffer[particleIndex].scale));
- 	#endif	
+ 	#endif
 	#if defined(KNOW_ROTATION)
 		p = mul(p,MatrixRotation(ParticleBuffer[particleIndex].rotation));
  	#endif
 	p.xyz += ParticleBuffer[particleIndex].position;
 	Out.pos = mul(p,mul(tW,tVP));
 	
-	
-	 //inverse light direction in view space
-	Out.PosW = mul(p, tW).xyz;
-	
-	Out.LightDirV = normalize(-mul(float4(lDir,0.0f), mul(tW,tV)).xyz);
-	
+	//normal in view space
 	float3 norm = In.NormO;
 	#if defined(KNOW_SCALE)
 		norm = mul(float4(norm,1),MatrixScaling(ParticleBuffer[particleIndex].scale)).xyz;
@@ -80,9 +73,9 @@ VSOut VS(VSIn In)
 	#if defined(KNOW_ROTATION)
 		norm = mul(float4(norm,1),MatrixRotation(ParticleBuffer[particleIndex].rotation)).xyz;
  	#endif
-
-    //normal in view space
     Out.NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
+	
+	//position (projected)
 	Out.ViewDirV = -normalize(mul(p, tWV).xyz);
 	
 	return Out;
@@ -94,11 +87,11 @@ float4 PS(VSOut In): SV_Target
 {
 
 	float4 col = float4(1,1,1,1);
-	#if defined(KNOW_COLOR)
+	 #if defined(KNOW_COLOR)
        col *= ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
-    return col * PhongDirectional(In.NormV, In.ViewDirV, In.LightDirV);
+    return col * MultiPhongDirectional(In.NormV, In.ViewDirV, tV);
 }
 
 /* ===================== TECHNIQUE ===================== */
@@ -107,7 +100,7 @@ technique10 TPhongDirectional
 {
 	pass P0
 	{
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetPixelShader( CompileShader( ps_4_0, PS() ) );
+		SetVertexShader( CompileShader( vs_5_0, VS() ) );
+		SetPixelShader( CompileShader( ps_5_0, PS() ) );
 	}
 }

@@ -1,3 +1,4 @@
+#include <packs\dx11.particles\nodes\modules\Effects\fxh\MultiGouraud.fxh>
 #include <packs\dx11.particles\nodes\modules\Core\fxh\AlgebraFunctions.fxh>
 
 struct Particle {
@@ -24,21 +25,7 @@ cbuffer cbPerObj : register( b1 )
 	float4x4 tW : WORLD;
 	float4x4 tWV: WORLDVIEW;
 	float4x4 tWIT: WORLDINVERSETRANSPOSE;
-	
 	float4 cAmb <bool color=true;String uiname="Color";> = { 1.0f,1.0f,1.0f,1.0f };
-};
-
-cbuffer cbLightData : register(b3)
-{
-	float3 lPos <string uiname="Light Position";> = {0, 5, -2};       //light position in world space
-	float lAtt0 <String uiname="Light Attenuation 0"; float uimin=0.0;> = 0;
-	float lAtt1 <String uiname="Light Attenuation 1"; float uimin=0.0;> = 0.3;
-	float lAtt2 <String uiname="Light Attenuation 2"; float uimin=0.0;> = 0;
-	float4 lAmb <bool color=true; String uiname="Ambient Color";>  = {0.15, 0.15, 0.15, 1};
-	float4 lDiff <bool color=true; String uiname="Diffuse Color";>  = {0.85, 0.85, 0.85, 1};
-	float4 lSpec <bool color=true; String uiname="Specular Color";> = {0.35, 0.35, 0.35, 1};
-	float lPower <String uiname="Power"; float uimin=0.0;> = 25.0;     //shininess of specular highlight
-	float lRange <String uiname="Light Range"; float uimin=0.0;> = 10.0;    	
 };
 
 /* ===================== STRUCTURES ===================== */
@@ -56,8 +43,8 @@ struct VSOut
     float4 pos: SV_POSITION;
 	uint particleIndex : VID;
 	
-	float4 Diffuse: COLOR0;
-    float4 Specular: COLOR1;
+	float3 NormV: TEXCOORD1;
+	float3 ViewDirV: TEXCOORD2;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -79,21 +66,7 @@ VSOut VS(VSIn In)
 	p.xyz += ParticleBuffer[particleIndex].position;
 	Out.pos = mul(p,mul(tW,tVP));
 	
-	float d = distance(p.xyz, lPos);
-
-    float atten = 0;
-    if (d<lRange)
-    {
-       atten = 1/(saturate(lAtt0) + saturate(lAtt1) * d + saturate(lAtt2) * pow(d, 2));
-    }
-    float4 amb = atten * lAmb;
-    amb.a = 1;
-    
-    //inverse light direction in view space
-    float3 LightDirW = normalize(lPos - mul(p,tW).xyz);
-    float3 LightDirV = mul(float4(LightDirW,0.0f), tV).xyz;
-    
-     //normal in view space
+    //normal in view space
 	float3 norm = In.NormO;
 	#if defined(KNOW_SCALE)
 		norm = mul(float4(norm,1),MatrixScaling(ParticleBuffer[particleIndex].scale)).xyz;
@@ -101,23 +74,11 @@ VSOut VS(VSIn In)
 	#if defined(KNOW_ROTATION)
 		norm = mul(float4(norm,1),MatrixRotation(ParticleBuffer[particleIndex].rotation)).xyz;
  	#endif
-    float3 NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
-
-    //view direction = inverse vertexposition in viewspace
-    float4 PosV = mul(p, tWV);
-    float3 ViewDirV = normalize(-PosV.xyz);
-    //halfvector
-    float3 H = normalize(ViewDirV + LightDirV);
-
-    //compute blinn lighting
-    float4 shades = lit(dot(NormV, LightDirV), dot(NormV, H), lPower);
-
-    float4 diff = lDiff * shades.y * atten;
-    float4 spec = lSpec * shades.z * atten;
+    Out.NormV = normalize(mul(mul(norm, (float3x3)tWIT),(float3x3)tV).xyz);
 	
-	Out.Diffuse = diff + lAmb;
-    Out.Specular = spec;
-	
+    //position (projected)
+	Out.ViewDirV = -normalize(mul(p, tWV).xyz);
+
 	return Out;
 }
 
@@ -132,9 +93,7 @@ float4 PS(VSOut In): SV_Target
     #endif
 	if (col.a == 0.0f) discard;
 	
-	col.xyz *= In.Diffuse.xyz + In.Specular.xyz;
-	
-    return col;
+    return col * MultiGouraudDirectional(In.NormV, In.ViewDirV, tV);
 }
 
 /* ===================== TECHNIQUE ===================== */
@@ -144,6 +103,6 @@ technique10 TGouraudDirectional
 	pass P0
 	{
 		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-		SetPixelShader( CompileShader( ps_4_0, PS() ) );
+		SetPixelShader( CompileShader( ps_5_0, PS() ) );
 	}
 }
