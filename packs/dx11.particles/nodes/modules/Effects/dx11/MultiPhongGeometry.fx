@@ -25,7 +25,7 @@ cbuffer cbPerDraw : register( b0 )
 cbuffer cbPerObj : register( b1 )
 {
 	float4x4 tW : WORLD;
-	float4 cAmb <bool color=true;String uiname="Default Color";> = { 0.1f,0.1f,0.1f,0.1f };
+	float4 cAmb <bool color=true;String uiname="Default Color";> = { 0.2f,0.2f,0.2f,0.2f };
 };
 
 /* ===================== STRUCTURES ===================== */
