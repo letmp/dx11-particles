@@ -18,14 +18,14 @@ cbuffer cbPerDraw : register( b0 )
 	float4x4 tWVP: WORLDVIEWPROJECTION;
 	float4x4 tVP : VIEWPROJECTION;	
 	float4x4 tP: PROJECTION;
+	float4x4 tWV: WORLDVIEW;
+	float4x4 tWIT: WORLDINVERSETRANSPOSE;
 };
 
 cbuffer cbPerObj : register( b1 )
 {
 	float4x4 tW : WORLD;
-	float4x4 tWV: WORLDVIEW;
-	float4x4 tWIT: WORLDINVERSETRANSPOSE;
-	float4 cAmb <bool color=true;String uiname="Color";> = { 1.0f,1.0f,1.0f,1.0f };
+	float4 cAmb <bool color=true;String uiname="Default Color";> = { 1.0f,1.0f,1.0f,1.0f };
 };
 
 /* ===================== STRUCTURES ===================== */
@@ -90,18 +90,35 @@ VSOut VS(VSIn In)
 float4 PS(VSOut In): SV_Target
 {
 
-	float4 col = float4(1,1,1,1);
+	float4 col = cAmb;
 	 #if defined(KNOW_COLOR)
-       col *= ParticleBuffer[In.particleIndex].color;
+       col = ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
 	
-    return col * MultiGouraudPoint(In.PosW, In.NormV, In.ViewDirV, tV);
+  	uint lPosDirCount, dummy;
+    lPosDirBuffer.GetDimensions(lPosDirCount, dummy);
+	uint lTypeCount;
+    lTypeBuffer.GetDimensions(lTypeCount, dummy);
+	
+	float4 colLight = 0;
+	for(int i = 0; i < lPosDirCount; i++){
+		switch (lTypeBuffer[i % lTypeCount]){
+			case 0:
+				colLight += MultiGouraudPoint(i, In.PosW, In.NormV, In.ViewDirV, tV);
+				break;
+			case 1:
+				colLight += MultiGouraudDirectional(i, In.NormV, In.ViewDirV, tV);
+				break;
+		}
+	}
+
+    return col * colLight;
 }
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TGouraudPoint
+technique10 MultiGouraud
 {
 	pass P0
 	{

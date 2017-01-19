@@ -25,6 +25,7 @@ cbuffer cbPerDraw : register( b0 )
 cbuffer cbPerObj : register( b1 )
 {
 	float4x4 tW : WORLD;
+	float4 cAmb <bool color=true;String uiname="Default Color";> = { 0.1f,0.1f,0.1f,0.1f };
 };
 
 /* ===================== STRUCTURES ===================== */
@@ -42,9 +43,9 @@ struct VSOut
     float4 pos: SV_POSITION;
 	uint particleIndex : VID;
 	
-    float3 NormV: TEXCOORD1;
-    float3 ViewDirV: TEXCOORD2;
-	float3 PosW: TEXCOORD3;
+	float3 PosW: TEXCOORD1;
+    float3 NormV: TEXCOORD2;
+    float3 ViewDirV: TEXCOORD3;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -90,17 +91,35 @@ VSOut VS(VSIn In)
 float4 PS(VSOut In): SV_Target
 {
 
-	float4 col = float4(1,1,1,1);
+	float4 col = cAmb;
 	 #if defined(KNOW_COLOR)
-       col *= ParticleBuffer[In.particleIndex].color;
+       col = ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;
-    return col * MultiPhongPoint(In.PosW, In.NormV, In.ViewDirV, tV);
+	
+	uint lPosDirCount, dummy;
+    lPosDirBuffer.GetDimensions(lPosDirCount, dummy);
+	uint lTypeCount;
+    lTypeBuffer.GetDimensions(lTypeCount, dummy);
+	
+	float4 colLight = 0;
+	for(int i = 0; i < lPosDirCount; i++){
+		switch (lTypeBuffer[i % lTypeCount]){
+			case 0:
+				colLight += MultiPhongPoint(i, In.PosW, In.NormV, In.ViewDirV, tV);
+				break;
+			case 1:
+				colLight += MultiPhongDirectional(i, In.NormV, In.ViewDirV, tV);
+				break;
+		}
+	}
+
+    return col * colLight;
 }
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TPhongPoint
+technique10 MultiPhong
 {
 	pass P0
 	{
