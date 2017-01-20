@@ -103,18 +103,19 @@ float4 PS(VSOut In): SV_Target
     lTypeBuffer.GetDimensions(lTypeCount, dummy);
 	
 	float4 colLight = 0;
+	float4 colDirLight = 0;
 	for(int i = 0; i < lPosDirCount; i++){
 		switch (lTypeBuffer[i % lTypeCount]){
 			case 0:
 				colLight += MultiPhongPoint(i, In.PosW, In.NormV, In.ViewDirV, tV);
 				break;
 			case 1:
-				colLight += MultiPhongDirectional(i, In.NormV, In.ViewDirV, tV);
+				colDirLight += MultiPhongDirectional(i, In.NormV, In.ViewDirV, tV);
 				break;
 		}
 	}
 
-    return col * colLight;
+    return col * colLight + colDirLight;
 }
 
 /* ===================== TECHNIQUE ===================== */

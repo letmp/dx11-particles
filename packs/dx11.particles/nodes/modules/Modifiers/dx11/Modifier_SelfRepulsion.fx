@@ -53,15 +53,19 @@ void CS_Set(csin input)
 			
 			float minDist = Radius;
 			#if defined(KNOW_SCALE)
-				minDist = ( length(ParticleBuffer[particleIndex].scale / 2)+ length(ParticleBuffer[particleIndexOther].scale / 2)) / 2 * Radius;
+				minDist = (( distance(float3(0,0,0), ParticleBuffer[particleIndex].scale) / 2 ) + (distance( float3(0,0,0), ParticleBuffer[particleIndexOther].scale) / 2)) / 2 ;
 			#endif
 			
 			dist = distance(ParticleBuffer[particleIndex].position, ParticleBuffer[particleIndexOther].position);
 			
-			if (dist < minDist){
+			if (dist <= minDist){
 				float f = saturate(1 - dist * 2);
 			  	//f = pow( f, g );
-				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount;				
+				float massMultiplicator = 1;
+				#if defined(KNOW_MASS)
+					massMultiplicator = ParticleBuffer[particleIndexOther].mass / ParticleBuffer[particleIndex].mass;
+				#endif
+				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount * massMultiplicator;
 			}
 		}
 		
