@@ -331,6 +331,9 @@ namespace DX11.Particles.Core
         [Input("Prevent from doubles", DefaultBoolean = false, IsSingle = true)]
         public IDiffSpread<bool> FPreventDoubles;
 
+        [Input("Enabled", DefaultBoolean = true, IsSingle = true)]
+        public ISpread<bool> FEnabled;
+
         [Output("FunctionCall")]
         public ISpread<ISpread<string>> FFunctionCall;
 
@@ -356,7 +359,7 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (!FInSelector.IsChanged) return;
+            if (!FInSelector.IsChanged || !FEnabled[0]) return;
 
             if (FPreventDoubles[0]) // output only unique data
             {

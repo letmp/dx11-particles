@@ -67,7 +67,7 @@ void CS_Emit(csin input)
 		texUvColor.y /= 1080.0f;
 	}
 	
-	float3 position = texWorld.SampleLevel(sPoint,texUv,0).xyz;
+	float3 position =texWorld.SampleLevel(sPoint,texUv,0).xyz;
 	
 	// set particle if depth-value and texUvColor coords are valid
 	if ( all(position) && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
@@ -84,7 +84,7 @@ void CS_Emit(csin input)
 		Particle p = (Particle) 0;
 		
 		// SET POSITION
-		p.position = position;
+		p.position = mul(float4(position,1),tW).xyz;
 		
 		// SET COLOR
 		p.color = texRGB.SampleLevel(sPoint,texUvColor,0);

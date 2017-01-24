@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Target (DX11.Particles.Modifiers RWStructuredBuffer).v4p" scrollx="0" scrolly="360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\Target (DX11.Particles.Modifiers RWStructuredBuffer).v4p" scrollx="0" scrolly="360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="11925" top="4710" width="14880" height="8550">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
@@ -193,7 +193,7 @@
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="43">
    <BOUNDS type="Node" left="7560" top="6210" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Core\">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -388,44 +388,6 @@
    </LINK>
    <LINK srcnodeid="85" srcpinname="Output" dstnodeid="83" dstpinname="Custom Semantics">
    </LINK>
-   <NODE id="87" systemname="Modifier_Target_RWStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Target_RWStructuredBuffer.fx" nodename="Modifier_Target_RWStructuredBuffer (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="495" top="4440" width="8550" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="495" top="4440">
-   </BOUNDS>
-   <PIN pinname="Amount" visible="1">
-   </PIN>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="87" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="87" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12490" y="2798">
-   </LINKPOINT>
-   <LINKPOINT x="8690" y="2798">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="7635" y="5243">
-   </LINKPOINT>
-   <LINKPOINT x="8655" y="5243">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="87" dstpinname="LandingRadius">
-   </LINK>
-   <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="87" dstpinname="MaxSpeed">
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="87" dstpinname="MaxForce">
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="Layer" dstnodeid="83" dstpinname="Layer In">
-   </LINK>
-   <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Amount">
-   </LINK>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
    <INFO author="tmp" description="Moves particles in direction of other emitted particles." tags="">
@@ -440,6 +402,40 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="88" srcpinname="Output Node" dstnodeid="87" dstpinname="Layer In">
+   <NODE id="89" systemname="Modifier_Target_RWStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\dx11\Modifier_Target_RWStructuredBuffer.fx" nodename="Modifier_Target_RWStructuredBuffer (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="495" top="4440" width="8550" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="495" top="4440">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="89" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="89" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12490" y="2798">
+   </LINKPOINT>
+   <LINKPOINT x="8690" y="2798">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="7635" y="5243">
+   </LINKPOINT>
+   <LINKPOINT x="8655" y="5243">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="62" srcpinname="Y Output Value" dstnodeid="89" dstpinname="LandingRadius">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="89" dstpinname="MaxSpeed">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Y Output Value" dstnodeid="89" dstpinname="MaxForce">
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Layer" dstnodeid="83" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Y Output Value" dstnodeid="89" dstpinname="Amount">
+   </LINK>
+   <LINK srcnodeid="88" srcpinname="Output Node" dstnodeid="89" dstpinname="Layer In">
    </LINK>
    </PATCH>

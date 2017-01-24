@@ -42,11 +42,11 @@ void CSSet(csin input)
 	float particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
 	
-	if(! (particleIndex > fRegion[0]) && particleIndex < fRegion[1]){
+	if(! (particleIndex > fRegion[0] && particleIndex < fRegion[1])){
 		float3 p = ParticleBuffer[particleIndex].position;
 		float3 v = ParticleBuffer[particleIndex].velocity;
 		
-		uint targetparticleIndex = (particleIndex % (fRegion[0] - fRegion[1])) + fRegion[0];
+		uint targetparticleIndex = (particleIndex % (fRegion[1] - fRegion[0])) + fRegion[0];
 		float3 target = ParticleBuffer[targetparticleIndex].position;
 	
 		float3 desired = target - p;
