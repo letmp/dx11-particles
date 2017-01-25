@@ -16,9 +16,10 @@ RWStructuredBuffer<uint> LinkedListOffsetBuffer : LINKEDLISTOFFSETBUFFER;
 
 int CellCount;
 float4x4 tW: WORLD;
-//float Gamma;
+
 float Radius <String uiname="Default Radius"; float uimin=0.0;> = 1;
 float RepulseAmount;
+int maxComparisons = 1000;
 
 struct csin
 {
@@ -33,45 +34,56 @@ void CS_Set(csin input)
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
 	
-	float4 tp = mul(float4(ParticleBuffer[particleIndex].position, 1), tW);
-
-	tp = tp * 0.5f + 0.5f;
-	tp.y = 1.0f -tp.y;
-	int3 cl = tp.xyz * CellCount;
-
-    uint cellindex = cl.z * CellCount * CellCount + cl.y * CellCount + cl.x;
-	if (cellindex > asuint(CellCount * CellCount * CellCount)) return;
-	uint next = LinkedListOffsetBuffer[cellindex];
+	uint size,stride;
+	LinkedListOffsetBuffer.GetDimensions(size,stride);
 	
-	float dist = 0;
-	//float g = Gamma/(1.00001-Gamma);
-	while (next != -1){
+	if (size > 0){
 		
-		uint particleIndexOther = LinkedListBuffer[next].particleIndex;
+		float4 tp = mul(float4(ParticleBuffer[particleIndex].position, 1), tW);
+	
+		tp = tp * 0.5f + 0.5f;
+		tp.y = 1.0f -tp.y;
+		int3 cl = tp.xyz * CellCount;
+	
+	    uint cellindex = cl.z * CellCount * CellCount + cl.y * CellCount + cl.x;
+		if (cellindex > asuint(CellCount * CellCount * CellCount)) return;
 		
-		if (particleIndexOther != particleIndex){
+		uint next = LinkedListOffsetBuffer[cellindex];
+		
+		float dist = 0;
+		int counter = 0;
+		while (next != -1 && counter < maxComparisons){
 			
-			float minDist = Radius;
-			#if defined(KNOW_SCALE)
-				minDist = (( distance(float3(0,0,0), ParticleBuffer[particleIndex].scale) / 2 ) + (distance( float3(0,0,0), ParticleBuffer[particleIndexOther].scale) / 2)) / 2 ;
-			#endif
+			uint particleIndexOther = LinkedListBuffer[next].particleIndex;
 			
-			dist = distance(ParticleBuffer[particleIndex].position, ParticleBuffer[particleIndexOther].position);
-			
-			if (dist <= minDist){
-				float f = saturate(1 - dist * 2);
-			  	//f = pow( f, g );
-				float massMultiplicator = 1;
-				#if defined(KNOW_MASS)
-					massMultiplicator = ParticleBuffer[particleIndexOther].mass / ParticleBuffer[particleIndex].mass;
+			if (particleIndexOther != particleIndex){
+				
+				float minDist = Radius;
+				#if defined(KNOW_SCALE)
+					minDist = (( distance(float3(0,0,0), ParticleBuffer[particleIndex].scale) / 2 ) + (distance( float3(0,0,0), ParticleBuffer[particleIndexOther].scale) / 2)) / 2 ;
 				#endif
-				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount * massMultiplicator;
+				
+				dist = distance(ParticleBuffer[particleIndex].position, ParticleBuffer[particleIndexOther].position);
+				
+				if (dist <= minDist){
+					float f = saturate(1 - dist * 2);
+				  	//f = pow( f, g );
+					float massMultiplicator = 1;
+					#if defined(KNOW_MASS)
+						massMultiplicator = ParticleBuffer[particleIndexOther].mass / ParticleBuffer[particleIndex].mass;
+					#endif
+					ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount * massMultiplicator;
+				}
 			}
-		}
-		
-		if (LinkedListBuffer[next].next != next) next = LinkedListBuffer[next].next;
-		else next = -1;
+			
+			if (LinkedListBuffer[next].next != next) next = LinkedListBuffer[next].next;
+			else next = -1;
+			
+			counter++;
+		}	
 	}
+	
+	
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Set() ) );} }

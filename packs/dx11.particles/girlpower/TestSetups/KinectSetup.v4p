@@ -197,13 +197,13 @@
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <PIN pinname="Resolution" visible="1">
+   <PIN pinname="Resolution" visible="1" slicecount="2" values="640,480">
    </PIN>
-   <PIN pinname="RGB" visible="1">
+   <PIN pinname="RGB" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Depth" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="RGBDepth" visible="1">
+   <PIN pinname="RGBDepth" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Depth FOVXY" visible="1" slicecount="2" values="0.162500003934838,0.12666666549527">
    </PIN>
@@ -211,7 +211,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1215" top="2640">
    </BOUNDS>
-   <PIN pinname="World" visible="1">
+   <PIN pinname="World" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="1">
    </PIN>
@@ -225,7 +225,7 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter RWStructuredBuffer)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter RWStructuredBuffer).v4p" nodename="Emitter (DX11.Particles.Emitter RWStructuredBuffer)" componentmode="Hidden" id="866">
-   <BOUNDS type="Node" left="5070" top="2640" width="100" height="100">
+   <BOUNDS type="Node" left="5025" top="2640" width="100" height="100">
    </BOUNDS>
    <PIN pinname="EmitterSize" visible="1" slicecount="1" values="76800">
    </PIN>
@@ -233,13 +233,13 @@
    </PIN>
    <PIN pinname="Lifespan Buffer" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="5070" top="2640">
+   <BOUNDS type="Box" left="5025" top="2640">
    </BOUNDS>
-   <PIN pinname="Enabled" visible="1">
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE systemname="Multiply (Value Spectral)" nodename="Multiply (Value Spectral)" componentmode="Hidden" id="868">
-   <BOUNDS type="Node" left="5220" top="1350" width="100" height="100">
+   <BOUNDS type="Node" left="5175" top="1890" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="2" values="320,240">
    </PIN>
@@ -247,35 +247,35 @@
    </PIN>
    </NODE>
    <NODE systemname="Color (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" nodename="Color (DX11.Particles.Modifiers)" componentmode="Hidden" id="872">
-   <BOUNDS type="Node" left="7740" top="2640" width="100" height="100">
+   <BOUNDS type="Node" left="7695" top="2640" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Color Buffer" visible="1">
    </PIN>
    <PIN pinname="Modifier Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="7740" top="2640">
+   <BOUNDS type="Box" left="7695" top="2640">
    </BOUNDS>
    </NODE>
    <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="871">
-   <BOUNDS type="Node" left="7740" top="2160" width="100" height="100">
+   <BOUNDS type="Node" left="7845" top="2160" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
    <PIN pinname="Data" slicecount="1" visible="1" values="|0.35690,0.44986,0.63303,1.00000|">
    </PIN>
-   <BOUNDS type="Box" left="7740" top="2160">
+   <BOUNDS type="Box" left="7845" top="2160">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="871" srcpinname="Buffer" dstnodeid="872" dstpinname="Color Buffer">
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer Value)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Value)" componentmode="Hidden" id="873">
-   <BOUNDS type="Node" left="5385" top="2205" width="100" height="100">
+   <BOUNDS type="Node" left="5340" top="2205" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
    <PIN pinname="Data" slicecount="1" values="2">
    </PIN>
-   <BOUNDS type="Box" left="5385" top="2205">
+   <BOUNDS type="Box" left="5340" top="2205">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="873" srcpinname="Buffer" dstnodeid="866" dstpinname="Lifespan Buffer">
@@ -317,19 +317,19 @@
    </BOUNDS>
    </NODE>
    <NODE systemname="Emitter (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Emitter (DX11.Particles.Selection).v4p" nodename="Emitter (DX11.Particles.Selection)" componentmode="Hidden" id="869">
-   <BOUNDS type="Node" left="7455" top="3255" width="100" height="100">
+   <BOUNDS type="Node" left="7410" top="3255" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Emitter Name" slicecount="1" values="EmitterRwStructuredBuffer">
    </PIN>
    <PIN pinname="Selection Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="7455" top="3255">
+   <BOUNDS type="Box" left="7410" top="3255">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="869" srcpinname="Selection Out" dstnodeid="870" dstpinname="Selection" linkstyle="Bezier">
-   <LINKPOINT x="7515" y="3615">
+   <LINK srcnodeid="869" srcpinname="Selection Out" dstnodeid="870" dstpinname="Selection" linkstyle="VHV">
+   <LINKPOINT x="7485" y="3615">
    </LINKPOINT>
-   <LINKPOINT x="8325" y="3615">
+   <LINKPOINT x="8310" y="3615">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Constant (DX11.Particles.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Effects\Constant (DX11.Particles.Effect).v4p" nodename="Constant (DX11.Particles.Effect)" componentmode="Hidden" id="658">
@@ -369,7 +369,7 @@
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
-   <PIN pinname="SizeXYZ" slicecount="3" values="0.003,0.003,0.003">
+   <PIN pinname="SizeXYZ" slicecount="3" values="0.01,0.01,0.01">
    </PIN>
    </NODE>
    <LINK srcnodeid="875" srcpinname="Geometry Out" dstnodeid="658" dstpinname="Geometry" linkstyle="VHV">
@@ -378,16 +378,8 @@
    <LINKPOINT x="4275" y="6105">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="865" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 2">
-   </LINK>
-   <LINK srcnodeid="870" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 3" linkstyle="Bezier">
-   <LINKPOINT x="8345" y="4343">
-   </LINKPOINT>
-   <LINKPOINT x="5065" y="4343">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="876">
-   <BOUNDS type="Node" left="8595" top="3120" width="100" height="100">
+   <BOUNDS type="Node" left="8550" top="3120" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
@@ -397,27 +389,27 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="872" srcpinname="Modifier Out" dstnodeid="876" dstpinname="Layer 1" linkstyle="VHV">
-   <LINKPOINT x="7800" y="2978">
+   <LINKPOINT x="7755" y="2978">
    </LINKPOINT>
-   <LINKPOINT x="8775" y="2978">
+   <LINKPOINT x="8730" y="2978">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="876" srcpinname="Layer Out" dstnodeid="870" dstpinname="Modifier In">
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="878">
-   <BOUNDS type="Node" left="8940" top="1860" width="100" height="100">
+   <BOUNDS type="Node" left="9045" top="1860" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
    <PIN pinname="DataXYZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="8940" top="1860">
+   <BOUNDS type="Box" left="9045" top="1860">
    </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="879" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8940" top="915" width="795" height="720">
+   <BOUNDS type="Box" left="9045" top="915" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="8940" top="915" width="0" height="0">
+   <BOUNDS type="Node" left="9045" top="915" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="-1,0,5">
    </PIN>
@@ -431,20 +423,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="879" srcpinname="Y Output Value" dstnodeid="878" dstpinname="DataXYZ">
-   </LINK>
-   <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="880">
-   <BOUNDS type="Node" left="6540" top="2205" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Period" slicecount="1" values="0.2">
-   </PIN>
-   <PIN pinname="Change" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="880" srcpinname="Change" dstnodeid="866" dstpinname="Enabled" linkstyle="VHV">
-   <LINKPOINT x="6885" y="2543">
-   </LINKPOINT>
-   <LINKPOINT x="5970" y="2543">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="AND (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="AND (DX11.Particles.Selection)" componentmode="Hidden" id="881">
    <BOUNDS type="Node" left="3495" top="3090" width="915" height="270">
@@ -476,22 +454,8 @@
    <LINKPOINT x="4785" y="3533">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="883">
-   <BOUNDS type="Node" left="5220" top="1725" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 2" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="868" srcpinname="Output" dstnodeid="883" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="883" srcpinname="Output" dstnodeid="866" dstpinname="EmitterSize">
-   </LINK>
    <NODE systemname="LFO (Animation)" nodename="LFO (Animation)" componentmode="Hidden" id="884">
-   <BOUNDS type="Node" left="7740" top="1050" width="100" height="100">
+   <BOUNDS type="Node" left="7845" top="1050" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -499,7 +463,7 @@
    </PIN>
    </NODE>
    <NODE systemname="HSL (Color Join)" nodename="HSL (Color Join)" componentmode="Hidden" id="885">
-   <BOUNDS type="Node" left="7740" top="1710" width="100" height="100">
+   <BOUNDS type="Node" left="7845" top="1710" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Lightness" slicecount="1" values="0.5">
    </PIN>
@@ -514,8 +478,26 @@
    </LINK>
    <LINK srcnodeid="885" srcpinname="Output" dstnodeid="871" dstpinname="Data">
    </LINK>
-   <NODE systemname="Kinect2 (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect2 (DX11.Particles.Kinect).v4p" nodename="Kinect2 (DX11.Particles.Kinect)" componentmode="Hidden" id="889">
-   <BOUNDS type="Node" left="1380" top="1455" width="100" height="100">
+   <NODE systemname="Force (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers).v4p" nodename="Force (DX11.Particles.Modifiers)" componentmode="Hidden" id="877">
+   <BOUNDS type="Node" left="8895" top="2640" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Acceleration Buffer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="8895" top="2640">
+   </BOUNDS>
+   <PIN pinname="Force Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="877" srcpinname="Layer" dstnodeid="876" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="878" srcpinname="Buffer" dstnodeid="877" dstpinname="Acceleration Buffer">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="889">
+   <BOUNDS type="Node" left="1365" top="1155" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Window" left="9450" top="7680" width="9780" height="5055">
    </BOUNDS>
@@ -536,20 +518,22 @@
    </LINK>
    <LINK srcnodeid="889" srcpinname="Resolution" dstnodeid="848" dstpinname="Resolution">
    </LINK>
-   <NODE systemname="Force (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers).v4p" nodename="Force (DX11.Particles.Modifiers)" componentmode="Hidden" id="877">
-   <BOUNDS type="Node" left="8940" top="2640" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Acceleration Buffer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="8940" top="2640">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="877" srcpinname="Layer" dstnodeid="876" dstpinname="Layer 2">
+   <LINK srcnodeid="889" srcpinname="Resolution" dstnodeid="868" dstpinname="Input" linkstyle="VHV">
+   <LINKPOINT x="1425" y="1643">
+   </LINKPOINT>
+   <LINKPOINT x="5175" y="1643">
+   </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="878" srcpinname="Buffer" dstnodeid="877" dstpinname="Acceleration Buffer">
+   <LINK srcnodeid="878" srcpinname="Buffer" dstnodeid="877" dstpinname="Force Buffer">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.0">
-   </PACK>
+   <LINK srcnodeid="868" srcpinname="Output" dstnodeid="866" dstpinname="EmitterSize">
+   </LINK>
+   <LINK srcnodeid="865" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="870" srcpinname="Layer Out" dstnodeid="86" dstpinname="Layer 3" linkstyle="Bezier">
+   <LINKPOINT x="8325" y="4343">
+   </LINKPOINT>
+   <LINKPOINT x="5010" y="4343">
+   </LINKPOINT>
+   </LINK>
    </PATCH>

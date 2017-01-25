@@ -209,7 +209,7 @@
    </PIN>
    <PIN pinname="Layer 6" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Layer 5" visible="1">
+   <PIN pinname="Layer 5" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 1" linkstyle="Bezier">
@@ -251,6 +251,14 @@
    </PIN>
    <PIN pinname="Light Position" visible="1" slicecount="3" values="0,0,0">
    </PIN>
+   <PIN pinname="Light Attenuation 0" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Light Attenuation 1" slicecount="1" values="0.3">
+   </PIN>
+   <PIN pinname="Light Attenuation 2" slicecount="1" values="0.5">
+   </PIN>
+   <BOUNDS type="Window" left="2160" top="3480" width="20370" height="10215">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="11" srcpinname="Layer" dstnodeid="6" dstpinname="Layer 2">
    </LINK>
@@ -273,6 +281,8 @@
    </PIN>
    <BOUNDS type="Box" left="7110" top="5790">
    </BOUNDS>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="98">
    <BOUNDS type="Box" left="7260" top="2190" width="795" height="240">
@@ -305,9 +315,9 @@
    <LINK srcnodeid="99" srcpinname="Y Output Value" dstnodeid="96" dstpinname="Cells">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="101">
-   <BOUNDS type="Box" left="7620" top="3960" width="795" height="240">
+   <BOUNDS type="Box" left="7620" top="4260" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7620" top="3960" width="0" height="0">
+   <BOUNDS type="Node" left="7620" top="4260" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
    </PIN>
@@ -323,9 +333,9 @@
    <LINK srcnodeid="101" srcpinname="Y Output Value" dstnodeid="96" dstpinname="Radius">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="102">
-   <BOUNDS type="Box" left="7785" top="4905" width="795" height="240">
+   <BOUNDS type="Box" left="7785" top="5205" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7785" top="4905" width="0" height="0">
+   <BOUNDS type="Node" left="7785" top="5205" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -355,9 +365,9 @@
    <NODE nodename="IOBox (String)" componentmode="InABox" id="104">
    <BOUNDS type="Node" left="8415" top="2730" width="10500" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="8415" top="2730" width="5415" height="480">
+   <BOUNDS type="Box" left="8415" top="2730" width="5370" height="1140">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; this modifier uses a linked list. the volume is divided into (cells x cells x cells) subparts where particles look for collisions between themselves.|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the volume is divided into x³ subcells and only particles within a subcell repulse each other. a linked list is used to address adjacent particles within a subcell. have a look at the LinkedList node help patch to understand how it works.&cr;&lf;if you have alot of particles it is adviced to raise the cellcount!|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -365,31 +375,11 @@
    </PIN>
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="105">
-   <BOUNDS type="Node" left="8415" top="3225" width="2340" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="8415" top="3225" width="2340" height="270">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|have a look at the help patch of|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
-   <NODE systemname="LinkedList (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\LinkedList (DX11.Particles.Core).v4p" nodename="LinkedList (DX11.Particles.Core)" componentmode="Hidden" id="106">
-   <BOUNDS type="Node" left="10875" top="3225" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Box" left="10875" top="3225">
-   </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="107">
-   <BOUNDS type="Node" left="8475" top="3930" width="1695" height="270">
+   <BOUNDS type="Node" left="8475" top="4230" width="1695" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="8475" top="3930" width="3855" height="465">
+   <BOUNDS type="Box" left="8475" top="4230" width="3855" height="465">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; when no scale is set for particles this radius is used to calculate repulsion|">
    </PIN>
@@ -401,9 +391,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="109">
-   <BOUNDS type="Node" left="8940" top="4905" width="1785" height="270">
+   <BOUNDS type="Node" left="8940" top="5205" width="1785" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="8940" top="4905" width="1785" height="270">
+   <BOUNDS type="Box" left="8940" top="5205" width="1785" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the repulse amount|">
    </PIN>
@@ -655,21 +645,17 @@
    </BOUNDS>
    <BOUNDS type="Window" left="7665" top="270" width="19950" height="16260">
    </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="25" srcpinname="Layer Out" dstnodeid="148" dstpinname="Layer In">
    </LINK>
    <LINK srcnodeid="148" srcpinname="ParticleSystemBuffers" dstnodeid="11" dstpinname="ParticleSystemBuffers">
    </LINK>
    <LINK srcnodeid="96" srcpinname="Layer Out Help" dstnodeid="6" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8765" y="8033">
+   <LINKPOINT x="8250" y="8033">
    </LINKPOINT>
-   <LINKPOINT x="3805" y="8033">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="96" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 5" linkstyle="Bezier">
-   <LINKPOINT x="7060" y="6743">
-   </LINKPOINT>
-   <LINKPOINT x="5435" y="6743">
+   <LINKPOINT x="4305" y="8033">
    </LINKPOINT>
    </LINK>
    <NODE systemname="GaussianSpread (Spreads)" nodename="GaussianSpread (Spreads)" componentmode="Hidden" id="149">
@@ -714,6 +700,12 @@
    <LINKPOINT x="4005" y="9495">
    </LINKPOINT>
    <LINKPOINT x="4215" y="9495">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 5" linkstyle="Bezier">
+   <LINKPOINT x="7110" y="6743">
+   </LINKPOINT>
+   <LINKPOINT x="5385" y="6743">
    </LINKPOINT>
    </LINK>
    </PATCH>
