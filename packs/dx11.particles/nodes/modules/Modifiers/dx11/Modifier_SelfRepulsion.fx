@@ -19,7 +19,6 @@ float4x4 tW: WORLD;
 
 float Radius <String uiname="Default Radius"; float uimin=0.0;> = 1;
 float RepulseAmount;
-int maxComparisons = 1000;
 
 struct csin
 {
@@ -35,9 +34,9 @@ void CS_Set(csin input)
 	if (particleIndex == -1 ) return;
 	
 	uint size,stride;
-	LinkedListOffsetBuffer.GetDimensions(size,stride);
+	LinkedListBuffer.GetDimensions(size,stride);
 	
-	if (size > 0){
+	if (size > 1){
 		
 		float4 tp = mul(float4(ParticleBuffer[particleIndex].position, 1), tW);
 	
@@ -51,8 +50,8 @@ void CS_Set(csin input)
 		uint next = LinkedListOffsetBuffer[cellindex];
 		
 		float dist = 0;
-		int counter = 0;
-		while (next != -1 && counter < maxComparisons){
+		
+		while (next != -1 ){
 			
 			uint particleIndexOther = LinkedListBuffer[next].particleIndex;
 			
@@ -79,7 +78,6 @@ void CS_Set(csin input)
 			if (LinkedListBuffer[next].next != next) next = LinkedListBuffer[next].next;
 			else next = -1;
 			
-			counter++;
 		}	
 	}
 	
