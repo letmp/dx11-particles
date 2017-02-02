@@ -60,6 +60,20 @@ void CSSubtract(csin input)
 	ParticleBuffer[particleIndex].color -= ColorBuffer[bufferIndex];
 }
 
+[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
+void CSMul(csin input)
+{
+	uint particleIndex = GetParticleIndex( input.DTID.x );
+	if (particleIndex == -1 ) return;
+	
+	uint size, stride;
+	ColorBuffer.GetDimensions(size,stride);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	
+	ParticleBuffer[particleIndex].color *= ColorBuffer[bufferIndex];
+}
+
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
 technique11 Add { pass P0{SetComputeShader( CompileShader( cs_5_0, CSAdd() ) );} }
 technique11 Subtract { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSubtract() ) );} }
+technique11 Mul { pass P0{SetComputeShader( CompileShader( cs_5_0, CSMul() ) );} }

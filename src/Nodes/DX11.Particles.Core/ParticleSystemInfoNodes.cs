@@ -478,5 +478,114 @@ namespace DX11.Particles.Core
 
     }
 
+    #region PluginInfo
+    [PluginInfo(Name = "Info", AutoEvaluate = true, Category = "DX11.Particles.Core", Version = "Attribute", Help = "Info about the specified attribute.", Author = "tmp", Tags = "")]
+    #endregion PluginInfo
+
+    public class InfoAttributeNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDisposable
+    {
+        [Input("ParticleSystem", EnumName = ParticleSystemRegistry.PARTICLESYSTEM_ENUM, Order = 2, IsSingle = true, DefaultEnumEntry = ParticleSystemRegistry.DEFAULT_ENUM)]
+        public IDiffSpread<EnumEntry> FParticleSystemName;
+        
+        public IDiffSpread<EnumEntry> FAttributeName;
+
+        [Output("VariableType", DefaultString = "", AutoFlush = false)]
+        public ISpread<string> FVariableType;
+
+        [Output("VariableName", DefaultString = "", AutoFlush = false)]
+        public ISpread<string> FVariableName;
+        
+        [Output("Stride", DefaultString = "", AutoFlush = false)]
+        public ISpread<int> FStride;
+
+        [Import]
+        protected IPluginHost2 PluginHost;
+
+        [Import]
+        protected IIOFactory FIOFactory;
+
+        private string EnumName;
+
+        public void OnImportsSatisfied()
+        {
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            particleSystemRegistry.Changed += HandleRegistryChange;
+
+            FParticleSystemName.Changed += (spread) => FillEnum();
+
+            CreateEnumPin();
+        }
+
+        private void FillEnum()
+        {
+            if (FParticleSystemName == null || FParticleSystemName.SliceCount < 1 || FParticleSystemName[0] == null) return;
+
+            var particleSystemData = ParticleSystemRegistry.Instance.GetByParticleSystemName(FParticleSystemName[0]);
+
+            var enums = particleSystemData.ShaderVariables
+                .SelectMany(kvp => kvp.Value).Distinct().ToArray();
+            
+            EnumManager.UpdateEnum(EnumName, enums.FirstOrDefault(), enums);
+        }
+
+        public void CreateEnumPin()
+        {
+            EnumName = ParticleSystemRegistry.ATTRIBUTE_ENUM + "_" + this.GetHashCode();
+
+            var attr = new InputAttribute("Attribute Name");
+            attr.Order = 2;
+            attr.AutoValidate = true;
+            attr.EnumName = EnumName;
+
+            Type pinType = typeof(IDiffSpread<EnumEntry>);
+
+            var pin = FIOFactory.CreateIOContainer(pinType, attr);
+            FAttributeName = (IDiffSpread<EnumEntry>)(pin.RawIOObject);
+        }
+
+        public void Evaluate(int SpreadMax)
+        {
+            if (FParticleSystemName.IsChanged)
+            {
+                FillEnum();
+            }
+            if (FParticleSystemName.IsChanged || FAttributeName.IsChanged )
+            {
+                UpdateOutputPins();
+            }
+        }
+
+        public void Dispose()
+        {
+            ParticleSystemRegistry.Instance.Changed -= HandleRegistryChange;
+        }
+
+        private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
+        {
+            FillEnum();
+            UpdateOutputPins();
+        }
+
+        private void UpdateOutputPins()
+        {
+            FVariableName.SliceCount = FVariableType.SliceCount = FStride.SliceCount = 0;
+
+            for (int i = 0; i < FAttributeName.SliceCount; i++)
+            {
+                string varDefinition = FAttributeName[i];
+                Definition def = new Definition(varDefinition);
+                FVariableName.Add(def.Name);
+                FVariableType.Add(def.Type);
+                FStride.Add(def.Size * 4);
+            }
+
+            FVariableName.Flush();
+            FVariableType.Flush();
+            FStride.Flush();
+
+        }
+
+    }
+
 }
 

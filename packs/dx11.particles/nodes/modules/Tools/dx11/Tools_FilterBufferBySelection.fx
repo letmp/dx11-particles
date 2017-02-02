@@ -25,7 +25,20 @@ void CS_Filter(csin input)
 		uint newAliveIndex = NewAliveCounterBuffer[0] + NewAliveCounterBuffer.IncrementCounter();
 		NewAlivePointerBuffer[newAliveIndex] = particleIndex;
 	}
+}
 
+[numthreads(1, 1, 1)]
+void CS_ResetCounter(csin input)
+{
+	NewAliveCounterBuffer[0] = 0;
+}
+
+[numthreads(1, 1, 1)]
+void CS_SetCounter(csin input)
+{
+	NewAliveCounterBuffer[0] = NewAliveCounterBuffer.IncrementCounter();
 }
 
 technique11 Filter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Filter() ) );} }
+technique11 Reset { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_ResetCounter() ) );} }
+technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetCounter() ) );} }

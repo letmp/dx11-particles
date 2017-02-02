@@ -375,6 +375,8 @@
    </PIN>
    <PIN pinname="FunctionCalls" visible="1">
    </PIN>
+   <PIN pinname="Code" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="70">
    <BOUNDS type="Box" left="3000" top="2010" width="1350" height="240">
@@ -410,6 +412,8 @@
    <PIN pinname="File Mask" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="69" dstpinname="FunctionCalls">
@@ -517,6 +521,8 @@
    </PIN>
    <PIN pinname="Technique Valid" visible="1">
    </PIN>
+   <PIN pinname="Code" visible="1">
+   </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="84">
    <BOUNDS type="Box" left="5100" top="4635" width="1185" height="525">
@@ -601,7 +607,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5790" top="5955" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.91158,0.55196,0.00000,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.27816,0.92661,0.00000,1.00000|">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="1">
    </PIN>
@@ -629,7 +635,7 @@
    <LINK srcnodeid="92" srcpinname="Output" dstnodeid="95" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="96">
-   <BOUNDS type="Box" left="6480" top="8400" width="3345" height="240">
+   <BOUNDS type="Box" left="6480" top="8400" width="3465" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="6480" top="8400" width="0" height="0">
    </BOUNDS>
@@ -641,13 +647,15 @@
    </PIN>
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="FunctionCalls">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Code">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="96" srcpinname="Output String" dstnodeid="85" dstpinname="FunctionCalls">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="97">
-   <BOUNDS type="Box" left="6105" top="7425" width="3945" height="690">
+   <BOUNDS type="Box" left="6105" top="7425" width="4065" height="690">
    </BOUNDS>
    <BOUNDS type="Node" left="6105" top="7425" width="0" height="0">
    </BOUNDS>
@@ -755,5 +763,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="98" srcpinname="Output String" dstnodeid="85" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output String" dstnodeid="85" dstpinname="Code">
+   </LINK>
+   <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="69" dstpinname="Code">
    </LINK>
    </PATCH>

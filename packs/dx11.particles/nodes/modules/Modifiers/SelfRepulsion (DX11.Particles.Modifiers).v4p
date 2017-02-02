@@ -287,6 +287,8 @@
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
    </NODE>
    <NODE systemname="LinkedList (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\LinkedList (DX11.Particles.Core).v4p" nodename="LinkedList (DX11.Particles.Core)" componentmode="Hidden" id="74">
    <BOUNDS type="Node" left="765" top="4455" width="100" height="100">
@@ -449,6 +451,8 @@
    </BOUNDS>
    <PIN pinname="maxComparisons" visible="1">
    </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="90" dstpinname="Geometry">
    </LINK>
@@ -476,16 +480,46 @@
    </LINK>
    <LINK srcnodeid="89" srcpinname="Output Node" dstnodeid="90" dstpinname="Layer In">
    </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="90" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12750" y="2738">
-   </LINKPOINT>
-   <LINKPOINT x="8640" y="2738">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="90" srcpinname="Layer" dstnodeid="73" dstpinname="Layer 2" linkstyle="Bezier">
    <LINKPOINT x="2040" y="5115">
    </LINKPOINT>
    <LINKPOINT x="1485" y="5115">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="GT (Value)" nodename="GT (Value)" componentmode="Hidden" id="91">
+   <BOUNDS type="Node" left="10035" top="2565" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="57" srcpinname="ParticleSystem ElementCount" dstnodeid="91" dstpinname="Input 1">
+   </LINK>
+   <NODE systemname="AND (Boolean)" nodename="AND (Boolean)" componentmode="Hidden" id="92">
+   <BOUNDS type="Node" left="10050" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="91" srcpinname="Output" dstnodeid="92" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="92" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12750" y="2033">
+   </LINKPOINT>
+   <LINKPOINT x="10515" y="2033">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="92" srcpinname="Output" dstnodeid="73" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10050" y="4403">
+   </LINKPOINT>
+   <LINKPOINT x="1665" y="4403">
    </LINKPOINT>
    </LINK>
    </PATCH>

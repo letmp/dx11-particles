@@ -32,55 +32,48 @@ void CS_Set(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
+
+	float4 tp = mul(float4(ParticleBuffer[particleIndex].position, 1), tW);
+
+	tp = tp * 0.5f + 0.5f;
+	tp.y = 1.0f -tp.y;
+	int3 cl = tp.xyz * CellCount;
+
+    uint cellindex = cl.z * CellCount * CellCount + cl.y * CellCount + cl.x;
+	if (cellindex > asuint(CellCount * CellCount * CellCount)) return;
 	
-	uint size,stride;
-	LinkedListBuffer.GetDimensions(size,stride);
+	uint next = LinkedListOffsetBuffer[cellindex];
 	
-	if (size > 1){
-		
-		float4 tp = mul(float4(ParticleBuffer[particleIndex].position, 1), tW);
+	float dist = 0;
 	
-		tp = tp * 0.5f + 0.5f;
-		tp.y = 1.0f -tp.y;
-		int3 cl = tp.xyz * CellCount;
-	
-	    uint cellindex = cl.z * CellCount * CellCount + cl.y * CellCount + cl.x;
-		if (cellindex > asuint(CellCount * CellCount * CellCount)) return;
+	while (next != -1 ){
 		
-		uint next = LinkedListOffsetBuffer[cellindex];
+		uint particleIndexOther = LinkedListBuffer[next].particleIndex;
 		
-		float dist = 0;
-		
-		while (next != -1 ){
+		if (particleIndexOther != particleIndex){
 			
-			uint particleIndexOther = LinkedListBuffer[next].particleIndex;
+			float minDist = Radius;
+			#if defined(KNOW_SCALE)
+				minDist = (( distance(float3(0,0,0), ParticleBuffer[particleIndex].scale) / 2 ) + (distance( float3(0,0,0), ParticleBuffer[particleIndexOther].scale) / 2)) / 2 ;
+			#endif
 			
-			if (particleIndexOther != particleIndex){
-				
-				float minDist = Radius;
-				#if defined(KNOW_SCALE)
-					minDist = (( distance(float3(0,0,0), ParticleBuffer[particleIndex].scale) / 2 ) + (distance( float3(0,0,0), ParticleBuffer[particleIndexOther].scale) / 2)) / 2 ;
+			dist = distance(ParticleBuffer[particleIndex].position, ParticleBuffer[particleIndexOther].position);
+			
+			if (dist <= minDist){
+				float f = saturate(1 - dist * 2);
+			  	//f = pow( f, g );
+				float massMultiplicator = 1;
+				#if defined(KNOW_MASS)
+					massMultiplicator = ParticleBuffer[particleIndexOther].mass / ParticleBuffer[particleIndex].mass;
 				#endif
-				
-				dist = distance(ParticleBuffer[particleIndex].position, ParticleBuffer[particleIndexOther].position);
-				
-				if (dist <= minDist){
-					float f = saturate(1 - dist * 2);
-				  	//f = pow( f, g );
-					float massMultiplicator = 1;
-					#if defined(KNOW_MASS)
-						massMultiplicator = ParticleBuffer[particleIndexOther].mass / ParticleBuffer[particleIndex].mass;
-					#endif
-					ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount * massMultiplicator;
-				}
+				ParticleBuffer[particleIndex].velocity += (ParticleBuffer[particleIndex].position - ParticleBuffer[particleIndexOther].position) * lerp(0.0f,1.00f,f) * minDist * RepulseAmount * massMultiplicator;
 			}
-			
-			if (LinkedListBuffer[next].next != next) next = LinkedListBuffer[next].next;
-			else next = -1;
-			
-		}	
-	}
-	
+		}
+		
+		if (LinkedListBuffer[next].next != next) next = LinkedListBuffer[next].next;
+		else next = -1;
+		
+	}	
 	
 }
 

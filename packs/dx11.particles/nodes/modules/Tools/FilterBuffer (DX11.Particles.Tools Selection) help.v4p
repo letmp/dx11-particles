@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Filter (DX11.Particles.Selection) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Tools\FilterBuffer (DX11.Particles.Tools Selection) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2070" top="1905" width="12915" height="12345">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -21,7 +21,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="300" width="9090" height="435">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Filter (DX11.Particles.Selection)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|FilterBuffer (DX11.Particles.Tools Selection)|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -33,7 +33,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="675" width="5100" height="600">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Filters a rendered particlebuffer.|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Filters the rendered particlebuffer by selection(s).|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -400,24 +400,10 @@
    <LINKPOINT x="5355" y="5968">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Filter (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Filter (DX11.Particles.Selection).v4p" nodename="Filter (DX11.Particles.Selection)" componentmode="Hidden" id="74">
-   <BOUNDS type="Node" left="4995" top="8085" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers In" visible="1">
-   </PIN>
-   <PIN pinname="ParticleSystemBuffers Out" visible="1">
-   </PIN>
-   <PIN pinname="Selection" slicecount="1" visible="1" values="GROUP_Intersect">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="10" srcpinname="ParticleSystemBuffers" dstnodeid="74" dstpinname="ParticleSystemBuffers In">
-   </LINK>
-   <LINK srcnodeid="74" srcpinname="ParticleSystemBuffers Out" dstnodeid="11" dstpinname="ParticleSystemBuffers">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="75">
-   <BOUNDS type="Box" left="7170" top="5160" width="1770" height="240">
+   <BOUNDS type="Box" left="6930" top="5160" width="870" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7170" top="5160" width="0" height="0">
+   <BOUNDS type="Node" left="6930" top="5160" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="Intersect">
    </PIN>
@@ -431,15 +417,13 @@
    <LINK srcnodeid="75" srcpinname="Output String" dstnodeid="56" dstpinname="Name">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="76">
-   <BOUNDS type="Box" left="5610" top="7515" width="1425" height="240">
+   <BOUNDS type="Box" left="6000" top="7515" width="1425" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="5610" top="7515" width="0" height="0">
+   <BOUNDS type="Node" left="6000" top="7515" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_Intersect">
    </PIN>
    </NODE>
-   <LINK srcnodeid="76" srcpinname="Output Enum" dstnodeid="74" dstpinname="Selection">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="77">
    <BOUNDS type="Node" left="7500" top="5625" width="2760" height="270">
    </BOUNDS>
@@ -485,9 +469,9 @@
    <LINK srcnodeid="80" srcpinname="Output" dstnodeid="78" dstpinname="X">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="81">
-   <BOUNDS type="Node" left="7155" top="7500" width="2775" height="270">
+   <BOUNDS type="Node" left="7545" top="7500" width="2775" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="7155" top="7500" width="2775" height="270">
+   <BOUNDS type="Box" left="7545" top="7500" width="2775" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; and choose this selection as filter|">
    </PIN>
@@ -498,4 +482,20 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="FilterBuffer (DX11.Particles.Tools Selection)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\FilterBuffer (DX11.Particles.Tools Selection).v4p" nodename="FilterBuffer (DX11.Particles.Tools Selection)" componentmode="Hidden" id="74">
+   <BOUNDS type="Node" left="4995" top="8085" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers In" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystemBuffers Out" visible="1">
+   </PIN>
+   <PIN pinname="Selection" slicecount="1" visible="1" values="GROUP_Intersect">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="ParticleSystemBuffers" dstnodeid="74" dstpinname="ParticleSystemBuffers In">
+   </LINK>
+   <LINK srcnodeid="74" srcpinname="ParticleSystemBuffers Out" dstnodeid="11" dstpinname="ParticleSystemBuffers">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Output Enum" dstnodeid="74" dstpinname="Selection">
+   </LINK>
    </PATCH>

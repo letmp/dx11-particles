@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Effects\PhongPoint (DX11.Particles.Effect).v4p" systemname="Constant (DX11.Buffer Pointcloud)" filename="D:\workspace\dev\packs\KinectToolkitDX11\nodes\modules\Visualization\Constant (DX11.Buffer Pointcloud).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="2160" top="3480" width="20370" height="10215">
+   <BOUNDS type="Window" left="2460" top="3165" width="20370" height="10215">
    </BOUNDS>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -279,9 +279,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="51" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="12750" top="2910" width="1725" height="585">
+   <BOUNDS type="Box" left="13530" top="2910" width="1725" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="12750" top="2910" width="0" height="0">
+   <BOUNDS type="Node" left="13530" top="2910" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="3" visible="1" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVECOUNTERBUFFER">
    </PIN>
@@ -319,21 +319,21 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="12465" top="2445" width="100" height="100">
+   <BOUNDS type="Node" left="13230" top="2445" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
    <PIN pinname="Buffer Semantic" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="12465" top="2445">
+   <BOUNDS type="Box" left="13230" top="2445">
    </BOUNDS>
    <PIN pinname="ParticleSystem ElementCount" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="59" srcpinname="Output Enum" dstnodeid="49" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="18690" y="1523">
+   <LINKPOINT x="18945" y="1523">
    </LINKPOINT>
-   <LINKPOINT x="12525" y="1523">
+   <LINKPOINT x="13035" y="1523">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="65" systemname="IOBox (String)">
@@ -460,44 +460,6 @@
    <LINKPOINT x="3780" y="2205">
    </LINKPOINT>
    <LINKPOINT x="3555" y="2205">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="11700" top="3765" width="1590" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="11700" top="3765">
-   </BOUNDS>
-   <PIN pinname="Config" slicecount="1" values="|2:PARTICLEBUFFER,3:ALIVEPOINTERBUFFER,5:ALIVECOUNTERBUFFER|">
-   </PIN>
-   <PIN pinname="PARTICLEBUFFER" visible="1">
-   </PIN>
-   <PIN pinname="ALIVEPOINTERBUFFER" visible="1">
-   </PIN>
-   <PIN pinname="ALIVECOUNTERBUFFER" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="51" srcpinname="Output String" dstnodeid="69" dstpinname="BufferSemantic Filter" linkstyle="VHV">
-   <LINKPOINT x="12815" y="3625">
-   </LINKPOINT>
-   <LINKPOINT x="13270" y="3605">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Buffer Semantic" dstnodeid="69" dstpinname="BufferSemantic" linkstyle="VHV">
-   <LINKPOINT x="13995" y="3230">
-   </LINKPOINT>
-   <LINKPOINT x="10995" y="3340">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="69" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3825" y="2183">
-   </LINKPOINT>
-   <LINKPOINT x="11700" y="2183">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="66" dstpinname="Input 2" linkstyle="VHV">
-   <LINKPOINT x="13205" y="4305">
-   </LINKPOINT>
-   <LINKPOINT x="4705" y="4305">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="66" srcpinname="Output" dstnodeid="21" dstpinname="Instance Arg Buffer" linkstyle="VHV">
@@ -672,96 +634,128 @@
    </NODE>
    <LINK srcnodeid="102" srcpinname="Y Output Value" dstnodeid="94" dstpinname="Data">
    </LINK>
-   <NODE systemname="MultiPhongGeometry (DX11.Effect)" filename="dx11\MultiPhongGeometry.fx" nodename="MultiPhongGeometry (DX11.Effect)" componentmode="Hidden" id="104">
+   <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="107">
+   <BOUNDS type="Node" left="12465" top="3765" width="1590" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="12465" top="3765">
+   </BOUNDS>
+   <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEPOINTERBUFFER,3:ALIVECOUNTERBUFFER|">
+   </PIN>
+   <PIN pinname="ALIVECOUNTERBUFFER" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="51" srcpinname="Output String" dstnodeid="107" dstpinname="BufferSemantic Filter" linkstyle="VHV">
+   <LINKPOINT x="13590" y="3625">
+   </LINKPOINT>
+   <LINKPOINT x="14040" y="3605">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Buffer Semantic" dstnodeid="107" dstpinname="BufferSemantic" linkstyle="VHV">
+   <LINKPOINT x="14760" y="3230">
+   </LINKPOINT>
+   <LINKPOINT x="11760" y="3340">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="Output Node" dstnodeid="107" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4080" y="2183">
+   </LINKPOINT>
+   <LINKPOINT x="12210" y="2183">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="107" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="66" dstpinname="Input 2" linkstyle="VHV">
+   <LINKPOINT x="13995" y="4305">
+   </LINKPOINT>
+   <LINKPOINT x="4590" y="4305">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="MultiPhongGeometry (DX11.Effect)" filename="dx11\MultiPhongGeometry.fx" nodename="MultiPhongGeometry (DX11.Effect)" componentmode="Hidden" id="109">
    <BOUNDS type="Node" left="990" top="6345" width="14595" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="990" top="6345">
    </BOUNDS>
-   <PIN pinname="Default Color" visible="1">
-   </PIN>
    </NODE>
-   <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="104" dstpinname="Light PositionXYZ" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="109" dstpinname="Light PositionXYZ" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="6215" y="3538">
    </LINKPOINT>
    <LINKPOINT x="4690" y="3888">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="41" srcpinname="Output Node" dstnodeid="104" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="41" srcpinname="Output Node" dstnodeid="109" dstpinname="Transform In" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="2715" y="3480">
    </LINKPOINT>
    <LINKPOINT x="3300" y="3480">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="104" dstpinname="Render State" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="109" dstpinname="Render State" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="435" y="3313">
    </LINKPOINT>
    <LINKPOINT x="1860" y="3663">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="104" srcpinname="Layer" dstnodeid="4" dstpinname="Input Node">
+   <LINK srcnodeid="109" srcpinname="Layer" dstnodeid="4" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="104" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="109" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="20340" y="3473">
    </LINKPOINT>
    <LINKPOINT x="14820" y="3473">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="50" srcpinname="ParticleSystem Defines" dstnodeid="104" dstpinname="Defines">
+   <LINK srcnodeid="50" srcpinname="ParticleSystem Defines" dstnodeid="109" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="104" srcpinname="Shader Path" dstnodeid="61" dstpinname="Filename">
+   <LINK srcnodeid="109" srcpinname="Shader Path" dstnodeid="61" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="104" srcpinname="Query" dstnodeid="63" dstpinname="Input Node" linkstyle="VHV" hiddenwhenlocked="1">
+   <LINK srcnodeid="109" srcpinname="Query" dstnodeid="63" dstpinname="Input Node" linkstyle="VHV" hiddenwhenlocked="1">
    <LINKPOINT x="14410" y="7638">
    </LINKPOINT>
    <LINKPOINT x="16685" y="7453">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="104" srcpinname="Shader Path" dstnodeid="60" dstpinname="Filename" linkstyle="Bezier">
+   <LINK srcnodeid="109" srcpinname="Shader Path" dstnodeid="60" dstpinname="Filename" linkstyle="Bezier">
    <LINKPOINT x="13155" y="7238">
    </LINKPOINT>
    <LINKPOINT x="14220" y="7238">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="104" dstpinname="Geometry">
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="109" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="69" srcpinname="PARTICLEBUFFER" dstnodeid="104" dstpinname="ParticleBuffer" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="11830" y="5175">
-   </LINKPOINT>
-   <LINKPOINT x="4340" y="5175">
-   </LINKPOINT>
+   <LINK srcnodeid="73" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Position">
    </LINK>
-   <LINK srcnodeid="69" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="104" dstpinname="AlivePointerBuffer" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="12685" y="5175">
-   </LINKPOINT>
-   <LINKPOINT x="5195" y="5175">
-   </LINKPOINT>
+   <LINK srcnodeid="74" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Attenuation 0">
    </LINK>
-   <LINK srcnodeid="73" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Position">
+   <LINK srcnodeid="75" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Attenuation 1">
    </LINK>
-   <LINK srcnodeid="74" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Attenuation 0">
+   <LINK srcnodeid="76" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Attenuation 2">
    </LINK>
-   <LINK srcnodeid="75" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Attenuation 1">
+   <LINK srcnodeid="77" srcpinname="Buffer" dstnodeid="109" dstpinname="Ambient Color">
    </LINK>
-   <LINK srcnodeid="76" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Attenuation 2">
+   <LINK srcnodeid="79" srcpinname="Buffer" dstnodeid="109" dstpinname="Diffuse Color">
    </LINK>
-   <LINK srcnodeid="77" srcpinname="Buffer" dstnodeid="104" dstpinname="Ambient Color">
+   <LINK srcnodeid="80" srcpinname="Buffer" dstnodeid="109" dstpinname="Specular Color">
    </LINK>
-   <LINK srcnodeid="79" srcpinname="Buffer" dstnodeid="104" dstpinname="Diffuse Color">
+   <LINK srcnodeid="81" srcpinname="Buffer" dstnodeid="109" dstpinname="Power">
    </LINK>
-   <LINK srcnodeid="80" srcpinname="Buffer" dstnodeid="104" dstpinname="Specular Color">
+   <LINK srcnodeid="82" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Range">
    </LINK>
-   <LINK srcnodeid="81" srcpinname="Buffer" dstnodeid="104" dstpinname="Power">
+   <LINK srcnodeid="73" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Position/Direction">
    </LINK>
-   <LINK srcnodeid="82" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Range">
+   <LINK srcnodeid="94" srcpinname="Buffer" dstnodeid="109" dstpinname="Light Type">
    </LINK>
-   <LINK srcnodeid="73" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Position/Direction">
-   </LINK>
-   <LINK srcnodeid="94" srcpinname="Buffer" dstnodeid="104" dstpinname="Light Type">
-   </LINK>
-   <LINK srcnodeid="100" srcpinname="Color Output" dstnodeid="104" dstpinname="Default Color" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="100" srcpinname="Color Output" dstnodeid="109" dstpinname="Default Color" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5400" y="3488">
    </LINKPOINT>
    <LINKPOINT x="4080" y="3488">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="107" srcpinname="PARTICLEBUFFER" dstnodeid="109" dstpinname="ParticleBuffer" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="12340" y="5175">
+   </LINKPOINT>
+   <LINKPOINT x="4595" y="5175">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="107" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="109" dstpinname="AlivePointerBuffer" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="13195" y="5175">
+   </LINKPOINT>
+   <LINKPOINT x="5450" y="5175">
    </LINKPOINT>
    </LINK>
    </PATCH>

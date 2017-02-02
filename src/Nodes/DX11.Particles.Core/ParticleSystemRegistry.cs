@@ -15,7 +15,8 @@ namespace DX11.Particles.Core
 
         public const string EMITTER_ENUM = "DX11.Particles.Core.EmitterNames";
         public const string BUFFER_ENUM = "DX11.Particles.Core.BufferNames";
-        
+        public const string ATTRIBUTE_ENUM = "DX11.Particles.Core.Attributes";
+
         private static ParticleSystemRegistry _instance;
         public event RegistryChangedHandler Changed;
 
