@@ -40,44 +40,44 @@ void CSAdd(csin input)
 	
 	float3 position = ParticleBuffer[particleIndex].position;
 	
-	uint size, stride;
+	uint cntPosition, stride;
+	OrbitPositionBuffer.GetDimensions(cntPosition,stride);
+	uint cntDirection;
+	OrbitDirectionBuffer.GetDimensions(cntDirection,stride);
+	int spinCount = max(cntPosition,cntDirection);
+	uint cnt;
 	
-	OrbitPositionBuffer.GetDimensions(size,stride);
-	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-	float3 posOrbit = OrbitPositionBuffer[bufferIndex];
-	
-	OrbitDirectionBuffer.GetDimensions(size,stride);
-	bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-	float3 dirOrbit = OrbitDirectionBuffer[bufferIndex];
-	
-	float3 gravityCenter = posOrbit + (dot(position - posOrbit, dirOrbit) / dot(dirOrbit,dirOrbit)) * dirOrbit;
-	float3 gravity = gravityCenter - position;
-	
-	float3 radialForce = normalize(cross( gravity, dirOrbit));
-	float3 gravityAttraction = normalize(gravity);
-	
-	float dist = length(gravity);
-	
-	RadiusBuffer.GetDimensions(size,stride);
-	bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-	float radius = RadiusBuffer[bufferIndex];
-	
-	if( dist < radius){
+	for (int i = 0; i < spinCount; i++){
+		float3 posOrbit = OrbitPositionBuffer[i % cntPosition];
+		float3 dirOrbit = OrbitDirectionBuffer[i % cntDirection];
 		
-		RadialStrengthBuffer.GetDimensions(size,stride);
-		bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-		float radialStrength = RadialStrengthBuffer[bufferIndex];
+		float3 gravityCenter = posOrbit + (dot(position - posOrbit, dirOrbit) / dot(dirOrbit,dirOrbit)) * dirOrbit;
+		float3 gravity = gravityCenter - position;
 		
-		GravityStrengthBuffer.GetDimensions(size,stride);
-		bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-		float gravStrength = GravityStrengthBuffer[bufferIndex];
+		float3 radialForce = normalize(cross( gravity, dirOrbit));
+		float3 gravityAttraction = normalize(gravity);
 		
-		DirectionStrengthBuffer.GetDimensions(size,stride);
-		bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-		float dirStrength = DirectionStrengthBuffer[bufferIndex];
+		float dist = length(gravity);
 		
-		ParticleBuffer[particleIndex].force = (radialForce * radialStrength) + (gravity * gravStrength) + (dirOrbit * dirStrength);
+		RadiusBuffer.GetDimensions(cnt,stride);
+		float radius = RadiusBuffer[i % cnt];
+		
+		if( dist < radius){
+			
+			RadialStrengthBuffer.GetDimensions(cnt,stride);
+			float radialStrength = RadialStrengthBuffer[i % cnt];
+			
+			GravityStrengthBuffer.GetDimensions(cnt,stride);
+			float gravStrength = GravityStrengthBuffer[i % cnt];
+			
+			DirectionStrengthBuffer.GetDimensions(cnt,stride);
+			float dirStrength = DirectionStrengthBuffer[i % cnt];
+			
+			ParticleBuffer[particleIndex].force += (radialForce * radialStrength) + (gravity * gravStrength) + (dirOrbit * dirStrength);
+		}
 	}
+	
+	
 	
 }
 
