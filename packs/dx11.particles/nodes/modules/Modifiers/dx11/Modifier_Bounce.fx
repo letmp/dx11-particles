@@ -41,17 +41,17 @@ void CS_Bounce(csin input)
 	if(mode ==1) { conditionX = !conditionX; conditionY = !conditionY; conditionZ = !conditionZ; condition = !condition; }
 	
 	if(	condition){
-		if( conditionX){
+		if( conditionX && !conditionY && !conditionZ){
 			ParticleBuffer[particleIndex].velocity.x *= -BounceMultiplicator;
 			ParticleBuffer[particleIndex].force.x *= 0;
 		} 
 		
-		if( conditionY){
+		if( !conditionX && conditionY && !conditionZ){
 			ParticleBuffer[particleIndex].velocity.y *= -BounceMultiplicator;
 			ParticleBuffer[particleIndex].force.y *= 0;
 		} 
 		
-		if( conditionZ){
+		if( !conditionX && !conditionY && conditionZ){
 			ParticleBuffer[particleIndex].velocity.z *= -BounceMultiplicator;
 			ParticleBuffer[particleIndex].force.z *= 0;
 		}		
