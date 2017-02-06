@@ -70,6 +70,14 @@ void CS_Emit(csin input)
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
 
+		#if defined(KNOW_SCALE)
+			p.scale = 1;
+ 		#endif
+		
+		#if defined(KNOW_COLOR)
+       		p. color = 1;
+    	#endif
+		
 		ParticleBuffer[particleIndex] = p;
 		
 	}
