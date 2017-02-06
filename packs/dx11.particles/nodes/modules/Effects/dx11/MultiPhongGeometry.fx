@@ -25,7 +25,7 @@ cbuffer cbPerDraw : register( b0 )
 cbuffer cbPerObj : register( b1 )
 {
 	float4x4 tW : WORLD;
-	float4 cAmb <bool color=true;String uiname="Default Color";> = { 0.2f,0.2f,0.2f,0.2f };
+	float4 cAmb <bool color=true;String uiname="Default Color";> = { 0.2f,0.2f,0.2f,1.0f };
 };
 
 /* ===================== STRUCTURES ===================== */
@@ -92,7 +92,7 @@ float4 PS(VSOut In): SV_Target
 {
 
 	float4 col = cAmb;
-	 #if defined(KNOW_COLOR)
+	#if defined(KNOW_COLOR)
        col = ParticleBuffer[In.particleIndex].color;
     #endif
 	if (col.a == 0.0f) discard;

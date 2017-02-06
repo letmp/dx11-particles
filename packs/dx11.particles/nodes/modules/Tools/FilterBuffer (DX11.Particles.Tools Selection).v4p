@@ -487,7 +487,7 @@
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="158">
    <BOUNDS type="Node" left="1395" top="8535" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input Count" slicecount="1" values="3">
+   <PIN pinname="Input Count" slicecount="1" values="4">
    </PIN>
    <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
@@ -496,6 +496,8 @@
    <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer 4" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="160">
@@ -513,9 +515,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="161">
-   <BOUNDS type="Box" left="3270" top="7185" width="705" height="240">
+   <BOUNDS type="Box" left="3270" top="6885" width="705" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3270" top="7185" width="0" height="0">
+   <BOUNDS type="Node" left="3270" top="6885" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Reset">
    </PIN>
@@ -529,9 +531,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="164">
-   <BOUNDS type="Box" left="6090" top="7185" width="465" height="240">
+   <BOUNDS type="Box" left="6090" top="6885" width="465" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6090" top="7185" width="0" height="0">
+   <BOUNDS type="Node" left="6090" top="6885" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
    </PIN>
@@ -623,15 +625,15 @@
    <LINK srcnodeid="164" srcpinname="Output Enum" dstnodeid="163" dstpinname="Technique">
    </LINK>
    <LINK srcnodeid="160" srcpinname="Geometry Out" dstnodeid="163" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="2075" y="7313">
+   <LINKPOINT x="2115" y="7313">
    </LINKPOINT>
-   <LINKPOINT x="4795" y="7313">
+   <LINKPOINT x="4875" y="7313">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="163" srcpinname="Layer" dstnodeid="158" dstpinname="Layer 3" linkstyle="VHV">
    <LINKPOINT x="4395" y="8190">
    </LINKPOINT>
-   <LINKPOINT x="1980" y="8190">
+   <LINKPOINT x="1965" y="8190">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Switch (Node Input)" nodename="Switch (Node Input)" componentmode="Hidden" id="165">
@@ -681,5 +683,49 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="165" srcpinname="Output" dstnodeid="142" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="168">
+   <BOUNDS type="Box" left="8730" top="6885" width="1095" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8730" top="6885" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Decrement">
+   </PIN>
+   </NODE>
+   <NODE systemname="Tools_FilterBufferBySelection (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\dx11\Tools_FilterBufferBySelection.fx" nodename="Tools_FilterBufferBySelection (DX11.Effect)" componentmode="Hidden" id="167">
+   <BOUNDS type="Node" left="7035" top="7605" width="1710" height="270">
+   </BOUNDS>
+   <PIN pinname="AlivePointerBuffer" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="AliveCounterBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="GroupIndexBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" visible="1" values="Reset">
+   </PIN>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Box" left="7035" top="7605">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="168" srcpinname="Output Enum" dstnodeid="167" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="160" srcpinname="Geometry Out" dstnodeid="167" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="2115" y="7313">
+   </LINKPOINT>
+   <LINKPOINT x="7515" y="7313">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="167" srcpinname="Layer" dstnodeid="158" dstpinname="Layer 4" linkstyle="VHV">
+   <LINKPOINT x="7035" y="8190">
+   </LINKPOINT>
+   <LINKPOINT x="2130" y="8190">
+   </LINKPOINT>
    </LINK>
    </PATCH>

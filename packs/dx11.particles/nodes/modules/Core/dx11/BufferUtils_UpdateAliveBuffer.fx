@@ -67,6 +67,12 @@ void CS_SetCounter(csin input)
 	AliveCounterBuffer[0] = particleCounter;
 }
 
+[numthreads(1, 1, 1)]
+void CS_DecrementCounter(csin input)
+{
+	uint particleCounter = AliveCounterBuffer.DecrementCounter();
+}
+
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_UpdateCounter(csin input)
 {
@@ -84,4 +90,5 @@ technique11 Rebuild { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Rebuil
 technique11 CopyToSwap { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_CopyToSwap() ) );} }
 technique11 CopyFromSwap { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_CopyFromSwap() ) );} }
 technique11 SetCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetCounter() ) );} }
+technique11 DecrementCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_DecrementCounter() ) );} }
 technique11 UpdateCounter { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_UpdateCounter() ) );} }
