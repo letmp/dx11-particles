@@ -8,10 +8,12 @@ struct Particle {
 	#endif
 };
 
-RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
+StructuredBuffer<Particle> ParticleBuffer;
+StructuredBuffer<uint> AlivePointerBuffer;
+StructuredBuffer<uint> AliveCounterBuffer;
 
 /*STUB_RWBUFFERS*/
+RWStructuredBuffer<uint> IndexBuffer : INDEXBUFFER;
 
 struct csin
 {
@@ -25,9 +27,10 @@ void CS_WriteAttributes(csin input)
 {
 	if (input.DTID.x >= MAXPARTICLECOUNT || input.DTID.x >= AliveCounterBuffer[0]) return;
 	
-	uint particleIndex = input.DTID.x;
+	uint particleIndex = AlivePointerBuffer[input.DTID.x];
+	uint bufferIndex = IndexBuffer.IncrementCounter();
 	
-	uint bufferIndex;
+	IndexBuffer[input.DTID.x] = particleIndex;
 	
 	/*STUB_RWBUFFERUPDATES*/
 }

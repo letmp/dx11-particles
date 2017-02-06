@@ -15,10 +15,12 @@ using Device = SlimDX.Direct3D11.Device;
 
 using VVVV.DX11.Lib.Effects;
 using VVVV.DX11.Lib.Rendering;
+using VVVV.DX11.Internals.Effects;
 
 using VVVV.PluginInterfaces.V2;
 using VVVV.PluginInterfaces.V1;
 using VVVV.Core.Logging;
+
 
 namespace VVVV.DX11.Nodes
 {
@@ -77,6 +79,11 @@ namespace VVVV.DX11.Nodes
         [Output("Custom Semantics", Visibility = PinVisibility.OnlyInspector)]
         protected ISpread<string> FoutCS;
 
+        [Config("ConfigShader", DefaultString = "")]
+        public IDiffSpread<string> FConfigShader;
+        [Config("ConfigDefines", DefaultString = "")]
+        public IDiffSpread<string> FConfigDefines;
+
         [Import()]
         public ILogger FLogger;
         #endregion fields & pins
@@ -96,6 +103,7 @@ namespace VVVV.DX11.Nodes
         private DX11Effect FShader;
         private bool init = true;
         private bool shaderupdated;
+        private bool configWritten = false;
         private int spmax = 0;
         private bool geomconnected;
         private bool stateconnected;
@@ -127,9 +135,8 @@ namespace VVVV.DX11.Nodes
                 this.EndQuery(context);
             }
         }
-
+       
         #region Set the shader instance
-
         public void SetShader(DX11Effect shader, bool isnew)
         {
             this.FShader = shader;
@@ -145,6 +152,7 @@ namespace VVVV.DX11.Nodes
                     defaultenum = shader.TechniqueNames[0];
                     this.FHost.UpdateEnum(this.TechniqueEnumId, shader.TechniqueNames[0], shader.TechniqueNames);
                     this.varmanager.CreateShaderPins();
+                    //StoreShaderPins(shader);
                 }
                 else
                 {
@@ -166,6 +174,7 @@ namespace VVVV.DX11.Nodes
                 {
                     this.FHost.UpdateEnum(this.TechniqueEnumId, shader.TechniqueNames[0], shader.TechniqueNames);
                     this.varmanager.UpdateShaderPins();
+                    //StoreShaderPins(shader);
                     this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
                 }
             }
@@ -189,6 +198,20 @@ namespace VVVV.DX11.Nodes
         }
         #endregion
 
+        
+        public bool HasDynamicPins(DX11Effect shader)
+        {
+            
+            for (int i = 0; i < shader.DefaultEffect.Description.GlobalVariableCount; i++)
+            {
+                EffectVariable var = shader.DefaultEffect.GetVariableByIndex(i);
+                if (ShaderPinFactory.IsShaderPin(var)) return true;
+            }
+
+            return false;
+        }
+
+
         #region Evaluate
         public void Evaluate(int SpreadMax)
         {
@@ -198,6 +221,7 @@ namespace VVVV.DX11.Nodes
 
             if (FShaderCode.IsChanged || FFileName.IsChanged || FInDefines.IsChanged)
             {
+                
                 List<ShaderMacro> sms = new List<ShaderMacro>();
                 for (int i = 0; i < this.FInDefines.SliceCount; i++)
                 {
@@ -224,15 +248,39 @@ namespace VVVV.DX11.Nodes
                 FIncludeHandler.ParentPath = Path.GetDirectoryName(FFileName[0]);
 
                 FShader = DX11Effect.FromString(FShaderCode[0], FIncludeHandler, sms.ToArray());
-                if (init)
+                if (init && !ShaderCreatedByConfig)
                 {
                     this.SetShader(FShader, true);
                     init = false;
                 }
                 else this.SetShader(FShader, false);
-                
+
+                // Write Shadercode & Defines into config -> needed to restore dynamic pins
+                if (HasDynamicPins(FShader))
+                {
+                    configWritten = true;
+                    if (FConfigShader[0] != FShaderCode[0])
+                    {
+                        FConfigShader[0] = FShaderCode[0];
+                        FConfigDefines[0] = "";
+
+                        for (int i = 0; i < FInDefines.SliceCount; i++)
+                        {
+                            if (i != 0) FConfigDefines[0] += ",";
+                            FConfigDefines[0] += this.FInDefines[i];
+                        }
+                    }
+                }
+                else
+                {
+                    if (FConfigShader[0] != "")
+                    {
+                        FConfigShader[0] = "";
+                        FConfigDefines[0] = "";
+                    }
+                }
             }
-            
+
 
             if (FShader.TechniqueNames != null && this.FInTechnique.IsChanged)
             {
@@ -576,7 +624,65 @@ namespace VVVV.DX11.Nodes
             inAttr.Order = 1000;
             this.FInTechnique = this.FFactory.CreateDiffSpread<EnumEntry>(inAttr);
 
+            // load config to restore dynamic pins
+            FConfigShader.Changed += HandleConfigShaderChangeOnStartup;
+            FConfigDefines.Changed += HandleConfigDefinesChangeOnStartup;
+
         }
+
+        bool ShaderCreatedByConfig = false;
+        private void HandleConfigShaderChangeOnStartup(IDiffSpread<string> spread)
+        {
+            if (FConfigShader[0] != ""  && !configWritten)
+            {
+                DX11ShaderInclude FIncludeHandler = new DX11ShaderInclude();
+                List<ShaderMacro> sms = new List<ShaderMacro>();
+                
+                FShader = DX11Effect.FromString(FConfigShader[0], FIncludeHandler, sms.ToArray());
+                this.SetShader(FShader, true);
+                ShaderCreatedByConfig = true;
+            }
+        }
+
+        private void HandleConfigDefinesChangeOnStartup(IDiffSpread<string> spread)
+        {
+            if (FConfigShader[0] != "" && !configWritten)
+            {
+
+                DX11ShaderInclude FIncludeHandler = new DX11ShaderInclude();
+                List<ShaderMacro> sms = new List<ShaderMacro>();
+
+                if (FConfigDefines[0] != "")
+                {
+                    string[] defines = FConfigDefines[0].Split(",".ToCharArray());
+                    for (int i = 0; i < defines.Length; i++)
+                    {
+                        try
+                        {
+                            string[] s = defines[i].Split("=".ToCharArray());
+
+                            if (s.Length == 2)
+                            {
+                                ShaderMacro sm = new ShaderMacro();
+                                sm.Name = s[0];
+                                sm.Value = s[1];
+                                sms.Add(sm);
+                            }
+
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+                
+                FShader = DX11Effect.FromString(FConfigShader[0], FIncludeHandler, sms.ToArray());
+                this.SetShader(FShader, !ShaderCreatedByConfig);
+                ShaderCreatedByConfig = true;
+            }
+        }
+
 
         void FInState_Disconnected(object sender, PinConnectionEventArgs args)
         {
