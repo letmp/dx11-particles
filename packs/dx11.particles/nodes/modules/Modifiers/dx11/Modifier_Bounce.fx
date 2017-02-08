@@ -14,7 +14,8 @@ struct Particle {
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 float4x4 tW: WORLD;
-float4x4 Rotation;
+float4x4 tWI: WORLDINVERSE;
+//float4x4 Rotation;
 float BounceMultiplicator = 1.0f;
 int mode; // 0 = inside, 1 = outside
 
@@ -31,32 +32,65 @@ void CS_Bounce(csin input)
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
 	
-	float4 pointCoord = mul(float4(ParticleBuffer[particleIndex].position,1), tW);
- 	pointCoord.xyz /= pointCoord.w;
- 	pointCoord.xyz = abs (pointCoord.xyz);  
-	bool conditionX = pointCoord.x < -0.5 || pointCoord.x > 0.5;
-	bool conditionY = pointCoord.y < -0.5 || pointCoord.y > 0.5;
-	bool conditionZ = pointCoord.z < -0.5 || pointCoord.z > 0.5;
+	float4 tPos = mul(float4(ParticleBuffer[particleIndex].position,1), tWI); // tranfrom pos to box space
+	float3 absTPos = abs(tPos).xyz; 
+	bool conditionX = absTPos.x >= 0.5;
+	bool conditionY = absTPos.y >= 0.5;
+	bool conditionZ = absTPos.z >= 0.5;
 	bool condition = conditionX || conditionY || conditionZ;
+	
 	if(mode ==1) { conditionX = !conditionX; conditionY = !conditionY; conditionZ = !conditionZ; condition = !condition; }
 	
-	if(	condition){
-		if( conditionX && !conditionY && !conditionZ){
-			ParticleBuffer[particleIndex].velocity.x *= -BounceMultiplicator;
-			ParticleBuffer[particleIndex].force.x *= 0;
+	//Outside
+	if(	condition & mode == 1)
+	{
+		float4 tVel = mul(float4(ParticleBuffer[particleIndex].velocity,0), tWI); // tranfrom vel to box space
+
+		float nearWall = max(max(absTPos.x, absTPos.y), absTPos.z); // the axis we want to bounce off
+		if (absTPos.x == nearWall) 
+		{
+			tPos.x = sign(tPos.x)*.5;
+			tVel.x *= -BounceMultiplicator;
+		}
+		else if (absTPos.y == nearWall)
+		{
+			tPos.y = sign(tPos.y)*.5;
+			tVel.y *= -BounceMultiplicator;
+		}
+		else if (absTPos.z == nearWall)
+		{
+			tPos.z = sign(tPos.z)*.5;
+			tVel.z *= -BounceMultiplicator;
+		} 
+
+		ParticleBuffer[particleIndex].velocity = mul(tVel, tW).xyz; // tranfrom vel back to world space
+		ParticleBuffer[particleIndex].position = mul(tPos, tW).xyz; // tranfrom pos back to world space
+	}	
+	
+	//Inside
+	else if(condition)
+	{
+		float4 tVel = mul(float4(ParticleBuffer[particleIndex].velocity,0), tWI); // tranfrom vel to box space
+		
+		if( conditionX)
+		{
+			tPos.x = clamp(tPos.x, -.5, .5);
+			tVel.x *= -BounceMultiplicator;
 		} 
 		
-		if( !conditionX && conditionY && !conditionZ){
-			ParticleBuffer[particleIndex].velocity.y *= -BounceMultiplicator;
-			ParticleBuffer[particleIndex].force.y *= 0;
+		if( conditionY)
+		{
+			tPos.y = clamp(tPos.y, -.5, .5);
+			tVel.y *= -BounceMultiplicator;
 		} 
 		
-		if( !conditionX && !conditionY && conditionZ){
-			ParticleBuffer[particleIndex].velocity.z *= -BounceMultiplicator;
-			ParticleBuffer[particleIndex].force.z *= 0;
-		}		
-		ParticleBuffer[particleIndex].velocity = mul(float4(ParticleBuffer[particleIndex].velocity,1), Rotation).xyz;
-		ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * psTime.y;
+		if( conditionZ)
+		{
+			tPos.z = clamp(tPos.z, -.5, .5);
+			tVel.z *= -BounceMultiplicator;
+		} 	
+		ParticleBuffer[particleIndex].velocity = mul(tVel, tW).xyz; // tranfrom vel back to world space
+		ParticleBuffer[particleIndex].position = mul(tPos, tW).xyz; // tranfrom pos back to world space
 	}	
 }
 
