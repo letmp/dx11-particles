@@ -399,9 +399,9 @@
    </PIN>
    </NODE>
    <NODE id="41" nodename="IOBox (String)" componentmode="InABox" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="8415" top="9420" width="8400" height="270">
+   <BOUNDS type="Node" left="8715" top="9420" width="8400" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="8415" top="9420" width="3765" height="750">
+   <BOUNDS type="Box" left="8715" top="9420" width="3765" height="750">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|if the attribute &quot;color&quot; is set, the shader draws that color. otherwise the default color is drawn.|">
    </PIN>
@@ -447,7 +447,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8265" top="2595" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.25853,0.25853,0.25853,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.18516,0.18516,0.18516,1.00000|">
    </PIN>
    </NODE>
    <LINK srcnodeid="58" srcpinname="Color Output" dstnodeid="29" dstpinname="Data">
@@ -457,7 +457,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="5535" top="9420">
    </BOUNDS>
-   <BOUNDS type="Window" left="1275" top="3000" width="21735" height="10215">
+   <BOUNDS type="Window" left="1275" top="3000" width="26040" height="10215">
    </BOUNDS>
    <PIN pinname="Light Range" visible="1" slicecount="1" values="0.42">
    </PIN>
@@ -469,9 +469,9 @@
    </PIN>
    <PIN pinname="Diffuse Color" visible="1" slicecount="5" values="|0.60000,0.55099,0.00000,1.00000|,|0.00000,0.60000,0.07099,1.00000|,|0.00000,0.40901,0.60000,1.00000|,|0.31099,0.00000,0.60000,1.00000|,|0.60000,0.00000,0.16901,1.00000|">
    </PIN>
-   <PIN pinname="Light Attenuation 0" slicecount="1" visible="1" values="0.4">
+   <PIN pinname="Light Attenuation 0" slicecount="1" visible="1" values="0">
    </PIN>
-   <PIN pinname="Light Attenuation 1" slicecount="1" visible="1" values="0.18">
+   <PIN pinname="Light Attenuation 1" slicecount="1" visible="1" values="0.3">
    </PIN>
    <PIN pinname="Help Layer" visible="1">
    </PIN>
@@ -479,11 +479,15 @@
    </PIN>
    <PIN pinname="Light Position/Direction" visible="1" slicecount="15" values="-1,0,0,0.5,0,0,0,0,0,0,0,-0.44,0.44,-0.33,-0.5">
    </PIN>
-   <PIN pinname="Specular Color" slicecount="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   <PIN pinname="Specular Color" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
    <PIN pinname="Light Position" visible="1">
    </PIN>
    <PIN pinname="Power" slicecount="1" visible="1" values="25">
+   </PIN>
+   <PIN pinname="Default Color" slicecount="1" values="|0.20000,0.20000,0.20000,1.00000|">
+   </PIN>
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="50" srcpinname="Layer" dstnodeid="6" dstpinname="Layer 2">
@@ -517,9 +521,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="76" srcpinname="Output Enum" dstnodeid="50" dstpinname="PhongType" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9405" y="7588">
+   <LINKPOINT x="9585" y="8018">
    </LINKPOINT>
-   <LINKPOINT x="7965" y="8433">
+   <LINKPOINT x="7755" y="8018">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="84">
@@ -534,7 +538,7 @@
    <PIN pinname="Precision" slicecount="1" values="4">
    </PIN>
    </NODE>
-   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="50" dstpinname="Light Range" linkstyle="Bezier">
+   <LINK srcnodeid="84" srcpinname="Y Output Value" dstnodeid="50" dstpinname="Light Range" linkstyle="VHV">
    <LINKPOINT x="7830" y="9233">
    </LINKPOINT>
    <LINKPOINT x="7620" y="9233">
@@ -631,19 +635,19 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="76" srcpinname="Output Enum" dstnodeid="91" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9615" y="6795">
+   <LINKPOINT x="9600" y="6855">
    </LINKPOINT>
-   <LINKPOINT x="8040" y="6795">
+   <LINKPOINT x="8055" y="6855">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="91" srcpinname="Count" dstnodeid="90" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="HSL (Color Join)" nodename="HSL (Color Join)" componentmode="Hidden" id="92">
-   <BOUNDS type="Node" left="7095" top="8820" width="100" height="100">
+   <BOUNDS type="Node" left="7080" top="8820" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Hue" visible="1">
    </PIN>
-   <PIN pinname="Lightness" slicecount="1" values="0.5">
+   <PIN pinname="Lightness" slicecount="1" values="0.19">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -653,15 +657,15 @@
    <LINK srcnodeid="89" srcpinname="Output" dstnodeid="92" dstpinname="Hue">
    </LINK>
    <LINK srcnodeid="92" srcpinname="Output" dstnodeid="50" dstpinname="Ambient Color" linkstyle="VHV">
-   <LINKPOINT x="7095" y="9248">
+   <LINKPOINT x="7085" y="9248">
    </LINKPOINT>
-   <LINKPOINT x="6975" y="9248">
+   <LINKPOINT x="6970" y="9248">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="92" srcpinname="Output" dstnodeid="50" dstpinname="Diffuse Color" linkstyle="VHV">
-   <LINKPOINT x="7110" y="9240">
+   <LINKPOINT x="7100" y="9240">
    </LINKPOINT>
-   <LINKPOINT x="7125" y="9240">
+   <LINKPOINT x="7120" y="9240">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="88" srcpinname="Position Out" dstnodeid="50" dstpinname="Light Position/Direction">

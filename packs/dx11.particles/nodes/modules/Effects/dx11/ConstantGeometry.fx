@@ -27,9 +27,31 @@ cbuffer cbPerObj : register( b1 )
 	float4 cAmb <bool color=true;String uiname="Default Color";> = { 1.0f,1.0f,1.0f,1.0f };
 };
 
+cbuffer cbTextureData : register(b2)
+{
+	float4x4 tTex <string uiname="Texture Transform"; bool uvspace=true; >;
+};
+
+Texture2D inputTexture <string uiname="Texture";>;
+
+SamplerState linearSampler <string uiname="Sampler State";>
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
 /* ===================== STRUCTURES ===================== */
 
 struct VSIn
+{
+	float4 pos : POSITION;
+	float4 uv: TEXCOORD0;
+	uint iv : SV_VertexID;
+	uint ii : SV_InstanceID;
+};
+
+struct VSInNoTexture
 {
 	float4 pos : POSITION;
 	uint iv : SV_VertexID;
@@ -37,6 +59,13 @@ struct VSIn
 };
 
 struct VSOut
+{
+    float4 pos: SV_POSITION;
+	float4 uv: TEXCOORD0;
+	uint particleIndex : VID;
+};
+
+struct VSOutNoTexture
 {
     float4 pos: SV_POSITION;
 	uint particleIndex : VID;
@@ -60,7 +89,29 @@ VSOut VS(VSIn In)
 		p = mul(p,MatrixRotation(ParticleBuffer[particleIndex].rotation));
  	#endif
 	
+	p.xyz += ParticleBuffer[particleIndex].position;
+	Out.pos = mul(p,mul(tW,tVP));
 	
+	Out.uv = mul(In.uv, tTex);
+	
+	return Out;
+}
+
+VSOutNoTexture VS_NoTexture(VSInNoTexture In)
+{
+    VSOutNoTexture Out = (VSOutNoTexture)0;
+    
+	uint particleIndex = AlivePointerBuffer[In.ii];
+	Out.particleIndex = particleIndex;
+	
+	float4 p = In.pos;
+	
+	#if defined(KNOW_SCALE)
+		p = mul(p,MatrixScaling(ParticleBuffer[particleIndex].scale));
+ 	#endif	
+	#if defined(KNOW_ROTATION)
+		p = mul(p,MatrixRotation(ParticleBuffer[particleIndex].rotation));
+ 	#endif
 	
 	p.xyz += ParticleBuffer[particleIndex].position;
 	Out.pos = mul(p,mul(tW,tVP));
@@ -73,6 +124,17 @@ VSOut VS(VSIn In)
 float4 PS(VSOut In): SV_Target
 {
 
+	float4 col = inputTexture.Sample(linearSampler,In.uv.xy) * cAmb;
+	 #if defined(KNOW_COLOR)
+       col = inputTexture.Sample(linearSampler,In.uv.xy) * ParticleBuffer[In.particleIndex].color;
+    #endif
+	if (col.a == 0.0f) discard;
+    return col;
+}
+
+float4 PS_NoTexture(VSOutNoTexture In): SV_Target
+{
+
 	float4 col = cAmb;
 	 #if defined(KNOW_COLOR)
        col = ParticleBuffer[In.particleIndex].color;
@@ -83,11 +145,20 @@ float4 PS(VSOut In): SV_Target
 
 /* ===================== TECHNIQUE ===================== */
 
-technique10 TPhongDirectional
+technique10 Constant <string noTexCdFallback="ConstantNoTexture"; >
 {
 	pass P0
 	{
 		SetVertexShader( CompileShader( vs_4_0, VS() ) );
 		SetPixelShader( CompileShader( ps_4_0, PS() ) );
+	}
+}
+
+technique10 ConstantNoTexture
+{
+	pass P0
+	{
+		SetVertexShader( CompileShader( vs_4_0, VS_NoTexture() ) );
+		SetPixelShader( CompileShader( ps_4_0, PS_NoTexture() ) );
 	}
 }

@@ -12,7 +12,7 @@ StructuredBuffer<float4> lSpecBuffer <string uiname="Specular Color";>;
 StructuredBuffer<float> lPowerBuffer <string uiname="Power";>;
 StructuredBuffer<float> lRangeBuffer <string uiname="Light Range";>;
 
-float4 MultiGouraudDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV)
+float4 MultiGouraudDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV, uint particleIndex)
 {
     uint lAmbCount, dummy;
     lAmbBuffer.GetDimensions(lAmbCount, dummy);
@@ -27,7 +27,7 @@ float4 MultiGouraudDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV)
     float4 lAmb = lAmbBuffer[i % lAmbCount];
     float4 lDiff = lDiffBuffer[i % lDiffCount];
     float4 lSpec = lSpecBuffer[i % lSpecCount];
-    float lPower = lPowerBuffer[i % lPowerCount];
+    float lPower = lPowerBuffer[particleIndex % lPowerCount];
 
     //inverse light direction in view space
     float3 LightDirV = normalize(-mul(float4(lDir,0.0f), tV).xyz);
@@ -44,7 +44,7 @@ float4 MultiGouraudDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV)
     return diff + lAmb + spec;
 }
 
-float4 MultiGouraudPoint(int i,float3 PosW, float3 NormV, float3 ViewDirV, float4x4 tV)
+float4 MultiGouraudPoint(int i,float3 PosW, float3 NormV, float3 ViewDirV, float4x4 tV, uint particleIndex)
 {
 
     uint lAtt0Count, dummy;
@@ -71,7 +71,7 @@ float4 MultiGouraudPoint(int i,float3 PosW, float3 NormV, float3 ViewDirV, float
     float4 lAmb = lAmbBuffer[i % lAmbCount];
     float4 lDiff = lDiffBuffer[i % lDiffCount];
     float4 lSpec = lSpecBuffer[i % lSpecCount];
-    float lPower = lPowerBuffer[i % lPowerCount];
+    float lPower = lPowerBuffer[particleIndex % lPowerCount];
     float lRange = lRangeBuffer[i % lRangeCount];
 
     float d = distance(PosW, lPos);

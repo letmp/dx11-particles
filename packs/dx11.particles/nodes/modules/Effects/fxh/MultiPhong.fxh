@@ -12,7 +12,7 @@ StructuredBuffer<float4> lSpecBuffer <string uiname="Specular Color";>;
 StructuredBuffer<float> lPowerBuffer <string uiname="Power";>;
 StructuredBuffer<float> lRangeBuffer <string uiname="Light Range";>;
 
-float4 MultiPhongDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV)
+float4 MultiPhongDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV, uint particleIndex)
 {
 
     uint lAmbCount, dummy;
@@ -30,7 +30,7 @@ float4 MultiPhongDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV)
     float4 lAmb = lAmbBuffer[i % lAmbCount];
     float4 lDiff = lDiffBuffer[i % lDiffCount];
     float4 lSpec = lSpecBuffer[i % lSpecCount];
-    float lPower = lPowerBuffer[i % lPowerCount];
+    float lPower = lPowerBuffer[particleIndex % lPowerCount];
 
     float4 amb = float4(lAmb.rgb, 1);
 
@@ -58,7 +58,7 @@ float4 MultiPhongDirectional(int i, float3 NormV, float3 ViewDirV,float4x4 tV)
     return (amb + diff) + spec;
 }
 
-float4 MultiPhongPoint(int i, float3 PosW, float3 NormV, float3 ViewDirV, float4x4 tV)
+float4 MultiPhongPoint(int i, float3 PosW, float3 NormV, float3 ViewDirV, float4x4 tV, uint particleIndex)
 {
 
     uint lAtt0Count,dummy;
@@ -86,7 +86,7 @@ float4 MultiPhongPoint(int i, float3 PosW, float3 NormV, float3 ViewDirV, float4
     float4 lAmb = lAmbBuffer[i % lAmbCount];
     float4 lDiff = lDiffBuffer[i % lDiffCount];
     float4 lSpec = lSpecBuffer[i % lSpecCount];
-    float lPower = lPowerBuffer[i % lPowerCount];
+    float lPower = lPowerBuffer[particleIndex % lPowerCount];
     float lRange = lRangeBuffer[i % lRangeCount];
 
     float d = distance(PosW, lPos);
