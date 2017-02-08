@@ -55,12 +55,13 @@ void CS_Emit(csin input)
 		AlivePointerBuffer[aliveIndex] = particleIndex;
 		
 		// create new particle
-		uint size, stride;
+		
 		Particle p = (Particle) 0;
-
+		uint size, stride;
 		PositionBuffer.GetDimensions(size,stride);
+		//p.position = PositionBuffer[emitterCounter % size];
 		p.position = PositionBuffer[emitterCounter % size];
-
+		
 		VelocityBuffer.GetDimensions(size,stride);
 		p.velocity = VelocityBuffer[emitterCounter % size];
 		
@@ -69,14 +70,6 @@ void CS_Emit(csin input)
 
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
-
-		#if defined(KNOW_SCALE)
-			p.scale = 1;
- 		#endif
-		
-		#if defined(KNOW_COLOR)
-       		p. color = 1;
-    	#endif
 		
 		ParticleBuffer[particleIndex] = p;
 		

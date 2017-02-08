@@ -100,11 +100,7 @@ void CS_Emit(csin input)
 		
 		// ADD PARTICLE TO PARTICLEBUFFER
 		ParticleBuffer[particleIndex] = p;
-		
-		#if defined(KNOW_SCALE)
-			p.scale = 1;
- 		#endif
-		
+				
 		// UPDATE ALIVEPOINTERBUFFER
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
 		AlivePointerBuffer[aliveIndex] = particleIndex;

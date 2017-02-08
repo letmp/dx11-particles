@@ -90,11 +90,7 @@ void CS_Emit(csin input)
 		p.color = texRGB.SampleLevel(sPoint,texUvColor,0);
 		
 		p.lifespan = psTime.y / 2; // ensure that each particle lives only 1 frame
-		
-		#if defined(KNOW_SCALE)
-			p.scale = 1;
- 		#endif
-		
+				
 		// ADD PARTICLE TO PARTICLEBUFFER
 		ParticleBuffer[particleIndex] = p;
 		
