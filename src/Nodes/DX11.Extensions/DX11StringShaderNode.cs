@@ -27,7 +27,7 @@ namespace VVVV.DX11.Nodes
     #region PluginInfo
     [PluginInfo(Name = "Shader", Category = "DX11.Effect", Version="String", Help = "Build a shader with a string input", Author="tmp", Tags = "")]
     #endregion PluginInfo
-    public unsafe class DX11StringShaderNode : IPluginEvaluate, IDX11LayerProvider, IPartImportsSatisfiedNotification, IDisposable
+    public unsafe class DX11StringShaderNode : IPluginEvaluate, IDX11LayerHost, IPartImportsSatisfiedNotification, IDisposable
     {
 
         #region fields & pins
@@ -73,12 +73,18 @@ namespace VVVV.DX11.Nodes
         [Output("Compiled")]
         protected ISpread<bool> FOutCompiled;
 
-        /*[Output("Shader Signature", Visibility = PinVisibility.OnlyInspector)]
-        protected ISpread<DX11Resource<DX11Shader>> FOutShader;*/
-
         [Output("Custom Semantics", Visibility = PinVisibility.OnlyInspector)]
         protected ISpread<string> FoutCS;
 
+        [Output("Shader Signature", Visibility = PinVisibility.OnlyInspector)]
+        protected ISpread<DX11Resource<DX11Shader>> FOutShader;
+
+        [Output("Current Effect", Visibility = PinVisibility.OnlyInspector)]
+        protected ISpread<DX11Effect> currentEffectOut;
+
+        /*[Output("Shader Signature", Visibility = PinVisibility.OnlyInspector)]
+        protected ISpread<DX11Resource<DX11Shader>> FOutShader;*/
+        
         [Config("ConfigShader", DefaultString = "")]
         public IDiffSpread<string> FConfigShader;
         [Config("ConfigDefines", DefaultString = "")]
@@ -97,9 +103,13 @@ namespace VVVV.DX11.Nodes
         protected Matrix* mworld;
         protected int mworldcount;
 
-        private DX11ObjectRenderSettings objectsettings = new DX11ObjectRenderSettings();
+        //private DX11ObjectRenderSettings objectsettings = new DX11ObjectRenderSettings();
+        private DX11ContextElement<DX11ObjectRenderSettings> objectSettings = new DX11ContextElement<DX11ObjectRenderSettings>();
+        private DX11ContextElement<List<DX11ObjectRenderSettings>> orderedObjectSettings = new DX11ContextElement<List<DX11ObjectRenderSettings>>();
+        private DX11ContextElement<DX11ShaderVariableCache> shaderVariableCache = new DX11ContextElement<DX11ShaderVariableCache>();
+
         private DX11ShaderVariableManager varmanager;
-        private Dictionary<DX11RenderContext, DX11ShaderData> deviceshaderdata = new Dictionary<DX11RenderContext, DX11ShaderData>();
+        private DX11Resource<DX11ShaderData> deviceshaderdata = new DX11Resource<DX11ShaderData>();
         private DX11Effect FShader;
         private bool init = true;
         private bool shaderupdated;
@@ -107,9 +117,7 @@ namespace VVVV.DX11.Nodes
         private int spmax = 0;
         private bool geomconnected;
         private bool stateconnected;
-
-        private List<DX11ObjectRenderSettings> orderedObjectSettings = new List<DX11ObjectRenderSettings>();
-
+        
         public event DX11QueryableDelegate BeginQuery;
         public event DX11QueryableDelegate EndQuery;
 
@@ -139,10 +147,14 @@ namespace VVVV.DX11.Nodes
         #region Set the shader instance
         public void SetShader(DX11Effect shader, bool isnew)
         {
-            this.FShader = shader;
-
-            this.varmanager.SetShader(shader);
-            
+            if (shader.IsCompiled)
+            {
+                this.FShader = shader;
+                this.varmanager.SetShader(shader);
+                this.shaderVariableCache.Clear();
+                this.deviceshaderdata.Dispose();
+                this.currentEffectOut[0] = shader;
+            }
             //Only set technique if new, otherwise do it on update/evaluate
             if (isnew)
             {
@@ -152,7 +164,6 @@ namespace VVVV.DX11.Nodes
                     defaultenum = shader.TechniqueNames[0];
                     this.FHost.UpdateEnum(this.TechniqueEnumId, shader.TechniqueNames[0], shader.TechniqueNames);
                     this.varmanager.CreateShaderPins();
-                    //StoreShaderPins(shader);
                 }
                 else
                 {
@@ -160,13 +171,14 @@ namespace VVVV.DX11.Nodes
                     this.FHost.UpdateEnum(this.TechniqueEnumId, "", new string[0]);
                 }
 
-                if (shader.TechniqueNames != null)
-                {
-                    this.techniqueindex = Array.IndexOf(shader.TechniqueNames, FInTechnique[0].Name);
-                    this.techniquechanged = true;
-                }
-                
-                //this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
+                //Create Technique enum pin
+                InputAttribute inAttr = new InputAttribute("Technique");
+                inAttr.EnumName = this.TechniqueEnumId;
+                inAttr.DefaultEnumEntry = defaultenum;
+                inAttr.Order = 1000;
+                this.FInTechnique = this.FFactory.CreateDiffSpread<EnumEntry>(inAttr);
+
+                this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
             }
             else
             {
@@ -174,12 +186,9 @@ namespace VVVV.DX11.Nodes
                 {
                     this.FHost.UpdateEnum(this.TechniqueEnumId, shader.TechniqueNames[0], shader.TechniqueNames);
                     this.varmanager.UpdateShaderPins();
-                    //StoreShaderPins(shader);
                     this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
                 }
             }
-
-            this.shaderupdated = true;
             this.FInvalidate = true;
         }
         #endregion
@@ -282,7 +291,7 @@ namespace VVVV.DX11.Nodes
             }
 
 
-            if (FShader.TechniqueNames != null && this.FInTechnique.IsChanged)
+            if (FShader.TechniqueNames != null && this.FInTechnique.IsChanged && FInTechnique.SliceCount > 0)
             {
                 this.techniqueindex = Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name);
                 this.techniquechanged = true;
@@ -342,52 +351,141 @@ namespace VVVV.DX11.Nodes
         #endregion
 
         #region Update
-        public void Update(IPluginIO pin, DX11RenderContext context)
+        public void Update(DX11RenderContext context)
         {
-            if (!this.FOutLayer[0].Data.ContainsKey(context))
+            if (!this.FOutLayer[0].Contains(context))
             {
                 this.FOutLayer[0][context] = new DX11Layer();
                 this.FOutLayer[0][context].Render = this.Render;
             }
 
-            if (!this.deviceshaderdata.ContainsKey(context))
+            if (!this.objectSettings.Contains(context))
             {
-                this.deviceshaderdata.Add(context, new DX11ShaderData(context));
+                this.objectSettings[context] = new DX11ObjectRenderSettings();
             }
-            //Update shader
-            this.deviceshaderdata[context].SetEffect(this.FShader);
+            if (!this.orderedObjectSettings.Contains(context))
+            {
+                this.orderedObjectSettings[context] = new List<DX11ObjectRenderSettings>();
+            }
 
-            DX11ShaderData shaderdata = this.deviceshaderdata[context];
+
+            if (!this.deviceshaderdata.Contains(context))
+            {
+                this.deviceshaderdata[context] = new DX11ShaderData(context, this.FShader);
+            }
+            if (!this.shaderVariableCache.Contains(context))
+            {
+                this.shaderVariableCache[context] = new DX11ShaderVariableCache(context, this.deviceshaderdata[context].ShaderInstance, this.varmanager);
+            }
+
+            //DX11ShaderData shaderdata = this.deviceshaderdata[context];
             if (this.shaderupdated)
             {
-                shaderdata.SetEffect(this.FShader);
+                this.deviceshaderdata[context] = new DX11ShaderData(context, this.FShader);
                 //this.FOutShader[0][context] = new DX11Shader(shaderdata.ShaderInstance);
             }
-            /*else
+            /*if (!this.FOutShader[0].Contains(context))
             {
-                if (!this.FOutShader[0].Contains(context))
-                {
-                    this.FOutShader[0][context] = new DX11Shader(shaderdata.ShaderInstance);
-                }
+                this.FOutShader[0][context] = new DX11Shader(shaderdata.ShaderInstance);
             }*/
         }
         #endregion
 
         #region Destroy
-        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        public void Destroy( DX11RenderContext context, bool force)
         {
-            this.FOutLayer[0].Dispose(context);
-
-            if (this.deviceshaderdata.ContainsKey(context))
+            if (force)
             {
-                this.deviceshaderdata[context].Dispose();
-                this.deviceshaderdata.Remove(context);
+                this.FOutLayer.SafeDisposeAll(context);
+                this.deviceshaderdata.Dispose(context);
+                this.shaderVariableCache.Dispose(context);
+                this.objectSettings.Dispose(context);
+                this.orderedObjectSettings.Dispose(context);
             }
         }
         #endregion
 
+        #region Collect
+        private void Collect(DX11RenderContext context, DX11RenderSettings settings)
+        {
+            if (settings.RenderHint == eRenderHint.Collector)
+            {
+                if (this.FGeometry.IsConnected)
+                {
+                    DX11ObjectGroup group = new DX11ObjectGroup();
+                    //group.ShaderName = this.Source.Name;
+                    group.ShaderName = "DynamicStringShader";
+                    group.Semantics.AddRange(settings.CustomSemantics);
+
+                    if (this.FGeometry.SliceCount == 1)
+                    {
+                        IDX11Geometry g = this.FGeometry[0][context];
+                        if (g.Tag != null)
+                        {
+                            DX11RenderObject o = new DX11RenderObject();
+                            o.ObjectType = g.PrimitiveType;
+                            o.Descriptor = g.Tag;
+                            o.Transforms = new Matrix[spmax];
+                            for (int i = 0; i < this.spmax; i++)
+                            {
+                                o.Transforms[i] = this.mworld[i % this.mworldcount];
+                            }
+                            group.RenderObjects.Add(o);
+
+                            settings.SceneDescriptor.Groups.Add(group);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < this.spmax; i++)
+                        {
+                            IDX11Geometry g = this.FGeometry[i][context];
+                            if (g.Tag != null)
+                            {
+                                DX11RenderObject o = new DX11RenderObject();
+                                o.ObjectType = g.PrimitiveType;
+                                o.Descriptor = g.Tag;
+                                o.Transforms = new Matrix[1];
+                                o.Transforms[0] = this.mworld[i % this.mworldcount];
+                                group.RenderObjects.Add(o);
+                            }
+                        }
+
+                        settings.SceneDescriptor.Groups.Add(group);
+
+                    }
+
+                }
+                return;
+            }
+        }
+        #endregion
+
+        private void ApplyOnly(DX11RenderContext context, DX11RenderSettings settings)
+        {
+            Device device = context.Device;
+            DeviceContext ctx = context.CurrentDeviceContext;
+
+            var variableCache = this.shaderVariableCache[context];
+            DX11ShaderData sdata = this.deviceshaderdata[context];
+            this.varmanager.SetGlobalSettings(sdata.ShaderInstance, settings);
+            variableCache.ApplyGlobals(settings);
+
+            DX11ObjectRenderSettings oset = new DX11ObjectRenderSettings();
+            oset.DrawCallIndex = 0;
+            oset.Geometry = null;
+            oset.IterationCount = 1;
+            oset.IterationIndex = 0;
+            oset.WorldTransform = this.mworld[0 % this.mworldcount];
+            variableCache.ApplySlice(oset, 0);
+            sdata.ApplyPass(ctx);
+
+            this.FInLayer.RenderAll(context, settings);
+
+        }
+
         #region Render
-        public void Render(IPluginIO pin, DX11RenderContext context, DX11RenderSettings settings)
+        public void Render( DX11RenderContext context, DX11RenderSettings settings)
         {
             Device device = context.Device;
             DeviceContext ctx = context.CurrentDeviceContext;
@@ -395,10 +493,23 @@ namespace VVVV.DX11.Nodes
             bool popstate = false;
 
             bool multistate = this.FInState.IsConnected && this.FInState.SliceCount > 1;
+            bool stateConnected = this.FInState.IsConnected;
 
             if (this.FInEnabled[0])
             {
-               
+                //In that case we do not care about geometry, but only apply pass for globals
+                if (settings.RenderHint == eRenderHint.ApplyOnly)
+                {
+                    this.ApplyOnly(context, settings);
+                    return;
+                }
+
+                if (settings.RenderHint == eRenderHint.Collector)
+                {
+                    this.Collect(context, settings);
+                    return;
+                }
+
                 DX11ShaderData shaderdata = this.deviceshaderdata[context];
                 if ((shaderdata.IsValid &&
                     (this.geomconnected || settings.Geometry != null)
@@ -408,9 +519,9 @@ namespace VVVV.DX11.Nodes
                     this.OnBeginQuery(context);
 
                     //Select preferred technique if available
-                    if (settings.PreferredTechniques.Count == 0 && this.techniqueindex != Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name))
+                    if (settings.PreferredTechniques.Count == 0 && this.FInTechnique.SliceCount > 0 && this.techniqueindex != this.FInTechnique[0].Index)
                     {
-                        this.techniqueindex = Array.IndexOf(FShader.TechniqueNames, FInTechnique[0].Name);
+                        this.techniqueindex = this.FInTechnique[0].Index;
                         this.techniquechanged = true;
                     }
                     else if (settings.PreferredTechniques.Count > 0)
@@ -418,7 +529,7 @@ namespace VVVV.DX11.Nodes
                         int i = settings.GetPreferredTechnique(this.FShader);
                         if (i == -1)
                         {
-                            i = 0;
+                            i = this.FInTechnique[0].Index;
                         }
                         if (i != this.techniqueindex)
                         {
@@ -446,10 +557,10 @@ namespace VVVV.DX11.Nodes
                             }
                         }
 
-                        /*if (errorCount > 0)
+                        if (errorCount > 0)
                         {
                             this.FHost.Log(TLogType.Warning, sbMsg.ToString());
-                        }*/
+                        }
 
                         this.techniquechanged = false;
                     }
@@ -472,7 +583,10 @@ namespace VVVV.DX11.Nodes
 
                     settings.DrawCallCount = spmax; //Set number of draw calls
 
-                    this.varmanager.ApplyGlobal(shaderdata.ShaderInstance);
+                    var objectsettings = this.objectSettings[context];
+                    var orderedobjectsettings = this.orderedObjectSettings[context];
+                    var variableCache = this.shaderVariableCache[context];
+                    variableCache.ApplyGlobals(settings);
 
                     //IDX11Geometry drawgeom = null;
                     objectsettings.Geometry = null;
@@ -481,7 +595,7 @@ namespace VVVV.DX11.Nodes
                     List<int> orderedSlices = null;
                     if (settings.LayerOrder != null && settings.LayerOrder.Enabled)
                     {
-                        this.orderedObjectSettings.Clear();
+                        orderedobjectsettings.Clear();
                         for (int i = 0; i < this.spmax; i++)
                         {
                             DX11ObjectRenderSettings objSettings = new DX11ObjectRenderSettings();
@@ -490,11 +604,12 @@ namespace VVVV.DX11.Nodes
                             objSettings.IterationCount = 1;
                             objSettings.IterationIndex = 0;
                             objSettings.WorldTransform = this.mworld[i % this.mworldcount];
+                            objSettings.RenderStateTag = stateConnected ? this.FInState[i].Tag : null;
 
-                            this.orderedObjectSettings.Add(objSettings);
+                            orderedobjectsettings.Add(objSettings);
                         }
 
-                        orderedSlices = settings.LayerOrder.Reorder(settings, orderedObjectSettings);
+                        orderedSlices = settings.LayerOrder.Reorder(settings, orderedobjectsettings);
                         doOrder = true;
                     }
 
@@ -505,12 +620,35 @@ namespace VVVV.DX11.Nodes
                         drawCount = 0;
                     }
 
+                    bool singleGeometry = this.FGeometry.SliceCount == 1 || settings.Geometry != null;
+                    if (settings.Geometry != null)
+                    {
+                        objectsettings.Geometry = settings.Geometry;
+                        shaderdata.SetInputAssembler(ctx, objectsettings.Geometry, 0);
+                    }
+                    else if (singleGeometry)
+                    {
+                        pg = this.FGeometry[0];
+                        objectsettings.Geometry = pg[context];
+                        if (objectsettings.Geometry == null)
+                        {
+                            objectsettings.Geometry = new DX11InvalidGeometry();
+                        }
+                        shaderdata.SetInputAssembler(ctx, objectsettings.Geometry, 0);
+                    }
+
+                    if (!multistate)
+                    {
+                        objectsettings.RenderStateTag = this.FInState[0] != null ? this.FInState[0].Tag : null;
+                    }
+
                     for (int i = 0; i < drawCount; i++)
                     {
                         int idx = doOrder ? orderedSlices[i] : i;
                         if (multistate)
                         {
                             context.RenderStateStack.Push(this.FInState[idx]);
+                            objectsettings.RenderStateTag = this.FInState[idx] != null ? this.FInState[idx].Tag : null;
                         }
 
                         if (shaderdata.IsLayoutValid(idx) || settings.Geometry != null)
@@ -520,22 +658,31 @@ namespace VVVV.DX11.Nodes
                             for (int k = 0; k < objectsettings.IterationCount; k++)
                             {
                                 objectsettings.IterationIndex = k;
-                                if (settings.Geometry == null)
+
+                                if (!singleGeometry)
                                 {
-                                    if (this.FGeometry[idx] != pg)
+                                    if (settings.Geometry == null)
                                     {
-                                        pg = this.FGeometry[idx];
+                                        if (this.FGeometry[idx] != pg)
+                                        {
+                                            pg = this.FGeometry[idx];
 
-                                        objectsettings.Geometry = pg[context];
+                                            objectsettings.Geometry = pg[context];
+                                            if (objectsettings.Geometry == null)
+                                            {
+                                                objectsettings.Geometry = new DX11InvalidGeometry();
+                                            }
 
+                                            shaderdata.SetInputAssembler(ctx, objectsettings.Geometry, idx);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        objectsettings.Geometry = settings.Geometry;
                                         shaderdata.SetInputAssembler(ctx, objectsettings.Geometry, idx);
                                     }
                                 }
-                                else
-                                {
-                                    objectsettings.Geometry = settings.Geometry;
-                                    shaderdata.SetInputAssembler(ctx, objectsettings.Geometry, idx);
-                                }
+
 
                                 //Prepare settings
                                 objectsettings.DrawCallIndex = idx;
@@ -543,17 +690,17 @@ namespace VVVV.DX11.Nodes
 
                                 if (settings.ValidateObject(objectsettings))
                                 {
-                                    this.varmanager.ApplyPerObject(context, shaderdata.ShaderInstance, this.objectsettings, idx);
+                                    variableCache.ApplySlice(objectsettings, idx);
 
-                                    shaderdata.ApplyPass(ctx);
+                                    for (int ip = 0; ip < shaderdata.PassCount; ip++)
+                                    {
+                                        shaderdata.ApplyPass(ctx, ip);
 
-                                    if (settings.DepthOnly) { ctx.PixelShader.Set(null); }
+                                        if (settings.DepthOnly) { ctx.PixelShader.Set(null); }
 
-                                    if (settings.PostPassAction != null) { settings.PostPassAction(context); }
+                                        objectsettings.Geometry.Draw();
 
-
-                                    objectsettings.Geometry.Draw();
-                                    shaderdata.ShaderInstance.CleanUp();
+                                    }
                                 }
                             }
                         }
@@ -562,12 +709,9 @@ namespace VVVV.DX11.Nodes
                         {
                             context.RenderStateStack.Pop();
                         }
-
-                        if (settings.PostShaderAction != null)
-                        {
-                            settings.PostShaderAction(context);
-                        }
                     }
+
+                    shaderdata.ShaderInstance.CleanUp();
 
                     if (pipelineState != null)
                     {
@@ -592,7 +736,7 @@ namespace VVVV.DX11.Nodes
 
             if (this.FInLayer.IsConnected && this.FInEnabled[0])
             {
-                this.FInLayer[0][context].Render(this.FInLayer.PluginIO, context, settings);
+                this.FInLayer.RenderAll(context, settings);
             }
 
         }
@@ -601,10 +745,11 @@ namespace VVVV.DX11.Nodes
         #region Dispose
         public void Dispose()
         {
-            foreach (DX11ShaderData sd in this.deviceshaderdata.Values)
-            {
-                sd.Dispose();
-            }
+            this.deviceshaderdata.Dispose();
+            this.shaderVariableCache.Dispose();
+            this.FOutLayer.SafeDisposeAll();
+            this.objectSettings.Dispose();
+            this.orderedObjectSettings.Dispose();
         }
         #endregion
 

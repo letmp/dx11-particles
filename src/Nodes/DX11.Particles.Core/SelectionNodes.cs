@@ -321,7 +321,7 @@ namespace DX11.Particles.Core
     #region PluginInfo
     [PluginInfo(Name = "Split", Category = "DX11.Particles.Selection", Help = "Outputs the data of selectors", Author = "tmp", Tags = "")]
     #endregion PluginInfo
-    public class SelectorSplit : IPluginEvaluate, IDX11ResourceProvider
+    public class SelectorSplit : IPluginEvaluate, IDX11ResourceHost
     {
         #region fields & pins
 
@@ -440,12 +440,12 @@ namespace DX11.Particles.Core
             
         }
 
-        public void Update(IPluginIO pin, DX11RenderContext context)
+        public void Update( DX11RenderContext context)
         {
            
         }
 
-        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        public void Destroy( DX11RenderContext context, bool force)
         {
             for (int i = 0; i < this.FOutResourceSemantic.SliceCount; i++)
             {
@@ -914,16 +914,16 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         [Input("Input", CheckIfChanged = true)]
-        ISpread<Selector> FInput;
+        protected ISpread<Selector> FInput;
 
         [Input("Select", DefaultValue = 1, MinValue = 0)]
-        ISpread<int> FSelect;
+        protected ISpread<int> FSelect;
 
         [Output("Output", AutoFlush = false)]
-        ISpread<Selector> FOutput;
+        protected ISpread<Selector> FOutput;
 
         [Output("Former Slice", AutoFlush = false)]
-        ISpread<int> FFormer;
+        protected ISpread<int> FFormer;
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
@@ -956,16 +956,16 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         [Input("Input", CheckIfChanged = true)]
-        ISpread<ISpread<Selector>> FInput;
+        protected ISpread<ISpread<Selector>> FInput;
 
         [Input("Select", DefaultValue = 1, MinValue = 0)]
-        ISpread<int> FSelect;
+        protected ISpread<int> FSelect;
 
         [Output("Output", AutoFlush = false)]
-        ISpread<ISpread<Selector>> FOutput;
+        protected ISpread<ISpread<Selector>> FOutput;
 
         [Output("Former Slice", AutoFlush = false)]
-        ISpread<int> FFormer;
+        protected ISpread<int> FFormer;
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
@@ -997,13 +997,13 @@ namespace DX11.Particles.Core
     {
         #region fields & pins
         [Input("Input", BinSize = 1)]
-        IDiffSpread<ISpread<Selector>> FInput;
+        protected IDiffSpread<ISpread<Selector>> FInput;
 
         [Input("Index", DefaultValue = 0)]
-        ISpread<int> FIndex;
+        protected ISpread<int> FIndex;
 
         [Output("Output", AutoFlush = false, BinVisibility = PinVisibility.OnlyInspector)]
-        ISpread<ISpread<Selector>> FOutput;
+        protected ISpread<ISpread<Selector>> FOutput;
         #endregion fields & pins
 
         public void Evaluate(int spreadMax)

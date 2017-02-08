@@ -12,7 +12,7 @@ namespace VVVV.DX11.Nodes
     #region PluginInfo
     [PluginInfo(Name = "SetSlice", Category = "IDX11RWStructureBuffer", Help = "Replace individual slices of the spread with the given input.", Author = "tmp")]
     #endregion PluginInfo
-    public class SiftBufferNode : IPluginEvaluate, IDX11ResourceProvider
+    public class SiftBufferNode : IPluginEvaluate, IDX11ResourceHost
     {
         #region fields & pins
         [Input("Input Buffers")]
@@ -40,11 +40,11 @@ namespace VVVV.DX11.Nodes
             }
         }
 
-        public void Update(IPluginIO pin, DX11RenderContext context)
+        public void Update( DX11RenderContext context)
         {
         }
 
-        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        public void Destroy( DX11RenderContext context, bool force)
         {
         }
 

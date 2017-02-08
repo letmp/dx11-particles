@@ -14,7 +14,7 @@ using VVVV.DX11.Lib.Rendering;
 namespace VVVV.DX11.Nodes
 {
     [PluginInfo(Name = "ResetCounter", Category = "DX11.Layer", Version = "Advanced", Author = "microdee")]
-    public class DX11AdvancedResetCounterNode : IPluginEvaluate, IDX11LayerProvider
+    public class DX11AdvancedResetCounterNode : IPluginEvaluate, IDX11LayerHost
     {
         [Input("Layer In")]
         protected Pin<DX11Resource<DX11Layer>> FLayerIn;
@@ -37,7 +37,7 @@ namespace VVVV.DX11.Nodes
         }
 
         #region IDX11ResourceProvider Members
-        public void Update(IPluginIO pin, DX11RenderContext context)
+        public void Update( DX11RenderContext context)
         {
             if (!this.FOutLayer[0].Contains(context))
             {
@@ -46,12 +46,12 @@ namespace VVVV.DX11.Nodes
             }
         }
 
-        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        public void Destroy( DX11RenderContext context, bool force)
         {
             this.FOutLayer[0].Dispose(context);
         }
 
-        public void Render(IPluginIO pin, DX11RenderContext context, DX11RenderSettings settings)
+        public void Render( DX11RenderContext context, DX11RenderSettings settings)
         {
             if (this.FLayerIn.IsConnected)
             {
@@ -79,7 +79,7 @@ namespace VVVV.DX11.Nodes
                         }
                     }
                 }
-                this.FLayerIn[0][context].Render(this.FLayerIn.PluginIO, context, settings);
+                this.FLayerIn[0][context].Render( context, settings);
             }
         }
         #endregion

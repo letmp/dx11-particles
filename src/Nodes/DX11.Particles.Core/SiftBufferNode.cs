@@ -16,7 +16,7 @@ namespace DX11.Particles.Core
     #region PluginInfo
     [PluginInfo(Name = "Sift", Category = "DX11.Particles.Core", Version="Buffer", Help = "Sifts a spread of buffers by their semantics and splits them.", Author="tmp", AutoEvaluate=true)]
     #endregion PluginInfo
-    public class SiftBufferNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDX11ResourceProvider
+    public class SiftBufferNode : IPluginEvaluate, IPartImportsSatisfiedNotification, IDX11ResourceHost
     {
         #region fields & pins
         [Input("Input", DefaultValue = 1.0, CheckIfChanged = true)]
@@ -36,7 +36,7 @@ namespace DX11.Particles.Core
         [Import]
         public IIOFactory FIOFactory;
         
-        private bool wasConnected = false;
+        //private bool wasConnected = false;
 
         #endregion fields & pins
 
@@ -58,11 +58,11 @@ namespace DX11.Particles.Core
             }*/
         }
 
-        public void Update(IPluginIO pin, DX11RenderContext context)
+        public void Update( DX11RenderContext context)
         {
         }
 
-        public void Destroy(IPluginIO pin, DX11RenderContext context, bool force)
+        public void Destroy( DX11RenderContext context, bool force)
         {
         }
 

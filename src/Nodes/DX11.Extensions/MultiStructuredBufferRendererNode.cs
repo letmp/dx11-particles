@@ -16,7 +16,7 @@ using VVVV.DX11.Lib.Rendering;
 namespace VVVV.DX11.Nodes
 {
     [PluginInfo(Name = "Renderer", Category = "DX11", Version = "MultiStructuredBuffer", Author = "microdee, tmp", AutoEvaluate = false)]
-    public class DX11MultiStructuredBufferRendererNode : IPluginEvaluate, IDX11RendererProvider, IDisposable, IDX11Queryable
+    public class DX11MultiStructuredBufferRendererNode : IPluginEvaluate, IDX11RendererHost, IDisposable, IDX11Queryable
     {
         protected IPluginHost FHost;
 
@@ -139,7 +139,7 @@ namespace VVVV.DX11.Nodes
             //Just in case
             if (!this.updateddevices.Contains(context))
             {
-                this.Update(null, context);
+                this.Update(context);
             }
 
             if (!this.FInLayer.PluginIO.IsConnected) { return; }
@@ -185,13 +185,13 @@ namespace VVVV.DX11.Nodes
                         settings.ResetCounter = false;
                     }
                 }
-                FInLayer[0][context].Render(FInLayer.PluginIO, context, settings);
+                FInLayer[0][context].Render( context, settings);
 
                 if (EndQuery != null) EndQuery.Invoke(context);
             }
         }
 
-        public void Update(IPluginIO pin, DX11RenderContext context)
+        public void Update( DX11RenderContext context)
         {
             if (this.updateddevices.Contains(context)) { return; }
 
@@ -232,7 +232,7 @@ namespace VVVV.DX11.Nodes
             this.updateddevices.Add(context);
         }
 
-        public void Destroy(IPluginIO pin, DX11RenderContext OnDevice, bool force)
+        public void Destroy( DX11RenderContext OnDevice, bool force)
         {
             //this.DisposeBuffers(OnDevice.Device);
         }
