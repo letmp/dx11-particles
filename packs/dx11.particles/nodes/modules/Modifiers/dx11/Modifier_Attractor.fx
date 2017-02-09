@@ -1,5 +1,6 @@
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -32,22 +33,30 @@ void CSSet(csin input)
 	
 	float3 position = ParticleBuffer[particleIndex].position;
 	
-	uint cnt, stride;
-	AttrPosition.GetDimensions(cnt,stride);
-	int attrCount = cnt; 
+	uint cntPos, stride;
+	AttrPosition.GetDimensions(cntPos,stride);
+	int maxCount = cntPos; 
 	
-	for (int i = 0; i < attrCount; i++)
+	uint cntRad;
+	AttrRadius.GetDimensions(cntRad,stride);
+	maxCount = max(maxCount, cntRad);
+	
+	uint cntStr;
+	AttrStrength.GetDimensions(cntStr,stride);
+	maxCount = max(maxCount, cntStr);
+	
+	uint cntPow;
+	AttrPower.GetDimensions(cntPow,stride);
+	maxCount = max(maxCount, cntPow);
+	
+	uint2 bin = GetDynamicBufferBin(input.DTID.x, maxCount);
+	
+	for (uint i = 0; i < bin.y; i++)
 	{
-		float3 dist = AttrPosition[i] - position;	
-		
-		AttrRadius.GetDimensions(cnt,stride);
-		float radius = AttrRadius[i % cnt];
-		
-		AttrStrength.GetDimensions(cnt,stride);
-		float strength = AttrStrength[i % cnt];
-		
-		AttrPower.GetDimensions(cnt,stride);
-		float power = AttrPower[i % cnt];
+		float3 dist = AttrPosition[GetDynamicBufferIndex(i, bin, cntPos)] - position;	
+		float radius = AttrRadius[GetDynamicBufferIndex(i, bin, cntRad)];		
+		float strength = AttrStrength[GetDynamicBufferIndex(i, bin, cntStr)];
+		float power = AttrPower[GetDynamicBufferIndex(i, bin, cntPow)];
 		
 		float force = length(dist) / radius;
 		force = pow(saturate(1 - force), 1 / power);

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.1_x64\packs\dx11-particles\nodes\modules\Modifiers\Bounce (DX11.Particles.Modifiers Transform) help.v4p" scrollx="0" scrolly="15" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Bounce (DX11.Particles.Modifiers Transform) help.v4p" scrollx="0" scrolly="15" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2070" top="1905" width="12915" height="12345">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -33,7 +33,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="675" width="5100" height="600">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Lets particles bounce inside oder outside a given transform|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Lets particles bounce inside or outside a given transform|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -331,7 +331,7 @@
    <NODE systemname="Bounce (DX11.Particles.Modifiers Transform)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Bounce (DX11.Particles.Modifiers Transform).v4p" nodename="Bounce (DX11.Particles.Modifiers Transform)" componentmode="Hidden" id="27">
    <BOUNDS type="Node" left="6225" top="5490" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Window" left="5265" top="525" width="15585" height="10395">
+   <BOUNDS type="Window" left="5265" top="525" width="18555" height="11430">
    </BOUNDS>
    <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
@@ -354,6 +354,10 @@
    <PIN pinname="Mode" slicecount="1" visible="1" values="Outside">
    </PIN>
    <PIN pinname="BounceMultiplicator" visible="1">
+   </PIN>
+   <PIN pinname="Use SelectionId" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Bin Size" slicecount="1" values="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="27" srcpinname="Layer Out Help" dstnodeid="6" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -534,6 +538,8 @@
    <BOUNDS type="Node" left="2235" top="3885" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Width" slicecount="1" values="0.1">
+   </PIN>
+   <PIN pinname="Spread Count" slicecount="1" values="3">
    </PIN>
    </NODE>
    <LINK srcnodeid="81" srcpinname="Output" dstnodeid="18" dstpinname="DataXYZ">

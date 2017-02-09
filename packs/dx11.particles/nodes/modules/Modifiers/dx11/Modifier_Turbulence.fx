@@ -1,5 +1,6 @@
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 #include <packs\dx11.particles\nodes\modules\Modifiers\fxh\NoiseFunctions.fxh>
 
 struct Particle {
@@ -13,13 +14,12 @@ struct Particle {
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
-//NOISE FORCE:
-float3 noiseAmount = float3(1.0f,1.0f,1.0f);
-float noiseTime;
-int noiseOct;
-float noiseFreq = 1;
-float noiseLacun = 1.666;
-float noisePers = 0.666;
+StructuredBuffer<float3> NoiseAmountBuffer <String uiname="NoiseAmount Buffer";>;
+StructuredBuffer<float> NoiseTimeBuffer <String uiname="NoiseTime Buffer";>;
+StructuredBuffer<int> NoiseOctBuffer <String uiname="NoiseOct Buffer";>;
+StructuredBuffer<float> NoiseFreqBuffer <String uiname="NoiseFrequency Buffer";>;
+StructuredBuffer<float> NoiseLacunBuffer <String uiname="NoiseLacunarity Buffer";>;
+StructuredBuffer<float> NoisePersBuffer <String uiname="NoisePersistence Buffer";>;
 
 struct csin
 {
@@ -35,6 +35,20 @@ void CSUpdate(csin input)
 	if (particleIndex == -1 ) return;
 	
 	float3 position = ParticleBuffer[particleIndex].position;
+	
+	uint size, stride;
+	NoiseAmountBuffer.GetDimensions(size,stride);
+	float3 noiseAmount = NoiseAmountBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	NoiseTimeBuffer.GetDimensions(size,stride);
+	float noiseTime = NoiseTimeBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	NoiseOctBuffer.GetDimensions(size,stride);
+	int noiseOct = NoiseOctBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	NoiseFreqBuffer.GetDimensions(size,stride);
+	float noiseFreq = NoiseFreqBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	NoiseLacunBuffer.GetDimensions(size,stride);
+	float noiseLacun = NoiseLacunBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	NoisePersBuffer.GetDimensions(size,stride);
+	float noisePers = NoisePersBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
 	
 	// Noise Force
 	float3 noiseForce = float3(

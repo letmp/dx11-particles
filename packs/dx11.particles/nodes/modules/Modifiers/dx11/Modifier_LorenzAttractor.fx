@@ -1,5 +1,6 @@
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -11,11 +12,11 @@ struct Particle {
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
-//NOISE FORCE:
-float S = 10;
-float B = 2.666;
-float R = 28;
-float Speed = 0.1;
+StructuredBuffer<float> SBuffer <string uiname="S Buffer";>;
+StructuredBuffer<float> BBuffer <string uiname="B Buffer";>;
+StructuredBuffer<float> RBuffer <string uiname="R Buffer";>;
+StructuredBuffer<float> SpeedBuffer <string uiname="Speed Buffer";>;
+
 struct csin
 {
 	uint3 DTID : SV_DispatchThreadID;
@@ -30,6 +31,16 @@ void CSUpdate(csin input)
 	if (particleIndex == -1 ) return;
 	
 	float3 position = ParticleBuffer[particleIndex].position;
+	
+	uint cnt, stride;
+	SBuffer.GetDimensions(cnt,stride);
+	float S = SBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , cnt)];
+	BBuffer.GetDimensions(cnt,stride);
+	float B = BBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , cnt)];
+	RBuffer.GetDimensions(cnt,stride);
+	float R = RBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , cnt)];
+	SpeedBuffer.GetDimensions(cnt,stride);
+	float Speed = SpeedBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , cnt)];
 	
 	position.x = position.x + S * (position.y - position.x) * psTime.y * Speed;
 	position.y = position.y + ( (R * position.x) - position.y - (position.x * position.z) ) * psTime.y * Speed;

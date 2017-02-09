@@ -153,7 +153,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="3870" top="2625" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="100">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1000">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -192,6 +192,8 @@
    <PIN pinname="Random Seed" visible="1">
    </PIN>
    <PIN pinname="Input" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Width" slicecount="1" values="0.6">
    </PIN>
    </NODE>
    <LINK srcnodeid="19" srcpinname="Output" dstnodeid="18" dstpinname="DataXYZ">
@@ -291,7 +293,7 @@
    </BOUNDS>
    <PIN pinname="SizeXYZ" slicecount="3" values="0.02,0.02,0.02">
    </PIN>
-   <PIN pinname="Texture" visible="1">
+   <PIN pinname="Texture" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Render State" visible="1" slicecount="1" values="||">
    </PIN>
@@ -335,7 +337,7 @@
    </PIN>
    <PIN pinname="Mass Buffer" visible="1">
    </PIN>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Position Buffer" visible="1" slicecount="1" values="||">
    </PIN>
@@ -357,15 +359,17 @@
    </PIN>
    <PIN pinname="Lacunarity" visible="1">
    </PIN>
-   <PIN pinname="Persistence" visible="1">
+   <PIN pinname="Persistence" visible="1" slicecount="1" values="0.666000008583069">
    </PIN>
+   <BOUNDS type="Window" left="3330" top="1275" width="19035" height="8805">
+   </BOUNDS>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="101">
    <BOUNDS type="Box" left="6510" top="2055" width="795" height="720">
    </BOUNDS>
    <BOUNDS type="Node" left="6510" top="2055" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0.1,0.1,0.1">
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,1,1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -376,6 +380,8 @@
    <PIN pinname="Rows" slicecount="1" values="3">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="noiseAmountXYZ">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="3" values="1,1,1">
    </PIN>
    </NODE>
    <LINK srcnodeid="101" srcpinname="Y Output Value" dstnodeid="81" dstpinname="noiseAmountXYZ">
@@ -402,6 +408,8 @@
    <PIN pinname="Position In" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Position Out" visible="1">
+   </PIN>
+   <PIN pinname="Reset" slicecount="1" values="0">
    </PIN>
    </NODE>
    <LINK srcnodeid="103" srcpinname="Position Out" dstnodeid="102" dstpinname="Y Input Value">
@@ -469,6 +477,8 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Octave">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="3">
+   </PIN>
    </NODE>
    <LINK srcnodeid="108" srcpinname="Y Output Value" dstnodeid="81" dstpinname="Octave">
    </LINK>
@@ -525,11 +535,13 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Persistence">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="111" srcpinname="Y Output Value" dstnodeid="81" dstpinname="Persistence" linkstyle="Bezier">
    <LINKPOINT x="9465" y="4883">
    </LINKPOINT>
-   <LINKPOINT x="7395" y="4883">
+   <LINKPOINT x="7380" y="4883">
    </LINKPOINT>
    </LINK>
    </PATCH>

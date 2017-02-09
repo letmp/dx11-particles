@@ -27,9 +27,9 @@
    </PIN>
    </NODE>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
-   <BOUNDS type="Node" left="3810" top="2805" width="100" height="100">
+   <BOUNDS type="Node" left="3630" top="2805" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="3810" top="2805" width="375" height="240">
+   <BOUNDS type="Box" left="3630" top="2805" width="375" height="240">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -43,7 +43,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetThreadSize (Value)" filename="%VVVV%\packs\dx11.mcps\nodes\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="23">
-   <BOUNDS type="Node" left="2310" top="3405" width="1560" height="270">
+   <BOUNDS type="Node" left="2130" top="3405" width="1560" height="270">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1" slicecount="1" values="20000">
    </PIN>
@@ -55,13 +55,13 @@
    </PIN>
    <PIN pinname="ThreadZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2310" top="3405">
+   <BOUNDS type="Box" left="2130" top="3405">
    </BOUNDS>
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="21">
-   <BOUNDS type="Node" left="2310" top="3930" width="1050" height="270">
+   <BOUNDS type="Node" left="2130" top="3930" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -71,7 +71,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2310" top="3930">
+   <BOUNDS type="Box" left="2130" top="3930">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="23" srcpinname="ThreadX" dstnodeid="21" dstpinname="Thread X">
@@ -133,9 +133,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="23" srcpinname="String" dstnodeid="15" dstpinname="Input 1" linkstyle="VHV">
-   <LINKPOINT x="4075" y="3788">
+   <LINKPOINT x="3955" y="3788">
    </LINKPOINT>
-   <LINKPOINT x="7610" y="3788">
+   <LINKPOINT x="7550" y="3788">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="47" systemname="IOBox (Enumerations)">
@@ -151,9 +151,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="48" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="2310" top="2805" width="795" height="240">
+   <BOUNDS type="Box" left="2130" top="2805" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2310" top="2805" width="0" height="0">
+   <BOUNDS type="Node" left="2130" top="2805" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -293,9 +293,9 @@
    <LINK srcnodeid="57" srcpinname="ParticleSystem Defines" dstnodeid="15" dstpinname="Input 2">
    </LINK>
    <LINK srcnodeid="57" srcpinname="ParticleSystem ElementCount" dstnodeid="48" dstpinname="Y Input Value" linkstyle="VHV">
-   <LINKPOINT x="8360" y="2355">
+   <LINKPOINT x="8300" y="2355">
    </LINKPOINT>
-   <LINKPOINT x="2470" y="2355">
+   <LINKPOINT x="2350" y="2355">
    </LINKPOINT>
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
@@ -310,26 +310,6 @@
    </NODE>
    <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="61" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6195" top="720" width="285" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6195" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionId|">
-   </PIN>
-   <PIN pinname="Y Output Value" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="62">
    <BOUNDS type="Box" left="7425" top="720" width="645" height="240">
    </BOUNDS>
@@ -363,6 +343,8 @@
    </PIN>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="BinSizeBuffer" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
@@ -384,12 +366,6 @@
    <LINKPOINT x="7710" y="5250">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Use SelectionId" linkstyle="Bezier">
-   <LINKPOINT x="6195" y="2700">
-   </LINKPOINT>
-   <LINKPOINT x="4215" y="2700">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="62" srcpinname="Output Enum" dstnodeid="54" dstpinname="Technique" linkstyle="Bezier">
    <LINKPOINT x="7425" y="2700">
    </LINKPOINT>
@@ -397,9 +373,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="63" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="4920" top="720" width="795" height="240">
+   <BOUNDS type="Box" left="3345" top="720" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4920" top="720" width="0" height="0">
+   <BOUNDS type="Node" left="3345" top="720" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
@@ -407,9 +383,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="63" srcpinname="Output Node" dstnodeid="54" dstpinname="Position Buffer" linkstyle="Bezier">
-   <LINKPOINT x="4950" y="2685">
+   <LINKPOINT x="3405" y="2693">
    </LINKPOINT>
-   <LINKPOINT x="5100" y="2685">
+   <LINKPOINT x="5385" y="2693">
    </LINKPOINT>
    </LINK>
    <PACK Name="vvvv-Message" Version="2.9.0">
@@ -427,5 +403,81 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="64" srcpinname="Output Node" dstnodeid="54" dstpinname="Layer In">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="67" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5955" top="720" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5955" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionId|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="66">
+   <BOUNDS type="Box" left="4560" top="720" width="720" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4560" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="Input">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Bin Size|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="DynamicBuffer (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer UInt)" componentmode="Hidden" id="65">
+   <BOUNDS type="Node" left="4560" top="1110" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1">
+   </PIN>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="66" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Data" linkstyle="Bezier">
+   <LINKPOINT x="4590" y="1443">
+   </LINKPOINT>
+   <LINKPOINT x="4590" y="643">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="65" srcpinname="Buffer" dstnodeid="54" dstpinname="BinSizeBuffer" linkstyle="Bezier">
+   <LINKPOINT x="4590" y="2910">
+   </LINKPOINT>
+   <LINKPOINT x="4590" y="2910">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="54" dstpinname="Use SelectionId" linkstyle="Bezier">
+   <LINKPOINT x="5955" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="3795" y="2693">
+   </LINKPOINT>
    </LINK>
    </PATCH>

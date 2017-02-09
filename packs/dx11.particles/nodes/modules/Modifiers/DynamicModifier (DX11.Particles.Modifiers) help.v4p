@@ -1,11 +1,11 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
-   <BOUNDS type="Window" left="2070" top="1905" width="12915" height="15270">
+   <BOUNDS type="Window" left="720" top="1680" width="14700" height="15270">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="9915" top="300" width="3840" height="270">
+   <BOUNDS type="Node" left="11715" top="300" width="3840" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="9915" top="300" width="2460" height="945">
+   <BOUNDS type="Box" left="11715" top="300" width="2460" height="945">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2017&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
    </PIN>
@@ -103,7 +103,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2130" top="13725" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="14805" top="1905" width="12915" height="12345">
+   <BOUNDS type="Window" left="15300" top="1710" width="12915" height="12345">
    </BOUNDS>
    <PIN pinname="Layers" visible="1">
    </PIN>
@@ -352,32 +352,6 @@
    <LINKPOINT x="570" y="4013">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="DynamicModifier (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers).v4p" nodename="DynamicModifier (DX11.Particles.Modifiers)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="2655" top="3195" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Variables" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Group Size" visible="-1" pintype="Input" slicecount="1" values="64">
-   </PIN>
-   <PIN pinname="Resource Semantic Entry" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Resource Semantics" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Custom Semantic Entry" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Functions" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Defines" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="FunctionCalls" visible="1">
-   </PIN>
-   <PIN pinname="Code" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="70">
    <BOUNDS type="Box" left="3000" top="2010" width="1350" height="240">
    </BOUNDS>
@@ -392,20 +366,12 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="70" srcpinname="Output String" dstnodeid="69" dstpinname="Variables">
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier">
-   <LINKPOINT x="2685" y="6885">
-   </LINKPOINT>
-   <LINKPOINT x="3990" y="6885">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="71">
    <BOUNDS type="Box" left="3315" top="2850" width="3885" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="3315" top="2850" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|ParticleBuffer[particleIndex].force += float3(-1,0,0);|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|ParticleBuffer[particleIndex].velocity += float3(-0.01,0,0);|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -416,8 +382,6 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="69" dstpinname="FunctionCalls">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="72">
    <BOUNDS type="Node" left="3000" top="1545" width="1440" height="270">
    </BOUNDS>
@@ -490,40 +454,6 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="DynamicModifier (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers).v4p" nodename="DynamicModifier (DX11.Particles.Modifiers)" componentmode="Hidden" id="85">
-   <BOUNDS type="Node" left="4770" top="9570" width="2760" height="270">
-   </BOUNDS>
-   <PIN pinname="Variables" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Group Size" visible="-1" pintype="Input" slicecount="1" values="64">
-   </PIN>
-   <PIN pinname="Resource Semantic Entry" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Resource Semantics" visible="-1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Custom Semantic Entry" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="2" values=",">
-   </PIN>
-   <PIN pinname="Functions" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="KNOW_COLOR=1">
-   </PIN>
-   <PIN pinname="FunctionCalls" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Shader Code" visible="1">
-   </PIN>
-   <PIN pinname="Layout Valid" visible="1">
-   </PIN>
-   <PIN pinname="Layout Message" visible="1">
-   </PIN>
-   <PIN pinname="Technique Valid" visible="1">
-   </PIN>
-   <PIN pinname="Code" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="84">
    <BOUNDS type="Box" left="5100" top="4635" width="1185" height="525">
    </BOUNDS>
@@ -544,8 +474,6 @@
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="84" srcpinname="Output String" dstnodeid="85" dstpinname="Variables">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="82">
    <BOUNDS type="Node" left="5055" top="4170" width="1440" height="270">
    </BOUNDS>
@@ -580,12 +508,6 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="85" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 3" linkstyle="Bezier">
-   <LINKPOINT x="4770" y="10058">
-   </LINKPOINT>
-   <LINKPOINT x="4215" y="10058">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="RenderSemantic (DX11.Layer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="RenderSemantic (DX11.Layer Color)" componentmode="Hidden" id="92">
    <BOUNDS type="Node" left="5790" top="6315" width="100" height="100">
    </BOUNDS>
@@ -600,14 +522,12 @@
    <PIN pinname="Mandatory" slicecount="1" values="0">
    </PIN>
    </NODE>
-   <LINK srcnodeid="89" srcpinname="Output String" dstnodeid="85" dstpinname="Custom Semantic Entry">
-   </LINK>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="94">
    <BOUNDS type="Box" left="5790" top="5955" width="285" height="240">
    </BOUNDS>
    <BOUNDS type="Node" left="5790" top="5955" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Color Input" slicecount="1" visible="1" values="|0.27816,0.92661,0.00000,1.00000|">
+   <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,0.05983,0.00000,1.00000|">
    </PIN>
    <PIN pinname="Rows" slicecount="1" values="1">
    </PIN>
@@ -630,8 +550,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Custom Semantics|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="95" srcpinname="Output Node" dstnodeid="85" dstpinname="Custom Semantics">
-   </LINK>
    <LINK srcnodeid="92" srcpinname="Output" dstnodeid="95" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="96">
@@ -652,14 +570,12 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="96" srcpinname="Output String" dstnodeid="85" dstpinname="FunctionCalls">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="97">
-   <BOUNDS type="Box" left="6105" top="7425" width="4065" height="690">
+   <BOUNDS type="Box" left="6105" top="7425" width="5970" height="675">
    </BOUNDS>
    <BOUNDS type="Node" left="6105" top="7425" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="|void colorize(uint index){&cr;&lf;&tab;ParticleBuffer[index].color = semanticcolor;&cr;&lf;}|">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|void colorize(uint index){&cr;&lf; ParticleBuffer[index].color = semanticcolor * length(ParticleBuffer[index].velocity);&cr;&lf;}|">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -670,8 +586,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Functions">
    </PIN>
    </NODE>
-   <LINK srcnodeid="97" srcpinname="Output String" dstnodeid="85" dstpinname="Functions">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="98">
    <BOUNDS type="Box" left="6780" top="9120" width="1440" height="240">
    </BOUNDS>
@@ -721,9 +635,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="108">
-   <BOUNDS type="Node" left="10260" top="7425" width="2055" height="270">
+   <BOUNDS type="Node" left="12165" top="7440" width="2055" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10260" top="7425" width="2385" height="270">
+   <BOUNDS type="Box" left="12165" top="7440" width="2145" height="240">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; you can write functions..|">
    </PIN>
@@ -753,7 +667,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="8520" top="9105" width="3000" height="2625">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; Defines are used to tell shaders that a certain attribute is available. In this case it is &quot;KNOW_COLOR&quot; to tell that we set colors. In the effect shaders (like Sprites, Constant,... ) are lines of code that check for available defines and behave differently if they are set.&cr;&lf;&cr;&lf;Try to remove the KNOW_COLOR define and you will see that a standard color is used instead of the color we set for each particle.|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; Defines are used to tell shaders that a certain attribute is available.  In this case it is &quot;KNOW_COLOR&quot; to say that we have set colors. In the effect shaders (like Sprites, Constant, etc) there are lines of code that check for available defines and behave differently if they have been set.&cr;&lf;&cr;&lf;Try to remove the KNOW_COLOR define and you will see that a standard color is used instead of the color we set for each particle.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -762,10 +676,98 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="DynamicModifier (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers).v4p" nodename="DynamicModifier (DX11.Particles.Modifiers)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="2655" top="3195" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Variables" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Group Size" visible="-1" pintype="Input" slicecount="1" values="64">
+   </PIN>
+   <PIN pinname="Resource Semantic Entry" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Custom Semantic Entry" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Functions" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Defines" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="FunctionCalls" visible="1">
+   </PIN>
+   <PIN pinname="Code" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="70" srcpinname="Output String" dstnodeid="69" dstpinname="Variables">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="2685" y="6885">
+   </LINKPOINT>
+   <LINKPOINT x="3990" y="6885">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="69" dstpinname="FunctionCalls">
+   </LINK>
+   <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="69" dstpinname="Code">
+   </LINK>
+   <NODE systemname="DynamicModifier (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers).v4p" nodename="DynamicModifier (DX11.Particles.Modifiers)" componentmode="Hidden" id="85">
+   <BOUNDS type="Node" left="4770" top="9570" width="2760" height="270">
+   </BOUNDS>
+   <PIN pinname="Variables" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Group Size" visible="-1" pintype="Input" slicecount="1" values="64">
+   </PIN>
+   <PIN pinname="Resource Semantic Entry" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Resource Semantics" visible="-1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Custom Semantic Entry" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Custom Semantics" visible="1" pintype="Input" slicecount="2" values=",">
+   </PIN>
+   <PIN pinname="Functions" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="KNOW_COLOR=1">
+   </PIN>
+   <PIN pinname="FunctionCalls" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Shader Code" visible="1">
+   </PIN>
+   <PIN pinname="Layout Valid" visible="1">
+   </PIN>
+   <PIN pinname="Layout Message" visible="1">
+   </PIN>
+   <PIN pinname="Technique Valid" visible="1">
+   </PIN>
+   <PIN pinname="Code" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="4455" top="1260" width="22770" height="10410">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="84" srcpinname="Output String" dstnodeid="85" dstpinname="Variables">
+   </LINK>
+   <LINK srcnodeid="85" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 3" linkstyle="Bezier">
+   <LINKPOINT x="4770" y="10058">
+   </LINKPOINT>
+   <LINKPOINT x="4215" y="10058">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="89" srcpinname="Output String" dstnodeid="85" dstpinname="Custom Semantic Entry">
+   </LINK>
+   <LINK srcnodeid="95" srcpinname="Output Node" dstnodeid="85" dstpinname="Custom Semantics">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Output String" dstnodeid="85" dstpinname="FunctionCalls">
+   </LINK>
+   <LINK srcnodeid="97" srcpinname="Output String" dstnodeid="85" dstpinname="Functions">
+   </LINK>
    <LINK srcnodeid="98" srcpinname="Output String" dstnodeid="85" dstpinname="Defines">
    </LINK>
    <LINK srcnodeid="96" srcpinname="Output String" dstnodeid="85" dstpinname="Code">
-   </LINK>
-   <LINK srcnodeid="71" srcpinname="Output String" dstnodeid="69" dstpinname="Code">
    </LINK>
    </PATCH>

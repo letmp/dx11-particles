@@ -1,5 +1,6 @@
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -13,11 +14,9 @@ struct Particle {
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
-bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
-
-float Amount = 10;
-float MaxForce = 1;
-float LandingRadius = 0.1;
+StructuredBuffer<float> AmountBuffer <string uiname="Amount Buffer";>;
+StructuredBuffer<float> MaxForceBuffer <string uiname="MaxForce Buffer";>;
+StructuredBuffer<float> LandingRadiusBuffer <string uiname="LandingRadius Buffer";>;
 
 float3 Limit(in float3 v, float3 Maximum)
 {
@@ -45,25 +44,29 @@ void CSSet(csin input)
 	float3 v = ParticleBuffer[particleIndex].velocity;
 	
 	uint size,stride;
-	PositionBuffer.GetDimensions(size,stride);	
-	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
-	
-	float3 target = PositionBuffer[bufferIndex];
+	PositionBuffer.GetDimensions(size,stride);
+	float3 target = PositionBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	LandingRadiusBuffer.GetDimensions(size,stride);
+	float landingRadius = LandingRadiusBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	AmountBuffer.GetDimensions(size,stride);
+	float amount = AmountBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
+	MaxForceBuffer.GetDimensions(size,stride);
+	float maxForce = MaxForceBuffer[GetDynamicBufferIndex( particleIndex, input.DTID.x , size)];
 	
 	float3 desired = target - p;
 	float d = length(desired);
 	if (d != 0) desired = normalize(desired);
 	
-	if (d < LandingRadius && d >= 0.0)
+	if (d < landingRadius && d >= 0.0)
 	{
 		float map = saturate(d);
 		desired *= map;
 	}
 	//else
-	desired *= Amount;
+	desired *= amount;
 	
 	float3 steer = desired - v;
-	steer = Limit(steer,MaxForce);
+	steer = Limit(steer,maxForce);
 	ParticleBuffer[particleIndex].velocity += steer;
 }
 

@@ -363,13 +363,13 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="63">
-   <BOUNDS type="Box" left="8760" top="4050" width="1335" height="240">
+   <BOUNDS type="Box" left="8760" top="2550" width="1335" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8760" top="4050" width="0" height="0">
+   <BOUNDS type="Node" left="8760" top="2550" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Rows" slicecount="1" values="1">
    </PIN>
-   <PIN pinname="Columns" slicecount="1" values="3">
+   <PIN pinname="Columns" slicecount="1" values="5">
    </PIN>
    <PIN pinname="Show Value" slicecount="1" values="0">
    </PIN>
@@ -377,7 +377,7 @@
    </PIN>
    <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
    </PIN>
-   <PIN pinname="Color Input" slicecount="3" values="|0.00000,1.00000,0.00000,1.00000|,|0.00000,0.44938,0.97328,1.00000|,|1.00000,0.00000,0.14174,1.00000|">
+   <PIN pinname="Color Input" slicecount="3" values="|0.00000,1.00000,0.00000,1.00000|,|0.00000,0.44938,0.97328,1.00000|,|1.00000,0.00000,0.14174,1.00000|" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Color (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" nodename="Color (DX11.Particles.Modifiers)" componentmode="Hidden" id="65">
@@ -391,15 +391,17 @@
    </PIN>
    <BOUNDS type="Box" left="8625" top="5790">
    </BOUNDS>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Bin Size" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="8775" top="4515" width="1080" height="270">
+   <BOUNDS type="Node" left="8775" top="3015" width="1080" height="270">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="8775" top="4515">
+   <BOUNDS type="Box" left="8775" top="3015">
    </BOUNDS>
    <PIN pinname="Data" visible="1">
    </PIN>
@@ -414,42 +416,6 @@
    <LINKPOINT x="6795" y="6195">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="67">
-   <BOUNDS type="Box" left="8955" top="5100" width="480" height="480">
-   </BOUNDS>
-   <BOUNDS type="Node" left="8955" top="5100" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Boolean">
-   </PIN>
-   <PIN pinname="Behavior" slicecount="1" values="Toggle">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionId|">
-   </PIN>
-   <PIN pinname="X Input Value" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="67" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Use SelectionId">
-   </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="68">
-   <BOUNDS type="Node" left="9735" top="5205" width="6270" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="9735" top="5205" width="1695" height="1020">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; if true the particle uses the selectionId to pick the buffervalue instead of its own id|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="15" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 1" linkstyle="Bezier">
    <LINKPOINT x="1800" y="6743">
    </LINKPOINT>
@@ -525,9 +491,9 @@
    <LINK srcnodeid="82" srcpinname="Transform Out" dstnodeid="81" dstpinname="Transform In">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="84">
-   <BOUNDS type="Box" left="6705" top="1680" width="795" height="480">
+   <BOUNDS type="Box" left="6930" top="1680" width="795" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="6705" top="1680" width="0" height="0">
+   <BOUNDS type="Node" left="6930" top="1680" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" visible="1" values="-0.5,0.5">
    </PIN>
@@ -643,5 +609,107 @@
    <LINK srcnodeid="90" srcpinname="Output" dstnodeid="86" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="86" srcpinname="Output" dstnodeid="89" dstpinname="Input 3">
+   </LINK>
+   <NODE systemname="HSL (Color Join)" nodename="HSL (Color Join)" componentmode="Hidden" id="91">
+   <BOUNDS type="Node" left="8760" top="2115" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Hue" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Lightness" slicecount="1" values="0.5">
+   </PIN>
+   </NODE>
+   <NODE systemname="LinearSpread (Spreads)" nodename="LinearSpread (Spreads)" componentmode="Hidden" id="92">
+   <BOUNDS type="Node" left="8745" top="1620" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Spread Count" slicecount="1" values="5">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="92" srcpinname="Output" dstnodeid="91" dstpinname="Hue">
+   </LINK>
+   <LINK srcnodeid="91" srcpinname="Output" dstnodeid="63" dstpinname="Color Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="96">
+   <BOUNDS type="Box" left="9090" top="3630" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9090" top="3630" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Use SelectionId|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="95">
+   <BOUNDS type="Node" left="9930" top="3630" width="6270" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9930" top="3630" width="1695" height="1020">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; if true the particle uses the selectionId to pick the buffervalue (instead of its own id)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="94">
+   <BOUNDS type="Box" left="8940" top="4695" width="300" height="690">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8940" top="4695" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,1,3">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|0, 0, 0|">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Bin Size|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="93">
+   <BOUNDS type="Node" left="9930" top="4695" width="3225" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="9930" top="4695" width="1665" height="825">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; you can assign bins when using selectionIds|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="94" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Bin Size">
+   </LINK>
+   <LINK srcnodeid="96" srcpinname="Y Output Value" dstnodeid="65" dstpinname="Use SelectionId">
    </LINK>
    </PATCH>

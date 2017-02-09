@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="-360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="3885" top="1785" width="18405" height="10410">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\DynamicModifier (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="-360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <BOUNDS type="Window" left="4455" top="1260" width="22770" height="10410">
    </BOUNDS>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="390" top="8535" width="795" height="240">
@@ -199,9 +199,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="76" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2880" top="6450" width="1140" height="240">
+   <BOUNDS type="Box" left="2850" top="6450" width="1140" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2880" top="6450" width="0" height="0">
+   <BOUNDS type="Node" left="2850" top="6450" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="..\Core\fxh\">
    </PIN>
@@ -322,44 +322,14 @@
    <LINKPOINT x="3000" y="1275">
    </LINKPOINT>
    </LINK>
-   <NODE id="81" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden">
-   <BOUNDS type="Node" left="390" top="6990" width="5025" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="390" top="6990">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Enabled" visible="1">
-   </PIN>
-   <PIN pinname="Layout Valid" visible="1">
-   </PIN>
-   <PIN pinname="Layout Message" visible="1">
-   </PIN>
-   <PIN pinname="Technique Valid" visible="1">
-   </PIN>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="71" srcpinname="Output" dstnodeid="81" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="75" srcpinname="Geometry Out" dstnodeid="81" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="76" srcpinname="Output String" dstnodeid="81" dstpinname="IncludePath">
-   </LINK>
-   <LINK srcnodeid="63" srcpinname="Output" dstnodeid="81" dstpinname="ShaderCode">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="82" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="4125" top="6450" width="570" height="240">
+   <BOUNDS type="Box" left="4095" top="6450" width="570" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="4125" top="6450" width="0" height="0">
+   <BOUNDS type="Node" left="4095" top="6450" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
    </PIN>
    </NODE>
-   <LINK srcnodeid="82" srcpinname="Output Enum" dstnodeid="81" dstpinname="Technique">
-   </LINK>
    <LINK srcnodeid="57" srcpinname="ParticleSystem ElementCount" dstnodeid="73" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="13325" y="4975">
    </LINKPOINT>
@@ -381,7 +351,7 @@
    <NODE systemname="Semantics (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Semantics (DX11.Layer)" componentmode="Hidden" id="83">
    <BOUNDS type="Node" left="390" top="7800" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Layer In" visible="1">
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
@@ -392,8 +362,6 @@
    <BOUNDS type="Box" left="390" top="7800">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="81" srcpinname="Layer" dstnodeid="83" dstpinname="Layer In">
-   </LINK>
    <LINK srcnodeid="83" srcpinname="Layer Out" dstnodeid="1" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="84" systemname="IOBox (String)">
@@ -492,12 +460,6 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="81" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="16405" y="3960">
-   </LINKPOINT>
-   <LINKPOINT x="5480" y="3960">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="89" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="1650" top="8535" width="480" height="480">
    </BOUNDS>
@@ -514,8 +476,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layout Valid|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="81" srcpinname="Layout Valid" dstnodeid="89" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="90" systemname="IOBox (String)">
    <BOUNDS type="Box" left="2850" top="8535" width="795" height="240">
    </BOUNDS>
@@ -530,8 +490,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layout Message|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="81" srcpinname="Layout Message" dstnodeid="90" dstpinname="Input String">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="91" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4125" top="8535" width="480" height="480">
    </BOUNDS>
@@ -548,8 +506,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Technique Valid|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="81" srcpinname="Technique Valid" dstnodeid="91" dstpinname="Y Input Value">
-   </LINK>
    <LINK srcnodeid="88" srcpinname="Output String" dstnodeid="46" dstpinname="Defines" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="14115" y="2063">
    </LINKPOINT>
@@ -654,6 +610,36 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="95" srcpinname="Output Node" dstnodeid="81" dstpinname="Layer In">
+   <NODE id="101" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden">
+   <BOUNDS type="Node" left="390" top="6990" width="5025" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="390" top="6990">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="71" srcpinname="Output" dstnodeid="101" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="75" srcpinname="Geometry Out" dstnodeid="101" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Output String" dstnodeid="101" dstpinname="IncludePath">
+   </LINK>
+   <LINK srcnodeid="63" srcpinname="Output" dstnodeid="101" dstpinname="ShaderCode">
+   </LINK>
+   <LINK srcnodeid="82" srcpinname="Output Enum" dstnodeid="101" dstpinname="Technique">
+   </LINK>
+   <LINK srcnodeid="101" srcpinname="Layer" dstnodeid="83" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="101" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="16405" y="3960">
+   </LINKPOINT>
+   <LINKPOINT x="5480" y="3960">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="101" srcpinname="Layout Valid" dstnodeid="89" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="101" srcpinname="Layout Message" dstnodeid="90" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="101" srcpinname="Technique Valid" dstnodeid="91" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="95" srcpinname="Output Node" dstnodeid="101" dstpinname="Layer In">
    </LINK>
    </PATCH>

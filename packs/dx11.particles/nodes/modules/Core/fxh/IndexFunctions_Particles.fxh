@@ -1,5 +1,5 @@
 // =====================================================
-//                  INDEX FUNCTIONS
+//           PARTICLEBUFFER INDEX FUNCTIONS
 // =====================================================
 
 RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
@@ -7,6 +7,7 @@ RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 RWStructuredBuffer<uint> SelectionPointerBuffer : SELECTIONPOINTERBUFFER;
 RWStructuredBuffer<uint> SelectionCounterBuffer : SELECTIONCOUNTERBUFFER;
 RWStructuredBuffer<bool> FlagBuffer : FLAGBUFFER;
+RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
 
 uint GetParticleIndex(uint threadIndex){
 	uint particleIndex = -1;
@@ -20,11 +21,4 @@ uint GetParticleIndex(uint threadIndex){
 		particleIndex = AlivePointerBuffer[threadIndex];
 	}
 	return particleIndex;
-}
-
-
-RWStructuredBuffer<uint> SelectionIndexBuffer : SELECTIONINDEXBUFFER;
-uint GetDynamicBufferIndex(uint particleIndex, uint threadIndex, uint bufferSize, bool useSelectionIndex){
-	if(useSelectionIndex) return SelectionIndexBuffer[threadIndex] % bufferSize;
-	else return particleIndex % bufferSize;
 }

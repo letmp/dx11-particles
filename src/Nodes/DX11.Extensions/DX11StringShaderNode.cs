@@ -111,9 +111,11 @@ namespace VVVV.DX11.Nodes
         private DX11ShaderVariableManager varmanager;
         private DX11Resource<DX11ShaderData> deviceshaderdata = new DX11Resource<DX11ShaderData>();
         private DX11Effect FShader;
+
         private bool init = true;
         private bool shaderupdated;
         private bool configWritten = false;
+
         private int spmax = 0;
         private bool geomconnected;
         private bool stateconnected;
@@ -172,13 +174,19 @@ namespace VVVV.DX11.Nodes
                 }
 
                 //Create Technique enum pin
-                InputAttribute inAttr = new InputAttribute("Technique");
+                /*InputAttribute inAttr = new InputAttribute("Technique");
                 inAttr.EnumName = this.TechniqueEnumId;
                 inAttr.DefaultEnumEntry = defaultenum;
                 inAttr.Order = 1000;
                 this.FInTechnique = this.FFactory.CreateDiffSpread<EnumEntry>(inAttr);
 
-                this.FoutCS.AssignFrom(this.varmanager.GetCustomData());
+                this.FoutCS.AssignFrom(this.varmanager.GetCustomData());*/
+
+                if (shader.TechniqueNames != null)
+                {
+                    this.techniqueindex = Array.IndexOf(shader.TechniqueNames, FInTechnique[0].Name);
+                    this.techniquechanged = true;
+                }
             }
             else
             {

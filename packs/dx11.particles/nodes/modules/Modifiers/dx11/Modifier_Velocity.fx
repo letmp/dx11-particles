@@ -1,5 +1,6 @@
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -10,9 +11,7 @@ struct Particle {
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
-bool UseSelectionIndex <String uiname="Use SelectionId";> = 0;
 
 struct csin
 {
@@ -29,7 +28,7 @@ void CSSet(csin input)
 	
 	uint size, stride;
 	VelocityBuffer.GetDimensions(size,stride);
-	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size);
 	
 	ParticleBuffer[particleIndex].velocity = VelocityBuffer[bufferIndex];
 }
@@ -42,7 +41,7 @@ void CSAdd(csin input)
 	
 	uint size, stride;
 	VelocityBuffer.GetDimensions(size,stride);
-	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size);
 	
 	ParticleBuffer[particleIndex].velocity += VelocityBuffer[bufferIndex];
 }
@@ -55,7 +54,7 @@ void CSMul(csin input)
 	
 	uint size, stride;
 	VelocityBuffer.GetDimensions(size,stride);
-	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size);
 	
 	ParticleBuffer[particleIndex].velocity *= VelocityBuffer[bufferIndex];
 }
