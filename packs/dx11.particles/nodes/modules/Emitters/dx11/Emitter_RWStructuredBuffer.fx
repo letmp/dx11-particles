@@ -6,6 +6,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float lifespan;
+		float age;
 	#endif
 };
 
@@ -17,6 +18,8 @@ StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 cbuffer cbuf
 {
 	uint EmitterSize = 0;
+	uint EmitCountPerParticle = 1;
+	bool ResetAge = 0;
 }
 
 struct csin
@@ -31,15 +34,16 @@ void CS_Emit(csin input)
 {	
 	if(input.DTID.x >= EmitterSize) return;
 	
+		
 	uint particleIndex = EMITTEROFFSET + input.DTID.x;
 
 	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
 	if ( currentLifespan <= 0.0f){
-		
+	
 		// this counter is just for checking if we already copied all particles
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
-		if ( 	(FlagBuffer[0] == true && emitterCounter >= SelectionCounterBuffer[0]) ||
-				(FlagBuffer[0] == false && emitterCounter >= AliveCounterBuffer[0])) return;
+		if ( 	(FlagBuffer[0] == true && emitterCounter >= SelectionCounterBuffer[0] * EmitCountPerParticle) ||
+				(FlagBuffer[0] == false && emitterCounter >= AliveCounterBuffer[0] * EmitCountPerParticle) ) return;
 		
 		// update AlivePointerBuffer
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();
@@ -48,7 +52,10 @@ void CS_Emit(csin input)
 		// copy particle
 		Particle p = (Particle) 0;
 		
-		uint particleIndexToCopy = GetParticleIndex( emitterCounter );
+		uint particleIndexToCopy = -1;
+		if( FlagBuffer[0] == true) particleIndexToCopy = GetParticleIndex( emitterCounter % SelectionCounterBuffer[0]);
+		else if( FlagBuffer[0] == false) particleIndexToCopy = GetParticleIndex( emitterCounter % AliveCounterBuffer[0]);
+		
 		if (particleIndexToCopy == -1 ) return;
 		
 		p = ParticleBuffer[particleIndexToCopy];
@@ -58,8 +65,12 @@ void CS_Emit(csin input)
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
 		
+		if (ResetAge) p.age = 0;
+		
 		ParticleBuffer[particleIndex] = p;
 	}
+	
+	
 }
 
 technique11 EmitParticles { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Emit() ) );} }

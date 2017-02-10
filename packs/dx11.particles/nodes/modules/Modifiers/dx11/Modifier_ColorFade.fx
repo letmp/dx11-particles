@@ -44,7 +44,10 @@ void CSSet(csin input)
 	
 	float phase = ParticleBuffer[particleIndex].age / (ParticleBuffer[particleIndex].age + ParticleBuffer[particleIndex].lifespan);
 	
-	ParticleBuffer[particleIndex].color = color0 * smoothstep(0, fadeInEnd, phase) + color1 * (1-smoothstep(fadeOutStart, 1, phase));
+	float mul2 = smoothstep(0, fadeInEnd, phase)* 1-smoothstep(fadeOutStart, 1, phase);
+	float mul1 = 1 - mul2;
+	
+	ParticleBuffer[particleIndex].color = color0 * mul1 + color1 * mul2;
 }
 
 
