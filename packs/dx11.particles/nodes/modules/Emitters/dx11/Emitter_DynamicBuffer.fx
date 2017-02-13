@@ -26,6 +26,8 @@ cbuffer cbuf
 {
     uint EmitCount = 0;
 	uint EmitterSize = 0;
+	bool ForceEmission = false;
+	uint OffsetEmission = 0;
 }
 
 struct csin
@@ -42,13 +44,15 @@ void CS_Emit(csin input)
 	if(input.DTID.x >= EmitterSize) return;
 	
 	uint particleIndex = EMITTEROFFSET + input.DTID.x;
-
+	
 	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
-	if ( currentLifespan <= 0.0f){
+	if ( currentLifespan <= 0.0f || ForceEmission){
 		
 		// this counter is just for checking if we already emitted enough particles
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if (emitterCounter >= EmitCount )return;
+		
+		if (ForceEmission) particleIndex = EMITTEROFFSET + ((emitterCounter + OffsetEmission) % EmitterSize) ;
 		
 		// update AlivePointerBuffer
 		uint aliveIndex = AliveCounterBuffer[0] + AliveCounterBuffer.IncrementCounter();

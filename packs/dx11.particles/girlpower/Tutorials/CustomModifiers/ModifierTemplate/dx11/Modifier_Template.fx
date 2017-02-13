@@ -1,6 +1,7 @@
 /* The following includes are mandatory! */
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
+#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 /* Have a look at the packs\dx11.particles\nodes\modules\Core\ directory for more helper functions */
 
 /* Like described in the template patch, the attribute(s) for the particlesystem is registered here*/ 
@@ -14,7 +15,6 @@ struct Particle {
 
 /* The ParticleBuffer and the UseSelectionIndex variable are mandatory*/
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
-bool UseSelectionIndex <String uiname="Use SelectionId";> = 1;
 
 /* Add all pins to edit your attribute here. In this case it is a StructuredBuffer
 that provides colors */
@@ -44,7 +44,7 @@ void CSSet(csin input)
 	uint size, stride;
 	ColorBuffer.GetDimensions(size,stride);
 	// 2) Get the index into your buffer
-	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size, UseSelectionIndex);
+	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size);
 	
 	// Now we can set the attribute:
 	ParticleBuffer[particleIndex].color = ColorBuffer[bufferIndex];

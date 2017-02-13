@@ -1,9 +1,9 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
    <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter RWStructuredBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
-   <BOUNDS type="Node" left="5580" top="2700" width="100" height="100">
+   <BOUNDS type="Node" left="5415" top="2700" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="5580" top="2700" width="375" height="240">
+   <BOUNDS type="Box" left="5415" top="2700" width="375" height="240">
    </BOUNDS>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
@@ -17,7 +17,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetThreadSize (Value)" filename="..\..\plugins\DX11.Mcps.Utils\x64\DX11.Mcps.Utils.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="15">
-   <BOUNDS type="Node" left="3915" top="3285" width="1575" height="270">
+   <BOUNDS type="Node" left="3900" top="3285" width="1575" height="270">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1" slicecount="1" values="10">
    </PIN>
@@ -29,17 +29,17 @@
    </PIN>
    <PIN pinname="ThreadZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3915" top="3285">
+   <BOUNDS type="Box" left="3900" top="3285">
    </BOUNDS>
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="720" top="4245" width="16440" height="10605">
+   <BOUNDS type="Window" left="870" top="5070" width="16440" height="10605">
    </BOUNDS>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="17">
-   <BOUNDS type="Node" left="3930" top="3810" width="1050" height="270">
+   <BOUNDS type="Node" left="3915" top="3810" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -49,7 +49,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3930" top="3810">
+   <BOUNDS type="Box" left="3915" top="3810">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="15" srcpinname="ThreadX" dstnodeid="17" dstpinname="Thread X">
@@ -93,15 +93,15 @@
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Group Size" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="5530" y="3105">
+   <LINKPOINT x="5415" y="3105">
    </LINKPOINT>
-   <LINKPOINT x="5540" y="3105">
+   <LINKPOINT x="5475" y="3105">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="82" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3915" top="750" width="795" height="240">
+   <BOUNDS type="Box" left="3900" top="750" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3915" top="750" width="0" height="0">
+   <BOUNDS type="Node" left="3900" top="750" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="50000">
    </PIN>
@@ -129,9 +129,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="String" dstnodeid="78" dstpinname="Input 1" linkstyle="VHV">
-   <LINKPOINT x="4905" y="3668">
+   <LINKPOINT x="4895" y="3668">
    </LINKPOINT>
-   <LINKPOINT x="9705" y="3668">
+   <LINKPOINT x="9700" y="3668">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="89" systemname="IOBox (String)">
@@ -355,7 +355,7 @@
    <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="87">
    <BOUNDS type="Node" left="8040" top="6165" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Emitter_RWStructuredBuffer.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -517,7 +517,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6510" top="1365" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -535,7 +535,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5850" top="735" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -555,53 +555,53 @@
    <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="15" dstpinname="Element Count">
    </LINK>
    <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="93" dstpinname="EmitCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3975" y="4170">
+   <LINKPOINT x="3965" y="4170">
    </LINKPOINT>
-   <LINKPOINT x="8565" y="4170">
+   <LINKPOINT x="8560" y="4170">
    </LINKPOINT>
    </LINK>
-   <NODE id="121" systemname="Emitter_RWStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\dx11\Emitter_RWStructuredBuffer.fx" nodename="Emitter_RWStructuredBuffer (DX11.Effect)" componentmode="Hidden">
+   <NODE id="126" systemname="Emitter_RWStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\dx11\Emitter_RWStructuredBuffer.fx" nodename="Emitter_RWStructuredBuffer (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="2610" top="4320" width="6585" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="2610" top="4320">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="121" dstpinname="Geometry">
+   <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="126" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="49" srcpinname="Output Node" dstnodeid="121" dstpinname="Layer In" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="49" srcpinname="Output Node" dstnodeid="126" dstpinname="Layer In" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="765" y="2655">
    </LINKPOINT>
    <LINKPOINT x="2610" y="2655">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="78" srcpinname="Output" dstnodeid="121" dstpinname="Defines">
+   <LINK srcnodeid="78" srcpinname="Output" dstnodeid="126" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="121" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
+   <LINK srcnodeid="126" srcpinname="Layer" dstnodeid="101" dstpinname="Layer 1">
    </LINK>
-   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="121" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="126" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="13425" y="2640">
    </LINKPOINT>
    <LINKPOINT x="8385" y="2640">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="121" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
+   <LINK srcnodeid="126" srcpinname="Shader Path" dstnodeid="87" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="121" srcpinname="Shader Path" dstnodeid="116" dstpinname="Filename" linkstyle="Bezier">
+   <LINK srcnodeid="126" srcpinname="Shader Path" dstnodeid="116" dstpinname="Filename" linkstyle="Bezier">
    <LINKPOINT x="8115" y="5130">
    </LINKPOINT>
    <LINKPOINT x="9135" y="5130">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="86" srcpinname="Output Node" dstnodeid="121" dstpinname="Lifespan Buffer">
+   <LINK srcnodeid="86" srcpinname="Output Node" dstnodeid="126" dstpinname="Lifespan Buffer">
    </LINK>
-   <LINK srcnodeid="117" srcpinname="Y Output Value" dstnodeid="121" dstpinname="ResetAge">
+   <LINK srcnodeid="117" srcpinname="Y Output Value" dstnodeid="126" dstpinname="ResetAge">
    </LINK>
-   <LINK srcnodeid="119" srcpinname="Y Output Value" dstnodeid="121" dstpinname="EmitCountPerParticle">
+   <LINK srcnodeid="119" srcpinname="Y Output Value" dstnodeid="126" dstpinname="EmitCountPerParticle">
    </LINK>
-   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="121" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3960" y="2655">
+   <LINK srcnodeid="82" srcpinname="Y Output Value" dstnodeid="126" dstpinname="EmitterSize" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3950" y="2655">
    </LINKPOINT>
-   <LINKPOINT x="5235" y="2655">
+   <LINKPOINT x="5230" y="2655">
    </LINKPOINT>
    </LINK>
    </PATCH>
