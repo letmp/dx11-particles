@@ -34,12 +34,11 @@ void CS_Emit(csin input)
 {	
 	if(input.DTID.x >= EmitterSize) return;
 	
-		
 	uint particleIndex = EMITTEROFFSET + input.DTID.x;
 
 	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
-	if ( currentLifespan <= 0.0f){
 	
+	if (currentLifespan <= 0.0f){
 		// this counter is just for checking if we already copied all particles
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if ( 	(FlagBuffer[0] == true && emitterCounter >= SelectionCounterBuffer[0] * EmitCountPerParticle) ||
