@@ -31,6 +31,7 @@ cbuffer cbuf
 	uint EmitterSize = 0;
 	float4x4 tW : WORLD;
 	float2 Resolution;
+	float3 scale <String uiname="Default Scale";> = { 1.0f,1.0f,1.0f };
 }
 
 SamplerState sPoint : IMMUTABLE
@@ -98,6 +99,11 @@ void CS_Emit(csin input)
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
 		
+		// SET DEFAULT SCALE (IF SCALE ATTRIBUTE IS PRESENT)
+		#if defined(KNOW_SCALE)
+            p.scale = scale;
+    	#endif
+        
 		// ADD PARTICLE TO PARTICLEBUFFER
 		ParticleBuffer[particleIndex] = p;
 				

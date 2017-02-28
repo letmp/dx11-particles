@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\Color (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="1455" top="6195" width="14190" height="8880">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
@@ -372,26 +372,12 @@
    <PIN pinname="Default" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE systemname="DynamicBuffer (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer UInt)" componentmode="Hidden" id="90">
-   <BOUNDS type="Node" left="6000" top="1080" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Data" visible="1">
-   </PIN>
-   <PIN pinname="Buffer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="91" srcpinname="Y Output Value" dstnodeid="90" dstpinname="Data" linkstyle="Bezier">
-   <LINKPOINT x="6030" y="1413">
-   </LINKPOINT>
-   <LINKPOINT x="6030" y="613">
-   </LINKPOINT>
-   </LINK>
    <NODE id="92" systemname="Modifier_Color (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Color.fx" nodename="Modifier_Color (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="765" top="4125" width="9480" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="765" top="4125">
    </BOUNDS>
-   <PIN pinname="BinSizeBuffer" visible="1">
+   <PIN pinname="BinSizeBuffer" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="92" dstpinname="Defines">
@@ -433,6 +419,20 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="88" srcpinname="Output Node" dstnodeid="92" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer UInt)" componentmode="Hidden" id="90">
+   <BOUNDS type="Node" left="6000" top="1080" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1">
+   </PIN>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="91" srcpinname="Y Output Value" dstnodeid="90" dstpinname="Data" linkstyle="Bezier">
+   <LINKPOINT x="6030" y="1413">
+   </LINKPOINT>
+   <LINKPOINT x="6030" y="613">
+   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="90" srcpinname="Buffer" dstnodeid="92" dstpinname="BinSizeBuffer">
    </LINK>

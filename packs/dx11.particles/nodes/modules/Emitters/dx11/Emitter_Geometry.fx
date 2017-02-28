@@ -1,3 +1,8 @@
+//@author: antokhio
+//@help: emitt particles from geometry
+//@tags: 
+//@credits: 
+
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
 
 struct Particle {
@@ -9,6 +14,7 @@ struct Particle {
 		float3 force;
 		float lifespan;
 		float age;
+		float4 color;
 	#endif
 };
 
@@ -17,20 +23,23 @@ RWStructuredBuffer<uint> EmitterCounterBuffer : EMITTERCOUNTERBUFFER;
 RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
-StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
+ByteAddressBuffer GeometryBuffer;
+
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
 StructuredBuffer<float3> ForceBuffer <string uiname="Force Buffer";>;
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
 
 cbuffer cbuf
 {
-    uint EmitCount = 0;
+	uint EmitCount = 0;
 	uint EmitterSize = 0;
 	bool ForceEmission = false;
+	bool VelocityFromNormal = false;
+	bool ForceFromNormal = false;
 	uint OffsetEmission = 0;
-	float4 color <bool color=true;String uiname="Default Color";> = { 1.0f,1.0f,1.0f,1.0f };
-	float3 scale <String uiname="Default Scale";> = { 1.0f,1.0f,1.0f };
+	float4x4 tW : WORLD;
 }
+
 
 struct csin
 {
@@ -42,15 +51,13 @@ struct csin
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Emit(csin input)
 {
-	
 	if(input.DTID.x >= EmitterSize) return;
-	
 	uint particleIndex = EMITTEROFFSET + input.DTID.x;
 	
 	float currentLifespan = ParticleBuffer[particleIndex].lifespan;
-	if ( currentLifespan <= 0.0f || ForceEmission){
-		
-		// this counter is just for checking if we already emitted enough particles
+	
+	if ( currentLifespan <= 0.0f || ForceEmission)
+	{
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
 		if (emitterCounter >= EmitCount )return;
 		
@@ -64,29 +71,44 @@ void CS_Emit(csin input)
 		
 		Particle p = (Particle) 0;
 		uint size, stride;
-		PositionBuffer.GetDimensions(size,stride);
+		GeometryBuffer.GetDimensions(size);
 		//p.position = PositionBuffer[emitterCounter % size];
-		p.position = PositionBuffer[emitterCounter % size];
+		//p.position = PositionBuffer[emitterCounter % size];
+		//p.position = asfloat (GeometryBuffer.Load3((input.DTID.x % size) * 40));
+		
+		p.position = asfloat (GeometryBuffer.Load3((particleIndex % size) * 40));
+		p.color    = asfloat (GeometryBuffer.Load4((particleIndex % size) * 40 + 24));
+		float3 normalV = asfloat (GeometryBuffer.Load3((particleIndex % size) * 40 + 12));
 		
 		VelocityBuffer.GetDimensions(size,stride);
-		p.velocity = VelocityBuffer[emitterCounter % size];
+		if (VelocityFromNormal)
+			p.velocity = VelocityBuffer[emitterCounter % size] * normalV;
+		else 
+			p.velocity = VelocityBuffer[emitterCounter % size];
 		
 		ForceBuffer.GetDimensions(size,stride);
-		p.force = ForceBuffer[emitterCounter % size];
-
+		if (ForceFromNormal)
+			p.force = ForceBuffer[emitterCounter % size] * normalV;
+		else 
+			p.force = ForceBuffer[emitterCounter % size];
+		
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
-		
-		#if defined(KNOW_SCALE)
-            p.scale = scale;
-    	#endif
-		#if defined(KNOW_COLOR)
-            p.color = color;
-    	#endif
 		
 		ParticleBuffer[particleIndex] = p;
 		
 	}
 }
 
-technique11 EmitParticles { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Emit() ) );} }
+
+technique11 EmitParticles
+{
+	pass P0
+	{
+		SetComputeShader( CompileShader( cs_5_0, CS_Emit() ) );
+	}
+}
+
+
+
+

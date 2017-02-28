@@ -27,6 +27,7 @@ cbuffer cbuf
 	float4x4 tW : WORLD;
 	bool useRawData;
 	float2 Resolution;
+	float3 scale <String uiname="Default Scale";> = { 1.0f,1.0f,1.0f };
 }
 
 SamplerState sPoint : IMMUTABLE
@@ -90,7 +91,12 @@ void CS_Emit(csin input)
 		p.color = texRGB.SampleLevel(sPoint,texUvColor,0);
 		
 		p.lifespan = psTime.y / 2; // ensure that each particle lives only 1 frame
-				
+		
+		// SET DEFAULT SCALE (IF SCALE ATTRIBUTE IS PRESENT)
+		#if defined(KNOW_SCALE)
+            p.scale = scale;
+    	#endif
+
 		// ADD PARTICLE TO PARTICLEBUFFER
 		ParticleBuffer[particleIndex] = p;
 		

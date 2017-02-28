@@ -1,6 +1,6 @@
 #include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
 #include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_Particles.fxh>
-#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
+//#include <packs\dx11.particles\nodes\modules\Core\fxh\IndexFunctions_DynBuffer.fxh>
 
 struct Particle {
 	#if defined(COMPOSITESTRUCT)
@@ -20,7 +20,7 @@ float4x4 tW: WORLD;
 
 float Radius <String uiname="Default Radius"; float uimin=0.0;> = 1;
 float RepulseAmount;
-
+int maxItCount = 10000;
 struct csin
 {
 	uint3 DTID : SV_DispatchThreadID;
@@ -46,8 +46,8 @@ void CS_Set(csin input)
 	uint next = LinkedListOffsetBuffer[cellindex];
 	
 	float dist = 0;
-	
-	while (next != -1 ){
+	int counter = 0;
+	while (next != -1  && counter < maxItCount){
 		
 		uint particleIndexOther = LinkedListBuffer[next].particleIndex;
 		
@@ -74,7 +74,10 @@ void CS_Set(csin input)
 		if (LinkedListBuffer[next].next != next) next = LinkedListBuffer[next].next;
 		else next = -1;
 		
+		counter++;
 	}	
+
+	
 	
 }
 
