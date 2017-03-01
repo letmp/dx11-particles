@@ -38,6 +38,7 @@ cbuffer cbuf
 	bool ForceFromNormal = false;
 	uint OffsetEmission = 0;
 	float4x4 tW : WORLD;
+	float3 scale <String uiname="Default Scale";> = { 1.0f,1.0f,1.0f };
 }
 
 
@@ -72,9 +73,6 @@ void CS_Emit(csin input)
 		Particle p = (Particle) 0;
 		uint size, stride;
 		GeometryBuffer.GetDimensions(size);
-		//p.position = PositionBuffer[emitterCounter % size];
-		//p.position = PositionBuffer[emitterCounter % size];
-		//p.position = asfloat (GeometryBuffer.Load3((input.DTID.x % size) * 40));
 		
 		p.position = asfloat (GeometryBuffer.Load3((particleIndex % size) * 40));
 		p.color    = asfloat (GeometryBuffer.Load4((particleIndex % size) * 40 + 24));
@@ -94,6 +92,10 @@ void CS_Emit(csin input)
 		
 		LifespanBuffer.GetDimensions(size,stride);
 		p.lifespan = LifespanBuffer[emitterCounter % size];
+		
+		#if defined(KNOW_SCALE)
+            p.scale = scale;
+    	#endif
 		
 		ParticleBuffer[particleIndex] = p;
 		
