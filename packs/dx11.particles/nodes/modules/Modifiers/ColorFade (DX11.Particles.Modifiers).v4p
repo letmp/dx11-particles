@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\ColorFade (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="ScaleInOut (DX11.Particles.Modifiers)" filename="C:\Users\Kyle\Desktop\Dropbox\VVVV Files\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ScaleInOut (DX11.Particles.Modifiers).v4p">
-   <BOUNDS type="Window" left="31215" top="4110" width="17565" height="8820">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ColorFade (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="ScaleInOut (DX11.Particles.Modifiers)" filename="C:\Users\Kyle\Desktop\Dropbox\VVVV Files\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ScaleInOut (DX11.Particles.Modifiers).v4p">
+   <BOUNDS type="Window" left="6045" top="2235" width="17565" height="8820">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
    <BOUNDS type="Box" left="10770" top="4440" width="6270" height="2895">
@@ -487,6 +487,8 @@
    </BOUNDS>
    <PIN pinname="Color3 Buffer" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Technique" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="79" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
@@ -576,6 +578,22 @@
    <LINKPOINT x="4020" y="2550">
    </LINKPOINT>
    <LINKPOINT x="6105" y="2550">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="81">
+   <BOUNDS type="Box" left="9270" top="1275" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="9270" top="1275" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="81" srcpinname="Output Enum" dstnodeid="79" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9270" y="2978">
+   </LINKPOINT>
+   <LINKPOINT x="8235" y="2978">
    </LINKPOINT>
    </LINK>
    </PATCH>
