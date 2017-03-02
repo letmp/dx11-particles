@@ -3,8 +3,7 @@
 DX11.Particles
 =================
 
-This pack is a collection of tools and techniques to handle particles in [vvvv](https://vvvv.org/). It emerged from a previous pack called DX11-Pointcloud.
-It offers a flexible way to deal with a high number of particles in an easy manner. It consists of many different emitters, selectors and modifiers that can be freely combined.
+This pack is a collection of tools and techniques to handle particles in [vvvv](https://vvvv.org/). It consists of many different emitters, selectors and modifiers that can be freely combined.
 It also includes tools for dealing with depth cameras like Kinect(1/2).
 
 The purpose of this pack is to create a central repository for modules and plugins related to particles processed on the GPU.
@@ -75,7 +74,7 @@ You can also contact me via skype (le-tmp) or email (robert@intolight.de).
 License
 =======
 
-© intolight, 2015
+© intolight, 2017
 ![CC 4.0BY NC SAt](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
 
 Author: intolight (robert@intolight.de)

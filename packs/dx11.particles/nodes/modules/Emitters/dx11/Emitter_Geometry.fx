@@ -24,6 +24,7 @@ RWStructuredBuffer<uint> AlivePointerBuffer : ALIVEPOINTERBUFFER;
 RWStructuredBuffer<uint> AliveCounterBuffer : ALIVECOUNTERBUFFER;
 
 ByteAddressBuffer GeometryBuffer;
+uint babStride = 40;
 
 StructuredBuffer<float3> VelocityBuffer <string uiname="Velocity Buffer";>;
 StructuredBuffer<float3> ForceBuffer <string uiname="Force Buffer";>;
@@ -73,10 +74,10 @@ void CS_Emit(csin input)
 		Particle p = (Particle) 0;
 		uint size, stride;
 		GeometryBuffer.GetDimensions(size);
-		
-		p.position = asfloat (GeometryBuffer.Load3((particleIndex % size) * 40));
-		p.color    = asfloat (GeometryBuffer.Load4((particleIndex % size) * 40 + 24));
-		float3 normalV = asfloat (GeometryBuffer.Load3((particleIndex % size) * 40 + 12));
+		size/= babStride;
+		p.position = asfloat (GeometryBuffer.Load3((particleIndex % size) * babStride));
+		float3 normalV = asfloat (GeometryBuffer.Load3((particleIndex % size) * babStride + 12));
+		p.color    = asfloat (GeometryBuffer.Load4((particleIndex % size) * babStride + 24));
 		
 		VelocityBuffer.GetDimensions(size,stride);
 		if (VelocityFromNormal)
