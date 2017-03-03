@@ -1,0 +1,47 @@
+//@author: antokhio
+//@help: Dots in pixelshader
+//@tags: source
+//@credits: unc
+
+SamplerState s0: IMMUTABLE {AddressU=Border;AddressV=Border;};
+float4x4 tTex <string uiname="Texture Transform"; bool uvspace=true; >;
+Texture2D tex0 :PREVIOUS <string uiname="Sprite Texture";>; 
+
+float4x4 tIVR <string uiname = "Inverse View Rotation";>;
+
+//float3 UVtoEYE(float2 UV){return normalize(mul(float4(mul(float4((UV.xy*2-1)*float2(1,-1),0,1),tPI).xy,1,0),tVI).xyz);}
+
+float2 R:TARGETSIZE; 
+
+StructuredBuffer<float4x4> sbQuad;
+StructuredBuffer<float2> sbVelocity;
+
+
+
+struct vs2ps { float4 PosWVP: SV_POSITION; float2 uv: TEXCOORD0;};
+float4 PassThrough(vs2ps input): SV_Target
+{
+	uint count,dummy;
+	sbVelocity.GetDimensions(count,dummy);
+	
+	float4 col;
+	
+	for(uint i= 0 ; i < count; i++)
+   	{
+   		
+   		float4 uv = ( mul (float4 (1 - input.uv.x, input.uv.y,0,1) - float4 ( 0.5f,0.5f,0,0) , sbQuad[i]) + float4 (0.5f,0.5f,0,0));
+   		uv = mul(uv,tTex);
+   		col += tex0.SampleLevel(s0, uv.xy, 0) * float4 (sbVelocity[i], 0, 1);
+   	}
+	
+	col = mul (col, tIVR);	
+	
+	return float4 ( col.xyz, 1);
+	
+}
+
+technique10 Template 
+{
+	pass P0 <string format="R32G32B32A32_Float";>
+	{ SetPixelShader(CompileShader(ps_5_0, PassThrough())); }
+} 

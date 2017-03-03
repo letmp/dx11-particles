@@ -1,0 +1,251 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Examples\AssimpGeometry\modules\SceneLoader (DX11.Geometry Assimp).v4p" systemname="SceneLoader (DX11.Geometry Assimp)" filename="C:\Users\antok\Dropbox\_dx11\_PointEditorCS\modules\SceneLoader (DX11.Geometry Assimp).v4p" scrollx="0" scrolly="-360">
+   <NODE systemname="SceneFile (DX11.Geometry Assimp)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.Assimp.dll" nodename="SceneFile (DX11.Geometry Assimp)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1785" top="1365" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" slicecount="1" visible="1" values="assets\teapot.DAE">
+   </PIN>
+   <PIN pinname="Scene" visible="1">
+   </PIN>
+   <PIN pinname="Reload" visible="1">
+   </PIN>
+   <PIN pinname="Mesh" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Select (Node)" filename="%VVVV%\lib\nodes\modules\Node\Select (Node).v4p" nodename="Select (Node)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="495" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Select" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="495" top="3045">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Select (Transform Bin)" filename="%VVVV%\addonpack\lib\nodes\plugins\Select.dll" nodename="Select (Transform Bin)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="4335" top="2505" width="600" height="270">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Select" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4335" top="2505">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Mesh (DX11.Geometry Assimp)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.Assimp.dll" nodename="Mesh (DX11.Geometry Assimp)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="495" top="1965" width="735" height="270">
+   </BOUNDS>
+   <PIN pinname="Scene" visible="1">
+   </PIN>
+   <PIN pinname="Bounding MaxXYZ" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bounding MinXYZ" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bone Matrices Bin Size" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bone Names Bin Size" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bone Names" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bone Matrices" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Is Valid" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="495" top="1965">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Node (Assimp)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.Assimp.dll" nodename="Node (Assimp)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="4170" top="1965" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Scene" visible="1">
+   </PIN>
+   <PIN pinname="World Transform" visible="1">
+   </PIN>
+   <PIN pinname="Mesh Id Bin Size" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4170" top="1965">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Select (Transform Bin)" filename="%VVVV%\addonpack\lib\nodes\plugins\Select.dll" nodename="Select (Transform Bin)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="4335" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Select" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4335" top="3045">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="6" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="495" top="4335" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="495" top="4335" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Mesh Output|">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="4335" top="4335" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4335" top="4335" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Transform Output|">
+   </PIN>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="1785" top="585" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1785" top="585" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Examples\AssimpGeometry\assets\dry-tree.obj">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2775" top="585" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2775" top="585" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Reload">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Output" dstnodeid="1" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Is Valid" dstnodeid="1" dstpinname="Select" linkstyle="VHV">
+   <LINKPOINT x="975" y="2603">
+   </LINKPOINT>
+   <LINKPOINT x="1185" y="2603">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Scene" dstnodeid="3" dstpinname="Scene" linkstyle="Bezier">
+   <LINKPOINT x="1785" y="1785">
+   </LINKPOINT>
+   <LINKPOINT x="555" y="1785">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Output" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Output String" dstnodeid="0" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Reload" linkstyle="VHV">
+   <LINKPOINT x="2775" y="1080">
+   </LINKPOINT>
+   <LINKPOINT x="2190" y="1080">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Scene" dstnodeid="4" dstpinname="Scene" linkstyle="Bezier">
+   <LINKPOINT x="1845" y="1785">
+   </LINKPOINT>
+   <LINKPOINT x="4170" y="1785">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="World Transform" dstnodeid="2" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Mesh Id Bin Size" dstnodeid="2" dstpinname="Select">
+   </LINK>
+   <LINK srcnodeid="2" srcpinname="Output" dstnodeid="5" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Is Valid" dstnodeid="5" dstpinname="Select" linkstyle="Bezier">
+   <LINKPOINT x="1230" y="2625">
+   </LINKPOINT>
+   <LINKPOINT x="4815" y="2625">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output" dstnodeid="7" dstpinname="Input Node">
+   </LINK>
+   <BOUNDS type="Window" left="9915" top="4830" width="6345" height="5985">
+   </BOUNDS>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE id="13" systemname="Info (Assimp Mesh)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.Assimp.dll" nodename="Info (Assimp Mesh)" componentmode="Hidden">
+   <BOUNDS type="Node" left="2040" top="1965" width="435" height="270">
+   </BOUNDS>
+   <PIN pinname="Mesh" visible="1">
+   </PIN>
+   <PIN pinname="Vertices Count" visible="1">
+   </PIN>
+   <PIN pinname="Indices Count" visible="1">
+   </PIN>
+   <PIN pinname="Max Bones Per Vertex" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Material Index" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bounding MaxXYZ" visible="-1" pintype="Output">
+   </PIN>
+   <PIN pinname="Bounding MinXYZ" visible="-1" pintype="Output">
+   </PIN>
+   <BOUNDS type="Box" left="2040" top="1965">
+   </BOUNDS>
+   </NODE>
+   <NODE id="15" nodename="IOBox (Value Advanced)" componentmode="InABox" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2040" top="4335" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2040" top="4335" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Vertices Count|">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Mesh" dstnodeid="13" dstpinname="Mesh" linkstyle="PolyLine">
+   </LINK>
+   <PACK Name="ZeroMQ" Version="0.5.4">
+   </PACK>
+   <NODE systemname="Max (Value)" nodename="Max (Value)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="2040" top="3045" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="13" srcpinname="Vertices Count" dstnodeid="16" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="13" srcpinname="Indices Count" dstnodeid="16" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Output" dstnodeid="15" dstpinname="Y Input Value">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   </PACK>
+   </PATCH>

@@ -1,0 +1,361 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect) help.v4p" systemname="PickPoints (DX11.Particles.Kinect) help" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect) help.v4p">
+   <BOUNDS type="Window" left="4485" top="1365" width="10275" height="8205">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="555" top="330" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="555" top="330" width="6720" height="390">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|PickPoints (DX11.Particles.Kinect)|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="28" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="555" top="705" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="555" top="705" width="6465" height="375">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Returns the 3d coordinates for a given 2d point in the displaced Kinect RGB Texture.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="27" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="7140" top="330" width="3840" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="7140" top="330" width="2460" height="945">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2016&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="4800" top="5580" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4800" top="5580" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Y Input Value">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="PointsXYZ">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="6225" top="2175" width="3690" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6225" top="2175" width="3690" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; replace with Kinect2 if you dont have a Kinect1|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="32" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="1155" top="6600" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1155" top="6600" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="14625" top="7770" width="6915" height="5550">
+   </BOUNDS>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="View" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Depth Buffer Mode" slicecount="1" values="Standard">
+   </PIN>
+   <PIN pinname="Depth Buffer Format" slicecount="1" values="D32_Float">
+   </PIN>
+   </NODE>
+   <NODE systemname="AxisAndGrid (DX11)" filename="%VVVV%\packs\dx11\nodes\modules\AxisAndGrid\AxisAndGrid (DX11).v4p" nodename="AxisAndGrid (DX11)" componentmode="Hidden" id="33" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="255" top="5115" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="255" top="5115">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="34" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="1305" top="5970" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 1" linkstyle="VHV">
+   <LINKPOINT x="315" y="5663">
+   </LINKPOINT>
+   <LINKPOINT x="1470" y="5663">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="34" srcpinname="Layer Out" dstnodeid="32" dstpinname="Layers">
+   </LINK>
+   <NODE systemname="Camera (Transform Softimage Legacy)" filename="%VVVV%\lib\nodes\modules\Transform\Camera (Transform Softimage).v4p" nodename="Camera (Transform Softimage)" componentmode="Hidden" id="35" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="2595" top="6135" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="View Projection" visible="1">
+   </PIN>
+   <PIN pinname="Initial Yaw" slicecount="1" values="-0.08">
+   </PIN>
+   <PIN pinname="Initial Pitch" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Initial Distance" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Initial Interest" visible="1" slicecount="3" values="1,2,0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="View Projection" dstnodeid="32" dstpinname="View">
+   </LINK>
+   <NODE systemname="Emitter (DX11.Particles.Emitter Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect).v4p" nodename="Emitter (DX11.Particles.Emitter Kinect)" componentmode="InAWindow" id="39" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="2160" top="4050" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Resolution" visible="1" slicecount="2" values="640,480">
+   </PIN>
+   <PIN pinname="RGB" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Depth" visible="1">
+   </PIN>
+   <PIN pinname="RGBDepth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Depth FOVXY" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="2160" top="4050">
+   </BOUNDS>
+   <PIN pinname="World" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden" id="40" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="2145" top="4500" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer In" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <PIN pinname="Reset" slicecount="1" values="0">
+   </PIN>
+   <BOUNDS type="Box" left="2145" top="4500">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="39" srcpinname="Layer" dstnodeid="40" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="Box (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Box (DX11.Geometry)" componentmode="Hidden" id="42" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="1605" top="4500" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="SizeXYZ" slicecount="3" values="0.02,0.02,0.02">
+   </PIN>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1605" top="4500">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="44" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="5775" top="3225" width="615" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5775" top="3225" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Count">
+   </PIN>
+   </NODE>
+   <NODE nodename="PickPoints (DX11.Particles.Kinect)" componentmode="Hidden" id="5" systemname="PickPoints (DX11.Particles.Kinect)" filename="PickPoints (DX11.Particles.Kinect).v4p">
+   <BOUNDS type="Node" left="4800" top="4050" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4800" top="4050" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Resolution" visible="1" slicecount="2" values="320,240">
+   </PIN>
+   <PIN pinname="RGB" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Depth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture RGBDepth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Depth FOVXY" visible="1" slicecount="2" values="0.196111111621269,0.166666670702398">
+   </PIN>
+   <PIN pinname="PointsXY" slicecount="2" visible="1" values="0.483214307513886,0.744216565952512">
+   </PIN>
+   <PIN pinname="Update" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Helper Color" visible="1" slicecount="1" values="|0.88139,0.09655,0.00000,1.00000|">
+   </PIN>
+   <PIN pinname="Lookup Texture" visible="1">
+   </PIN>
+   <PIN pinname="Help Layer" visible="1">
+   </PIN>
+   <PIN pinname="PointsXYZ" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="4140" top="1275" width="18240" height="14835">
+   </BOUNDS>
+   <PIN pinname="Count" visible="1">
+   </PIN>
+   <PIN pinname="Depth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="RGBDepth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Initialize" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="PointsXYZ" dstnodeid="12" dstpinname="Y Input Value" linkstyle="VHV">
+   <LINKPOINT x="5170" y="5100">
+   </LINKPOINT>
+   <LINKPOINT x="4475" y="4800">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Help Layer" dstnodeid="34" dstpinname="Layer 3" linkstyle="Bezier">
+   <LINKPOINT x="6090" y="5130">
+   </LINKPOINT>
+   <LINKPOINT x="1890" y="5130">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="44" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Count">
+   </LINK>
+   <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="0" hiddenwhenlocked="0">
+   <BOUNDS type="Node" left="4800" top="2160" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Resolution" visible="1">
+   </PIN>
+   <PIN pinname="RGB" visible="1">
+   </PIN>
+   <PIN pinname="Depth" visible="1">
+   </PIN>
+   <PIN pinname="RGBDepth" visible="1">
+   </PIN>
+   <PIN pinname="Depth FOVXY" visible="1">
+   </PIN>
+   <PIN pinname="Reset" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="World" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Resolution" dstnodeid="39" dstpinname="Resolution" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4965" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="2385" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="RGB" dstnodeid="39" dstpinname="RGB" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5130" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="2535" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Depth" dstnodeid="39" dstpinname="Depth" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5295" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="2700" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="RGBDepth" dstnodeid="39" dstpinname="RGBDepth" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5460" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="3015" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Depth FOVXY" dstnodeid="39" dstpinname="Depth FOVXY" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5625" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="3165" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="RGB" dstnodeid="5" dstpinname="RGB" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="4995" y="3233">
+   </LINKPOINT>
+   <LINKPOINT x="5130" y="3233">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Depth FOVXY" dstnodeid="5" dstpinname="Depth FOVXY" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="5640" y="3233">
+   </LINKPOINT>
+   <LINKPOINT x="5640" y="3233">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Resolution" dstnodeid="5" dstpinname="Resolution" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="4830" y="3240">
+   </LINKPOINT>
+   <LINKPOINT x="4980" y="3240">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Depth" dstnodeid="5" dstpinname="Depth" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="5160" y="3240">
+   </LINKPOINT>
+   <LINKPOINT x="5295" y="3240">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="RGBDepth" dstnodeid="5" dstpinname="RGBDepth" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="5325" y="3240">
+   </LINKPOINT>
+   <LINKPOINT x="5460" y="3240">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="World" dstnodeid="39" dstpinname="World" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="5460" y="3225">
+   </LINKPOINT>
+   <LINKPOINT x="2865" y="3225">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Constant (DX11.Particles.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Effects\Constant (DX11.Particles.Effect).v4p" nodename="Constant (DX11.Particles.Effect)" componentmode="Hidden" id="41" hiddenwhenlocked="1">
+   <BOUNDS type="Node" left="1635" top="5115" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="3765" top="2715" width="18675" height="9870">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1635" top="5115">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="40" srcpinname="ParticleSystemBuffers" dstnodeid="41" dstpinname="ParticleSystemBuffers">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="Geometry Out" dstnodeid="41" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="1665" y="4935">
+   </LINKPOINT>
+   <LINKPOINT x="1980" y="4935">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 2">
+   </LINK>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   </PATCH>

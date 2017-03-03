@@ -1,0 +1,209 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Tools\Writer (DX11.Particles.Tools Transform) help.v4p">
+   <BOUNDS type="Window" left="5370" top="7650" width="9000" height="6000">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
+   <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Writer (DX11.Particles.Tools Transform)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Node" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="225" top="600" width="5100" height="600">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Writes a transform to a text file.|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="Writer (DX11.Particles.Tools Transform)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="2145" top="3375" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2145" top="3375" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <PIN pinname="Filename" visible="1">
+   </PIN>
+   <PIN pinname="Write" visible="1">
+   </PIN>
+   <PIN pinname="Success" visible="1">
+   </PIN>
+   <PIN pinname="Error Message" visible="1">
+   </PIN>
+   <PIN pinname="Error" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="4" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="6000" top="180" width="3840" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6000" top="180" width="2460" height="945">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2017&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Transform (Transform 2d)" nodename="Transform (Transform 2d)" componentmode="Hidden" id="5">
+   <BOUNDS type="Node" left="600" top="2400" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Transform Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Transform Out" dstnodeid="0" dstpinname="Transform" linkstyle="Bezier">
+   <LINKPOINT x="660" y="3008">
+   </LINKPOINT>
+   <LINKPOINT x="2145" y="3008">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="6">
+   <BOUNDS type="Box" left="2460" top="2400" width="1125" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2460" top="2400" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Tools\file.txt">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="file.txt">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Text Formats (*.csv, *.dtd, *.html, *.txt, *.xml)||*.csv;*.dtd;*.html;*.htm;*.txt;*.xml||Text (*.txt)||*.txt||XML (*.xml)||*.xml||CSV (*.csv)||*.csv||DTD (*.dtd)||*.dtd||HTML (*.html, *.htm)||*.html;*.htm|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output String" dstnodeid="0" dstpinname="Filename" linkstyle="Bezier">
+   <LINKPOINT x="2490" y="3008">
+   </LINKPOINT>
+   <LINKPOINT x="2490" y="3008">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="7">
+   <BOUNDS type="Box" left="3765" top="2400" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3765" top="2400" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Write">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Write" linkstyle="Bezier">
+   <LINKPOINT x="3765" y="3113">
+   </LINKPOINT>
+   <LINKPOINT x="2850" y="3113">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="8">
+   <BOUNDS type="Node" left="5100" top="3360" width="750" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5100" top="3360" width="750" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|see also:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Reader (DX11.Particles.Tools Transform)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\Reader (DX11.Particles.Tools Transform).v4p" nodename="Reader (DX11.Particles.Tools Transform)" componentmode="Hidden" id="9">
+   <BOUNDS type="Node" left="5970" top="3375" width="100" height="100">
+   </BOUNDS>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="1200" top="4110" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1200" top="4110" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Success">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Success" dstnodeid="10" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="2145" y="3863">
+   </LINKPOINT>
+   <LINKPOINT x="1260" y="3863">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="11">
+   <BOUNDS type="Box" left="2385" top="4110" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2385" top="4110" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Error Message|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Error Message" dstnodeid="11" dstpinname="Input String" linkstyle="Bezier">
+   <LINKPOINT x="2475" y="3870">
+   </LINKPOINT>
+   <LINKPOINT x="2415" y="3870">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="12">
+   <BOUNDS type="Box" left="3870" top="4110" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3870" top="4110" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Error">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Error" dstnodeid="12" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="2850" y="3863">
+   </LINKPOINT>
+   <LINKPOINT x="3870" y="3863">
+   </LINKPOINT>
+   </LINK>
+   </PATCH>

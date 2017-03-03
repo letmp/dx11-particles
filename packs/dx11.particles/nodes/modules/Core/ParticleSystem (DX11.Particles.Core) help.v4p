@@ -1,0 +1,391 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <BOUNDS type="Window" left="3930" top="1920" width="13905" height="12150">
+   </BOUNDS>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="10920" top="300" width="3840" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="10920" top="300" width="2460" height="945">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2017&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="255" top="300" width="5100" height="450">
+   </BOUNDS>
+   <BOUNDS type="Box" left="255" top="300" width="5100" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|ParticleSystem (DX11.Particles.Core)|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" visible="1" values="14">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1" systemname="IOBox (String)">
+   <BOUNDS type="Node" left="255" top="675" width="5100" height="600">
+   </BOUNDS>
+   <BOUNDS type="Box" left="255" top="675" width="5100" height="600">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|The heart of a particlesystem. Renders all buffers, updates lifetime, maintains alivebuffer, inits flags|">
+   </PIN>
+   <PIN pinname="Output String" slicecount="1" visible="0" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="12" systemname="IOBox (String)">
+   <BOUNDS type="Box" left="945" top="3015" width="1290" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="945" top="3015" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|Default System|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|ParticleSystem Name|">
+   </PIN>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE id="10" systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden">
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <BOUNDS type="Node" left="720" top="5940" width="1290" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="720" top="5940" width="8640" height="7720">
+   </BOUNDS>
+   <BOUNDS type="Window" left="7665" top="270" width="19950" height="16260">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers" visible="1">
+   </PIN>
+   <PIN pinname="Defines" visible="1">
+   </PIN>
+   <PIN pinname="Reset" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Stride" visible="1">
+   </PIN>
+   <PIN pinname="ParticleCount" visible="1">
+   </PIN>
+   <PIN pinname="IterationType" visible="1" pintype="Input">
+   </PIN>
+   <PIN pinname="Iteration Technique" slicecount="1" visible="1" pintype="Input" values="AvgVelocities">
+   </PIN>
+   <PIN pinname="ParticleSystem Name" visible="1">
+   </PIN>
+   <PIN pinname="Fixed Fps" visible="1" pintype="Input" slicecount="1" values="120">
+   </PIN>
+   <PIN pinname="Run" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Memory Usage" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Output String" dstnodeid="10" dstpinname="ParticleSystem Name" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="27">
+   <BOUNDS type="Box" left="720" top="2415" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="720" top="2415" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="Output Node" dstnodeid="10" dstpinname="Layer In" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="28">
+   <BOUNDS type="Box" left="1110" top="3900" width="1350" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1110" top="3900" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="AvgVelocities">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Iteration Technique|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="28" srcpinname="Output Enum" dstnodeid="10" dstpinname="Iteration Technique" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="29">
+   <BOUNDS type="Box" left="1335" top="4500" width="480" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1335" top="4500" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="120">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Fixed Fps|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="29" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Fixed Fps" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="30">
+   <BOUNDS type="Box" left="1740" top="5280" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1740" top="5280" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Run">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="30" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Run" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="31">
+   <BOUNDS type="Box" left="735" top="6720" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="735" top="6720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystemBuffers">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="ParticleSystemBuffers" dstnodeid="31" dstpinname="Input Node" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="32">
+   <BOUNDS type="Box" left="975" top="7500" width="7920" height="615">
+   </BOUNDS>
+   <BOUNDS type="Node" left="975" top="7500" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Definitions">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Definitions" dstnodeid="32" dstpinname="Input String" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="33">
+   <BOUNDS type="Box" left="1200" top="8610" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1200" top="8610" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ParticleCount">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="ParticleCount" dstnodeid="33" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
+   <BOUNDS type="Box" left="1455" top="9630" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1455" top="9630" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Stride">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Stride" dstnodeid="34" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="35">
+   <BOUNDS type="Box" left="1680" top="10485" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1680" top="10485" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="MB">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Memory Usage|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Memory Usage" dstnodeid="35" dstpinname="Y Input Value" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="36">
+   <BOUNDS type="Node" left="2625" top="2415" width="3540" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2625" top="2415" width="3705" height="240">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; put in all emitters, modifiers &amp; selectors here|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="37">
+   <BOUNDS type="Node" left="2625" top="3015" width="12015" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2625" top="3015" width="6630" height="450">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the name of your particlesystem. you can have as many as you want. make sure that all emitters/modifiers/selectors that go into the layer have to correct name set.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="38">
+   <BOUNDS type="Node" left="2625" top="3780" width="3660" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2625" top="3780" width="3630" height="465">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the technique how frame-steps are calculated. have a look at this article for a good overview:|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="40">
+   <BOUNDS type="Node" left="6660" top="3990" width="4500" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6660" top="3990" width="4500" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="http://gafferongames.com/game-physics/fix-your-timestep/">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="URL">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="41">
+   <BOUNDS type="Node" left="2625" top="4500" width="14160" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2625" top="4500" width="7770" height="540">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; if you use FixedTimestep as the Iteration Technique you can set the fixed fps value here. It is recommended to cap the fps with a Mainloop Node to make sure that the steps are calculated correctly.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="42">
+   <BOUNDS type="Node" left="2625" top="5160" width="3270" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2625" top="5160" width="3270" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; Use this pin to pause the particlesystem.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="43">
+   <BOUNDS type="Node" left="2670" top="6720" width="6990" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2670" top="6720" width="6990" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the buffers of the particle system. they contain everything that is needed for further shaders.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="44">
+   <BOUNDS type="Node" left="8925" top="7470" width="20250" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8925" top="7470" width="4500" height="1575">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; these are the definitions of the particle system. they change dynamically according to which emitters or modifiers are used in this particlesystem. to see changes, just add an emitter or a color modifier. the MAXPARTICLECOUNT will change and a new attribute &quot;float4 color&quot; will show up. note that the ordering of attributes is organized so that the structure is optimal packed.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="47">
+   <BOUNDS type="Node" left="2865" top="8610" width="13785" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2865" top="8610" width="4995" height="765">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; every emitter that is registered to this particle system has a maximum number of particles that can be contained. The sum of all emittersizes equals the particlecount of this particlesystem.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="48">
+   <BOUNDS type="Node" left="2865" top="9630" width="7440" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2865" top="9630" width="7440" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the stride updates according to the attributes that are currently registered to your particlesystem.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="49">
+   <BOUNDS type="Node" left="2865" top="10485" width="7440" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2865" top="10485" width="7440" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the used memory on your graphics card.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   </PATCH>

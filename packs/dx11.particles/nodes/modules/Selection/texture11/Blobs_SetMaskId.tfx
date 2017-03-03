@@ -1,0 +1,48 @@
+//@author: tmp
+//@help: Converts a position texture to a binary texture where pixels are white when their neighbour distances are below a threshold
+//@tags: texture
+//@credits: 
+
+Texture2D texture2d : PREVIOUS;
+float2 textureSize:TARGETSIZE;
+StructuredBuffer<int> labelBuffer;
+StructuredBuffer<int> groupIdBuffer;
+
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+
+float4 randColor(in float id) {
+    float noiseX = (frac(sin(dot(float2(id,id), float2(12.9898,78.233) 	 )) * 43758.5453));
+	float noiseY = (frac(sin(dot(float2(id,id), float2(12.9898,78.233) * 2.0)) * 43758.5453));
+    float noiseZ = sqrt(1 - noiseX * noiseX);
+    return float4(noiseX, noiseY,noiseZ,1);
+}
+
+float4 PS(psInput input) : SV_Target
+{
+	float x = input.uv.x;
+	float y = input.uv.y;
+
+	int count = y * textureSize.y;
+	int id = (x * textureSize.x) + (count * textureSize.x);
+	float4 c = float4(0,0,0,0);
+	int label = labelBuffer[id];
+	if( label > 0 && groupIdBuffer[label - 1] != -1) c = float4(groupIdBuffer[label-1],0,0,1);
+	//if( label > 0 && groupIdBuffer[label - 1] != -1) c = randColor(groupIdBuffer[label - 1]);
+	
+	return c;
+}
+
+technique10 Process
+{
+	pass P0 <string format="R32G32B32A32_float";>
+	{
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+
+
+
