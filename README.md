@@ -13,7 +13,7 @@ If you have questions or want to share an idea just head over to the vvvv contri
 Background
 ==========
 
-When dealing with particles (and depthcameras like Kinect) in vvvv there are alot of tasks that pop up again and again:
+When dealing with particles (and depth cameras like Kinect) in vvvv there are alot of tasks that pop up again and again:
 * Write custom shaders to emit particles based on different sources like geometries, textures, buffers, depthcameras
 * Write custom shaders to modify their sizes, rotation, velocites, colors, ...
 * Write custom shaders to select particles depending on inherent attributes
@@ -26,12 +26,12 @@ Nonetheless, the purpose of this project is to bundle the power of the vvvv comm
 
 One requirement while starting this package was to be independent from big thirdparty frameworks like openframeworks or opencv. The reason for that was to keep the maintenance expenses as low as possible.
 
-Another requirement was a high performance, so all expensive calculations are done on the GPU.
+The other requirement was performance, so all expensive calculations are done on the GPU.
 
 Features
 ==========
 
-* clean and modular design
+* clean, modular and reusable design
 * emit, select, modify and visualize particles
 * very easy customization of particle structure
 * emitters include modules for structuredBuffers, geometries, kinect, layer, rwstructuredBuffers
@@ -68,16 +68,16 @@ Problems? Questions?
 ====================
 
 Feel free to ask questions in the [original thread](http://vvvv.org/contribution/dx11.pointcloud) of this pack. You can also post as guest there.
-You can also contact me via skype (le-tmp) or email (robert@intolight.de).
+You can also contact me via skype (le-tmp) or email (robert (at) intolight.de).
 
 
 License
 =======
 
 © intolight, 2017
-![CC 4.0BY NC SAt](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+![CC 4.0BY NC SA](http://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
 
-Author: intolight (robert@intolight.de)
+Author: intolight (robert (at) intolight.de)
 
 This software is distributed under the [CC Attribution-NonCommercial-ShareAlike 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
 
