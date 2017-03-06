@@ -3,10 +3,10 @@ SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MI
 float4x4 tFilter;
 
 float4 filterWorld(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
-	float4 position = texWorld.Sample(s0,x);
-	float4 coord = mul(texWorld.Sample(s0,x), tFilter);
-	coord.xyz /= coord.w;
-	coord.xyz = abs (coord.xyz);
+	float4 position = float4(texWorld.Sample(s0,x).xyz, 1);
+	float4 coord = mul(position, tFilter);
+	/*coord.xyz /= coord.w;
+	coord.xyz = abs (coord.xyz);*/
 	if (!(	coord.x < -0.5 || coord.x > 0.5 || coord.y < -0.5 || coord.y > 0.5 || coord.z < -0.5 || coord.z > 0.5))
 		return position;
 	else return float4(0,0,0,0);
