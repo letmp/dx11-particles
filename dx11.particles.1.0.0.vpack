@@ -1,0 +1,41 @@
+<vpack>
+  <meta>
+    <name>dx11.particles</name>
+    <author>tmp</author>
+    <license>https://license.intolight.eu/</license>
+    <aliases>dx11-particles, particles, pointcloud</aliases>
+    <dependencies>
+      <dependency>
+        <name>dx11-vvvv</name>
+        <aliases>dx11, vvvv-dx11</aliases>
+        <source>vpms://raw.githubusercontent.com/vvvvpm/vpdb/master/vux/dx11-vvvv/dx11-vvvv.1.0.1.vpack</source>
+      </dependency>
+    </dependencies>
+  </meta>
+  <install>
+      
+      Download(
+        "https://github.com/letmp/dx11-particles/archive/master.zip",
+        VPM.TempDir + "\\dx11.particles.zip"
+      );
+
+      Extract(VPM.TempDir + "\\dx11.particles.zip", Pack.TempDir);
+      
+      if (VVVV.Architecture == "x64"){
+      	CopyDir(
+        	Pack.TempDir + "\\dx11-particles-master\\packs\\dx11.particles",
+        	VVVV.Dir + "\\packs\\dx11.particles",
+        	ignore: new string[] {"x86"}
+      	);	
+      }
+      if (VVVV.Architecture == "x86"){
+      	CopyDir(
+        	Pack.TempDir + "\\dx11-particles-master\\packs\\dx11.particles",
+        	VVVV.Dir + "\\packs\\dx11.particles",
+        	ignore: new string[] {"x64"}
+      	);	
+      }
+
+  </install>
+</vpack>
+
