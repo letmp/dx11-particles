@@ -1,0 +1,16 @@
+Texture2D texRGB <string uiname="Texture RGB";>;
+Texture2D texDepth <string uiname="Texture RGBDepth";>;
+Texture2D texWorld <string uiname="Texture World";>;
+SamplerState s0 <bool visible=false;string uiname="Sampler";> {Filter=MIN_MAG_MIP_POINT;AddressU=BORDER;AddressV=BORDER;};
+
+float4 mulWorld(float4 PosWVP:SV_POSITION,float2 x:TEXCOORD0):SV_TARGET{
+	float3 worldcoord = texWorld.Sample(s0,x).xyz;	
+	if ( worldcoord.z >= 0.0000000001f){
+		float2 coord = texDepth.Sample(s0,x).xy;
+		return texRGB.Sample(s0,coord);
+		
+	}
+	else return float4(0,0,0,0);
+}
+
+technique10 MulWorld{pass P1{SetPixelShader(CompileShader(ps_4_0,mulWorld()));}}
