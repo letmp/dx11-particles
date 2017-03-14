@@ -67,7 +67,7 @@ Best Practise
 Problems? Questions?
 ====================
 
-Feel free to ask questions in the [original thread](http://vvvv.org/contribution/dx11.pointcloud) of this pack. You can also post as guest there.
+Feel free to ask questions in the [original thread](http://vvvv.org/contribution/dx11.particles) of this pack. You can also post as guest there.
 You can also contact me via skype (le-tmp) or email (robert (at) intolight.de).
 
 
