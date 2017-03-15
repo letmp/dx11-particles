@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect) help.v4p" scrollx="0" scrolly="30" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect) help.v4p" scrollx="0" scrolly="0" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2070" top="1905" width="12915" height="12390">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -133,6 +133,10 @@
    </PIN>
    <PIN pinname="Technique" slicecount="1" values="Sprite">
    </PIN>
+   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
+   </PIN>
+   <BOUNDS type="Window" left="5520" top="3810" width="17850" height="10395">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="11" srcpinname="Layer" dstnodeid="6" dstpinname="Layer 2">
    </LINK>
@@ -210,52 +214,42 @@
    <LINKPOINT x="4575" y="7065">
    </LINKPOINT>
    </LINK>
-   <NODE id="10" systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden">
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <BOUNDS type="Node" left="4875" top="6150" width="1290" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="4875" top="6150" width="8640" height="7720">
-   </BOUNDS>
-   <BOUNDS type="Window" left="7665" top="270" width="19950" height="16260">
-   </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers" visible="1">
-   </PIN>
-   <PIN pinname="Defines" visible="1">
-   </PIN>
-   <PIN pinname="Reset" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Stride" visible="1">
-   </PIN>
-   <PIN pinname="ParticleCount" visible="1">
-   </PIN>
-   <PIN pinname="IterationType" visible="1" pintype="Input">
-   </PIN>
-   <PIN pinname="Iteration Technique" slicecount="1" values="AvgVelocities">
-   </PIN>
-   <PIN pinname="ParticleSystem Name" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="12" srcpinname="Output String" dstnodeid="10" dstpinname="ParticleSystem Name">
-   </LINK>
-   <LINK srcnodeid="10" srcpinname="ParticleSystemBuffers" dstnodeid="11" dstpinname="ParticleSystemBuffers">
-   </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect).v4p" nodename="Emitter (DX11.Particles.Emitter Kinect)" componentmode="Hidden" id="41">
    <BOUNDS type="Node" left="4890" top="4650" width="1515" height="270">
    </BOUNDS>
-   <PIN pinname="Resolution" visible="1">
+   <PIN pinname="Resolution" visible="1" slicecount="2" values="640,480">
    </PIN>
-   <PIN pinname="RGB" visible="1">
+   <PIN pinname="RGB" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="RGBDepth" visible="1">
+   <PIN pinname="RGBDepth" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="World" visible="1">
+   <PIN pinname="World" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
+   <PIN pinname="ParticleSystem" visible="1" slicecount="1" values="|Default System|">
+   </PIN>
+   <BOUNDS type="Window" left="6660" top="1995" width="14280" height="11835">
+   </BOUNDS>
+   <PIN pinname="RGBWorld" visible="1">
+   </PIN>
    </NODE>
-   <NODE systemname="Kinect2 (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect2 (DX11.Particles.Kinect).v4p" nodename="Kinect2 (DX11.Particles.Kinect)" componentmode="Hidden" id="42">
-   <BOUNDS type="Node" left="5055" top="3975" width="100" height="100">
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="45">
+   <BOUNDS type="Node" left="6135" top="3975" width="4905" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6135" top="3975" width="5025" height="255">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; replace with &quot;Kinect2 (DX11.Particles.Tools)&quot; if you own a kinect2.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="5055" top="3975" width="975" height="270">
    </BOUNDS>
    <PIN pinname="Resolution" visible="1">
    </PIN>
@@ -269,6 +263,10 @@
    </PIN>
    <BOUNDS type="Box" left="5055" top="3975">
    </BOUNDS>
+   <BOUNDS type="Window" left="9450" top="7680" width="10995" height="5700">
+   </BOUNDS>
+   <PIN pinname="RGBWorld" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="42" srcpinname="Resolution" dstnodeid="41" dstpinname="Resolution">
    </LINK>
@@ -278,20 +276,20 @@
    </LINK>
    <LINK srcnodeid="42" srcpinname="World" dstnodeid="41" dstpinname="World">
    </LINK>
-   <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="10" dstpinname="Layer In">
-   </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="45">
-   <BOUNDS type="Node" left="6135" top="3975" width="4905" height="270">
+   <NODE id="47" systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden">
+   <BOUNDS type="Node" left="4875" top="6150" width="1290" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="6135" top="3975" width="4905" height="270">
+   <BOUNDS type="Box" left="4875" top="6150" width="8640" height="7720">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; replace with &quot;Kinect (DX11.Particles.Tools)&quot; if you own a kinect1.|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
+   <BOUNDS type="Window" left="7665" top="270" width="19950" height="16260">
+   </BOUNDS>
    </NODE>
+   <LINK srcnodeid="12" srcpinname="Output String" dstnodeid="47" dstpinname="ParticleSystem Name">
+   </LINK>
+   <LINK srcnodeid="47" srcpinname="ParticleSystemBuffers" dstnodeid="11" dstpinname="ParticleSystemBuffers">
+   </LINK>
+   <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="47" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="RGBWorld" dstnodeid="41" dstpinname="RGBWorld">
+   </LINK>
    </PATCH>
