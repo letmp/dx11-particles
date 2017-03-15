@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\FilterWorld (DX11.Particles.Kinect) help.v4p" systemname="PickPoints (DX11.Particles.Kinect) help" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect) help.v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\WorldFilter (DX11.Particles.Kinect) help.v4p" systemname="PickPoints (DX11.Particles.Kinect) help" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect) help.v4p">
    <BOUNDS type="Window" left="3180" top="2085" width="10275" height="10515">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
@@ -7,7 +7,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="330" width="6720" height="390">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|FilterWorld (DX11.Particles.Kinect)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|WorldFilter (DX11.Particles.Kinect)|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -57,9 +57,9 @@
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="32" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="2310" top="8100" width="2385" height="270">
+   <BOUNDS type="Node" left="2325" top="8100" width="2385" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="2310" top="8100" width="6000" height="4500">
+   <BOUNDS type="Box" left="2325" top="8100" width="6000" height="4500">
    </BOUNDS>
    <BOUNDS type="Window" left="13470" top="2115" width="13950" height="11820">
    </BOUNDS>
@@ -73,15 +73,15 @@
    </PIN>
    </NODE>
    <NODE systemname="AxisAndGrid (DX11)" filename="%VVVV%\packs\dx11\nodes\modules\AxisAndGrid\AxisAndGrid (DX11).v4p" nodename="AxisAndGrid (DX11)" componentmode="Hidden" id="33" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="1455" top="7065" width="100" height="100">
+   <BOUNDS type="Node" left="1470" top="7065" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="1455" top="7065">
+   <BOUNDS type="Box" left="1470" top="7065">
    </BOUNDS>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="34" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="2505" top="7620" width="100" height="100">
+   <BOUNDS type="Node" left="2520" top="7620" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
@@ -93,19 +93,19 @@
    </PIN>
    <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
-   <BOUNDS type="Box" left="2505" top="7620">
+   <BOUNDS type="Box" left="2520" top="7620">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="33" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 1" linkstyle="VHV">
-   <LINKPOINT x="1515" y="7463">
+   <LINKPOINT x="1530" y="7463">
    </LINKPOINT>
-   <LINKPOINT x="2670" y="7463">
+   <LINKPOINT x="2685" y="7463">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="34" srcpinname="Layer Out" dstnodeid="32" dstpinname="Layers">
    </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect).v4p" nodename="Emitter (DX11.Particles.Emitter Kinect)" componentmode="Hidden" id="39" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="3360" top="6000" width="100" height="100">
+   <BOUNDS type="Node" left="3345" top="6000" width="1380" height="270">
    </BOUNDS>
    <PIN pinname="Resolution" visible="1" slicecount="2" values="640,480">
    </PIN>
@@ -119,7 +119,7 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3360" top="6000">
+   <BOUNDS type="Box" left="3345" top="6000">
    </BOUNDS>
    <PIN pinname="World" visible="1" slicecount="1" values="||">
    </PIN>
@@ -149,7 +149,7 @@
    </BOUNDS>
    </NODE>
    <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="0" hiddenwhenlocked="0">
-   <BOUNDS type="Node" left="3525" top="2610" width="100" height="100">
+   <BOUNDS type="Node" left="3510" top="2610" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Resolution" visible="1">
    </PIN>
@@ -167,37 +167,37 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="0" srcpinname="Resolution" dstnodeid="39" dstpinname="Resolution" linkstyle="Bezier" hiddenwhenlocked="0">
-   <LINKPOINT x="3555" y="4440">
+   <LINKPOINT x="3540" y="4440">
    </LINKPOINT>
-   <LINKPOINT x="3555" y="4440">
+   <LINKPOINT x="3540" y="4440">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="0" srcpinname="RGB" dstnodeid="39" dstpinname="RGB" linkstyle="Bezier" hiddenwhenlocked="0">
-   <LINKPOINT x="3705" y="4433">
+   <LINKPOINT x="3690" y="4433">
    </LINKPOINT>
-   <LINKPOINT x="3705" y="4433">
+   <LINKPOINT x="3690" y="4433">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="0" srcpinname="Depth" dstnodeid="39" dstpinname="Depth" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4845" y="4175">
+   <LINKPOINT x="4830" y="4175">
    </LINKPOINT>
-   <LINKPOINT x="3075" y="4675">
+   <LINKPOINT x="3060" y="4675">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="0" srcpinname="RGBDepth" dstnodeid="39" dstpinname="RGBDepth" linkstyle="Bezier" hiddenwhenlocked="0">
-   <LINKPOINT x="4035" y="4433">
+   <LINK srcnodeid="0" srcpinname="RGBDepth" dstnodeid="39" dstpinname="RGBDepth" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="4020" y="4433">
    </LINKPOINT>
-   <LINKPOINT x="3870" y="4433">
+   <LINKPOINT x="3855" y="4433">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="0" srcpinname="Depth FOVXY" dstnodeid="39" dstpinname="Depth FOVXY" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5175" y="4175">
+   <LINKPOINT x="5160" y="4175">
    </LINKPOINT>
-   <LINKPOINT x="3540" y="4675">
+   <LINKPOINT x="3525" y="4675">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Constant (DX11.Particles.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Effects\Constant (DX11.Particles.Effect).v4p" nodename="Constant (DX11.Particles.Effect)" componentmode="Hidden" id="41" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="2835" top="7065" width="100" height="100">
+   <BOUNDS type="Node" left="2850" top="7065" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystemBuffers" visible="1">
    </PIN>
@@ -207,47 +207,21 @@
    </BOUNDS>
    <PIN pinname="Geometry" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2835" top="7065">
+   <BOUNDS type="Box" left="2850" top="7065">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="40" srcpinname="ParticleSystemBuffers" dstnodeid="41" dstpinname="ParticleSystemBuffers">
    </LINK>
    <LINK srcnodeid="42" srcpinname="Geometry Out" dstnodeid="41" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="2865" y="6885">
+   <LINKPOINT x="2870" y="6885">
    </LINKPOINT>
-   <LINKPOINT x="3180" y="6885">
+   <LINKPOINT x="3190" y="6885">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="34" dstpinname="Layer 2">
    </LINK>
-   <NODE systemname="FilterWorld (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\FilterWorld (DX11.Particles.Kinect).v4p" nodename="FilterWorld (DX11.Particles.Kinect)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="4020" top="5100" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Window" left="8625" top="5340" width="10275" height="5700">
-   </BOUNDS>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   <PIN pinname="Layer Out Help" visible="1">
-   </PIN>
-   <PIN pinname="FilterTransform" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="0" srcpinname="World" dstnodeid="46" dstpinname="Texture In" linkstyle="Bezier" hiddenwhenlocked="0">
-   <LINKPOINT x="4200" y="3990">
-   </LINKPOINT>
-   <LINKPOINT x="4050" y="3990">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="46" srcpinname="Texture Out" dstnodeid="39" dstpinname="World">
-   </LINK>
-   <LINK srcnodeid="46" srcpinname="Layer Out Help" dstnodeid="34" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4965" y="6538">
-   </LINKPOINT>
-   <LINKPOINT x="3090" y="6438">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Camera (Transform Orbit)" filename="%VVVV%\lib\packs\VL.EditingFramework.0.47.149-g29575610a3\vvvv\nodes\modules\Camera (Transform Orbit).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="35" hiddenwhenlocked="1">
-   <BOUNDS type="Node" left="3540" top="7620" width="100" height="100">
+   <BOUNDS type="Node" left="3555" top="7620" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View Projection" visible="1">
    </PIN>
@@ -263,7 +237,7 @@
    </PIN>
    <PIN pinname="Initial Longitude" slicecount="1" values="1">
    </PIN>
-   <BOUNDS type="Box" left="3540" top="7620">
+   <BOUNDS type="Box" left="3555" top="7620">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="35" srcpinname="View Projection" dstnodeid="32" dstpinname="View">
@@ -280,8 +254,6 @@
    <PIN pinname="Rotate XYZ" slicecount="3" values="0.1,0.1,0.1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="49" srcpinname="Transform Out" dstnodeid="46" dstpinname="FilterTransform">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50">
    <BOUNDS type="Box" left="4695" top="3630" width="795" height="720">
    </BOUNDS>
@@ -340,4 +312,32 @@
    </LINK>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
+   <NODE systemname="WorldFilter (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\WorldFilter (DX11.Particles.Kinect).v4p" nodename="WorldFilter (DX11.Particles.Kinect)" componentmode="Hidden" id="46">
+   <BOUNDS type="Node" left="4020" top="5100" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="8625" top="5340" width="10275" height="5700">
+   </BOUNDS>
+   <PIN pinname="Texture Out" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer Out Help" visible="1">
+   </PIN>
+   <PIN pinname="FilterTransform" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="World" dstnodeid="46" dstpinname="Texture In" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="4190" y="3990">
+   </LINKPOINT>
+   <LINKPOINT x="4045" y="3990">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Texture Out" dstnodeid="39" dstpinname="World">
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Layer Out Help" dstnodeid="34" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4970" y="6538">
+   </LINKPOINT>
+   <LINKPOINT x="3100" y="6438">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Transform Out" dstnodeid="46" dstpinname="FilterTransform">
+   </LINK>
    </PATCH>

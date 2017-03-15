@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Kinect\FilterWorld (DX11.Particles.Kinect).v4p" systemname="FilterWorld (DX11.Particles.Kinect)" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Kinect\FilterWorld (DX11.Particles.Kinect).v4p">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Kinect\WorldFilter (DX11.Particles.Kinect).v4p" systemname="FilterWorld (DX11.Particles.Kinect)" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Kinect\FilterWorld (DX11.Particles.Kinect).v4p">
    <BOUNDS type="Window" left="8625" top="5340" width="10275" height="5700">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
@@ -26,30 +26,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
    </PIN>
    </NODE>
-   <NODE systemname="FilterWorld (DX11.TextureFX)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\texture11\FilterWorld.tfx" nodename="FilterWorld (DX11.TextureFX)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="780" top="3345" width="5040" height="270">
-   </BOUNDS>
-   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Min Distance" visible="1">
-   </PIN>
-   <PIN pinname="Texture Out" visible="1">
-   </PIN>
-   <PIN pinname="Max Distance" slicecount="1" values="8">
-   </PIN>
-   <PIN pinname="FilterTransform" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="tFilter" visible="1">
-   </PIN>
-   <PIN pinname="Technique" slicecount="1" values="FilterWorld">
-   </PIN>
-   <BOUNDS type="Box" left="780" top="3345">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
-   </LINK>
-   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="3" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="4">
    <BOUNDS type="Box" left="3000" top="705" width="795" height="240">
    </BOUNDS>
@@ -71,8 +47,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="4" srcpinname="Output Node" dstnodeid="5" dstpinname="Source">
-   </LINK>
-   <LINK srcnodeid="5" srcpinname="Transform Out" dstnodeid="0" dstpinname="FilterTransform">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="14" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="7200" top="3945" width="795" height="240">
@@ -196,8 +170,34 @@
    <LINKPOINT x="7680" y="2130">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="5" srcpinname="Transform Out" dstnodeid="0" dstpinname="tFilter">
-   </LINK>
    <INFO author="tmp" description="Filters the world texture of a Kinect and returns a filtered texture for further usage." tags="">
    </INFO>
+   <NODE systemname="WorldFilter (DX11.TextureFX)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\texture11\WorldFilter.tfx" nodename="WorldFilter (DX11.TextureFX)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="780" top="3345" width="5040" height="270">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Min Distance" visible="1">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   <PIN pinname="Max Distance" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="FilterTransform" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="tFilter" visible="1">
+   </PIN>
+   <PIN pinname="Technique" slicecount="1" values="FilterWorld">
+   </PIN>
+   <BOUNDS type="Box" left="780" top="3345">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="3" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Transform Out" dstnodeid="0" dstpinname="FilterTransform">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Transform Out" dstnodeid="0" dstpinname="tFilter">
+   </LINK>
    </PATCH>
