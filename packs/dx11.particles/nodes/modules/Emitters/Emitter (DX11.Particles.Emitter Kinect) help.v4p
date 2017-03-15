@@ -215,7 +215,7 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Kinect).v4p" nodename="Emitter (DX11.Particles.Emitter Kinect)" componentmode="Hidden" id="41">
-   <BOUNDS type="Node" left="4890" top="4650" width="1515" height="270">
+   <BOUNDS type="Node" left="4890" top="5100" width="1515" height="270">
    </BOUNDS>
    <PIN pinname="Resolution" visible="1" slicecount="2" values="640,480">
    </PIN>
@@ -235,9 +235,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="45">
-   <BOUNDS type="Node" left="6135" top="3975" width="4905" height="270">
+   <BOUNDS type="Node" left="6135" top="4275" width="4905" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="6135" top="3975" width="5025" height="255">
+   <BOUNDS type="Box" left="6135" top="4275" width="5025" height="255">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; replace with &quot;Kinect2 (DX11.Particles.Tools)&quot; if you own a kinect2.|">
    </PIN>
@@ -249,7 +249,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Kinect (DX11.Particles.Kinect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\Kinect (DX11.Particles.Kinect).v4p" nodename="Kinect (DX11.Particles.Kinect)" componentmode="Hidden" id="42">
-   <BOUNDS type="Node" left="5055" top="3975" width="975" height="270">
+   <BOUNDS type="Node" left="5055" top="4275" width="975" height="270">
    </BOUNDS>
    <PIN pinname="Resolution" visible="1">
    </PIN>
@@ -261,20 +261,18 @@
    </PIN>
    <PIN pinname="Reset" slicecount="1" values="0">
    </PIN>
-   <BOUNDS type="Box" left="5055" top="3975">
+   <BOUNDS type="Box" left="5055" top="4275">
    </BOUNDS>
    <BOUNDS type="Window" left="9450" top="7680" width="10995" height="5700">
    </BOUNDS>
    <PIN pinname="RGBWorld" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="42" srcpinname="Resolution" dstnodeid="41" dstpinname="Resolution">
+   <LINK srcnodeid="42" srcpinname="Resolution" dstnodeid="41" dstpinname="Resolution" hiddenwhenlocked="0">
    </LINK>
-   <LINK srcnodeid="42" srcpinname="RGB" dstnodeid="41" dstpinname="RGB">
+   <LINK srcnodeid="42" srcpinname="RGB" dstnodeid="41" dstpinname="RGB" hiddenwhenlocked="0">
    </LINK>
-   <LINK srcnodeid="42" srcpinname="RGBDepth" dstnodeid="41" dstpinname="RGBDepth">
-   </LINK>
-   <LINK srcnodeid="42" srcpinname="World" dstnodeid="41" dstpinname="World">
+   <LINK srcnodeid="42" srcpinname="RGBDepth" dstnodeid="41" dstpinname="RGBDepth" hiddenwhenlocked="0">
    </LINK>
    <NODE id="47" systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden">
    <BOUNDS type="Node" left="4875" top="6150" width="1290" height="270">
@@ -291,5 +289,7 @@
    <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="47" dstpinname="Layer In">
    </LINK>
    <LINK srcnodeid="42" srcpinname="RGBWorld" dstnodeid="41" dstpinname="RGBWorld">
+   </LINK>
+   <LINK srcnodeid="42" srcpinname="World" dstnodeid="41" dstpinname="World">
    </LINK>
    </PATCH>

@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Kinect\Kinect2 (DX11.Particles.Kinect).v4p" systemname="Kinect2 (DX11.Pointcloud.Setup)" filename="C:\vvvv\vvvv_45beta33.7_x64_dev\packs\dx11-pointcloud\nodes\modules\Setup\Kinect2 (DX11.Pointcloud.Setup).v4p" scrollx="0" scrolly="-360">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Kinect2 (DX11.Particles.Kinect).v4p" systemname="Kinect2 (DX11.Pointcloud.Setup)" filename="C:\vvvv\vvvv_45beta33.7_x64_dev\packs\dx11-pointcloud\nodes\modules\Setup\Kinect2 (DX11.Pointcloud.Setup).v4p" scrollx="0" scrolly="-360">
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)" hiddenwhenlocked="0">
    <BOUNDS type="Box" left="1635" top="1200" width="795" height="480">
    </BOUNDS>
@@ -372,7 +372,17 @@
    </NODE>
    <LINK srcnodeid="27" srcpinname="Texture" dstnodeid="28" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="RGBWorld (DX11.TextureFX)" filename="texture11\RGBWorld.tfx" nodename="RGBWorld (DX11.TextureFX)" componentmode="Hidden" id="29">
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="30">
+   <BOUNDS type="Box" left="7785" top="3990" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7785" top="3990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="RGBWorld">
+   </PIN>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <NODE systemname="WorldRGB (DX11.TextureFX)" filename="texture11\WorldRGB.tfx" nodename="WorldRGB (DX11.TextureFX)" componentmode="Hidden" id="29">
    <BOUNDS type="Node" left="7785" top="3480" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture RGB" visible="1">
@@ -402,16 +412,6 @@
    <LINKPOINT x="7465" y="3360">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="30">
-   <BOUNDS type="Box" left="7785" top="3990" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7785" top="3990" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" slicecount="1" values="RGBWorld">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="29" srcpinname="Texture Out" dstnodeid="30" dstpinname="Input Node">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.0">
-   </PACK>
    </PATCH>
