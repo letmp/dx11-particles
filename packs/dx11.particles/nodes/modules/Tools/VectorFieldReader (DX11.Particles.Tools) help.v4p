@@ -1,13 +1,13 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers) help.v4p">
-   <BOUNDS type="Window" left="9975" top="6240" width="9000" height="8955">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\VectorFieldReader (DX11.Particles.Tools) help.v4p">
+   <BOUNDS type="Window" left="4365" top="3495" width="10980" height="8955">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
    <BOUNDS type="Node" left="225" top="225" width="5100" height="450">
    </BOUNDS>
-   <BOUNDS type="Box" left="225" top="225" width="5100" height="450">
+   <BOUNDS type="Box" left="225" top="225" width="6480" height="330">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|VectorFieldReader (DX11.Particles.Modifiers)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|VectorFieldReader (DX11.Particles.Tools)|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -30,30 +30,6 @@
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
-   <NODE id="0" nodename="VectorFieldReader (DX11.Particles.Modifiers)" componentmode="Hidden" systemname="VectorFieldReader (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\VectorFieldReader (DX11.Particles.Modifiers).v4p" hiddenwhenlocked="0" managers="">
-   <BOUNDS type="Node" left="1890" top="5025" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1890" top="5025" width="0" height="0">
-   </BOUNDS>
-   <BOUNDS type="Window" left="11940" top="4365" width="10875" height="9735">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Filename" pintype="Input" visible="1" slicecount="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\assets\VectorFields\VF_Turbulence.fga">
-   </PIN>
-   <PIN pinname="Read" pintype="Input" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Window Handle" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="Patch" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="VolumeTexture" pintype="Output" visible="1">
-   </PIN>
-   <PIN pinname="ID" pintype="Output" visible="-1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="7" systemname="IOBox (String)">
    <BOUNDS type="Node" left="1620" top="2160" width="8850" height="270">
    </BOUNDS>
@@ -83,9 +59,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="8" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="6030" top="255" width="3840" height="270">
+   <BOUNDS type="Node" left="7980" top="255" width="3840" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="6030" top="255" width="2460" height="945">
+   <BOUNDS type="Box" left="7980" top="255" width="2460" height="945">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|copyright: intolight 2017&cr;&lf;Creative Commons 4.0 BY-NC-SA&cr;&lf;&cr;&lf;contact: robert@intolight.de|">
    </PIN>
@@ -101,7 +77,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="1890" top="3900" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\assets\VectorFields\VF_Turbulence.fga">
+   <PIN pinname="Input String" slicecount="1" visible="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Tools\assets\VectorFields\VF_Turbulence.fga">
    </PIN>
    <PIN pinname="Default" slicecount="1" values="file.txt">
    </PIN>
@@ -114,8 +90,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Filename">
    </PIN>
    </NODE>
-   <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="0" dstpinname="Filename">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
    <BOUNDS type="Box" left="3360" top="4470" width="285" height="240">
    </BOUNDS>
@@ -133,9 +107,9 @@
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Read">
    </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Read">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="11">
    <BOUNDS type="Box" left="1890" top="5745" width="825" height="240">
    </BOUNDS>
@@ -144,8 +118,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="VolumeTexture">
    </PIN>
    </NODE>
-   <LINK srcnodeid="0" srcpinname="VolumeTexture" dstnodeid="11" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="12">
    <BOUNDS type="Node" left="3885" top="3900" width="885" height="270">
    </BOUNDS>
@@ -188,4 +160,82 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE id="0" nodename="VectorFieldReader (DX11.Particles.Tools)" componentmode="Hidden" systemname="VectorFieldReader (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\VectorFieldReader (DX11.Particles.Tools).v4p" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="1890" top="5025" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1890" top="5025" width="0" height="0">
+   </BOUNDS>
+   <BOUNDS type="Window" left="11940" top="4365" width="16635" height="9735">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Filename" pintype="Input" visible="1" slicecount="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\assets\VectorFields\VF_Turbulence.fga">
+   </PIN>
+   <PIN pinname="Read" pintype="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Patch" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="VolumeTexture" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Layer Help" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output String" dstnodeid="0" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="10" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Read">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="VolumeTexture" dstnodeid="11" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="15">
+   <BOUNDS type="Node" left="4770" top="7740" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4770" top="7740" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="15225" top="3465" width="9000" height="9090">
+   </BOUNDS>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Camera (Transform Orbit)" filename="%VVVV%\lib\packs\VL.EditingFramework.0.47.149-g29575610a3\vvvv\nodes\modules\Camera (Transform Orbit).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="5685" top="7170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="View Projection" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="View Projection" dstnodeid="15" dstpinname="View">
+   </LINK>
+   <NODE systemname="AxisAndGrid (DX11)" filename="%VVVV%\packs\dx11\nodes\modules\AxisAndGrid\AxisAndGrid (DX11).v4p" nodename="AxisAndGrid (DX11)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="5115" top="6675" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="4920" top="7170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Layer" dstnodeid="18" dstpinname="Layer 1">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Layer Help" dstnodeid="18" dstpinname="Layer 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3405" y="6218">
+   </LINKPOINT>
+   <LINKPOINT x="5265" y="6218">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Layer Out" dstnodeid="15" dstpinname="Layers">
+   </LINK>
    </PATCH>
