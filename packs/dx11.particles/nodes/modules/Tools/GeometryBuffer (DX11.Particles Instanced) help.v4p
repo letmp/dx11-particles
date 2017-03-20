@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles Instanced) help.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles Instanced) help.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="1530" top="2175" width="13170" height="11520">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
@@ -347,17 +347,17 @@
    </PIN>
    </NODE>
    <NODE systemname="AspectRatio (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="AspectRatio (DX11.Layer)" componentmode="Hidden" id="34">
-   <BOUNDS type="Node" left="2625" top="9615" width="100" height="100">
+   <BOUNDS type="Node" left="2610" top="9615" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2625" top="9615">
+   <BOUNDS type="Box" left="2610" top="9615">
    </BOUNDS>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="3285" top="9195" width="100" height="100">
+   <BOUNDS type="Node" left="3270" top="9195" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
@@ -379,23 +379,23 @@
    <NODE id="32" systemname="AxisAndGrid (DX11)" filename="%VVVV%\packs\dx11\nodes\modules\AxisAndGrid\AxisAndGrid (DX11).v4p" nodename="AxisAndGrid (DX11)" componentmode="Hidden">
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS type="Node" left="2325" top="8520" width="100" height="100">
+   <BOUNDS type="Node" left="2310" top="8520" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Box" left="2325" top="8520">
+   <BOUNDS type="Box" left="2310" top="8520">
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="32" srcpinname="Layer" dstnodeid="33" dstpinname="Layer 1" linkstyle="VHV">
-   <LINKPOINT x="1950" y="8925">
+   <LINKPOINT x="1935" y="8925">
    </LINKPOINT>
-   <LINKPOINT x="3900" y="9015">
+   <LINKPOINT x="3885" y="9015">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Camera (Transform Orbit Legacy)" filename="%VVVV%\addonpack\lib\nodes\modules\_legacy\Camera (Transform Orbit Legacy).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="31">
-   <BOUNDS type="Node" left="3960" top="9615" width="100" height="100">
+   <BOUNDS type="Node" left="3945" top="9615" width="100" height="100">
    </BOUNDS>
    <PIN pinname="View Projection" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3960" top="9615">
+   <BOUNDS type="Box" left="3945" top="9615">
    </BOUNDS>
    <PIN pinname="Initial Pitch" slicecount="1" values="0.08">
    </PIN>
@@ -405,9 +405,9 @@
    </PIN>
    </NODE>
    <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="30">
-   <BOUNDS type="Node" left="2430" top="10035" width="2655" height="270">
+   <BOUNDS type="Node" left="2415" top="10035" width="2655" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="2430" top="10035" width="6000" height="4500">
+   <BOUNDS type="Box" left="2415" top="10035" width="6000" height="4500">
    </BOUNDS>
    <BOUNDS type="Window" left="14565" top="2190" width="11745" height="11550">
    </BOUNDS>
@@ -832,15 +832,17 @@
    </LINK>
    <LINK srcnodeid="47" srcpinname="Texture Out" dstnodeid="69" dstpinname="Input Node">
    </LINK>
-   <NODE systemname="GeometryBufferDebug (DX11.Effect)" filename="dx11\GeometryBufferDebug.fx" nodename="GeometryBufferDebug (DX11.Effect)" componentmode="Hidden" id="70">
-   <BOUNDS type="Node" left="3630" top="8520" width="100" height="100">
+   <NODE systemname="GeometryBuffer_Debug (DX11.Effect)" filename="dx11\GeometryBuffer_Debug.fx" nodename="GeometryBuffer_Debug (DX11.Effect)" componentmode="Hidden" id="70">
+   <BOUNDS type="Node" left="3615" top="8520" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Geometry" visible="1">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3630" top="8520">
+   <BOUNDS type="Box" left="3615" top="8520">
    </BOUNDS>
+   <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="56" srcpinname="Output Node" dstnodeid="70" dstpinname="Geometry">
    </LINK>
