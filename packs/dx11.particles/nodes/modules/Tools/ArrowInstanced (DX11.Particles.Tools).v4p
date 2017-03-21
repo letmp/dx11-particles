@@ -155,7 +155,7 @@
    </PIN>
    <BOUNDS type="Box" left="4050" top="5415">
    </BOUNDS>
-   <PIN pinname="Apply" visible="1">
+   <PIN pinname="Apply" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE systemname="Count (Node)" nodename="Count (Node)" componentmode="Hidden" id="11">
@@ -185,7 +185,7 @@
    </PIN>
    <BOUNDS type="Box" left="5685" top="5415">
    </BOUNDS>
-   <PIN pinname="Apply" visible="1">
+   <PIN pinname="Apply" visible="1" slicecount="1" values="0">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="14" systemname="IOBox (Value Advanced)">
@@ -201,7 +201,7 @@
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
-   <PIN pinname="Y Input Value" slicecount="3" values="0,0,0">
+   <PIN pinname="Y Input Value" slicecount="1" values="0" visible="1">
    </PIN>
    <PIN pinname="X Input Value" slicecount="3" values="0,0,0">
    </PIN>
@@ -297,13 +297,9 @@
    </PIN>
    <PIN pinname="Behavior" slicecount="1" values="Bang">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Apply" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6705" y="3585">
-   </LINKPOINT>
-   <LINKPOINT x="5100" y="3585">
-   </LINKPOINT>
-   </LINK>
    <LINK dstnodeid="7" dstpinname="Transform In" srcnodeid="5" srcpinname="Transform Out">
    </LINK>
    <LINK srcnodeid="6" srcpinname="Output" dstnodeid="7" dstpinname="X">
@@ -315,8 +311,6 @@
    </LINKPOINT>
    </LINK>
    <LINK dstnodeid="7" dstpinname="Z" srcnodeid="3" srcpinname="Length">
-   </LINK>
-   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Y Input Value">
    </LINK>
    <LINK dstnodeid="3" dstpinname="X" srcnodeid="4" srcpinname="X">
    </LINK>
@@ -334,11 +328,9 @@
    </LINK>
    <LINK srcnodeid="16" srcpinname="Color Output" dstnodeid="13" dstpinname="Data">
    </LINK>
-   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Apply" hiddenwhenlocked="1">
-   </LINK>
    <LINK srcnodeid="19" srcpinname="Color Output" dstnodeid="16" dstpinname="Color Input">
    </LINK>
-   <BOUNDS type="Window" left="30090" top="3015" width="8745" height="9735">
+   <BOUNDS type="Window" left="14430" top="2430" width="8745" height="9735">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
@@ -346,4 +338,34 @@
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="19">
+   <BOUNDS type="Box" left="6705" top="4965" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6705" top="4965" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Apply" linkstyle="VHV">
+   <LINKPOINT x="6705" y="5295">
+   </LINKPOINT>
+   <LINKPOINT x="5130" y="5295">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="19" srcpinname="Y Output Value" dstnodeid="13" dstpinname="Apply">
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Y Output Value" dstnodeid="19" dstpinname="Y Input Value">
+   </LINK>
    </PATCH>
