@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Lifespan (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="-360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Age (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="-360" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="14280" top="4095" width="13860" height="8820">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
@@ -294,18 +294,6 @@
    </NODE>
    <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
    </LINK>
-   <NODE nodename="IOBox (Node)" componentmode="InABox" id="60" systemname="IOBox (Node)">
-   <BOUNDS type="Box" left="3345" top="720" width="795" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="3345" top="720" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Lifespan Buffer|">
-   </PIN>
-   <PIN pinname="Output Node" visible="1">
-   </PIN>
-   </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="68" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="7200" top="720" width="720" height="240">
    </BOUNDS>
@@ -316,7 +304,7 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
    </NODE>
-   <INFO author="tmp" description="Set the lifespan for a particle." tags="">
+   <INFO author="tmp" description="Set the age of a particle." tags="">
    </INFO>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
@@ -394,60 +382,68 @@
    <LINKPOINT x="4605" y="703">
    </LINKPOINT>
    </LINK>
-   <NODE id="75" systemname="Modifier_Lifespan (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Lifespan.fx" nodename="Modifier_Lifespan (DX11.Effect)" componentmode="Hidden">
+   <NODE id="76" systemname="Modifier_Age (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Age.fx" nodename="Modifier_Age (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
    </BOUNDS>
-   <PIN pinname="BinSizeBuffer" visible="1">
-   </PIN>
-   <PIN pinname="Use SelectionId" visible="1">
+   <PIN pinname="Age Buffer" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
-   <LINK srcnodeid="75" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   <LINK srcnodeid="76" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="75" dstpinname="Geometry">
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="76" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="75" dstpinname="Defines">
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="76" dstpinname="Defines">
    </LINK>
-   <LINK srcnodeid="75" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   <LINK srcnodeid="76" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
    </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="76" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="11190" y="2805">
    </LINKPOINT>
    <LINKPOINT x="6840" y="2805">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="75" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
+   <LINK srcnodeid="76" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
    <LINKPOINT x="6660" y="5250">
    </LINKPOINT>
    <LINKPOINT x="7710" y="5250">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="68" srcpinname="Output Enum" dstnodeid="75" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="68" srcpinname="Output Enum" dstnodeid="76" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="7115" y="2685">
    </LINKPOINT>
    <LINKPOINT x="6325" y="2685">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="60" srcpinname="Output Node" dstnodeid="75" dstpinname="Lifespan Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3405" y="2693">
-   </LINKPOINT>
-   <LINKPOINT x="5385" y="2693">
-   </LINKPOINT>
+   <LINK srcnodeid="71" srcpinname="Output Node" dstnodeid="76" dstpinname="Layer In">
    </LINK>
-   <LINK srcnodeid="71" srcpinname="Output Node" dstnodeid="75" dstpinname="Layer In">
-   </LINK>
-   <LINK srcnodeid="72" srcpinname="Buffer" dstnodeid="75" dstpinname="BinSizeBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="72" srcpinname="Buffer" dstnodeid="76" dstpinname="BinSizeBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="4605" y="2940">
    </LINKPOINT>
    <LINKPOINT x="4605" y="2940">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="74" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Use SelectionId" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINK srcnodeid="74" srcpinname="Y Output Value" dstnodeid="76" dstpinname="Use SelectionId" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5670" y="2693">
    </LINKPOINT>
    <LINKPOINT x="3795" y="2693">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="77">
+   <BOUNDS type="Box" left="3345" top="720" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3345" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Age Buffer|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="77" srcpinname="Output Node" dstnodeid="76" dstpinname="Age Buffer" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3405" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="5385" y="2700">
    </LINKPOINT>
    </LINK>
    </PATCH>

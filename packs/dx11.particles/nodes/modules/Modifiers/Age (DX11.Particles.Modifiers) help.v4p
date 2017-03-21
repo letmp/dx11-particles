@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Age (DX11.Particles.Modifiers) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\Age (DX11.Particles.Modifiers) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2070" top="1905" width="12915" height="12345">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -365,7 +365,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="6345" top="3000" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -394,6 +394,8 @@
    <PIN pinname="Use SelectionId" slicecount="1" values="0">
    </PIN>
    <PIN pinname="Enabled" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Age Buffer" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="54" srcpinname="Output Enum" dstnodeid="52" dstpinname="Technique">
@@ -440,8 +442,6 @@
    <PIN pinname="ID" pintype="Output" visible="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="85" srcpinname="Buffer" dstnodeid="15" dstpinname="Lifespan Buffer">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="86">
    <BOUNDS type="Box" left="4650" top="4005" width="795" height="240">
    </BOUNDS>
@@ -456,18 +456,8 @@
    </NODE>
    <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="85" dstpinname="Data">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="87">
-   <BOUNDS type="Node" left="7680" top="4830" width="3405" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="7680" top="4830" width="3405" height="270">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; sets age to 0 so that each particles dies after each frame|">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   </NODE>
+   <LINK srcnodeid="53" srcpinname="Buffer" dstnodeid="52" dstpinname="Age Buffer">
+   </LINK>
+   <LINK srcnodeid="85" srcpinname="Buffer" dstnodeid="15" dstpinname="Lifespan Buffer">
+   </LINK>
    </PATCH>
