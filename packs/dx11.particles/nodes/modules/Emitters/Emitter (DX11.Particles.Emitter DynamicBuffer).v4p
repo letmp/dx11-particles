@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="E:\software\dev\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
    <BOUNDS type="Node" left="5835" top="2850" width="100" height="100">
    </BOUNDS>
@@ -229,7 +229,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="18345" top="900" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="second">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
    </PIN>
@@ -615,9 +615,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="134">
-   <BOUNDS type="Box" left="9090" top="2865" width="285" height="240">
+   <BOUNDS type="Box" left="9090" top="3240" width="285" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9090" top="2865" width="0" height="0">
+   <BOUNDS type="Node" left="9090" top="3240" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Color Input" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,1.00000|">
    </PIN>
@@ -627,9 +627,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="135">
-   <BOUNDS type="Box" left="9840" top="3195" width="795" height="720">
+   <BOUNDS type="Box" left="9840" top="3495" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="9840" top="3195" width="0" height="0">
+   <BOUNDS type="Node" left="9840" top="3495" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,1,1">
    </PIN>
@@ -651,7 +651,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="2760" top="4470">
    </BOUNDS>
-   <PIN pinname="OffsetEmission" visible="1">
+   <PIN pinname="OffsetEmission" visible="1" slicecount="1" values="17730">
    </PIN>
    </NODE>
    <LINK srcnodeid="17" srcpinname="Geometry Out" dstnodeid="138" dstpinname="Geometry">
@@ -735,6 +735,8 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
+   <BOUNDS type="Box" left="8265" top="2265">
+   </BOUNDS>
    </NODE>
    <NODE systemname="Multiply (Value)" nodename="Multiply (Value)" componentmode="Hidden" id="139">
    <BOUNDS type="Node" left="8265" top="1875" width="100" height="100">
@@ -766,6 +768,18 @@
    <LINKPOINT x="8940" y="1943">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="140" srcpinname="Output" dstnodeid="138" dstpinname="OffsetEmission">
+   <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="144">
+   <BOUNDS type="Node" left="8265" top="2655" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="8265" top="2655">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="140" srcpinname="Output" dstnodeid="144" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="144" srcpinname="Output 1" dstnodeid="138" dstpinname="OffsetEmission">
    </LINK>
    </PATCH>

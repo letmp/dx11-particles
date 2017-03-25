@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry).v4p" scrollx="0" scrolly="0" systemname="Emitter (DX11.Particles.Emitter Geometry)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_geom_emitter\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry).v4p">
+   <PATCH nodename="E:\software\dev\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry).v4p" scrollx="0" scrolly="0" systemname="Emitter (DX11.Particles.Emitter Geometry)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_geom_emitter\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry).v4p">
    <BOUNDS type="Window" left="3720" top="1350" width="21600" height="11295">
    </BOUNDS>
    <PACK Name="ZeroMQ" Version="0.5.4">
@@ -808,6 +808,16 @@
    <LINKPOINT x="9165" y="1868">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="75" srcpinname="Output" dstnodeid="70" dstpinname="OffsetEmission">
+   <NODE systemname="FrameDelay (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="FrameDelay (Value)" componentmode="Hidden" id="76">
+   <BOUNDS type="Node" left="8835" top="3510" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Output 1" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="75" srcpinname="Output" dstnodeid="76" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Output 1" dstnodeid="70" dstpinname="OffsetEmission">
    </LINK>
    </PATCH>
