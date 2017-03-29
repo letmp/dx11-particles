@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ScaleFade (DX11.Particles.Modifiers Advanced).v4p" scrollx="0" scrolly="0" systemname="ScaleInOut (DX11.Particles.Modifiers)" filename="C:\Users\Kyle\Desktop\Dropbox\VVVV Files\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ScaleInOut (DX11.Particles.Modifiers).v4p">
-   <BOUNDS type="Window" left="9330" top="5745" width="16140" height="9015">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ScaleByLifetime (DX11.Particles.Modifiers Advanced).v4p" scrollx="0" scrolly="0" systemname="ScaleInOut (DX11.Particles.Modifiers)" filename="C:\Users\Kyle\Desktop\Dropbox\VVVV Files\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\ScaleInOut (DX11.Particles.Modifiers).v4p">
+   <BOUNDS type="Window" left="7860" top="3075" width="16770" height="9195">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
    <BOUNDS type="Box" left="9270" top="4440" width="6270" height="2895">
@@ -322,7 +322,7 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <INFO author="tmp" description="Scales a particle" tags="">
+   <INFO author="tmp" description="Scales a particle during its lifetime." tags="">
    </INFO>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
@@ -380,7 +380,29 @@
    <PIN pinname="Default" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <NODE id="123" systemname="Modifier_ScaleFadeAdvanced (DX11.Effect)" filename="dx11\Modifier_ScaleFadeAdvanced.fx" nodename="Modifier_ScaleFadeAdvanced (DX11.Effect)" componentmode="Hidden">
+   <NODE systemname="DynamicBuffer (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer UInt)" componentmode="Hidden" id="66">
+   <BOUNDS type="Node" left="4425" top="960" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Buffer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="4425" top="960">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="122" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Data">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="124">
+   <BOUNDS type="Box" left="7410" top="420" width="570" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7410" top="420" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
+   </PIN>
+   </NODE>
+   <NODE id="123" systemname="Modifier_ScaleByLifetime_Advanced (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_ScaleByLifetime_Advanced.fx" nodename="Modifier_ScaleByLifetime_Advanced (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="495" top="4440">
@@ -422,34 +444,12 @@
    <LINKPOINT x="3460" y="2543">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="DynamicBuffer (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer UInt)" componentmode="Hidden" id="66">
-   <BOUNDS type="Node" left="4425" top="960" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Data" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Buffer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="4425" top="960">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="122" srcpinname="Y Output Value" dstnodeid="66" dstpinname="Data">
-   </LINK>
    <LINK srcnodeid="66" srcpinname="Buffer" dstnodeid="123" dstpinname="BinSizeBuffer" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="4790" y="2820">
    </LINKPOINT>
    <LINKPOINT x="4255" y="2820">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="124">
-   <BOUNDS type="Box" left="7410" top="420" width="570" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7410" top="420" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="124" srcpinname="Output Enum" dstnodeid="123" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="7425" y="2550">
    </LINKPOINT>
