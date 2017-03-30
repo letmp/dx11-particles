@@ -18,7 +18,7 @@ using System.Timers;
 
 namespace DX11.Particles.IO
 {
-
+    
     #region ChunkDataManager
     public class ChunkDataManager
     {
@@ -322,7 +322,8 @@ namespace DX11.Particles.IO
         public int chunkId;
         public int dataOffset = 0;
         public bool isLocked = false;
-        
+        public bool finishedLoading = false;
+
         System.Timers.Timer timer;
 
         public ChunkAccessData(int chunkId) {

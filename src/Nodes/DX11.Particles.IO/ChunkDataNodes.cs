@@ -19,6 +19,14 @@ using VVVV.Core.Logging;
 
 namespace DX11.Particles.IO
 {
+    public enum ScaleEnum
+    {
+        Multiply, MaxX, MaxY, MaxZ
+    }
+    public enum AlignEnum
+    {
+        None, Min, Center, Max
+    }
     #region PluginInfo
     [PluginInfo(Name = "ChunkBuilder",
                 Category = "DX11.Particles.IO",
@@ -44,6 +52,21 @@ namespace DX11.Particles.IO
         [Input("NormalizeRGB", DefaultBoolean = true, IsSingle = true)]
         public ISpread<bool> FNormalizeRGB;
 
+        [Input("Align X", DefaultEnumEntry = "None", Visibility = PinVisibility.OnlyInspector, IsSingle = true)]
+        public ISpread<AlignEnum> FAlignX;
+
+        [Input("Align Y", DefaultEnumEntry = "None", Visibility = PinVisibility.OnlyInspector, IsSingle = true)]
+        public ISpread<AlignEnum> FAlignY;
+
+        [Input("Align Z", DefaultEnumEntry = "None", Visibility = PinVisibility.OnlyInspector, IsSingle = true)]
+        public ISpread<AlignEnum> FAlignZ;
+
+        [Input("Scale Mode", DefaultEnumEntry = "Multiply", Visibility = PinVisibility.OnlyInspector, IsSingle = true)]
+        public ISpread<ScaleEnum> FScaleMode;
+
+        [Input("Scale Value", Visibility = PinVisibility.OnlyInspector, IsSingle = true, DefaultValue = 1.0)]
+        public ISpread<double> FScaleValue;
+        
         [Input("Create", IsSingle = true, IsBang = true)]
         public ISpread<bool> FRead;
 
@@ -123,6 +146,26 @@ namespace DX11.Particles.IO
                     }
                     #endregion parse min and max coords
 
+                    #region calculate aligning & scaling
+                    double offsetX = 0;
+                    if ((int)FAlignX[0] == 1) offsetX = 0 - min.x;
+                    if ((int)FAlignX[0] == 2) offsetX = 0 - min.x - ((max.x - min.x) / 2);
+                    if ((int)FAlignX[0] == 3) offsetX = 0 - max.x;
+                    double offsetY = 0;
+                    if ((int)FAlignY[0] == 1) offsetY = 0 - min.y;
+                    if ((int)FAlignY[0] == 2) offsetY = 0 - min.y - ((max.y - min.y) / 2);
+                    if ((int)FAlignY[0] == 3) offsetY = 0 - max.y;
+                    double offsetZ = 0;
+                    if ((int)FAlignZ[0] == 1) offsetZ = 0 - min.z;
+                    if ((int)FAlignZ[0] == 2) offsetZ = 0 - min.z - ((max.z - min.z) / 2);
+                    if ((int)FAlignZ[0] == 3) offsetZ = 0 - max.z;
+
+                    double scalemultiplier = FScaleValue[0];
+                    if ((int)FScaleMode[0] == 1) scalemultiplier = scalemultiplier / (max.x - min.x);
+                    if ((int)FScaleMode[0] == 2) scalemultiplier = scalemultiplier / (max.y - min.y);
+                    if ((int)FScaleMode[0] == 3) scalemultiplier = scalemultiplier / (max.z - min.z);
+                    #endregion calculate aligning & scaling
+
                     #region calculate chunkinfos
                     Vector3D size = max - min;
                     double chunkSizeX = size.x / FChunkCount[0].x;
@@ -168,9 +211,34 @@ namespace DX11.Particles.IO
                         {
                             // build new string
                             string newLine = "";
-                            newLine += (dataStructure.ContainsKey("x")) ? substrings[dataStructure["x"]] + " " : "0.0 ";
-                            newLine += (dataStructure.ContainsKey("y")) ? substrings[dataStructure["y"]] + " " : "0.0 ";
-                            newLine += (dataStructure.ContainsKey("z")) ? substrings[dataStructure["z"]] + " " : "0.0 ";
+
+                            if (dataStructure.ContainsKey("x"))
+                            {
+                                double value = double.Parse(substrings[dataStructure["x"]], CultureInfo.InvariantCulture);
+                                value += offsetX;
+                                value *= scalemultiplier;
+                                newLine += value.ToString(new CultureInfo("en-US", false)) + " ";
+                            } 
+                            else newLine += " 0.0";
+
+                            if (dataStructure.ContainsKey("y"))
+                            {
+                                double value = double.Parse(substrings[dataStructure["y"]], CultureInfo.InvariantCulture);
+                                value += offsetY;
+                                value *= scalemultiplier;
+                                newLine += value.ToString(new CultureInfo("en-US", false)) + " ";
+                            }
+                            else newLine += " 0.0";
+
+                            if (dataStructure.ContainsKey("z"))
+                            {
+                                double value = double.Parse(substrings[dataStructure["z"]], CultureInfo.InvariantCulture);
+                                value += offsetZ;
+                                value *= scalemultiplier;
+                                newLine += value.ToString(new CultureInfo("en-US", false)) + " ";
+                            }
+                            else newLine += " 0.0";
+
                             if (dataStructure.ContainsKey("r"))
                             {
                                 newLine += (FNormalizeRGB[0]) ? (double.Parse(substrings[dataStructure["r"]]) / 255).ToString(new CultureInfo("en-US", false)) : substrings[dataStructure["r"]];
@@ -207,10 +275,10 @@ namespace DX11.Particles.IO
                     #region write files
                     StringBuilder sbInfo = new StringBuilder();
                     sbInfo.AppendLine("Pattern: " + string.Join("", dataStructure.Keys));
-                    sbInfo.AppendLine("ChunkSizeXYZ: " + chunkSizeX + " " + chunkSizeY + " " + chunkSizeZ);
+                    sbInfo.AppendLine("ChunkSizeXYZ: " + chunkSizeX * scalemultiplier + " " + chunkSizeY * scalemultiplier + " " + chunkSizeZ * scalemultiplier);
                     sbInfo.AppendLine("ChunkCountXYZ: " + chunkCountX + " " + chunkCountY + " " + chunkCountZ);
-                    sbInfo.AppendLine("BoundsMin: " + min.x + " " + min.y + " " + min.z + " ");
-                    sbInfo.AppendLine("BoundsMax: " + max.x + " " + max.y + " " + max.z + " ");
+                    sbInfo.AppendLine("BoundsMin: " + (min.x + offsetX) * scalemultiplier + " " + (min.y + offsetY) * scalemultiplier + " " + (min.z + offsetZ) * scalemultiplier + " ");
+                    sbInfo.AppendLine("BoundsMax: " + (max.x + offsetX) * scalemultiplier + " " + (max.y + offsetY) * scalemultiplier + " " + (max.z + offsetZ) * scalemultiplier + " ");
                     sbInfo.AppendLine("ElementCount: " + sbLineCount.Sum());
                     sbInfo.AppendLine("MaxElementsPerChunk: " + sbLineCount.Max());
 
@@ -458,7 +526,7 @@ namespace DX11.Particles.IO
                     //lockedChunks.RemoveAll(lockedChunk => chunksToContinue.Any(chunkToContinue => chunkToContinue.chunkId == lockedChunk.chunkId));
 
                     // update list of locked chunks
-                    var chunksToLock = activeChunks.Where(activeChunk => chunksToRemove.Contains(activeChunk.chunkId) && activeChunk.dataOffset > 0).ToList();
+                    var chunksToLock = activeChunks.Where(activeChunk => chunksToRemove.Contains(activeChunk.chunkId) && activeChunk.finishedLoading).ToList();
                     chunksToLock.ForEach(activeChunk => activeChunk.StartLock(FLockTime[0]));
                     lockedChunks.AddRange(chunksToLock);
                     lockedChunks.RemoveAll(lockedChunk => lockedChunk.isLocked == false);
@@ -478,7 +546,7 @@ namespace DX11.Particles.IO
                         ChunkData cd = cdm.GetChunkData(activeChunk.chunkId);
                         List<Tuple<Vector3D, RGBAColor>> chunkData = cd.GetChunkData(activeChunk.dataOffset, limit * FDownsampling[0], FDownsampling[0]);
                         activeChunk.dataOffset += chunkData.Count * FDownsampling[0];
-                        //if (activeChunk.dataOffset == cd.GetListSize()) activeChunk.finishedLoading = true;
+                        if (activeChunk.dataOffset == cd.GetListSize()) activeChunk.finishedLoading = true;
 
                         FOutPosition.AddRange(chunkData.Select(tuple => tuple.Item1));
                         FOutColor.AddRange(chunkData.Select(tuple => tuple.Item2));
