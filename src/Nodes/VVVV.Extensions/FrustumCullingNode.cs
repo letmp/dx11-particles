@@ -18,17 +18,24 @@ namespace VVVV.Extensions
 
         [Output("Position")]
         public ISpread<Vector3D> FOutput;
+
+        [Output("Former Index")]
+        public ISpread<int> FIndex;
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
-            FOutput.SliceCount = 0;
+            FOutput.SliceCount = FIndex.SliceCount = 0;
 
             for (int i = 0; i < SpreadMax; i++)
             {
                 Vector3D coord = FViewProjection[0] * FPosition[i];
                 if (!(coord.x < -1 || coord.x > 1 || coord.y < -1 || coord.y > 1 || coord.z < -1 || coord.z > 1))
+                {
                     FOutput.Add(FPosition[i]);
+                    FIndex.Add(i);
+                }
+                    
             }
         }
     }

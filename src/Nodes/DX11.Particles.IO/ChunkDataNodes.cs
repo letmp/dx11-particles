@@ -473,7 +473,7 @@ namespace DX11.Particles.IO
         public ISpread<Vector3D> FPosition;
 
         [Input("Data Limit", IsSingle = true, DefaultValue = -1, MinValue = -1)]
-        public ISpread<int> FOutputLimit;
+        public ISpread<int> FDataLimit;
 
         [Input("LockTime", IsSingle = true, DefaultValue = 0.0, MinValue = 0.0, AsInt = true)]
         public ISpread<double> FLockTime;
@@ -540,7 +540,7 @@ namespace DX11.Particles.IO
                     foreach (int chunkId in chunksToAdd) cdm.Cache(chunkId);
                     
                     // get all the data we need from active chunks
-                    int limit = FOutputLimit[0];
+                    int limit = FDataLimit[0];
                     foreach (ChunkAccessData activeChunk in activeChunks)
                     {
                         ChunkData cd = cdm.GetChunkData(activeChunk.chunkId);
@@ -562,6 +562,135 @@ namespace DX11.Particles.IO
                     FActiveChunkIndex.AddRange(activeChunks.Select(activeChunk => activeChunk.chunkId));
                 }
                 
+            }
+
+        }
+    }
+
+    #region PluginInfo
+    [PluginInfo(Name = "ChunkData", Category = "DX11.Particles.IO", Version = "ReadAll", Help = "Determines needed chunks by given positions and outputs the chunkdata", Tags = "")]
+    #endregion PluginInfo
+    public class ChunkStreamerCompleteNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("ChunkDataManager")]
+        public Pin<ChunkDataManager> FChunkDataManager;
+
+        [Input("ReadAll", IsSingle = true, IsBang = true)]
+        public ISpread<bool> FReadAll;
+
+        /*[Input("Position")]
+        public ISpread<Vector3D> FPosition;*/
+        [Input("Chunk Index")]
+        public ISpread<int> FChunkIndex;
+
+        [Input("Data Limit", IsSingle = true, DefaultValue = -1, MinValue = -1)]
+        public ISpread<int> FDataLimit;
+
+        [Input("LockTime", IsSingle = true, DefaultValue = 0.0, MinValue = 0.0, AsInt = true)]
+        public ISpread<double> FLockTime;
+        
+        [Output("Position")]
+        public ISpread<Vector3D> FOutPosition;
+
+        [Output("Colors")]
+        public ISpread<RGBAColor> FOutColor;
+
+        [Output("ElementsToAdd Count")]
+        public ISpread<int> FElementsToAddCount;
+
+        [Output("Buffer Offset")]
+        public ISpread<int> FBufferOffset;
+
+        [Output("ChunkToAdd Index")]
+        public ISpread<int> FChunkToAddIndex;
+
+        [Output("Chunk BinSize")]
+        public ISpread<int> FOutBinSize;
+
+        [Output("Active Chunk Index")]
+        public ISpread<int> FActiveChunkIndex;
+
+        [Import()]
+        public ILogger FLogger;
+
+        List<ChunkAccessData> activeChunks = new List<ChunkAccessData>();
+        List<ChunkAccessData> lockedChunks = new List<ChunkAccessData>();
+
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutPosition.SliceCount = FOutColor.SliceCount =
+            FActiveChunkIndex.SliceCount = FChunkToAddIndex.SliceCount =
+            FElementsToAddCount.SliceCount = FBufferOffset.SliceCount =0;
+
+            if (FChunkDataManager.IsConnected && FChunkDataManager[0] != null)
+            {
+                ChunkDataManager cdm = FChunkDataManager[0];
+
+                if (cdm.fileOpened)
+                {
+
+                    // this only works if progress of chunkdata caching is finished!
+                    if (FReadAll[0])
+                    {
+                        FOutBinSize.SliceCount = 0;
+                        foreach (ChunkData cd in cdm.GetChunkData())
+                        {
+                            List<Tuple<Vector3D, RGBAColor>> chunkData = cd.GetChunkData(0, -1);
+                            FOutPosition.AddRange(chunkData.Select(tuple => tuple.Item1));
+                            FOutColor.AddRange(chunkData.Select(tuple => tuple.Item2));
+                            FOutBinSize.Add(cd.GetListSize());
+                        }
+                    }
+                    
+                    // get ids of chunks we want to display
+                    //var currentChunks = cdm.getChunkIds(FPosition.Select(pos => pos - cdm.boundsMin)).Distinct().ToList();
+                    var currentChunks = FChunkIndex;
+
+                    // build lists of chunkIds we have to load/unload
+                    var chunksToAdd = currentChunks.Except(activeChunks.Select(activeChunk => activeChunk.chunkId)).ToList();
+                    chunksToAdd = chunksToAdd.Except(lockedChunks.Select(lockedChunk => lockedChunk.chunkId)).ToList(); // remove all chunks that are still locked
+                    var chunksToRemove = activeChunks.Select(activeChunk => activeChunk.chunkId).Except(currentChunks).ToList();
+                    
+                    // update list of locked chunks
+                    var chunksToLock = activeChunks.Where(activeChunk => chunksToRemove.Contains(activeChunk.chunkId) && activeChunk.finishedLoading).ToList();
+                    chunksToLock.ForEach(activeChunk => activeChunk.StartLock(FLockTime[0]));
+                    lockedChunks.AddRange(chunksToLock);
+                    lockedChunks.RemoveAll(lockedChunk => lockedChunk.isLocked == false);
+
+                    // update active chunks list
+                    activeChunks.AddRange(chunksToAdd.Select(chunkId => new ChunkAccessData(chunkId)));
+                    //activeChunks.AddRange(chunksToContinue);
+                    activeChunks.RemoveAll(activeChunkId => chunksToRemove.Contains(activeChunkId.chunkId));
+
+                    // load caching data (if not already happened)
+                    foreach (int chunkId in chunksToAdd) cdm.Cache(chunkId);
+
+                    // get all the data we need from active chunks
+                    int limit = FDataLimit[0];
+                    foreach (ChunkAccessData activeChunk in activeChunks)
+                    {
+                        if(activeChunk.finishedLoading == false)
+                        {
+                            FChunkToAddIndex.Add(activeChunk.chunkId);
+
+                            ChunkData cd = cdm.GetChunkData(activeChunk.chunkId);
+                            int range = cd.getRange(activeChunk.dataOffset, limit);
+                            
+                            FElementsToAddCount.Add(range);
+                            FBufferOffset.Add(activeChunk.dataOffset);
+
+                            activeChunk.dataOffset += range;
+                            if (activeChunk.dataOffset == cd.GetListSize()) activeChunk.finishedLoading = true;
+                            break;
+                        }
+                        
+                    }
+                    FActiveChunkIndex.AddRange(activeChunks.Select(activeChunk => activeChunk.chunkId));
+                }
+
             }
 
         }

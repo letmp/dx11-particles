@@ -181,6 +181,11 @@ namespace DX11.Particles.IO
             return Convert.ToDouble(cachedCount) / Convert.ToDouble(chunkDataList.Count);
         }
 
+        public List<ChunkData> GetChunkData()
+        {
+            return this.chunkDataList;
+        }
+
         public ChunkData GetChunkData(int chunkId)
         {
             return this.chunkDataList[chunkId];
@@ -219,24 +224,25 @@ namespace DX11.Particles.IO
             return chunkData.ToList();
         }
 
-        public List<Tuple<Vector3D, RGBAColor>> GetChunkData(int dataOffset, int limit)
+        public int getRange(int dataOffset, int limit)
         {
             int range = 0;
+            dataOffset = Math.Min(chunkData.Count, dataOffset);
             if (limit == -1) range = chunkData.Count - dataOffset;
             else range = Math.Min(chunkData.Count - dataOffset, limit);
+            return range;
+        }
 
+        public List<Tuple<Vector3D, RGBAColor>> GetChunkData(int dataOffset, int limit)
+        {
+            int range = getRange(dataOffset, limit);
             List<Tuple<Vector3D, RGBAColor>> chunkDataCopy = chunkData.GetRange(dataOffset, range);
             return chunkDataCopy;
         }
 
         public List<Tuple<Vector3D, RGBAColor>> GetChunkData(int dataOffset, int limit, int nth)
         {
-            int range = 0;
-            dataOffset = Math.Min(chunkData.Count, dataOffset);
-            
-            if (limit == -1) range = chunkData.Count - dataOffset;
-            else range = Math.Min(chunkData.Count - dataOffset, limit);
-
+            int range = getRange(dataOffset, limit);
             List<Tuple<Vector3D, RGBAColor>> chunkDataCopy = chunkData.GetRange(dataOffset, range).Where((x, i) => i % nth == 0).ToList();
             return chunkDataCopy;
         }
