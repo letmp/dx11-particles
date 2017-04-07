@@ -275,14 +275,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chunks\Chunk.cs" />
     <Compile Include="ChunkData.cs" />
-    <Compile Include="ChunkDataImporter.cs" />
-    <Compile Include="IChunkDataImporter.cs" />
+    <Compile Include="Chunks\ChunkNodes.cs" />
+    <Compile Include="Chunks\IO\ChunkImporterASC.cs" />
+    <Compile Include="Chunks\ChunkManager.cs" />
+    <Compile Include="Chunks\IO\ChunkReaderBinary.cs" />
+    <Compile Include="Chunks\IO\ChunkWriterBinary.cs" />
+    <Compile Include="Chunks\IO\IChunkImporter.cs" />
+    <Compile Include="Chunks\IO\IChunkWriter.cs" />
+    <Compile Include="Utils\IIOTask.cs" />
+    <Compile Include="Utils\GenericConstructor.cs" />
+    <Compile Include="Utils\MemoryComStreamAdapters.cs" />
+    <Compile Include="Chunks\IO\IChunkReader.cs" />
     <Compile Include="ChunkDataNodes.cs" />
+    <Compile Include="Utils\MemoryComStream.cs" />
+    <Compile Include="Utils\Structures.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

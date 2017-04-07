@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DX11.Particles.IO
+namespace DX11.Particles.IO.Utils
 {
-    public class ChunkDataImporterPlainText : ChunkDataImporterBase
+    public abstract class GenericConstructor<T>
     {
-        public override void Import( string filePath)
+        public GenericConstructor(T parameters)
         {
 
         }
