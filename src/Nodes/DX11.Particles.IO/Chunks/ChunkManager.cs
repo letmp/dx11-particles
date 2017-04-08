@@ -27,7 +27,6 @@ namespace DX11.Particles.IO
         public ChunkWriterBase ChunkWriter;
 
         public List<Chunk> ChunkList;
-        public float CachingProgress;
         
         public ChunkManager() { }
 
@@ -68,9 +67,7 @@ namespace DX11.Particles.IO
                     }
                 }
             }
-
             ChunkList = chunkList;
-            CachingProgress = 0;
         }
 
     }

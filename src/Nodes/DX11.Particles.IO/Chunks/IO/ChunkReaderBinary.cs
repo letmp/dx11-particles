@@ -14,7 +14,7 @@ namespace DX11.Particles.IO
         public ChunkReaderBinary(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
-            ReadOperations = new Dictionary<int, IIOTaskBase>();
+            ReadOperations = new Dictionary<int, IChunkIOTaskBase>();
         }
         
         public override void Read(Chunk chunk)
@@ -34,7 +34,7 @@ namespace DX11.Particles.IO
             foreach (Chunk chunk in _chunkManager.ChunkList) Read(chunk);
         }
         
-        class ReadOperation : IIOTaskBase
+        class ReadOperation : IChunkIOTaskBase
         {
             public override void Run(Chunk chunk, string directory)
             {

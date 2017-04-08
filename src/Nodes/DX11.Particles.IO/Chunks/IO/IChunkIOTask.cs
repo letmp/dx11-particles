@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DX11.Particles.IO.Chunks.IO
 {
-    public interface IIOTask
+    public interface IChunkIOTask
     {
         Task Task { get; set; }
         CancellationTokenSource CancellationTokenSource { get; set; }
@@ -17,7 +17,7 @@ namespace DX11.Particles.IO.Chunks.IO
         bool IsCompleted { get; }
     }
 
-    public abstract class IIOTaskBase : IIOTask, IDisposable
+    public abstract class IChunkIOTaskBase : IChunkIOTask, IDisposable
     {
         public bool IsCompleted
         {

@@ -38,7 +38,7 @@ namespace DX11.Particles.IO.Chunks
             foreach (Chunk chunk in _chunkManager.ChunkList) Write(chunk);
         }
 
-        class WriteOperation : IIOTaskBase
+        class WriteOperation : IChunkIOTaskBase
         {
             
             public override void Run(Chunk chunk, string directory)

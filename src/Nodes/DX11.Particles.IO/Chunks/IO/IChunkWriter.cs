@@ -7,14 +7,14 @@ using VVVV.Utils.VMath;
 using System.IO;
 using System.Collections.Generic;
 using DX11.Particles.IO.Chunks.IO;
+using System;
 
 namespace DX11.Particles.IO
 {
     public interface IChunkWriter
     {
         string Directory { get; set; }
-        Dictionary<int, IIOTaskBase> WriteOperations { get; set; }
-
+        
         void CreateDirectory();
         void WriteProjectInfo();
         void Write(Chunk chunk);
@@ -28,6 +28,7 @@ namespace DX11.Particles.IO
         ChunkManager _chunkManager;
         public const int DefaultBufferSize = 4096;
         public const FileOptions DefaultFileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
+        public Dictionary<int, IChunkIOTaskBase> WriteOperations;
 
         public ChunkWriterBase(ChunkManager chunkManager) : base(chunkManager)
         {
@@ -39,13 +40,7 @@ namespace DX11.Particles.IO
             get { return Directory; }
             set { this.Directory = value; }
         }
-
-        public Dictionary<int, IIOTaskBase> WriteOperations
-        {
-            get { return WriteOperations; }
-            set { WriteOperations = value; }
-        }
-
+        
         public void CreateDirectory()
         {
             if (System.IO.Directory.Exists(Directory))
@@ -84,11 +79,11 @@ namespace DX11.Particles.IO
         {
             get
             {
-                if (Progress < 1) // calculate progress only 
+                if (Progress < 1)
                 {
                     int chunkCount = _chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
                     int chunkCachedCount = WriteOperations.Where(kvp => kvp.Value.IsCompleted).Count();
-                    Progress = chunkCachedCount / chunkCount;
+                    Progress = Convert.ToDouble(chunkCachedCount) / Convert.ToDouble(chunkCount);
                 }
                 return Progress;
 

@@ -11,7 +11,6 @@ namespace DX11.Particles.IO
     public interface IChunkReader
     {
         string Directory { get; set; }
-        Dictionary<int, IIOTaskBase> ReadOperations { get; set; }
 
         void ReadProjectInfo();
         void Read(Chunk chunk);
@@ -25,6 +24,7 @@ namespace DX11.Particles.IO
         ChunkManager _chunkManager;
         public const int DefaultBufferSize = 4096;
         public const FileOptions DefaultFileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
+        public Dictionary<int, IChunkIOTaskBase> ReadOperations;
 
         public ChunkReaderBase(ChunkManager chunkManager) : base(chunkManager)
         {
@@ -35,12 +35,6 @@ namespace DX11.Particles.IO
         {
             get { return Directory; }
             set { this.Directory = value; }
-        }
-
-        public Dictionary<int, IIOTaskBase> ReadOperations
-        {
-            get { return ReadOperations; }
-            set { ReadOperations = value; }
         }
 
         public void ReadProjectInfo()
@@ -79,11 +73,11 @@ namespace DX11.Particles.IO
         {
             get
             {
-                if (Progress < 1) // calculate progress only 
+                if (Progress < 1) 
                 {
-                    int chunkCount =_chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
+                    int chunkCount = _chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
                     int chunkCachedCount = ReadOperations.Where(kvp => kvp.Value.IsCompleted).Count();
-                    Progress = chunkCachedCount / chunkCount;
+                    Progress = Convert.ToDouble(chunkCachedCount) / Convert.ToDouble(chunkCount);
                 }
                 return Progress;
 
@@ -91,7 +85,7 @@ namespace DX11.Particles.IO
             set { Progress = value; }
         }
 
-        
+
     }
 
 }

@@ -1,42 +1,42 @@
 ﻿using DX11.Particles.IO.Utils;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using VVVV.Utils.VMath;
+using System;
 
 namespace DX11.Particles.IO
 {
     public interface IChunkImporter
     {
         string FilePath { get; set; }
-
-        Dictionary<string, int> DataStructure { get; set; }
-        void SetDataStructure(string dataStructureString);
-        void SetFieldCountColor();
-
-        Vector3D BoundsMin { get; set; }
-        Vector3D BoundsMax { get; set; }
-
-        Triple<int, int, int> AlignModeXYZ { get; set; }
-        Vector3D Offsets { get; set; }
-        void UpdateOffsets();
-
-        int ScaleMode { get; set; }
-        double ScaleMultiplier { get; set; }
-        void UpdateScaleMultiplier();
-
-        void ParseBounds();
-        void ImportChunks();
-
-        int Lines { get; set; }
-        int LinesProcessed { get; set; }
+        void Import();
         double Progress { get; set; }
     }
 
     public abstract class ChunkImporterBase : GenericConstructor<ChunkManager>, IChunkImporter
     {
         ChunkManager _chunkManager;
+
         public const int DefaultBufferSize = 4096;
         public const FileOptions DefaultFileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
+
+        public Dictionary<string, int> DataStructure;
+
+        public Vector3D ChunkSize;
+        public Triple<int, int, int> ChunkCount;
+        public Vector3D BoundsMin;
+        public Vector3D BoundsMax;
+
+        public Triple<int, int, int> AlignModeXYZ;
+        public Vector3D Offsets = new Vector3D(0, 0, 0);
+
+        public int ScaleMode;
+        public double ScaleMultiplier;
+
+        public int Lines = 0;
+        public int LinesProcessed = 0;
 
         public ChunkImporterBase(ChunkManager chunkManager) : base(chunkManager)
         {
@@ -48,70 +48,7 @@ namespace DX11.Particles.IO
             get { return FilePath; }
             set { FilePath = value; }
         }
-        
-        public Vector3D BoundsMin
-        {
-            get { return BoundsMin; }
-            set { BoundsMin = value; }
-        }
-        public Vector3D BoundsMax
-        {
-            get { return BoundsMax; }
-            set { BoundsMax = value; }
-        }
-        
-        public Triple<int, int, int> AlignModeXYZ
-        {
-            get { return AlignModeXYZ; }
-            set { AlignModeXYZ = value; }
-        }
-        public Vector3D Offsets
-        {
-            get { return Offsets; }
-            set { Offsets = value; }
-        }
-        public void UpdateOffsets()
-        {
-            Vector3D offsets = new Vector3D(0, 0, 0);
-            
-            if (AlignModeXYZ.x == Utils.AlignMode.MIN) offsets.x = 0 - BoundsMin.x;
-            if (AlignModeXYZ.x == Utils.AlignMode.CENTER) offsets.x = 0 - BoundsMin.x - ((BoundsMax.x - BoundsMin.x) / 2);
-            if (AlignModeXYZ.x == Utils.AlignMode.MAX) offsets.x = 0 - BoundsMax.x;
-            
-            if (AlignModeXYZ.y == Utils.AlignMode.MIN) offsets.y = 0 - BoundsMin.y;
-            if (AlignModeXYZ.y == Utils.AlignMode.CENTER) offsets.y = 0 - BoundsMin.y - ((BoundsMax.y - BoundsMin.y) / 2);
-            if (AlignModeXYZ.y == Utils.AlignMode.MAX) offsets.y = 0 - BoundsMax.y;
-            
-            if (AlignModeXYZ.z == Utils.AlignMode.MIN) offsets.z = 0 - BoundsMin.z;
-            if (AlignModeXYZ.z == Utils.AlignMode.CENTER) offsets.z = 0 - BoundsMin.z - ((BoundsMax.z - BoundsMin.z) / 2);
-            if (AlignModeXYZ.z == Utils.AlignMode.MAX) offsets.z = 0 - BoundsMax.z;
 
-            Offsets = offsets;
-        }
-
-        public int ScaleMode
-        {
-            get { return ScaleMode; }
-            set { ScaleMode = value; }
-        }
-        public double ScaleMultiplier
-        {
-            get { return ScaleMultiplier; }
-            set { ScaleMultiplier = value; }
-        }
-        public void UpdateScaleMultiplier()
-        {
-            if (ScaleMode == Utils.ScaleMode.MULTIPLY) ScaleMultiplier = ScaleMultiplier;
-            if (ScaleMode == Utils.ScaleMode.MAXX) ScaleMultiplier = ScaleMultiplier / (BoundsMax.x - BoundsMin.x);
-            if (ScaleMode == Utils.ScaleMode.MAXY) ScaleMultiplier = ScaleMultiplier / (BoundsMax.y - BoundsMin.y);
-            if (ScaleMode == Utils.ScaleMode.MAXZ) ScaleMultiplier = ScaleMultiplier / (BoundsMax.z - BoundsMin.z);
-        }
-
-        public Dictionary<string, int> DataStructure
-        {
-            get { return DataStructure; }
-            set { DataStructure = value; }
-        }
         public void SetDataStructure(string dataStructureString)
         {
             Dictionary<string, int> dataStructure = new Dictionary<string, int>();
@@ -124,40 +61,117 @@ namespace DX11.Particles.IO
             if (dataStructureString.Contains("a")) dataStructure.Add("a", dataStructureString.IndexOf("a"));
             this.DataStructure = dataStructure;
         }
-        public void SetFieldCountColor()
+
+        private int GetFieldCountColor()
         {
             int fieldCount = 0;
             if (DataStructure.ContainsKey("r")) fieldCount++;
             if (DataStructure.ContainsKey("g")) fieldCount++;
             if (DataStructure.ContainsKey("b")) fieldCount++;
             if (DataStructure.ContainsKey("a")) fieldCount++;
-            _chunkManager.FieldCountColor = fieldCount;
+            return fieldCount;
         }
         
-        public abstract void ParseBounds();
-        public abstract void ImportChunks();
+        public void Import()
+        {
+            // the import consists of 3 steps
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            Task Task = Task.Run(
+                () => ParseBounds() // parse the file to find the bounds of the dataset
+                ).ContinueWith(
+                tsk => UpdateChunkManager() // update chunkmanager with new data and init chunklist
+                ).ContinueWith(
+                tsk => ImportData() // parse the file again and write the data to the chunks
+                );
+        }
+        
+        public abstract Task ParseBounds();
 
-        public int Lines
+        private async Task UpdateChunkManager()
         {
-            get { return Lines; }
-            set { Lines = value; }
+            await Task.Run(() =>
+            {
+                _chunkManager.ChunkCount = ChunkCount;
+                _chunkManager.FieldCountColor = GetFieldCountColor();
+
+                UpdateOffsets();
+                UpdateScaleMultiplier();
+
+                UpdateBounds();
+                _chunkManager.BoundsMin = BoundsMin;
+                _chunkManager.BoundsMin = BoundsMax;
+
+                UpdateChunkSize();
+                _chunkManager.ChunkSize = ChunkSize;
+
+                _chunkManager.InitChunkList();
+
+            });
         }
-        public int LinesProcessed
+
+        public abstract Task ImportData();
+
+        private void UpdateOffsets()
         {
-            get { return LinesProcessed; }
-            set { LinesProcessed = value; }
+            if (AlignModeXYZ.x == Utils.AlignMode.MIN) Offsets.x = 0 - BoundsMin.x;
+            if (AlignModeXYZ.x == Utils.AlignMode.CENTER) Offsets.x = 0 - BoundsMin.x - ((BoundsMax.x - BoundsMin.x) / 2);
+            if (AlignModeXYZ.x == Utils.AlignMode.MAX) Offsets.x = 0 - BoundsMax.x;
+
+            if (AlignModeXYZ.y == Utils.AlignMode.MIN) Offsets.y = 0 - BoundsMin.y;
+            if (AlignModeXYZ.y == Utils.AlignMode.CENTER) Offsets.y = 0 - BoundsMin.y - ((BoundsMax.y - BoundsMin.y) / 2);
+            if (AlignModeXYZ.y == Utils.AlignMode.MAX) Offsets.y = 0 - BoundsMax.y;
+
+            if (AlignModeXYZ.z == Utils.AlignMode.MIN) Offsets.z = 0 - BoundsMin.z;
+            if (AlignModeXYZ.z == Utils.AlignMode.CENTER) Offsets.z = 0 - BoundsMin.z - ((BoundsMax.z - BoundsMin.z) / 2);
+            if (AlignModeXYZ.z == Utils.AlignMode.MAX) Offsets.z = 0 - BoundsMax.z;
         }
+
+        private void UpdateScaleMultiplier()
+        {
+            //if (ScaleMode == Utils.ScaleMode.MULTIPLY) ScaleMultiplier = ScaleMultiplier;
+            if (ScaleMode == Utils.ScaleMode.MAXX) ScaleMultiplier = ScaleMultiplier / (BoundsMax.x - BoundsMin.x);
+            if (ScaleMode == Utils.ScaleMode.MAXY) ScaleMultiplier = ScaleMultiplier / (BoundsMax.y - BoundsMin.y);
+            if (ScaleMode == Utils.ScaleMode.MAXZ) ScaleMultiplier = ScaleMultiplier / (BoundsMax.z - BoundsMin.z);
+        }
+
+        private void UpdateBounds()
+        {
+            BoundsMin = (BoundsMin + Offsets) * ScaleMultiplier;
+            BoundsMin = (BoundsMin + Offsets) * ScaleMultiplier;
+        }
+
+        private void UpdateChunkSize()
+        {
+            Vector3D size = BoundsMax - BoundsMin;
+            ChunkSize = new Vector3D(size.x / ChunkCount.x, size.y / ChunkCount.y, size.z / ChunkCount.z);
+        }
+
+        public int GetChunkIndex(Vector3D position)
+        {
+            position = (position + Offsets) * ScaleMultiplier; // transform to new aligning and scaling first
+
+            int chunkIdX = Convert.ToInt32(Math.Floor(position.x / ChunkSize.x));
+            if (position.x == ChunkSize.x * ChunkCount.x) chunkIdX -= 1;
+            int chunkIdY = Convert.ToInt32(Math.Floor(position.y / ChunkSize.y));
+            if (position.y == ChunkSize.y * ChunkCount.y) chunkIdY -= 1;
+            int chunkIdZ = Convert.ToInt32(Math.Floor(position.z / ChunkSize.z));
+            if (position.z == ChunkSize.z * ChunkCount.z) chunkIdZ -= 1;
+
+            return chunkIdX + chunkIdY * ChunkCount.x + chunkIdZ * ChunkCount.x * ChunkCount.y;
+        }
+
         public double Progress
         {
-            get {
-                double progress = 0;
-                if(Lines > 0)
+            get
+            {
+                if (Progress < 1 && Lines > 0)
                 {
-                    progress = LinesProcessed / Lines;
+                    Progress = Convert.ToDouble(LinesProcessed) / Convert.ToDouble(Lines);
                 }
-                return progress;
+                return Progress;
             }
             set { Progress = value; }
         }
+        
     }
 }
