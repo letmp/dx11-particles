@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Examples\AssimpGeometry\Assimp Geometry Example.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\AssimpGeometry\Assimp Geometry Example.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="600" top="2220" width="12915" height="12390">
    </BOUNDS>
    <NODE systemname="AspectRatio (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="AspectRatio (DX11.Layer)" componentmode="Hidden" id="8">
@@ -403,11 +403,11 @@
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
-   <PIN pinname="Layer 2" visible="1">
+   <PIN pinname="Layer 2" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
-   <PIN pinname="Layer 3" visible="1">
+   <PIN pinname="Layer 3" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="41" srcpinname="Layer" dstnodeid="104" dstpinname="Layer 1" linkstyle="Bezier">
@@ -418,36 +418,14 @@
    </LINK>
    <LINK srcnodeid="104" srcpinname="Layer Out" dstnodeid="10" dstpinname="Layer In">
    </LINK>
-   <NODE systemname="ScaleFade (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ScaleFade (DX11.Particles.Modifiers).v4p" nodename="ScaleFade (DX11.Particles.Modifiers)" componentmode="Hidden" id="105">
-   <BOUNDS type="Node" left="7785" top="6180" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Scale Buffer" visible="1">
-   </PIN>
-   <PIN pinname="FadeIn End" slicecount="1" values="0.36">
-   </PIN>
-   <PIN pinname="FadeOut Start" slicecount="1" values="0.51">
-   </PIN>
-   <BOUNDS type="Box" left="7785" top="6180">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="105" srcpinname="Layer" dstnodeid="104" dstpinname="Layer 2" linkstyle="VHV">
-   <LINKPOINT x="8870" y="6878">
-   </LINKPOINT>
-   <LINKPOINT x="6760" y="7163">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="107">
-   <BOUNDS type="Node" left="7935" top="5550" width="100" height="100">
+   <BOUNDS type="Node" left="7980" top="5550" width="100" height="100">
    </BOUNDS>
    <PIN pinname="DataXYZ" slicecount="3" values="0.15,0.15,0.15">
    </PIN>
    <PIN pinname="Buffer" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="107" srcpinname="Buffer" dstnodeid="105" dstpinname="Scale Buffer">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="108">
    <BOUNDS type="Box" left="7440" top="10035" width="285" height="240">
    </BOUNDS>
@@ -518,20 +496,6 @@
    <LINKPOINT x="6945" y="9615">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="ColorFade (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ColorFade (DX11.Particles.Modifiers).v4p" nodename="ColorFade (DX11.Particles.Modifiers)" componentmode="Hidden" id="116">
-   <BOUNDS type="Node" left="9390" top="6180" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Color0 Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Color1 Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Color3 Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="9390" top="6180">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="117">
    <BOUNDS type="Node" left="9540" top="4335" width="100" height="100">
    </BOUNDS>
@@ -542,8 +506,6 @@
    <BOUNDS type="Box" left="9540" top="4335">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="117" srcpinname="Buffer" dstnodeid="116" dstpinname="Color0 Buffer">
-   </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="118">
    <BOUNDS type="Node" left="9720" top="5010" width="100" height="100">
    </BOUNDS>
@@ -552,8 +514,6 @@
    <PIN pinname="Data" slicecount="1" visible="1" values="|0.00000,0.34289,1.00000,1.00000|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="118" srcpinname="Buffer" dstnodeid="116" dstpinname="Color1 Buffer">
-   </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer Color)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Color)" componentmode="Hidden" id="119">
    <BOUNDS type="Node" left="9885" top="5655" width="100" height="100">
    </BOUNDS>
@@ -562,14 +522,6 @@
    <PIN pinname="Data" slicecount="1" visible="1" values="|1.00000,0.00000,0.22303,1.00000|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="119" srcpinname="Buffer" dstnodeid="116" dstpinname="Color3 Buffer">
-   </LINK>
-   <LINK srcnodeid="116" srcpinname="Layer" dstnodeid="104" dstpinname="Layer 3" linkstyle="Bezier">
-   <LINKPOINT x="9390" y="7020">
-   </LINKPOINT>
-   <LINKPOINT x="8025" y="7020">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Transform (Transform 3d Vector)" nodename="Transform (Transform 3d Vector)" componentmode="Hidden" id="120">
    <BOUNDS type="Node" left="2730" top="2355" width="100" height="100">
    </BOUNDS>
@@ -749,5 +701,53 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="131" srcpinname="Y Output Value" dstnodeid="83" dstpinname="Data">
+   </LINK>
+   <NODE systemname="ScaleByLifetime (DX11.Particles.Modifiers Advanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ScaleByLifetime (DX11.Particles.Modifiers Advanced).v4p" nodename="ScaleByLifetime (DX11.Particles.Modifiers Advanced)" componentmode="Hidden" id="105">
+   <BOUNDS type="Node" left="7785" top="6180" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Scale Buffer" visible="1">
+   </PIN>
+   <PIN pinname="FadeIn End" slicecount="1" values="0.36">
+   </PIN>
+   <PIN pinname="FadeOut Start" slicecount="1" values="0.51">
+   </PIN>
+   <BOUNDS type="Box" left="7785" top="6180">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="105" srcpinname="Layer" dstnodeid="104" dstpinname="Layer 2" linkstyle="VHV">
+   <LINKPOINT x="8870" y="6878">
+   </LINKPOINT>
+   <LINKPOINT x="6760" y="7163">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="107" srcpinname="Buffer" dstnodeid="105" dstpinname="Scale Buffer">
+   </LINK>
+   <NODE systemname="ColorByLifetime (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ColorByLifetime (DX11.Particles.Modifiers).v4p" nodename="ColorByLifetime (DX11.Particles.Modifiers)" componentmode="Hidden" id="116">
+   <BOUNDS type="Node" left="9390" top="6180" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Color0 Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Color1 Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Color3 Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="9390" top="6180">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="117" srcpinname="Buffer" dstnodeid="116" dstpinname="Color0 Buffer">
+   </LINK>
+   <LINK srcnodeid="118" srcpinname="Buffer" dstnodeid="116" dstpinname="Color1 Buffer">
+   </LINK>
+   <LINK srcnodeid="119" srcpinname="Buffer" dstnodeid="116" dstpinname="Color3 Buffer">
+   </LINK>
+   <LINK srcnodeid="116" srcpinname="Layer" dstnodeid="104" dstpinname="Layer 3" linkstyle="Bezier">
+   <LINKPOINT x="9390" y="7020">
+   </LINKPOINT>
+   <LINKPOINT x="8025" y="7020">
+   </LINKPOINT>
    </LINK>
    </PATCH>
