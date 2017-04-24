@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="7530" top="1500" width="18795" height="11955">
    </BOUNDS>
    <PACK Name="addonpack" Version="35.0.0">
@@ -36,6 +36,8 @@
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="ParticleSystem">
+   </PIN>
+   <PIN pinname="Output Enum" visible="1">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="97" systemname="IOBox (String)">
@@ -845,5 +847,39 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="222" srcpinname="Y Output Value" dstnodeid="221" dstpinname="Default ScaleXYZ">
+   </LINK>
+   <LINK srcnodeid="94" srcpinname="Output Enum" dstnodeid="198" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="15300" y="2348">
+   </LINKPOINT>
+   <LINKPOINT x="9075" y="2348">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="224">
+   <BOUNDS type="Box" left="3615" top="10650" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3615" top="10650" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="205" srcpinname="Buffers" dstnodeid="224" dstpinname="Input Node" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6630" y="6458">
+   </LINKPOINT>
+   <LINKPOINT x="3645" y="6458">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="225">
+   <BOUNDS type="Box" left="4980" top="10650" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4980" top="10650" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture World Out|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="217" srcpinname="Texture Out" dstnodeid="225" dstpinname="Input Node" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7500" y="6900">
+   </LINKPOINT>
+   <LINKPOINT x="5010" y="6900">
+   </LINKPOINT>
    </LINK>
    </PATCH>
