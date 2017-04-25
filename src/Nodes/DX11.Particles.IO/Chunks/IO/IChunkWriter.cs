@@ -15,7 +15,6 @@ namespace DX11.Particles.IO
     {
         string Directory { get; set; }
         
-        void CreateDirectory();
         void WriteProjectInfo();
         void Write(Chunk chunk);
         void WriteAll();
@@ -28,18 +27,16 @@ namespace DX11.Particles.IO
         ChunkManager _chunkManager;
         public const int DefaultBufferSize = 4096;
         public const FileOptions DefaultFileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
-        public Dictionary<int, IChunkIOTaskBase> WriteOperations;
+        public Dictionary<int, IChunkIOTaskBase> WriteOperations = new Dictionary<int, IChunkIOTaskBase>();
+
+        double _progress = 0;
 
         public ChunkWriterBase(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
         }
 
-        public string Directory
-        {
-            get { return Directory; }
-            set { this.Directory = value; }
-        }
+        public string Directory { get; set; }
         
         public void CreateDirectory()
         {
@@ -63,8 +60,8 @@ namespace DX11.Particles.IO
             sbInfo.AppendLine("CHUNKCOUNTXYZ: " + _chunkManager.ChunkCount.x + " " + _chunkManager.ChunkCount.y + " " + _chunkManager.ChunkCount.z);
             sbInfo.AppendLine("BOUNDSMIN: " + _chunkManager.BoundsMin.x + " " + _chunkManager.BoundsMin.y + " " + _chunkManager.BoundsMin.z);
             sbInfo.AppendLine("BOUNDSMAX: " + _chunkManager.BoundsMax.x + " " + _chunkManager.BoundsMax.y + " " + _chunkManager.BoundsMax.z);
-            sbInfo.AppendLine("FIELDCOUNTCOLOR: " + _chunkManager.FieldCountColor);
-            sbInfo.AppendLine("ELEMENTCOUNT: " + _chunkManager.GetElementCount());
+            sbInfo.AppendLine("DATASTRUCTURE: " + _chunkManager.DataStructure);
+            sbInfo.AppendLine("PARTICLECOUNT: " + _chunkManager.GetCachedParticleCount());
             
             string infofile = Path.Combine(Directory, "_chunkinfo");
             StreamWriter swInfo = new StreamWriter(infofile, false);
@@ -75,21 +72,19 @@ namespace DX11.Particles.IO
         public abstract void Write(Chunk chunk);
         public abstract void WriteAll();
 
-        public double Progress
+        
+        private void UpdateProgress()
         {
-            get
+            if (_progress < 1)
             {
-                if (Progress < 1)
-                {
-                    int chunkCount = _chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
-                    int chunkCachedCount = WriteOperations.Where(kvp => kvp.Value.IsCompleted).Count();
-                    Progress = Convert.ToDouble(chunkCachedCount) / Convert.ToDouble(chunkCount);
-                }
-                return Progress;
-
+                int chunkCount = _chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
+                int chunkCachedCount = WriteOperations.Where(kvp => kvp.Value.IsCompleted).Count();
+                _progress = Convert.ToDouble(chunkCachedCount) / Convert.ToDouble(chunkCount);
             }
-            set { Progress = value; }
         }
+
+        public double Progress { get { UpdateProgress(); return _progress; } set { _progress = value; } }
+
     }
 
 }

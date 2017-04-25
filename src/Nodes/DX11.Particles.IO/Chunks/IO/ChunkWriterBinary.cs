@@ -50,15 +50,8 @@ namespace DX11.Particles.IO.Chunks
                     {
                         using (var filestream = new FileStream(Path.Combine(directory, chunk.FileName), FileMode.Create, FileAccess.ReadWrite, FileShare.Read, DefaultBufferSize, DefaultFileOptions))
                         {
-                            var buffer = new Byte[DefaultBufferSize];
-                            int offset = 0;
-                            int byteRead;
-
-                            while ((byteRead = await chunk.MemoryStream.ReadAsync(buffer, offset, buffer.Length)) != 0)
-                            {
-                                filestream.Write(buffer, offset, byteRead);
-                                offset += DefaultBufferSize;
-                            }
+                            chunk.MemoryStream.Position = 0;
+                            await chunk.MemoryStream.CopyToAsync(filestream);
                         }
                     },
                     CancellationTokenSource.Token

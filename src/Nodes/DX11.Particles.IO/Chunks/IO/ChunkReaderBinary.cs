@@ -46,16 +46,9 @@ namespace DX11.Particles.IO
                         {
                             using (var file = new FileStream(Path.Combine(directory, chunk.FileName), FileMode.Open, FileAccess.Read, FileShare.Read, DefaultBufferSize, DefaultFileOptions))
                             {
-                                var buffer = new Byte[DefaultBufferSize];
-                                int offset = 0;
-                                int byteRead;
-
-                                while ((byteRead = await file.ReadAsync(buffer, offset, buffer.Length)) != 0)
-                                {
-                                    chunk.MemoryStream.Write(buffer, offset, byteRead);
-                                    offset += DefaultBufferSize;
-                                    chunk.UpdateElementCount(); // update the elementcount after new data was inserted
-                                }
+                                chunk.MemoryStream.Position = 0;
+                                await file.CopyToAsync(chunk.MemoryStream);
+                                chunk.UpdateElementCount();                                
                             }
                         },
                         CancellationTokenSource.Token

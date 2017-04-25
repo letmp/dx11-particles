@@ -12,7 +12,7 @@ namespace DX11.Particles.IO
     {
         string Directory { get; set; }
 
-        void ReadProjectInfo();
+        void InitChunks();
         void Read(Chunk chunk);
         void ReadAll();
 
@@ -24,68 +24,66 @@ namespace DX11.Particles.IO
         ChunkManager _chunkManager;
         public const int DefaultBufferSize = 4096;
         public const FileOptions DefaultFileOptions = FileOptions.Asynchronous | FileOptions.SequentialScan;
-        public Dictionary<int, IChunkIOTaskBase> ReadOperations;
+        public Dictionary<int, IChunkIOTaskBase> ReadOperations = new Dictionary<int, IChunkIOTaskBase>();
+
+        double _progress = 0;
 
         public ChunkReaderBase(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
         }
 
-        public string Directory
-        {
-            get { return Directory; }
-            set { this.Directory = value; }
-        }
+        public string Directory { get; set; }
 
-        public void ReadProjectInfo()
+        public void InitChunks()
         {
-            string filename = Path.Combine(Directory, "_chunkinfo");
-            if (File.Exists(filename))
+            string filePath = Path.Combine(Directory, "_chunkinfo");
+            if (File.Exists(filePath))
             {
-                StreamReader sr = new StreamReader(filename);
+                StreamReader sr = new StreamReader(filePath);
                 Char delimiter = ' ';
 
-                String[] substrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.ChunkSize = new Vector3D(double.Parse(substrings[1]), double.Parse(substrings[2]), double.Parse(substrings[3]));
+                String[] lineStrings = sr.ReadLine().Split(delimiter);
+                _chunkManager.ChunkSize = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
 
-                substrings = sr.ReadLine().Split(delimiter);
+                lineStrings = sr.ReadLine().Split(delimiter);
                 Triple<int, int, int> chunkCount = new Triple<int, int, int>();
-                chunkCount.x = Int32.Parse(substrings[1]);
-                chunkCount.y = Int32.Parse(substrings[2]);
-                chunkCount.z = Int32.Parse(substrings[3]);
+                chunkCount.x = Int32.Parse(lineStrings[1]);
+                chunkCount.y = Int32.Parse(lineStrings[2]);
+                chunkCount.z = Int32.Parse(lineStrings[3]);
                 _chunkManager.ChunkCount = chunkCount;
 
-                substrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.BoundsMin = new Vector3D(double.Parse(substrings[1]), double.Parse(substrings[2]), double.Parse(substrings[3]));
+                lineStrings = sr.ReadLine().Split(delimiter);
+                _chunkManager.BoundsMin = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
 
-                substrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.BoundsMax = new Vector3D(double.Parse(substrings[1]), double.Parse(substrings[2]), double.Parse(substrings[3]));
+                lineStrings = sr.ReadLine().Split(delimiter);
+                _chunkManager.BoundsMax = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
 
-                substrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.FieldCountColor = Int32.Parse(substrings[1]);
+                lineStrings = sr.ReadLine().Split(delimiter);
+                _chunkManager.DataStructure = lineStrings[1];
+
+                lineStrings = sr.ReadLine().Split(delimiter);
+                _chunkManager.ParticleCount = Convert.ToInt32(lineStrings[1]);
+
+                _chunkManager.InitChunkList();
             }
         }
 
         public abstract void Read(Chunk chunk);
         public abstract void ReadAll();
 
-        public double Progress
+        
+        private void UpdateProgress()
         {
-            get
+            if (_progress < 1)
             {
-                if (Progress < 1) 
-                {
-                    int chunkCount = _chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
-                    int chunkCachedCount = ReadOperations.Where(kvp => kvp.Value.IsCompleted).Count();
-                    Progress = Convert.ToDouble(chunkCachedCount) / Convert.ToDouble(chunkCount);
-                }
-                return Progress;
-
+                int chunkCount = _chunkManager.ChunkCount.x * _chunkManager.ChunkCount.y * _chunkManager.ChunkCount.z;
+                int chunkCachedCount = ReadOperations.Where(kvp => kvp.Value.IsCompleted).Count();
+                _progress = Convert.ToDouble(chunkCachedCount) / Convert.ToDouble(chunkCount);
             }
-            set { Progress = value; }
         }
-
-
+        public double Progress { get { UpdateProgress(); return _progress; }  set { _progress = value; } }
+        
     }
 
 }

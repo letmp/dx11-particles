@@ -9,8 +9,6 @@ namespace DX11.Particles.IO.Chunks.IO
 {
     public interface IChunkIOTask
     {
-        Task Task { get; set; }
-        CancellationTokenSource CancellationTokenSource { get; set; }
         
         void Run(Chunk chunk, string directory);
         bool IsRunning { get; }
@@ -19,6 +17,11 @@ namespace DX11.Particles.IO.Chunks.IO
 
     public abstract class IChunkIOTaskBase : IChunkIOTask, IDisposable
     {
+        public Task Task;
+        public CancellationTokenSource CancellationTokenSource = new CancellationTokenSource();
+
+        public abstract void Run(Chunk chunk, string directory);
+
         public bool IsCompleted
         {
             get { return Task != null; }
@@ -28,21 +31,7 @@ namespace DX11.Particles.IO.Chunks.IO
         {
             get { return Task != null && Task.IsCompleted; }
         }
-
-        public Task Task
-        {
-            get { return Task; }
-            set { Task = value; }
-        }
-
-        public CancellationTokenSource CancellationTokenSource
-        {
-            get { return CancellationTokenSource; }
-            set { CancellationTokenSource = value; }
-        }
-
-        public abstract void Run(Chunk chunk, string directory);
-
+        
         public void Dispose()
         {
             if (CancellationTokenSource != null)

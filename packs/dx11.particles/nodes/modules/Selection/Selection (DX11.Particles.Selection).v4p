@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.2_x64\packs\dx11.particles\nodes\modules\Selection\Selection (DX11.Particles.Selection).v4p" systemname="SelectionWrapper (DX11.Mcps.Selectors)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\SelectionWrapper (DX11.Mcps.Selectors).v4p" scrollx="0" scrolly="-360">
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="3" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="645" top="480" width="795" height="240">
    </BOUNDS>
@@ -246,6 +246,8 @@
    <PIN pinname="Input Count" slicecount="1" values="3">
    </PIN>
    <PIN pinname="Layer 3" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
    </NODE>
    <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="35">
@@ -1196,12 +1198,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="144" srcpinname="Y Output Value" dstnodeid="35" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="16500" y="7298">
-   </LINKPOINT>
-   <LINKPOINT x="6300" y="7298">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="35" srcpinname="Layer Out" dstnodeid="4" dstpinname="Input Node">
    </LINK>
    <LINK srcnodeid="144" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -1214,6 +1210,12 @@
    <LINKPOINT x="11040" y="5580">
    </LINKPOINT>
    <LINKPOINT x="15780" y="5580">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="144" srcpinname="Y Output Value" dstnodeid="34" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="16515" y="5888">
+   </LINKPOINT>
+   <LINKPOINT x="3300" y="5888">
    </LINKPOINT>
    </LINK>
    </PATCH>
