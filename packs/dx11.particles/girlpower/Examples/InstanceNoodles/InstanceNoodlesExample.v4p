@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Examples\InstanceNoodles\InstanceNoodlesExample.v4p" scrollx="0" scrolly="0" systemname="InstanceNoodlesExample" filename="C:\Users\Kyle\Desktop\Dropbox\VVVV Files\Patches\dx11.particles DEMO\Tests\AttributeBufferStaticDispatch (DX11.Particles.Tools)\InstanceNoodlesExample.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\InstanceNoodles\InstanceNoodlesExample.v4p" scrollx="0" scrolly="-360" systemname="InstanceNoodlesExample" filename="C:\Users\Kyle\Desktop\Dropbox\VVVV Files\Patches\dx11.particles DEMO\Tests\AttributeBufferStaticDispatch (DX11.Particles.Tools)\InstanceNoodlesExample.v4p">
    <BOUNDS type="Window" left="2340" top="0" width="13350" height="17550">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
@@ -91,7 +91,7 @@
    </BOUNDS>
    <PIN pinname="Initial Pitch" slicecount="1" values="0.12">
    </PIN>
-   <PIN pinname="Initial Yaw" slicecount="1" values="-0.09" visible="1">
+   <PIN pinname="Initial Yaw" slicecount="1" visible="1" values="-0.09">
    </PIN>
    <PIN pinname="Initial Distance" slicecount="1" values="2">
    </PIN>
@@ -646,30 +646,14 @@
    </LINK>
    <LINK srcnodeid="123" srcpinname="Output" dstnodeid="124" dstpinname="DataXYZ">
    </LINK>
-   <NODE systemname="ScaleFade (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ScaleFade (DX11.Particles.Modifiers).v4p" nodename="ScaleFade (DX11.Particles.Modifiers)" componentmode="Hidden" id="241">
-   <BOUNDS type="Node" left="4740" top="2400" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   <PIN pinname="Scale Buffer" visible="1">
-   </PIN>
-   <PIN pinname="FadeIn End" slicecount="1" values="0.1">
-   </PIN>
-   <PIN pinname="FadeOut Start" slicecount="1" values="0.8">
-   </PIN>
-   <BOUNDS type="Box" left="4740" top="2400">
-   </BOUNDS>
-   </NODE>
    <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="242">
-   <BOUNDS type="Node" left="4890" top="2010" width="100" height="100">
+   <BOUNDS type="Node" left="4920" top="2010" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
    <PIN pinname="DataXYZ" slicecount="3" values="0.02,0.02,0.02">
    </PIN>
    </NODE>
-   <LINK srcnodeid="242" srcpinname="Buffer" dstnodeid="241" dstpinname="Scale Buffer">
-   </LINK>
    <LINK srcnodeid="232" srcpinname="Output" dstnodeid="233" dstpinname="DataXYZ">
    </LINK>
    <NODE systemname="Vector3DSplit (Value Buffer)" filename="%VVVV%\packs\InstanceNoodles\nodes\modules\Compute\Value Buffer\Vector3DSplit (Value Buffer)\Vector3DSplit (Value Buffer).v4p" nodename="Vector3DSplit (Value Buffer)" componentmode="Hidden" id="243">
@@ -867,7 +851,7 @@
    </PIN>
    <PIN pinname="Switch" visible="1">
    </PIN>
-   <PIN pinname="Input 1" visible="1">
+   <PIN pinname="Input 1" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
@@ -1008,12 +992,6 @@
    </LINK>
    <LINK srcnodeid="187" srcpinname="Output" dstnodeid="232" dstpinname="Spread Count">
    </LINK>
-   <LINK srcnodeid="241" srcpinname="Layer" dstnodeid="119" dstpinname="Layer 2" linkstyle="Bezier">
-   <LINKPOINT x="4800" y="3338">
-   </LINKPOINT>
-   <LINKPOINT x="5820" y="3338">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="238" srcpinname="Layer" dstnodeid="119" dstpinname="Layer 3" linkstyle="Bezier">
    <LINKPOINT x="6450" y="3330">
    </LINKPOINT>
@@ -1053,7 +1031,7 @@
    </BOUNDS>
    <PIN pinname="Hue" visible="1" slicecount="1" values="0.333333333333333">
    </PIN>
-   <PIN pinname="Lightness" slicecount="1" values="0.5" visible="1">
+   <PIN pinname="Lightness" slicecount="1" visible="1" values="0.5">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -1135,5 +1113,27 @@
    <LINK srcnodeid="284" srcpinname="Output" dstnodeid="130" dstpinname="Initial Yaw">
    </LINK>
    <LINK srcnodeid="281" srcpinname="Output" dstnodeid="280" dstpinname="Lightness">
+   </LINK>
+   <NODE systemname="ScaleByLifetime (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\ScaleByLifetime (DX11.Particles.Modifiers).v4p" nodename="ScaleByLifetime (DX11.Particles.Modifiers)" componentmode="Hidden" id="241">
+   <BOUNDS type="Node" left="4740" top="2400" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Scale Buffer" visible="1">
+   </PIN>
+   <PIN pinname="FadeIn End" slicecount="1" values="0.1">
+   </PIN>
+   <PIN pinname="FadeOut Start" slicecount="1" values="0.8">
+   </PIN>
+   <BOUNDS type="Box" left="4740" top="2400">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="242" srcpinname="Buffer" dstnodeid="241" dstpinname="Scale Buffer">
+   </LINK>
+   <LINK srcnodeid="241" srcpinname="Layer" dstnodeid="119" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="4800" y="3338">
+   </LINKPOINT>
+   <LINKPOINT x="5820" y="3338">
+   </LINKPOINT>
    </LINK>
    </PATCH>
