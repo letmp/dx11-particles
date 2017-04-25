@@ -55,6 +55,7 @@ namespace DX11.Particles.IO
                         ).ContinueWith(tsk =>
                         {
                             // do something when finished
+                            chunk.finishedLoading = true;
                         });
                 }
             }

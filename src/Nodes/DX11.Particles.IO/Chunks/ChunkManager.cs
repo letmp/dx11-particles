@@ -5,6 +5,7 @@ using VVVV.Utils.VMath;
 
 namespace DX11.Particles.IO
 {
+    #region ChunkManager
     public class ChunkManager
     {
         public string ProjectName;
@@ -16,7 +17,8 @@ namespace DX11.Particles.IO
         
         public static int Bytes = sizeof(Single); // all data is stored as single
         public string DataStructure; // f.e. "xyzrgb"
-        
+        public int BytesPerElement;
+
         public ChunkImporterBase ChunkImporter;
         public ChunkReaderBase ChunkReader;
         public ChunkWriterBase ChunkWriter;
@@ -41,11 +43,17 @@ namespace DX11.Particles.IO
             return count;
         }
 
+        public Chunk GetChunk(int chunkId)
+        {
+            return ChunkList[chunkId];
+        }
+
         public void InitChunkList()
         {
             List<Chunk> chunkList = new List<Chunk>();
             int leadingZeroes = GetLeadingZeroes();
-            int bytesPerElement = Bytes * (DataStructure.Length);
+            BytesPerElement = Bytes * (DataStructure.Length);
+
             for (int z = 0; z < ChunkCount.z; z++)
             {
                 for (int y = 0; y < ChunkCount.y; y++)
@@ -58,7 +66,7 @@ namespace DX11.Particles.IO
 
                         string fileName = x.ToString("D" + leadingZeroes) + "_" + y.ToString("D" + leadingZeroes) + "_" + z.ToString("D" + leadingZeroes) + ".bin";
 
-                        Chunk chunk = new Chunk(id,fileName,bytesPerElement);
+                        Chunk chunk = new Chunk(id, fileName, BytesPerElement);
                         chunkList.Add(chunk);
                     }
                 }
@@ -67,4 +75,7 @@ namespace DX11.Particles.IO
         }
 
     }
+    #endregion ChunkManager
+
+    
 }

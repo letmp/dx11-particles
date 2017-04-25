@@ -1,0 +1,605 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="8940" top="1050" width="18195" height="13650">
+   </BOUNDS>
+   <NODE systemname="Importer (DX11.Particles.IO.Chunks ASCII)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Importer (DX11.Particles.IO.Chunks ASCII)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1080" top="3135" width="5895" height="270">
+   </BOUNDS>
+   <PIN pinname="File" visible="1">
+   </PIN>
+   <PIN pinname="Data Structure" visible="1">
+   </PIN>
+   <PIN pinname="Chunk CountXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Import" visible="1">
+   </PIN>
+   <PIN pinname="Align X" visible="1" pintype="Input" slicecount="1" values="Center">
+   </PIN>
+   <PIN pinname="Align Y" visible="1" pintype="Input" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Align Z" visible="1" pintype="Input" slicecount="1" values="None">
+   </PIN>
+   <PIN pinname="Scale Mode" visible="1" pintype="Input" slicecount="1" values="Multiply">
+   </PIN>
+   <PIN pinname="Scale Value" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Progress" visible="1">
+   </PIN>
+   <PIN pinname="ChunkManager" visible="1">
+   </PIN>
+   <PIN pinname="DEBUG" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="1080" top="3135">
+   </BOUNDS>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.0">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="1">
+   <BOUNDS type="Box" left="1095" top="885" width="1635" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1095" top="885" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="C:\Users\le_tmp\Desktop\chunktests\assets\asc\bridgeroad.ASC">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="|All Files (*.*)||*.*|">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Filename">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="File">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output String" dstnodeid="0" dstpinname="File">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="2">
+   <BOUNDS type="Box" left="1830" top="1485" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1830" top="1485" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="xzyrgb">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="xyzrgb">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Data Structure|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Data Structure">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3">
+   <BOUNDS type="Box" left="2550" top="2190" width="570" height="645">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2550" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="10,1,10">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Chunk CountXYZ|">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Chunk CountXYZ">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4">
+   <BOUNDS type="Box" left="6900" top="2190" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6900" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Import">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Import">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="5">
+   <BOUNDS type="Box" left="3255" top="975" width="825" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3255" top="975" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="None">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Align X|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="5" srcpinname="Output Enum" dstnodeid="0" dstpinname="Align X">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="6">
+   <BOUNDS type="Box" left="3990" top="1605" width="825" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3990" top="1605" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="None">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Align Y|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Output Enum" dstnodeid="0" dstpinname="Align Y">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="7">
+   <BOUNDS type="Box" left="4710" top="2190" width="825" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4710" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="None">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Align Z|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="7" srcpinname="Output Enum" dstnodeid="0" dstpinname="Align Z">
+   </LINK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="8">
+   <BOUNDS type="Box" left="5460" top="870" width="915" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5460" top="870" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="MaxZ">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Scale Mode|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output Enum" dstnodeid="0" dstpinname="Scale Mode">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="9">
+   <BOUNDS type="Box" left="6195" top="1425" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6195" top="1425" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="10">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Scale Value|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Y Output Value" dstnodeid="0" dstpinname="Scale Value">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="6900" top="3990" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6900" top="3990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Progress">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Progress" dstnodeid="10" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="11">
+   <BOUNDS type="Box" left="1065" top="3990" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1065" top="3990" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="ChunkManager" dstnodeid="11" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="Renderer (TTY)" nodename="Renderer (TTY)" componentmode="InAWindow" id="13">
+   <BOUNDS type="Node" left="13635" top="510" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="13635" top="510" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="2865" top="1005" width="6240" height="5085">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Writer (DX11.Particles.IO.Chunks Binary)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Writer (DX11.Particles.IO.Chunks Binary)" componentmode="Hidden" id="14">
+   <BOUNDS type="Node" left="1065" top="5490" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ChunkManager" visible="1">
+   </PIN>
+   <PIN pinname="Write" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Write Progress" visible="1">
+   </PIN>
+   <PIN pinname="Chunk Directory" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Output Node" dstnodeid="14" dstpinname="ChunkManager">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="15">
+   <BOUNDS type="Box" left="1065" top="6000" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1065" top="6000" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Write Progress|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="14" srcpinname="Write Progress" dstnodeid="15" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="16">
+   <BOUNDS type="Box" left="1305" top="4680" width="2280" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1305" top="4680" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="C:\Users\le_tmp\Desktop\chunktests\assets\chunkBridge">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Directory">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="14" dstpinname="Chunk Directory">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="17">
+   <BOUNDS type="Box" left="1530" top="5085" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1530" top="5085" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="14" dstpinname="Write">
+   </LINK>
+   <NODE systemname="Reader (DX11.Particles.IO.Chunks Binary)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Reader (DX11.Particles.IO.Chunks Binary)" componentmode="Hidden" id="18">
+   <BOUNDS type="Node" left="8505" top="3135" width="4470" height="270">
+   </BOUNDS>
+   <PIN pinname="Chunk Directory" visible="1">
+   </PIN>
+   <PIN pinname="Precache" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Open" visible="1">
+   </PIN>
+   <PIN pinname="Caching Progress" visible="1">
+   </PIN>
+   <PIN pinname="ChunkManager" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="8505" top="3135">
+   </BOUNDS>
+   <PIN pinname="Chunk SizeXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Chunk CountXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Bounds MinXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Bounds MaxXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="19">
+   <BOUNDS type="Box" left="8505" top="2190" width="1800" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8505" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="1" values="C:\Users\le_tmp\Desktop\chunktests\assets\chunkBridge">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="Directory">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Chunk Directory|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="19" srcpinname="Output String" dstnodeid="18" dstpinname="Chunk Directory">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="20">
+   <BOUNDS type="Box" left="10695" top="2190" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10695" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Open">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Open">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="21">
+   <BOUNDS type="Box" left="12900" top="2190" width="480" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12900" top="2190" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Precache">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="21" srcpinname="Y Output Value" dstnodeid="18" dstpinname="Precache">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="22">
+   <BOUNDS type="Box" left="12915" top="3720" width="615" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12915" top="3720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Caching Progress|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="Caching Progress" dstnodeid="22" dstpinname="Y Input Value">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="23">
+   <BOUNDS type="Box" left="8490" top="3720" width="870" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8490" top="3720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="ChunkManager">
+   </PIN>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="18" srcpinname="ChunkManager" dstnodeid="23" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="Renderer (DX11)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11)" componentmode="InAWindow" id="24">
+   <BOUNDS type="Node" left="8730" top="10890" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8730" top="10890" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="855" top="5940" width="12165" height="11280">
+   </BOUNDS>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Group (DX11.Layer)" nodename="Group (DX11.Layer)" componentmode="Hidden" id="25" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll">
+   <BOUNDS type="Node" left="9255" top="10080" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   <PIN pinname="Enabled" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="AxisAndGrid (DX11)" filename="%VVVV%\packs\dx11\nodes\modules\AxisAndGrid\AxisAndGrid (DX11).v4p" nodename="AxisAndGrid (DX11)" componentmode="Hidden" id="26">
+   <BOUNDS type="Node" left="9450" top="9525" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="9450" top="9525">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 1">
+   </LINK>
+   <NODE systemname="Camera (Transform FPS)" filename="modules\Camera (Transform FPS).v4p" nodename="Camera (Transform FPS)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="10140" top="10485" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ViewProjection Camera" visible="1">
+   </PIN>
+   <PIN pinname="ViewProjection Culling" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="10140" top="10485">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="ViewProjection Camera" dstnodeid="24" dstpinname="View">
+   </LINK>
+   <NODE systemname="ChunkInfo (DX11.Particles.IO)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\ChunkInfo (DX11.Particles.IO).v4p" nodename="ChunkInfo (DX11.Particles.IO)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="13875" top="5880" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Help Layer" visible="1">
+   </PIN>
+   <PIN pinname="Chunk SizeXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Chunk CountXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Bounds MinXYZ" visible="1">
+   </PIN>
+   <PIN pinname="Active Chunk Index" visible="1" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Chunk CenterXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="28" srcpinname="Help Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="14805" y="8100">
+   </LINKPOINT>
+   <LINKPOINT x="9675" y="8100">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Chunk SizeXYZ" dstnodeid="28" dstpinname="Chunk SizeXYZ" linkstyle="Bezier">
+   <LINKPOINT x="9300" y="4628">
+   </LINKPOINT>
+   <LINKPOINT x="13875" y="4628">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Chunk CountXYZ" dstnodeid="28" dstpinname="Chunk CountXYZ" linkstyle="Bezier">
+   <LINKPOINT x="10035" y="4628">
+   </LINKPOINT>
+   <LINKPOINT x="14190" y="4628">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="18" srcpinname="Bounds MinXYZ" dstnodeid="28" dstpinname="Bounds MinXYZ" linkstyle="Bezier">
+   <LINKPOINT x="10770" y="4628">
+   </LINKPOINT>
+   <LINKPOINT x="14490" y="4628">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="ViewFrustumCulling (Vector3D Transform)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="ViewFrustumCulling (Vector3D Transform)" componentmode="Hidden" id="29">
+   <BOUNDS type="Node" left="13875" top="6315" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="PositionXYZ" visible="1">
+   </PIN>
+   <PIN pinname="ViewProjection" visible="1">
+   </PIN>
+   <PIN pinname="Former Index" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="28" srcpinname="Chunk CenterXYZ" dstnodeid="29" dstpinname="PositionXYZ">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="ViewProjection Culling" dstnodeid="29" dstpinname="ViewProjection" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="30">
+   <BOUNDS type="Box" left="15180" top="6840" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="15180" top="6840" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Chunk Index|">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="29" srcpinname="Former Index" dstnodeid="30" dstpinname="Y Input Value">
+   </LINK>
+   <NODE systemname="Group (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Group (DX11.Layer)" componentmode="Hidden" id="31">
+   <BOUNDS type="Node" left="8880" top="10485" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   <PIN pinname="Layer Out" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="8880" top="10485">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="25" srcpinname="Layer Out" dstnodeid="31" dstpinname="Layer 2">
+   </LINK>
+   <LINK srcnodeid="31" srcpinname="Layer Out" dstnodeid="24" dstpinname="Layers">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="32">
+   <BOUNDS type="Box" left="10725" top="9525" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="10725" top="9525" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Enable Helper|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="32" srcpinname="Y Output Value" dstnodeid="25" dstpinname="Enabled" linkstyle="VHV">
+   <LINKPOINT x="10725" y="9908">
+   </LINKPOINT>
+   <LINKPOINT x="9855" y="9908">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Stream (DX11.Particles.IO.Chunks Binary)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Stream (DX11.Particles.IO.Chunks Binary)" componentmode="Hidden" id="33">
+   <BOUNDS type="Node" left="8490" top="7440" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="ChunkManager" visible="1">
+   </PIN>
+   <PIN pinname="Index" visible="1" slicecount="18" values="3,4,5,6,7,8,14,15,16,17,24,25,26,27,34,35,36,45">
+   </PIN>
+   <PIN pinname="Loaded Elements" visible="1">
+   </PIN>
+   <PIN pinname="Active Chunk Index" visible="1">
+   </PIN>
+   <PIN pinname="Raw Data" visible="1">
+   </PIN>
+   <PIN pinname="LockTime" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="23" srcpinname="Output Node" dstnodeid="33" dstpinname="ChunkManager">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
+   <BOUNDS type="Box" left="8760" top="7965" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8760" top="7965" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="33" srcpinname="Loaded Elements" dstnodeid="34" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="30" srcpinname="Y Output Value" dstnodeid="33" dstpinname="Index" linkstyle="VHV">
+   <LINKPOINT x="15180" y="7245">
+   </LINKPOINT>
+   <LINKPOINT x="8820" y="7245">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="Active Chunk Index" dstnodeid="28" dstpinname="Active Chunk Index" hiddenwhenlocked="1">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="36">
+   <BOUNDS type="Box" left="8475" top="8475" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8475" top="8475" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   </PATCH>

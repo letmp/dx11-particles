@@ -7,6 +7,11 @@ using VVVV.Utils.VMath;
 
 using VVVV.Core.Logging;
 using DX11.Particles.IO.Utils;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using VVVV.Utils.Streams;
 #endregion usings
 
 namespace DX11.Particles.IO.Chunks
@@ -54,7 +59,7 @@ namespace DX11.Particles.IO.Chunks
 
         [Output("Progress")]
         public ISpread<double> FProgress;
-        
+
         [Import()]
         public ILogger FLogger;
 
@@ -159,9 +164,11 @@ namespace DX11.Particles.IO.Chunks
 
                 _chunkManager = new ChunkManager();
                 _chunkReaderBinary = new ChunkReaderBinary(_chunkManager);
+                _chunkManager.ChunkReader = _chunkReaderBinary;
+
                 _chunkReaderBinary.Directory = FDirectory[0];
                 _chunkReaderBinary.InitChunks();
-
+                
                 if (FPrecache[0]) _chunkReaderBinary.ReadAll();
 
                 changed = true;
@@ -209,13 +216,13 @@ namespace DX11.Particles.IO.Chunks
 
         [Input("Write", IsSingle = true, IsBang = true)]
         public ISpread<bool> FWrite;
-        
+
         [Output("Write Progress")]
         public ISpread<double> FOutWriteProgress;
-        
+
         [Import()]
         public ILogger FLogger;
-        
+
         private ChunkWriterBinary _chunkWriterBinary;
         #endregion fields & pins
 
@@ -238,5 +245,101 @@ namespace DX11.Particles.IO.Chunks
                 FOutWriteProgress[0] = _chunkWriterBinary.Progress;
             }
         }
+    }
+
+    #region PluginInfo
+    [PluginInfo(Name = "Stream",
+                Category = "DX11.Particles.IO.Chunks",
+                Version = "Binary",
+                Help = "Streams chunks in Raw format",
+                Author = "tmp")]
+    #endregion PluginInfo
+    public class ChunkStreamerBinaryNode : IPluginEvaluate
+    {
+        #region fields & pins
+        [Input("ChunkManager")]
+        public Pin<ChunkManager> FChunkManager;
+
+        [Input("Index", DefaultValue = 0.0, MinValue = 0.0, AsInt = true)]
+        public ISpread<int> FIndex;
+
+        [Input("LockTime", IsSingle = true, DefaultValue = 0.0, MinValue = 0.0, AsInt = true)]
+        public ISpread<double> FLockTime;
+
+        //[Input("Downsampling", IsSingle = true, DefaultValue = 1, MinValue = 1)]
+        //public ISpread<int> FDownsampling;
+
+        [Output("Raw Data")]
+        public ISpread<Stream> FOutMemoryStream;
+
+        [Output("Loaded Elements")]
+        public ISpread<int> FOutLoadedElements;
+
+        [Output("Active Chunk Index")]
+        public ISpread<int> FOutActiveChunkIndex;
+
+        [Import()]
+        public ILogger FLogger;
+
+        List<ChunkAccessData> ActiveChunks = new List<ChunkAccessData>();
+        List<ChunkAccessData> LockedChunks = new List<ChunkAccessData>();
+
+        #endregion fields & pins
+
+        public void Evaluate(int SpreadMax)
+        {
+            FOutLoadedElements.SliceCount = FOutActiveChunkIndex.SliceCount = 1;
+            
+
+            if (FChunkManager.IsConnected && FChunkManager[0] != null)
+            {
+                ChunkManager chunkManager = FChunkManager[0];
+               
+
+                IEnumerable<int> currentChunks = FIndex;
+
+                // build lists of chunkIds we have to load/unload
+                var chunksToAdd = currentChunks.Except(ActiveChunks.Select(activeChunk => activeChunk.chunkId)).ToList();
+                chunksToAdd = chunksToAdd.Except(LockedChunks.Select(lockedChunk => lockedChunk.chunkId)).ToList(); // remove all chunks that are still locked
+                var chunksToRemove = ActiveChunks.Select(activeChunk => activeChunk.chunkId).Except(currentChunks).ToList();
+
+                // update list of locked chunks
+                var chunksToLock = ActiveChunks.Where(activeChunk => chunksToRemove.Contains(activeChunk.chunkId) && activeChunk.finishedStreaming).ToList();
+                chunksToLock.ForEach(activeChunk => activeChunk.StartLock(FLockTime[0]));
+                LockedChunks.AddRange(chunksToLock);
+                LockedChunks.RemoveAll(lockedChunk => lockedChunk.isLocked == false);
+
+                // update active chunks list
+                ActiveChunks.AddRange(chunksToAdd.Select(chunkId => new ChunkAccessData(chunkId)));
+                ActiveChunks.RemoveAll(activeChunkId => chunksToRemove.Contains(activeChunkId.chunkId));
+
+                // start reading process (if not already happened)
+                foreach (int chunkId in chunksToAdd)
+                {
+                    Chunk chunk = chunkManager.GetChunk(chunkId);
+                    chunkManager.ChunkReader.Read(chunk);
+                }
+
+                // add chunkdata to output stream
+
+                FOutMemoryStream[0] = new MemoryComStream();
+                var outputStream = FOutMemoryStream[0];
+
+                foreach (ChunkAccessData activeChunk in ActiveChunks)
+                {
+                    Chunk chunk = chunkManager.GetChunk(activeChunk.chunkId);
+                    chunk.MemoryStream.Position = activeChunk.streamPosition;
+                    chunk.MemoryStream.CopyTo(outputStream);
+                    activeChunk.streamPosition = chunk.MemoryStream.Position;
+
+                    if (activeChunk.streamPosition == chunk.MemoryStream.Length && chunk.finishedLoading) activeChunk.finishedStreaming = true;
+                }
+
+                FOutLoadedElements[0] = Convert.ToInt32(outputStream.Length / chunkManager.BytesPerElement);
+                FOutActiveChunkIndex.AddRange(ActiveChunks.Select(activeChunk => activeChunk.chunkId));
+
+            }
+        }
+
     }
 }
