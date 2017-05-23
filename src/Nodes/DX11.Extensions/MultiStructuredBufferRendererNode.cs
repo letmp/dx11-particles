@@ -45,7 +45,10 @@ namespace VVVV.DX11.Nodes
         [Input("Reset Counter Value", Order = 9)]
         protected IDiffSpread<int> FInResetCounterValue;
 
-        [Input("Enabled", DefaultValue = 1, Order = 10)]
+        [Input("Reset", DefaultBoolean = false, Order = 10, IsSingle = true)]
+        protected ISpread<bool> FInReset;
+
+        [Input("Enabled", DefaultValue = 1, Order = 11)]
         protected ISpread<bool> FInEnabled;
 
         [Input("View", Order = 11)]
@@ -91,7 +94,7 @@ namespace VVVV.DX11.Nodes
 
             FOutBuffers.SliceCount = FSemantic.SliceCount;
 
-            reset = reset || this.FInSize.IsChanged || FInMode.IsChanged || FInStride.IsChanged || this.FSemantic.IsChanged;
+            reset = reset || this.FInSize.IsChanged || FInMode.IsChanged || FInStride.IsChanged || this.FSemantic.IsChanged || FInReset[0];
 
             for (int i = 0; i < FOutBuffers.SliceCount; i++)
             {
