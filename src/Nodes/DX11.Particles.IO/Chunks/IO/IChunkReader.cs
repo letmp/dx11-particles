@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using DX11.Particles.IO.Chunks.IO;
+using VVVV.Core.Logging;
 
 namespace DX11.Particles.IO
 {
@@ -28,6 +29,9 @@ namespace DX11.Particles.IO
 
         double _progress = 0;
 
+        public ILogger FLogger;
+        public IOMessages IOMessages;
+
         public ChunkReaderBase(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
@@ -37,36 +41,48 @@ namespace DX11.Particles.IO
 
         public void InitChunks()
         {
-            string filePath = Path.Combine(Directory, "_chunkinfo");
-            if (File.Exists(filePath))
+            FLogger.Log(LogType.Message, "ChunkReader: Reading ChunkInfo File");
+            IOMessages.CurrentState = "Reading ChunkInfo File";
+
+            try
             {
-                StreamReader sr = new StreamReader(filePath);
-                Char delimiter = ' ';
+                string filePath = Path.Combine(Directory, "_chunkinfo");
+                if (File.Exists(filePath))
+                {
+                    StreamReader sr = new StreamReader(filePath);
+                    Char delimiter = ' ';
 
-                String[] lineStrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.ChunkSize = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
+                    String[] lineStrings = sr.ReadLine().Split(delimiter);
+                    _chunkManager.ChunkSize = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
 
-                lineStrings = sr.ReadLine().Split(delimiter);
-                Triple<int, int, int> chunkCount = new Triple<int, int, int>();
-                chunkCount.x = Int32.Parse(lineStrings[1]);
-                chunkCount.y = Int32.Parse(lineStrings[2]);
-                chunkCount.z = Int32.Parse(lineStrings[3]);
-                _chunkManager.ChunkCount = chunkCount;
+                    lineStrings = sr.ReadLine().Split(delimiter);
+                    Triple<int, int, int> chunkCount = new Triple<int, int, int>();
+                    chunkCount.x = Int32.Parse(lineStrings[1]);
+                    chunkCount.y = Int32.Parse(lineStrings[2]);
+                    chunkCount.z = Int32.Parse(lineStrings[3]);
+                    _chunkManager.ChunkCount = chunkCount;
 
-                lineStrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.BoundsMin = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
+                    lineStrings = sr.ReadLine().Split(delimiter);
+                    _chunkManager.BoundsMin = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
 
-                lineStrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.BoundsMax = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
+                    lineStrings = sr.ReadLine().Split(delimiter);
+                    _chunkManager.BoundsMax = new Vector3D(double.Parse(lineStrings[1]), double.Parse(lineStrings[2]), double.Parse(lineStrings[3]));
 
-                lineStrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.DataStructure = lineStrings[1];
+                    lineStrings = sr.ReadLine().Split(delimiter);
+                    _chunkManager.DataStructure = lineStrings[1];
 
-                lineStrings = sr.ReadLine().Split(delimiter);
-                _chunkManager.ParticleCount = Convert.ToInt32(lineStrings[1]);
+                    lineStrings = sr.ReadLine().Split(delimiter);
+                    _chunkManager.ElementCount = Convert.ToInt32(lineStrings[1]);
 
-                _chunkManager.InitChunkList();
+                    _chunkManager.InitChunkList();
+                }
             }
+            catch (Exception e)
+            {
+                FLogger.Log(LogType.Error, e.ToString());
+                IOMessages.CurrentState = e.ToString();
+            }
+            
         }
 
         public abstract void Read(Chunk chunk);

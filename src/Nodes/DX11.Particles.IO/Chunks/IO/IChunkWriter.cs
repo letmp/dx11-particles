@@ -8,6 +8,7 @@ using System.IO;
 using System.Collections.Generic;
 using DX11.Particles.IO.Chunks.IO;
 using System;
+using VVVV.Core.Logging;
 
 namespace DX11.Particles.IO
 {
@@ -31,6 +32,9 @@ namespace DX11.Particles.IO
 
         double _progress = 0;
 
+        public ILogger FLogger;
+        public IOMessages IOMessages;
+
         public ChunkWriterBase(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
@@ -40,33 +44,55 @@ namespace DX11.Particles.IO
         
         public void CreateDirectory()
         {
-            if (System.IO.Directory.Exists(Directory))
+            FLogger.Log(LogType.Message, "ChunkWriter: Creating Directory");
+            IOMessages.CurrentState = "Creating Directory";
+
+            try
             {
-                DirectoryInfo dir = new DirectoryInfo(Directory);
-                foreach (FileInfo file in dir.GetFiles()) file.Delete();
-                foreach (DirectoryInfo subdir in dir.GetDirectories()) subdir.Delete(true);
+                if (System.IO.Directory.Exists(Directory))
+                {
+                    DirectoryInfo dir = new DirectoryInfo(Directory);
+                    foreach (FileInfo file in dir.GetFiles()) file.Delete();
+                    foreach (DirectoryInfo subdir in dir.GetDirectories()) subdir.Delete(true);
+                }
+                else
+                {
+                    DirectoryInfo dir = System.IO.Directory.CreateDirectory(Directory);
+                }
             }
-            else
+            catch (Exception e)
             {
-                DirectoryInfo dir = System.IO.Directory.CreateDirectory(Directory);
+                FLogger.Log(LogType.Error, e.ToString());
+                IOMessages.CurrentState = e.ToString();
             }
+            
         }
         
         public void WriteProjectInfo()
         {
-            StringBuilder sbInfo = new StringBuilder();
+            FLogger.Log(LogType.Message, "ChunkWriter: Writing ChunkInfo File");
+            IOMessages.CurrentState = "Writing ChunkInfo File";
+            try {
+                StringBuilder sbInfo = new StringBuilder();
 
-            sbInfo.AppendLine("CHUNKSIZEXYZ: " + _chunkManager.ChunkSize.x + " " + _chunkManager.ChunkSize.y + " " + _chunkManager.ChunkSize.z);
-            sbInfo.AppendLine("CHUNKCOUNTXYZ: " + _chunkManager.ChunkCount.x + " " + _chunkManager.ChunkCount.y + " " + _chunkManager.ChunkCount.z);
-            sbInfo.AppendLine("BOUNDSMIN: " + _chunkManager.BoundsMin.x + " " + _chunkManager.BoundsMin.y + " " + _chunkManager.BoundsMin.z);
-            sbInfo.AppendLine("BOUNDSMAX: " + _chunkManager.BoundsMax.x + " " + _chunkManager.BoundsMax.y + " " + _chunkManager.BoundsMax.z);
-            sbInfo.AppendLine("DATASTRUCTURE: " + _chunkManager.DataStructure);
-            sbInfo.AppendLine("PARTICLECOUNT: " + _chunkManager.GetCachedParticleCount());
+                sbInfo.AppendLine("CHUNKSIZEXYZ: " + _chunkManager.ChunkSize.x + " " + _chunkManager.ChunkSize.y + " " + _chunkManager.ChunkSize.z);
+                sbInfo.AppendLine("CHUNKCOUNTXYZ: " + _chunkManager.ChunkCount.x + " " + _chunkManager.ChunkCount.y + " " + _chunkManager.ChunkCount.z);
+                sbInfo.AppendLine("BOUNDSMIN: " + _chunkManager.BoundsMin.x + " " + _chunkManager.BoundsMin.y + " " + _chunkManager.BoundsMin.z);
+                sbInfo.AppendLine("BOUNDSMAX: " + _chunkManager.BoundsMax.x + " " + _chunkManager.BoundsMax.y + " " + _chunkManager.BoundsMax.z);
+                sbInfo.AppendLine("DATASTRUCTURE: " + _chunkManager.DataStructure);
+                sbInfo.AppendLine("PARTICLECOUNT: " + _chunkManager.ElementCount);
             
-            string infofile = Path.Combine(Directory, "_chunkinfo");
-            StreamWriter swInfo = new StreamWriter(infofile, false);
-            swInfo.WriteLine(sbInfo.ToString());
-            swInfo.Close();
+                string infofile = Path.Combine(Directory, "_chunkinfo");
+                StreamWriter swInfo = new StreamWriter(infofile, false);
+                swInfo.WriteLine(sbInfo.ToString());
+                swInfo.Close();
+                IOMessages.CurrentState = "Finished";
+            }
+            catch (Exception e)
+            {
+                FLogger.Log(LogType.Error, e.ToString());
+                IOMessages.CurrentState = e.ToString();
+            }
         }
 
         public abstract void Write(Chunk chunk);

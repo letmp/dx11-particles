@@ -39,6 +39,9 @@ namespace DX11.Particles.IO
         public int Lines = 0;
         public int LinesProcessed = 0;
 
+        public ILogger FLogger;
+        public IOMessages IOMessages;
+
         public ChunkImporterBase(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
@@ -79,39 +82,48 @@ namespace DX11.Particles.IO
             Progress = 0;
             Lines = 0;
             LinesProcessed = 0;
-
-            // the import consists of 3 steps
+           
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
             Task Task = Task.Run(
-                () => ParseBounds() // parse the file to find the bounds of the dataset
+                () => ParseFile() // parse the file to find the bounds of the dataset
                 ).ContinueWith(
-                tsk => UpdateChunkManagerPreImport() // update chunkmanager with new data and init chunklist
+                tsk => UpdateChunkManager() // update chunkmanager with new data and init chunklist
                 ).ContinueWith(
                 tsk => ImportData() // parse the file again and write the data to the chunks
                 );
         }
 
-        protected abstract Task ParseBounds();
+        protected abstract Task ParseFile();
 
-        private async Task UpdateChunkManagerPreImport()
+        private async Task UpdateChunkManager()
         {
             await Task.Run(() =>
             {
-                _chunkManager.ChunkCount = ChunkCount;
-                _chunkManager.DataStructure = GetDataStructureString();
+                FLogger.Log(LogType.Message, "ChunkImporter: Updating ChunkManager");
+                IOMessages.CurrentState = "Updating ChunkManager";
+                try
+                {
+                    _chunkManager.ChunkCount = ChunkCount;
+                    _chunkManager.DataStructure = GetDataStructureString();
 
-                UpdateOffsets();
-                UpdateScaleValue();
+                    UpdateOffsets();
+                    UpdateScaleValue();
 
-                UpdateBounds();
-                _chunkManager.BoundsMin = BoundsMin;
-                _chunkManager.BoundsMax = BoundsMax;
+                    UpdateBounds();
+                    _chunkManager.BoundsMin = BoundsMin;
+                    _chunkManager.BoundsMax = BoundsMax;
 
-                UpdateChunkSize();
-                _chunkManager.ChunkSize = ChunkSize;
+                    UpdateChunkSize();
+                    _chunkManager.ChunkSize = ChunkSize;
 
-                _chunkManager.InitChunkList();
-
+                    _chunkManager.InitChunkList();
+                }
+                catch (Exception e)
+                {
+                    FLogger.Log(LogType.Error, e.ToString());
+                    IOMessages.CurrentState = e.ToString();
+                }
+                
             });
         }
 

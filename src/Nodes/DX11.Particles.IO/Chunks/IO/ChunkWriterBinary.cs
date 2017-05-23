@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using VVVV.Core.Logging;
 
 namespace DX11.Particles.IO.Chunks
 {
@@ -25,16 +26,25 @@ namespace DX11.Particles.IO.Chunks
                 WriteOperations.Add(chunkId, writeOperation);
 
                 writeOperation.Run(chunk, Directory);
+                //FLogger.Log(LogType.Message, "ChunkWriter: Writing " + chunk.FileName);
+                //IOMessages.CurrentState = "Writing" + chunk.FileName;
             }
             else
             {
                 WriteOperation writeOperation = (WriteOperation) WriteOperations[chunkId];
-                if (writeOperation.IsCompleted) writeOperation.Run(chunk, Directory);
+                if (writeOperation.IsCompleted)
+                {
+                    writeOperation.Run(chunk, Directory);
+                    //FLogger.Log(LogType.Message, "ChunkWriter: ReWriting " + chunk.FileName);
+                    //IOMessages.CurrentState = "ReWriting" + chunk.FileName;
+                }
             }
         }
 
         public override void WriteAll()
         {
+            FLogger.Log(LogType.Message, "ChunkWriter: Started writing all files");
+            IOMessages.CurrentState = "Started writing all files";
             foreach (Chunk chunk in _chunkManager.ChunkList) Write(chunk);
         }
 

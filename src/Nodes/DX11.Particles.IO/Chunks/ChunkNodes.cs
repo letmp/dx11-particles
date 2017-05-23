@@ -36,6 +36,9 @@ namespace DX11.Particles.IO.Chunks
         [Input("Chunk Count", MinValue = 1.0, DefaultValues = new double[] { 10.0, 10.0, 10.0 }, AsInt = true)]
         public ISpread<Vector3D> FChunkCount;
 
+        [Input("Skip Lines Count", DefaultValue = 0, MinValue = 0, Visibility = PinVisibility.OnlyInspector, IsSingle = true)]
+        public ISpread<int> FSkipLines;
+
         [Input("Align X", DefaultEnumEntry = "None", Visibility = PinVisibility.OnlyInspector, IsSingle = true)]
         public ISpread<AlignEnum> FAlignX;
 
@@ -55,29 +58,73 @@ namespace DX11.Particles.IO.Chunks
         public ISpread<bool> FImport;
 
         [Output("ChunkManager")]
-        public ISpread<ChunkManager> FChunkManager;
+        public ISpread<ChunkManager> FOutChunkManager;
+
+        [Output("Chunk Size")]
+        public ISpread<Vector3D> FOutChunkSize;
+
+        [Output("Chunk Count", AsInt = true)]
+        public ISpread<Vector3D> FOutChunkCount;
+
+        [Output("Bounds Min")]
+        public ISpread<Vector3D> FOutBoundsMin;
+
+        [Output("Bounds Max")]
+        public ISpread<Vector3D> FOutBoundsMax;
+
+        [Output("Element Count")]
+        public ISpread<int> FOutElementCount;
+
+        [Output("Data Structure")]
+        public ISpread<string> FOutDataStructure;
+
+        [Output("Bytes Per Element")]
+        public ISpread<int> FOutBytesPerElement;
+
+        [Output("Message")]
+        public ISpread<string> FOutMessage;
 
         [Output("Progress")]
-        public ISpread<double> FProgress;
+        public ISpread<double> FOutProgress;
 
         [Import()]
         public ILogger FLogger;
 
+        public IOMessages IOMessages = new IOMessages();
+
         ChunkManager _chunkManager = new ChunkManager();
         ChunkImporterASCII _chunkImporterASCII;
+
+        bool imported = false;
         #endregion fields & pins
 
         //called when data for any output pin is requested
         public void Evaluate(int SpreadMax)
         {
-            FChunkManager.SliceCount = 0;
-            FProgress.SliceCount = 1;
+            FOutProgress.SliceCount = FOutMessage.SliceCount = 1;
+            FOutMessage[0] = IOMessages.CurrentState;
+
+            if (imported == false)
+            {
+                FOutChunkManager.SliceCount = FOutChunkSize.SliceCount = FOutChunkCount.SliceCount =
+                FOutBoundsMin.SliceCount = FOutBoundsMax.SliceCount =
+                FOutElementCount.SliceCount = FOutDataStructure.SliceCount = FOutBytesPerElement.SliceCount = 0;
+            }
+
             if (FImport[0])
             {
+                imported = false;
+
                 _chunkManager = new ChunkManager();
                 _chunkImporterASCII = new ChunkImporterASCII(_chunkManager);
+                _chunkManager.ChunkImporter = _chunkImporterASCII;
+
+                _chunkImporterASCII.FLogger = FLogger;
+                _chunkImporterASCII.IOMessages = IOMessages;
 
                 _chunkImporterASCII.FilePath = FFile[0];
+
+                _chunkImporterASCII.skipLines = FSkipLines[0];
 
                 _chunkImporterASCII.AlignModeXYZ.x = (int)FAlignX[0];
                 _chunkImporterASCII.AlignModeXYZ.y = (int)FAlignY[0];
@@ -92,18 +139,30 @@ namespace DX11.Particles.IO.Chunks
 
                 _chunkImporterASCII.SetDataStructure(FDataStructure[0]);
 
-                _chunkManager.ChunkImporter = _chunkImporterASCII;
-
                 _chunkImporterASCII.Import();
             }
 
             if (_chunkImporterASCII != null)
             {
                 var progress = _chunkImporterASCII.Progress;
-                FProgress[0] = progress;
-                if (progress == 1) FChunkManager.Add(_chunkManager);
+                FOutProgress[0] = progress;
+                if (progress == 1) imported = true;
             }
 
+            if (imported && FOutChunkManager.SliceCount == 0)
+            {
+                FOutChunkManager.Add(_chunkManager);
+                FOutChunkSize.Add(_chunkManager.ChunkSize);
+                FOutChunkCount.Add(new Vector3D((double)_chunkManager.ChunkCount.x, (double)_chunkManager.ChunkCount.y, (double)_chunkManager.ChunkCount.z));
+
+                FOutBoundsMin.Add(_chunkManager.BoundsMin);
+                FOutBoundsMax.Add(_chunkManager.BoundsMax);
+                FOutElementCount.Add(_chunkManager.ElementCount);
+
+                FOutDataStructure.Add(_chunkManager.DataStructure);
+                FOutBytesPerElement.Add(_chunkManager.BytesPerElement);
+            }
+            
         }
     }
 
@@ -144,56 +203,79 @@ namespace DX11.Particles.IO.Chunks
         [Output("Element Count")]
         public ISpread<int> FOutElementCount;
 
-        [Output("Caching Progress")]
-        public ISpread<double> FOutCachingProgress;
+        [Output("Data Structure")]
+        public ISpread<string> FOutDataStructure;
+
+        [Output("Bytes Per Element")]
+        public ISpread<int> FOutBytesPerElement;
+
+        [Output("Message")]
+        public ISpread<string> FOutMessage;
+
+        [Output("Cache Progress")]
+        public ISpread<double> FOutProgress;
 
         [Import()]
         public ILogger FLogger;
 
+        public IOMessages IOMessages = new IOMessages();
+
         private ChunkManager _chunkManager = new ChunkManager();
         private ChunkReaderBinary _chunkReaderBinary;
-        private bool changed = false;
+        private bool opened = false;
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
-            FOutCachingProgress.SliceCount = 1;
+            FOutProgress.SliceCount = FOutMessage.SliceCount = 1;
 
+            FOutMessage[0] = IOMessages.CurrentState;
+
+            if (FOpen[0] && opened == true) opened = false;
+
+            if (opened == false)
+            {
+                FOutChunkManager.SliceCount = FOutChunkSize.SliceCount = FOutChunkCount.SliceCount =
+                FOutBoundsMin.SliceCount = FOutBoundsMax.SliceCount =
+                FOutElementCount.SliceCount = FOutDataStructure.SliceCount = FOutBytesPerElement.SliceCount = 0;
+            }
+            
             if (FOpen[0])
             {
+                opened = true;
+                FOutChunkManager.SliceCount = 0;
 
                 _chunkManager = new ChunkManager();
                 _chunkReaderBinary = new ChunkReaderBinary(_chunkManager);
                 _chunkManager.ChunkReader = _chunkReaderBinary;
 
+                _chunkReaderBinary.FLogger = FLogger;
+                _chunkReaderBinary.IOMessages = IOMessages;
+
                 _chunkReaderBinary.Directory = FDirectory[0];
                 _chunkReaderBinary.InitChunks();
-                
-                if (FPrecache[0]) _chunkReaderBinary.ReadAll();
 
-                changed = true;
+                if (FPrecache[0]) _chunkReaderBinary.ReadAll();
             }
 
             if (_chunkReaderBinary != null)
             {
                 if (FPrecache.IsChanged && FPrecache[0]) _chunkReaderBinary.ReadAll();
-                FOutCachingProgress[0] = _chunkReaderBinary.Progress;
+                FOutProgress[0] = _chunkReaderBinary.Progress;
             }
 
-            if (changed)
+            if (opened && FOutChunkManager.SliceCount == 0)
             {
-                FOutChunkManager.SliceCount = FOutChunkSize.SliceCount = FOutChunkCount.SliceCount =
-                FOutBoundsMin.SliceCount = FOutBoundsMax.SliceCount =
-                FOutElementCount.SliceCount = 0;
-
                 FOutChunkManager.Add(_chunkManager);
                 FOutChunkSize.Add(_chunkManager.ChunkSize);
                 FOutChunkCount.Add(new Vector3D((double)_chunkManager.ChunkCount.x, (double)_chunkManager.ChunkCount.y, (double)_chunkManager.ChunkCount.z));
 
                 FOutBoundsMin.Add(_chunkManager.BoundsMin);
                 FOutBoundsMax.Add(_chunkManager.BoundsMax);
-                FOutElementCount.Add(_chunkManager.ParticleCount);
-                changed = false;
+                FOutElementCount.Add(_chunkManager.ElementCount);
+
+                FOutDataStructure.Add(_chunkManager.DataStructure);
+                FOutBytesPerElement.Add(_chunkManager.BytesPerElement);
             }
         }
     }
@@ -217,23 +299,33 @@ namespace DX11.Particles.IO.Chunks
         [Input("Write", IsSingle = true, IsBang = true)]
         public ISpread<bool> FWrite;
 
-        [Output("Write Progress")]
-        public ISpread<double> FOutWriteProgress;
+        [Output("Message")]
+        public ISpread<string> FOutMessage;
+
+        [Output("Progress")]
+        public ISpread<double> FOutProgress;
 
         [Import()]
         public ILogger FLogger;
+
+        public IOMessages IOMessages = new IOMessages();
 
         private ChunkWriterBinary _chunkWriterBinary;
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
-            FOutWriteProgress.SliceCount = 1;
+            FOutProgress.SliceCount = FOutMessage.SliceCount = 1;
 
-            if (FWrite[0] && FChunkManager.IsConnected && FChunkManager != null)
+            FOutMessage[0] = IOMessages.CurrentState;
+
+            if (FWrite[0] && FChunkManager.IsConnected && FChunkManager.SliceCount > 0 && FChunkManager != null)
             {
                 _chunkWriterBinary = new ChunkWriterBinary(FChunkManager[0]);
                 FChunkManager[0].ChunkWriter = _chunkWriterBinary;
+
+                _chunkWriterBinary.FLogger = FLogger;
+                _chunkWriterBinary.IOMessages = IOMessages;
 
                 _chunkWriterBinary.Directory = FDirectory[0];
                 _chunkWriterBinary.CreateDirectory();
@@ -242,7 +334,7 @@ namespace DX11.Particles.IO.Chunks
             }
             if (_chunkWriterBinary != null)
             {
-                FOutWriteProgress[0] = _chunkWriterBinary.Progress;
+                FOutProgress[0] = _chunkWriterBinary.Progress;
             }
         }
     }
@@ -266,14 +358,17 @@ namespace DX11.Particles.IO.Chunks
         [Input("LockTime", IsSingle = true, DefaultValue = 0.0, MinValue = 0.0, AsInt = true)]
         public ISpread<double> FLockTime;
 
-        //[Input("Downsampling", IsSingle = true, DefaultValue = 1, MinValue = 1)]
-        //public ISpread<int> FDownsampling;
+        [Input("Downsampling", IsSingle = true, DefaultValue = 1, MinValue = 1)]
+        public ISpread<int> FDownsampling;
 
         [Output("Raw Data")]
         public ISpread<Stream> FOutMemoryStream;
 
-        [Output("Loaded Elements")]
-        public ISpread<int> FOutLoadedElements;
+        [Output("Element Count")]
+        public ISpread<int> FOutElementCount;
+
+        [Output("On Data")]
+        public ISpread<bool> FOutOnData;
 
         [Output("Active Chunk Index")]
         public ISpread<int> FOutActiveChunkIndex;
@@ -288,14 +383,12 @@ namespace DX11.Particles.IO.Chunks
 
         public void Evaluate(int SpreadMax)
         {
-            FOutLoadedElements.SliceCount = FOutActiveChunkIndex.SliceCount = 1;
+            FOutElementCount.SliceCount = FOutActiveChunkIndex.SliceCount = FOutOnData.SliceCount = 1;
             
-
-            if (FChunkManager.IsConnected && FChunkManager[0] != null)
+            if (FChunkManager.IsConnected && FChunkManager.SliceCount > 0 && FChunkManager[0] != null)
             {
                 ChunkManager chunkManager = FChunkManager[0];
-               
-
+                
                 IEnumerable<int> currentChunks = FIndex;
 
                 // build lists of chunkIds we have to load/unload
@@ -314,17 +407,21 @@ namespace DX11.Particles.IO.Chunks
                 ActiveChunks.RemoveAll(activeChunkId => chunksToRemove.Contains(activeChunkId.chunkId));
 
                 // start reading process (if not already happened)
-                foreach (int chunkId in chunksToAdd)
+                // applied only if chunkdata comes from the chunkreader
+                // otherwise data was imported by chunkimporter and is already present
+                if (chunkManager.ChunkReader != null)
                 {
-                    Chunk chunk = chunkManager.GetChunk(chunkId);
-                    chunkManager.ChunkReader.Read(chunk);
+                    foreach (int chunkId in chunksToAdd)
+                    {
+                        Chunk chunk = chunkManager.GetChunk(chunkId);
+                        chunkManager.ChunkReader.Read(chunk);
+                    }
                 }
-
+                
                 // add chunkdata to output stream
+                /*FOutMemoryStream[0] = new MemoryComStream();
 
-                FOutMemoryStream[0] = new MemoryComStream();
-                var outputStream = FOutMemoryStream[0];
-
+                Stream outputStream = FOutMemoryStream[0];
                 foreach (ChunkAccessData activeChunk in ActiveChunks)
                 {
                     Chunk chunk = chunkManager.GetChunk(activeChunk.chunkId);
@@ -333,12 +430,35 @@ namespace DX11.Particles.IO.Chunks
                     activeChunk.streamPosition = chunk.MemoryStream.Position;
 
                     if (activeChunk.streamPosition == chunk.MemoryStream.Length && chunk.finishedLoading) activeChunk.finishedStreaming = true;
+                }*/
+                List<Stream> streams = new List<Stream>();
+                foreach (ChunkAccessData activeChunk in ActiveChunks)
+                {
+                    Chunk chunk = chunkManager.GetChunk(activeChunk.chunkId);
+                    //if(activeChunk.finishedStreaming == false) streams.Add(chunk.MemoryStream);
+                    if (chunk.finishedLoading)
+                    {
+                        streams.Add(chunk.MemoryStream);
+                        activeChunk.finishedStreaming = true;
+                    }
                 }
 
-                FOutLoadedElements[0] = Convert.ToInt32(outputStream.Length / chunkManager.BytesPerElement);
+                
+                if (streams.Count > 0)
+                {
+                    //FOutMemoryStream[0] = new AggregatedStream(streams);
+                    FOutMemoryStream[0] = new AggregatedStreamAdvanced(streams, chunkManager.BytesPerElement, FDownsampling[0]);
+                }
+                else {
+                    FOutMemoryStream[0] = new MemoryComStream(new byte[sizeof(Single)]);
+                }
+                
+                FOutElementCount[0] = Convert.ToInt32(FOutMemoryStream[0].Length / chunkManager.BytesPerElement);
+                FOutOnData[0] = (FOutElementCount[0] > 0) ? true : false;
                 FOutActiveChunkIndex.AddRange(ActiveChunks.Select(activeChunk => activeChunk.chunkId));
 
             }
+            else FOutMemoryStream[0] = new MemoryComStream(new byte[sizeof(Single)]);  // workaround to prevent DynamicBufer (raw) from throwing exceptions
         }
 
     }

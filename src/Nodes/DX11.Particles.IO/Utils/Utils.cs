@@ -73,6 +73,14 @@ namespace DX11.Particles.IO.Utils
             Buffer.BlockCopy(valueArray, 0, byteArray, 0, byteArray.Length);
             return byteArray;
         }
-        
+    
     }
+
+
+    public class IOMessages
+    {
+        public string CurrentState { get; set; }
+        public IOMessages() { CurrentState = ""; }
+    }
+
 }

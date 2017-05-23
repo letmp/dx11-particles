@@ -24,7 +24,7 @@ namespace DX11.Particles.IO
         public ChunkWriterBase ChunkWriter;
 
         public List<Chunk> ChunkList;
-        public int ParticleCount;
+        public int ElementCount;
         
         public ChunkManager() { }
 
@@ -33,14 +33,13 @@ namespace DX11.Particles.IO
             return Math.Max(Math.Max(ChunkCount.x.ToString().Length, ChunkCount.y.ToString().Length), ChunkCount.z.ToString().Length);
         }
 
-        public int GetCachedParticleCount()
+        public void UpdateElementCount()
         {
-            int count = 0;
+            ElementCount = 0;
             foreach (Chunk chunk in ChunkList)
             {
-                count += chunk.ElementCount;
+                ElementCount += chunk.ElementCount;
             }
-            return count;
         }
 
         public Chunk GetChunk(int chunkId)

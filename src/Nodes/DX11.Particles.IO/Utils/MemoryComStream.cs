@@ -30,6 +30,8 @@ namespace System.IO
             throw new NotImplementedException();
         }
 
+        public int bytesPerElement {get;set;}
+
         void IStream.Read(byte[] pv, int cb, IntPtr pcbRead)
         {
             int read = Read(pv, 0, cb);

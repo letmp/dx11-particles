@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using DX11.Particles.IO.Chunks.IO;
+using VVVV.Core.Logging;
 
 namespace DX11.Particles.IO
 {
@@ -26,11 +27,17 @@ namespace DX11.Particles.IO
                 ReadOperations.Add(chunkId, readOperation);
 
                 readOperation.Run(chunk, Directory);
+
+                //FLogger.Log(LogType.Message, "ChunkReader: Reading " + chunk.FileName);
+                //IOMessages.CurrentState = "Reading " + chunk.FileName;
             }
         }
 
         public override void ReadAll()
         {
+            FLogger.Log(LogType.Message, "ChunkReader: Started caching all files");
+            IOMessages.CurrentState = "Started caching all files";
+
             foreach (Chunk chunk in _chunkManager.ChunkList) Read(chunk);
         }
         
@@ -40,6 +47,7 @@ namespace DX11.Particles.IO
             {
                 if (!this.IsRunning && !this.IsCompleted)
                 {
+                    
                     CancellationTokenSource = new CancellationTokenSource();
                     Task = Task.Run(
                         async () =>
