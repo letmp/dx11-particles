@@ -71,7 +71,7 @@ void CS_Emit(csin input)
 	float3 position =texWorld.SampleLevel(sPoint,texUv,0).xyz;
 	
 	// set particle if depth-value and texUvColor coords are valid
-	if ( all(position) && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
+	if ( position.z > 0 && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){
 
 		// INCREMENT EmitterCounter
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
