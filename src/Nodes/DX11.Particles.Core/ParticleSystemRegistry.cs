@@ -260,7 +260,7 @@ namespace DX11.Particles.Core
         }
 
         public void SetShaderVariables (string shaderRegisterNodeId, IEnumerable<string> variables){
-            this.ShaderVariables[shaderRegisterNodeId] = variables.ToList();
+            this.ShaderVariables[shaderRegisterNodeId] = variables.Where(s => !string.IsNullOrWhiteSpace(s)).Distinct().ToList();
             this.UpdateStructure();
         }
 
