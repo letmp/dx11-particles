@@ -36,6 +36,13 @@ namespace DX11.Particles.Core
             {
                 AddParticleSystem();
             }
+            
+            var particleSystemRegistry = ParticleSystemRegistry.Instance;
+            particleSystemRegistry.PropagateRegistryChanges();
+            /*if(particleSystemRegistry.HasChanged)
+            {
+                particleSystemRegistry.HasChanged = false; // this triggers an event that updates all info and register nodes
+            }*/
 
         }
 
@@ -115,6 +122,7 @@ namespace DX11.Particles.Core
                 UpdateEmitterName();
                 UpdateShaderVariables();
                 _ParticleSystemChanged = false;
+                return;
             }
 
             if (FParticleSystemName.IsChanged)
@@ -123,6 +131,7 @@ namespace DX11.Particles.Core
                 UpdateEmitterSize();
                 UpdateEmitterName();
                 UpdateShaderVariables();
+                return;
             }
 
             if (FVariables.IsChanged)
@@ -162,7 +171,11 @@ namespace DX11.Particles.Core
         private void SetShaderVariables ()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
-            particleSystemRegistry.SetShaderVariables(FParticleSystemName[0], this.ShaderRegisterNodeId, FVariables);
+            var shaderVars = FVariables.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+            if (shaderVars.Count > 0)
+                particleSystemRegistry.SetShaderVariables(FParticleSystemName[0], this.ShaderRegisterNodeId, shaderVars);
+            else
+                particleSystemRegistry.RemoveShaderVariables(this.ShaderRegisterNodeId);
         }
 
         private void RemoveShaderVariables()
@@ -180,7 +193,12 @@ namespace DX11.Particles.Core
         private void SetDefines()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
-            particleSystemRegistry.SetDefines(FParticleSystemName[0], this.ShaderRegisterNodeId, FDefines);
+
+            var defines = FDefines.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+            if (defines.Count > 0)
+                particleSystemRegistry.SetDefines(FParticleSystemName[0], this.ShaderRegisterNodeId, defines );
+            else
+                particleSystemRegistry.RemoveDefines(this.ShaderRegisterNodeId);
         }
 
         private void RemoveDefines()
@@ -221,7 +239,8 @@ namespace DX11.Particles.Core
             if (FEmitCount.SliceCount > 0 && FEmitterName[0]!="")
             {
                 var particleSystemRegistry = ParticleSystemRegistry.Instance;
-                particleSystemRegistry.SetEmitterName(FParticleSystemName[0], this.ShaderRegisterNodeId, FEmitterName[0]);
+                if(FEmitterName[0] != "")
+                    particleSystemRegistry.SetEmitterName(FParticleSystemName[0], this.ShaderRegisterNodeId, FEmitterName[0]);
             }
             
         }
@@ -260,7 +279,7 @@ namespace DX11.Particles.Core
         protected IPluginHost2 PluginHost;
 
         private string ShaderRegisterNodeId = "";
-        private bool _ParticleSystemChanged = false;
+        //private bool _ParticleSystemChanged = false;
 
         public void OnImportsSatisfied()
         {
@@ -271,17 +290,18 @@ namespace DX11.Particles.Core
         public void Evaluate(int SpreadMax)
         {
 
-            if (_ParticleSystemChanged)
+            /*if (_ParticleSystemChanged)
             {
                 UpdateDefines();
                 UpdateShaderVariables();
                 _ParticleSystemChanged = false;
-            }
+            }*/
 
             if (FParticleSystemName.IsChanged)
             {
                 UpdateDefines();
                 UpdateShaderVariables();
+                return;
             }
 
             if (FVariables.IsChanged)
@@ -301,15 +321,19 @@ namespace DX11.Particles.Core
             RemoveShaderVariables();
         }
 
-        private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
+        /*private void HandleRegistryChange(object sender, ParticleSystemRegistryEventArgs e)
         {
             if (!(e.IsShaderRegistryEvent || e.IsBufferRegistryEvent)) _ParticleSystemChanged = true;
-        }
+        }*/
 
         private void SetShaderVariables()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
-            particleSystemRegistry.SetShaderVariables(FParticleSystemName[0], this.ShaderRegisterNodeId, FVariables);
+            var shaderVars = FVariables.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+            if (shaderVars.Count > 0)
+                particleSystemRegistry.SetShaderVariables(FParticleSystemName[0], this.ShaderRegisterNodeId, shaderVars);
+            else
+                particleSystemRegistry.RemoveShaderVariables(this.ShaderRegisterNodeId);
         }
 
         private void RemoveShaderVariables()
@@ -327,7 +351,11 @@ namespace DX11.Particles.Core
         private void SetDefines()
         {
             var particleSystemRegistry = ParticleSystemRegistry.Instance;
-            particleSystemRegistry.SetDefines(FParticleSystemName[0], this.ShaderRegisterNodeId, FDefines);
+            var defines = FDefines.Where(d => !string.IsNullOrWhiteSpace(d)).ToList();
+            if (defines.Count > 0)
+                particleSystemRegistry.SetDefines(FParticleSystemName[0], this.ShaderRegisterNodeId, defines);
+            else
+                particleSystemRegistry.RemoveDefines(this.ShaderRegisterNodeId);
         }
 
         private void RemoveDefines()
@@ -388,7 +416,6 @@ namespace DX11.Particles.Core
             {
                 UpdateBufferSettings(SpreadMax);
             }
-
         }
 
         public void Dispose()
@@ -405,8 +432,11 @@ namespace DX11.Particles.Core
                 ParticleSystemBufferSettings psbs = new ParticleSystemBufferSettings(FBufferSemantic[i], FEleCount[i], FValueRange[i], FStride[i], FBufMode[i], Convert.ToBoolean(FResetCounter[i]));
                 psbsl.Add(psbs);
             }
+            if(psbsl.Count > 0)
+                particleSystemRegistry.SetBufferSettings(FParticleSystemName[0], this.BufferNodeId, psbsl);
+            else
+                particleSystemRegistry.RemoveBufferSettings(this.BufferNodeId);
 
-            particleSystemRegistry.SetBufferSettings(FParticleSystemName[0], this.BufferNodeId, psbsl);
         }
 
         private void RemoveBufferSettings()
@@ -420,8 +450,7 @@ namespace DX11.Particles.Core
             RemoveBufferSettings();
             SetBufferSettings(SpreadMax);
         }
-
-
+        
     }
 
 }

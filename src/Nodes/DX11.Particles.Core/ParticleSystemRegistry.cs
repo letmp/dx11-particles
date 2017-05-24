@@ -20,6 +20,45 @@ namespace DX11.Particles.Core
         private static ParticleSystemRegistry _instance;
         public event RegistryChangedHandler Changed;
 
+        private bool _HasChangedParticleSystem;
+        private bool _HasChangedShader;
+        private bool _HasChangedBuffer;
+
+        public void PropagateRegistryChanges()
+        {
+            if (_HasChangedParticleSystem)
+            {
+                Changed?.Invoke(this, new ParticleSystemRegistryEventArgs(false, false));
+                _HasChangedParticleSystem = false;
+            }
+            if (_HasChangedShader)
+            {
+                Changed?.Invoke(this, new ParticleSystemRegistryEventArgs(true, false));
+                _HasChangedShader = false;
+            }
+            if (_HasChangedBuffer)
+            {
+                Changed?.Invoke(this, new ParticleSystemRegistryEventArgs(false, true));
+                _HasChangedBuffer = false;
+            }
+        }
+        /*
+        public bool HasChanged
+        {
+            get { return _HasChangedParticleSystem || _HasChangedShader || _HasChangedBuffer; }
+            set
+            {
+                if (value == (_HasChangedParticleSystem || _HasChangedShader || _HasChangedBuffer)) return;
+                _HasChangedParticleSystem = value;
+                _HasChangedShader = value;
+                _HasChangedBuffer = value;
+                if (!_HasChangedShader)
+                {
+                    Changed?.Invoke(this, new ParticleSystemRegistryEventArgs(true, false));
+                }
+            }
+        }*/
+
         public static ParticleSystemRegistry Instance
         {
             get { return _instance ?? (_instance = new ParticleSystemRegistry()); }
@@ -30,7 +69,7 @@ namespace DX11.Particles.Core
             Add(DEFAULT_ENUM, new ParticleSystemData("DefaultId"));
             UpdateParticleSystemEnum();
         }
-
+        
         public void Add(string particleSystemName, string particleSystemRegisterNodeId)
         {
 
@@ -44,7 +83,8 @@ namespace DX11.Particles.Core
 
             UpdateParticleSystemEnum();
 
-            if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false,false));
+            //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false,false));
+            _HasChangedParticleSystem = true;
         }
 
         public void Remove(ParticleSystemData particleSystemData)
@@ -54,7 +94,8 @@ namespace DX11.Particles.Core
 
             UpdateParticleSystemEnum();
 
-            if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false, false));
+            //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false, false));
+            _HasChangedParticleSystem = true;
         }
 
         public void SetShaderVariables (string particleSystemName, string shaderRegisterNodeId, IEnumerable<string> variables)
@@ -62,7 +103,8 @@ namespace DX11.Particles.Core
             if (Instance.ContainsKey(particleSystemName))
             {
                 Instance[particleSystemName].SetShaderVariables(shaderRegisterNodeId, variables);
-                if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                _HasChangedShader = true;
             }
         }
 
@@ -74,7 +116,8 @@ namespace DX11.Particles.Core
                 if (psd != null)
                 {
                     psd.RemoveShaderVariables(shaderRegisterNodeId);
-                    if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    _HasChangedShader = true;
                 }
             }
             catch (Exception) { }
@@ -85,7 +128,8 @@ namespace DX11.Particles.Core
             if (Instance.ContainsKey(particleSystemName))
             {
                 Instance[particleSystemName].SetDefines(shaderRegisterNodeId, additionalDefines);
-                if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                _HasChangedShader = true;
             }
         }
 
@@ -97,7 +141,8 @@ namespace DX11.Particles.Core
                 if (psd != null)
                 {
                     psd.RemoveDefines(shaderRegisterNodeId);
-                    if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    _HasChangedShader = true;
                 }
             }
             catch (Exception){}
@@ -108,7 +153,8 @@ namespace DX11.Particles.Core
             if (Instance.ContainsKey(particleSystemName))
             {
                 Instance[particleSystemName].SetEmitterSize(shaderRegisterNodeId, emitterSize);
-                if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                _HasChangedShader = true;
             }
         }
 
@@ -120,7 +166,8 @@ namespace DX11.Particles.Core
                 if (psd != null)
                 {
                     psd.RemoveEmitterSize(shaderRegisterNodeId);
-                    if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    _HasChangedShader = true;
                 }
             }
             catch (Exception) { }
@@ -131,7 +178,8 @@ namespace DX11.Particles.Core
             if (Instance.ContainsKey(particleSystemName))
             {
                 Instance[particleSystemName].SetEmitterName(shaderRegisterNodeId, emitterName);
-                if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                _HasChangedShader = true;
             }
         }
 
@@ -146,7 +194,8 @@ namespace DX11.Particles.Core
                 if (psd != null)
                 {
                     psd.RemoveEmitterName(shaderRegisterNodeId);
-                    if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(true, false));
+                    _HasChangedShader = true;
                 }
             }
             catch (Exception) { }
@@ -157,7 +206,8 @@ namespace DX11.Particles.Core
             if (Instance.ContainsKey(particleSystemName))
             {
                 Instance[particleSystemName].SetBufferSettings(bufferRegisterNodeId, bufferSettings);
-                if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false, true));
+                //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false, true));
+                _HasChangedBuffer = true;
             }
         }
 
@@ -169,7 +219,8 @@ namespace DX11.Particles.Core
                 if (psd != null)
                 {
                     psd.RemoveBufferSettings(bufferRegisterNodeId);
-                    if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false, true));
+                    //if (Changed != null) Changed(this, new ParticleSystemRegistryEventArgs(false, true));
+                    _HasChangedBuffer = true;
                 }
             }
             catch (Exception) { }

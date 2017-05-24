@@ -1,31 +1,7 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
-   <BOUNDS type="Window" left="9495" top="8295" width="13860" height="8820">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
+   <BOUNDS type="Window" left="8340" top="4155" width="11670" height="6900">
    </BOUNDS>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="29" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="9270" top="4440" width="3840" height="2730">
-   </BOUNDS>
-   <BOUNDS type="Node" left="9270" top="4440" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Input String" visible="1" slicecount="12" values="PCOUNT=1000000,PELSIZE=17,BUFSIZE=68000000,OFFS_VELOCITY=3,OFFS_FORCE=7,OFFS_AGE=10,OFFS_COLOR=12,OFFS_SIZE=16,KNOW_COLOR=1,KNOW_SIZE=1,XTHREADS=64,YTHREADS=1">
-   </PIN>
-   <PIN pinname="Columns" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="7">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Defines">
-   </PIN>
-   </NODE>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
    <BOUNDS type="Node" left="3480" top="2745" width="100" height="100">
    </BOUNDS>
@@ -96,12 +72,6 @@
    <PIN pinname="Input 3" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="29" dstpinname="Input String" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="7875" y="4305">
-   </LINKPOINT>
-   <LINKPOINT x="9270" y="4305">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="1" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="480" top="5460" width="795" height="240">
    </BOUNDS>
@@ -116,22 +86,6 @@
    </PACK>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Group Size">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="44" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="6615" top="6810" width="1530" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6615" top="6810" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Default" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="Variables">
-   </PIN>
-   <PIN pinname="Output String" visible="1">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="23" srcpinname="String" dstnodeid="15" dstpinname="Input 1" linkstyle="VHV">
    <LINKPOINT x="3855" y="3748">
    </LINKPOINT>
@@ -170,36 +124,8 @@
    </NODE>
    <LINK srcnodeid="48" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Element Count">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="49" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="6990" top="4965" width="1530" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6990" top="4965" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="RWStructuredBuffer">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="50" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="7350" top="5265" width="1470" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="7350" top="5265" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="ParticleBuffer">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="6600" top="7725" width="100" height="100">
+   <BOUNDS type="Node" left="6600" top="5460" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
@@ -211,43 +137,19 @@
    </PIN>
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
+   <BOUNDS type="Box" left="6600" top="5460">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="47" srcpinname="Output Enum" dstnodeid="46" dstpinname="ParticleSystem" hiddenwhenlocked="1" linkstyle="Bezier">
-   <LINKPOINT x="8295" y="4300">
+   <LINKPOINT x="8295" y="3500">
    </LINKPOINT>
-   <LINKPOINT x="7245" y="4400">
+   <LINKPOINT x="7245" y="2800">
    </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="44" srcpinname="Output String" dstnodeid="46" dstpinname="Structure">
-   </LINK>
-   <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="43">
-   <BOUNDS type="Node" left="6615" top="6210" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
-   </PIN>
-   <PIN pinname="Extract" slicecount="1" visible="1" values="0">
-   </PIN>
-   <PIN pinname="Variables" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="6810" top="1305" width="12735" height="11985">
-   </BOUNDS>
-   <PIN pinname="BufferSemantic" visible="1">
-   </PIN>
-   <PIN pinname="BufferType" visible="1">
-   </PIN>
-   <PIN pinname="BufferName" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="43" srcpinname="Variables" dstnodeid="44" dstpinname="Input String" hiddenwhenlocked="0">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Output String" dstnodeid="43" dstpinname="BufferType">
-   </LINK>
-   <LINK srcnodeid="50" srcpinname="Output String" dstnodeid="43" dstpinname="BufferName">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="55" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="11190" top="720" width="480" height="480">
+   <BOUNDS type="Box" left="10140" top="720" width="480" height="480">
    </BOUNDS>
-   <BOUNDS type="Node" left="11190" top="720" width="0" height="0">
+   <BOUNDS type="Node" left="10140" top="720" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
    </PIN>
@@ -284,16 +186,6 @@
    </LINK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
-   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="58">
-   <BOUNDS type="Node" left="7710" top="5805" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Changed" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="58" srcpinname="Changed" dstnodeid="43" dstpinname="Extract">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="69" systemname="IOBox (Enumerations)">
    <BOUNDS type="Box" left="6630" top="720" width="825" height="240">
    </BOUNDS>
@@ -337,6 +229,8 @@
    </BOUNDS>
    <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Query" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="69" srcpinname="Output Enum" dstnodeid="77" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="6645" y="2693">
@@ -344,19 +238,11 @@
    <LINKPOINT x="6390" y="2693">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="77" srcpinname="Shader Path" dstnodeid="58" dstpinname="Filename" linkstyle="Bezier">
-   <LINKPOINT x="6660" y="5250">
-   </LINKPOINT>
-   <LINKPOINT x="7710" y="5250">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="77" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11190" y="2805">
+   <LINKPOINT x="10125" y="2813">
    </LINKPOINT>
-   <LINKPOINT x="6840" y="2805">
+   <LINKPOINT x="7155" y="2813">
    </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="77" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
    </LINK>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="77" dstpinname="Defines">
    </LINK>
@@ -391,5 +277,37 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="77" dstpinname="Layer In">
+   </LINK>
+   <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="6615" top="4860" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
+   </PIN>
+   <PIN pinname="Extract" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Variables" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="6810" top="1305" width="12735" height="11985">
+   </BOUNDS>
+   <PIN pinname="BufferSemantic" visible="1">
+   </PIN>
+   <PIN pinname="BufferType" visible="1">
+   </PIN>
+   <PIN pinname="BufferName" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="77" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="43" srcpinname="Variables" dstnodeid="46" dstpinname="Structure">
+   </LINK>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="79">
+   <BOUNDS type="Box" left="7845" top="5460" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7845" top="5460" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Query">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="77" srcpinname="Query" dstnodeid="79" dstpinname="Input Node">
    </LINK>
    </PATCH>

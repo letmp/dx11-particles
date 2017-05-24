@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="5550" top="1080" width="100" height="100">
    </BOUNDS>
@@ -348,26 +348,6 @@
    <PIN pinname="BufferSemantics" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="ExtractStruct (DX11.Particles.Core)" filename="%VVVV%\packs\dx11-particles\nodes\modules\Core\ExtractStruct (DX11.Particles.Core).v4p" nodename="ExtractStruct (DX11.Particles.Core)" componentmode="Hidden" id="124">
-   <BOUNDS type="Node" left="11070" top="6540" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
-   </PIN>
-   <PIN pinname="BufferType" visible="1">
-   </PIN>
-   <PIN pinname="BufferName" visible="1">
-   </PIN>
-   <PIN pinname="Extract" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Variables" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="127" srcpinname="Output String" dstnodeid="124" dstpinname="BufferType">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Output String" dstnodeid="124" dstpinname="BufferName">
-   </LINK>
-   <LINK srcnodeid="124" srcpinname="Variables" dstnodeid="125" dstpinname="Structure" hiddenwhenlocked="0">
-   </LINK>
    <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="123">
    <BOUNDS type="Node" left="12180" top="6090" width="100" height="100">
    </BOUNDS>
@@ -376,8 +356,6 @@
    <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="123" srcpinname="Changed" dstnodeid="124" dstpinname="Extract">
-   </LINK>
    <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="125" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5610" y="3863">
    </LINKPOINT>
@@ -1264,12 +1242,6 @@
    </LINK>
    <LINK srcnodeid="181" srcpinname="Layer" dstnodeid="135" dstpinname="Layer">
    </LINK>
-   <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8640" y="5993">
-   </LINKPOINT>
-   <LINKPOINT x="11070" y="5993">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="8640" y="5768">
    </LINKPOINT>
@@ -1310,4 +1282,32 @@
    </INFO>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
+   <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="124">
+   <BOUNDS type="Node" left="11070" top="6540" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
+   </PIN>
+   <PIN pinname="BufferType" visible="1">
+   </PIN>
+   <PIN pinname="BufferName" visible="1">
+   </PIN>
+   <PIN pinname="Extract" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Variables" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="127" srcpinname="Output String" dstnodeid="124" dstpinname="BufferType">
+   </LINK>
+   <LINK srcnodeid="126" srcpinname="Output String" dstnodeid="124" dstpinname="BufferName">
+   </LINK>
+   <LINK srcnodeid="124" srcpinname="Variables" dstnodeid="125" dstpinname="Structure" hiddenwhenlocked="0">
+   </LINK>
+   <LINK srcnodeid="123" srcpinname="Changed" dstnodeid="124" dstpinname="Extract">
+   </LINK>
+   <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="8640" y="5993">
+   </LINKPOINT>
+   <LINKPOINT x="11070" y="5993">
+   </LINKPOINT>
+   </LINK>
    </PATCH>
