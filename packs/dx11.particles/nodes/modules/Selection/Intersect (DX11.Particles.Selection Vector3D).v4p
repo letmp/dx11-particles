@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Selection\Intersect (DX11.Particles.Selection Vector3D).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Intersect (DX11.Particles.Selection Vector3D).v4p" systemname="IsInside (DX11.Mcps.Selectors Transform)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\Selectors\IsInside (DX11.Mcps.Selectors Transform).v4p" scrollx="0" scrolly="0">
    <NODE nodename="IOBox (String)" componentmode="InABox" id="2" systemname="IOBox (String)">
    <BOUNDS type="Box" left="2760" top="5055" width="7560" height="1800">
    </BOUNDS>
@@ -41,9 +41,9 @@
    <NODE id="6" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Selection Out|">
    </PIN>
-   <BOUNDS type="Box" left="375" top="9120" width="750" height="240">
+   <BOUNDS type="Box" left="375" top="9420" width="750" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="375" top="9120" width="750" height="240">
+   <BOUNDS type="Node" left="375" top="9420" width="750" height="240">
    </BOUNDS>
    </NODE>
    <BOUNDS type="Window" left="8490" top="3510" width="16110" height="10965">
@@ -307,7 +307,7 @@
    <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="51" dstpinname="VariableType">
    </LINK>
    <NODE systemname="Join (DX11.Particles.Selection)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Join (DX11.Particles.Selection)" componentmode="Hidden" id="0">
-   <BOUNDS type="Node" left="375" top="8310" width="7275" height="270">
+   <BOUNDS type="Node" left="375" top="8610" width="8460" height="270">
    </BOUNDS>
    <PIN pinname="Variable List" slicecount="1" visible="1" values="|float3 position;|">
    </PIN>
@@ -321,7 +321,7 @@
    </PIN>
    <PIN pinname="Constant Buffer Entry" slicecount="1" visible="1" values="|float4x4 tFilter : TFILTER;|">
    </PIN>
-   <BOUNDS type="Box" left="375" top="8310">
+   <BOUNDS type="Box" left="375" top="8610">
    </BOUNDS>
    <PIN pinname="FunctionCall" visible="1">
    </PIN>
@@ -332,6 +332,8 @@
    <PIN pinname="Custom Semantic Entry" visible="1">
    </PIN>
    <PIN pinname="Custom Semantic" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Resource Updated" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function Definition">
@@ -351,9 +353,9 @@
    <LINK srcnodeid="2" srcpinname="Output String" dstnodeid="0" dstpinname="Function">
    </LINK>
    <LINK srcnodeid="51" srcpinname="Custom Semantic Entry" dstnodeid="0" dstpinname="Custom Semantic Entry" linkstyle="Bezier">
-   <LINKPOINT x="1980" y="6195">
+   <LINKPOINT x="1980" y="6295">
    </LINKPOINT>
-   <LINKPOINT x="4005" y="6045">
+   <LINKPOINT x="4005" y="6245">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="35" srcpinname="Output String" dstnodeid="51" dstpinname="Custom Semantic Definition">
@@ -581,9 +583,9 @@
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="61" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8925" top="435" width="795" height="240">
+   <BOUNDS type="Box" left="9075" top="420" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8925" top="435" width="0" height="0">
+   <BOUNDS type="Node" left="9075" top="420" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.5">
    </PIN>
@@ -611,9 +613,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="62" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8985" y="1553">
+   <LINKPOINT x="9085" y="1553">
    </LINKPOINT>
-   <LINKPOINT x="9975" y="1553">
+   <LINKPOINT x="10025" y="1553">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="62" srcpinname="Count" dstnodeid="54" dstpinname="Input 3">
@@ -637,9 +639,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8940" y="3908">
+   <LINKPOINT x="9040" y="3908">
    </LINKPOINT>
-   <LINKPOINT x="8070" y="3908">
+   <LINKPOINT x="8120" y="3908">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="63" srcpinname="Output" dstnodeid="59" dstpinname="Input 3">
@@ -661,9 +663,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8985" y="3120">
+   <LINKPOINT x="9085" y="3120">
    </LINKPOINT>
-   <LINKPOINT x="14835" y="3120">
+   <LINKPOINT x="14885" y="3120">
    </LINKPOINT>
    </LINK>
    <NODE systemname="UniformScale (Transform)" nodename="UniformScale (Transform)" componentmode="Hidden" id="65">
@@ -714,6 +716,104 @@
    <LINKPOINT x="12645" y="8198">
    </LINKPOINT>
    <LINKPOINT x="13290" y="8198">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="69">
+   <BOUNDS type="Node" left="9795" top="7170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="69" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6180" y="4155">
+   </LINKPOINT>
+   <LINKPOINT x="9795" y="4155">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="72">
+   <BOUNDS type="Node" left="9795" top="7560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="69" srcpinname="OnChange" dstnodeid="72" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="75">
+   <BOUNDS type="Node" left="10485" top="7170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="74">
+   <BOUNDS type="Node" left="10485" top="7560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="75" srcpinname="OnChange" dstnodeid="74" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Change (Animation)" nodename="Change (Animation)" componentmode="Hidden" id="77">
+   <BOUNDS type="Node" left="11175" top="7170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="OnChange" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OR (Boolean Spectral)" nodename="OR (Boolean Spectral)" componentmode="Hidden" id="76">
+   <BOUNDS type="Node" left="11175" top="7560" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="77" srcpinname="OnChange" dstnodeid="76" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="56" srcpinname="Y Output Value" dstnodeid="75" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="8025" y="3915">
+   </LINKPOINT>
+   <LINKPOINT x="10500" y="3915">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="61" srcpinname="Y Output Value" dstnodeid="77" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9105" y="3908">
+   </LINKPOINT>
+   <LINKPOINT x="11190" y="3908">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="OR (Boolean)" nodename="OR (Boolean)" componentmode="Hidden" id="78">
+   <BOUNDS type="Node" left="9795" top="7965" width="1425" height="270">
+   </BOUNDS>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 1" visible="1">
+   </PIN>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="72" srcpinname="Output" dstnodeid="78" dstpinname="Input 1">
+   </LINK>
+   <LINK srcnodeid="74" srcpinname="Output" dstnodeid="78" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="76" srcpinname="Output" dstnodeid="78" dstpinname="Input 3">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Output" dstnodeid="0" dstpinname="Resource Updated" linkstyle="VHV">
+   <LINKPOINT x="9795" y="8408">
+   </LINKPOINT>
+   <LINKPOINT x="8835" y="8408">
    </LINKPOINT>
    </LINK>
    </PATCH>

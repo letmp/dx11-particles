@@ -30,8 +30,10 @@ namespace DX11.Particles.Core
         public List<string> ResourceSemanticEntries = new List<string>();
         public List<DX11Resource<IDX11RenderSemantic>> ResourceSemantics = new List<DX11Resource<IDX11RenderSemantic>>();
         
-        public Selector() { }
+        public bool HasUpdate = false;
 
+        public Selector() { }
+        
         public void SetAll( string functionCall, IEnumerable<string> variables,
                             IEnumerable<string> functionDefinitions,
                             IEnumerable<string> customSemanticEntries, IEnumerable<IDX11RenderSemantic> customSemantics,
@@ -71,11 +73,14 @@ namespace DX11.Particles.Core
                 }
 
             }
+
+            HasUpdate = true;
         }
 
         public void SetFunctionCall(string functionCall)
         {
             FunctionCall = functionCall;
+            HasUpdate = true;
         }
 
         public void AddVariables(List<string> variables)
@@ -84,6 +89,7 @@ namespace DX11.Particles.Core
             {
                 if (!Variables.Contains(var)) Variables.Add(var);
             }
+            HasUpdate = true;
         }
         
         public void AddFunction(List<string> function)
@@ -92,6 +98,7 @@ namespace DX11.Particles.Core
             {
                 if (!Functions.Contains(f)) Functions.Add(f);
             }
+            HasUpdate = true;
         }
         
         public void AddCustomSemanticEntries(List<string> customSemanticEntries)
@@ -100,6 +107,7 @@ namespace DX11.Particles.Core
             {
                 if (!CustomSemanticEntries.Contains(cse) && cse != "") CustomSemanticEntries.Add(cse);
             }
+            HasUpdate = true;
         }
 
         public void AddCustomSemantics(List<IDX11RenderSemantic> customSemantics)
@@ -108,6 +116,7 @@ namespace DX11.Particles.Core
             {
                 if (!CustomSemantics.Contains(cs)) CustomSemantics.Add(cs);
             }
+            HasUpdate = true;
         }
 
         public List<IDX11RenderSemantic> GetCustomSemantics()
@@ -121,6 +130,7 @@ namespace DX11.Particles.Core
             {
                 if (!ResourceSemanticEntries.Contains(rse) && rse != "") ResourceSemanticEntries.Add(rse);
             }
+            HasUpdate = true;
         }
 
         public void AddResourceSemantics(List<DX11Resource<IDX11RenderSemantic>> resourceSemantics)
@@ -129,6 +139,7 @@ namespace DX11.Particles.Core
             {
                 if (!ResourceSemantics.Contains(rs)) ResourceSemantics.Add(rs);
             }
+            HasUpdate = true;
         }
 
         public List<DX11Resource<IDX11RenderSemantic>> GetResourceSemantics()
@@ -280,6 +291,9 @@ namespace DX11.Particles.Core
         [Input("Resource Semantic")]
         protected Pin<DX11Resource<IDX11RenderSemantic>> FInResourceSemantic;
 
+        [Input("Resource Updated", IsSingle = true, IsBang = true)]
+        public IDiffSpread<bool> FResUpdate;
+
         [Output("Output")]
         public ISpread<Selector> FOutSelector;
 
@@ -292,9 +306,12 @@ namespace DX11.Particles.Core
         {
             if (this.RenderRequest != null) { RenderRequest(this, this.FHost); }
 
-            if (! ( FVariables.IsChanged || FFunctionCall.IsChanged || FFunction.IsChanged ||
-                FCSEntry.IsChanged || FInCustomSemantic.IsChanged ||
-                FRSEntry.IsChanged || FInResourceSemantic.IsChanged )) return;
+            if (!(FVariables.IsChanged || FFunctionCall.IsChanged || FFunction.IsChanged ||
+                FCSEntry.IsChanged || FRSEntry.IsChanged || FResUpdate[0]))
+            {
+                for (int i = 0; i < FOutSelector.SliceCount; i++) FOutSelector[i].HasUpdate = false; // set updated flag to false -> this is a workaround because IDX11RenderSemantic.IsChanged is always true
+                return;
+            }
 
             FOutSelector.SliceCount = FFunctionCall.SliceCount;
             for (int i = 0; i < FFunctionCall.SliceCount; i++)
@@ -359,7 +376,18 @@ namespace DX11.Particles.Core
 
         public void Evaluate(int SpreadMax)
         {
-            if (!FInSelector.IsChanged || !FEnabled[0]) return;
+            if (!FEnabled[0]) return;
+
+            bool newData = false;
+            for(int i = 0; i < FInSelector.SliceCount; i++)
+            {
+                if (FInSelector[i] != null && FInSelector[i].HasUpdate)
+                {
+                    newData = true;
+                    break;
+                }
+            }
+            if (!newData) return;
 
             if (FPreventDoubles[0]) // output only unique data
             {
