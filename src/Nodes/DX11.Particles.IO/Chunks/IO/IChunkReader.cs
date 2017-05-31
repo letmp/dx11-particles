@@ -41,7 +41,7 @@ namespace DX11.Particles.IO
 
         public void InitChunks()
         {
-            FLogger.Log(LogType.Message, "ChunkReader: Reading ChunkInfo File");
+            FLogger.Log(LogType.Message, "ChunkReader: Opened ChunkInfo File");
             IOMessages.CurrentState = "Reading ChunkInfo File";
 
             try
@@ -75,6 +75,9 @@ namespace DX11.Particles.IO
                     _chunkManager.ElementCount = Convert.ToInt32(lineStrings[1]);
 
                     _chunkManager.InitChunkList();
+
+                    FLogger.Log(LogType.Message, "ChunkReader: Initialized ChunkManager");
+                    IOMessages.CurrentState = "Initialized ChunkManager";
                 }
             }
             catch (Exception e)

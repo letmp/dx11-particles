@@ -11,14 +11,14 @@ using System.ComponentModel.Composition;
 namespace DX11.Particles.IO.Chunks
 {
 
-    class ChunkImporterASCII : ChunkImporterBase
+    class ChunkImporterPLY : ChunkImporterBase
     {
 
         ChunkManager _chunkManager;
 
         public int skipLines = 0;
 
-        public ChunkImporterASCII(ChunkManager chunkManager) : base(chunkManager)
+        public ChunkImporterPLY(ChunkManager chunkManager) : base(chunkManager)
         {
             _chunkManager = chunkManager;
         }
@@ -34,19 +34,44 @@ namespace DX11.Particles.IO.Chunks
                 using (var reader = new StreamReader(stream))
                 {
                     string line;
-                    bool firstLine = true;
+
                     Vector3D boundsMin = new Vector3D();
                     Vector3D boundsMax = new Vector3D();
-                    Lines = 0; // needed to calculate progress
+
+                    bool firstLine = true;
+                    bool header = true;
+                    
+                    string dataStructureString = "";
+                    int lineCounter = 0;
                     Char delimiter = ' ';
 
                     while ((line = await reader.ReadLineAsync()) != null)
                     {
                         
-                        if (line.Length > 0 && Lines >= skipLines)
+                        String[] lineStrings = line.Split(delimiter);
+
+                        if (header)
                         {
+                            if (lineStrings[0] == "element" && lineStrings[1] == "vertex") Lines = int.Parse(lineStrings[2]);
+                            if(lineStrings[0] == "property")
+                            {
+                                if (lineStrings[2] == "x") dataStructureString += "x";
+                                else if (lineStrings[2] == "y") dataStructureString += "y";
+                                else if (lineStrings[2] == "z") dataStructureString += "z";
+                                else if (lineStrings[2] == "red") dataStructureString += "r";
+                                else if (lineStrings[2] == "green") dataStructureString += "g";
+                                else if (lineStrings[2] == "blue") dataStructureString += "b";
+                                else dataStructureString += "_";
+                            }
                             
-                            String[] lineStrings = line.Split(delimiter);
+                            if (lineStrings[0] == "end_header")
+                            {
+                                header = false;
+                                SetDataStructure(dataStructureString);
+                            }
+                        }
+                        else
+                        {
                             double x = double.Parse(lineStrings[DataStructure["x"]], CultureInfo.InvariantCulture);
                             double y = double.Parse(lineStrings[DataStructure["y"]], CultureInfo.InvariantCulture);
                             double z = double.Parse(lineStrings[DataStructure["z"]], CultureInfo.InvariantCulture);
@@ -71,10 +96,10 @@ namespace DX11.Particles.IO.Chunks
                                 boundsMax = newMaxVec;
                             }
                             firstLine = false;
+
+                            lineCounter++;
+                            if (lineCounter == Lines) break; // all vertices are parsed now -> break
                         }
-
-                        Lines++; // update linecount
-
                     }
                     BoundsMax = boundsMax;
                     BoundsMin = boundsMin;
@@ -99,16 +124,20 @@ namespace DX11.Particles.IO.Chunks
                 using (var reader = new StreamReader(stream))
                 {
                     string line;
+                    bool header = true;
                     Char delimiter = ' ';
 
                     while ((line = await reader.ReadLineAsync()) != null)
                     {
                         
-                        if (line.Length > 0 && LinesProcessed >= skipLines)
-                        {
-                            
-                            String[] lineStrings = line.Split(delimiter);
+                        String[] lineStrings = line.Split(delimiter);
 
+                        if (header)
+                        {
+                            if (lineStrings[0] == "end_header") header = false;
+                        }
+                        else
+                        {
                             ParticleData particleData = new ParticleData();
                             Triple<int, int, int> chunkId = new Triple<int, int, int>();
                             chunkId.x = 0; chunkId.y = 0; chunkId.z = 0;
@@ -173,18 +202,18 @@ namespace DX11.Particles.IO.Chunks
                             int chunkIndex = chunkId.x +
                                                 chunkId.y * ChunkCount.x +
                                                 chunkId.z * ChunkCount.x * ChunkCount.y;
-                            
-                            
-                            if(chunkIndex > 0 && chunkIndex < _chunkManager.ChunkList.Count)
+
+
+                            if (chunkIndex > 0 && chunkIndex < _chunkManager.ChunkList.Count)
                             {
                                 Chunk chunk = _chunkManager.ChunkList[chunkIndex];
                                 chunk.BinaryWriter.Write(particleData.GetByteArray());
                                 chunk.UpdateElementCount();
                             }
+
+                            LinesProcessed++; // update count of processed lines -> needed to calculate progress
+                            if (LinesProcessed == Lines) break; // all vertices are parsed now -> break
                         }
-
-                        LinesProcessed++; // update count of processed lines -> needed to calculate progress
-
                     }
 
                     _chunkManager.UpdateElementCount();

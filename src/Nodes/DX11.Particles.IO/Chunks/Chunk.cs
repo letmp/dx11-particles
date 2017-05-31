@@ -51,23 +51,32 @@ namespace DX11.Particles.IO
     public class ChunkAccessData
     {
         public int chunkId;
-        public long streamPosition = 0;
-        public bool isLocked = false;
-        public bool finishedStreaming = false;
 
+        public int streamPosition = 0;
+        public int streamLimit = -1;
+        public int streamDownsampling = 1;
+        public int streamDownsamplingOffset = 0;
+        public bool streamFinished = false;
+        public double streamLocktime = 0;
+
+        public bool isLocked = false;
         System.Timers.Timer timer;
 
-        public ChunkAccessData(int chunkId)
+        public ChunkAccessData(int chunkId, int streamLimit, int streamDownsampling, int streamDownsamplingOffset, double streamLocktime)
         {
             this.chunkId = chunkId;
+            this.streamLimit = streamLimit;
+            this.streamDownsampling = streamDownsampling;
+            this.streamDownsamplingOffset = streamDownsamplingOffset;
+            this.streamLocktime = streamLocktime;
         }
 
-        public void StartLock(double lockTime)
+        public void StartLock()
         {
-            if (lockTime > 0)
+            if (streamLocktime > 0)
             {
                 timer = new System.Timers.Timer();
-                timer.Interval = lockTime;
+                timer.Interval = streamLocktime;
                 timer.Elapsed += Unlock;
                 timer.Enabled = true;
                 this.isLocked = true;
