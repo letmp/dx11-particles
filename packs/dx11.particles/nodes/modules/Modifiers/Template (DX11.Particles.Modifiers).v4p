@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Tutorials\CustomModifiers\ModifierTemplate\Template (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Template (DX11.Particles.Modifiers).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
    <BOUNDS type="Window" left="2940" top="1725" width="21825" height="12900">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
@@ -77,9 +77,9 @@
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Group Size">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="44" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="8775" top="7440" width="1200" height="510">
+   <BOUNDS type="Box" left="7665" top="7440" width="1200" height="510">
    </BOUNDS>
-   <BOUNDS type="Node" left="8775" top="7440" width="0" height="0">
+   <BOUNDS type="Node" left="7665" top="7440" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Default" slicecount="1" values="||">
    </PIN>
@@ -143,9 +143,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="55" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="9075" top="8865" width="1665" height="240">
+   <BOUNDS type="Box" left="7965" top="8865" width="1665" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="9075" top="8865" width="0" height="0">
+   <BOUNDS type="Node" left="7965" top="8865" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="KNOW_COLOR=1">
    </PIN>
@@ -191,7 +191,7 @@
    </PIN>
    </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="8760" top="9255" width="100" height="100">
+   <BOUNDS type="Node" left="7650" top="9255" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystem" slicecount="1" visible="1" values="|ParticleSystem 01|">
    </PIN>
@@ -205,9 +205,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="47" srcpinname="Output Enum" dstnodeid="46" dstpinname="ParticleSystem" hiddenwhenlocked="1" linkstyle="Bezier">
-   <LINKPOINT x="10770" y="4768">
+   <LINKPOINT x="10400" y="4768">
    </LINKPOINT>
-   <LINKPOINT x="9405" y="5418">
+   <LINKPOINT x="8665" y="5418">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="44" srcpinname="Output String" dstnodeid="46" dstpinname="Structure">
@@ -282,52 +282,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
    </PIN>
    </NODE>
-   <NODE id="87" systemname="Modifier_Template (DX11.Effect)" filename="dx11\Modifier_Template.fx" nodename="Modifier_Template (DX11.Effect)" componentmode="Hidden">
-   <BOUNDS type="Node" left="915" top="3975" width="9480" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="915" top="3975">
-   </BOUNDS>
-   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Color Buffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="BinSizeBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="87" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12870" y="2438">
-   </LINKPOINT>
-   <LINKPOINT x="9345" y="2438">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="Layer" dstnodeid="64" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="87" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="85" srcpinname="Output Enum" dstnodeid="87" dstpinname="Technique" linkstyle="Bezier">
-   <LINKPOINT x="9630" y="2453">
-   </LINKPOINT>
-   <LINKPOINT x="8265" y="2453">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="87" dstpinname="Color Buffer" linkstyle="VHV">
-   <LINKPOINT x="6925" y="3553">
-   </LINKPOINT>
-   <LINKPOINT x="7130" y="3003">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Use SelectionId" linkstyle="Bezier">
-   <LINKPOINT x="5710" y="2445">
-   </LINKPOINT>
-   <LINKPOINT x="5555" y="2445">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="88" srcpinname="Output Node" dstnodeid="87" dstpinname="Layer In">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="89">
    <BOUNDS type="Box" left="11550" top="4275" width="7245" height="2355">
    </BOUNDS>
@@ -399,9 +353,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="93">
-   <BOUNDS type="Node" left="10695" top="6975" width="2685" height="270">
+   <BOUNDS type="Node" left="9585" top="6975" width="2685" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10695" top="6975" width="10290" height="1410">
+   <BOUNDS type="Box" left="9585" top="6975" width="10290" height="1410">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; Note that in this example the COMPOSITESTRUCT definition contains &quot;float4 color&quot; besides many other attributes that define the current particle structure. If you open the &quot;Modifier_Template&quot; shader, you will notice that there is a defintion of the particle structure that only contains &quot;float4 color&quot; in the &quot;#else .. #endif&quot; clause. This is, how attributes are registered to the particlesystem. The nodes to the left parse the shader and register attributes to the particlesystem. It is important to put in only attributes that are really used in the modifier shader!  The composition of all modifiers (and selectors) form the final structure of the particlesystem which then is provided with the COMPOSITESTRUCT definition.|">
    </PIN>
@@ -415,9 +369,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="94">
-   <BOUNDS type="Node" left="10935" top="8865" width="2685" height="270">
+   <BOUNDS type="Node" left="9825" top="8865" width="2685" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10935" top="8865" width="10350" height="3180">
+   <BOUNDS type="Box" left="9825" top="8865" width="10350" height="3180">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; Sometimes you want to access attributes that are not mandatory for the particlesystem. The color is a good example. If there is no &quot;Color&quot; modifier in your patch, the particlesystem doesn&apos;t provide color information and particles get drawn in a default color. But if the color attribute is set, we want to draw the particular color.&cr;&lf;&cr;&lf;To determine if a certain attribute is set, you can use custom defines like the one on the left. If you open the code of one of the DX11.Particles.Effect shaders (for example Constant) you can find something like this:&cr;&lf;&cr;&lf;#if defined(KNOW_COLOR)&cr;&lf;       col *= ParticleBuffer[In.particleIndex].color;&cr;&lf;#endif&cr;&lf;&cr;&lf;This garantuees that a shader only accesses attributes that are really registered and compile successfully.|">
    </PIN>
@@ -431,9 +385,9 @@
    </PIN>
    </NODE>
    <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="43">
-   <BOUNDS type="Node" left="8775" top="6960" width="100" height="100">
+   <BOUNDS type="Node" left="7665" top="6960" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Core\">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Modifier_Template.fx">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -450,8 +404,6 @@
    </NODE>
    <LINK srcnodeid="43" srcpinname="Variables" dstnodeid="44" dstpinname="Input String" hiddenwhenlocked="0">
    </LINK>
-   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="95">
    <BOUNDS type="Box" left="6900" top="690" width="795" height="240">
    </BOUNDS>
@@ -462,10 +414,104 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="BinSizeBuffer">
    </PIN>
    </NODE>
+   <NODE id="87" systemname="ModifierTemplate (DX11.Effect)" filename="dx11\ModifierTemplate.fx" nodename="ModifierTemplate (DX11.Effect)" componentmode="Hidden">
+   <BOUNDS type="Node" left="915" top="3975" width="9480" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="915" top="3975">
+   </BOUNDS>
+   <PIN pinname="Use SelectionId" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Color Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="BinSizeBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Shader Path" visible="1">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
+   </PIN>
+   </NODE>
    <LINK srcnodeid="95" srcpinname="Output Node" dstnodeid="87" dstpinname="BinSizeBuffer" linkstyle="Bezier">
    <LINKPOINT x="6915" y="2445">
    </LINKPOINT>
    <LINKPOINT x="6180" y="2445">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="88" srcpinname="Output Node" dstnodeid="87" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Use SelectionId" linkstyle="Bezier" hiddenwhenlocked="0">
+   <LINKPOINT x="5610" y="2445">
+   </LINKPOINT>
+   <LINKPOINT x="5130" y="2445">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="54" srcpinname="Output Node" dstnodeid="87" dstpinname="Color Buffer" linkstyle="VHV">
+   <LINKPOINT x="6925" y="3553">
+   </LINKPOINT>
+   <LINKPOINT x="7130" y="3003">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="85" srcpinname="Output Enum" dstnodeid="87" dstpinname="Technique" linkstyle="Bezier">
+   <LINKPOINT x="9630" y="2453">
+   </LINKPOINT>
+   <LINKPOINT x="8265" y="2453">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="87" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Layer" dstnodeid="64" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="65" srcpinname="Y Output Value" dstnodeid="87" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12870" y="2438">
+   </LINKPOINT>
+   <LINKPOINT x="9345" y="2438">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="87" dstpinname="Defines">
+   </LINK>
+   <NODE systemname="Copier (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\Copier (DX11.Particles.Tools).v4p" nodename="Copier (DX11.Particles.Tools)" componentmode="Hidden" id="100">
+   <BOUNDS type="Node" left="4110" top="5640" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Copy" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="9540" top="7305" width="6465" height="7650">
+   </BOUNDS>
+   <PIN pinname="Shader ID" visible="1">
+   </PIN>
+   <PIN pinname="OnOpen ID" visible="1">
+   </PIN>
+   <PIN pinname="From Filename" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="101">
+   <BOUNDS type="Node" left="4815" top="5160" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Bang" visible="1">
+   </PIN>
+   <PIN pinname="ID" visible="1" pintype="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="101" srcpinname="Bang" dstnodeid="100" dstpinname="Copy">
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="ID" dstnodeid="100" dstpinname="Shader ID" linkstyle="VHV">
+   <LINKPOINT x="10335" y="4928">
+   </LINKPOINT>
+   <LINKPOINT x="4410" y="4928">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="101" srcpinname="ID" dstnodeid="100" dstpinname="OnOpen ID" linkstyle="VHV">
+   <LINKPOINT x="5415" y="5520">
+   </LINKPOINT>
+   <LINKPOINT x="4635" y="5520">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="100" dstpinname="From Filename" linkstyle="VHV">
+   <LINKPOINT x="7650" y="4928">
+   </LINKPOINT>
+   <LINKPOINT x="4170" y="4928">
    </LINKPOINT>
    </LINK>
    </PATCH>
