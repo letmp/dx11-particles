@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="9720">
    <BOUNDS type="Window" left="0" top="570" width="19170" height="13650">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
@@ -170,24 +170,6 @@
    </NODE>
    <LINK srcnodeid="26" srcpinname="Layer" dstnodeid="25" dstpinname="Layer 1">
    </LINK>
-   <NODE systemname="ChunkInfo (DX11.Particles.IO)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\ChunkInfo (DX11.Particles.IO).v4p" nodename="ChunkInfo (DX11.Particles.IO)" componentmode="Hidden" id="28">
-   <BOUNDS type="Node" left="8160" top="17655" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Help Layer" visible="1">
-   </PIN>
-   <PIN pinname="Chunk SizeXYZ" visible="1" slicecount="3" values="2.22180347872098,11.248911979602,1">
-   </PIN>
-   <PIN pinname="Chunk CountXYZ" visible="1" slicecount="3" values="10,1,10">
-   </PIN>
-   <PIN pinname="Bounds MinXYZ" visible="1" slicecount="3" values="-10.7139357042721,-0.0661611460523587,-6.48904745060217">
-   </PIN>
-   <PIN pinname="Active Chunk Index" visible="1" slicecount="23" values="23,22,21,20,30,31,32,40,41,50,33,42,51,60,70,61,52,80,71,43,90,62,81">
-   </PIN>
-   <PIN pinname="Chunk CenterXYZ" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="8160" top="17655">
-   </BOUNDS>
-   </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="30">
    <BOUNDS type="Box" left="8130" top="21150" width="795" height="240">
    </BOUNDS>
@@ -323,12 +305,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="119" srcpinname="Texture Out" dstnodeid="106" dstpinname="Texture">
-   </LINK>
-   <LINK srcnodeid="28" srcpinname="Help Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="9320" y="23773">
-   </LINKPOINT>
-   <LINKPOINT x="10480" y="23823">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="155">
    <BOUNDS type="Box" left="16635" top="22500" width="285" height="240">
@@ -939,9 +915,9 @@
    <LINK srcnodeid="196" srcpinname="Y Output Value" dstnodeid="180" dstpinname="Downsampling">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="299">
-   <BOUNDS type="Box" left="12450" top="18405" width="465" height="900">
+   <BOUNDS type="Box" left="12465" top="18405" width="465" height="900">
    </BOUNDS>
-   <BOUNDS type="Node" left="12450" top="18405" width="0" height="0">
+   <BOUNDS type="Node" left="12465" top="18405" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="6,10,20">
    </PIN>
@@ -961,9 +937,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="300">
-   <BOUNDS type="Box" left="13905" top="18405" width="345" height="900">
+   <BOUNDS type="Box" left="13920" top="18405" width="345" height="900">
    </BOUNDS>
-   <BOUNDS type="Node" left="13905" top="18405" width="0" height="0">
+   <BOUNDS type="Node" left="13920" top="18405" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,4,10">
    </PIN>
@@ -1043,8 +1019,6 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="304" srcpinname="Layer Out" dstnodeid="105" dstpinname="Layer In">
-   </LINK>
-   <LINK srcnodeid="159" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Active Chunk Index" hiddenwhenlocked="1">
    </LINK>
    <NODE systemname="Blend (DX11.RenderState Advanced)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Blend (DX11.RenderState Advanced)" componentmode="Hidden" id="313">
    <BOUNDS type="Node" left="5565" top="29115" width="100" height="100">
@@ -1142,44 +1116,6 @@
    <LINKPOINT x="6045" y="27555">
    </LINKPOINT>
    <LINKPOINT x="7320" y="27555">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="ChunkLOD (DX11.Particles.IO)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\ChunkLOD (DX11.Particles.IO).v4p" nodename="ChunkLOD (DX11.Particles.IO)" componentmode="Hidden" id="298">
-   <BOUNDS type="Node" left="8145" top="19440" width="5820" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="8145" top="19440" width="6010" height="10410">
-   </BOUNDS>
-   <BOUNDS type="Window" left="5295" top="1845" width="11760" height="12135">
-   </BOUNDS>
-   <PIN pinname="Downsampling" visible="1" slicecount="4" values="1,2,6,0">
-   </PIN>
-   <PIN pinname="Distance" visible="1">
-   </PIN>
-   <PIN pinname="ChunkPositionXYZ" visible="1">
-   </PIN>
-   <PIN pinname="ViewProjection" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Offset" visible="1">
-   </PIN>
-   <PIN pinname="ChunkIndex" visible="1">
-   </PIN>
-   <PIN pinname="Position Camera" visible="1" slicecount="3" values="0,0,0">
-   </PIN>
-   <PIN pinname="Position Chunk" visible="1" slicecount="78" values="-1,0,1,1,0,1,-1,0,3,1,0,3,3,0,3,5,0,3,-3,0,5,-1,0,5,1,0,5,3,0,5,5,0,5,7,0,5,-3,0,7,-1,0,7,1,0,7,3,0,7,5,0,7,7,0,7,9,0,7,-3,0,9,-1,0,9,1,0,9,3,0,9,5,0,9,7,0,9,9,0,9">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="299" srcpinname="Y Output Value" dstnodeid="298" dstpinname="Distance">
-   </LINK>
-   <LINK srcnodeid="300" srcpinname="Y Output Value" dstnodeid="298" dstpinname="Downsampling">
-   </LINK>
-   <LINK srcnodeid="28" srcpinname="Chunk CenterXYZ" dstnodeid="298" dstpinname="ChunkPositionXYZ">
-   </LINK>
-   <LINK srcnodeid="298" srcpinname="ChunkIndex" dstnodeid="30" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="298" srcpinname="Downsampling" dstnodeid="196" dstpinname="Y Input Value" linkstyle="Bezier">
-   <LINKPOINT x="13905" y="20340">
-   </LINKPOINT>
-   <LINKPOINT x="12450" y="20490">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Camera (DX11.Particles.Tools FPS)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\Camera (DX11.Particles.Tools FPS).v4p" nodename="Camera (DX11.Particles.Tools FPS)" componentmode="Hidden" id="27">
@@ -1341,9 +1277,9 @@
    <LINK srcnodeid="181" srcpinname="Bounds MinXYZ" dstnodeid="323" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="324">
-   <BOUNDS type="Box" left="8475" top="16140" width="795" height="720">
+   <BOUNDS type="Box" left="8490" top="16140" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="8475" top="16140" width="0" height="0">
+   <BOUNDS type="Node" left="8490" top="16140" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -1381,24 +1317,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="181" srcpinname="Chunk SizeXYZ" dstnodeid="325" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="325" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Chunk SizeXYZ" linkstyle="Bezier">
-   <LINKPOINT x="7320" y="17243">
-   </LINKPOINT>
-   <LINKPOINT x="8145" y="17243">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="324" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Chunk CountXYZ" linkstyle="Bezier">
-   <LINKPOINT x="8505" y="17258">
-   </LINKPOINT>
-   <LINKPOINT x="8505" y="17258">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="323" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Bounds MinXYZ" linkstyle="Bezier">
-   <LINKPOINT x="9720" y="17243">
-   </LINKPOINT>
-   <LINKPOINT x="8835" y="17243">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="326">
    <BOUNDS type="Box" left="14490" top="21150" width="795" height="240">
@@ -1478,10 +1396,6 @@
    <LINKPOINT x="8475" y="20325">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="27" srcpinname="Position" dstnodeid="298" dstpinname="Position Camera">
-   </LINK>
-   <LINK srcnodeid="27" srcpinname="ViewProjection" dstnodeid="298" dstpinname="ViewProjection">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="330">
    <BOUNDS type="Box" left="7545" top="24855" width="1125" height="240">
    </BOUNDS>
@@ -1547,7 +1461,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="315" top="19440" width="4725" height="840">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|The ChunkLOD node determines the chunks that have to be cached and the level of detail by a given camera viewprojection.|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|The VolumeLOD node determines the chunks that have to be cached and the level of detail by a given camera viewprojection.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -1584,4 +1498,92 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="VolumeInfo (DX11.Particles.IO.Chunks)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\VolumeInfo (DX11.Particles.IO.Chunks).v4p" nodename="VolumeInfo (DX11.Particles.IO.Chunks)" componentmode="Hidden" id="28">
+   <BOUNDS type="Node" left="8160" top="17655" width="1065" height="270">
+   </BOUNDS>
+   <PIN pinname="Help Layer" visible="1">
+   </PIN>
+   <PIN pinname="Chunk SizeXYZ" visible="1" slicecount="3" values="2.22180347872098,11.248911979602,1">
+   </PIN>
+   <PIN pinname="Chunk CountXYZ" visible="1" slicecount="3" values="10,1,10">
+   </PIN>
+   <PIN pinname="Bounds MinXYZ" visible="1" slicecount="3" values="-10.7139357042721,-0.0661611460523587,-6.48904745060217">
+   </PIN>
+   <PIN pinname="Active Chunk Index" visible="1" slicecount="23" values="23,22,21,20,30,31,32,40,41,50,33,42,51,60,70,61,52,80,71,43,90,62,81">
+   </PIN>
+   <PIN pinname="Chunk CenterXYZ" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="8160" top="17655">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="28" srcpinname="Help Layer" dstnodeid="25" dstpinname="Layer 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="9320" y="23773">
+   </LINKPOINT>
+   <LINKPOINT x="10480" y="23823">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="159" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Active Chunk Index" hiddenwhenlocked="1">
+   </LINK>
+   <LINK srcnodeid="325" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Chunk SizeXYZ" linkstyle="Bezier">
+   <LINKPOINT x="7320" y="17243">
+   </LINKPOINT>
+   <LINKPOINT x="8145" y="17243">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="324" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Chunk CountXYZ" linkstyle="Bezier">
+   <LINKPOINT x="8520" y="17258">
+   </LINKPOINT>
+   <LINKPOINT x="8520" y="17258">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="323" srcpinname="Y Output Value" dstnodeid="28" dstpinname="Bounds MinXYZ" linkstyle="Bezier">
+   <LINKPOINT x="9720" y="17243">
+   </LINKPOINT>
+   <LINKPOINT x="8895" y="17243">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="VolumeLOD (DX11.Particles.IO.Chunks)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\VolumeLOD (DX11.Particles.IO.Chunks).v4p" nodename="VolumeLOD (DX11.Particles.IO.Chunks)" componentmode="Hidden" id="298">
+   <BOUNDS type="Node" left="8145" top="19440" width="5850" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="8145" top="19440" width="6010" height="10410">
+   </BOUNDS>
+   <BOUNDS type="Window" left="5295" top="1845" width="11760" height="12135">
+   </BOUNDS>
+   <PIN pinname="Downsampling" visible="1" slicecount="4" values="1,2,6,0">
+   </PIN>
+   <PIN pinname="Distance" visible="1">
+   </PIN>
+   <PIN pinname="ChunkPositionXYZ" visible="1" slicecount="300" values="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0">
+   </PIN>
+   <PIN pinname="ViewProjection" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Offset" visible="1">
+   </PIN>
+   <PIN pinname="ChunkIndex" visible="1">
+   </PIN>
+   <PIN pinname="Position Camera" visible="1" slicecount="3" values="0,0,0">
+   </PIN>
+   <PIN pinname="Position Chunk" visible="1" slicecount="78" values="-1,0,1,1,0,1,-1,0,3,1,0,3,3,0,3,5,0,3,-3,0,5,-1,0,5,1,0,5,3,0,5,5,0,5,7,0,5,-3,0,7,-1,0,7,1,0,7,3,0,7,5,0,7,7,0,7,9,0,7,-3,0,9,-1,0,9,1,0,9,3,0,9,5,0,9,7,0,9,9,0,9">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="299" srcpinname="Y Output Value" dstnodeid="298" dstpinname="Distance">
+   </LINK>
+   <LINK srcnodeid="300" srcpinname="Y Output Value" dstnodeid="298" dstpinname="Downsampling">
+   </LINK>
+   <LINK srcnodeid="298" srcpinname="ChunkIndex" dstnodeid="30" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="298" srcpinname="Downsampling" dstnodeid="196" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="13905" y="20340">
+   </LINKPOINT>
+   <LINKPOINT x="12450" y="20490">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Position" dstnodeid="298" dstpinname="Position Camera">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="ViewProjection" dstnodeid="298" dstpinname="ViewProjection">
+   </LINK>
+   <LINK srcnodeid="28" srcpinname="Chunk CenterXYZ" dstnodeid="298" dstpinname="ChunkPositionXYZ">
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
    </PATCH>
