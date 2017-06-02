@@ -11,13 +11,13 @@ namespace VVVV.Extensions
     public class CameraSimpleNode : IPluginEvaluate
     {
         #region fields & pins
-        [Input("Translate", DefaultValues = new[] { 0, 0, -1 })]
+        [Input("Translate", DefaultValues = new[] { 0.0, 0.0, -1 })]
         public ISpread<Vector3D> FTranslate;
 
-        [Input("Rotate", DefaultValues = new[] { 0, 0, 0 })]
+        [Input("Rotate", DefaultValues = new[] { 0.0, 0.0, 0.0 })]
         public ISpread<Vector3D> FRotate;
 
-        [Input("Shift", DefaultValues = new[] { 0, 0 })]
+        [Input("Shift", DefaultValues = new[] { 0.0, 0.0 })]
         public ISpread<Vector2D> FShift;
 
         [Input("FoV", DefaultValues = new[] {0.25, 0,140625})] // 16:9 as default 
