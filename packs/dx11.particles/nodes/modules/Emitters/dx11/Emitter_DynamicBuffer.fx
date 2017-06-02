@@ -65,7 +65,6 @@ void CS_Emit(csin input)
 		Particle p = (Particle) 0;
 		uint size, stride;
 		PositionBuffer.GetDimensions(size,stride);
-		//p.position = PositionBuffer[emitterCounter % size];
 		p.position = PositionBuffer[emitterCounter % size];
 		
 		VelocityBuffer.GetDimensions(size,stride);

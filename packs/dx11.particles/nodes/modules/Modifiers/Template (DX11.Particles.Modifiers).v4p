@@ -387,7 +387,7 @@
    <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="43">
    <BOUNDS type="Node" left="7665" top="6960" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Modifier_Template.fx">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Template.fx">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -414,7 +414,7 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="BinSizeBuffer">
    </PIN>
    </NODE>
-   <NODE id="87" systemname="ModifierTemplate (DX11.Effect)" filename="dx11\ModifierTemplate.fx" nodename="ModifierTemplate (DX11.Effect)" componentmode="Hidden">
+   <NODE id="87" systemname="Modifier_Template (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Template.fx" nodename="Modifier_Template (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="915" top="3975" width="9480" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="915" top="3975">
@@ -472,12 +472,8 @@
    </LINK>
    <LINK srcnodeid="15" srcpinname="Output" dstnodeid="87" dstpinname="Defines">
    </LINK>
-   <NODE systemname="Copier (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\Copier (DX11.Particles.Tools).v4p" nodename="Copier (DX11.Particles.Tools)" componentmode="Hidden" id="100">
-   <BOUNDS type="Node" left="4110" top="5640" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Copy" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="9540" top="7305" width="6465" height="7650">
+   <NODE systemname="Copier (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\Copier (DX11.Particles.Tools).v4p" nodename="Copier (DX11.Particles.Tools)" componentmode="Hidden" id="102">
+   <BOUNDS type="Node" left="3795" top="5985" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Shader ID" visible="1">
    </PIN>
@@ -485,33 +481,35 @@
    </PIN>
    <PIN pinname="From Filename" visible="1">
    </PIN>
-   </NODE>
-   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="101">
-   <BOUNDS type="Node" left="4815" top="5160" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Bang" visible="1">
+   <PIN pinname="Copy" visible="1">
    </PIN>
+   </NODE>
+   <LINK srcnodeid="87" srcpinname="ID" dstnodeid="102" dstpinname="Shader ID" linkstyle="VHV">
+   <LINKPOINT x="10335" y="5100">
+   </LINKPOINT>
+   <LINKPOINT x="4095" y="5100">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="OnOpen (VVVV)" nodename="OnOpen (VVVV)" componentmode="Hidden" id="103">
+   <BOUNDS type="Node" left="4485" top="5445" width="100" height="100">
+   </BOUNDS>
    <PIN pinname="ID" visible="1" pintype="Output">
    </PIN>
+   <PIN pinname="Bang" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="101" srcpinname="Bang" dstnodeid="100" dstpinname="Copy">
-   </LINK>
-   <LINK srcnodeid="87" srcpinname="ID" dstnodeid="100" dstpinname="Shader ID" linkstyle="VHV">
-   <LINKPOINT x="10335" y="4928">
+   <LINK srcnodeid="103" srcpinname="ID" dstnodeid="102" dstpinname="OnOpen ID" linkstyle="VHV">
+   <LINKPOINT x="5085" y="5835">
    </LINKPOINT>
-   <LINKPOINT x="4410" y="4928">
+   <LINKPOINT x="4320" y="5835">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="101" srcpinname="ID" dstnodeid="100" dstpinname="OnOpen ID" linkstyle="VHV">
-   <LINKPOINT x="5415" y="5520">
+   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="102" dstpinname="From Filename" linkstyle="VHV">
+   <LINKPOINT x="7650" y="5100">
    </LINKPOINT>
-   <LINKPOINT x="4635" y="5520">
+   <LINKPOINT x="3855" y="5100">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="87" srcpinname="Shader Path" dstnodeid="100" dstpinname="From Filename" linkstyle="VHV">
-   <LINKPOINT x="7650" y="4928">
-   </LINKPOINT>
-   <LINKPOINT x="4170" y="4928">
-   </LINKPOINT>
+   <LINK srcnodeid="103" srcpinname="Bang" dstnodeid="102" dstpinname="Copy">
    </LINK>
    </PATCH>
