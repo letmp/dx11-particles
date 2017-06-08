@@ -60,7 +60,7 @@ void CS_Emit(csin input)
 	float2 texUv = texId * float2(w / Resolution.x , h / Resolution.y) / float2(w,h);
 	float halfPixel = (1.0f / Resolution.x) * 0.5f;
 	texUv += halfPixel;
-	
+
 	// get texture coordinate for sampling the rgb texture
 	float2 texUvColor = texRGBDepth.SampleLevel(sPoint,texUv,0).rg;
 	if(useRawData){
@@ -68,7 +68,7 @@ void CS_Emit(csin input)
 		texUvColor.y /= 1080.0f;
 	}
 	
-	float3 position =texWorld.SampleLevel(sPoint,texUv,0).xyz;
+	float3 position =texWorld.SampleLevel(sPoint,texUv,0).xyz *  float3(-1,1,1);
 	
 	// set particle if depth-value and texUvColor coords are valid
 	if ( position.z > 0 && !(texUvColor.x < 0 || texUvColor.x > 1 || texUvColor.y < 0 || texUvColor.y > 1)){

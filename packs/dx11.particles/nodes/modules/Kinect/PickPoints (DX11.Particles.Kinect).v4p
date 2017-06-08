@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" systemname="PickPoints (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="1455" top="915" width="15630" height="14835">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.5.dtd" >
+   <PATCH nodename="C:\apps\code\vvvv\vvvv_50beta35.5_x64\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" systemname="PickPoints (DX11.Particles.Kinect)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\PickPoints (DX11.Particles.Kinect).v4p" scrollx="0" scrolly="7200">
+   <BOUNDS type="Window" left="10500" top="1095" width="15630" height="14835">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
@@ -69,9 +69,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="95" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="1785" top="17715" width="975" height="720">
+   <BOUNDS type="Box" left="1785" top="19365" width="975" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="1785" top="17715" width="0" height="0">
+   <BOUNDS type="Node" left="1785" top="19365" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -179,7 +179,7 @@
    </BOUNDS>
    </NODE>
    <NODE systemname="Transform (Transform 3d Vector)" nodename="Transform (Transform 3d Vector)" componentmode="Hidden" id="89">
-   <BOUNDS type="Node" left="6270" top="17715" width="100" height="100">
+   <BOUNDS type="Node" left="6270" top="18165" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Transform Out" visible="1">
    </PIN>
@@ -305,14 +305,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="82" srcpinname="OutputXYZ" dstnodeid="81" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="81" srcpinname="Output" dstnodeid="95" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="81" srcpinname="Output" dstnodeid="89" dstpinname="Translate XYZ" hiddenwhenlocked="0" linkstyle="VHV">
-   <LINKPOINT x="1845" y="17528">
-   </LINKPOINT>
-   <LINKPOINT x="6465" y="17528">
-   </LINKPOINT>
    </LINK>
    <NODE systemname="Sphere (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Sphere (DX11.Geometry)" componentmode="Hidden" id="80">
    <BOUNDS type="Node" left="6135" top="18585" width="100" height="100">
@@ -976,7 +968,7 @@
    <LINKPOINT x="5345" y="9998">
    </LINKPOINT>
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.8">
    </PACK>
    <NODE id="108" systemname="Kinect_PickPoints (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\dx11\Kinect_PickPoints.fx" nodename="Kinect_PickPoints (DX11.Effect)" componentmode="Hidden">
    <BOUNDS type="Node" left="2115" top="15465" width="2505" height="270">
@@ -1044,4 +1036,24 @@
    </NODE>
    <LINK srcnodeid="116" srcpinname="Output Node" dstnodeid="56" dstpinname="Texture">
    </LINK>
+   <NODE systemname="AvoidSpecialNumbers (Value)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="AvoidSpecialNumbers (Value)" componentmode="Hidden" id="117">
+   <BOUNDS type="Node" left="1770" top="17535" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="81" srcpinname="Output" dstnodeid="117" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="95" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="117" srcpinname="Output" dstnodeid="89" dstpinname="Translate XYZ" linkstyle="VHV">
+   <LINKPOINT x="1830" y="17970">
+   </LINKPOINT>
+   <LINKPOINT x="6465" y="17970">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
    </PATCH>
