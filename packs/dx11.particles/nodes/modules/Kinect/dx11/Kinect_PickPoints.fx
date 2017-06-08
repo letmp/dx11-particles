@@ -29,7 +29,7 @@ void CS( uint3 i : SV_DispatchThreadID)
 	pos.x = ((uv[i.x].x - 0.5) * depth * XtoZ * -1);
 	pos.y = ((0.5 - uv[i.x].y ) * depth * YtoZ);
 	pos.z = depth;*/
-	float3 pos = texWorld.SampleLevel(sPoint,uv[i.x],0).xyz;
+	float3 pos = texWorld.SampleLevel(sPoint,uv[i.x],0).xyz * float3(-1,1,1);
 	pos = mul(float4(pos,1), tW).xyz;
 	
 	rwbuffer[i.x] = pos.xyz;
