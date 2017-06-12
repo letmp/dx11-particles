@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles Instanced) help.v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles.Tools Instanced) help.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="1530" top="2175" width="13170" height="11520">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="3">
@@ -429,7 +429,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7605" top="1335" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="50">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="34">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -558,50 +558,6 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE id="20" systemname="GeometryBuffer (DX11.Particles Instanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles Instanced).v4p" nodename="GeometryBuffer (DX11.Particles Instanced)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <BOUNDS type="Node" left="4185" top="6870" width="3690" height="270">
-   </BOUNDS>
-   <PIN pinname="Geometry" visible="1" slicecount="2" pintype="Input" values=",">
-   </PIN>
-   <BOUNDS type="Window" left="6585" top="3705" width="10005" height="9750">
-   </BOUNDS>
-   <PIN pinname="Instance Start Index" visible="1" slicecount="2" pintype="Input" values="50,75">
-   </PIN>
-   <PIN pinname="Vertex Count" visible="1" pintype="Output" slicecount="1" values="159144">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="99" values=",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,">
-   </PIN>
-   <PIN pinname="Instance Count" visible="1" pintype="Input" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Buffer Out" visible="1" pintype="Output">
-   </PIN>
-   <BOUNDS type="Box" left="1500" top="2580" width="4800" height="3600">
-   </BOUNDS>
-   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Texture In" pintype="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Transform Buffer In" pintype="Input" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Enabled" pintype="Input" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Window Handle" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="Patch" pintype="Output" visible="-1">
-   </PIN>
-   <PIN pinname="Geometry Out" pintype="Output" visible="1">
-   </PIN>
-   <PIN pinname="ID" pintype="Output" visible="-1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="20" dstpinname="Instance Count" linkstyle="Bezier">
-   <LINKPOINT x="4845" y="6150">
-   </LINKPOINT>
-   <LINKPOINT x="5640" y="6150">
-   </LINKPOINT>
-   </LINK>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
@@ -616,8 +572,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="20" srcpinname="Geometry Out" dstnodeid="56" dstpinname="Input Node">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="57" exposed="0">
    <BOUNDS type="Box" left="1200" top="4890" width="825" height="435">
    </BOUNDS>
@@ -634,12 +588,6 @@
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="57" srcpinname="Output Node" dstnodeid="20" dstpinname="Geometry" linkstyle="Bezier">
-   <LINKPOINT x="1260" y="6083">
-   </LINKPOINT>
-   <LINKPOINT x="4185" y="6083">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="16" srcpinname="Output" dstnodeid="57" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="58" exposed="0">
@@ -664,12 +612,6 @@
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="20" dstpinname="Vertex Count" linkstyle="Bezier">
-   <LINKPOINT x="3315" y="6083">
-   </LINKPOINT>
-   <LINKPOINT x="4890" y="6083">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="5" srcpinname="Output" dstnodeid="58" dstpinname="Y Input Value">
    </LINK>
    <NODE systemname="Vector (2d Join)" nodename="Vector (2d Join)" componentmode="Hidden" id="61">
@@ -737,7 +679,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9210" top="1335" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="7">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="8">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -806,12 +748,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Transform In|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="20" dstpinname="Transform In" linkstyle="Bezier">
-   <LINKPOINT x="6390" y="6000">
-   </LINKPOINT>
-   <LINKPOINT x="6390" y="6000">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="38" srcpinname="Output" dstnodeid="68" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="69">
@@ -824,18 +760,12 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="69" srcpinname="Output Node" dstnodeid="20" dstpinname="Texture In" linkstyle="Bezier">
-   <LINKPOINT x="10005" y="5985">
-   </LINKPOINT>
-   <LINKPOINT x="7155" y="5985">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="47" srcpinname="Texture Out" dstnodeid="69" dstpinname="Input Node">
    </LINK>
    <NODE systemname="GeometryBuffer_Debug (DX11.Effect)" filename="dx11\GeometryBuffer_Debug.fx" nodename="GeometryBuffer_Debug (DX11.Effect)" componentmode="Hidden" id="70">
    <BOUNDS type="Node" left="3615" top="8520" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Geometry" visible="1">
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -848,4 +778,76 @@
    </LINK>
    <LINK srcnodeid="70" srcpinname="Layer" dstnodeid="33" dstpinname="Layer 2">
    </LINK>
+   <NODE id="20" systemname="GeometryBuffer (DX11.Particles.Tools Instanced)" filename="GeometryBuffer (DX11.Particles.Tools Instanced).v4p" nodename="GeometryBuffer (DX11.Particles.Tools Instanced)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="4185" top="6870" width="3705" height="270">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1" slicecount="2" pintype="Input" values=",">
+   </PIN>
+   <BOUNDS type="Window" left="6585" top="3705" width="10005" height="9750">
+   </BOUNDS>
+   <PIN pinname="Instance Start Index" visible="1" slicecount="2" pintype="Input" values="50,75">
+   </PIN>
+   <PIN pinname="Vertex Count" visible="1" pintype="Output" slicecount="1" values="159144">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="99" values=",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,">
+   </PIN>
+   <PIN pinname="Instance Count" visible="1" pintype="Input" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Buffer Out" visible="1" pintype="Output">
+   </PIN>
+   <BOUNDS type="Box" left="1500" top="2580" width="4800" height="3600">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture In" pintype="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Transform Buffer In" pintype="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Enabled" pintype="Input" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Evaluate" pintype="Input" visible="-1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Window Handle" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Patch" pintype="Output" visible="-1">
+   </PIN>
+   <PIN pinname="Geometry Out" pintype="Output" visible="1">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="17" srcpinname="Y Output Value" dstnodeid="20" dstpinname="Instance Count" linkstyle="Bezier">
+   <LINKPOINT x="4845" y="6150">
+   </LINKPOINT>
+   <LINKPOINT x="5640" y="6150">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="20" srcpinname="Geometry Out" dstnodeid="56" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="57" srcpinname="Output Node" dstnodeid="20" dstpinname="Geometry" linkstyle="Bezier">
+   <LINKPOINT x="1260" y="6083">
+   </LINKPOINT>
+   <LINKPOINT x="4185" y="6083">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="58" srcpinname="Y Output Value" dstnodeid="20" dstpinname="Vertex Count" linkstyle="Bezier">
+   <LINKPOINT x="3315" y="6083">
+   </LINKPOINT>
+   <LINKPOINT x="4890" y="6083">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="68" srcpinname="Output Node" dstnodeid="20" dstpinname="Transform In" linkstyle="Bezier">
+   <LINKPOINT x="6390" y="6000">
+   </LINKPOINT>
+   <LINKPOINT x="6390" y="6000">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="69" srcpinname="Output Node" dstnodeid="20" dstpinname="Texture In" linkstyle="Bezier">
+   <LINKPOINT x="10005" y="5985">
+   </LINKPOINT>
+   <LINKPOINT x="7155" y="5985">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
    </PATCH>
