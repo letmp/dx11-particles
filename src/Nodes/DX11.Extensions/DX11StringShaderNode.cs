@@ -218,7 +218,7 @@ namespace VVVV.DX11.Nodes
         
         public bool HasDynamicPins(DX11Effect shader)
         {
-            
+            if (shader.DefaultEffect == null) return false;
             for (int i = 0; i < shader.DefaultEffect.Description.GlobalVariableCount; i++)
             {
                 EffectVariable var = shader.DefaultEffect.GetVariableByIndex(i);
@@ -381,7 +381,7 @@ namespace VVVV.DX11.Nodes
             {
                 this.deviceshaderdata[context] = new DX11ShaderData(context, this.FShader);
             }
-            if (!this.shaderVariableCache.Contains(context))
+            if (!this.shaderVariableCache.Contains(context) && this.deviceshaderdata[context].ShaderInstance != null)
             {
                 this.shaderVariableCache[context] = new DX11ShaderVariableCache(context, this.deviceshaderdata[context].ShaderInstance, this.varmanager);
             }

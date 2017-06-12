@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Tools\FilterBuffer (DX11.Particles.Tools Selection).v4p" systemname="Filter (DX11.Particles.Selectors)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selectors\Filter (DX11.Particles.Selectors).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Tools\FilterBuffer (DX11.Particles.Tools Selection).v4p" systemname="Filter (DX11.Particles.Selectors)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selectors\Filter (DX11.Particles.Selectors).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="870" top="600" width="14280" height="13695">
    </BOUNDS>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
@@ -171,9 +171,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="48" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2460" top="8895" width="2190" height="555">
+   <BOUNDS type="Box" left="2370" top="9195" width="2190" height="555">
    </BOUNDS>
-   <BOUNDS type="Node" left="2460" top="8895" width="0" height="0">
+   <BOUNDS type="Node" left="2370" top="9195" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="2" visible="1" values="ALIVEPOINTERBUFFER,ALIVECOUNTERBUFFER">
    </PIN>
@@ -193,25 +193,19 @@
    </PIN>
    </NODE>
    <NODE systemname="Vector (2d Join)" nodename="Vector (2d Join)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="5685" top="8475" width="100" height="100">
+   <BOUNDS type="Node" left="5310" top="8790" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="X" visible="1">
+   <PIN pinname="X" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Y" slicecount="1" values="1">
    </PIN>
    <PIN pinname="XY" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="36" srcpinname="ParticleSystem ElementCount" dstnodeid="49" dstpinname="X" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10020" y="6440">
-   </LINKPOINT>
-   <LINKPOINT x="6120" y="6490">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="50" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="5685" top="8895" width="765" height="585">
+   <BOUNDS type="Box" left="5310" top="9195" width="765" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="5685" top="8895" width="0" height="0">
+   <BOUNDS type="Node" left="5310" top="9195" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -233,9 +227,9 @@
    <LINK srcnodeid="49" srcpinname="XY" dstnodeid="50" dstpinname="Y Input Value">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="52" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="6750" top="8895" width="765" height="585">
+   <BOUNDS type="Box" left="6330" top="9195" width="765" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="6750" top="8895" width="0" height="0">
+   <BOUNDS type="Node" left="6330" top="9195" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -255,9 +249,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="53" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="7845" top="8895" width="810" height="585">
+   <BOUNDS type="Box" left="7290" top="9195" width="810" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="7845" top="8895" width="0" height="0">
+   <BOUNDS type="Node" left="7290" top="9195" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="2" visible="1" values="Default,Counter">
    </PIN>
@@ -271,9 +265,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="54" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="8910" top="8895" width="450" height="585">
+   <BOUNDS type="Box" left="8295" top="9195" width="450" height="585">
    </BOUNDS>
-   <BOUNDS type="Node" left="8910" top="8895" width="0" height="0">
+   <BOUNDS type="Node" left="8295" top="9195" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0,1">
    </PIN>
@@ -323,9 +317,9 @@
    <LINK srcnodeid="7" srcpinname="Output String" dstnodeid="42" dstpinname="BufferSemantic Filter">
    </LINK>
    <NODE systemname="Renderer (DX11 MultiStructuredBuffer)" filename="..\..\..\..\..\..\..\mcropack\packs\mp.dx\nodes\plugins\DX11Utils\x64\DX11Utils.dll" nodename="Renderer (DX11 MultiStructuredBuffer)" componentmode="Hidden" id="139">
-   <BOUNDS type="Node" left="1395" top="9750" width="11865" height="270">
+   <BOUNDS type="Node" left="1395" top="10050" width="11865" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="1395" top="9750">
+   <BOUNDS type="Box" left="1395" top="10050">
    </BOUNDS>
    <PIN pinname="Buffers" visible="1">
    </PIN>
@@ -411,10 +405,6 @@
    <LINK srcnodeid="139" srcpinname="Buffers" dstnodeid="140" dstpinname="Input">
    </LINK>
    <LINK srcnodeid="48" srcpinname="Output String" dstnodeid="139" dstpinname="Semantic">
-   </LINK>
-   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="139" dstpinname="Element Count">
-   </LINK>
-   <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="139" dstpinname="Stride">
    </LINK>
    <LINK srcnodeid="53" srcpinname="Output Enum" dstnodeid="139" dstpinname="Buffer Mode">
    </LINK>
@@ -727,5 +717,29 @@
    </LINKPOINT>
    <LINKPOINT x="2130" y="8190">
    </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="50" srcpinname="Y Output Value" dstnodeid="139" dstpinname="Element Count">
+   </LINK>
+   <LINK srcnodeid="52" srcpinname="Y Output Value" dstnodeid="139" dstpinname="Stride">
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
+   <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="169">
+   <BOUNDS type="Node" left="5295" top="8385" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="36" srcpinname="ParticleSystem ElementCount" dstnodeid="169" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10410" y="6413">
+   </LINKPOINT>
+   <LINKPOINT x="5355" y="6413">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="169" srcpinname="Output" dstnodeid="49" dstpinname="X">
    </LINK>
    </PATCH>

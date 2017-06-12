@@ -414,6 +414,7 @@ namespace DX11.Particles.Core
         {
             if (FBufferSemantic.IsChanged || FEleCount.IsChanged || FValueRange.IsChanged || FStride.IsChanged || FBufMode.IsChanged || FResetCounter.IsChanged || FParticleSystemName.IsChanged)
             {
+                if(FBufferSemantic.SliceCount > 0 && FEleCount.SliceCount > 0 && FValueRange.SliceCount > 0 && FStride.SliceCount > 0 && FBufMode.SliceCount > 0 && FResetCounter.SliceCount > 0)
                 UpdateBufferSettings(SpreadMax);
             }
         }
@@ -429,8 +430,10 @@ namespace DX11.Particles.Core
             List<ParticleSystemBufferSettings> psbsl = new List<ParticleSystemBufferSettings>();
             for (int i = 0; i < SpreadMax; i++)
             {
+                
                 ParticleSystemBufferSettings psbs = new ParticleSystemBufferSettings(FBufferSemantic[i], FEleCount[i], FValueRange[i], FStride[i], FBufMode[i], Convert.ToBoolean(FResetCounter[i]));
                 psbsl.Add(psbs);
+                
             }
             if(psbsl.Count > 0)
                 particleSystemRegistry.SetBufferSettings(FParticleSystemName[0], this.BufferNodeId, psbsl);
