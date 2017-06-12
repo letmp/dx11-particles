@@ -38,8 +38,6 @@ void CS_IterateSimple(csin input)
 		if(m > 0) acceleration /= m;
  	#endif
 	ParticleBuffer[particleIndex].velocity += acceleration * psTime.y;
-
-	ParticleBuffer[particleIndex].velocity += acceleration * psTime.y;
 	ParticleBuffer[particleIndex].position += ParticleBuffer[particleIndex].velocity * psTime.y;
 }
 
@@ -60,8 +58,8 @@ void CS_IterateAverageVelocities(csin input)
 		float m = ParticleBuffer[particleIndex].mass;
 		if(m > 0) acceleration /= m;
  	#endif
+	
 	ParticleBuffer[particleIndex].velocity += acceleration * psTime.y;
-
 	ParticleBuffer[particleIndex].position += ( ParticleBuffer[particleIndex].velocity + velOld ) / 2 * psTime.y;
 		
 }
