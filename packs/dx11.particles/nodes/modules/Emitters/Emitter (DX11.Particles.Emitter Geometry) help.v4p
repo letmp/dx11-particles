@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="600" top="2220" width="12915" height="12390">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -420,28 +420,6 @@
    <LINKPOINT x="5870" y="7858">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="GeometryBuffer (DX11.Particles Instanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles Instanced).v4p" nodename="GeometryBuffer (DX11.Particles Instanced)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="1650" top="4005" width="2625" height="270">
-   </BOUNDS>
-   <PIN pinname="Buffer Out" visible="1">
-   </PIN>
-   <PIN pinname="Geometry" visible="1">
-   </PIN>
-   <PIN pinname="Vertex Count" visible="1">
-   </PIN>
-   <PIN pinname="Texture In" visible="1">
-   </PIN>
-   <PIN pinname="Instance Count" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="47" srcpinname="Geometry Out" dstnodeid="46" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Vertex Count" dstnodeid="46" dstpinname="Vertex Count" linkstyle="PolyLine">
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Texture Out" dstnodeid="46" dstpinname="Texture In">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="92">
    <BOUNDS type="Box" left="9465" top="4575" width="795" height="240">
    </BOUNDS>
@@ -554,8 +532,6 @@
    <LINKPOINT x="6030" y="6015">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="46" srcpinname="Vertex Count" dstnodeid="97" dstpinname="Y Input Value">
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="98">
    <BOUNDS type="Box" left="2910" top="4575" width="795" height="240">
    </BOUNDS>
@@ -572,6 +548,32 @@
    <LINKPOINT x="5700" y="6008">
    </LINKPOINT>
    </LINK>
+   <NODE systemname="GeometryBuffer (DX11.Particles.Tools Instanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles.Tools Instanced).v4p" nodename="GeometryBuffer (DX11.Particles.Tools Instanced)" componentmode="Hidden" id="46">
+   <BOUNDS type="Node" left="1650" top="4005" width="2625" height="270">
+   </BOUNDS>
+   <PIN pinname="Buffer Out" visible="1">
+   </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Vertex Count" visible="1">
+   </PIN>
+   <PIN pinname="Texture In" visible="1">
+   </PIN>
+   <PIN pinname="Instance Count" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="47" srcpinname="Geometry Out" dstnodeid="46" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="Vertex Count" dstnodeid="46" dstpinname="Vertex Count" linkstyle="PolyLine">
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Texture Out" dstnodeid="46" dstpinname="Texture In">
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Vertex Count" dstnodeid="97" dstpinname="Y Input Value">
+   </LINK>
    <LINK srcnodeid="46" srcpinname="Buffer Out" dstnodeid="98" dstpinname="Input Node">
    </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
    </PATCH>
