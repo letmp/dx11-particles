@@ -1,0 +1,42 @@
+//@author: tmp
+//@help: Converts a position texture to a binary texture where pixels are white when their neighbour distances are below a threshold
+//@tags: texture
+//@credits: 
+
+Texture2D texture2d : PREVIOUS;
+float Threshold = 0.2;
+
+SamplerState linearSampler : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_POINT;
+    AddressU = Clamp;
+    AddressV = Clamp;
+};
+
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+
+
+float4 PS(psInput input) : SV_Target
+{
+	float4 c = float4(0,0,0,0);
+	float3 col = texture2d.Sample(linearSampler,input.uv).xyz;	
+	float brightness = (0.299 * abs(col.r) + 0.587 * abs(col.g) + 0.114 * abs(col.b));
+	if (brightness >= Threshold) c = float4(1,1,1,1);		
+	return c;
+}
+
+
+technique10 Process
+{
+	pass P0 <string format="R8G8B8A8_UNorm";>
+	{
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+
+
+
