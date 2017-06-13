@@ -371,22 +371,59 @@ namespace DX11.Particles.Core
 
         [Output("Resource Semantics")]
         public ISpread<ISpread<DX11Resource<IDX11RenderSemantic>>> FOutResourceSemantic;
-        
+
+        bool wasDisabled = false;
+        List<string> functionCalls = new List<string>();
         #endregion fields & pins
 
         public void Evaluate(int SpreadMax)
         {
-            if (!FEnabled[0]) return;
-
-            bool newData = false;
-            for(int i = 0; i < FInSelector.SliceCount; i++)
+            if (!FEnabled[0])
             {
-                if (FInSelector[i] != null && FInSelector[i].HasUpdate)
+                wasDisabled = true;
+                return;
+            }
+
+            // check for changes
+            bool newData = false;
+
+            // has number of functioncalls changed?
+            if (FInSelector.SliceCount != functionCalls.Count)
+            {
+                newData = true;
+                functionCalls.AddRange(FInSelector.Select(item => item.FunctionCall));
+            }
+
+            // have functioncalls changed?
+            if (!newData)
+            {
+                for (int i = 0; i < FInSelector.SliceCount; i++)
                 {
-                    newData = true;
-                    break;
+                    if (FInSelector[i].FunctionCall != functionCalls[i])
+                    {
+                        newData = true;
+                        functionCalls[i] = FInSelector[i].FunctionCall;
+                    }
                 }
             }
+
+            // was there an update in selectors?
+            if (!newData)
+            {
+                for (int i = 0; i < FInSelector.SliceCount; i++)
+                {
+                    if ((FInSelector[i] != null && FInSelector[i].HasUpdate))
+                    {
+                        newData = true;
+                        break;
+                    }
+                }
+            }
+            
+            // re-enabled?
+            if (!newData && wasDisabled) { wasDisabled = false;  newData = true; }
+
+            // abort if nothing has changed
             if (!newData) return;
 
             if (FPreventDoubles[0]) // output only unique data
