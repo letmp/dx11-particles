@@ -388,7 +388,7 @@ namespace DX11.Particles.Core
             bool newData = false;
 
             // has number of functioncalls changed?
-            if (FInSelector.SliceCount != functionCalls.Count)
+            if (FInSelector.SliceCount != functionCalls.Count && FInSelector[0] != null)
             {
                 newData = true;
                 functionCalls.AddRange(FInSelector.Select(item => item.FunctionCall));
@@ -399,7 +399,7 @@ namespace DX11.Particles.Core
             {
                 for (int i = 0; i < FInSelector.SliceCount; i++)
                 {
-                    if (FInSelector[i].FunctionCall != functionCalls[i])
+                    if (FInSelector[i] != null && FInSelector[i].FunctionCall != functionCalls[i])
                     {
                         newData = true;
                         functionCalls[i] = FInSelector[i].FunctionCall;
@@ -412,7 +412,7 @@ namespace DX11.Particles.Core
             {
                 for (int i = 0; i < FInSelector.SliceCount; i++)
                 {
-                    if ((FInSelector[i] != null && FInSelector[i].HasUpdate))
+                    if (FInSelector[i] != null && FInSelector[i].HasUpdate)
                     {
                         newData = true;
                         break;
