@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
-   <BOUNDS type="Window" left="8340" top="4155" width="11670" height="6900">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers Texture2D).v4p" scrollx="0" scrolly="0" systemname="VelocityByTexture (DX11.Particles.Modifiers)" filename="C:\Users\antok\Dropbox\_dx11\_projects\_particle_game_clean\modules\Modifiers\VelocityByTexture (DX11.Particles.Modifiers).v4p">
+   <BOUNDS type="Window" left="3075" top="3645" width="11670" height="6900">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
    <BOUNDS type="Node" left="3480" top="2745" width="100" height="100">
@@ -187,11 +187,11 @@
    <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
    </PACK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="69" systemname="IOBox (Enumerations)">
-   <BOUNDS type="Box" left="6630" top="720" width="825" height="240">
+   <BOUNDS type="Box" left="7380" top="720" width="825" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="6630" top="720" width="0" height="0">
+   <BOUNDS type="Node" left="7380" top="720" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Add">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="Set">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Technique">
    </PIN>
@@ -220,48 +220,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <NODE id="77" systemname="Modifier_Force_Texture2D (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Force_Texture2D.fx" nodename="Modifier_Force_Texture2D (DX11.Effect)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
-   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="495" top="4440" width="2400" height="1800">
-   </BOUNDS>
-   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
-   </BOUNDS>
-   <PIN pinname="Layer In" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Query" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="69" srcpinname="Output Enum" dstnodeid="77" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="6645" y="2693">
-   </LINKPOINT>
-   <LINKPOINT x="6390" y="2693">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="77" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10125" y="2813">
-   </LINKPOINT>
-   <LINKPOINT x="7155" y="2813">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="77" dstpinname="Defines">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="77" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="77" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="73" srcpinname="Output Node" dstnodeid="77" dstpinname="tVP" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4920" y="2700">
-   </LINKPOINT>
-   <LINKPOINT x="4200" y="2700">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="75" srcpinname="Output Node" dstnodeid="77" dstpinname="tex" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3540" y="2700">
-   </LINKPOINT>
-   <LINKPOINT x="5100" y="2700">
-   </LINKPOINT>
-   </LINK>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
    <INFO author="tmp" description="Applies forces to particles by projecting rgb values to the particles from a given View." tags="">
@@ -276,12 +234,10 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|Layer In|">
    </PIN>
    </NODE>
-   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="77" dstpinname="Layer In">
-   </LINK>
    <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="43">
    <BOUNDS type="Node" left="6615" top="4860" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
+   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Modifier_Force_Texture2D.fx">
    </PIN>
    <PIN pinname="Extract" slicecount="1" visible="1" values="0">
    </PIN>
@@ -296,8 +252,6 @@
    <PIN pinname="BufferName" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="77" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
-   </LINK>
    <LINK srcnodeid="43" srcpinname="Variables" dstnodeid="46" dstpinname="Structure">
    </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="79">
@@ -308,6 +262,82 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Query">
    </PIN>
    </NODE>
-   <LINK srcnodeid="77" srcpinname="Query" dstnodeid="79" dstpinname="Input Node">
+   <NODE id="80" systemname="Modifier_Force_Texture2D (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\dx11\Modifier_Force_Texture2D.fx" nodename="Modifier_Force_Texture2D (DX11.Effect)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="495" top="4440" width="7395" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="495" top="4440" width="2400" height="1800">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="6000" height="4500">
+   </BOUNDS>
+   <PIN pinname="MultiplierXYZ" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="69" srcpinname="Output Enum" dstnodeid="80" dstpinname="Technique" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="7145" y="2693">
+   </LINKPOINT>
+   <LINKPOINT x="6640" y="2693">
+   </LINKPOINT>
    </LINK>
+   <LINK srcnodeid="55" srcpinname="Y Output Value" dstnodeid="80" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="10125" y="2813">
+   </LINKPOINT>
+   <LINKPOINT x="7155" y="2813">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="15" srcpinname="Output" dstnodeid="80" dstpinname="Defines">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Geometry Out" dstnodeid="80" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="Layer" dstnodeid="1" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="73" srcpinname="Output Node" dstnodeid="80" dstpinname="tVP" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4920" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="4200" y="2700">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="75" srcpinname="Output Node" dstnodeid="80" dstpinname="tex" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="3540" y="2700">
+   </LINKPOINT>
+   <LINKPOINT x="5100" y="2700">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="78" srcpinname="Output Node" dstnodeid="80" dstpinname="Layer In">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="Shader Path" dstnodeid="43" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="80" srcpinname="Query" dstnodeid="79" dstpinname="Input Node">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="81">
+   <BOUNDS type="Box" left="6150" top="720" width="795" height="720">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6150" top="720" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="3" visible="1" values="1,1,1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="MultiplierXYZ">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="-99999999">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|1,1,1|">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="3" values="1,1,1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="81" srcpinname="Y Output Value" dstnodeid="80" dstpinname="MultiplierXYZ" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="6150" y="2940">
+   </LINKPOINT>
+   <LINKPOINT x="4545" y="2940">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
    </PATCH>

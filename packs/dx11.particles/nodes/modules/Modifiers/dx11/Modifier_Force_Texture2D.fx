@@ -16,6 +16,7 @@ RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 float4x4 tVP;
 Texture2D tex;
+float3 Multiplier;
 
 struct csin
 {
@@ -29,7 +30,7 @@ void CSSet(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
-	ParticleBuffer[particleIndex].force = GetRGB(tex, ParticleBuffer[particleIndex].position, tVP);
+	ParticleBuffer[particleIndex].force = GetRGB(tex, ParticleBuffer[particleIndex].position, tVP) * Multiplier;
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -37,7 +38,7 @@ void CSAdd(csin input)
 {
 	uint particleIndex = GetParticleIndex( input.DTID.x );
 	if (particleIndex == -1 ) return;
-	ParticleBuffer[particleIndex].force += GetRGB(tex, ParticleBuffer[particleIndex].position, tVP);
+	ParticleBuffer[particleIndex].force += GetRGB(tex, ParticleBuffer[particleIndex].position, tVP) * Multiplier;
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
