@@ -5,6 +5,7 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		int oneVariableNeeded;
+		/*STUB_STRUCT*/
 	#endif
 };
 
