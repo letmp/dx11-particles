@@ -1,0 +1,153 @@
+//@author: tmp
+//@help: Identify zero-pixels and replace them by non-zero pixels that surround them.
+//@tags: texture, filter
+//@credits: 
+
+Texture2D texture2d : PREVIOUS;
+float2 R:TARGETSIZE;
+SamplerState pSamp : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_POINT;
+    AddressU = Border;
+    AddressV = Border;
+};
+
+cbuffer controls:register(b0){
+	int innerBandThreshold <float uimin=1.0; float uimax=8.0;> = 1.0;
+	int outerBandThreshold <float uimin=1.0; float uimax=16.0;> =1.0;
+};
+
+struct psInput
+{
+	float4 p : SV_Position;
+	float2 uv : TEXCOORD0;
+};
+
+
+float4 PS(psInput input) : SV_Target
+{
+	float4 c = texture2d.Sample(pSamp,input.uv);
+	
+	// We are only concerned with eliminating 'white' noise from the data.
+    // We consider any pixel with a depth of 0 as a possible candidate for filtering.
+	if ( c.z < 0.00000001f){
+		
+		float filterCollectionXY[24][2];
+		float filterCollectionZ[24][2];
+		
+		int innerBandCount = 0;
+		int outerBandCount = 0;
+		
+		// The following loops will loop through a 5 X 5 matrix of pixels surrounding the 
+		// candidate pixel. This defines 2 distinct 'bands' around the candidate pixel.
+		// If any of the pixels in this matrix are non-0, we will accumulate them and count
+		// how many non-0 pixels are in each band. If the number of non-0 pixels breaks the
+		// threshold in either band, then the average of all non-0 pixels in the matrix is applied
+		// to the candidate pixel.
+		for(int dX = -2; dX <= 2; dX++) {
+			for(int dY = -2; dY <= 2; dY++) {	
+				
+				// We do not want to consider the candidate pixel
+				if(dX != 0 || dY != 0){
+					
+					float2 offset = float2(float(dX), float(dY));
+					float3 cBand = texture2d.SampleLevel(pSamp,input.uv + offset/R,0).xyz;
+					
+					// we only look for non-zero pixels
+					if (cBand.z > 0.00000001f){
+						
+						// we want to find the frequency of each depth
+						for (int i = 0; i < 24; i++){
+							if(filterCollectionZ[i][0] == cBand.z){
+								// when the depth is already in the filter collection
+								// we increment the frequency
+								filterCollectionZ[i][1]++;
+								break;
+							}
+							else if(filterCollectionZ[i][0] == 0){
+								// When we encounter a 0 depth in the filter collection
+                    			// this means we have reached the end of values already counted.
+                    			// We will then add the new depth and start it's frequency at 1.
+								filterCollectionZ[i][0] = cBand.z;
+								filterCollectionZ[i][1]++;
+								break;
+							}
+						}
+						
+						// We will then determine which band the non-zero pixel
+                		// was found in, and increment the band counters.
+						if (dY != 2 && dY != -2 && dX != 2 && dX != -2)
+		                  innerBandCount++;
+		                else
+		                  outerBandCount++;
+					}
+
+				}
+	    	}
+		}
+		
+		// Once we have determined our inner and outer band non-zero counts, and 
+		// accumulated all of those values, we can compare it against the threshold
+		// to determine if our candidate pixel will be changed to the
+		// statistical mode of the non-zero surrounding pixels.
+		if (innerBandCount >= innerBandThreshold || outerBandCount >= outerBandThreshold){
+			int frequency = 0;
+			float depth = 0.0f;
+			// This loop will determine the statistical mode
+        	// of the surrounding pixels for assignment to
+        	// the candidate.
+			for (int i = 0; i < 24; i++){
+				// This means we have reached the end of our
+          		// frequency distribution and can break out of the
+          		// loop to save time.
+          		if (filterCollectionZ[i][0] == 0.0)
+            		break;
+				if (filterCollectionZ[i][1] > frequency){
+					depth = filterCollectionZ[i][0];
+					frequency = filterCollectionZ[i][1];
+				}
+			}
+			
+			c.z = depth;
+			c.xy = float2(0,0);
+			
+			int counter = 0;
+			for(int dX = -2; dX <= 2; dX++) {
+				for(int dY = -2; dY <= 2; dY++) {	
+					
+					// We do not want to consider the candidate pixel
+					if(dX != 0 || dY != 0){
+						
+						float2 offset = float2(float(dX), float(dY));
+						float3 cBand = texture2d.SampleLevel(pSamp,input.uv + offset/R,0).xyz;
+						
+						// we only look for non-zero pixels
+						if (cBand.z > 0.00000001f){
+							c.x += cBand.x;
+							c.y += cBand.y;
+							counter++;
+						}
+						
+					}
+					
+				}	
+			}
+			c.xy/=counter;
+		}
+	}
+	
+	
+	
+	return c;
+}
+
+technique10 Process
+{
+	pass P0
+	{
+		SetPixelShader(CompileShader(ps_4_0,PS()));
+	}
+}
+
+
+
