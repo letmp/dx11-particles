@@ -300,20 +300,6 @@
    <LINKPOINT x="4350" y="5108">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="SceneLoader (DX11.Geometry Assimp)" filename="modules\SceneLoader (DX11.Geometry Assimp).v4p" nodename="SceneLoader (DX11.Geometry Assimp)" componentmode="Hidden" id="99">
-   <BOUNDS type="Node" left="285" top="1470" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Filename" slicecount="1" visible="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Examples\AssimpGeometry\assets\dry-tree.obj">
-   </PIN>
-   <PIN pinname="Vertices Count" visible="1">
-   </PIN>
-   <PIN pinname="Mesh Output" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="9915" top="4830" width="6345" height="5985">
-   </BOUNDS>
-   <PIN pinname="Transform Output" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="Camera (Transform Orbit Legacy)" filename="%VVVV%\addonpack\lib\nodes\modules\_legacy\Camera (Transform Orbit Legacy).v4p" nodename="Camera (Transform Orbit)" componentmode="Hidden" id="101">
    <BOUNDS type="Node" left="7455" top="10425" width="100" height="100">
    </BOUNDS>
@@ -346,8 +332,6 @@
    <PIN pinname="String Type" slicecount="1" values="Filename">
    </PIN>
    </NODE>
-   <LINK srcnodeid="102" srcpinname="Output String" dstnodeid="99" dstpinname="Filename">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="103">
    <BOUNDS type="Box" left="5130" top="5535" width="285" height="240">
    </BOUNDS>
@@ -717,9 +701,9 @@
    </BOUNDS>
    <PIN pinname="Buffer Out" visible="1">
    </PIN>
-   <PIN pinname="Geometry" visible="1">
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
-   <PIN pinname="Vertex Count" visible="1">
+   <PIN pinname="Vertex Count" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -734,15 +718,33 @@
    </LINK>
    <LINK srcnodeid="46" srcpinname="Buffer Out" dstnodeid="98" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="99" srcpinname="Vertices Count" dstnodeid="46" dstpinname="Vertex Count">
-   </LINK>
-   <LINK srcnodeid="99" srcpinname="Mesh Output" dstnodeid="46" dstpinname="Geometry">
-   </LINK>
    <LINK srcnodeid="122" srcpinname="Y Output Value" dstnodeid="46" dstpinname="Instance Count" linkstyle="Bezier">
    <LINKPOINT x="3405" y="2078">
    </LINKPOINT>
    <LINKPOINT x="1395" y="2078">
    </LINKPOINT>
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
+   <NODE systemname="SceneLoader (DX11.Particles.Tools Assimp)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\SceneLoader (DX11.Particles.Tools Assimp).v4p" nodename="SceneLoader (DX11.Particles.Tools Assimp)" componentmode="Hidden" id="99">
+   <BOUNDS type="Node" left="285" top="1470" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Filename" slicecount="1" visible="1" values="..\..\..\..\..\..\..\..\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Examples\AssimpGeometry\assets\dry-tree.obj">
+   </PIN>
+   <PIN pinname="Vertices Count" visible="1">
+   </PIN>
+   <PIN pinname="Mesh Output" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="9915" top="4830" width="6345" height="5985">
+   </BOUNDS>
+   <PIN pinname="Transform Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="102" srcpinname="Output String" dstnodeid="99" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="99" srcpinname="Vertices Count" dstnodeid="46" dstpinname="Vertex Count">
+   </LINK>
+   <LINK srcnodeid="99" srcpinname="Mesh Output" dstnodeid="46" dstpinname="Geometry">
    </LINK>
    <LINK srcnodeid="120" srcpinname="Transform Out" dstnodeid="46" dstpinname="Transform In" linkstyle="Bezier">
    <LINKPOINT x="2730" y="2775">
@@ -750,6 +752,4 @@
    <LINKPOINT x="1920" y="2775">
    </LINKPOINT>
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
-   </PACK>
    </PATCH>
