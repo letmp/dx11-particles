@@ -1,7 +1,7 @@
 Texture2D texRGB <string uiname="RGB";>;
 Texture2D texRGBDepth <string uiname="RGBDepth";>;
 Texture2D texWorld <string uiname="World";>;
-float maxDistance = 0.03;
+float maxDistance = 0.1;
 
 SamplerState sPoint : IMMUTABLE
 {

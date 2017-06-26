@@ -1,0 +1,189 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.7.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Mesh (DX11.Particles.Kinect).v4p" systemname="Mesh (DX11.Particles.Kinect)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Mesh (DX11.Particles.Kinect).v4p">
+   <NODE systemname="Grid (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Grid (DX11.Geometry)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1965" top="1620" width="1125" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1965" top="1620" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <PIN pinname="Resolution X" visible="1" slicecount="1" values="1920">
+   </PIN>
+   <PIN pinname="Resolution Y" visible="1" slicecount="1" values="1080">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="1" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="3840" top="495" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3840" top="495" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.0299999993294477">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="maxDistance">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0.0299999993294477">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="0.1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Kinect_Mesh (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\dx11\Kinect_Mesh.fx" nodename="Kinect_Mesh (DX11.Effect)" componentmode="Hidden" id="2">
+   <BOUNDS type="Node" left="2445" top="2790" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="maxDistance" visible="1">
+   </PIN>
+   <PIN pinname="RGB" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="RGBDepth" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="World" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="3" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2505" top="480" width="795" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2505" top="480" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1" slicecount="2" values="1920,1080">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="2505" top="1170" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XY" visible="1">
+   </PIN>
+   <PIN pinname="X" visible="1">
+   </PIN>
+   <PIN pinname="Y" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="5" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="4905" top="435" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4905" top="435" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="RGB">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="6" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="5880" top="495" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5880" top="495" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="RGBDepth">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="6945" top="390" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6945" top="390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="World">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="4" srcpinname="X" dstnodeid="0" dstpinname="Resolution X">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Y" dstnodeid="0" dstpinname="Resolution Y">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Y Output Value" dstnodeid="4" dstpinname="XY">
+   </LINK>
+   <NODE id="8" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Render State|">
+   </PIN>
+   <BOUNDS type="Box" left="435" top="1620" width="855" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="435" top="1620" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="8" srcpinname="Output Node" dstnodeid="2" dstpinname="Render State" linkstyle="Bezier">
+   <LINKPOINT x="495" y="2393">
+   </LINKPOINT>
+   <LINKPOINT x="2610" y="2393">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Geometry Out" dstnodeid="2" dstpinname="Geometry" linkstyle="Bezier">
+   <LINKPOINT x="2025" y="2333">
+   </LINKPOINT>
+   <LINKPOINT x="2760" y="2333">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Y Output Value" dstnodeid="2" dstpinname="maxDistance" linkstyle="Bezier">
+   <LINKPOINT x="3840" y="1755">
+   </LINKPOINT>
+   <LINKPOINT x="3105" y="1755">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Output Node" dstnodeid="2" dstpinname="RGB" linkstyle="Bezier">
+   <LINKPOINT x="4905" y="1725">
+   </LINKPOINT>
+   <LINKPOINT x="3750" y="1725">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Output Node" dstnodeid="2" dstpinname="RGBDepth" linkstyle="Bezier">
+   <LINKPOINT x="5865" y="1755">
+   </LINKPOINT>
+   <LINKPOINT x="3930" y="1755">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="Output Node" dstnodeid="2" dstpinname="World" linkstyle="Bezier">
+   <LINKPOINT x="6945" y="1695">
+   </LINKPOINT>
+   <LINKPOINT x="4080" y="1695">
+   </LINKPOINT>
+   </LINK>
+   <NODE id="9" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Layer">
+   </PIN>
+   <BOUNDS type="Box" left="2445" top="3390" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2445" top="3390" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="2" srcpinname="Layer" dstnodeid="9" dstpinname="Input Node">
+   </LINK>
+   <BOUNDS type="Window" left="5055" top="7980" width="8430" height="4920">
+   </BOUNDS>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
+   <PACK Name="vvvv-message" Version="2.9.10">
+   </PACK>
+   <PACK Name="zeromq" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <INFO author="tmp" description="Draws the kinect data as displaced mesh" tags="">
+   </INFO>
+   </PATCH>

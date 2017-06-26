@@ -32,11 +32,15 @@ float4 PS(psInput input) : SV_Target
     // We consider any pixel with a depth of 0 as a possible candidate for filtering.
 	if ( c.z < 0.00000001f){
 		
-		float filterCollectionXY[24][2];
-		float filterCollectionZ[24][2];
+		float filterCollection[24][2];
 		
 		int innerBandCount = 0;
 		int outerBandCount = 0;
+		
+		for (int i = 0; i < 24; i++){
+			filterCollection[i][0] = 0;
+			filterCollection[i][1] = 0;
+		}
 		
 		// The following loops will loop through a 5 X 5 matrix of pixels surrounding the 
 		// candidate pixel. This defines 2 distinct 'bands' around the candidate pixel.
@@ -54,24 +58,26 @@ float4 PS(psInput input) : SV_Target
 					float3 cBand = texture2d.SampleLevel(pSamp,input.uv + offset/R,0).xyz;
 					
 					// we only look for non-zero pixels
-					if (cBand.z > 0.00000001f){
+					
+					if (cBand.z != 0.0){
 						
 						// we want to find the frequency of each depth
 						for (int i = 0; i < 24; i++){
-							if(filterCollectionZ[i][0] == cBand.z){
+							if(filterCollection[i][0] == cBand.z){
 								// when the depth is already in the filter collection
 								// we increment the frequency
-								filterCollectionZ[i][1]++;
+								filterCollection[i][1]++;
 								break;
 							}
-							else if(filterCollectionZ[i][0] == 0){
+							else if(filterCollection[i][0] < 0.00000001f){
 								// When we encounter a 0 depth in the filter collection
                     			// this means we have reached the end of values already counted.
                     			// We will then add the new depth and start it's frequency at 1.
-								filterCollectionZ[i][0] = cBand.z;
-								filterCollectionZ[i][1]++;
+								filterCollection[i][1]++;
+								filterCollection[i][0] = cBand.z;
 								break;
 							}
+							
 						}
 						
 						// We will then determine which band the non-zero pixel
@@ -100,18 +106,20 @@ float4 PS(psInput input) : SV_Target
 				// This means we have reached the end of our
           		// frequency distribution and can break out of the
           		// loop to save time.
-          		if (filterCollectionZ[i][0] == 0.0)
+          		if (filterCollection[i][0] == 0.0)
             		break;
-				if (filterCollectionZ[i][1] > frequency){
-					depth = filterCollectionZ[i][0];
-					frequency = filterCollectionZ[i][1];
+				if (filterCollection[i][1] > frequency){
+					depth = filterCollection[i][0];
+					frequency = filterCollection[i][1];
 				}
 			}
-			
 			c.z = depth;
-			c.xy = float2(0,0);
 			
+			c.xy = float2(0,0);
 			int counter = 0;
+			float2 minCoord = float2(999999,999999);
+			float2 maxCoord = float2(-999999,-999999);
+			
 			for(int dX = -2; dX <= 2; dX++) {
 				for(int dY = -2; dY <= 2; dY++) {	
 					
@@ -123,16 +131,23 @@ float4 PS(psInput input) : SV_Target
 						
 						// we only look for non-zero pixels
 						if (cBand.z > 0.00000001f){
-							c.x += cBand.x;
+							/*c.x += cBand.x;
 							c.y += cBand.y;
-							counter++;
+							counter++;*/
+							if(cBand.x < minCoord.x) minCoord.x = cBand.x;
+							if(cBand.x > maxCoord.x) maxCoord.x = cBand.x;
+							if(cBand.y < minCoord.y) minCoord.y = cBand.y;
+							if(cBand.y > maxCoord.y) maxCoord.y = cBand.y;
 						}
 						
 					}
 					
 				}	
 			}
-			c.xy/=counter;
+			//c.xy/=counter;
+			c.x = (minCoord.x + maxCoord.x) / 2;
+			c.y = (minCoord.y + maxCoord.y) / 2;
+			
 		}
 	}
 	

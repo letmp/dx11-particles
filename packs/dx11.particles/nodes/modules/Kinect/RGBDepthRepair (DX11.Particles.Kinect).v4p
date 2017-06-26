@@ -1,0 +1,43 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.7.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.7_x64\packs\dx11.particles\nodes\modules\Kinect\RGBDepthRepair (DX11.Particles.Kinect).v4p" systemname="RGBDepthRepair (DX11.Particles.Kinect)" filename="D:\workspace\vvvv\vvvv_50beta35.7_x64\packs\dx11.particles\nodes\modules\Kinect\RGBDepthRepair (DX11.Particles.Kinect).v4p">
+   <NODE systemname="RGBDepthRepair (DX11.TextureFX)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Kinect\texture11\RGBDepthRepair.tfx" nodename="RGBDepthRepair (DX11.TextureFX)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="1500" top="1200" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="1" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture In|">
+   </PIN>
+   <BOUNDS type="Box" left="1500" top="500" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1500" top="500" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="1" srcpinname="Output Node" dstnodeid="0" dstpinname="Texture In">
+   </LINK>
+   <NODE id="2" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Texture Out|">
+   </PIN>
+   <BOUNDS type="Box" left="1500" top="2100" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1500" top="2100" width="750" height="240">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="0" srcpinname="Texture Out" dstnodeid="2" dstpinname="Input Node">
+   </LINK>
+   <BOUNDS type="Window" left="12555" top="8145" width="4455" height="4200">
+   </BOUNDS>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
+   <PACK Name="vvvv-message" Version="2.9.10">
+   </PACK>
+   <PACK Name="zeromq" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <INFO author="tmp" description="Fills gaps in the RGBDepth Texture." tags="">
+   </INFO>
+   </PATCH>
