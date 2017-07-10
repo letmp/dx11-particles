@@ -17,6 +17,10 @@ namespace DX11.Particles.IO.Chunks
         ChunkManager _chunkManager;
 
         public int skipLines = 0;
+        public const string PLY_FORMAT_ASCII = "PLY_FORMAT_ASCII";
+        public const string PLY_FORMAT_BE = "PLY_FORMAT_BE";
+        public const string PLY_FORMAT_LE = "PLY_FORMAT_LE";
+        public string format;
 
         public ChunkImporterPLY(ChunkManager chunkManager) : base(chunkManager)
         {
@@ -52,6 +56,12 @@ namespace DX11.Particles.IO.Chunks
 
                         if (header)
                         {
+                            if (lineStrings[0] == "format") {
+                                if(lineStrings[1] == "ascii") format = PLY_FORMAT_ASCII;
+                                if (lineStrings[1] == "binary_little_endian") format = PLY_FORMAT_LE;
+                                if (lineStrings[1] == "binary_big_endian ") format = PLY_FORMAT_BE;
+                            }
+
                             if (lineStrings[0] == "element" && lineStrings[1] == "vertex") Lines = int.Parse(lineStrings[2]);
                             if(lineStrings[0] == "property")
                             {
@@ -72,6 +82,9 @@ namespace DX11.Particles.IO.Chunks
                         }
                         else
                         {
+
+                            if (format != PLY_FORMAT_ASCII) throw new FormatException("PLY files in binary format are not supported.");
+
                             double x = double.Parse(lineStrings[DataStructure["x"]], CultureInfo.InvariantCulture);
                             double y = double.Parse(lineStrings[DataStructure["y"]], CultureInfo.InvariantCulture);
                             double z = double.Parse(lineStrings[DataStructure["z"]], CultureInfo.InvariantCulture);
@@ -115,11 +128,15 @@ namespace DX11.Particles.IO.Chunks
 
         protected override async Task ImportData()
         {
-
+            
             FLogger.Log(LogType.Message, "ChunkImporter: Importing Data");
             IOMessages.CurrentState = "Importing Data";
+            
             try
             {
+
+                if (format != PLY_FORMAT_ASCII) throw new FormatException("PLY files in binary format are not supported.");
+
                 using (var stream = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read, DefaultBufferSize, DefaultFileOptions))
                 using (var reader = new StreamReader(stream))
                 {
@@ -204,7 +221,7 @@ namespace DX11.Particles.IO.Chunks
                                                 chunkId.z * ChunkCount.x * ChunkCount.y;
 
 
-                            if (chunkIndex > 0 && chunkIndex < _chunkManager.ChunkList.Count)
+                            if (chunkIndex >= 0 && chunkIndex < _chunkManager.ChunkList.Count)
                             {
                                 Chunk chunk = _chunkManager.ChunkList[chunkIndex];
                                 chunk.BinaryWriter.Write(particleData.GetByteArray());

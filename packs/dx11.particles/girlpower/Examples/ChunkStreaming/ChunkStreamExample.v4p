@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="9720">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="2175">
    <BOUNDS type="Window" left="0" top="570" width="19170" height="13650">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -758,34 +758,6 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="Importer (DX11.Particles.IO.Chunks PLY)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Importer (DX11.Particles.IO.Chunks PLY)" componentmode="Hidden" id="261">
-   <BOUNDS type="Node" left="6045" top="6510" width="5895" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="6045" top="6510">
-   </BOUNDS>
-   <PIN pinname="Message" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="247" srcpinname="Y Output Value" dstnodeid="261" dstpinname="Chunk CountXYZ">
-   </LINK>
-   <LINK srcnodeid="246" srcpinname="Y Output Value" dstnodeid="261" dstpinname="Import">
-   </LINK>
-   <LINK srcnodeid="245" srcpinname="Output Enum" dstnodeid="261" dstpinname="Align X">
-   </LINK>
-   <LINK srcnodeid="244" srcpinname="Output Enum" dstnodeid="261" dstpinname="Align Y">
-   </LINK>
-   <LINK srcnodeid="243" srcpinname="Output Enum" dstnodeid="261" dstpinname="Align Z">
-   </LINK>
-   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="261" dstpinname="Scale Mode">
-   </LINK>
-   <LINK srcnodeid="241" srcpinname="Y Output Value" dstnodeid="261" dstpinname="Scale Value">
-   </LINK>
-   <LINK srcnodeid="261" srcpinname="Progress" dstnodeid="240" dstpinname="Y Input Value">
-   </LINK>
-   <LINK srcnodeid="261" srcpinname="ChunkManager" dstnodeid="239" dstpinname="Input Node">
-   </LINK>
-   <LINK srcnodeid="249" srcpinname="Output String" dstnodeid="261" dstpinname="File">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="262">
    <BOUNDS type="Box" left="11220" top="7725" width="2400" height="240">
    </BOUNDS>
@@ -800,8 +772,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Message">
    </PIN>
    </NODE>
-   <LINK srcnodeid="261" srcpinname="Message" dstnodeid="262" dstpinname="Input String">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="263">
    <BOUNDS type="Node" left="315" top="4260" width="13455" height="270">
    </BOUNDS>
@@ -847,7 +817,7 @@
    </BOUNDS>
    <PIN pinname="Write" visible="1">
    </PIN>
-   <PIN pinname="ChunkManager" visible="1">
+   <PIN pinname="ChunkManager" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <LINK srcnodeid="16" srcpinname="Output String" dstnodeid="266" dstpinname="Chunk Directory">
@@ -910,8 +880,6 @@
    <BOUNDS type="Box" left="16560" top="6885">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="239" srcpinname="Output Node" dstnodeid="266" dstpinname="ChunkManager">
-   </LINK>
    <LINK srcnodeid="196" srcpinname="Y Output Value" dstnodeid="180" dstpinname="Downsampling">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="299">
@@ -1586,4 +1554,34 @@
    </LINK>
    <PACK Name="dx11" Version="1.0.2">
    </PACK>
+   <NODE systemname="Importer (DX11.Particles.IO.Chunks PLY)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Importer (DX11.Particles.IO.Chunks PLY)" componentmode="Hidden" id="338">
+   <BOUNDS type="Node" left="6045" top="6510" width="5895" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="6045" top="6510">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="247" srcpinname="Y Output Value" dstnodeid="338" dstpinname="Chunk CountXYZ">
+   </LINK>
+   <LINK srcnodeid="246" srcpinname="Y Output Value" dstnodeid="338" dstpinname="Import">
+   </LINK>
+   <LINK srcnodeid="245" srcpinname="Output Enum" dstnodeid="338" dstpinname="Align X">
+   </LINK>
+   <LINK srcnodeid="244" srcpinname="Output Enum" dstnodeid="338" dstpinname="Align Y">
+   </LINK>
+   <LINK srcnodeid="243" srcpinname="Output Enum" dstnodeid="338" dstpinname="Align Z">
+   </LINK>
+   <LINK srcnodeid="242" srcpinname="Output Enum" dstnodeid="338" dstpinname="Scale Mode">
+   </LINK>
+   <LINK srcnodeid="241" srcpinname="Y Output Value" dstnodeid="338" dstpinname="Scale Value">
+   </LINK>
+   <LINK srcnodeid="338" srcpinname="Progress" dstnodeid="240" dstpinname="Y Input Value">
+   </LINK>
+   <LINK srcnodeid="338" srcpinname="ChunkManager" dstnodeid="239" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="249" srcpinname="Output String" dstnodeid="338" dstpinname="File">
+   </LINK>
+   <LINK srcnodeid="338" srcpinname="Message" dstnodeid="262" dstpinname="Input String">
+   </LINK>
+   <LINK srcnodeid="239" srcpinname="Output Node" dstnodeid="266" dstpinname="ChunkManager">
+   </LINK>
    </PATCH>
