@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\Network\SenderReceiverExample.v4p" systemname="SenderReceiverExample" filename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\girlpower\Examples\Network\SenderReceiverExample.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\girlpower\Examples\Network\ZeroMQExample.v4p" systemname="SenderReceiverExample" filename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\girlpower\Examples\Network\SenderReceiverExample.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="510" top="1830" width="16110" height="12450">
    </BOUNDS>
    <PACK Name="dx11" Version="1.0.2">
@@ -125,7 +125,7 @@
    <NODE systemname="AsStructuredBuffer (DX11.Particles.IO Raw)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\AsStructuredBuffer (DX11.Particles.IO Raw).v4p" nodename="AsStructuredBuffer (DX11.Particles.IO Raw)" componentmode="Hidden" id="47">
    <BOUNDS type="Node" left="10800" top="5460" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Raw Data" visible="1">
+   <PIN pinname="Raw Data" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Element Count" visible="1">
    </PIN>
@@ -133,7 +133,7 @@
    </PIN>
    <PIN pinname="BytesPerElement" visible="1">
    </PIN>
-   <PIN pinname="Apply" visible="1" slicecount="1" values="0">
+   <PIN pinname="Apply" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Position Buffer" visible="1">
    </PIN>
@@ -346,42 +346,10 @@
    </LINK>
    <LINK srcnodeid="49" srcpinname="ParticleSystemBuffers" dstnodeid="27" dstpinname="ParticleSystemBuffers In">
    </LINK>
-   <NODE systemname="Client (DX11.Particles.Network Raw)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Network\Client (DX11.Particles.Network Raw).v4p" nodename="Client (DX11.Particles.Network Raw)" componentmode="Hidden" id="63">
-   <BOUNDS type="Node" left="1050" top="10770" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Remote Host" visible="1">
-   </PIN>
-   <PIN pinname="Remote Port" visible="1">
-   </PIN>
-   <PIN pinname="Do Send" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Raw Input" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="17730" top="7740" width="7680" height="6090">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1050" top="10770">
-   </BOUNDS>
-   </NODE>
-   <NODE systemname="Server (DX11.Particles.Network Raw)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Network\Server (DX11.Particles.Network Raw).v4p" nodename="Server (DX11.Particles.Network Raw)" componentmode="Hidden" id="64">
-   <BOUNDS type="Node" left="10800" top="3225" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Server" visible="1" slicecount="1" values="localhost">
-   </PIN>
-   <PIN pinname="Local Port" visible="1" slicecount="1" values="4444">
-   </PIN>
-   <PIN pinname="Raw Output" visible="1">
-   </PIN>
-   <BOUNDS type="Window" left="3090" top="2385" width="6390" height="11925">
-   </BOUNDS>
-   <PIN pinname="OnData" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="10800" top="3225">
-   </BOUNDS>
-   </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="65">
-   <BOUNDS type="Box" left="1560" top="9960" width="1080" height="240">
+   <BOUNDS type="Box" left="1410" top="9960" width="1080" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1560" top="9960" width="0" height="0">
+   <BOUNDS type="Node" left="1410" top="9960" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="localhost">
    </PIN>
@@ -396,12 +364,10 @@
    <PIN pinname="Output String" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="65" srcpinname="Output String" dstnodeid="63" dstpinname="Remote Host">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="66">
-   <BOUNDS type="Box" left="1725" top="10335" width="795" height="240">
+   <BOUNDS type="Box" left="1575" top="10335" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="1725" top="10335" width="0" height="0">
+   <BOUNDS type="Node" left="1575" top="10335" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4444">
    </PIN>
@@ -414,12 +380,6 @@
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="66" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Remote Port">
-   </LINK>
-   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="63" dstpinname="Raw Input">
-   </LINK>
-   <LINK srcnodeid="64" srcpinname="Raw Output" dstnodeid="47" dstpinname="Raw Data">
-   </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="74">
    <BOUNDS type="Box" left="2730" top="5355" width="1620" height="510">
    </BOUNDS>
@@ -610,12 +570,10 @@
    <PIN pinname="Maximum Characters" slicecount="1" values="-1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="85" srcpinname="Output String" dstnodeid="64" dstpinname="Server">
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="86">
-   <BOUNDS type="Box" left="11025" top="2685" width="795" height="240">
+   <BOUNDS type="Box" left="11025" top="2625" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="11025" top="2685" width="0" height="0">
+   <BOUNDS type="Node" left="11025" top="2625" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="4444">
    </PIN>
@@ -626,22 +584,14 @@
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
    </NODE>
-   <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Local Port">
-   </LINK>
    <NODE systemname="Length (Raw)" nodename="Length (Raw)" componentmode="Hidden" id="88">
    <BOUNDS type="Node" left="10635" top="3960" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Count" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="64" srcpinname="Raw Output" dstnodeid="88" dstpinname="Input" linkstyle="VHV">
-   <LINKPOINT x="10815" y="3838">
-   </LINKPOINT>
-   <LINKPOINT x="10665" y="3588">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="89">
    <BOUNDS type="Node" left="10635" top="4440" width="100" height="100">
    </BOUNDS>
@@ -732,18 +682,6 @@
    <LINKPOINT x="3465" y="7215">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="64" srcpinname="OnData" dstnodeid="47" dstpinname="Apply" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11535" y="4478">
-   </LINKPOINT>
-   <LINKPOINT x="12315" y="4478">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="64" srcpinname="OnData" dstnodeid="78" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11520" y="5318">
-   </LINKPOINT>
-   <LINKPOINT x="12075" y="5318">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="98">
    <BOUNDS type="Box" left="645" top="2670" width="450" height="480">
    </BOUNDS>
@@ -763,13 +701,9 @@
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="98" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Resolution" linkstyle="VHV">
-   <LINKPOINT x="705" y="3308">
-   </LINKPOINT>
-   <LINKPOINT x="1260" y="3308">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="101">
    <BOUNDS type="Node" left="360" top="1545" width="675" height="270">
    </BOUNDS>
@@ -930,4 +864,112 @@
    <PIN pinname="String Type" slicecount="1" values="Url">
    </PIN>
    </NODE>
+   <NODE systemname="Client (DX11.Particles.Network ZeroMQ)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Network\Client (DX11.Particles.Network ZeroMQ).v4p" nodename="Client (DX11.Particles.Network ZeroMQ)" componentmode="Hidden" id="63">
+   <BOUNDS type="Node" left="1050" top="10770" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Remote Host" visible="1">
+   </PIN>
+   <PIN pinname="Remote Port" visible="1">
+   </PIN>
+   <PIN pinname="Do Send" visible="1" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Raw Input" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="17730" top="7740" width="7680" height="6090">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1050" top="10770">
+   </BOUNDS>
+   <PIN pinname="Enable" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="65" srcpinname="Output String" dstnodeid="63" dstpinname="Remote Host">
+   </LINK>
+   <LINK srcnodeid="66" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Remote Port">
+   </LINK>
+   <LINK srcnodeid="33" srcpinname="Output" dstnodeid="63" dstpinname="Raw Input">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="115">
+   <BOUNDS type="Box" left="2550" top="10335" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2550" top="10335" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="115" srcpinname="Y Output Value" dstnodeid="63" dstpinname="Enable" linkstyle="VHV">
+   <LINKPOINT x="2600" y="10658">
+   </LINKPOINT>
+   <LINKPOINT x="1900" y="10658">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Server (DX11.Particles.Network ZeroMQ)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Network\Server (DX11.Particles.Network ZeroMQ).v4p" nodename="Server (DX11.Particles.Network ZeroMQ)" componentmode="Hidden" id="64">
+   <BOUNDS type="Node" left="10800" top="3225" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Server" visible="1" slicecount="1" values="localhost">
+   </PIN>
+   <PIN pinname="Local Port" visible="1" slicecount="1" values="4444">
+   </PIN>
+   <PIN pinname="Raw Output" visible="1">
+   </PIN>
+   <BOUNDS type="Window" left="3090" top="2385" width="6390" height="11925">
+   </BOUNDS>
+   <PIN pinname="OnData" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="10800" top="3225">
+   </BOUNDS>
+   <PIN pinname="Enable" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="64" srcpinname="Raw Output" dstnodeid="47" dstpinname="Raw Data">
+   </LINK>
+   <LINK srcnodeid="85" srcpinname="Output String" dstnodeid="64" dstpinname="Server">
+   </LINK>
+   <LINK srcnodeid="86" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Local Port">
+   </LINK>
+   <LINK srcnodeid="64" srcpinname="Raw Output" dstnodeid="88" dstpinname="Input" linkstyle="VHV">
+   <LINKPOINT x="10815" y="3838">
+   </LINKPOINT>
+   <LINKPOINT x="10665" y="3588">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="116">
+   <BOUNDS type="Box" left="11925" top="2625" width="285" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="11925" top="2625" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Boolean">
+   </PIN>
+   <PIN pinname="Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="116" srcpinname="Y Output Value" dstnodeid="64" dstpinname="Enable" linkstyle="VHV">
+   <LINKPOINT x="11925" y="3030">
+   </LINKPOINT>
+   <LINKPOINT x="11550" y="3030">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="98" srcpinname="Y Output Value" dstnodeid="52" dstpinname="Resolution" linkstyle="VHV">
+   <LINKPOINT x="705" y="3308">
+   </LINKPOINT>
+   <LINKPOINT x="1260" y="3308">
+   </LINKPOINT>
+   </LINK>
    </PATCH>
