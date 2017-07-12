@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.2_x64\packs\dx11.particles\nodes\modules\IO\AsStructuredBuffer (DX11.Particles.IO Raw).v4p" systemname="AsDynamicBuffer (DX11.Particles.IO Raw)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\AsDynamicBuffer (DX11.Particles.IO Raw).v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\IO\AsStructuredBuffer (DX11.Particles.IO Raw).v4p" systemname="AsDynamicBuffer (DX11.Particles.IO Raw)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\AsDynamicBuffer (DX11.Particles.IO Raw).v4p">
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="0" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4395" top="5715" width="675" height="675">
    </BOUNDS>
@@ -518,16 +518,52 @@
    </NODE>
    <LINK srcnodeid="24" srcpinname="Output Node" dstnodeid="33" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2265" y="2820">
-   </LINKPOINT>
-   <LINKPOINT x="4410" y="2820">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="25" dstpinname="elementCount" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="2235" y="2550">
    </LINKPOINT>
    <LINKPOINT x="2685" y="2550">
    </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
+   <BOUNDS type="Box" left="3705" top="645" width="555" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3705" top="645" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="64">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Group Size|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="34" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Group Size">
+   </LINK>
+   <PACK Name="dx11" Version="1.0.2">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="35">
+   <BOUNDS type="Box" left="4410" top="4395" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4410" top="4395" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="100000">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Max Element Count|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input">
    </LINK>
    </PATCH>
