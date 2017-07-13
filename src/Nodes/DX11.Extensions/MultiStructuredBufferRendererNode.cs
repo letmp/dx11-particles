@@ -95,7 +95,7 @@ namespace VVVV.DX11.Nodes
             FOutBuffers.SliceCount = FSemantic.SliceCount;
 
             reset = reset || this.FInSize.IsChanged || FInMode.IsChanged || FInStride.IsChanged || this.FSemantic.IsChanged || FInReset[0];
-
+            
             for (int i = 0; i < FOutBuffers.SliceCount; i++)
             {
                 if (this.FOutBuffers[i] == null)
@@ -115,7 +115,7 @@ namespace VVVV.DX11.Nodes
                 }
             }
 
-            if (reset)
+            if (reset && FInSize.SliceCount > 0 && FInStride.SliceCount > 0 && FSemantic.SliceCount > 0)
             {
                 sizes.Clear();
                 strides.Clear();
@@ -171,11 +171,14 @@ namespace VVVV.DX11.Nodes
 
                     if (FOutBuffers[i][context] == null) reset = true;
 
-                    settings.RenderWidth = sizes[i];
-                    settings.RenderHeight = sizes[i];
-                    settings.RenderDepth = sizes[i];
+                    if (sizes.Count > 0)
+                    {
+                        settings.RenderWidth = sizes[i];
+                        settings.RenderHeight = sizes[i];
+                        settings.RenderDepth = sizes[i];
+                    }
 
-                    if (FInResetCounter[i])
+                    if (FInResetCounter.SliceCount > 0 && FInResetCounter[i])
                     {
                         settings.ResetCounter = true;
                         int[] resetval = { FInResetCounterValue[i] };
