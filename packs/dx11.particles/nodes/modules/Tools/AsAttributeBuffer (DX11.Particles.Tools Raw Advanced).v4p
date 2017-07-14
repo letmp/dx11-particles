@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\IO\AsStructuredBuffer (DX11.Particles.IO Raw).v4p" systemname="AsDynamicBuffer (DX11.Particles.IO Raw)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\AsDynamicBuffer (DX11.Particles.IO Raw).v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\AsStructuredBufferAdvanced (DX11.Particles.Tools Raw).v4p" systemname="AsDynamicBuffer (DX11.Particles.IO Raw)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\AsDynamicBuffer (DX11.Particles.IO Raw).v4p">
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="0" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4395" top="5715" width="675" height="675">
    </BOUNDS>
@@ -115,7 +115,7 @@
    </PIN>
    </NODE>
    <NODE systemname="GetThreadSize (Value)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="GetThreadSize (Value)" componentmode="Hidden" id="7">
-   <BOUNDS type="Node" left="2205" top="1275" width="1575" height="270">
+   <BOUNDS type="Node" left="2310" top="1275" width="1575" height="270">
    </BOUNDS>
    <PIN pinname="Element Count" visible="1" slicecount="1" values="0">
    </PIN>
@@ -127,13 +127,13 @@
    </PIN>
    <PIN pinname="ThreadZ" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2205" top="1275">
+   <BOUNDS type="Box" left="2310" top="1275">
    </BOUNDS>
    <PIN pinname="String" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Dispatcher (DX11.Drawer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Dispatcher (DX11.Drawer)" componentmode="Hidden" id="8">
-   <BOUNDS type="Node" left="2220" top="1800" width="1050" height="270">
+   <BOUNDS type="Node" left="2325" top="1800" width="1050" height="270">
    </BOUNDS>
    <PIN pinname="Geometry Out" visible="1">
    </PIN>
@@ -143,7 +143,7 @@
    </PIN>
    <PIN pinname="Thread Z" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="2220" top="1800">
+   <BOUNDS type="Box" left="2325" top="1800">
    </BOUNDS>
    </NODE>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="10">
@@ -165,11 +165,11 @@
    </PIN>
    <PIN pinname="Buffers" visible="1">
    </PIN>
-   <PIN pinname="Layer" visible="1">
+   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
    </PIN>
    </NODE>
    <NODE systemname="DynamicBuffer (DX11.Buffer Raw)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Raw)" componentmode="Hidden" id="12">
-   <BOUNDS type="Node" left="2895" top="3285" width="100" height="100">
+   <BOUNDS type="Node" left="3150" top="3285" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
@@ -319,9 +319,9 @@
    <NODE id="26" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
    <PIN pinname="Descriptive Name" slicecount="1" values="|Element Count|">
    </PIN>
-   <BOUNDS type="Box" left="2205" top="645" width="750" height="240">
+   <BOUNDS type="Box" left="2310" top="645" width="750" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="2205" top="645" width="750" height="240">
+   <BOUNDS type="Node" left="2310" top="645" width="750" height="240">
    </BOUNDS>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -379,15 +379,15 @@
    </BOUNDS>
    </NODE>
    <LINK srcnodeid="28" srcpinname="Output Node" dstnodeid="12" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1080" y="1923">
+   <LINKPOINT x="1165" y="1923">
    </LINKPOINT>
-   <LINKPOINT x="2880" y="2173">
+   <LINKPOINT x="3050" y="2173">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="27" srcpinname="Y Output Value" dstnodeid="12" dstpinname="Apply" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10830" y="2070">
+   <LINKPOINT x="10915" y="2070">
    </LINKPOINT>
-   <LINKPOINT x="3975" y="2070">
+   <LINKPOINT x="4145" y="2070">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="2" srcpinname="Output" dstnodeid="0" dstpinname="Y Input Value">
@@ -464,38 +464,6 @@
    </BOUNDS>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
-   <NODE systemname="RawToStructuredBuffer (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\dx11\RawToStructuredBuffer.fx" nodename="RawToStructuredBuffer (DX11.Effect)" componentmode="Hidden" id="25">
-   <BOUNDS type="Node" left="1770" top="4215" width="1860" height="270">
-   </BOUNDS>
-   <PIN pinname="Technique" slicecount="1" values="WriteBuffers">
-   </PIN>
-   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="RawBuffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="elementCount" visible="1" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Layer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="12" srcpinname="Buffer" dstnodeid="25" dstpinname="RawBuffer">
-   </LINK>
-   <LINK srcnodeid="8" srcpinname="Geometry Out" dstnodeid="25" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="1895" y="2828">
-   </LINKPOINT>
-   <LINKPOINT x="2605" y="3428">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="25" srcpinname="Layer" dstnodeid="11" dstpinname="Layer">
-   </LINK>
-   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="25" dstpinname="Defines" linkstyle="VHV">
-   <LINKPOINT x="6015" y="3968">
-   </LINKPOINT>
-   <LINKPOINT x="3630" y="3968">
-   </LINKPOINT>
-   </LINK>
    <INFO author="tmp" description="Converts a Raw Stream to Position and ColorBuffers" tags="">
    </INFO>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="32">
@@ -518,16 +486,10 @@
    </NODE>
    <LINK srcnodeid="24" srcpinname="Output Node" dstnodeid="33" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="25" dstpinname="elementCount" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2235" y="2550">
-   </LINKPOINT>
-   <LINKPOINT x="2685" y="2550">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="34">
-   <BOUNDS type="Box" left="3705" top="645" width="555" height="240">
+   <BOUNDS type="Box" left="3810" top="645" width="555" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3705" top="645" width="0" height="0">
+   <BOUNDS type="Node" left="3810" top="645" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="1" visible="1" values="64">
    </PIN>
@@ -544,7 +506,7 @@
    </NODE>
    <LINK srcnodeid="34" srcpinname="Y Output Value" dstnodeid="7" dstpinname="Group Size">
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
@@ -565,5 +527,53 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="35" srcpinname="Y Output Value" dstnodeid="10" dstpinname="Input">
+   </LINK>
+   <NODE id="25" systemname="Tools_AsAttributeBuffer_Raw (DX11.Effect)" filename="dx11\Tools_AsAttributeBuffer_Raw.fx" nodename="Tools_AsAttributeBuffer_Raw (DX11.Effect)" componentmode="Hidden" hiddenwhenlocked="0" managers="">
+   <BOUNDS type="Node" left="1770" top="4215" width="1860" height="270">
+   </BOUNDS>
+   <PIN pinname="Technique" slicecount="1" values="WriteBuffers">
+   </PIN>
+   <PIN pinname="Defines" visible="1" pintype="Input" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="RawBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="elementCount" visible="1" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="0" top="0" width="1575" height="1200">
+   </BOUNDS>
+   <BOUNDS type="Window" left="0" top="0" width="3150" height="2400">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Tag" pintype="Configuration" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ID" pintype="Output" visible="-1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="26" srcpinname="Y Output Value" dstnodeid="25" dstpinname="elementCount" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2305" y="2550">
+   </LINKPOINT>
+   <LINKPOINT x="2720" y="2550">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="22" srcpinname="Output" dstnodeid="25" dstpinname="Defines" linkstyle="VHV">
+   <LINKPOINT x="6015" y="3968">
+   </LINKPOINT>
+   <LINKPOINT x="3630" y="3968">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="25" srcpinname="Layer" dstnodeid="11" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="8" srcpinname="Geometry Out" dstnodeid="25" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="1965" y="2828">
+   </LINKPOINT>
+   <LINKPOINT x="2640" y="3428">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="12" srcpinname="Buffer" dstnodeid="25" dstpinname="RawBuffer">
    </LINK>
    </PATCH>

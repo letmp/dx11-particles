@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\AttributeBuffer (DX11.Particles.Tools) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\AsAttributeBuffer (DX11.Particles.Tools Buffer) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="2040" top="1845" width="12915" height="12900">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -21,7 +21,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="255" top="300" width="9090" height="435">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|AttributeBuffer (DX11.Particles.Tools)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|AsAttributeBuffer (DX11.Particles.Tools Buffer)|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -40,7 +40,7 @@
    </NODE>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -595,9 +595,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="139">
-   <BOUNDS type="Box" left="4545" top="6990" width="1485" height="450">
+   <BOUNDS type="Box" left="4725" top="6990" width="1485" height="450">
    </BOUNDS>
-   <BOUNDS type="Node" left="4545" top="6990" width="0" height="0">
+   <BOUNDS type="Node" left="4725" top="6990" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="2" visible="1" values="|float3 position;|,|float age;|">
    </PIN>
@@ -710,36 +710,6 @@
    <LINKPOINT x="4395" y="5700">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="AttributeBuffer (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\AttributeBuffer (DX11.Particles.Tools).v4p" nodename="AttributeBuffer (DX11.Particles.Tools)" componentmode="Hidden" id="134">
-   <BOUNDS type="Node" left="3345" top="7515" width="100" height="100">
-   </BOUNDS>
-   <BOUNDS type="Window" left="-210" top="1095" width="17685" height="15075">
-   </BOUNDS>
-   <PIN pinname="ParticleSystemBuffers In" visible="1">
-   </PIN>
-   <PIN pinname="Attribute Name" visible="1">
-   </PIN>
-   <PIN pinname="AttributeBuffers" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="3345" top="7515">
-   </BOUNDS>
-   <PIN pinname="IndexBuffer" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="135" srcpinname="Output Node" dstnodeid="134" dstpinname="ParticleSystemBuffers In" linkstyle="VHV">
-   <LINKPOINT x="3625" y="7008">
-   </LINKPOINT>
-   <LINKPOINT x="3110" y="6958">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="139" srcpinname="Output Enum" dstnodeid="134" dstpinname="Attribute Name">
-   </LINK>
-   <LINK srcnodeid="134" srcpinname="AttributeBuffers" dstnodeid="85" dstpinname="Input Node" linkstyle="VHV">
-   <LINKPOINT x="3345" y="8018">
-   </LINKPOINT>
-   <LINKPOINT x="660" y="8018">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="146">
    <BOUNDS type="Box" left="6120" top="8280" width="795" height="240">
    </BOUNDS>
@@ -750,12 +720,6 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="134" srcpinname="IndexBuffer" dstnodeid="146" dstpinname="Input Node" linkstyle="VHV">
-   <LINKPOINT x="3810" y="8018">
-   </LINKPOINT>
-   <LINKPOINT x="6120" y="8018">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="146" srcpinname="Output Node" dstnodeid="98" dstpinname="Buffer In" linkstyle="Bezier">
    <LINKPOINT x="6180" y="9293">
    </LINKPOINT>
@@ -795,7 +759,7 @@
    <NODE systemname="ReadBack (DX11.Buffer UInt)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="ReadBack (DX11.Buffer UInt)" componentmode="Hidden" id="147">
    <BOUNDS type="Node" left="5175" top="10605" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -836,6 +800,42 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
+   <NODE systemname="AsAttributeBuffer (DX11.Particles.Tools Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\AsAttributeBuffer (DX11.Particles.Tools Buffer).v4p" nodename="AsAttributeBuffer (DX11.Particles.Tools Buffer)" componentmode="Hidden" id="134">
+   <BOUNDS type="Node" left="3345" top="7515" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="-210" top="1095" width="17685" height="15075">
+   </BOUNDS>
+   <PIN pinname="ParticleSystemBuffers In" visible="1">
+   </PIN>
+   <PIN pinname="Attribute Name" visible="1">
+   </PIN>
+   <PIN pinname="AttributeBuffers" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="3345" top="7515">
+   </BOUNDS>
+   <PIN pinname="IndexBuffer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="135" srcpinname="Output Node" dstnodeid="134" dstpinname="ParticleSystemBuffers In" linkstyle="VHV">
+   <LINKPOINT x="3625" y="7008">
+   </LINKPOINT>
+   <LINKPOINT x="3110" y="6958">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="139" srcpinname="Output Enum" dstnodeid="134" dstpinname="Attribute Name">
+   </LINK>
+   <LINK srcnodeid="134" srcpinname="AttributeBuffers" dstnodeid="85" dstpinname="Input Node" linkstyle="VHV">
+   <LINKPOINT x="3345" y="8018">
+   </LINKPOINT>
+   <LINKPOINT x="660" y="8018">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="134" srcpinname="IndexBuffer" dstnodeid="146" dstpinname="Input Node" linkstyle="VHV">
+   <LINKPOINT x="3810" y="8018">
+   </LINKPOINT>
+   <LINKPOINT x="6120" y="8018">
+   </LINKPOINT>
+   </LINK>
    </PATCH>

@@ -2,28 +2,12 @@
    <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Network\Client (DX11.Particles.Network ZeroMQ) help.v4p" systemname="SenderReceiverExample" filename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\girlpower\Examples\Network\SenderReceiverExample.v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="0" top="1845" width="8895" height="13545">
    </BOUNDS>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
-   <NODE systemname="AttributeBufferBundle (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\AttributeBufferBundle (DX11.Particles.Tools).v4p" nodename="AttributeBufferBundle (DX11.Particles.Tools)" componentmode="Hidden" id="27">
-   <BOUNDS type="Node" left="1065" top="5880" width="1710" height="270">
-   </BOUNDS>
-   <BOUNDS type="Window" left="5115" top="810" width="14640" height="12000">
-   </BOUNDS>
-   <BOUNDS type="Box" left="1065" top="5880">
-   </BOUNDS>
-   <PIN pinname="ParticleBuffer" visible="1">
-   </PIN>
-   <PIN pinname="Stride" visible="1">
-   </PIN>
-   <PIN pinname="ParticleSystemBuffers In" visible="1">
-   </PIN>
-   <PIN pinname="Attribute Name" visible="1">
-   </PIN>
-   </NODE>
    <NODE systemname="CopyCounter (DX11.Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="CopyCounter (DX11.Buffer)" componentmode="Hidden" id="31">
    <BOUNDS type="Node" left="2775" top="6450" width="100" height="100">
    </BOUNDS>
@@ -68,24 +52,16 @@
    </NODE>
    <LINK srcnodeid="30" srcpinname="Output 1" dstnodeid="29" dstpinname="Y Input Value">
    </LINK>
-   <LINK srcnodeid="27" srcpinname="ParticleBuffer" dstnodeid="31" dstpinname="Buffer In" linkstyle="VHV">
-   <LINKPOINT x="1125" y="6285">
-   </LINKPOINT>
-   <LINKPOINT x="2775" y="6285">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="ReadBack (DX11.Buffer RawStream)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="ReadBack (DX11.Buffer RawStream)" componentmode="Hidden" id="32">
    <BOUNDS type="Node" left="1065" top="7125" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="1065" top="7125" width="3000" height="3000">
    </BOUNDS>
-   <PIN pinname="Input" visible="1">
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="27" srcpinname="ParticleBuffer" dstnodeid="32" dstpinname="Input">
-   </LINK>
    <NODE systemname="Take (Raw)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Take (Raw)" componentmode="Hidden" id="33">
    <BOUNDS type="Node" left="1065" top="8850" width="100" height="100">
    </BOUNDS>
@@ -105,17 +81,11 @@
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
-   <PIN pinname="Input 2" visible="1">
+   <PIN pinname="Input 2" visible="1" slicecount="1" values="28">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="27" srcpinname="Stride" dstnodeid="34" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2715" y="7173">
-   </LINKPOINT>
-   <LINKPOINT x="1785" y="7273">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="34" srcpinname="Output" dstnodeid="33" dstpinname="Count" linkstyle="VHV">
    <LINKPOINT x="2460" y="8700">
    </LINKPOINT>
@@ -198,8 +168,6 @@
    </LINK>
    <LINK srcnodeid="50" srcpinname="World" dstnodeid="52" dstpinname="World">
    </LINK>
-   <LINK srcnodeid="49" srcpinname="ParticleSystemBuffers" dstnodeid="27" dstpinname="ParticleSystemBuffers In">
-   </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="65">
    <BOUNDS type="Box" left="1395" top="10920" width="1470" height="240">
    </BOUNDS>
@@ -257,9 +225,9 @@
    </PIN>
    <PIN pinname="Show Grid" slicecount="1" values="1">
    </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Attribute Name|">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="74" srcpinname="Output Enum" dstnodeid="27" dstpinname="Attribute Name">
-   </LINK>
    <NODE systemname="MainLoop (VVVV)" nodename="MainLoop (VVVV)" componentmode="Hidden" id="-6">
    <BOUNDS type="Node" left="1245" top="1575" width="100" height="100">
    </BOUNDS>
@@ -302,12 +270,6 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="Stride">
    </PIN>
    </NODE>
-   <LINK srcnodeid="27" srcpinname="Stride" dstnodeid="95" dstpinname="Y Input Value" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="2760" y="6915">
-   </LINKPOINT>
-   <LINKPOINT x="3465" y="6915">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="98">
    <BOUNDS type="Box" left="795" top="3750" width="450" height="480">
    </BOUNDS>
@@ -337,9 +299,9 @@
    <NODE nodename="IOBox (String)" componentmode="InABox" id="104">
    <BOUNDS type="Node" left="3585" top="5850" width="4170" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="3585" top="5850" width="4170" height="270">
+   <BOUNDS type="Box" left="3585" top="5850" width="3645" height="480">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; this node outputs a buffer with all selected attributes|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; this node outputs one attribute buffer with all selected attributes|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -601,9 +563,9 @@
    <NODE nodename="IOBox (String)" componentmode="InABox" id="126">
    <BOUNDS type="Node" left="1980" top="9690" width="3465" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="1980" top="9690" width="3465" height="270">
+   <BOUNDS type="Box" left="1980" top="9690" width="5310" height="480">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; the topic under which the data is published|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; The topic under which the data gets published. Be sure to have a unique string so that the server can properly assign the data.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -612,4 +574,48 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
+   <NODE systemname="AsAttributeBuffer (DX11.Particles.Tools Buffer Spectral)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\AsAttributeBuffer (DX11.Particles.Tools Buffer Spectral).v4p" nodename="AsAttributeBuffer (DX11.Particles.Tools Buffer Spectral)" componentmode="Hidden" id="27">
+   <BOUNDS type="Node" left="1065" top="5880" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Window" left="5115" top="810" width="14640" height="12000">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1065" top="5880">
+   </BOUNDS>
+   <PIN pinname="ParticleBuffer" visible="1">
+   </PIN>
+   <PIN pinname="Stride" visible="1">
+   </PIN>
+   <PIN pinname="ParticleSystemBuffers In" visible="1">
+   </PIN>
+   <PIN pinname="Attribute Name" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="27" srcpinname="AttributeBuffer" dstnodeid="31" dstpinname="Buffer In" linkstyle="VHV">
+   <LINKPOINT x="1125" y="6285">
+   </LINKPOINT>
+   <LINKPOINT x="2775" y="6285">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="AttributeBuffer" dstnodeid="32" dstpinname="Input">
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Stride" dstnodeid="34" dstpinname="Input 2" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2715" y="7173">
+   </LINKPOINT>
+   <LINKPOINT x="1785" y="7273">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="49" srcpinname="ParticleSystemBuffers" dstnodeid="27" dstpinname="ParticleSystemBuffers In">
+   </LINK>
+   <LINK srcnodeid="74" srcpinname="Output Enum" dstnodeid="27" dstpinname="Attribute Name" linkstyle="VHV">
+   <LINKPOINT x="2730" y="5783">
+   </LINKPOINT>
+   <LINKPOINT x="2340" y="5783">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="27" srcpinname="Stride" dstnodeid="95" dstpinname="Y Input Value" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2760" y="6915">
+   </LINKPOINT>
+   <LINKPOINT x="3465" y="6915">
+   </LINKPOINT>
+   </LINK>
    </PATCH>

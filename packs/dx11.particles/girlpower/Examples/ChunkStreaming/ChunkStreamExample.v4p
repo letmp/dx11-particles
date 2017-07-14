@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="2175">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\ChunkStreamExample.v4p" systemname="root" filename="C:\Users\le_tmp\Desktop\chunktests\root.v4p" scrollx="0" scrolly="11370">
    <BOUNDS type="Window" left="0" top="570" width="19170" height="13650">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
@@ -253,7 +253,7 @@
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
-   <PIN pinname="Data" slicecount="1" values="9999">
+   <PIN pinname="Data" slicecount="1" visible="1" values="9999">
    </PIN>
    </NODE>
    <NODE systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden" id="105">
@@ -955,7 +955,7 @@
    <NODE systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden" id="303">
    <BOUNDS type="Node" left="10140" top="26475" width="100" height="100">
    </BOUNDS>
-   <PIN pinname="Input 2" slicecount="1" values="9999">
+   <PIN pinname="Input 2" slicecount="1" visible="1" values="9999">
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
@@ -1016,32 +1016,6 @@
    <LINKPOINT x="5475" y="29535">
    </LINKPOINT>
    <LINKPOINT x="6990" y="29535">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="AsStructuredBuffer (DX11.Particles.IO Raw)" filename="%VVVV%\packs\dx11.particles\nodes\modules\IO\AsStructuredBuffer (DX11.Particles.IO Raw).v4p" nodename="AsStructuredBuffer (DX11.Particles.IO Raw)" componentmode="Hidden" id="314">
-   <BOUNDS type="Node" left="6030" top="24300" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Data" visible="1">
-   </PIN>
-   <PIN pinname="Element Count" visible="1">
-   </PIN>
-   <PIN pinname="Data Structure" visible="1">
-   </PIN>
-   <PIN pinname="BytesPerElement" visible="1">
-   </PIN>
-   <PIN pinname="Apply" visible="1">
-   </PIN>
-   <PIN pinname="Position Buffer" visible="1">
-   </PIN>
-   <PIN pinname="Color Buffer" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="6030" top="24300">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="155" srcpinname="Y Output Value" dstnodeid="314" dstpinname="Apply" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="16635" y="23505">
-   </LINKPOINT>
-   <LINKPOINT x="7590" y="23505">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Emitter (DX11.Particles.Emitter DynamicBuffer Advanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter DynamicBuffer Advanced).v4p" nodename="Emitter (DX11.Particles.Emitter DynamicBuffer Advanced)" componentmode="Hidden" id="103">
@@ -1316,12 +1290,6 @@
    </NODE>
    <LINK srcnodeid="180" srcpinname="Raw Data" dstnodeid="328" dstpinname="Input Node">
    </LINK>
-   <LINK srcnodeid="328" srcpinname="Output Node" dstnodeid="314" dstpinname="Raw Data" linkstyle="VHV">
-   <LINKPOINT x="4800" y="23580">
-   </LINKPOINT>
-   <LINKPOINT x="7320" y="23430">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="329">
    <BOUNDS type="Box" left="6030" top="24855" width="1110" height="240">
    </BOUNDS>
@@ -1332,18 +1300,10 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="314" srcpinname="Position Buffer" dstnodeid="329" dstpinname="Input Node">
-   </LINK>
    <LINK srcnodeid="329" srcpinname="Output Node" dstnodeid="103" dstpinname="Position Buffer" linkstyle="VHV">
    <LINKPOINT x="6060" y="25995">
    </LINKPOINT>
    <LINKPOINT x="6630" y="25995">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="317" srcpinname="Y Output Value" dstnodeid="314" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="10845" y="20333">
-   </LINKPOINT>
-   <LINKPOINT x="7725" y="20333">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="317" srcpinname="Y Output Value" dstnodeid="103" dstpinname="Emitter Size" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -1352,34 +1312,20 @@
    <LINKPOINT x="6195" y="21638">
    </LINKPOINT>
    </LINK>
-   <LINK srcnodeid="318" srcpinname="Output String" dstnodeid="314" dstpinname="Data Structure" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="12075" y="20340">
-   </LINKPOINT>
-   <LINKPOINT x="8100" y="20340">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="319" srcpinname="Y Output Value" dstnodeid="314" dstpinname="BytesPerElement" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="13275" y="20325">
-   </LINKPOINT>
-   <LINKPOINT x="8475" y="20325">
-   </LINKPOINT>
-   </LINK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="330">
-   <BOUNDS type="Box" left="7545" top="24855" width="1125" height="240">
+   <BOUNDS type="Box" left="7410" top="24855" width="1125" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7545" top="24855" width="0" height="0">
+   <BOUNDS type="Node" left="7410" top="24855" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Descriptive Name" slicecount="1" values="|Color Buffer|">
    </PIN>
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="314" srcpinname="Color Buffer" dstnodeid="330" dstpinname="Input Node">
-   </LINK>
    <LINK srcnodeid="330" srcpinname="Output Node" dstnodeid="103" dstpinname="Color Buffer" linkstyle="VHV">
-   <LINKPOINT x="7560" y="25995">
+   <LINKPOINT x="7470" y="25995">
    </LINKPOINT>
-   <LINKPOINT x="6960" y="25995">
+   <LINKPOINT x="6915" y="25995">
    </LINKPOINT>
    </LINK>
    <NODE systemname="IOBox (Color)" nodename="IOBox (Color)" componentmode="InABox" id="333">
@@ -1552,7 +1498,7 @@
    </LINK>
    <LINK srcnodeid="28" srcpinname="Chunk CenterXYZ" dstnodeid="298" dstpinname="ChunkPositionXYZ">
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    <NODE systemname="Importer (DX11.Particles.IO.Chunks PLY)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.IO\x64\DX11.Particles.IO.dll" nodename="Importer (DX11.Particles.IO.Chunks PLY)" componentmode="Hidden" id="338">
    <BOUNDS type="Node" left="6045" top="6510" width="5895" height="270">
@@ -1583,5 +1529,85 @@
    <LINK srcnodeid="338" srcpinname="Message" dstnodeid="262" dstpinname="Input String">
    </LINK>
    <LINK srcnodeid="239" srcpinname="Output Node" dstnodeid="266" dstpinname="ChunkManager">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="339">
+   <BOUNDS type="Box" left="8640" top="25950" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="8640" top="25950" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="9999">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="339" srcpinname="Y Output Value" dstnodeid="104" dstpinname="Data" linkstyle="Bezier">
+   <LINKPOINT x="8640" y="26318">
+   </LINKPOINT>
+   <LINKPOINT x="7485" y="26318">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="339" srcpinname="Y Output Value" dstnodeid="303" dstpinname="Input 2" linkstyle="Bezier">
+   <LINKPOINT x="8700" y="26318">
+   </LINKPOINT>
+   <LINKPOINT x="10335" y="26318">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="AsAttributeBuffer (DX11.Particles.Tools Raw Advanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\AsAttributeBuffer (DX11.Particles.Tools Raw Advanced).v4p" nodename="AsAttributeBuffer (DX11.Particles.Tools Raw Advanced)" componentmode="Hidden" id="314">
+   <BOUNDS type="Node" left="6030" top="24300" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Data" visible="1">
+   </PIN>
+   <PIN pinname="Element Count" visible="1">
+   </PIN>
+   <PIN pinname="Data Structure" visible="1">
+   </PIN>
+   <PIN pinname="BytesPerElement" visible="1">
+   </PIN>
+   <PIN pinname="Apply" visible="1">
+   </PIN>
+   <PIN pinname="Position Buffer" visible="1">
+   </PIN>
+   <PIN pinname="Color Buffer" visible="1">
+   </PIN>
+   <BOUNDS type="Box" left="6030" top="24300">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="155" srcpinname="Y Output Value" dstnodeid="314" dstpinname="Apply" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="16635" y="23505">
+   </LINKPOINT>
+   <LINKPOINT x="8220" y="23505">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="328" srcpinname="Output Node" dstnodeid="314" dstpinname="Raw Data" linkstyle="VHV">
+   <LINKPOINT x="4800" y="23580">
+   </LINKPOINT>
+   <LINKPOINT x="7320" y="23430">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="314" srcpinname="Position Buffer" dstnodeid="329" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="317" srcpinname="Y Output Value" dstnodeid="314" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="12105" y="20325">
+   </LINKPOINT>
+   <LINKPOINT x="6510" y="20325">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="318" srcpinname="Output String" dstnodeid="314" dstpinname="Data Structure" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="13350" y="20333">
+   </LINKPOINT>
+   <LINKPOINT x="7365" y="20333">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="319" srcpinname="Y Output Value" dstnodeid="314" dstpinname="BytesPerElement" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="14550" y="20333">
+   </LINKPOINT>
+   <LINKPOINT x="7800" y="20333">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="314" srcpinname="Color Buffer" dstnodeid="330" dstpinname="Input Node">
    </LINK>
    </PATCH>

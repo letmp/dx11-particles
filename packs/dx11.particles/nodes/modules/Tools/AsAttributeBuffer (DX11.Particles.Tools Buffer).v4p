@@ -1,10 +1,10 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Tools\AttributeBuffer (DX11.Particles.Tools).v4p" systemname="AttributeBuffer (DX11.Particles.Filters)" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Filters\AttributeBuffer (DX11.Particles.Filters).v4p" scrollx="0" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\Tools\AsAttributeBuffer (DX11.Particles.Tools).v4p" systemname="AttributeBuffer (DX11.Particles.Filters)" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Filters\AttributeBuffer (DX11.Particles.Filters).v4p" scrollx="0" scrolly="0">
    <BOUNDS type="Window" left="-210" top="1095" width="17685" height="15075">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.0">
    </PACK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -484,20 +484,6 @@
    </LINK>
    <INFO author="tmp" description="Splits the ParticleSystemBuffers into a Buffers for each specified attribute." tags="">
    </INFO>
-   <NODE systemname="Tools_AttributeBuffer_Skeleton (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\dx11\Tools_AttributeBuffer_Skeleton.fx" nodename="Tools_AttributeBuffer_Skeleton (DX11.Effect)" componentmode="Hidden" id="46">
-   <BOUNDS type="Node" left="7485" top="3660" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Shader Path" visible="1" pintype="Output">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="46" srcpinname="Shader Path" dstnodeid="53" dstpinname="Filename">
-   </LINK>
-   <LINK srcnodeid="46" srcpinname="Shader Path" dstnodeid="52" dstpinname="Filename" linkstyle="VHV">
-   <LINKPOINT x="9205" y="3968">
-   </LINKPOINT>
-   <LINKPOINT x="9995" y="3968">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="121">
    <BOUNDS type="Node" left="2385" top="4995" width="480" height="270">
    </BOUNDS>
@@ -527,9 +513,9 @@
    </BOUNDS>
    <BOUNDS type="Box" left="1245" top="7605">
    </BOUNDS>
-   <PIN pinname="ConfigShader" slicecount="1" values="|#include &lt;packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh&gt;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;&tab;float3 position;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;StructuredBuffer&lt;Particle&gt; ParticleBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AlivePointerBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AliveCounterBuffer;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;float3&gt; positionBUFFER : POSITIONBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; IndexBuffer : INDEXBUFFER;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_WriteAttributes(csin input)&cr;&lf;{&cr;&lf;&tab;if (input.DTID.x &gt;= MAXPARTICLECOUNT |||| input.DTID.x &gt;= AliveCounterBuffer[0]) return;&cr;&lf;&tab;&cr;&lf;&tab;uint particleIndex = AlivePointerBuffer[input.DTID.x];&cr;&lf;&tab;uint bufferIndex = IndexBuffer.IncrementCounter();&cr;&lf;&tab;&cr;&lf;&tab;IndexBuffer[input.DTID.x] = particleIndex;&cr;&lf;&tab;&cr;&lf;&tab;positionBUFFER[input.DTID.x] = ParticleBuffer[particleIndex].position;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 WriteAttributes { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_WriteAttributes() ) );} }|">
+   <PIN pinname="ConfigShader" slicecount="1" values="|#include &lt;packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh&gt;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;&tab;float3 position;&cr;&lf;float age;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;StructuredBuffer&lt;Particle&gt; ParticleBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AlivePointerBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AliveCounterBuffer;&cr;&lf;&cr;&lf;RWStructuredBuffer&lt;float3&gt; positionBUFFER : POSITIONBUFFER;&cr;&lf;RWStructuredBuffer&lt;float&gt; ageBUFFER : AGEBUFFER;&cr;&lf;RWStructuredBuffer&lt;uint&gt; IndexBuffer : INDEXBUFFER;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_WriteAttributes(csin input)&cr;&lf;{&cr;&lf;&tab;if (input.DTID.x &gt;= MAXPARTICLECOUNT |||| input.DTID.x &gt;= AliveCounterBuffer[0]) return;&cr;&lf;&tab;&cr;&lf;&tab;uint particleIndex = AlivePointerBuffer[input.DTID.x];&cr;&lf;&tab;uint bufferIndex = IndexBuffer.IncrementCounter();&cr;&lf;&tab;&cr;&lf;&tab;IndexBuffer[input.DTID.x] = particleIndex;&cr;&lf;&tab;&cr;&lf;&tab;positionBUFFER[input.DTID.x] = ParticleBuffer[particleIndex].position;&cr;&lf;ageBUFFER[input.DTID.x] = ParticleBuffer[particleIndex].age;&cr;&lf;}&cr;&lf;&cr;&lf;technique11 WriteAttributes { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_WriteAttributes() ) );} }|">
    </PIN>
-   <PIN pinname="ConfigDefines" slicecount="1" values="|COMPOSITESTRUCT=float3 position; float lifespan; float3 velocity; float age; float3 force; float4 color;,MAXPARTICLECOUNT=45900,KNOW_COLOR=1|">
+   <PIN pinname="ConfigDefines" slicecount="1" values="|COMPOSITESTRUCT=float3 position; float lifespan; float3 velocity; float age; float3 force;,MAXPARTICLECOUNT=20|">
    </PIN>
    <PIN pinname="ShaderCode" visible="1">
    </PIN>
@@ -732,7 +718,7 @@
    </LINK>
    <LINK srcnodeid="145" srcpinname="Output" dstnodeid="7" dstpinname="Element Count">
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="147">
    <BOUNDS type="Node" left="5820" top="4050" width="100" height="100">
@@ -778,6 +764,20 @@
    <LINKPOINT x="7170" y="5708">
    </LINKPOINT>
    <LINKPOINT x="6195" y="5708">
+   </LINKPOINT>
+   </LINK>
+   <NODE systemname="Tools_AsAttributeBuffer_Buffer_Skeleton (DX11.Effect)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\dx11\Tools_AsAttributeBuffer_Buffer_Skeleton.fx" nodename="Tools_AsAttributeBuffer_Buffer_Skeleton (DX11.Effect)" componentmode="Hidden" id="46">
+   <BOUNDS type="Node" left="6930" top="3660" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Shader Path" visible="1" pintype="Output">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="46" srcpinname="Shader Path" dstnodeid="53" dstpinname="Filename">
+   </LINK>
+   <LINK srcnodeid="46" srcpinname="Shader Path" dstnodeid="52" dstpinname="Filename" linkstyle="VHV">
+   <LINKPOINT x="8835" y="3968">
+   </LINKPOINT>
+   <LINKPOINT x="9810" y="3968">
    </LINKPOINT>
    </LINK>
    </PATCH>
