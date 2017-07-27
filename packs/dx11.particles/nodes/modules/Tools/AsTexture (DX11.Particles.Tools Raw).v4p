@@ -1,0 +1,223 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\Tools\AsTexture (DX11.Particles.Tools Raw).v4p" systemname="AsTexture2D (Raw)" filename="C:\Users\le_tmp\Desktop\wip\textureToRaw\AsTexture2D (Raw).v4p">
+   <NODE systemname="Grid (DX11.Geometry)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Grid (DX11.Geometry)" componentmode="Hidden" id="3">
+   <BOUNDS type="Node" left="2175" top="2055" width="1095" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2175" top="2055" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="SizeXY" visible="1" slicecount="2" values="2,2">
+   </PIN>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   <PIN pinname="Resolution X" visible="1">
+   </PIN>
+   <PIN pinname="Resolution Y" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Vector (2d Split)" nodename="Vector (2d Split)" componentmode="Hidden" id="4">
+   <BOUNDS type="Node" left="2685" top="1485" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="XY" visible="1">
+   </PIN>
+   <PIN pinname="X" visible="1">
+   </PIN>
+   <PIN pinname="Y" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="InAWindow" id="5">
+   <BOUNDS type="Node" left="840" top="3855" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="840" top="3855" width="6000" height="4500">
+   </BOUNDS>
+   <BOUNDS type="Window" left="-9075" top="1470" width="6960" height="6210">
+   </BOUNDS>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture SizeXY" visible="1">
+   </PIN>
+   <PIN pinname="Buffers" visible="1">
+   </PIN>
+   <PIN pinname="Target Format" visible="1">
+   </PIN>
+   <PIN pinname="Enable Depth Buffer" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="View" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Texture ScaleXY" visible="1" slicecount="2" values="1,1">
+   </PIN>
+   <PIN pinname="Depth Buffer Mode" slicecount="1" values="Standard">
+   </PIN>
+   <PIN pinname="Depth Buffer Format" slicecount="1" values="D32_Float">
+   </PIN>
+   <PIN pinname="Clear" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Clear Depth" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Mip Map Levels" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Generate Mip Maps" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="6" systemname="IOBox (Value Advanced)">
+   <BOUNDS type="Box" left="2685" top="450" width="435" height="585">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2685" top="450" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="|320,240|">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="2" values="320,240">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="2" values="320,240">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="7" systemname="IOBox (Node)">
+   <BOUNDS type="Box" left="1725" top="4335" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1725" top="4335" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Texture">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="5" dstpinname="Texture SizeXY" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2700" y="2438">
+   </LINKPOINT>
+   <LINKPOINT x="2265" y="2438">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="4" dstpinname="XY" linkstyle="VHV" hiddenwhenlocked="1">
+   <LINKPOINT x="2335" y="1225">
+   </LINKPOINT>
+   <LINKPOINT x="3095" y="1265">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="X" dstnodeid="3" dstpinname="Resolution X">
+   </LINK>
+   <LINK srcnodeid="4" srcpinname="Y" dstnodeid="3" dstpinname="Resolution Y">
+   </LINK>
+   <LINK srcnodeid="5" srcpinname="Buffers" dstnodeid="7" dstpinname="Input Node">
+   </LINK>
+   <NODE id="9" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Input">
+   </PIN>
+   <BOUNDS type="Box" left="3960" top="570" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3960" top="570" width="750" height="240">
+   </BOUNDS>
+   <PIN pinname="Output Node" visible="1">
+   </PIN>
+   </NODE>
+   <BOUNDS type="Window" left="5400" top="5340" width="5940" height="6000">
+   </BOUNDS>
+   <PACK Name="dx11" Version="1.0.3">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="10">
+   <BOUNDS type="Box" left="825" top="3390" width="1755" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="825" top="3390" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="R32G32B32A32_Float">
+   </PIN>
+   <PIN pinname="Default" slicecount="1" values="R32G32B32A32_Float">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Target Format|">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="10" srcpinname="Output Enum" dstnodeid="5" dstpinname="Target Format">
+   </LINK>
+   <INFO author="tmp" description="Converts a float4 bytestream to a texture" tags="">
+   </INFO>
+   <NODE systemname="Rasterizer (DX11.RenderState)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="Rasterizer (DX11.RenderState)" componentmode="Hidden" id="17">
+   <BOUNDS type="Node" left="1155" top="2055" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="1155" top="2055" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Render State" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Mode" slicecount="1" values="NoCullSimple">
+   </PIN>
+   </NODE>
+   <NODE systemname="AvoidNIL (Raw)" filename="%VVVV%\packs\vvvv-ZeroMQ\nodes\modules\AvoidNIL (Raw).v4p" nodename="AvoidNIL (Raw)" componentmode="Hidden" id="20">
+   <BOUNDS type="Node" left="3975" top="945" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="9" srcpinname="Output Node" dstnodeid="20" dstpinname="Input">
+   </LINK>
+   <NODE systemname="DynamicBuffer (DX11.Buffer Raw)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer Raw)" componentmode="Hidden" id="21">
+   <BOUNDS type="Node" left="3960" top="1485" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3960" top="1485" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1" slicecount="1" values="||">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="20" srcpinname="Output" dstnodeid="21" dstpinname="Input">
+   </LINK>
+   <NODE systemname="Tools_AsTexture_Raw (DX11.Effect)" filename="dx11\Tools_AsTexture_Raw.fx" nodename="Tools_AsTexture_Raw (DX11.Effect)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="1005" top="2595" width="4200" height="270">
+   </BOUNDS>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="RawBuffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="ResolutionXY" visible="1">
+   </PIN>
+   <PIN pinname="PixelCount" visible="1">
+   </PIN>
+   <PIN pinname="Render State" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="1" dstpinname="ResolutionXY" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="2275" y="1780">
+   </LINKPOINT>
+   <LINKPOINT x="3425" y="1820">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Render State" dstnodeid="1" dstpinname="Render State" linkstyle="VHV">
+   <LINKPOINT x="1215" y="2445">
+   </LINKPOINT>
+   <LINKPOINT x="1575" y="2445">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Layer" dstnodeid="5" dstpinname="Layer">
+   </LINK>
+   <LINK srcnodeid="3" srcpinname="Geometry Out" dstnodeid="1" dstpinname="Geometry">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Buffer" dstnodeid="1" dstpinname="RawBuffer">
+   </LINK>
+   </PATCH>
