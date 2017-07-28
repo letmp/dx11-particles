@@ -1,3 +1,4 @@
+#include <packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh>
 ByteAddressBuffer RawBuffer;
 
 RWStructuredBuffer<float3> PositionBuffer : POSITIONBUFFER;
@@ -6,7 +7,7 @@ RWStructuredBuffer<uint> CounterBuffer : COUNTERBUFFER;
 
 uint elementCount;
 
-[numthreads(64,1,1)]
+[numthreads(XTHREADS,YTHREADS,ZTHREADS)]
 void CS(uint3 tid : SV_DispatchThreadID)
 {
 	if (tid.x >= elementCount) return;

@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\Selection\Blobs (DX11.Particles.Selection).v4p" systemname="Blobs (DX11.Particles.Selection)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Blobs (DX11.Particles.Selection).v4p" scrollx="15" scrolly="0">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\Selection\Blobs (DX11.Particles.Selection).v4p" systemname="Blobs (DX11.Particles.Selection)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Selection\Blobs (DX11.Particles.Selection).v4p" scrollx="15" scrolly="0">
    <NODE systemname="Renderer (DX11 TempTarget)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Renderer (DX11 TempTarget)" componentmode="Hidden" id="1">
    <BOUNDS type="Node" left="2175" top="3015" width="100" height="100">
    </BOUNDS>
@@ -110,7 +110,7 @@
    </NODE>
    <BOUNDS type="Window" left="975" top="1125" width="19620" height="13815">
    </BOUNDS>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -548,12 +548,12 @@
    </NODE>
    <LINK srcnodeid="70" srcpinname="Output" dstnodeid="95" dstpinname="Input 1">
    </LINK>
-   <NODE systemname="Preview (DX11.Texture)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Preview (DX11.Texture)" componentmode="Hidden" id="97">
+   <NODE systemname="Preview (DX11.Texture)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="Preview (DX11.Texture)" componentmode="InAWindow" id="97">
    <BOUNDS type="Node" left="4065" top="10395" width="100" height="100">
    </BOUNDS>
    <BOUNDS type="Box" left="4065" top="10395" width="6000" height="4500">
    </BOUNDS>
-   <BOUNDS type="Window" left="23835" top="14340" width="4080" height="3210">
+   <BOUNDS type="Window" left="22575" top="11475" width="4080" height="3210">
    </BOUNDS>
    <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
@@ -591,7 +591,7 @@
    </BOUNDS>
    <PIN pinname="Position" visible="1" slicecount="12" values="114.521428501043,22.3241203538112,0,103.009843045821,32.3297390027439,0,83.459056338955,51.6895946158101,0,73.0062175746044,61,0">
    </PIN>
-   <PIN pinname="Max Recapture Time" slicecount="1" values="2">
+   <PIN pinname="Max Recapture Time" slicecount="1" values="2" visible="1">
    </PIN>
    <PIN pinname="ID" visible="1">
    </PIN>
@@ -826,4 +826,22 @@
    </PACK>
    <INFO author="tmp" description="Selects and groups particles with a simple blob detection." tags="">
    </INFO>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="120">
+   <BOUNDS type="Box" left="12255" top="5685" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="12255" top="5685" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="2">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="s">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Max Recapture Time|">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="120" srcpinname="Y Output Value" dstnodeid="102" dstpinname="Max Recapture Time">
+   </LINK>
+   <PACK Name="dx11" Version="1.0.3">
+   </PACK>
    </PATCH>

@@ -49,9 +49,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="20" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="2820" top="3780" width="1740" height="765">
+   <BOUNDS type="Box" left="2820" top="3180" width="1740" height="765">
    </BOUNDS>
-   <BOUNDS type="Node" left="2820" top="3780" width="0" height="0">
+   <BOUNDS type="Node" left="2820" top="3180" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="3" visible="1" values="PARTICLEBUFFER,ALIVEPOINTERBUFFER,ALIVECOUNTERBUFFER">
    </PIN>
@@ -268,18 +268,6 @@
    <LINKPOINT x="9915" y="5685">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="DispatchIndirect (DX11.Drawer Buffer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DispatchIndirect (DX11.Drawer Buffer)" componentmode="Hidden" id="69">
-   <BOUNDS type="Node" left="1635" top="5865" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Argument Buffer" visible="1" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Geometry Out" visible="1">
-   </PIN>
-   <PIN pinname="Argument Resource Offset" slicecount="1" values="0">
-   </PIN>
-   <BOUNDS type="Box" left="1635" top="5865">
-   </BOUNDS>
-   </NODE>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="117">
    <BOUNDS type="Box" left="2985" top="7170" width="1365" height="240">
    </BOUNDS>
@@ -291,7 +279,7 @@
    <INFO author="tmp" description="Creates a new ParticleBuffer with the selected attributes." tags="">
    </INFO>
    <NODE systemname="Sift (DX11.Particles.Core Buffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Sift (DX11.Particles.Core Buffer)" componentmode="Hidden" id="121">
-   <BOUNDS type="Node" left="2385" top="4995" width="480" height="270">
+   <BOUNDS type="Node" left="2385" top="4395" width="480" height="270">
    </BOUNDS>
    <PIN pinname="Config" slicecount="1" values="|0:PARTICLEBUFFER,1:ALIVEPOINTERBUFFER,3:ALIVECOUNTERBUFFER|">
    </PIN>
@@ -308,20 +296,14 @@
    </LINK>
    <LINK srcnodeid="20" srcpinname="Output String" dstnodeid="121" dstpinname="BufferSemantic Filter">
    </LINK>
-   <LINK srcnodeid="121" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="69" dstpinname="Argument Buffer" linkstyle="VHV" hiddenwhenlocked="1">
-   <LINKPOINT x="2705" y="5450">
-   </LINKPOINT>
-   <LINKPOINT x="1795" y="5350">
-   </LINKPOINT>
-   </LINK>
    <NODE id="131" systemname="Shader (DX11.Effect String)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Shader (DX11.Effect String)" componentmode="Hidden">
    <BOUNDS type="Node" left="1245" top="7605" width="2175" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="1245" top="7605">
    </BOUNDS>
-   <PIN pinname="ConfigShader" slicecount="1" values="|#include &lt;packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh&gt;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;&tab;float3 position;&cr;&lf;float4 color;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;struct NewParticle {&tab;&cr;&lf;&tab;#if defined(NEWCOMPOSITESTRUCT)&cr;&lf;  &tab;&tab;NEWCOMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;StructuredBuffer&lt;Particle&gt; ParticleBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AlivePointerBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AliveCounterBuffer;&cr;&lf;&cr;&lf;AppendStructuredBuffer&lt;NewParticle&gt; NewParticleBuffer : BACKBUFFER;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_WriteAttributes(csin input)&cr;&lf;{&cr;&lf;&tab;if (input.DTID.x &gt;= MAXPARTICLECOUNT |||| input.DTID.x &gt;= AliveCounterBuffer[0]) return;&cr;&lf;&tab;&cr;&lf;&tab;uint particleIndex = AlivePointerBuffer[input.DTID.x];&cr;&lf;&tab;&cr;&lf;&tab;NewParticle np = (NewParticle) 0;&cr;&lf;&cr;&lf;&tab;np.position=ParticleBuffer[particleIndex].position;&cr;&lf;np.color=ParticleBuffer[particleIndex].color;&cr;&lf;&tab;&cr;&lf;&tab;NewParticleBuffer.Append(np);&cr;&lf;}&cr;&lf;&cr;&lf;technique11 WriteAttributes { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_WriteAttributes() ) );} }|">
+   <PIN pinname="ConfigShader" slicecount="1" values="|#include &lt;packs\dx11.particles\nodes\modules\Core\fxh\Core.fxh&gt;&cr;&lf;&cr;&lf;struct Particle {&cr;&lf;&tab;#if defined(COMPOSITESTRUCT)&cr;&lf;  &tab;&tab;COMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;&tab;float3 position;&cr;&lf;float age;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;struct NewParticle {&tab;&cr;&lf;&tab;#if defined(NEWCOMPOSITESTRUCT)&cr;&lf;  &tab;&tab;NEWCOMPOSITESTRUCT&cr;&lf; &tab;#else&cr;&lf;&tab;&tab;int oneVariableNeeded;&cr;&lf;&tab;#endif&cr;&lf;};&cr;&lf;&cr;&lf;StructuredBuffer&lt;Particle&gt; ParticleBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AlivePointerBuffer;&cr;&lf;StructuredBuffer&lt;uint&gt; AliveCounterBuffer;&cr;&lf;&cr;&lf;AppendStructuredBuffer&lt;NewParticle&gt; NewParticleBuffer : BACKBUFFER;&cr;&lf;&cr;&lf;struct csin&cr;&lf;{&cr;&lf;&tab;uint3 DTID : SV_DispatchThreadID;&cr;&lf;&tab;uint3 GTID : SV_GroupThreadID;&cr;&lf;&tab;uint3 GID : SV_GroupID;&cr;&lf;};&cr;&lf;&cr;&lf;[numthreads(XTHREADS, YTHREADS, ZTHREADS)]&cr;&lf;void CS_WriteAttributes(csin input)&cr;&lf;{&cr;&lf;&tab;if (input.DTID.x &gt;= MAXPARTICLECOUNT |||| input.DTID.x &gt;= AliveCounterBuffer[0]) return;&cr;&lf;&tab;&cr;&lf;&tab;uint particleIndex = AlivePointerBuffer[input.DTID.x];&cr;&lf;&tab;&cr;&lf;&tab;NewParticle np = (NewParticle) 0;&cr;&lf;&cr;&lf;&tab;np.position=ParticleBuffer[particleIndex].position;&cr;&lf;np.age=ParticleBuffer[particleIndex].age;&cr;&lf;&tab;&cr;&lf;&tab;NewParticleBuffer.Append(np);&cr;&lf;}&cr;&lf;&cr;&lf;technique11 WriteAttributes { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_WriteAttributes() ) );} }|">
    </PIN>
-   <PIN pinname="ConfigDefines" slicecount="1" values="|,NEWCOMPOSITESTRUCT=float3 position;float4 color;|">
+   <PIN pinname="ConfigDefines" slicecount="1" values="|COMPOSITESTRUCT=float3 position; float lifespan; float3 velocity; float age; float3 force;,MAXPARTICLECOUNT=10,NEWCOMPOSITESTRUCT=float3 position;float age;|">
    </PIN>
    <PIN pinname="ShaderCode" visible="1">
    </PIN>
@@ -337,13 +319,9 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
+   <PIN pinname="Geometry" visible="1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="69" srcpinname="Geometry Out" dstnodeid="131" dstpinname="Geometry" linkstyle="VHV">
-   <LINKPOINT x="935" y="6855">
-   </LINKPOINT>
-   <LINKPOINT x="2305" y="6855">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="117" srcpinname="Output Enum" dstnodeid="131" dstpinname="Technique">
    </LINK>
    <LINK srcnodeid="121" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="131" dstpinname="AliveCounterBuffer">
@@ -413,7 +391,7 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="152">
-   <BOUNDS type="Node" left="3345" top="6480" width="100" height="100">
+   <BOUNDS type="Node" left="3345" top="6480" width="2610" height="270">
    </BOUNDS>
    <BOUNDS type="Box" left="3345" top="6480" width="3000" height="3000">
    </BOUNDS>
@@ -423,6 +401,10 @@
    </PIN>
    <PIN pinname="Output" visible="1">
    </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="15" srcpinname="ParticleSystem Defines" dstnodeid="152" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="5280" y="4220">
@@ -431,7 +413,7 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="153">
-   <BOUNDS type="Node" left="3780" top="6090" width="100" height="100">
+   <BOUNDS type="Node" left="4620" top="6090" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
@@ -441,9 +423,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="154">
-   <BOUNDS type="Box" left="3795" top="5385" width="1935" height="240">
+   <BOUNDS type="Box" left="4635" top="5235" width="1935" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3795" top="5385" width="0" height="0">
+   <BOUNDS type="Node" left="4635" top="5235" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="NEWCOMPOSITESTRUCT=">
    </PIN>
@@ -457,7 +439,7 @@
    <LINK srcnodeid="154" srcpinname="Output String" dstnodeid="153" dstpinname="Input 1">
    </LINK>
    <NODE systemname="Add (String Spectral)" nodename="Add (String Spectral)" componentmode="Hidden" id="155">
-   <BOUNDS type="Node" left="3945" top="5715" width="100" height="100">
+   <BOUNDS type="Node" left="4785" top="5715" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Input" visible="1">
    </PIN>
@@ -465,9 +447,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="148" srcpinname="Output" dstnodeid="155" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="11880" y="5375">
+   <LINKPOINT x="12160" y="5375">
    </LINKPOINT>
-   <LINKPOINT x="4005" y="5425">
+   <LINKPOINT x="4565" y="5425">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="155" srcpinname="Output" dstnodeid="153" dstpinname="Input 2">
@@ -601,5 +583,75 @@
    </LINKPOINT>
    <LINKPOINT x="9650" y="3968">
    </LINKPOINT>
+   </LINK>
+   <NODE systemname="DispatchIndirect (DX11.Drawer 1D)" filename="%VVVV%\packs\dx11\nodes\plugins\base\VVVV.DX11.Nodes.dll" nodename="DispatchIndirect (DX11.Drawer 1D)" componentmode="Hidden" id="167">
+   <BOUNDS type="Node" left="870" top="6210" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="870" top="6210" width="3000" height="3000">
+   </BOUNDS>
+   <PIN pinname="Argument Buffer" visible="1" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Warp Size" visible="1">
+   </PIN>
+   <PIN pinname="Geometry Out" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="166">
+   <BOUNDS type="Box" left="870" top="5235" width="375" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="870" top="5235" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="64">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Value Type" slicecount="1" values="Integer">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="166" srcpinname="Y Output Value" dstnodeid="167" dstpinname="Warp Size">
+   </LINK>
+   <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="165">
+   <BOUNDS type="Node" left="5895" top="6090" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input 2" visible="1">
+   </PIN>
+   <PIN pinname="Input 1" slicecount="1" values="XTHREADS=">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="FormatValue (String)" nodename="FormatValue (String)" componentmode="Hidden" id="164">
+   <BOUNDS type="Node" left="6075" top="5715" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Input" visible="1">
+   </PIN>
+   <PIN pinname="Output" visible="1">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="166" srcpinname="Y Output Value" dstnodeid="164" dstpinname="Input" linkstyle="VHV">
+   <LINKPOINT x="930" y="5580">
+   </LINKPOINT>
+   <LINKPOINT x="6075" y="5580">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="164" srcpinname="Output" dstnodeid="165" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="121" srcpinname="ALIVECOUNTERBUFFER" dstnodeid="167" dstpinname="Argument Buffer" linkstyle="Bezier">
+   <LINKPOINT x="2805" y="5438">
+   </LINKPOINT>
+   <LINKPOINT x="2010" y="5438">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="167" srcpinname="Geometry Out" dstnodeid="131" dstpinname="Geometry" linkstyle="VHV">
+   <LINKPOINT x="900" y="6885">
+   </LINKPOINT>
+   <LINKPOINT x="1665" y="6885">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="165" srcpinname="Output" dstnodeid="152" dstpinname="Input 3">
    </LINK>
    </PATCH>

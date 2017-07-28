@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\AsStructuredBufferAdvanced (DX11.Particles.Tools Raw).v4p" systemname="AsDynamicBuffer (DX11.Particles.IO Raw)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\AsDynamicBuffer (DX11.Particles.IO Raw).v4p">
+   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Tools\AsAttributeBuffer (DX11.Particles.Tools Raw Advanced).v4p" systemname="AsDynamicBuffer (DX11.Particles.IO Raw)" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\girlpower\Examples\ChunkStreaming\AsDynamicBuffer (DX11.Particles.IO Raw).v4p">
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="0" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="4395" top="5715" width="675" height="675">
    </BOUNDS>
@@ -297,13 +297,17 @@
    </PIN>
    </NODE>
    <NODE systemname="Cons (String)" filename="%VVVV%\lib\nodes\plugins\VVVV.Nodes.dll" nodename="Cons (String)" componentmode="Hidden" id="22">
-   <BOUNDS type="Node" left="6015" top="3480" width="495" height="270">
+   <BOUNDS type="Node" left="5790" top="3480" width="495" height="270">
    </BOUNDS>
    <PIN pinname="Input 1" visible="1">
    </PIN>
    <PIN pinname="Input 2" visible="1">
    </PIN>
    <PIN pinname="Output" visible="1">
+   </PIN>
+   <PIN pinname="Input Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Input 3" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="GetSlice (Node)" nodename="GetSlice (Node)" componentmode="Hidden" id="24">
@@ -398,14 +402,6 @@
    <LINKPOINT x="4475" y="5143">
    </LINKPOINT>
    <LINKPOINT x="4600" y="5133">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="22" dstpinname="Input 1">
-   </LINK>
-   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="22" dstpinname="Input 2" linkstyle="VHV">
-   <LINKPOINT x="8820" y="3345">
-   </LINKPOINT>
-   <LINKPOINT x="6510" y="3345">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="16" srcpinname="Output" dstnodeid="17" dstpinname="Input 2">
@@ -561,9 +557,9 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="22" srcpinname="Output" dstnodeid="25" dstpinname="Defines" linkstyle="VHV">
-   <LINKPOINT x="6015" y="3968">
+   <LINKPOINT x="5865" y="3968">
    </LINKPOINT>
-   <LINKPOINT x="3630" y="3968">
+   <LINKPOINT x="3555" y="3968">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="25" srcpinname="Layer" dstnodeid="11" dstpinname="Layer">
@@ -575,5 +571,19 @@
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="12" srcpinname="Buffer" dstnodeid="25" dstpinname="RawBuffer">
+   </LINK>
+   <LINK srcnodeid="21" srcpinname="Output" dstnodeid="22" dstpinname="Input 3" linkstyle="VHV">
+   <LINKPOINT x="8820" y="3345">
+   </LINKPOINT>
+   <LINKPOINT x="6285" y="3345">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="17" srcpinname="Output" dstnodeid="22" dstpinname="Input 2">
+   </LINK>
+   <LINK srcnodeid="7" srcpinname="String" dstnodeid="22" dstpinname="Input 1" linkstyle="VHV">
+   <LINKPOINT x="3885" y="2498">
+   </LINKPOINT>
+   <LINKPOINT x="5790" y="2498">
+   </LINKPOINT>
    </LINK>
    </PATCH>
