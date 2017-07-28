@@ -12,6 +12,7 @@ namespace DX11.Particles.IO.Network
 {
     class BufferContainer
     {
+        private string _Identifier;
         private AggregatedStream _MemoryStream;
         private bool _WasUpdated = false;
 
@@ -19,10 +20,21 @@ namespace DX11.Particles.IO.Network
         private bool _IsTimingOut = false;
         private bool _IsReleased = false;
         
-        public BufferContainer(AggregatedStream memoryStream) {
+        public BufferContainer(string id, AggregatedStream memoryStream) {
+            SetIdentifier(id);
             SetData(memoryStream);
         }
         
+        public void SetIdentifier(string id)
+        {
+            _Identifier = id;
+        }
+
+        public string GetIdentifier()
+        {
+            return _Identifier;
+        }
+
         public void SetData(AggregatedStream memoryStream)
         {
             if (_IsTimingOut) StopTimeOut();
@@ -97,6 +109,9 @@ namespace DX11.Particles.IO.Network
         [Output("Output")]
         public ISpread<Stream> FOutput;
 
+        [Output("ID")]
+        public ISpread<string> FOutString;
+
         //when dealing with byte streams (what we call Raw in the GUI) it's always
         //good to have a byte buffer around. we'll use it when copying the data.
         protected byte[] FBuffer;
@@ -135,7 +150,7 @@ namespace DX11.Particles.IO.Network
 
                     // Store the data - this also updates the timeout flag
                     if (Store.ContainsKey(IdentifierString)) Store[IdentifierString].SetData(data);
-                    else Store.Add(IdentifierString, new BufferContainer(data));
+                    else Store.Add(IdentifierString, new BufferContainer(IdentifierString, data));
 
                     IdentifierSlice += FBinSize[i];
                 }
@@ -160,6 +175,7 @@ namespace DX11.Particles.IO.Network
             foreach (BufferContainer bc in Store.Values)
             {
                 FOutput[slice] = bc.GetData();
+                FOutString[slice] = bc.GetIdentifier();
                 slice++;
             }
         }
