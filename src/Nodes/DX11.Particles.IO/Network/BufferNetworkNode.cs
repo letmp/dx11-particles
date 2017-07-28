@@ -170,7 +170,7 @@ namespace DX11.Particles.IO.Network
             }
 
             // output stored buffers
-            FOutput.SliceCount = Store.Count;
+            FOutput.SliceCount = FOutString.SliceCount = Store.Count;
             int slice = 0;
             foreach (BufferContainer bc in Store.Values)
             {
