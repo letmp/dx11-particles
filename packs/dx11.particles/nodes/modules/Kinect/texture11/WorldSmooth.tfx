@@ -45,7 +45,7 @@ float4 PS(psInput input) : SV_Target
 		// moving objects (and depth shadows)
 		float depthtest = ((sliceIndex + i - 1) % sliceCount) / sliceCount;
 		float4 coltest = texture3d.Sample(volumeSampler, float3(input.uv, depthtest));
-		if ( distance(col.r ,coltest.r) > distanceThreshold) skip = true;
+		if ( coltest.z == 0.0f || distance(col.r ,coltest.r) > distanceThreshold) skip = true;
 	}
 	
 	if(skip) colFinal = float4(0,0,0,0);
