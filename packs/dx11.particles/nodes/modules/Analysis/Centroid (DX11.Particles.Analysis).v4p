@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="-360">
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="5265" top="1380" width="100" height="100">
    </BOUNDS>
@@ -16,7 +16,7 @@
    </NODE>
    <BOUNDS type="Window" left="7335" top="960" width="12285" height="14070">
    </BOUNDS>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -500,36 +500,8 @@
    <LINKPOINT x="3445" y="4118">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="127" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="9330" top="5685" width="1515" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="9330" top="5685" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="StructuredBuffer">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="126" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="9735" top="6045" width="1215" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="9735" top="6045" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="PARTICLEBUFFER">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="125">
-   <BOUNDS type="Node" left="8970" top="7560" width="100" height="100">
+   <BOUNDS type="Node" left="7290" top="6150" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Structure" visible="1" slicecount="1" values="||">
    </PIN>
@@ -539,23 +511,15 @@
    </PIN>
    <PIN pinname="Element Count" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="8970" top="7560">
+   <BOUNDS type="Box" left="7290" top="6150">
    </BOUNDS>
    <PIN pinname="BufferSemantics" visible="1">
    </PIN>
    </NODE>
-   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="123">
-   <BOUNDS type="Node" left="10095" top="6525" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Analysis_Centroid_PS.fx">
-   </PIN>
-   <PIN pinname="Changed" visible="1">
-   </PIN>
-   </NODE>
    <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="125" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="5650" y="4238">
+   <LINKPOINT x="5310" y="3525">
    </LINKPOINT>
-   <LINKPOINT x="9260" y="4238">
+   <LINKPOINT x="7905" y="3525">
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Color)" componentmode="InABox" id="133" systemname="IOBox (Color)">
@@ -772,12 +736,6 @@
    </LINK>
    <LINK srcnodeid="82" srcpinname="Geometry Out" dstnodeid="144" dstpinname="Geometry">
    </LINK>
-   <LINK srcnodeid="144" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7365" y="5963">
-   </LINKPOINT>
-   <LINKPOINT x="10095" y="5963">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="119" srcpinname="PARTICLEBUFFER" dstnodeid="144" dstpinname="ParticleBuffer">
    </LINK>
    <LINK srcnodeid="119" srcpinname="ALIVEPOINTERBUFFER" dstnodeid="144" dstpinname="AlivePointerBuffer">
@@ -788,10 +746,10 @@
    </LINK>
    <INFO author="tmp" description="Outputs the centroids of the selected groups of particles." tags="">
    </INFO>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="124">
-   <BOUNDS type="Node" left="8985" top="7125" width="100" height="100">
+   <BOUNDS type="Node" left="7305" top="5715" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Filename" visible="1" slicecount="1" values="..\Core\">
    </PIN>
@@ -804,18 +762,12 @@
    <PIN pinname="Variables" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="127" srcpinname="Output String" dstnodeid="124" dstpinname="BufferType">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Output String" dstnodeid="124" dstpinname="BufferName">
-   </LINK>
    <LINK srcnodeid="124" srcpinname="Variables" dstnodeid="125" dstpinname="Structure" hiddenwhenlocked="0">
    </LINK>
-   <LINK srcnodeid="123" srcpinname="Changed" dstnodeid="124" dstpinname="Extract">
-   </LINK>
-   <LINK srcnodeid="144" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="7365" y="6270">
+   <LINK srcnodeid="144" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="VHV" hiddenwhenlocked="0">
+   <LINKPOINT x="7335" y="5573">
    </LINKPOINT>
-   <LINKPOINT x="8985" y="6270">
+   <LINKPOINT x="7335" y="5573">
    </LINKPOINT>
    </LINK>
    <NODE systemname="AvoidNIL (Spreads)" filename="%VVVV%\lib\nodes\modules\Spreads\AvoidNIL (Spreads).v4p" nodename="AvoidNIL (Spreads)" componentmode="Hidden" id="145">
@@ -836,6 +788,6 @@
    </LINK>
    <LINK srcnodeid="145" srcpinname="Output" dstnodeid="62" dstpinname="Element Count">
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    </PATCH>

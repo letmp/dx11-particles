@@ -1,6 +1,6 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis) help.v4p">
-   <BOUNDS type="Window" left="2115" top="1905" width="12840" height="12360">
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Peak (DX11.Particles.Analysis) help.v4p">
+   <BOUNDS type="Window" left="2115" top="1905" width="12810" height="12360">
    </BOUNDS>
    <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
@@ -27,7 +27,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="270" top="195" width="9495" height="390">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Centroid (DX11.Particles.Analysis)|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Peak (DX11.Particles.Analysis)|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -39,7 +39,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="270" top="570" width="5100" height="600">
    </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="0" values="|Outputs the centroids of the selected groups of particles.|">
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|Outputs the minimum or maximum position in the selected group|">
    </PIN>
    <PIN pinname="Output String" slicecount="1" visible="0" values="||">
    </PIN>
@@ -187,7 +187,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Emitter Size|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="EmitterSize">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -211,7 +211,7 @@
    </PIN>
    <PIN pinname="Value Type" slicecount="1" values="Integer">
    </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Emit Count|">
+   <PIN pinname="Descriptive Name" slicecount="1" values="EmitCount">
    </PIN>
    <PIN pinname="Y Output Value" visible="1">
    </PIN>
@@ -409,11 +409,11 @@
    </LINKPOINT>
    </LINK>
    <NODE systemname="Intersect (DX11.Particles.Selection Transform)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Selection\Intersect (DX11.Particles.Selection Transform).v4p" nodename="Intersect (DX11.Particles.Selection Transform)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="7485" top="3015" width="100" height="100">
+   <BOUNDS type="Node" left="7485" top="2955" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Selection Out" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="7485" top="3015">
+   <BOUNDS type="Box" left="7485" top="2955">
    </BOUNDS>
    <PIN pinname="Help Layer" visible="1">
    </PIN>
@@ -421,9 +421,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="30" srcpinname="Help Layer" dstnodeid="24" dstpinname="Layer 3" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8310" y="6485">
+   <LINKPOINT x="8310" y="6445">
    </LINKPOINT>
-   <LINKPOINT x="5925" y="6685">
+   <LINKPOINT x="5925" y="6665">
    </LINKPOINT>
    </LINK>
    <NODE systemname="Transform (Transform 3d)" nodename="Transform (Transform 3d)" componentmode="Hidden" id="31">
@@ -443,7 +443,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="7485" top="1875" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="-0.65,0.65">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="-0.11,0.61">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -463,9 +463,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="33">
-   <BOUNDS type="Box" left="8355" top="3645" width="1020" height="240">
+   <BOUNDS type="Box" left="8130" top="4065" width="1020" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8355" top="3645" width="0" height="0">
+   <BOUNDS type="Node" left="8130" top="4065" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input String" slicecount="1" visible="1" values="Intersection">
    </PIN>
@@ -481,9 +481,9 @@
    <LINK srcnodeid="33" srcpinname="Output String" dstnodeid="29" dstpinname="Name">
    </LINK>
    <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="35">
-   <BOUNDS type="Box" left="8160" top="7245" width="1665" height="240">
+   <BOUNDS type="Box" left="7950" top="6810" width="1665" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="8160" top="7245" width="0" height="0">
+   <BOUNDS type="Node" left="7950" top="6810" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_Intersection">
    </PIN>
@@ -493,7 +493,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8775" top="1875" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.5,-0.5">
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.82,-0.5">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -513,9 +513,9 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="37">
-   <BOUNDS type="Node" left="9495" top="3615" width="2895" height="270">
+   <BOUNDS type="Node" left="9255" top="4020" width="2895" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="9495" top="3615" width="1800" height="495">
+   <BOUNDS type="Box" left="9255" top="4020" width="1800" height="495">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|1) Create a selection and give it a name|">
    </PIN>
@@ -527,9 +527,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="38">
-   <BOUNDS type="Node" left="10035" top="6855" width="1260" height="270">
+   <BOUNDS type="Node" left="10035" top="6420" width="1260" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10035" top="6855" width="2355" height="240">
+   <BOUNDS type="Box" left="10035" top="6420" width="2355" height="240">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|2) Select your particle system|">
    </PIN>
@@ -541,11 +541,11 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="39">
-   <BOUNDS type="Node" left="9075" top="4365" width="9210" height="270">
+   <BOUNDS type="Node" left="8850" top="4785" width="9210" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="9075" top="4365" width="2745" height="1140">
+   <BOUNDS type="Box" left="8850" top="4785" width="2745" height="1140">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|If you use a spread as input for your selection, the Centroid node will use this spread and output centroids for each slice.|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|If you use a spread as input for your selection, the Peak node will use this spread and output peak coordinates for each slice.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -555,9 +555,9 @@
    </PIN>
    </NODE>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="40">
-   <BOUNDS type="Box" left="7485" top="3645" width="795" height="240">
+   <BOUNDS type="Box" left="7485" top="3345" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="7485" top="3645" width="0" height="0">
+   <BOUNDS type="Node" left="7485" top="3345" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Node" slicecount="2" visible="1" values=",">
    </PIN>
@@ -569,9 +569,9 @@
    <LINK srcnodeid="30" srcpinname="Selection Out" dstnodeid="40" dstpinname="Input Node">
    </LINK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="41">
-   <BOUNDS type="Node" left="9015" top="10680" width="750" height="270">
+   <BOUNDS type="Node" left="8715" top="10680" width="750" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="9015" top="10680" width="750" height="270">
+   <BOUNDS type="Box" left="8715" top="10680" width="750" height="270">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|see also:|">
    </PIN>
@@ -582,18 +582,34 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="44">
-   <BOUNDS type="Box" left="7875" top="6855" width="1395" height="240">
+   <NODE systemname="Centroid (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis).v4p" nodename="Centroid (DX11.Particles.Analysis)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="9570" top="10680" width="100" height="100">
    </BOUNDS>
-   <BOUNDS type="Node" left="7875" top="6855" width="0" height="0">
+   <PIN pinname="Selection" slicecount="1" values="GROUP_Intersection">
+   </PIN>
+   <BOUNDS type="Box" left="9570" top="10680">
+   </BOUNDS>
+   </NODE>
+   <NODE systemname="Count (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Count (DX11.Particles.Analysis).v4p" nodename="Count (DX11.Particles.Analysis)" componentmode="Hidden" id="43">
+   <BOUNDS type="Node" left="10545" top="10680" width="100" height="100">
+   </BOUNDS>
+   <PIN pinname="Selection" slicecount="1" values="GROUP_Intersection">
+   </PIN>
+   <BOUNDS type="Box" left="10545" top="10680">
+   </BOUNDS>
+   </NODE>
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="44">
+   <BOUNDS type="Box" left="7785" top="6420" width="1395" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="7785" top="6420" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Default System|">
    </PIN>
    </NODE>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="45">
-   <BOUNDS type="Node" left="10035" top="7245" width="1260" height="270">
+   <BOUNDS type="Node" left="10035" top="6810" width="1260" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="10035" top="7245" width="1935" height="735">
+   <BOUNDS type="Box" left="10035" top="6810" width="1935" height="735">
    </BOUNDS>
    <PIN pinname="Input String" visible="0" slicecount="1" values="|3) Select the group you created with the selection node.|">
    </PIN>
@@ -609,7 +625,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="8580" top="8370" width="3810" height="1170">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|For better performance it is recommended to use the PositionBuffer output pin instead of the value pins since they use a readback from GPU to CPU.&cr;&lf;The buffer contains one float4 per subgroup: float3 centroid, float particlecount|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|For better performance it is recommended to use the BoundsBuffer output pin instead of the value pins since they use a readback from GPU to CPU.&cr;&lf;The buffer contains 4 float3 elements (per subgroup): center, width, min, max|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -618,7 +634,21 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="Centroid (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles.Analysis).v4p" nodename="Centroid (DX11.Particles.Analysis)" componentmode="Hidden" id="4">
+   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Emit Count" linkstyle="Bezier">
+   <LINKPOINT x="1710" y="4148">
+   </LINKPOINT>
+   <LINKPOINT x="2340" y="4148">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Emitter Size" linkstyle="Bezier">
+   <LINKPOINT x="720" y="4148">
+   </LINKPOINT>
+   <LINKPOINT x="2205" y="4148">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="dx11" Version="1.0.3">
+   </PACK>
+   <NODE systemname="Peak (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Peak (DX11.Particles.Analysis).v4p" nodename="Peak (DX11.Particles.Analysis)" componentmode="Hidden" id="4">
    <BOUNDS type="Node" left="7605" top="7710" width="100" height="100">
    </BOUNDS>
    <PIN pinname="ParticleSystemBuffers" visible="1">
@@ -631,8 +661,10 @@
    </PIN>
    <PIN pinname="ParticleSystem" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="7335" top="960" width="12285" height="14070">
+   <BOUNDS type="Window" left="5790" top="1545" width="12645" height="14940">
    </BOUNDS>
+   <PIN pinname="Mode" visible="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="5" srcpinname="ParticleSystemBuffers" dstnodeid="4" dstpinname="ParticleSystemBuffers" linkstyle="VHV">
    <LINKPOINT x="6090" y="7508">
@@ -650,42 +682,28 @@
    </LINK>
    <LINK srcnodeid="44" srcpinname="Output Enum" dstnodeid="4" dstpinname="ParticleSystem">
    </LINK>
-   <NODE systemname="Bounds (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" nodename="Bounds (DX11.Particles.Analysis)" componentmode="Hidden" id="42">
-   <BOUNDS type="Node" left="9870" top="10680" width="100" height="100">
+   <NODE systemname="Bounds (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" nodename="Bounds (DX11.Particles.Analysis)" componentmode="Hidden" id="49">
+   <BOUNDS type="Node" left="11400" top="10680" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Selection" slicecount="1" values="GROUP_Intersection">
    </PIN>
-   <BOUNDS type="Box" left="9870" top="10680">
+   <BOUNDS type="Box" left="11400" top="10680">
    </BOUNDS>
    </NODE>
-   <NODE systemname="Count (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Count (DX11.Particles.Analysis).v4p" nodename="Count (DX11.Particles.Analysis)" componentmode="Hidden" id="43">
-   <BOUNDS type="Node" left="10845" top="10680" width="100" height="100">
+   <NODE nodename="IOBox (Enumerations)" componentmode="InABox" id="50">
+   <BOUNDS type="Box" left="8130" top="7230" width="885" height="240">
    </BOUNDS>
-   <PIN pinname="Selection" slicecount="1" values="GROUP_Intersection">
+   <BOUNDS type="Node" left="8130" top="7230" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="|Min X|">
    </PIN>
-   <BOUNDS type="Box" left="10845" top="10680">
-   </BOUNDS>
+   <PIN pinname="Default" slicecount="1" values="|Min X|">
+   </PIN>
+   <PIN pinname="File Mask" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
+   </PIN>
    </NODE>
-   <LINK srcnodeid="15" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Emit Count" linkstyle="Bezier">
-   <LINKPOINT x="1710" y="4148">
-   </LINKPOINT>
-   <LINKPOINT x="2340" y="4148">
-   </LINKPOINT>
+   <LINK srcnodeid="50" srcpinname="Output Enum" dstnodeid="4" dstpinname="Mode">
    </LINK>
-   <LINK srcnodeid="16" srcpinname="Y Output Value" dstnodeid="17" dstpinname="Emitter Size" linkstyle="Bezier">
-   <LINKPOINT x="720" y="4148">
-   </LINKPOINT>
-   <LINKPOINT x="2205" y="4148">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Peak (DX11.Particles.Analysis)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Analysis\Peak (DX11.Particles.Analysis).v4p" nodename="Peak (DX11.Particles.Analysis)" componentmode="Hidden" id="47">
-   <BOUNDS type="Node" left="11670" top="10680" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Selection" slicecount="1" values="GROUP_Intersection">
-   </PIN>
-   <BOUNDS type="Box" left="11670" top="10680">
-   </BOUNDS>
-   </NODE>
-   <PACK Name="dx11" Version="1.0.3">
-   </PACK>
    </PATCH>

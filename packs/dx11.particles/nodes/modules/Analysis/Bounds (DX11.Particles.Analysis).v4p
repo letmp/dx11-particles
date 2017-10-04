@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="1800">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35.8_x64\packs\dx11.particles\nodes\modules\Analysis\Bounds (DX11.Particles.Analysis).v4p" systemname="Centroid (DX11.Particles)" filename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Analysis\Centroid (DX11.Particles).v4p" scrollx="0" scrolly="0">
    <NODE systemname="Info (DX11.Particles.Core ParticleSystem)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Info (DX11.Particles.Core ParticleSystem)" componentmode="Hidden" id="2">
    <BOUNDS type="Node" left="5550" top="1080" width="100" height="100">
    </BOUNDS>
@@ -16,7 +16,7 @@
    </NODE>
    <BOUNDS type="Window" left="7335" top="960" width="14970" height="15705">
    </BOUNDS>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -304,34 +304,6 @@
    <LINKPOINT x="5775" y="3553">
    </LINKPOINT>
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="127" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="11415" top="5250" width="1515" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="11415" top="5250" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="StructuredBuffer">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="126" systemname="IOBox (String)">
-   <BOUNDS type="Box" left="11820" top="5610" width="1215" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="11820" top="5610" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Input String" slicecount="1" visible="1" values="PARTICLEBUFFER">
-   </PIN>
-   <PIN pinname="Default" slicecount="1" values="text">
-   </PIN>
-   <PIN pinname="File Mask" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Maximum Characters" slicecount="1" values="-1">
-   </PIN>
-   </NODE>
    <NODE systemname="Register (DX11.Particles.Core Shader)" filename="%VVVV%\packs\dx11-particles\nodes\plugins\DX11.Particles.Core\x64\DX11.Particles.Core.dll" nodename="Register (DX11.Particles.Core Shader)" componentmode="Hidden" id="125">
    <BOUNDS type="Node" left="11055" top="6975" width="100" height="100">
    </BOUNDS>
@@ -346,14 +318,6 @@
    <BOUNDS type="Box" left="11055" top="6975">
    </BOUNDS>
    <PIN pinname="BufferSemantics" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="Change (file)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\VVVV.Extensions\x64\VVVV.Extensions.dll" nodename="Change (file)" componentmode="Hidden" id="123">
-   <BOUNDS type="Node" left="12180" top="6090" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Filename" visible="1" slicecount="1" values="dx11\Analysis_Bounds_PS.fx">
-   </PIN>
-   <PIN pinname="Changed" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="4" srcpinname="Output Enum" dstnodeid="125" dstpinname="ParticleSystem" linkstyle="Bezier" hiddenwhenlocked="1">
@@ -987,7 +951,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="8175" top="690" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_mySelection">
+   <PIN pinname="Input Enum" slicecount="1" visible="1" values="GROUP_Intersection">
    </PIN>
    <PIN pinname="Descriptive Name" slicecount="1" values="Selection">
    </PIN>
@@ -1240,12 +1204,6 @@
    </LINK>
    <LINK srcnodeid="181" srcpinname="Layer" dstnodeid="135" dstpinname="Layer">
    </LINK>
-   <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="123" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="8640" y="5768">
-   </LINKPOINT>
-   <LINKPOINT x="12180" y="5768">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="55" srcpinname="ParticleSystem Defines" dstnodeid="181" dstpinname="Defines" linkstyle="VHV" hiddenwhenlocked="0">
    <LINKPOINT x="9525" y="4793">
    </LINKPOINT>
@@ -1278,7 +1236,7 @@
    </LINK>
    <INFO author="tmp" description="Outputs the boundaries of the selected group of particles" tags="">
    </INFO>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
    <NODE systemname="ExtractStruct (DX11.Particles.Tools)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Particles.Tools\x64\DX11.Particles.Tools.dll" nodename="ExtractStruct (DX11.Particles.Tools)" componentmode="Hidden" id="124">
    <BOUNDS type="Node" left="11070" top="6540" width="100" height="100">
@@ -1294,13 +1252,7 @@
    <PIN pinname="Variables" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="127" srcpinname="Output String" dstnodeid="124" dstpinname="BufferType">
-   </LINK>
-   <LINK srcnodeid="126" srcpinname="Output String" dstnodeid="124" dstpinname="BufferName">
-   </LINK>
    <LINK srcnodeid="124" srcpinname="Variables" dstnodeid="125" dstpinname="Structure" hiddenwhenlocked="0">
-   </LINK>
-   <LINK srcnodeid="123" srcpinname="Changed" dstnodeid="124" dstpinname="Extract">
    </LINK>
    <LINK srcnodeid="181" srcpinname="Shader Path" dstnodeid="124" dstpinname="Filename" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="8640" y="5993">
@@ -1320,6 +1272,6 @@
    </LINK>
    <LINK srcnodeid="182" srcpinname="Output" dstnodeid="62" dstpinname="Element Count">
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    </PATCH>
