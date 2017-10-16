@@ -1,6 +1,7 @@
-Texture2D texRGB <string uiname="RGB";>;
 Texture2D texRGBDepth <string uiname="RGBDepth";>;
 Texture2D texWorld <string uiname="World";>;
+Texture2D texNormal <string uiname="Normal";>;
+
 float maxDistance = 0.1;
 float minZ = 0;
 float maxZ = 8;
@@ -12,50 +13,50 @@ SamplerState sPoint : IMMUTABLE
     AddressV = Border;
 };
 
-struct vsIn
-{
-    float4 pos : POSITION;
-	float4 uv: TEXCOORD0;
-};
-
-struct psIn
-{
-    float4 pos : SV_Position;
-	float2 uv: TEXCOORD0;
-};
 
 cbuffer cbPerDraw : register(b0)
 {
 	float4x4 tVP : LAYERVIEWPROJECTION;
-};
-
-cbuffer cbPerObj : register( b1 )
-{
 	float4x4 tW : WORLD;
-	float Alpha <float uimin=0.0; float uimax=1.0;> = 1; 
-	float4 cAmb <bool color=true;String uiname="Color";> = { 1.0f,1.0f,1.0f,1.0f };
-	float4x4 tColor <string uiname="Color Transform";>;
 };
 
-psIn VS(vsIn input)
+struct VS_IN
 {
-	psIn output;
-	
+	float4 pos : POSITION;
+	float2 uv : TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+	float4 pos : POSITION;
+	float3 norm : NORMAL;
+	float2 uv : TEXCOORD0;
+};
+
+
+
+VS_OUTPUT VS(VS_IN input)
+{
+	VS_OUTPUT output;
+
+	// position
 	float4 position = float4( texWorld.SampleLevel(sPoint,input.uv.xy,0).xyz *  float3(-1,1,1), 1);
 	if (position.z < minZ || position.z > maxZ) position.w = 0;
-	
 	output.pos = mul(position,mul(tW,tVP));
+	
+	// normal
+	output.norm =texNormal.SampleLevel(sPoint,input.uv.xy,0).xyz;
 	
 	float2 texUvColor = texRGBDepth.SampleLevel(sPoint,input.uv.xy,0).rg;
 	output.uv = texUvColor;
 	
-	return output;
+    return output;
 }
 
 [maxvertexcount(3)]
-void GS(triangle psIn input[3], inout TriangleStream<psIn> gsout)
+void GS(triangle VS_OUTPUT input[3], inout TriangleStream<VS_OUTPUT> gsout)
 {
-	psIn elem = (psIn)0;
+	VS_OUTPUT elem = (VS_OUTPUT)0;
 	
 	// check if the distance between all 3 vertices of the triangle is 
 	// below the given threshold
@@ -72,19 +73,14 @@ void GS(triangle psIn input[3], inout TriangleStream<psIn> gsout)
 	
 }
 
-float4 PS(psIn input): SV_Target
+GeometryShader gsStreamOut = ConstructGSWithSO(CompileShader(gs_4_0, GS()), "POSITION.xyzw; NORMAL.xyz; TEXCOORD.xy", NULL, NULL, NULL, -1);
+
+technique10 Mesh
 {
-	if( input.uv.x <= 0 || input.uv.x > 1 || input.uv.y <= 0 || input.uv.y > 1) discard;
-    return texRGB.Sample(sPoint, input.uv.xy) * cAmb;
+    pass P0
+    {
+        SetVertexShader(CompileShader(vs_4_0, VS()));
+        SetGeometryShader(gsStreamOut);
+    }  
 }
 
-technique11 Constant
-{
-	pass P0
-	{
-		SetVertexShader( CompileShader( vs_4_0, VS() ) );
-        SetGeometryShader( CompileShader( gs_4_0, GS() ) );
-        SetPixelShader( CompileShader( ps_4_0, PS() ) );
-
-	}
-}

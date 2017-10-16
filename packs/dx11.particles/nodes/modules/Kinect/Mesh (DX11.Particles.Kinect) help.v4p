@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.7.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Mesh (DX11.Particles.Kinect) help.v4p" systemname="Mesh (DX11.Particles.Kinect) help" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Mesh (DX11.Particles.Kinect) help.v4p" scrollx="0" scrolly="-360">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Mesh (DX11.Particles.Kinect) help.v4p" systemname="Mesh (DX11.Particles.Kinect) help" filename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Kinect\Mesh (DX11.Particles.Kinect) help.v4p" scrollx="0" scrolly="-360">
    <BOUNDS type="Window" left="3750" top="3945" width="10080" height="5985">
    </BOUNDS>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.3">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -25,7 +25,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="0" top="881" width="7170" height="5680">
    </BOUNDS>
-   <BOUNDS type="Window" left="5055" top="7980" width="8430" height="4920">
+   <BOUNDS type="Window" left="5055" top="7980" width="14685" height="4920">
    </BOUNDS>
    <PIN pinname="maxDistance" visible="1">
    </PIN>
@@ -37,6 +37,12 @@
    </PIN>
    <PIN pinname="Layer" visible="1">
    </PIN>
+   <PIN pinname="minZ" visible="1">
+   </PIN>
+   <PIN pinname="maxZ" visible="1">
+   </PIN>
+   <PIN pinname="Resolution" visible="1" slicecount="2" values="1920,1080">
+   </PIN>
    </NODE>
    <LINK srcnodeid="12" srcpinname="Render State" dstnodeid="96" dstpinname="Render State" linkstyle="VHV">
    <LINKPOINT x="1395" y="3360">
@@ -45,11 +51,11 @@
    </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="97" systemname="IOBox (Value Advanced)">
-   <BOUNDS type="Box" left="3300" top="2715" width="795" height="240">
+   <BOUNDS type="Box" left="3045" top="2715" width="795" height="240">
    </BOUNDS>
-   <BOUNDS type="Node" left="3300" top="2715" width="0" height="0">
+   <BOUNDS type="Node" left="3045" top="2715" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.1">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0.06">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -60,7 +66,7 @@
    <PIN pinname="X Input Value" slicecount="1" values="0.1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="97" srcpinname="Y Output Value" dstnodeid="96" dstpinname="maxDistance">
+   <LINK srcnodeid="97" srcpinname="Y Output Value" dstnodeid="96" dstpinname="maxPointDistance">
    </LINK>
    <NODE systemname="AspectRatio (DX11.Layer)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="AspectRatio (DX11.Layer)" componentmode="Hidden" id="100">
    <BOUNDS type="Node" left="1740" top="4275" width="100" height="100">
@@ -170,18 +176,76 @@
    <PIN pinname="World" visible="1">
    </PIN>
    </NODE>
-   <LINK srcnodeid="105" srcpinname="RGB" dstnodeid="96" dstpinname="RGB" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="4050" y="2828">
-   </LINKPOINT>
-   <LINKPOINT x="3750" y="2828">
-   </LINKPOINT>
-   </LINK>
    <LINK srcnodeid="105" srcpinname="RGBDepth" dstnodeid="96" dstpinname="RGBDepth" hiddenwhenlocked="1">
    </LINK>
    <LINK srcnodeid="105" srcpinname="World" dstnodeid="96" dstpinname="World" linkstyle="Bezier" hiddenwhenlocked="1">
    <LINKPOINT x="4410" y="2820">
    </LINKPOINT>
    <LINKPOINT x="4620" y="2820">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="106">
+   <BOUNDS type="Box" left="3360" top="3225" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3360" top="3225" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="minZ">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="106" srcpinname="Y Output Value" dstnodeid="96" dstpinname="minZ">
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="107">
+   <BOUNDS type="Box" left="4380" top="3225" width="795" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4380" top="3225" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="8">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="maxZ">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="8">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="96" dstpinname="maxZ" linkstyle="VHV">
+   <LINKPOINT x="4380" y="3578">
+   </LINKPOINT>
+   <LINKPOINT x="3720" y="3578">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="108">
+   <BOUNDS type="Node" left="5250" top="3225" width="2895" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5250" top="3225" width="2895" height="270">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; cut triangles outside these z values|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   </NODE>
+   <PACK Name="vvvv-Message" Version="2.9.10">
+   </PACK>
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
+   </PACK>
+   <LINK srcnodeid="105" srcpinname="RGB" dstnodeid="96" dstpinname="RGB" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="4050" y="2828">
+   </LINKPOINT>
+   <LINKPOINT x="3750" y="2828">
    </LINKPOINT>
    </LINK>
    </PATCH>
