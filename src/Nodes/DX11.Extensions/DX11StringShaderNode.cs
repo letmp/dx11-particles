@@ -792,7 +792,7 @@ namespace VVVV.DX11.Nodes
                 List<ShaderMacro> sms = new List<ShaderMacro>();
                 
                 FShader = DX11Effect.FromString(FConfigShader[0], FIncludeHandler, sms.ToArray());
-                this.SetShader(FShader, true);
+                this.SetShader(FShader, !ShaderCreatedByConfig);
                 ShaderCreatedByConfig = true;
             }
         }
