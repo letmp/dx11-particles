@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Geometry) help.v4p" scrollx="0" scrolly="-360" systemname="Template Help" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\Template Help.v4p">
    <BOUNDS type="Window" left="600" top="2220" width="12915" height="12390">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="0" systemname="IOBox (String)">
@@ -152,9 +152,9 @@
    <PIN pinname="Descriptive Name" slicecount="1" values="|ParticleSystem Name|">
    </PIN>
    </NODE>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -312,28 +312,12 @@
    <LINKPOINT x="2340" y="2498">
    </LINKPOINT>
    </LINK>
-   <NODE systemname="Info (DX11.Geometry Spectral)" filename="modules\Info (DX11.Geometry Spectral)\Info (DX11.Geometry Spectral).v4p" nodename="Info (DX11.Geometry Spectral)" componentmode="Hidden" id="49">
-   <BOUNDS type="Node" left="2175" top="3405" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Geometry In" visible="1">
-   </PIN>
-   <PIN pinname="Vertex Count" visible="1">
-   </PIN>
-   <BOUNDS type="Box" left="2175" top="3405">
-   </BOUNDS>
-   </NODE>
-   <LINK srcnodeid="47" srcpinname="Geometry Out" dstnodeid="49" dstpinname="Geometry In" linkstyle="VHV">
-   <LINKPOINT x="1795" y="3110">
-   </LINKPOINT>
-   <LINKPOINT x="2090" y="3160">
-   </LINKPOINT>
-   </LINK>
    <NODE systemname="FileTexture (DX11 2d)" filename="%VVVV%\myplugins\lib\nodes\plugins\DX11\VVVV.DX11.Nodes.dll" nodename="FileTexture (DX11 2d)" componentmode="Hidden" id="78">
-   <BOUNDS type="Node" left="3720" top="3405" width="100" height="100">
+   <BOUNDS type="Node" left="3570" top="3405" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Texture" visible="1">
    </PIN>
-   <BOUNDS type="Box" left="3720" top="3405">
+   <BOUNDS type="Box" left="3570" top="3405">
    </BOUNDS>
    <PIN pinname="Path" visible="1" encoded="0">
    </PIN>
@@ -343,13 +327,13 @@
    </PIN>
    </NODE>
    <NODE systemname="SystemFolder (File)" nodename="SystemFolder (File)" componentmode="Hidden" id="77">
-   <BOUNDS type="Node" left="3720" top="2595" width="100" height="100">
+   <BOUNDS type="Node" left="3570" top="2595" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
    <NODE systemname="Add (String)" nodename="Add (String)" componentmode="Hidden" id="76">
-   <BOUNDS type="Node" left="3720" top="3075" width="2070" height="270">
+   <BOUNDS type="Node" left="3570" top="3075" width="2070" height="270">
    </BOUNDS>
    <PIN pinname="Input 2" visible="-1" slicecount="1" pintype="Input" encoded="0" values="lib\assets\images\earth_512x512.jpg">
    </PIN>
@@ -443,7 +427,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="9435" top="3780" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="20">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="5">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="s">
    </PIN>
@@ -493,7 +477,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="5280" top="4575" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="1000">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="100">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -515,7 +499,7 @@
    </BOUNDS>
    <BOUNDS type="Node" left="4215" top="4575" width="0" height="0">
    </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="99072">
+   <PIN pinname="Y Input Value" slicecount="1" visible="1" values="0">
    </PIN>
    <PIN pinname="Units" slicecount="1" values="||">
    </PIN>
@@ -548,25 +532,27 @@
    <LINKPOINT x="5700" y="6008">
    </LINKPOINT>
    </LINK>
+   <PACK Name="dx11" Version="1.0.3">
+   </PACK>
    <NODE systemname="GeometryBuffer (DX11.Particles.Tools Instanced)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Tools\GeometryBuffer (DX11.Particles.Tools Instanced).v4p" nodename="GeometryBuffer (DX11.Particles.Tools Instanced)" componentmode="Hidden" id="46">
    <BOUNDS type="Node" left="1650" top="4005" width="2625" height="270">
    </BOUNDS>
    <PIN pinname="Buffer Out" visible="1">
    </PIN>
-   <PIN pinname="Geometry" visible="1">
+   <PIN pinname="Geometry" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Vertex Count" visible="1">
    </PIN>
-   <PIN pinname="Texture In" visible="1">
+   <PIN pinname="Texture In" visible="1" slicecount="1" values="||">
    </PIN>
    <PIN pinname="Instance Count" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Transform In" visible="1" slicecount="1" values="||">
    </PIN>
+   <BOUNDS type="Window" left="4440" top="1335" width="10005" height="9750">
+   </BOUNDS>
    </NODE>
    <LINK srcnodeid="47" srcpinname="Geometry Out" dstnodeid="46" dstpinname="Geometry">
-   </LINK>
-   <LINK srcnodeid="49" srcpinname="Vertex Count" dstnodeid="46" dstpinname="Vertex Count" linkstyle="PolyLine">
    </LINK>
    <LINK srcnodeid="78" srcpinname="Texture Out" dstnodeid="46" dstpinname="Texture In">
    </LINK>
@@ -574,6 +560,4 @@
    </LINK>
    <LINK srcnodeid="46" srcpinname="Buffer Out" dstnodeid="98" dstpinname="Input Node">
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
-   </PACK>
    </PATCH>
