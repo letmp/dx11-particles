@@ -1,5 +1,5 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Tutorials\CustomSelectors\CustomSelectors.v4p" systemname="CustomSelectors" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Tutorials\CustomSelectors\CustomSelectors.v4p">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
+   <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Tutorials\CustomSelectors\CustomSelectors.v4p" systemname="CustomSelectors" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Tutorials\CustomSelectors\CustomSelectors.v4p">
    <BOUNDS type="Window" left="1635" top="1800" width="12975" height="12555">
    </BOUNDS>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="25" systemname="IOBox (String)">
@@ -338,25 +338,9 @@
    </LINK>
    <LINK srcnodeid="10" srcpinname="Buffer" dstnodeid="15" dstpinname="Lifespan Buffer">
    </LINK>
-   <NODE nodename="IOBox (String)" componentmode="InABox" id="4" systemname="IOBox (String)">
-   <BOUNDS type="Node" left="4845" top="2325" width="12855" height="270">
-   </BOUNDS>
-   <BOUNDS type="Box" left="4845" top="2325" width="7245" height="1815">
-   </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|This tutorial is read only. If you want to write and/or edit code, you should copy the contents of the &quot;SelectorTemplate&quot; directory to your own project and remove the write protection. It&apos;s a good start for developing a custom selector.&cr;&lf;&cr;&lf;Note: You don&apos;t have to put custom selectors into the packs folder. You can write and use them per project ( means: have it in your projects folder). If you wrote some useful selector please get in touch with me! |">
-   </PIN>
-   <PIN pinname="Output String" visible="0">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="String Type" slicecount="1" values="MultiLine">
-   </PIN>
-   <PIN pinname="Size" slicecount="1" values="8">
-   </PIN>
-   </NODE>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
@@ -387,7 +371,7 @@
    <LINK srcnodeid="28" srcpinname="Layer Out" dstnodeid="8" dstpinname="Layer 2">
    </LINK>
    <NODE systemname="Force (DX11.Particles.Modifiers)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Modifiers\Force (DX11.Particles.Modifiers).v4p" nodename="Force (DX11.Particles.Modifiers)" componentmode="Hidden" id="29">
-   <BOUNDS type="Node" left="5715" top="6390" width="100" height="100">
+   <BOUNDS type="Node" left="5625" top="6390" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Layer" visible="1">
    </PIN>
@@ -399,7 +383,7 @@
    <LINK srcnodeid="29" srcpinname="Layer" dstnodeid="28" dstpinname="Modifier In">
    </LINK>
    <NODE systemname="DynamicBuffer (DX11.Buffer 3d)" filename="%VVVV%\packs\dx11\nodes\plugins\VVVV.DX11.Nodes.dll" nodename="DynamicBuffer (DX11.Buffer 3d)" componentmode="Hidden" id="30">
-   <BOUNDS type="Node" left="5865" top="5970" width="100" height="100">
+   <BOUNDS type="Node" left="5775" top="5970" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Buffer" visible="1">
    </PIN>
@@ -409,9 +393,9 @@
    <LINK srcnodeid="30" srcpinname="Buffer" dstnodeid="29" dstpinname="Force Buffer">
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="31">
-   <BOUNDS type="Box" left="5880" top="5010" width="795" height="720">
+   <BOUNDS type="Box" left="5790" top="5010" width="795" height="720">
    </BOUNDS>
-   <BOUNDS type="Node" left="5880" top="5010" width="0" height="0">
+   <BOUNDS type="Node" left="5790" top="5010" width="0" height="0">
    </BOUNDS>
    <PIN pinname="Y Input Value" slicecount="3" visible="1" values="0,1,0">
    </PIN>
@@ -431,7 +415,7 @@
    </BOUNDS>
    <BOUNDS type="Box" left="6630" top="4335" width="4395" height="270">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; open the selector template to continue with the tutorial.|">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|&lt;&lt; open the selector to continue with the tutorial.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -440,12 +424,32 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="Template (DX11.Particles.Selection)" filename="SelectorTemplate\Template (DX11.Particles.Selection).v4p" nodename="Template (DX11.Particles.Selection)" componentmode="Hidden" id="33">
-   <BOUNDS type="Node" left="5400" top="4440" width="100" height="100">
+   <NODE nodename="IOBox (String)" componentmode="InABox" id="34">
+   <BOUNDS type="Node" left="4560" top="2505" width="12855" height="270">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4560" top="2505" width="7245" height="795">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|There are templates for modifiers and selectors. Just type &quot;template selector&quot; or &quot;template modifier&quot; and hold ctrl while clicking on it. Now you can clone them into your current projectfolder and edit them.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="String Type" slicecount="1" values="MultiLine">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="8">
+   </PIN>
+   </NODE>
+   <NODE systemname="MySelector (DX11.Particles.Selection)" filename="MySelector\MySelector (DX11.Particles.Selection).v4p" nodename="MySelector (DX11.Particles.Selection)" componentmode="Hidden" id="35">
+   <BOUNDS type="Node" left="5415" top="4335" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Selection Out" visible="1">
    </PIN>
+   <BOUNDS type="Box" left="5415" top="4335">
+   </BOUNDS>
    </NODE>
-   <LINK srcnodeid="33" srcpinname="Selection Out" dstnodeid="28" dstpinname="Selection">
+   <LINK srcnodeid="35" srcpinname="Selection Out" dstnodeid="28" dstpinname="Selection">
    </LINK>
+   <PACK Name="dx11" Version="1.0.3">
+   </PACK>
    </PATCH>

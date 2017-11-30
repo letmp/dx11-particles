@@ -1,4 +1,4 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.8.dtd" >
    <PATCH nodename="D:\workspace\dev\git\dx11-particles\packs\dx11.particles\girlpower\Tutorials\CustomModifiers\CustomModifiers.v4p" systemname="ModifierTutorial" filename="D:\workspace\vvvv\vvvv_50beta35_x64\packs\dx11.particles\girlpower\Tutorials\Modifiers\ModifierTutorial.v4p">
    <BOUNDS type="Window" left="1920" top="1920" width="12990" height="12675">
    </BOUNDS>
@@ -299,7 +299,7 @@
    <LINK srcnodeid="26" srcpinname="Layer" dstnodeid="19" dstpinname="Layer 1" linkstyle="Bezier">
    <LINKPOINT x="1110" y="6683">
    </LINKPOINT>
-   <LINKPOINT x="5190" y="6683">
+   <LINKPOINT x="5205" y="6683">
    </LINKPOINT>
    </LINK>
    <NODE id="18" systemname="ParticleSystem (DX11.Particles.Core)" filename="%VVVV%\packs\dx11.particles\nodes\modules\Core\ParticleSystem (DX11.Particles.Core).v4p" nodename="ParticleSystem (DX11.Particles.Core)" componentmode="Hidden" hiddenwhenlocked="1">
@@ -366,18 +366,18 @@
    </NODE>
    <LINK srcnodeid="3" srcpinname="Color Output" dstnodeid="16" dstpinname="Data">
    </LINK>
-   <PACK Name="vvvv-Message" Version="2.9.0">
+   <PACK Name="vvvv-Message" Version="2.9.10">
    </PACK>
-   <PACK Name="vvvv-ZeroMQ" Version="0.5.2">
+   <PACK Name="vvvv-ZeroMQ" Version="0.5.7">
    </PACK>
    <PACK Name="addonpack" Version="35.0.0">
    </PACK>
    <NODE nodename="IOBox (String)" componentmode="InABox" id="38">
-   <BOUNDS type="Node" left="4800" top="1620" width="12855" height="270">
+   <BOUNDS type="Node" left="4665" top="2745" width="12855" height="270">
    </BOUNDS>
-   <BOUNDS type="Box" left="4800" top="1620" width="7245" height="1815">
+   <BOUNDS type="Box" left="4665" top="2745" width="7245" height="795">
    </BOUNDS>
-   <PIN pinname="Input String" visible="0" slicecount="1" values="|This tutorial is read only. If you want to write and/or edit code, you should copy the contents of the &quot;ModifierTemplate&quot; directory to your own project and remove write protection of the files. They are a good start for developing custom modifiers.&cr;&lf;&cr;&lf;Note: You don&apos;t have to put custom modifiers into the packs folder. You can write and use them per project ( means: have it in your projects folder). If you wrote some useful modifiers please get in touch with me! |">
+   <PIN pinname="Input String" visible="0" slicecount="1" values="|There are templates for modifiers and selectors. Just type &quot;template selector&quot; or &quot;template modifier&quot; and hold ctrl while clicking on it. Now you can clone them into your current projectfolder and edit them.|">
    </PIN>
    <PIN pinname="Output String" visible="0">
    </PIN>
@@ -422,24 +422,24 @@
    <PIN pinname="String Type" slicecount="1" values="MultiLine">
    </PIN>
    </NODE>
-   <NODE systemname="Template (DX11.Particles.Modifiers)" filename="ModifierTemplate\Template (DX11.Particles.Modifiers).v4p" nodename="Template (DX11.Particles.Modifiers)" componentmode="Hidden" id="37">
-   <BOUNDS type="Node" left="6105" top="5760" width="100" height="100">
+   <PACK Name="dx11" Version="1.0.3">
+   </PACK>
+   <NODE systemname="MyModifier (DX11.Particles.Modifiers)" filename="MyModifier\MyModifier (DX11.Particles.Modifiers).v4p" nodename="MyModifier (DX11.Particles.Modifiers)" componentmode="Hidden" id="42">
+   <BOUNDS type="Node" left="6030" top="5760" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Color Buffer" visible="1">
    </PIN>
    <PIN pinname="Modifier Out" visible="1">
    </PIN>
-   <BOUNDS type="Window" left="2940" top="1725" width="21825" height="12900">
-   </BOUNDS>
-   <BOUNDS type="Box" left="6105" top="5760">
+   <BOUNDS type="Box" left="6030" top="5760">
    </BOUNDS>
    </NODE>
-   <LINK srcnodeid="16" srcpinname="Buffer" dstnodeid="37" dstpinname="Color Buffer">
+   <LINK srcnodeid="16" srcpinname="Buffer" dstnodeid="42" dstpinname="Color Buffer">
    </LINK>
-   <LINK srcnodeid="37" srcpinname="Modifier Out" dstnodeid="19" dstpinname="Layer 2" linkstyle="Bezier">
-   <LINKPOINT x="6105" y="6713">
+   <LINK srcnodeid="42" srcpinname="Modifier Out" dstnodeid="19" dstpinname="Layer 2" linkstyle="Bezier">
+   <LINKPOINT x="6030" y="6705">
    </LINKPOINT>
-   <LINKPOINT x="5430" y="6713">
+   <LINKPOINT x="5415" y="6705">
    </LINKPOINT>
    </LINK>
    </PATCH>
