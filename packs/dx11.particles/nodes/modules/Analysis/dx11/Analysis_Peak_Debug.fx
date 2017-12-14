@@ -1,4 +1,4 @@
-StructuredBuffer<float3> Position;
+StructuredBuffer<float4> Position;
 
 cbuffer cbPerDraw: register( b0 )
 {
@@ -20,6 +20,7 @@ struct vsInput
 struct vs2ps
 {
     float4 position: SV_POSITION;
+	bool dscrd : DISCARD;
 };
 
 /* ===================== VERTEX SHADER ===================== */
@@ -33,7 +34,7 @@ vs2ps VS(vsInput input)
 	float4 p = input.pos;
 	p.xyz += Position[ii].xyz;
 	output.position = mul(p,mul(tW,tVP));
-	
+	if (Position[ii].w == 0) output.dscrd = true;
 	return output;
 }
 
@@ -41,7 +42,7 @@ vs2ps VS(vsInput input)
 
 float4 PS_COLOR(vs2ps input): SV_Target
 {
-	
+	if(input.dscrd) discard;
     return (cAmb);
 }
 

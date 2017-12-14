@@ -19,7 +19,7 @@ StructuredBuffer<Particle> ParticleBuffer;
 StructuredBuffer<uint> AlivePointerBuffer;
 StructuredBuffer<uint> AliveCounterBuffer;
 
-RWStructuredBuffer<float3> PeakBuffer : BACKBUFFER;
+RWStructuredBuffer<float4> PeakBuffer : BACKBUFFER;
 int mode = 0;
 
 struct csin
@@ -28,6 +28,12 @@ struct csin
 	uint3 GTID : SV_GroupThreadID;
 	uint3 GID : SV_GroupID;
 };
+
+[numthreads(1, 1, 1)]
+void CS_Clear(csin input)
+{
+	PeakBuffer[input.DTID.x] = float4(0,0,0,0);
+}
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_Peak(csin input)
@@ -42,16 +48,18 @@ void CS_Peak(csin input)
 		float pixPos = ((1.0f / MAXGROUPCOUNT) * j) ;
 		float halfPixel = (1.0f / MAXGROUPCOUNT) * 0.5f;
 		pixPos += halfPixel;
-		float3 peakCoord = texPeak.SampleLevel(sPoint, float2(pixPos,0),0).xyz;
+		float4 peakCoord = texPeak.SampleLevel(sPoint, float2(pixPos,0),0);
 	
 		if (
 			((mode == 0 || mode == 2) && position.x == peakCoord.x) ||
 			((mode == 1 || mode == 3) && position.y == peakCoord.y)
 		){
-			PeakBuffer[j] = position;	
-		} 
+			PeakBuffer[j] = peakCoord;
+		}
+		//else PeakBuffer[j] = float4(0,0,0,0); 
 		
 	}	
 }
 
+technique11 Clear { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Clear() ) );} }
 technique11 Peak { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_Peak() ) );} }
