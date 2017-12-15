@@ -54,7 +54,7 @@ void CS_Peak(csin input)
 			((mode == 0 || mode == 2) && position.x == peakCoord.x) ||
 			((mode == 1 || mode == 3) && position.y == peakCoord.y)
 		){
-			PeakBuffer[j] = peakCoord;
+			PeakBuffer[j] = float4(ParticleBuffer[particleIndex].position, peakCoord.w);
 		}
 		//else PeakBuffer[j] = float4(0,0,0,0); 
 		
