@@ -2,7 +2,7 @@ ChangeLog
 =========
 
 # 1.0.4 (31.01.2018)
-* added: AsGeometry node outputs a single geometry for the usage in 3rd party shaders
+* added: AsGeometry node outputs a single geometry for the usage with 3rd party shaders
 
 # 1.0.3 (18.12.2017)
 * added: network support (buffer/image/raw converter nodes, splitter/store nodes, zeromq nodes,.. )
