@@ -23,7 +23,7 @@ namespace VVVV.DX11.Nodes
         [Input("Layer", Order = 1)]
         protected Pin<DX11Resource<DX11Layer>> FInLayer;
 
-        [Input("Semantic", Order = 2, DefaultString = "BACKBUFFER")]
+        [Input("Semantic", Order = 2, DefaultString = "BACKBUFFER2")]
         protected IDiffSpread<string> FSemantic;
         [Input("UAV Postfix", Order = 3, DefaultString = "")]
         protected IDiffSpread<string> FUAVPostfix;
@@ -72,7 +72,7 @@ namespace VVVV.DX11.Nodes
         protected List<DX11RenderContext> updateddevices = new List<DX11RenderContext>();
         protected List<DX11RenderContext> rendereddevices = new List<DX11RenderContext>();
 
-        private bool reset = false;
+        private bool reset = true;
 
 
         public event DX11QueryableDelegate BeginQuery;
@@ -95,7 +95,7 @@ namespace VVVV.DX11.Nodes
             FOutBuffers.SliceCount = FSemantic.SliceCount;
 
             reset = reset || this.FInSize.IsChanged || FInMode.IsChanged || FInStride.IsChanged || this.FSemantic.IsChanged || FInReset[0];
-            
+
             for (int i = 0; i < FOutBuffers.SliceCount; i++)
             {
                 if (this.FOutBuffers[i] == null)
@@ -163,14 +163,15 @@ namespace VVVV.DX11.Nodes
                 settings.View = this.FInView[0];
                 settings.Projection = this.FInProjection[0];
                 settings.ViewProjection = settings.View * settings.Projection;
-                settings.BackBuffer = null;
+                settings.BackBuffer = FOutBuffers[0][context];
+                //settings.BackBuffer = null;
                 settings.CustomSemantics = rsemantics;
 
                 for (int i = 0; i < FSemantic.SliceCount; i++)
                 {
 
                     if (FOutBuffers[i][context] == null) reset = true;
-
+                    
                     if (sizes.Count > 0)
                     {
                         settings.RenderWidth = sizes[i];
@@ -184,22 +185,22 @@ namespace VVVV.DX11.Nodes
                         int[] resetval = { FInResetCounterValue[i] };
                         var uavarray = new UnorderedAccessView[1] { FOutBuffers[i][context].UAV };
                         context.CurrentDeviceContext.ComputeShader.SetUnorderedAccessViews(uavarray, 0, 1, resetval);
-                        
+
                     }
                     else
                     {
                         settings.ResetCounter = false;
                     }
                 }
-                FInLayer[0][context].Render( context, settings);
+                FInLayer[0][context].Render(context, settings);
 
                 if (EndQuery != null) EndQuery.Invoke(context);
             }
         }
 
-        public void Update( DX11RenderContext context)
+        public void Update(DX11RenderContext context)
         {
-            if (this.updateddevices.Contains(context)) { return; }
+            if (this.updateddevices.Contains(context) && !reset) { return; }
 
             foreach (IDX11RenderSemantic semres in rsemantics)
             {
@@ -217,11 +218,12 @@ namespace VVVV.DX11.Nodes
                         try
                         {
                             var mode = FInMode[i];
+
                             DX11RWStructuredBuffer rb = new DX11RWStructuredBuffer(context.Device, this.sizes[i], strides[i], mode);
                             this.FOutBuffers[i][context] = rb;
                         }
                         catch (Exception) { }
-                        
+
                         RWStructuredBufferRenderSemantic uavbs = new RWStructuredBufferRenderSemantic(FSemantic[i] + FUAVPostfix[i], false);
                         uavbs.Data = this.FOutBuffers[i][context];
                         rsemantics.Add(uavbs);
