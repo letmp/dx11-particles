@@ -7,12 +7,14 @@ struct Particle {
   		COMPOSITESTRUCT
  	#else
 		float lifespan;
+		float age;
 	#endif
 };
 
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 StructuredBuffer<float> LifespanBuffer <string uiname="Lifespan Buffer";>;
+bool UpdateAge <String uiname="Update Age";> = 1;
 
 struct csin
 {
@@ -31,7 +33,9 @@ void CSSet(csin input)
 	LifespanBuffer.GetDimensions(size,stride);
 	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size);
 	
+	float spawnLifespan = ParticleBuffer[particleIndex].age + ParticleBuffer[particleIndex].lifespan;
 	ParticleBuffer[particleIndex].lifespan = LifespanBuffer[bufferIndex];
+	if (UpdateAge) ParticleBuffer[particleIndex].age = spawnLifespan - ParticleBuffer[particleIndex].lifespan;	
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
@@ -45,6 +49,7 @@ void CSAdd(csin input)
 	uint bufferIndex = GetDynamicBufferIndex( particleIndex, input.DTID.x , size);
 	
 	ParticleBuffer[particleIndex].lifespan += LifespanBuffer[bufferIndex];
+	if (UpdateAge) ParticleBuffer[particleIndex].age -= LifespanBuffer[bufferIndex];
 }
 
 technique11 Set { pass P0{SetComputeShader( CompileShader( cs_5_0, CSSet() ) );} }
