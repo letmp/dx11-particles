@@ -1,6 +1,14 @@
 ChangeLog
 =========
 
+# 1.0.5 (28.03.2018)
+* updated: Age & Lifespan modifiers are affecting each other now
+* updated: ColorByLifeTime help patch shows the new Age/Lifetime behaviour
+* added: Kill modifier
+* updated: help patch for age modifier is a bit more in depth
+* bugfix: MultiStructuredBufferRendererNode did not work for AppendStructuredBuffers
+* removed: obselete version of WorldFilter for Kinect
+
 # 1.0.4 (31.01.2018)
 * added: AsGeometry node outputs a single geometry for the usage with 3rd party shaders
 
