@@ -1,0 +1,147 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.dtd" >
+   <PATCH nodename="E:\software\dev\vvvv\vvvv_50beta35_x64\packs\dx11.particles\nodes\modules\DepthCameras\OrbbecAstra (DX11.Particles.OrbbecAstra).v4p" systemname="OrbbecAstra (DX11.Particles.OrbbecAstra)" filename="D:\workspace\vvvv\orbbec\modules\OrbbecAstra (DX11.Particles.OrbbecAstra).v4p">
+   <NODE systemname="RGBDepth (Openni2 Openni2)" filename="%VVVV%\packs\dx11\nodes\plugins\openni\VVVV.DX11.Nodes.Openni.dll" nodename="RGBDepth (Openni2 Openni2)" componentmode="Hidden" id="0">
+   <BOUNDS type="Node" left="4224" top="1128" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="4224" top="1128" width="2400" height="2400">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1">
+   </PIN>
+   <PIN pinname="RGB FOVXY" visible="1">
+   </PIN>
+   <PIN pinname="Depth FOVXY" visible="1">
+   </PIN>
+   </NODE>
+   <NODE systemname="Depth (Openni2 Openni2)" filename="%VVVV%\packs\dx11\nodes\plugins\openni\VVVV.DX11.Nodes.Openni.dll" nodename="Depth (Openni2 Openni2)" componentmode="Hidden" id="1">
+   <BOUNDS type="Node" left="3468" top="1128" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="3468" top="1128" width="2400" height="2400">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1">
+   </PIN>
+   <PIN pinname="Depth FOVXY" visible="1">
+   </PIN>
+   </NODE>
+   <NODE id="2" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Resolution">
+   </PIN>
+   <BOUNDS type="Box" left="1020" top="2436" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1020" top="2436" width="750" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" visible="1" slicecount="2" values="320,240">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
+   </PIN>
+   </NODE>
+   <NODE id="3" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="RGB">
+   </PIN>
+   <BOUNDS type="Box" left="2700" top="2436" width="630" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="2700" top="2436" width="750" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
+   </PIN>
+   </NODE>
+   <NODE id="4" systemname="IOBox (Value Advanced)" componentmode="InABox" nodename="IOBox (Value Advanced)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Depth FOVXY|">
+   </PIN>
+   <BOUNDS type="Box" left="6540" top="2436" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="6540" top="2436" width="750" height="240">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="0.162500003934838,0.12666666549527">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <NODE id="5" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="Depth">
+   </PIN>
+   <BOUNDS type="Box" left="3456" top="2436" width="600" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="3456" top="2436" width="750" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="OnlyInspector">
+   </PIN>
+   </NODE>
+   <NODE id="6" systemname="IOBox (Node)" componentmode="InABox" nodename="IOBox (Node)">
+   <PIN pinname="Descriptive Name" slicecount="1" values="RGBDepth">
+   </PIN>
+   <BOUNDS type="Box" left="4212" top="2436" width="750" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="4212" top="2436" width="750" height="240">
+   </BOUNDS>
+   <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Pin Visibility" slicecount="1" values="True">
+   </PIN>
+   </NODE>
+   <BOUNDS type="Window" left="9300" top="2310" width="8280" height="4380">
+   </BOUNDS>
+   <PACK Name="dx11" Version="1.0.5">
+   </PACK>
+   <PACK Name="addonpack" Version="35.0.0">
+   </PACK>
+   <LINK srcnodeid="1" srcpinname="Texture" dstnodeid="5" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="0" srcpinname="Texture" dstnodeid="6" dstpinname="Input Node">
+   </LINK>
+   <LINK srcnodeid="1" srcpinname="Depth FOVXY" dstnodeid="4" dstpinname="Y Input Value" linkstyle="Bezier">
+   <LINKPOINT x="4044" y="1920">
+   </LINKPOINT>
+   <LINKPOINT x="6540" y="1920">
+   </LINKPOINT>
+   </LINK>
+   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="11">
+   <BOUNDS type="Box" left="1032" top="1128" width="792" height="480">
+   </BOUNDS>
+   <BOUNDS type="Node" left="1032" top="1128" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="640,480">
+   </PIN>
+   <PIN pinname="Units" slicecount="1" values="||">
+   </PIN>
+   <PIN pinname="Precision" slicecount="1" values="4">
+   </PIN>
+   <PIN pinname="Vector Size" slicecount="1" values="2">
+   </PIN>
+   <PIN pinname="Rows" slicecount="1" values="2">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="11" srcpinname="Y Output Value" dstnodeid="2" dstpinname="Y Input Value">
+   </LINK>
+   <INFO author="tmp" description="Wrapper for Orbbec Astra" tags="">
+   </INFO>
+   <NODE systemname="World (Openni2 Openni2)" filename="%VVVV%\packs\dx11\nodes\plugins\openni\VVVV.DX11.Nodes.Openni.dll" nodename="World (Openni2 Openni2)" componentmode="Hidden" id="12">
+   <BOUNDS type="Node" left="5508" top="1128" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="5508" top="1128" width="2400" height="2400">
+   </BOUNDS>
+   <PIN pinname="Texture" visible="1">
+   </PIN>
+   </NODE>
+   <NODE nodename="IOBox (Node)" componentmode="InABox" id="14">
+   <BOUNDS type="Box" left="5520" top="2436" width="792" height="240">
+   </BOUNDS>
+   <BOUNDS type="Node" left="5520" top="2436" width="0" height="0">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="World">
+   </PIN>
+   </NODE>
+   <LINK srcnodeid="12" srcpinname="Texture" dstnodeid="14" dstpinname="Input Node">
+   </LINK>
+   <NODE systemname="RGB (Openni2 Openni2)" filename="%VVVV%\packs\dx11\nodes\plugins\openni\VVVV.DX11.Nodes.Openni.dll" nodename="RGB (Openni2 Openni2)" componentmode="Hidden" id="16">
+   <BOUNDS type="Node" left="2700" top="1128" width="100" height="100">
+   </BOUNDS>
+   <BOUNDS type="Box" left="2700" top="1128" width="2400" height="2400">
+   </BOUNDS>
+   </NODE>
+   <LINK srcnodeid="16" srcpinname="Texture" dstnodeid="3" dstpinname="Input Node">
+   </LINK>
+   </PATCH>
