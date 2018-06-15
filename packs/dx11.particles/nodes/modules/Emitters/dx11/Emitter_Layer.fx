@@ -57,7 +57,8 @@ void CS_Emit(csin input)
 	if( ParticleBuffer[particleIndex].lifespan >= 0) return;
 	
 	// get XY pixel id 
-	uint2 texId = int2(input.DTID.x % Resolution.x ,input.DTID.x / Resolution.x);
+	uint resX = Resolution.x;
+	uint2 texId = int2(input.DTID.x % resX ,input.DTID.x / resX);
 	
 	uint w,h, dummy;
 	texPositionWorld.GetDimensions(0,w,h,dummy);
@@ -65,13 +66,14 @@ void CS_Emit(csin input)
 	// calculate sampling coordinates
 	float2 texUv = texId * float2(w / Resolution.x , h / Resolution.y) / float2(w,h);
 	
+	
 	float halfPixel = (1.0f / Resolution.x) * 0.5f;
 	texUv += halfPixel;
 	
 	float4 color = texRGB.SampleLevel(sPoint,texUv,0);
 	float4 position = texPositionWorld.SampleLevel(sPoint,texUv,0);
 	
-	if ( color.a > 0 && all(position)){
+	if ( color.a > 0){
 
 		// INCREMENT EmitterCounter
 		uint emitterCounter = EmitterCounterBuffer.IncrementCounter(); 
@@ -80,7 +82,7 @@ void CS_Emit(csin input)
 		// INIT NEW PARTICLE
 		uint size, stride;
 		Particle p = (Particle) 0;
-		
+	
 		// SET POSITION
 		p.position = position.xyz;
 		
