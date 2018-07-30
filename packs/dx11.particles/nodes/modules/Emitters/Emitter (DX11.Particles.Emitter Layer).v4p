@@ -1,8 +1,8 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta35.2.dtd" >
-   <PATCH nodename="D:\workspace\dev\github\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
-   <BOUNDS type="Window" left="4605" top="2220" width="18390" height="9390">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta36.dtd" >
+   <PATCH nodename="D:\workspace\git\dx11-particles\packs\dx11.particles\nodes\modules\Emitters\Emitter (DX11.Particles.Emitter Layer).v4p" systemname="EmitterSimple (DX11.Mcps.Emitter)" filename="D:\workspace\dev\git\dx11-mcps\packs\dx11.mcps\nodes\modules\emitters\EmitterSimple (DX11.Mcps.Emitter).v4p" scrollx="0" scrolly="0">
+   <BOUNDS type="Window" left="7140" top="3456" width="18384" height="9384">
    </BOUNDS>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <NODE nodename="IOBox (Node)" componentmode="InABox" id="48" systemname="IOBox (Node)">
    <BOUNDS type="Box" left="840" top="7635" width="795" height="240">
@@ -435,6 +435,8 @@
    </PIN>
    <PIN pinname="Defines" visible="1" slicecount="1" values="||">
    </PIN>
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
+   </PIN>
    </NODE>
    <LINK srcnodeid="186" srcpinname="Output Node" dstnodeid="221" dstpinname="Transform In" linkstyle="VHV" hiddenwhenlocked="1">
    <LINKPOINT x="1755" y="3450">
@@ -577,18 +579,12 @@
    </BOUNDS>
    <PIN pinname="Layer 1" visible="1">
    </PIN>
-   <PIN pinname="Enabled" visible="1">
+   <PIN pinname="Enabled" visible="1" slicecount="1" values="1">
    </PIN>
    <PIN pinname="Layer Out" visible="1">
    </PIN>
    </NODE>
    <LINK srcnodeid="221" srcpinname="Layer" dstnodeid="227" dstpinname="Layer 1">
-   </LINK>
-   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="227" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="17160" y="3795">
-   </LINKPOINT>
-   <LINKPOINT x="2025" y="3795">
-   </LINKPOINT>
    </LINK>
    <LINK srcnodeid="227" srcpinname="Layer Out" dstnodeid="48" dstpinname="Input Node">
    </LINK>
@@ -644,4 +640,12 @@
    <LINKPOINT x="8760" y="5475">
    </LINKPOINT>
    </LINK>
+   <LINK srcnodeid="107" srcpinname="Y Output Value" dstnodeid="221" dstpinname="Enabled" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="17160" y="3456">
+   </LINKPOINT>
+   <LINKPOINT x="8304" y="3456">
+   </LINKPOINT>
+   </LINK>
+   <PACK Name="dx11" Version="1.0.5">
+   </PACK>
    </PATCH>
