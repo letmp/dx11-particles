@@ -1,5 +1,5 @@
 <!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta36.dtd" >
-   <PATCH nodename="C:\Users\will_rb\Desktop\linesemitter\modules\GenerateLinedata\GenerateLinedata.v4p" systemname="LineGenerator" filename="C:\Users\will_rb\Desktop\linesemitter\modules\LineGenerator\LineGenerator.v4p" scrollx="0" scrolly="0">
+   <PATCH nodename="D:\workspace\git\dx11-particles\packs\dx11.particles\girlpower\Examples\LayerLines\modules\GenerateLinedata\GenerateLinedata.v4p" systemname="LineGenerator" filename="C:\Users\will_rb\Desktop\linesemitter\modules\LineGenerator\LineGenerator.v4p" scrollx="0" scrolly="-360">
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="4" systemname="IOBox (Value Advanced)">
    <BOUNDS type="Box" left="1092" top="660" width="435" height="480">
    </BOUNDS>
@@ -50,7 +50,7 @@
    <PIN pinname="Output Node" visible="1">
    </PIN>
    </NODE>
-   <BOUNDS type="Window" left="5076" top="1500" width="10356" height="14232">
+   <BOUNDS type="Window" left="9204" top="1548" width="10356" height="14232">
    </BOUNDS>
    <PACK Name="dx11" Version="1.0.5">
    </PACK>
@@ -282,76 +282,6 @@
    </LINK>
    <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="70" dstpinname="Element Count">
    </LINK>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="77" exposed="0">
-   <BOUNDS type="Box" left="6228" top="12996" width="792" height="240">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6228" top="12996" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Integer">
-   </PIN>
-   <PIN pinname="Descriptive Name" slicecount="1" values="|Max Linecount|">
-   </PIN>
-   <PIN pinname="Y Input Value" visible="1">
-   </PIN>
-   </NODE>
-   <NODE systemname="Subtract (Value)" nodename="Subtract (Value)" componentmode="Hidden" id="78">
-   <BOUNDS type="Node" left="6228" top="11004" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input 1" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" slicecount="1" visible="1" values="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="4" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Input 1" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="1208" y="5726">
-   </LINKPOINT>
-   <LINKPOINT x="6148" y="6406">
-   </LINKPOINT>
-   </LINK>
-   <NODE systemname="Multiply (Value Spectral)" nodename="Multiply (Value Spectral)" componentmode="Hidden" id="79">
-   <BOUNDS type="Node" left="6228" top="11376" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
-   <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="80">
-   <BOUNDS type="Box" left="6468" top="10464" width="300" height="444">
-   </BOUNDS>
-   <BOUNDS type="Node" left="6468" top="10464" width="0" height="0">
-   </BOUNDS>
-   <PIN pinname="Y Input Value" slicecount="2" visible="1" values="1,0">
-   </PIN>
-   <PIN pinname="Units" slicecount="1" values="||">
-   </PIN>
-   <PIN pinname="Precision" slicecount="1" values="4">
-   </PIN>
-   <PIN pinname="Value Type" slicecount="1" values="Integer">
-   </PIN>
-   <PIN pinname="Rows" slicecount="1" values="2">
-   </PIN>
-   <PIN pinname="SliceCount Mode" slicecount="1" values="ColsRowsPages">
-   </PIN>
-   <PIN pinname="Show Slider" slicecount="1" values="0">
-   </PIN>
-   <PIN pinname="Show Value" slicecount="1" values="1">
-   </PIN>
-   <PIN pinname="Show Grid" slicecount="1" values="1">
-   </PIN>
-   </NODE>
-   <LINK srcnodeid="80" srcpinname="Y Output Value" dstnodeid="78" dstpinname="Input 2">
-   </LINK>
-   <LINK srcnodeid="78" srcpinname="Output" dstnodeid="79" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="77" dstpinname="Y Input Value">
-   </LINK>
    <NODE systemname="Renderer (DX11 MultiStructuredBuffer)" filename="%VVVV%\packs\dx11.particles\nodes\plugins\DX11.Extensions\x64\DX11.Extensions.dll" nodename="Renderer (DX11 MultiStructuredBuffer)" componentmode="Hidden" id="81">
    <BOUNDS type="Node" left="2520" top="11916" width="100" height="100">
    </BOUNDS>
@@ -393,12 +323,6 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="82" srcpinname="Output String" dstnodeid="81" dstpinname="Semantic">
-   </LINK>
-   <LINK srcnodeid="79" srcpinname="Output" dstnodeid="81" dstpinname="Element Count" linkstyle="VHV">
-   <LINKPOINT x="6228" y="11778">
-   </LINKPOINT>
-   <LINKPOINT x="3240" y="11778">
-   </LINKPOINT>
    </LINK>
    <NODE nodename="IOBox (Value Advanced)" componentmode="InABox" id="83">
    <BOUNDS type="Box" left="3324" top="10668" width="300" height="240">
@@ -824,6 +748,12 @@
    <LINKPOINT x="1128" y="4878">
    </LINKPOINT>
    <LINKPOINT x="4908" y="4878">
+   </LINKPOINT>
+   </LINK>
+   <LINK srcnodeid="6" srcpinname="Y Output Value" dstnodeid="81" dstpinname="Element Count" linkstyle="Bezier" hiddenwhenlocked="1">
+   <LINKPOINT x="1116" y="7290">
+   </LINKPOINT>
+   <LINKPOINT x="3192" y="7290">
    </LINKPOINT>
    </LINK>
    </PATCH>
