@@ -37,13 +37,6 @@ void CS_LinearizeIds(csin input)
 }
 
 [numthreads(XTHREADS, YTHREADS, ZTHREADS)]
-void CS_ClearFromTo(csin input)
-{
-	FromBuffer[input.DTID.x] = float3(0,0,0);
-	ToBuffer[input.DTID.x] = float3(0,0,0);
-}
-
-[numthreads(XTHREADS, YTHREADS, ZTHREADS)]
 void CS_SetFromTo(csin input)
 {
 	//safeguard to prevent lines across several rows
@@ -63,5 +56,4 @@ void CS_SetFromTo(csin input)
 
 technique11 ClearIds { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_ClearIds() ) );} }
 technique11 LinearizeIds { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_LinearizeIds() ) );} }
-technique11 ClearFromTo { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_ClearFromTo() ) );} }
 technique11 SetFromTo { pass P0{SetComputeShader( CompileShader( cs_5_0, CS_SetFromTo() ) );} }
