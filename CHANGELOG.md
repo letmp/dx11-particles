@@ -1,6 +1,21 @@
 ChangeLog
 =========
 
+# 1.0.6 (28.09.2018)
+* bugfix: setupcounter in emitters is always enabled. disabling it killed all particles
+* bugfix: calculation of pixel ids in Layer Emitter was wrong
+* bugfix: scale selector in equal mode wasnt working
+* bugfix: dispose buffers on reset
+* added: girlpower example for creating lines with particles
+* added: kill modifier
+* added: position selector
+* added: emitter for Orbbec Astra camera
+* updated: readability of buffer overview pdf
+* updated: better help patch for age modifier
+* updated: email address of author
+* updated: kinect -> depth cameras
+* removed: obselete nodes
+
 # 1.0.5 (28.03.2018)
 * updated: Age & Lifespan modifiers are affecting each other now
 * updated: ColorByLifeTime help patch shows the new Age/Lifetime behaviour
