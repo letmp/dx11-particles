@@ -1,6 +1,6 @@
-<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50alpha35.7.dtd" >
-   <PATCH nodename="D:\workspace\vvvv\vvvv_50alpha35.7_x64\packs\dx11.particles\nodes\modules\Modifiers\Attractor (DX11.Particles.Modifiers Vector3D).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
-   <BOUNDS type="Window" left="5535" top="3495" width="16785" height="9870">
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv50beta36.dtd" >
+   <PATCH nodename="D:\software\vvvv\vvvv_50beta36_x64\packs\dx11.particles\nodes\modules\Modifiers\Attractor (DX11.Particles.Modifiers Vector3d).v4p" scrollx="0" scrolly="0" systemname="Overwrite (DX11.Mcps.Modifiers)" filename="D:\workspace\vvvv\vvvv_45beta34.2_x64\packs\dx11.mcps\nodes\modules\Modifiers\Overwrite (DX11.Mcps.Modifiers).v4p">
+   <BOUNDS type="Window" left="960" top="444" width="16896" height="12264">
    </BOUNDS>
    <NODE systemname="IOBox (Value Advanced)" nodename="IOBox (Value Advanced)" componentmode="InABox" id="28">
    <BOUNDS type="Node" left="3510" top="5955" width="100" height="100">
@@ -82,7 +82,7 @@
    <PIN pinname="Input Node" slicecount="1" visible="1" values="||">
    </PIN>
    </NODE>
-   <PACK Name="addonpack" Version="35.0.0">
+   <PACK Name="addonpack" Version="36.0.0">
    </PACK>
    <LINK srcnodeid="28" srcpinname="Y Output Value" dstnodeid="23" dstpinname="Group Size">
    </LINK>
@@ -496,18 +496,8 @@
    <PIN pinname="Output" visible="1">
    </PIN>
    </NODE>
-   <NODE id="75" systemname="Divide (Value)" nodename="Divide (Value)" componentmode="Hidden">
-   <BOUNDS type="Node" left="13710" top="5895" width="100" height="100">
-   </BOUNDS>
-   <PIN pinname="Input" visible="1">
-   </PIN>
-   <PIN pinname="Input 2" slicecount="1" values="3">
-   </PIN>
-   <PIN pinname="Output" visible="1">
-   </PIN>
-   </NODE>
    <NODE id="76" systemname="Count (Value)" nodename="Count (Value)" componentmode="Hidden">
-   <BOUNDS type="Node" left="13710" top="5415" width="100" height="100">
+   <BOUNDS type="Node" left="13734" top="5775" width="100" height="100">
    </BOUNDS>
    <PIN pinname="Count" visible="1">
    </PIN>
@@ -515,17 +505,9 @@
    </PIN>
    </NODE>
    <LINK srcnodeid="74" srcpinname="Y Output Value" dstnodeid="76" dstpinname="Input" linkstyle="Bezier" hiddenwhenlocked="1">
-   <LINKPOINT x="3345" y="3300">
+   <LINKPOINT x="3353" y="3420">
    </LINKPOINT>
-   <LINKPOINT x="13260" y="3300">
-   </LINKPOINT>
-   </LINK>
-   <LINK srcnodeid="76" srcpinname="Count" dstnodeid="75" dstpinname="Input">
-   </LINK>
-   <LINK srcnodeid="75" srcpinname="Output" dstnodeid="73" dstpinname="Select" linkstyle="VHV" hiddenwhenlocked="0">
-   <LINKPOINT x="13740" y="6255">
-   </LINKPOINT>
-   <LINKPOINT x="13740" y="6255">
+   <LINKPOINT x="13276" y="3540">
    </LINKPOINT>
    </LINK>
    <LINK srcnodeid="73" srcpinname="Output" dstnodeid="65" dstpinname="Input 1">
@@ -776,6 +758,12 @@
    <LINKPOINT x="15240" y="8220">
    </LINKPOINT>
    </LINK>
-   <PACK Name="dx11" Version="1.0.2">
+   <PACK Name="dx11" Version="1.0.6">
    </PACK>
+   <LINK srcnodeid="76" srcpinname="Count" dstnodeid="73" dstpinname="Select" linkstyle="VHV">
+   <LINKPOINT x="13720" y="6048">
+   </LINKPOINT>
+   <LINKPOINT x="13508" y="5928">
+   </LINKPOINT>
+   </LINK>
    </PATCH>
