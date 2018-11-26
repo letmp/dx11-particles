@@ -14,8 +14,8 @@ struct Particle {
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 StructuredBuffer<float4> ColorBuffer <string uiname="Color Buffer";>;
-float3 Position;
-float Radius = 1.0f;
+StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
+StructuredBuffer<float> RadiusBuffer <string uiname="Radius Buffer";>;
 
 struct csin
 {
@@ -34,8 +34,16 @@ void CSSet(csin input)
 	ColorBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
+	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
 	
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	
@@ -46,7 +54,7 @@ void CSSet(csin input)
 	
 	float4 diff = colorNext - colorCurrent;
 	float4 color = colorCurrent + (diff * position);
-
+	
 	ParticleBuffer[particleIndex].color = color;
 }
 
@@ -60,8 +68,16 @@ void CSAdd(csin input)
 	ColorBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
+	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
 	
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	
@@ -86,8 +102,16 @@ void CSSubtract(csin input)
 	ColorBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
+	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
 	
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	
@@ -112,8 +136,16 @@ void CSMul(csin input)
 	ColorBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
+	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
 	
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	

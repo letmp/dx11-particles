@@ -14,8 +14,8 @@ struct Particle {
 RWStructuredBuffer<Particle> ParticleBuffer : PARTICLEBUFFER;
 
 StructuredBuffer<float3> ScaleBuffer <string uiname="Scale Buffer";>;
-float3 Position;
-float Radius = 1.0f;
+StructuredBuffer<float3> PositionBuffer <string uiname="Position Buffer";>;
+StructuredBuffer<float> RadiusBuffer <string uiname="Radius Buffer";>;
 
 struct csin
 {
@@ -34,9 +34,17 @@ void CSSet(csin input)
 	ScaleBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
 	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
+		
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	
 	float3 scaleCurrent = ScaleBuffer[bin.x + slice];
@@ -60,9 +68,17 @@ void CSAdd(csin input)
 	ScaleBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
 	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
+		
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	
 	float3 scaleCurrent = ScaleBuffer[bin.x + slice];
@@ -86,9 +102,17 @@ void CSMul(csin input)
 	ScaleBuffer.GetDimensions(size,stride);
 	uint2 bin = GetDynamicBufferBin(input.DTID.x, size);
 	
-	float phase = saturate(length(ParticleBuffer[particleIndex].position - Position) / Radius);
-	float phase_restricted = (1 - 1.0/bin.y) * phase;
+	uint sizePos, sizeRadius;
+	PositionBuffer.GetDimensions(sizePos,stride);
+	RadiusBuffer.GetDimensions(sizeRadius,stride);
 	
+	float phase_restricted = 1;
+	for (uint i = 0; i < sizePos; ++i){
+		float phase = saturate(length(ParticleBuffer[particleIndex].position - PositionBuffer[i]) / RadiusBuffer[i % sizeRadius]);
+		float phase_restricted_tmp = (1 - 1.0/bin.y) * phase;
+		if (phase_restricted_tmp < phase_restricted) phase_restricted = phase_restricted_tmp;
+	}
+		
 	uint slice = (uint) floor(phase_restricted * bin.y);
 	
 	float3 scaleCurrent = ScaleBuffer[bin.x + slice];
