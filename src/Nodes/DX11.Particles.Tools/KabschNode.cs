@@ -36,12 +36,14 @@ namespace DX11.Particles.Tools
         // see http://en.wikipedia.org/wiki/Kabsch_algorithm for a detailed explanation.
         public void Evaluate(int SpreadMax)
         {
-            FOutput.SliceCount = SpreadMax;
+
+            int newSpreadMax = SpreadUtils.SpreadMax(FInputQ, FInputP);
+            FOutput.SliceCount = newSpreadMax;
             Matrix4x4 mOut;
 
             if (FInputEnabled[0])
             {
-                for(int slice = 0; slice < SpreadMax; slice++)
+                for(int slice = 0; slice < newSpreadMax; slice++)
                 {
                     // ======================== STEP 1 ========================
                     // translate both sets so that their centroids coincides with the origin
