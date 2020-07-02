@@ -1,0 +1,50 @@
+Texture2D texDepth <string uiname="Texture Depth";>;
+Texture2D texRaytable <string uiname="Texture Depth Raytable";>;
+StructuredBuffer<float2> Ray <string uiname="Ray Buffer";>;
+
+SamplerState sPoint : IMMUTABLE
+{
+    Filter = MIN_MAG_MIP_POINT;
+    AddressU = Border;
+    AddressV = Border;
+};
+
+cbuffer controls:register(b0)
+{
+	float2 R: TARGETSIZE;
+
+};
+
+float4 GenerateWorld(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
+	float2 coord = uv; // pixelwise alignment of world texture to depth texture
+	
+	float depth =  texDepth.SampleLevel(sPoint, coord,0 ).r * 65.535 ;
+	float2 ray =  texRaytable.SampleLevel(sPoint, coord,0 ).xy ;
+	
+	float4 position = 0;
+
+	position.x = ray.x * depth; // https://docs.microsoft.com/en-us/azure/kinect-dk/use-image-transformation
+    position.y = ray.y * depth;		
+    position.z = depth;
+	
+	return position;
+}
+
+float4 GenerateUV(float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_TARGET{
+	float4 position = 0;	// azure kinect sdk already aligns rgb to depth
+	position.xy = uv; 		// so RGBWorld lookup table is trivial and only for compatibility with existing Emitters
+	return position;
+	
+}
+
+
+float4 GenerateRaytable (float4 PosWVP:SV_POSITION,float2 uv:TEXCOORD0):SV_Target{
+	uint uvi = (uv.x+0.5) * R.x + (1-uv.y) * R.x*R.y;
+	float2 coord = Ray[uvi];	
+
+	return float4(coord.x, coord.y,0,0.5);
+}
+
+technique11 Raytable{pass P0{SetPixelShader(CompileShader(ps_4_0,GenerateRaytable()));}}
+technique10 World{pass P1{SetPixelShader(CompileShader(ps_4_0,GenerateWorld()));}}
+technique10 RGBDepth{pass P1{SetPixelShader(CompileShader(ps_4_0,GenerateUV()));}}
